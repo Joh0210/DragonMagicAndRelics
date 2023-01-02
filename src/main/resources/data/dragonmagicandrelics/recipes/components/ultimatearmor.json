@@ -1,0 +1,17 @@
+{
+  "type": "mna:component",
+  "tier": 5,
+  "output": "dragonmagicandrelics:components/ultimatearmor",
+  "items": [
+    "mna:greater_mote_ender",
+    "mna:ritual_focus_greater",
+    "minecraft:dragon_head",
+    "minecraft:dragon_egg",
+    "minecraft:nether_star"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/infinity",
+    "mna:manaweave_patterns/star",
+    "mna:manaweave_patterns/hourglass"
+  ]
+}

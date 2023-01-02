@@ -1,0 +1,26 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_damage_boost_iii",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_red",
+    "minecraft:wooden_sword",
+    "minecraft:stone_sword",
+    "minecraft:iron_sword",
+    "minecraft:golden_sword",
+    "minecraft:diamond_sword",
+    "minecraft:netherite_sword",
+    "minecraft:dragon_egg",
+    "minecraft:dragon_egg"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "EARTH",
+      "amount": 1000
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 1000
+    }
+  ]
+}

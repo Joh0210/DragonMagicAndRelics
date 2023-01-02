@@ -1,0 +1,17 @@
+{
+  "type": "mna:component",
+  "tier": 5,
+  "output": "dragonmagicandrelics:components/conjurestorm",
+  "items": [
+    "mna:greater_mote_water",
+    "mna:wakebloom",
+    "mna:stone_rune_red",
+    "mna:living_flame",
+    "minecraft:trident"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/hourglass",
+    "mna:manaweave_patterns/inverted_triangle"
+  ]
+}

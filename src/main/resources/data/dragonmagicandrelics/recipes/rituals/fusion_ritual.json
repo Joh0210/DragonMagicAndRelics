@@ -1,0 +1,77 @@
+{
+  "type": "mna:ritual",
+  "tier": 5,
+  "pattern":
+  [
+    [ 0, 0, 0, 3, 0, 0, 0],
+    [ 0, 0,-1, 0,-1, 0, 0],
+    [ 0,-1, 0, 0, 0,-1, 0],
+    [ 6, 0, 0, 1, 0, 0, 4],
+    [ 0,-1, 0, 0, 0,-1, 0],
+    [ 0, 0,-1, 0,-1, 0, 0],
+    [ 0, 0, 0, 5, 0, 0, 0]
+  ],
+  "displayPattern":
+  [
+    [ 0, 0, 0, 3, 0, 0, 0],
+    [ 0, 0,13, 0, 8, 0, 0],
+    [ 0,11, 0, 0, 0,14, 0],
+    [ 6, 0, 0, 1, 0, 0, 4],
+    [ 0,16, 0, 0, 0, 9, 0],
+    [ 0, 0,10, 0,15, 0, 0],
+    [ 0, 0, 0, 5, 0, 0, 0]
+  ],
+  "reagents":
+  [
+    "   N   ",
+    "       ",
+    "       ",
+    "X  S  X",
+    "       ",
+    "       ",
+    "   A   "
+  ],
+  "keys":
+  {
+    "A":
+    {
+      "item": "dragon_egg",
+      "optional": false,
+      "consume": true
+    },
+
+    "S":
+    {
+      "item": "mna:spell",
+      "optional": false,
+      "consume": true
+    },
+    "N":
+    {
+      "item": "netherite_sword",
+      "optional": true,
+      "consume": true
+    },
+    "X":
+    {
+      "item": "nether_star",
+      "optional": false,
+      "consume": true
+    }
+  },
+  "manaweave":
+  [
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/star"
+  ],
+  "parameters":
+  {
+    "innerColor": "0xffffff",
+    "outerColor": "0x8800ff",
+    "displayIndexes": false,
+    "connectBeam": true,
+    "beamColor": "0x8800ff"
+  }
+}

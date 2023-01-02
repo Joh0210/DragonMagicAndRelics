@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_mana_regen_i",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_light_blue",
+    "mna:chimerite_gem",
+    "mna:rune_arcane",
+    "mna:rune_arcane",
+    "mna:rune_arcane",
+    "mna:rune_arcane",
+    "mna:mote_arcane",
+    "mna:mote_arcane",
+    "mna:mote_arcane"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "ARCANE",
+      "amount": 1000
+    }
+  ]
+}

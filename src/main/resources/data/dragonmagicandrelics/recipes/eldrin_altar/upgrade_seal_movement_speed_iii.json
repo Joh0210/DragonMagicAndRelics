@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_movement_speed_iii",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_light_blue",
+    "mna:pilgrim_staff",
+    "minecraft:sugar",
+    "minecraft:sugar",
+    "minecraft:blue_ice",
+    "minecraft:honey_block",
+    "minecraft:firework_rocket",
+    "minecraft:lightning_rod",
+    "mna:emberglow_bracelet"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WIND",
+      "amount": 1000
+    }
+  ]
+}

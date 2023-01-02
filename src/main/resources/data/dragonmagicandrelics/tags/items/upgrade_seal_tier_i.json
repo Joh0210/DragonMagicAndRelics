@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "dragonmagicandrelics:upgrade_seal_dolphins_grace_i",
+    "dragonmagicandrelics:upgrade_seal_health_boost_i",
+    "dragonmagicandrelics:upgrade_seal_jump_i",
+    "dragonmagicandrelics:upgrade_seal_jump_ii",
+    "dragonmagicandrelics:upgrade_seal_night_vision",
+    "dragonmagicandrelics:upgrade_seal_mana_boost_i",
+    "dragonmagicandrelics:upgrade_seal_mana_regen_i",
+    "dragonmagicandrelics:upgrade_seal_movement_speed_i",
+    "dragonmagicandrelics:upgrade_seal_water_breathing_i",
+    "dragonmagicandrelics:upgrade_seal_wellspring_sight"
+  ]
+}

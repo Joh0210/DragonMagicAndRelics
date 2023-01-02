@@ -1,0 +1,18 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_jump_i",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_lime",
+    "mna:pilgrim_staff",
+    "minecraft:rabbit_foot",
+    "minecraft:rabbit_foot",
+    "minecraft:rabbit_hide"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WIND",
+      "amount": 1000
+    }
+  ]
+}

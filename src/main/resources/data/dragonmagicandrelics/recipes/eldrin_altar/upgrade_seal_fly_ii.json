@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_fly_ii",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_white",
+    "mna:fey_armor_head",
+    "mna:fey_armor_chest",
+    "mna:fey_armor_leggings",
+    "mna:fey_armor_boots",
+    "mna:greater_mote_air",
+    "mna:rune_air",
+    "mna:rune_air",
+    "minecraft:phantom_membrane"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WIND",
+      "amount": 1000
+    }
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "type": "mna:ritual",
+  "tier": 5,
+  "pattern":
+  [
+    [21, 0, 0, 0, 0, 0, 0, 0,11],
+    [-1, 0, 7, 0, 0, 0, 9, 0,-1],
+    [20, 0, 0,-1, 0,-1, 0, 0,12],
+    [ 0,-1, 0, 0, 8, 0, 0,-1, 0],
+    [ 0, 0,19, 0, 1, 0,13, 0, 0],
+    [ 0,-1, 0, 0, 4, 0, 0,-1, 0],
+    [18, 0, 0,-1, 0,-1, 0, 0,14],
+    [-1, 0, 3, 0, 0, 0, 5, 0,-1],
+    [17, 0, 0, 0, 0, 0, 0, 0,15]
+  ],
+  "displayPattern":
+  [
+    [21, 0, 0, 0, 0, 0, 0, 0,11],
+    [-1, 0, 7, 0, 0, 0, 9, 0,-1],
+    [20, 0, 0,-1, 0,-1, 0, 0,12],
+    [ 0,-1, 0, 0, 8, 0, 0,-1, 0],
+    [ 0, 0,19, 0, 1, 0,13, 0, 0],
+    [ 0,-1, 0, 0, 4, 0, 0,-1, 0],
+    [18, 0, 0,-1, 0,-1, 0, 0,14],
+    [-1, 0, 3, 0, 0, 0, 5, 0,-1],
+    [17, 0, 0, 0, 0, 0, 0, 0,15]
+  ],
+  "reagents":
+  [
+    "C       B",
+    "  E   G  ",
+    "D       H",
+    "    T    ",
+    "  S A S  ",
+    "    T    ",
+    "H       D",
+    "  F   E  ",
+    "P       C"
+  ],
+  "keys":
+  {
+    "A":
+    {
+      "item": "netherite_sword",
+      "optional": false,
+      "consume": true
+    },
+    "B":
+    {
+      "item": "blaze_rod",
+      "optional": false,
+      "consume": true
+    },
+    "C":
+    {
+      "item": "tnt",
+      "optional": false,
+      "consume": true
+    },
+    "D":
+    {
+      "item": "poisonous_potato",
+      "optional": false,
+      "consume": true
+    },
+    "E":
+    {
+      "item": "mna:crystal_of_memories",
+      "optional": false,
+      "consume": true
+    },
+    "F":
+    {
+      "item": "fermented_spider_eye",
+      "optional": false,
+      "consume": true
+    },
+    "G":
+    {
+      "item": "golden_apple",
+      "optional": false,
+      "consume": true
+    },
+    "H":
+    {
+      "item": "nether_wart",
+      "optional": false,
+      "consume": true
+    },
+    "P":
+    {
+      "item": "pufferfish",
+      "optional": false,
+      "consume": true
+    },
+    "S":
+    {
+      "item": "nether_star",
+      "optional": false,
+      "consume": true
+    },
+    "T":
+    {
+      "item": "ghast_tear",
+      "optional": false,
+      "consume": true
+    }
+  },
+  "manaweave":
+  [
+    "mna:star",
+    "mna:hourglass",
+    "mna:diamond",
+    "mna:inverted_split_triangle",
+    "mna:infinity"
+  ],
+  "parameters":
+  {
+    "innerColor": "0x210604",
+    "outerColor": "0xab2524",
+    "displayIndexes": false,
+    "connectBeam": false,
+    "beamColor": "0xab2524"
+  }
+}

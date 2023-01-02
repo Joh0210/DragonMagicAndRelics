@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_mana_boost_v",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_light_blue",
+    "mna:major_mana_gem",
+    "mna:major_mana_gem",
+    "mna:major_mana_gem",
+    "mna:major_mana_gem",
+    "mna:rune_arcane",
+    "mna:arcane_crown",
+    "minecraft:dragon_egg",
+    "minecraft:dragon_egg"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "ARCANE",
+      "amount": 1000
+    }
+  ]
+}

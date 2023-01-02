@@ -1,0 +1,50 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="dragonmagicandrelics"
+version="1.0.0"
+displayName="Dragon Magic and Relics"
+credits="Thanks to jsementj for the amazing armor model and texture! Thanks to Mithion for helping creating some code elements of this mod! Also thanks to Ceddi and Nico for helping with testing and balancing."
+authors="Joh0210"
+logoFile="dragon_magic_and_relics.png"
+description='''
+A mod to expand your magic to compete with gods!
+'''
+
+
+[[dependencies.dragonmagicandrelics]]
+   modId="forge"
+   mandatory=true
+   versionRange="[40.1.20,)"
+   ordering="NONE"
+   side="BOTH"
+
+[[dependencies.dragonmagicandrelics]]
+   modId="mna"
+   mandatory=true
+   versionRange="[1.7.2.5,)"
+   ordering="NONE"
+   side="BOTH"
+
+[[dependencies.dragonmagicandrelics]]
+   modId="curios"
+   mandatory=true
+   versionRange="[1.18.2-5,)"
+   ordering="NONE"
+   side="BOTH"
+
+[[dependencies.dragonmagicandrelics]]
+   modId="geckolib3"
+   mandatory=true
+   versionRange="[forge-3.0.18,)"
+   ordering="NONE"
+   side="BOTH"
+
+[[dependencies.dragonmagicandrelics]]
+   modId="minecraft"
+   mandatory=true
+   versionRange="[1.18.2]"
+   ordering="NONE"
+   side="BOTH"

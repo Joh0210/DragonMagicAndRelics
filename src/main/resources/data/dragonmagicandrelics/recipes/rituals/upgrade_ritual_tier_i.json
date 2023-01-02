@@ -1,0 +1,70 @@
+{
+  "type": "mna:ritual",
+  "tier": 5,
+  "pattern":
+  [
+    [ 0, 0,-1, 3,-1, 0, 0],
+    [ 0,-1, 0, 0, 0,-1, 0],
+    [-1, 0, 0, 0, 0, 0,-1],
+    [ 6, 0, 0, 1, 0, 0, 4],
+    [-1, 0, 0, 0, 0, 0,-1],
+    [ 0,-1, 0, 0, 0,-1, 0],
+    [ 0, 0,-1, 5,-1, 0, 0]
+  ],
+  "displayPattern":
+  [
+    [ 0, 0,10,12, 3, 0, 0],
+    [ 0,-1, 0, 0, 0,-1, 0],
+    [ 9, 0, 0, 0, 0, 0, 4],
+    [15, 0, 0, 1, 0, 0,13],
+    [ 8, 0, 0, 0, 0, 0, 5],
+    [ 0,-1, 0, 0, 0,-1, 0],
+    [ 0, 0, 7,14, 6, 0, 0]
+  ],
+  "reagents":
+  [
+    "   N   ",
+    "       ",
+    "       ",
+    "E  A  E",
+    "       ",
+    "       ",
+    "   N   "
+  ],
+  "keys":
+  {
+    "A":
+    {
+      "item": "dragonmagicandrelics:upgrade_seal_tier_i",
+      "optional": false,
+      "consume": true
+    },
+    "E":
+    {
+      "item": "end_crystal",
+      "optional": false,
+      "consume": true
+    },
+    "N":
+    {
+      "item": "nether_star",
+      "optional": false,
+      "consume": true
+    }
+  },
+  "manaweave":
+  [
+    "mna:manaweave_patterns/infinity",
+    "mna:manaweave_patterns/inverted_triangle",
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/hourglass"
+  ],
+  "parameters":
+  {
+    "innerColor": "0xffffff",
+    "outerColor": "0x8800ff",
+    "displayIndexes": false,
+    "connectBeam": true,
+    "beamColor": "0x88800ff"
+  }
+}

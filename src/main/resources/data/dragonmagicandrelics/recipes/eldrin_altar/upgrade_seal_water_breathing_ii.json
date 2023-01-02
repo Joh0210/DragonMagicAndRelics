@@ -1,0 +1,21 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_water_breathing_ii",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_blue",
+    "minecraft:salmon",
+    "mna:rune_water",
+    "mna:vinteum_dust",
+    "mna:wakebloom",
+    "minecraft:lapis_block",
+    "mna:drown_charm",
+    "mna:greater_mote_water"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WATER",
+      "amount": 1000
+    }
+  ]
+}

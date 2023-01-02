@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_night_vision",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_blue",
+    "mna:rune_projection",
+    "mna:rune_arcane",
+    "minecraft:golden_carrot",
+    "minecraft:phantom_membrane",
+    "minecraft:glowstone",
+    "minecraft:torch",
+    "minecraft:spider_eye",
+    "minecraft:nether_wart"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "ARCANE",
+      "amount": 1000
+    }
+  ]
+}

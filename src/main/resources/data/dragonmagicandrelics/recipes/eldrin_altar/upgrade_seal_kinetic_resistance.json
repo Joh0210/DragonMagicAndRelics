@@ -1,0 +1,26 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_kinetic_resistance",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_gray",
+    "mna:greater_mote_air",
+    "mna:greater_mote_water",
+    "minecraft:hay_block",
+    "minecraft:hay_block",
+    "minecraft:hay_block",
+    "minecraft:hay_block",
+    "mna:fall_charm",
+    "mna:fall_charm"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WATER",
+      "amount": 1000
+    },
+    {
+      "affinity": "WIND",
+      "amount": 1000
+    }
+  ]
+}

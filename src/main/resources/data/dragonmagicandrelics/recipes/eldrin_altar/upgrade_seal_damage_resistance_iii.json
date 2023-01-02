@@ -1,0 +1,34 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_damage_resistance_iii",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_gray",
+    "minecraft:wither_rose",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block",
+    "mna:rune_defense",
+    "minecraft:dragon_egg",
+    "minecraft:dragon_egg",
+    "minecraft:dragon_egg"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "EARTH",
+      "amount": 1000
+    },
+    {
+      "affinity": "WIND",
+      "amount": 1000
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 1000
+    },
+    {
+      "affinity": "ENDER",
+      "amount": 1000
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:upgrade_seal_health_boost_v",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_red",
+    "minecraft:ghast_tear",
+    "minecraft:netherite_block",
+    "minecraft:netherite_block",
+    "mna:rune_defense",
+    "minecraft:nether_star",
+    "minecraft:dragon_egg",
+    "minecraft:dragon_egg",
+    "minecraft:dragon_egg"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "EARTH",
+      "amount": 1000
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 1000
+    }
+  ]
+}
