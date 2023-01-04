@@ -13,7 +13,7 @@ public class DragonMageArmorModel extends AnimatedGeoModel<DragonMageArmor> {
 
     @Override
     public ResourceLocation getTextureLocation(DragonMageArmor object) {
-        return RLoc.create("textures/models/armor/dragon_mage_armor_texture.png");
+        return RLoc.create(object.getTextureLocation());
     }
 
     @Override

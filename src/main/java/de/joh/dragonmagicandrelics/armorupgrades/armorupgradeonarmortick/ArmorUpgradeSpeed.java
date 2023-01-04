@@ -18,7 +18,7 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnArmorTick {
     private static final AttributeModifier runSpeed1 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_1", 0.05f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier runSpeed2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_2", 0.05f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier runSpeed3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_3", 0.05f, AttributeModifier.Operation.ADDITION);
-    private static float MANA_PRO_SPEED_LEVEL = 0.25f;
+    private static final float MANA_PRO_SPEED_LEVEL = 0.25f;
 
     public ArmorUpgradeSpeed(String upgradeId, int maxUpgradeLevel) {
         super(upgradeId, maxUpgradeLevel);
@@ -26,7 +26,7 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnArmorTick {
 
     @Override
     public void onArmorTick(Level world, Player player, int level, IPlayerMagic magic) {
-        if (player.isSprinting() && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, MANA_PRO_SPEED_LEVEL)) {
+        if (player.isSprinting() && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, MANA_PRO_SPEED_LEVEL * level)) {
             magic.getCastingResource().consume(player, MANA_PRO_SPEED_LEVEL * level);
             if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed1) && level >= 1){
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed1);

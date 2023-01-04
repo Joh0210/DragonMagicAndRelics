@@ -7,13 +7,13 @@ of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/
 <br>The full credits can be viewed [here](/CREDITS.md). 
 
 The Codex has all the necessary information about the added elements.
-<br>The focus of this mod is fore the use in modpacks to extend the late and aftergame of Mana and Artific and make it on par with other high level mods. The mod can be added to modpacks. No need to ask.
-
-![The Dragon Mage Armor](/src/main/resources/the_dragon_mage_armor.png)
+<br>The focus of this mod is for the use in modpacks to extend the late and after game of Mana and Artifice and make it on par with other high level mods. The mod can be added to modpacks. No need to ask.
 
 ## Dragon Mage Armor
-This armor is an upgrade of the faction armor. This takes on some of the properties of the base faction armor, but it can still be expanded with a variety of glyphs through rituals. Flying, damage boost, an increase in my mana capacity and a lot more!
-<br>Another way to maximize the potential of the Dragon Mage Armor is to fusion it with your spells!
+![The Dragon Mage Armor](/src/main/resources/the_dragon_mage_armor.png)
+
+This armor is an upgrade of the faction armor. It takes over some of the properties of the base faction armor, but it can still be expanded with a variety of glyphs through rituals. Flying, damage boost, an increase in my mana capacity and a lot more!
+<br>Another way to maximize the potential of the Dragon Mage Armor is to fuse it with your spells!
 
 ### New Items
 - Dragon Mage Armor with Upgrade Glyphs

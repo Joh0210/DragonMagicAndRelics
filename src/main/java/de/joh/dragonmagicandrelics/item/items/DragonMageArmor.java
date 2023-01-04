@@ -1,11 +1,13 @@
 package de.joh.dragonmagicandrelics.item.items;
 
 import com.mna.ManaAndArtifice;
+import com.mna.api.capabilities.Faction;
 import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.items.IFactionSpecific;
 import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
+import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.items.armor.ISetItem;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
@@ -57,9 +59,24 @@ import java.util.function.Consumer;
 public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem, IFactionSpecific {
     private AnimationFactory factory = new AnimationFactory(this);
     private static final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_armor_set_bonus");
+    public Faction faction = null;
 
     public DragonMageArmor(ArmorMaterial pMaterial, EquipmentSlot pSlot) {
         super(pMaterial, pSlot, new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant());
+    }
+
+    /**
+     * Depending on the faction, a different texture will be returned.
+     */
+    public String getTextureLocation(){
+        if(faction == Faction.ANCIENT_WIZARDS){
+            return "textures/models/armor/dragon_mage_armor_texture_arcient_wizards.png";
+        } else if(faction == Faction.FEY_COURT){
+            return "textures/models/armor/dragon_mage_armor_texture_fey_court.png";
+        } else if(faction == Faction.UNDEAD){
+            return "textures/models/armor/dragon_mage_armor_texture_undead.png";
+        }
+        return "textures/models/armor/dragon_mage_armor_texture.png";
     }
 
     /**
@@ -70,10 +87,13 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     @Override
     public void onArmorTick(ItemStack stack, Level world, Player player) {
-        this.usedByPlayer(player);
-        IPlayerMagic magic = (IPlayerMagic)player.getCapability(PlayerMagicProvider.MAGIC).orElse((IPlayerMagic) null);
-
+        player.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
+            faction = p.getAlliedFaction();
+        });
         if(slot == EquipmentSlot.CHEST && isSetEquipped(player)){
+            this.usedByPlayer(player);
+            IPlayerMagic magic = (IPlayerMagic)player.getCapability(PlayerMagicProvider.MAGIC).orElse((IPlayerMagic) null);
+
             //Armor Upgrades: On Armor Tick
             for(IArmorUpgradeOnArmorTick upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_ARMOR_TICK){
                 upgrade.onArmorTick(world, player, getUpgradeLevel(upgrade, player), magic);
