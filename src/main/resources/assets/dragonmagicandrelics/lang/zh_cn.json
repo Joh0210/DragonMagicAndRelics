@@ -72,7 +72,7 @@
   "dragonmagicandrelics.ritual.output.upgrade.ritual.no.armor.equipped.error": "你需要装备全套神龙巫师盔甲才能启用此仪式。",
   "dragonmagicandrelics.ritual.output.upgrade.ritual.to.low.tier.error": "要安装此升级，你必须使用仪式，其阶等至少为",
   "dragonmagicandrelics.ritual.output.upgrade.ritual.wrong.ritual.arrangement.error": "仪式设置有误。",
-  "dragonmagicandrelics.ritual.output.dragonmagearmorritual.wrong.armor.error": "你必须装备全套同类盔甲才能执行此仪式。",
+  "dragonmagicandrelics.ritual.output.dragonmagearmorritual.wrong.armor.error": "你必须装备全套派系盔甲才能执行此仪式。",
   "dragonmagicandrelics.ritual.output.dragonmagearmorritual.to.low.level.error": "你必须达到75级才能执行此仪式。",
   "dragonmagicandrelics.ritual.output.secondchanceritual.missing.nbt.error": "我再也回不去了。",
   "tooltip.dragonmagicandrelics.upgradeseal": "要使用此升级，你必须使用§a升级仪式§r，其阶等至少为",
