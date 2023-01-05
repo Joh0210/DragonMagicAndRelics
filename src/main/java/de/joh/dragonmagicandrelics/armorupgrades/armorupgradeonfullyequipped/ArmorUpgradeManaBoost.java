@@ -18,16 +18,12 @@ public class ArmorUpgradeManaBoost  extends IArmorUpgradeOnFullyEquipped {
     @Override
     public void applySetBonus(Player player, int level) {
         player.getPersistentData().putBoolean("mma_magic_set_bonus", true);
-        player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> {
-            m.getCastingResource().addModifier("mma_magic_set_bonus", MANA_PER_MANABOOST * level);
-        });
+        player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().addModifier("mma_magic_set_bonus", MANA_PER_MANABOOST * level));
     }
 
     @Override
     public void removeSetBonus(Player player) {
         player.getPersistentData().putBoolean("mma_magic_set_bonus", false);
-        (player).getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> {
-            m.getCastingResource().removeModifier("mma_magic_set_bonus");
-        });
+        (player).getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().removeModifier("mma_magic_set_bonus"));
     }
 }

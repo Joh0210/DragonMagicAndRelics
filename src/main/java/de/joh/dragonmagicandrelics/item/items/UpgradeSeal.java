@@ -67,7 +67,7 @@ public class UpgradeSeal extends Item {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
         TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal");
-        tooltip.add(new TextComponent(component.getString() + " " + Integer.toString(tier)));
+        tooltip.add(new TextComponent(component.getString() + " " + tier));
     }
 
     /**

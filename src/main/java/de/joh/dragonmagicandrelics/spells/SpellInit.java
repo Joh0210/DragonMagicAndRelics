@@ -2,14 +2,13 @@ package de.joh.dragonmagicandrelics.spells;
 
 
 import com.mna.api.spells.parts.Shape;
-import com.mna.spells.shapes.ShapeTouch;
+import com.mna.api.spells.parts.SpellEffect;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.spells.components.*;
 import de.joh.dragonmagicandrelics.spells.shapes.ShapeAtMark;
 import de.joh.dragonmagicandrelics.utils.RLoc;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.RegistryEvent;
-import com.mna.api.spells.parts.SpellEffect;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 /**

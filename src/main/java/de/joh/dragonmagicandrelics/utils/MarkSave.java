@@ -84,7 +84,7 @@ public class MarkSave {
             return new MarkSave(MarkBookItem.getSelectedPos(markingRune), MarkBookItem.getSelectedFace(markingRune));
         }
 
-        AtomicReference<MarkSave> playerMark = new AtomicReference<MarkSave>();
+        AtomicReference<MarkSave> playerMark = new AtomicReference<>();
         AtomicBoolean isNotNull = new AtomicBoolean(false);
         source.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> {
             if(magic.hasValidMark(world)){

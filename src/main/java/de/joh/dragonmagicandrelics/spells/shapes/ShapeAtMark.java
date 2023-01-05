@@ -5,31 +5,20 @@ import com.mna.api.spells.attributes.AttributeValuePair;
 import com.mna.api.spells.base.IModifiedSpellPart;
 import com.mna.api.spells.base.ISpellDefinition;
 import com.mna.api.spells.parts.Shape;
-import com.mna.api.spells.parts.SpellEffect;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
-import com.mna.items.ItemInit;
-import com.mna.items.runes.MarkBookItem;
 import de.joh.dragonmagicandrelics.utils.MarkSave;
-import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagicProvider;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.stream.Collectors;
 
 /**
  * This shape casts the spell at the position marked with the Rune of Marking in the caster's offhand.
@@ -46,14 +35,14 @@ public class ShapeAtMark extends Shape {
             MarkSave mark = MarkSave.getMark(source.getPlayer(), world);
             if (mark != null) {
                 double dist = source.getCaster().blockPosition().distSqr(mark.getPosition());
-                double maxDist = (double)(modificationData.getValue(Attribute.MAGNITUDE) * 500.0F);
+                double maxDist = modificationData.getValue(Attribute.MAGNITUDE) * 500.0F;
                 if (!(dist > maxDist * maxDist)) {
                     //block-targets in the area
                     List<SpellTarget> targets = new ArrayList();
                     targets.add(new SpellTarget(mark.getPosition(), mark.getDirection()));
-                    int radius = (int)Math.floor((double)modificationData.getValue(Attribute.RADIUS));
+                    int radius = (int)Math.floor(modificationData.getValue(Attribute.RADIUS));
                     if (radius > 0) {
-                        SpellTarget tgt = (SpellTarget)targets.get(0);
+                        SpellTarget tgt = targets.get(0);
                         if (tgt != SpellTarget.NONE) {
                             if (tgt.isBlock()) {
                                 targets = this.targetBlocksRadius(tgt, radius);
@@ -62,11 +51,11 @@ public class ShapeAtMark extends Shape {
                     }
 
                     //entity-targets in the area
-                    List<SpellTarget> targetsEntity = world.getEntities((Entity) null, (new AABB(mark.getPosition())).inflate((double)radius), (entity) -> {
+                    List<SpellTarget> targetsEntity = world.getEntities((Entity) null, (new AABB(mark.getPosition())).inflate(radius), (entity) -> {
                         return entity.isPickable() && entity.isAlive() && entity != source.getCaster();
                     }).stream().map((e) -> {
                         return new SpellTarget(e);
-                    }).collect(Collectors.toList());
+                    }).toList();
                     targets.addAll(targetsEntity);
 
 
@@ -81,7 +70,7 @@ public class ShapeAtMark extends Shape {
             }
         }
 
-        return Arrays.asList(SpellTarget.NONE);
+        return List.of(SpellTarget.NONE);
     }
 
     /**
@@ -89,10 +78,10 @@ public class ShapeAtMark extends Shape {
      * @return List of all blocks and in the radius
      */
     private List<SpellTarget> targetBlocksRadius(SpellTarget origin, int radius) {
-        Direction face = origin.getBlockFace((SpellEffect)null);
+        Direction face = origin.getBlockFace(null);
         BlockPos targetPos = origin.getBlock();
         if (face == null) {
-            return Arrays.asList(SpellTarget.NONE);
+            return List.of(SpellTarget.NONE);
         } else {
             ArrayList<SpellTarget> targets = new ArrayList();
             int x;

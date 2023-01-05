@@ -42,15 +42,11 @@ public class FusionRitual extends RitualEffect {
         BlockPos pos = context.getCenter();
         ItemStack chest = caster.getItemBySlot(EquipmentSlot.CHEST);
 
-        boolean offensive = context.getCollectedReagents((i) -> {
-            return i.getItem() == Items.NETHERITE_SWORD;
-        }).size() == 1;
+        boolean offensive = context.getCollectedReagents((i) -> i.getItem() == Items.NETHERITE_SWORD).size() == 1;
 
         String type = (offensive) ? "spell_other" : "spell_self";
 
-        List<ItemStack> spell = context.getCollectedReagents((r) -> {
-            return r.getItem() == ItemInit.SPELL.get();
-        });
+        List<ItemStack> spell = context.getCollectedReagents((r) -> r.getItem() == ItemInit.SPELL.get());
 
         if (spell.size() == 1) {
             if (!spell.get(0).isEmpty() && SpellRecipe.stackContainsSpell(spell.get(0)) && !caster.level.isClientSide){
@@ -59,8 +55,8 @@ public class FusionRitual extends RitualEffect {
                 compoundTag.putString(DragonMagicAndRelics.MOD_ID+type+"_name", spell.get(0).getTag().getCompound("display").toString().replace( "{Name:'{\"text\":\"", "").replace( "\"}'}", ""));
                 chest.getTag().merge(compoundTag);
 
-                LightningBolt lightningboltentity = (LightningBolt) EntityType.LIGHTNING_BOLT.create(world);
-                lightningboltentity.setPos((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D);
+                LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
+                lightningboltentity.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
                 world.addFreshEntity(lightningboltentity);
                 return true;
             }

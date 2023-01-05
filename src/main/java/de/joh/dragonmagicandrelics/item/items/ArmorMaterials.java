@@ -40,9 +40,7 @@ public enum ArmorMaterials implements ArmorMaterial {
     }),
     */
 
-    DRAGON_MAGE_ARMOR_MATERIAL("dragon_mage", 37, new int[]{3, 6, 8, 3}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> {
-        return null;
-    });
+    DRAGON_MAGE_ARMOR_MATERIAL("dragon_mage", 37, new int[]{3, 6, 8, 3}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> null);
 
     private static final int[] HEALTH_PER_SLOT = new int[]{13, 15, 16, 11};
     private final String name;
@@ -54,7 +52,7 @@ public enum ArmorMaterials implements ArmorMaterial {
     private final float knockbackResistance;
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
-    private ArmorMaterials(String pName, int pDurabilityMultiplier, int[] pSlotProtections, int pEnchantmentValue, SoundEvent pSound, float pToughness, float pKnockbackResistance, Supplier<Ingredient> pRepairIngredient) {
+    ArmorMaterials(String pName, int pDurabilityMultiplier, int[] pSlotProtections, int pEnchantmentValue, SoundEvent pSound, float pToughness, float pKnockbackResistance, Supplier<Ingredient> pRepairIngredient) {
         this.name = pName;
         this.durabilityMultiplier = pDurabilityMultiplier;
         this.slotProtections = pSlotProtections;

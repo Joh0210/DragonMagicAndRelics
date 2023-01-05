@@ -5,11 +5,10 @@ import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.api.sound.SFX;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.phys.Vec3;
 
 /**
@@ -59,7 +58,7 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnArmorTick {
                 Vec3 look = player.getForward().cross(new Vec3(0.0D, 1.0D, 0.0D));
                 float offset = (float)(Math.random() * 0.2D);
                 float yOffset = 0.2F;
-                look = look.scale((double)offset);
+                look = look.scale(offset);
 
                 for(int i = 0; i < 5; ++i) {
                     world.addParticle(new MAParticleType(ParticleInit.FLAME.get()), player.getX() + look.x + Math.random() * motion.x * 2.0D, player.getY() + (double)yOffset + Math.random() * motion.y * 2.0D, player.getZ() + look.z + Math.random() * motion.z * 2.0D, 0.0D, 0.0D, 0.0D);

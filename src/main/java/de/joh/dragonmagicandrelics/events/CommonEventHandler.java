@@ -37,7 +37,7 @@ public class CommonEventHandler {
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
             if (player.isSprinting() && !chest.isEmpty() && chest.getItem() instanceof DragonMageArmor) {
                 float boost = ((float)((DragonMageArmor)chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player)/10.0f);
-                player.push((double)((float)(event.getEntityLiving().getDeltaMovement().x * boost)), boost*2, (double)((float)(event.getEntityLiving().getDeltaMovement().z * boost)));
+                player.push((float)(event.getEntityLiving().getDeltaMovement().x * boost), boost*2, (float)(event.getEntityLiving().getDeltaMovement().z * boost));
             }
         }
     }

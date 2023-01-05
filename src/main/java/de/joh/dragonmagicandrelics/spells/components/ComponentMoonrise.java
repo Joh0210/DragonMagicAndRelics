@@ -13,12 +13,8 @@ import com.mna.entities.EntityInit;
 import com.mna.entities.rituals.EntityTimeChangeBall;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 
 /**
  * This spell turns day into night.
@@ -36,7 +32,7 @@ public class ComponentMoonrise extends SpellEffect {
 
             BlockPos blockPos = (target.isBlock()) ? (new BlockPos(target.getBlock().getX(), (target.getBlock().getY() + 3), target.getBlock().getZ())) : (new BlockPos(target.getEntity().getOnPos().getX(), (target.getEntity().getOnPos().getY() + 3), target.getEntity().getOnPos().getZ()));
 
-            Entity auroraBall = ((EntityType) EntityInit.STARBALL_ENTITY.get()).spawn((ServerLevel) context.getWorld(), (ItemStack) null, (Player) null, blockPos, MobSpawnType.TRIGGERED, true, false);
+            Entity auroraBall = EntityInit.STARBALL_ENTITY.get().spawn(context.getWorld(), null, null, blockPos, MobSpawnType.TRIGGERED, true, false);
             if (auroraBall != null && auroraBall instanceof EntityTimeChangeBall) {
                 ((EntityTimeChangeBall) auroraBall).setTimeChangeType(EntityTimeChangeBall.TIME_CHANGE_NIGHT);
                 return ComponentApplicationResult.SUCCESS;

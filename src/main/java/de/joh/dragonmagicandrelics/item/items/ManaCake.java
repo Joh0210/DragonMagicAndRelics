@@ -19,17 +19,17 @@ public class ManaCake  extends Item {
     /**
      * Mana cost to "repair" the cake
      */
-    private static int MANA_COSTS = 60;
+    private static final int MANA_COSTS = 60;
 
     /**
      * How much nutrition does the cake give?
      */
-    private static int NUTRITION = 4;
+    private static final int NUTRITION = 4;
 
     /**
      * How much saturation does the cake give?
      */
-    private static float SATURATION = 0.6f;
+    private static final float SATURATION = 0.6f;
 
     public ManaCake() {
         super(new Item.Properties().tab(CreativeModeTab.CreativeModeTab).stacksTo(1).rarity(Rarity.COMMON)
@@ -44,7 +44,7 @@ public class ManaCake  extends Item {
     public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
         ItemStack retval = new ItemStack(ItemInit.MANA_CAKE.get());
         super.finishUsingItem(itemstack, world, entity);
-        IPlayerMagic magic = (IPlayerMagic)((Player)entity).getCapability(PlayerMagicProvider.MAGIC).orElse((IPlayerMagic) null);
+        IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
 
         if (itemstack.isEmpty() && entity instanceof Player && magic != null && magic.getCastingResource().hasEnoughAbsolute(entity, MANA_COSTS)) {
             magic.getCastingResource().consume(entity, MANA_COSTS);

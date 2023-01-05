@@ -11,19 +11,12 @@ import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.ItemInit;
-import com.mna.items.runes.ItemRuneMarking;
-import com.mna.items.runes.MarkBookItem;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagicProvider;
-import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChanceProvider;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * This spell writes the target's location in the Rune of Marking the caster is holding.
@@ -39,13 +32,11 @@ public class ComponentMark extends SpellEffect {
         if (markingRune.getItem() != ItemInit.RUNE_MARKING.get() && markingRune.getItem() != ItemInit.BOOK_MARKS.get()) {
             //Player specific mark
             if (source.isPlayerCaster()) {
-                source.getPlayer().getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> {
-                    magic.mark(target.getBlock(), target.getBlockFace((SpellEffect)null), context.getWorld());
-                });
+                source.getPlayer().getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> magic.mark(target.getBlock(), target.getBlockFace(null), context.getWorld()));
             }
         }
         else{
-            setPos(markingRune, target.getBlock(), target.getBlockFace((SpellEffect)null), context.getWorld());
+            setPos(markingRune, target.getBlock(), target.getBlockFace(null), context.getWorld());
         }
 
         return ComponentApplicationResult.FAIL;
@@ -79,14 +70,14 @@ public class ComponentMark extends SpellEffect {
      */
     public static void setPos(ItemStack stack, BlockPos pos, Direction face, Level world) {
         if (stack.getItem() == ItemInit.RUNE_MARKING.get()) {
-            ((ItemRuneMarking)ItemInit.RUNE_MARKING.get()).setLocation(stack, pos, face, world);
+            ItemInit.RUNE_MARKING.get().setLocation(stack, pos, face, world);
         } else {
             if (stack.getItem() == ItemInit.BOOK_MARKS.get()) {
-                int index = ((MarkBookItem)ItemInit.BOOK_MARKS.get()).getIndex(stack);
+                int index = ItemInit.BOOK_MARKS.get().getIndex(stack);
                 ItemInventoryBase inv = new ItemInventoryBase(stack);
                 ItemStack invStack = inv.getStackInSlot(index);
                 if (invStack.getItem() == ItemInit.RUNE_MARKING.get()) {
-                    ((ItemRuneMarking)ItemInit.RUNE_MARKING.get()).setLocation(stack, pos, face, world);
+                    ItemInit.RUNE_MARKING.get().setLocation(stack, pos, face, world);
                 }
             }
         }

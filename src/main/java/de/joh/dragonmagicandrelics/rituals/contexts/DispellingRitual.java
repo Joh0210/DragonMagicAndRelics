@@ -10,8 +10,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.ForgeRegistries;
+
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -42,10 +42,8 @@ public class DispellingRitual extends RitualEffect {
      */
     private ItemStack getSpell(IRitualContext context) {
         ItemStack recipeItem = ItemStack.EMPTY;
-        Iterator var3 = context.getCollectedReagents().iterator();
 
-        while(var3.hasNext()) {
-            ItemStack stack = (ItemStack)var3.next();
+        for (ItemStack stack : context.getCollectedReagents()) {
             if (SpellRecipe.isReagentContainer(stack)) {
                 recipeItem = stack;
                 break;
@@ -60,8 +58,8 @@ public class DispellingRitual extends RitualEffect {
      * @return List of all items that the spell is made of.
      */
     public List<ItemStack> getRecipeItems(ItemStack dataStack) {
-        List<ItemStack> items = new ArrayList<ItemStack>();
-        List<ResourceLocation> rLocItems = new ArrayList<ResourceLocation>();
+        List<ItemStack> items = new ArrayList<>();
+        List<ResourceLocation> rLocItems = new ArrayList<>();
 
         if (!SpellRecipe.isReagentContainer(dataStack) || dataStack == null) {
             return items;

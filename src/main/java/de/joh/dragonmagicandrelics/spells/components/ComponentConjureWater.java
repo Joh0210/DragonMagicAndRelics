@@ -62,7 +62,7 @@ public class ComponentConjureWater extends IComponentConjureFluid {
     @Override
     @Nullable
     public BlockState getCauldronBlockState(){
-        return getCauldronType().defaultBlockState().setValue(BlockStateProperties.LEVEL_CAULDRON, Integer.valueOf(3));
+        return getCauldronType().defaultBlockState().setValue(BlockStateProperties.LEVEL_CAULDRON, 3);
     }
 
     /**

@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 
 /**
  * Ritual that frees the caster from his faction. The caster will be reset to tier 2 and level 29.
@@ -33,12 +32,10 @@ public class BetrayalRitual extends RitualEffect {
             p.setTier(2, caster);
         });
 
-        caster.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> {
-            m.setMagicLevel(29);
-        });
+        caster.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.setMagicLevel(29));
 
-        LightningBolt lightningboltentity = (LightningBolt) EntityType.LIGHTNING_BOLT.create(context.getWorld());
-        lightningboltentity.setPos((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D);
+        LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(context.getWorld());
+        lightningboltentity.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
         context.getWorld().addFreshEntity(lightningboltentity);
 
         return true;

@@ -34,19 +34,13 @@ public class DragonMagicAndRelics {
 
         eventBus.addListener(this::setup);
 
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> {
-            return () -> {
-                eventBus.register(KeybindInit.class);
-            };
-        });
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.register(KeybindInit.class));
 
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     private void setup(final FMLCommonSetupEvent event){
-        event.enqueueWork(() -> {
-            ModMessages.register();
-        });
+        event.enqueueWork(ModMessages::register);
 
         LOGGER.info(MOD_ID + ": init");
     }

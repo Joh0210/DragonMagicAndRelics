@@ -111,9 +111,7 @@ public class DragonMageArmorRitual extends RitualEffect {
         }
         final boolean[] isLevel75 = {false};
 
-        player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> {
-            isLevel75[0] = 75 <= m.getMagicLevel();
-        });
+        player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> isLevel75[0] = 75 <= m.getMagicLevel());
 
         return isLevel75[0] ? null : new TranslatableComponent("dragonmagicandrelics.ritual.output.dragonmagearmorritual.to.low.level.error");
     }

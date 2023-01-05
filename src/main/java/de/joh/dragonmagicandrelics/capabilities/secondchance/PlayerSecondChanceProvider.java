@@ -1,6 +1,5 @@
 package de.joh.dragonmagicandrelics.capabilities.secondchance;
 
-import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChance;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;
@@ -20,7 +19,8 @@ import org.jetbrains.annotations.Nullable;
  * @author Joh0210
  */
 public class PlayerSecondChanceProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {
-    public static Capability<PlayerSecondChance> PLAYER_SECOND_CHANCE = CapabilityManager.get(new CapabilityToken<PlayerSecondChance>() { });
+    public static Capability<PlayerSecondChance> PLAYER_SECOND_CHANCE = CapabilityManager.get(new CapabilityToken<>() {
+    });
 
     private PlayerSecondChance secondChance = null;
     private final LazyOptional<PlayerSecondChance> optional = LazyOptional.of(this::createPlayerSecondChance);

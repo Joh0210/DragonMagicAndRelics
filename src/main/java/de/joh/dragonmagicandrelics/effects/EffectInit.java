@@ -18,7 +18,7 @@ public class EffectInit {
     public static final DeferredRegister<MobEffect> EFFECTS =
             DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, DragonMagicAndRelics.MOD_ID);
 
-    public static final RegistryObject<MobEffect> ULTIMATE_ARMOR = EFFECTS.register("ultimate_armor", () -> new EffectUltimateArmor());
+    public static final RegistryObject<MobEffect> ULTIMATE_ARMOR = EFFECTS.register("ultimate_armor", EffectUltimateArmor::new);
 
     public static void register(IEventBus eventBus){
         EFFECTS.register(eventBus);

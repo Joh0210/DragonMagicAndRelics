@@ -61,9 +61,7 @@ public class PhoenixRitual extends RitualEffect {
     public Component canRitualStart(IRitualContext context) {
         AtomicBoolean isValid = new AtomicBoolean(false);
 
-        context.getCaster().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> {
-            isValid.set(secondChance.isValid());
-        });
+        context.getCaster().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> isValid.set(secondChance.isValid()));
 
         return isValid.get() ? null : new TranslatableComponent("dragonmagicandrelics.ritual.output.secondchanceritual.missing.nbt.error");
     }

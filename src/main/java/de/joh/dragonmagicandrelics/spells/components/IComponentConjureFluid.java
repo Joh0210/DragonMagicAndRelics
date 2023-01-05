@@ -8,11 +8,8 @@ import com.mna.api.spells.parts.SpellEffect;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -116,7 +113,7 @@ public abstract class IComponentConjureFluid extends SpellEffect {
     }
 
     private IFluidHandler getFluidHandler(Level world, BlockPos blockPos, @Nullable Direction side) {
-        return ((IFluidHandler) FluidUtil.getFluidHandler(world, blockPos, side).orElse((IFluidHandler) null));
+        return FluidUtil.getFluidHandler(world, blockPos, side).orElse(null);
     }
 
     /**

@@ -22,7 +22,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -75,7 +74,6 @@ public class ComponentUltimateArmor extends PotionEffectComponent {
 
     @Override
     public List<SpellReagent> getRequiredReagents(@Nullable Player caster) {
-        List<SpellReagent> reagents = Arrays.asList(new SpellReagent(new ItemStack(Items.NETHER_STAR), false, true, true));
-        return reagents;
+        return List.of(new SpellReagent(new ItemStack(Items.NETHER_STAR), false, true, true));
     }
 }

@@ -40,9 +40,7 @@ public class UpgradeRitual extends RitualEffect {
 
 
 
-        List<ItemStack> upgradeSealList = context.getCollectedReagents((r) -> {
-            return r.getItem() instanceof UpgradeSeal;
-        });
+        List<ItemStack> upgradeSealList = context.getCollectedReagents((r) -> r.getItem() instanceof UpgradeSeal);
 
         if (upgradeSealList.size() == 1) {
             if(upgradeSealList.get(0).getItem() instanceof UpgradeSeal upgradeSeal){
@@ -66,8 +64,8 @@ public class UpgradeRitual extends RitualEffect {
                     }
                     mmaArmor.setUpgradeLevel(upgradeSeal.getArmorUpgrade(), upgradeSeal.getUpgradeLevel(), caster);
 
-                    LightningBolt lightningboltentity = (LightningBolt) EntityType.LIGHTNING_BOLT.create(world);
-                    lightningboltentity.setPos((double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D);
+                    LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
+                    lightningboltentity.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
                     world.addFreshEntity(lightningboltentity);
 
                     return true;

@@ -2,7 +2,6 @@ package de.joh.dragonmagicandrelics.events;
 
 import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.spells.ComponentApplicationResult;
-import com.mna.api.spells.parts.SpellEffect;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;

@@ -65,8 +65,8 @@ public class PlayerDragonMagic {
         int i = 0;
 
         for(Map.Entry<ResourceKey<Level>, MarkSave> entry : markMap.entrySet()) {
-            nbt.putString("mark_map_dimension_" + Integer.toString(i), entry.getKey().location().toString());
-            nbt.put("mark_map_mark_save_" + Integer.toString(i), entry.getValue().saveNBT());
+            nbt.putString("mark_map_dimension_" + i, entry.getKey().location().toString());
+            nbt.put("mark_map_mark_save_" + i, entry.getValue().saveNBT());
 
             i++;
         }
@@ -81,8 +81,8 @@ public class PlayerDragonMagic {
             if(nbt.contains("mark_map_size")){
                 for(int i = 0; i< nbt.getInt("mark_map_size"); i++){
                     markMap.put(
-                            ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(nbt.getString("mark_map_dimension_" + Integer.toString(i)))),
-                            new MarkSave(nbt.getCompound("mark_map_mark_save_" + Integer.toString(i)))
+                            ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(nbt.getString("mark_map_dimension_" + i))),
+                            new MarkSave(nbt.getCompound("mark_map_mark_save_" + i))
                     );
                 }
             }

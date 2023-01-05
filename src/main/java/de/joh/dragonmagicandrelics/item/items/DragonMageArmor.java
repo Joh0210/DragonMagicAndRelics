@@ -240,7 +240,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     @Override
     public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-        return (getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) > 0) && !entity.isInWaterOrBubble() && !entity.isInLava() && this.isSetEquipped(entity) && ((Player)entity).getCapability(PlayerMagicProvider.MAGIC).isPresent() && ((IPlayerMagic)((Player)entity).getCapability(PlayerMagicProvider.MAGIC).orElse((IPlayerMagic) null)).getCastingResource().hasEnoughAbsolute(entity, ArmorUpgradeInit.ELYTRA_MANA_COST_PER_TICK);
+        return (getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) > 0) && !entity.isInWaterOrBubble() && !entity.isInLava() && this.isSetEquipped(entity) && entity.getCapability(PlayerMagicProvider.MAGIC).isPresent() && entity.getCapability(PlayerMagicProvider.MAGIC).orElse((IPlayerMagic) null).getCastingResource().hasEnoughAbsolute(entity, ArmorUpgradeInit.ELYTRA_MANA_COST_PER_TICK);
     }
 
     /**
@@ -322,7 +322,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<DragonMageArmor>(this, "controller",
+        data.addAnimationController(new AnimationController<>(this, "controller",
                 20, this::predicate));
     }
 
