@@ -2,7 +2,7 @@ package de.joh.dragonmagicandrelics.item.items;
 
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
-import de.joh.dragonmagicandrelics.item.CreativeModeTab;
+import de.joh.dragonmagicandrelics.CreativeModeTab;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;

@@ -842,7 +842,7 @@
       {
         "type": "text",
         "json": {
-          "text": "With this glyph I can jump higher per level."
+          "text": "With this glyph I can jump higher per level while sprinting."
         }
       },
       {
@@ -876,6 +876,62 @@
       {
         "type": "eldrin_altar",
         "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_jump_iii"
+      }
+    ]
+  },
+  "Upgrade Glyph Explosion Resistance": {
+    "index": 1,
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Explosion Resistance"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "Kaboom. Oh, TNT is just beautiful. And with the upgrade, I don't mind the explosion anymore either! But the environment is still not protected...\n\nAnyways. TNT!"
+        }
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "Explosion Resistance is Tier 4"
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_explosion_resistance"
+      }
+    ]
+  },
+  "Upgrade Glyph Kinetic Resistance": {
+    "index": 1,
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Kinetic Resistance"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "With the Elytra you can become very fast... and can fly against the wall very fast. So that I don't mind that anymore, I developed this upgrade. It protects me from the elytra's kinetic damage and fall damage."
+        }
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "Kinetic Resistance is Tier 2"
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_kinetic_resistance"
       }
     ]
   },

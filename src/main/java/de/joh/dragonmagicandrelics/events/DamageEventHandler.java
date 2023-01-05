@@ -11,6 +11,7 @@ import com.mna.api.timing.TimedDelayedSpellEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
+import de.joh.dragonmagicandrelics.Commands;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
@@ -23,6 +24,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -41,7 +43,7 @@ public class DamageEventHandler {
      * Processing of the damage boost and damaga resistance upgrades.
      * Casts a spell on the player or the source when the wearer of the Dragon Mage Armor takes damage.
      * @see ArmorUpgradeInit
-     * @see de.joh.dragonmagicandrelics.commands.Commands
+     * @see Commands
      * @see de.joh.dragonmagicandrelics.rituals.contexts.FusionRitual
      * @param event
      */
@@ -77,11 +79,11 @@ public class DamageEventHandler {
     }
 
     /**
-     * Processing of the fire resistance and kinetic resistance upgrades.
+     * Processing of the fire resistance, explosion resistance and kinetic resistance upgrades resistance through jumpboost.
      * @see ArmorUpgradeInit
      */
     @SubscribeEvent
-    public static void onLivingDamage(LivingDamageEvent event) {
+    public static void onLivingAttack(LivingAttackEvent event) {
         if(event.getEntityLiving() instanceof Player player){
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
             if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor) {
@@ -92,15 +94,53 @@ public class DamageEventHandler {
                     if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, ArmorUpgradeInit.MANA_PER_FIRE_DAMAGE)) {
                         magic.getCastingResource().consume(player, ArmorUpgradeInit.MANA_PER_FIRE_DAMAGE);
                         event.setCanceled(true);
+                        return;
                     }
                 }
                 else if (event.getSource().isFire() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 2) {
                     event.setCanceled(true);
+                    return;
+                }
+
+                //protection against explosions
+                if (event.getSource().isExplosion() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.EXPLOSION_RESISTANCE, player) == 1) {
+                    event.setCanceled(true);
+                    return;
+                }
+
+                //Protection from falling through jumpboost
+                if(event.getSource() == DamageSource.FALL && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
+                    if((event.getAmount() - ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3) <= 0){
+                        event.setCanceled(true);
+                        return;
+                    }
                 }
 
                 //Protection from kinetic energy
                 if((event.getSource() == DamageSource.FALL || event.getSource() == DamageSource.FLY_INTO_WALL) && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.KINETIC_RESISTANCE, player) == 1){
                     event.setCanceled(true);
+                    return;
+                }
+            }
+        }
+    }
+
+    /**
+     * Processing resistance through jumpboost.
+     * @see ArmorUpgradeInit
+     */
+    @SubscribeEvent
+    public static void onLivingDamage(LivingDamageEvent event) {
+        if(event.getEntityLiving() instanceof Player player){
+            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+            if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor) {
+
+                //Protection from falling through jumpboost
+                if(event.getSource() == DamageSource.FALL && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
+                    int amount = (int)event.getAmount() - ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3;
+                    if(amount > 0){
+                        event.setAmount(amount);
+                    }
                 }
             }
         }

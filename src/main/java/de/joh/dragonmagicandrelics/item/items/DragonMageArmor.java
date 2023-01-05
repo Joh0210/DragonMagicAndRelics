@@ -16,7 +16,7 @@ import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradePotionEffect;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.IArmorUpgradeOnArmorTick;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.IArmorUpgradeOnFullyEquipped;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
-import de.joh.dragonmagicandrelics.item.CreativeModeTab;
+import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.particles.ParticleType;

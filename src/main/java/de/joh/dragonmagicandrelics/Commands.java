@@ -1,4 +1,4 @@
-package de.joh.dragonmagicandrelics.commands;
+package de.joh.dragonmagicandrelics;
 
 import com.mna.spells.crafting.SpellRecipe;
 import com.mojang.brigadier.CommandDispatcher;
@@ -98,8 +98,7 @@ public class Commands {
         return ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)
                 ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)
                 ((LiteralArgumentBuilder) ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)
-                ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)
-                ((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal("addUpgrade")
+                ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder) ((LiteralArgumentBuilder)((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal("addUpgrade")
                 .then(applyUpgrade("fly"))
                 .then(applyUpgrade("saturation")))
                 .then(applyUpgrade("movement_speed")))
@@ -116,6 +115,7 @@ public class Commands {
                 .then(applyUpgrade("health_boost")))
                 .then(applyUpgrade("jump")))
                 .then(applyUpgrade("kinetic_resistance")))
+                .then(applyUpgrade("explosion_resistance")))
 
                 .then(applyUpgrade("fire_resistance")))
                 .then(applyUpgrade("elytra")))

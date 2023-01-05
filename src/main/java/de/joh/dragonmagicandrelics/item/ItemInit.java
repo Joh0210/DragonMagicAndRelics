@@ -55,6 +55,8 @@ public class ItemInit {
     public static final RegistryObject<Item> UPGRADE_SEAL_ELYTRA_I = ITEMS.register("upgrade_seal_elytra_i", () -> new UpgradeSeal(2, "elytra", 1));
     public static final RegistryObject<Item> UPGRADE_SEAL_ELYTRA_II = ITEMS.register("upgrade_seal_elytra_ii", () -> new UpgradeSeal(4, "elytra", 2));
 
+    public static final RegistryObject<Item> UPGRADE_SEAL_EXPLOSION_RESISTANCE = ITEMS.register("upgrade_seal_explosion_resistance", () -> new UpgradeSeal(4, "explosion_resistance", 1));
+
     public static final RegistryObject<Item> UPGRADE_SEAL_FIRE_RESISTANCE_I = ITEMS.register("upgrade_seal_fire_resistance_i", () -> new UpgradeSeal(2, "fire_resistance", 1));
     public static final RegistryObject<Item> UPGRADE_SEAL_FIRE_RESISTANCE_II = ITEMS.register("upgrade_seal_fire_resistance_ii", () -> new UpgradeSeal(3, "fire_resistance", 2));
 

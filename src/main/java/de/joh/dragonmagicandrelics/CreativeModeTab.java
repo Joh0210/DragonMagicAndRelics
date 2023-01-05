@@ -1,5 +1,6 @@
-package de.joh.dragonmagicandrelics.item;
+package de.joh.dragonmagicandrelics;
 
+import de.joh.dragonmagicandrelics.item.ItemInit;
 import net.minecraft.world.item.ItemStack;
 
 /**

@@ -99,7 +99,16 @@ public class ArmorUpgradeInit {
     public static ArmorUpgrade KINETIC_RESISTANCE = new ArmorUpgrade("kinetic_resistance", 1);
 
     /**
+     * This upgrade protects you from explosion damage.
+     * Increasing the maximum level has no effect without further adjustments.
+     * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
+     */
+    public static ArmorUpgrade EXPLOSION_RESISTANCE = new ArmorUpgrade("explosion_resistance", 1);
+
+
+    /**
      * This upgrade increases the jump height of the wearer of the Dragon Mage Armor.
+     * Effect only applies while sprinting.
      * @see de.joh.dragonmagicandrelics.events.CommonEventHandler
      */
     public static ArmorUpgrade JUMP = new ArmorUpgrade("jump", 3);
@@ -136,6 +145,7 @@ public class ArmorUpgradeInit {
             upgradeList.add(armorUpgrade);
         }
         upgradeList.add(KINETIC_RESISTANCE);
+        upgradeList.add(EXPLOSION_RESISTANCE);
         upgradeList.add(JUMP);
         upgradeList.add(FIRE_RESISTANCE);
         upgradeList.add(ELYTRA);

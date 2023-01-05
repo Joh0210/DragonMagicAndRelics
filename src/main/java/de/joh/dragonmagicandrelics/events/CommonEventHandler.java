@@ -2,7 +2,7 @@ package de.joh.dragonmagicandrelics.events;
 
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
-import de.joh.dragonmagicandrelics.commands.Commands;
+import de.joh.dragonmagicandrelics.Commands;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChance;
@@ -35,9 +35,9 @@ public class CommonEventHandler {
     public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
         if(event.getEntityLiving() instanceof Player player){
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor) {
+            if (player.isSprinting() && !chest.isEmpty() && chest.getItem() instanceof DragonMageArmor) {
                 float boost = ((float)((DragonMageArmor)chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player)/10.0f);
-                player.push((double)((float)(event.getEntityLiving().getDeltaMovement().x * boost)), boost, (double)((float)(event.getEntityLiving().getDeltaMovement().z * boost)));
+                player.push((double)((float)(event.getEntityLiving().getDeltaMovement().x * boost)), boost*2, (double)((float)(event.getEntityLiving().getDeltaMovement().z * boost)));
             }
         }
     }

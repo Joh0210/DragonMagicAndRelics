@@ -14,8 +14,8 @@ public class ArmorUpgradeSaturation extends IArmorUpgradeOnArmorTick {
     /**
      * The amount of saturation that fills up when the wearer's hunger fills up.
      */
-    private static int ARMOR_SATURATION = 6;
-    private static int MANA_PER_NUTRITION = 15;
+    private static final int ARMOR_SATURATION = 6;
+    private static final int MANA_PER_NUTRITION = 15;
 
     public ArmorUpgradeSaturation(String upgradeId, int maxUpgradeLevel) {
         super(upgradeId, maxUpgradeLevel);
