@@ -22,20 +22,12 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, DragonMagicAndRelics.MOD_ID);
 
-    public static final RegistryObject<Item> MANA_CAKE = ITEMS.register("mana_cake", () -> new ManaCake());
+    public static final RegistryObject<Item> MANA_CAKE = ITEMS.register("mana_cake", ManaCake::new);
 
-    public static final RegistryObject<Item> DRAGON_MAGE_HELMET = ITEMS.register("dragon_mage_helmet", () -> {
-        return new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.HEAD);
-    });
-    public static final RegistryObject<Item> DRAGON_MAGE_CHESTPLATE = ITEMS.register("dragon_mage_chestplate", () -> {
-        return new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.CHEST);
-    });
-    public static final RegistryObject<Item> DRAGON_MAGE_LEGGING = ITEMS.register("dragon_mage_leggings", () -> {
-        return new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.LEGS);
-    });
-    public static final RegistryObject<Item> DRAGON_MAGE_BOOTS = ITEMS.register("dragon_mage_boots", () -> {
-        return new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.FEET);
-    });
+    public static final RegistryObject<Item> DRAGON_MAGE_HELMET = ITEMS.register("dragon_mage_helmet", () -> new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.HEAD));
+    public static final RegistryObject<Item> DRAGON_MAGE_CHESTPLATE = ITEMS.register("dragon_mage_chestplate", () -> new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.CHEST));
+    public static final RegistryObject<Item> DRAGON_MAGE_LEGGING = ITEMS.register("dragon_mage_leggings", () -> new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.LEGS));
+    public static final RegistryObject<Item> DRAGON_MAGE_BOOTS = ITEMS.register("dragon_mage_boots", () -> new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.FEET));
 
     //ARMOR UPGRADES:
     public static final RegistryObject<Item> UPGRADE_SEAL_DAMAGE_BOOST_I = ITEMS.register("upgrade_seal_damage_boost_i", () -> new UpgradeSeal(2, "damage_boost", 1));
@@ -86,6 +78,8 @@ public class ItemInit {
     public static final RegistryObject<Item> UPGRADE_SEAL_MANA_REGEN_III = ITEMS.register("upgrade_seal_mana_regen_iii", () -> new UpgradeSeal(3, "mana_regen"));
     public static final RegistryObject<Item> UPGRADE_SEAL_MANA_REGEN_IV = ITEMS.register("upgrade_seal_mana_regen_iv", () -> new UpgradeSeal(4, "mana_regen"));
     public static final RegistryObject<Item> UPGRADE_SEAL_MANA_REGEN_V = ITEMS.register("upgrade_seal_mana_regen_v", () -> new UpgradeSeal(4, "mana_regen", 5));
+
+    public static final RegistryObject<Item> UPGRADE_SEAL_METEOR_JUMP = ITEMS.register("upgrade_seal_meteor_jump", () -> new UpgradeSeal(3, "meteor_jump", 1));
 
     public static final RegistryObject<Item> UPGRADE_SEAL_MOVEMENT_SPEED_I = ITEMS.register("upgrade_seal_movement_speed_i", () -> new UpgradeSeal(1, "movement_speed"));
     public static final RegistryObject<Item> UPGRADE_SEAL_MOVEMENT_SPEED_II = ITEMS.register("upgrade_seal_movement_speed_ii", () -> new UpgradeSeal(2, "movement_speed"));

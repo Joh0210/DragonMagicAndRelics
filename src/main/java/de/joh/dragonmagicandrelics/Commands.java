@@ -5,7 +5,6 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.commands.CommandSourceStack;
@@ -15,7 +14,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 
@@ -32,11 +30,9 @@ public class Commands {
      * @param dispatcher Standard parameters for commands
      */
     public Commands(CommandDispatcher<CommandSourceStack> dispatcher){
-        dispatcher.register(((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal(DragonMagicAndRelics.MOD_ID).requires((commandSource) -> {
-                    return commandSource.hasPermission(2);
-                })
+        dispatcher.register(net.minecraft.commands.Commands.literal(DragonMagicAndRelics.MOD_ID).requires((commandSource) -> commandSource.hasPermission(2))
                 .then(addUpgrade())
-                .then(addSpellToArmor())));
+                .then(addSpellToArmor()));
     }
 
     /**
@@ -95,32 +91,27 @@ public class Commands {
      * Adds one of the upgrades to your Dragon Mage Armor.
      */
     private ArgumentBuilder<CommandSourceStack, ?> addUpgrade() {
-        return ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)
-                ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)
-                ((LiteralArgumentBuilder) ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)
-                ((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder)((LiteralArgumentBuilder) ((LiteralArgumentBuilder)((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal("addUpgrade")
-                .then(applyUpgrade("fly"))
-                .then(applyUpgrade("saturation")))
-                .then(applyUpgrade("movement_speed")))
-                .then(applyUpgrade("water_breathing")))
-
-                .then(applyUpgrade("regeneration")))
-                .then(applyUpgrade("night_vision")))
-                .then(applyUpgrade("dolphins_grace")))
-                .then(applyUpgrade("eldrin_sight")))
-                .then(applyUpgrade("wellspring_sight")))
-
-                .then(applyUpgrade("mana_boost")))
-                .then(applyUpgrade("mana_regen")))
-                .then(applyUpgrade("health_boost")))
-                .then(applyUpgrade("jump")))
-                .then(applyUpgrade("kinetic_resistance")))
-                .then(applyUpgrade("explosion_resistance")))
-
-                .then(applyUpgrade("fire_resistance")))
-                .then(applyUpgrade("elytra")))
-                .then(applyUpgrade("damage_resistance")))
-                .then(applyUpgrade("damage_boost")));
+        return ((LiteralArgumentBuilder) ((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal("addUpgrade")
+        .then(applyUpgrade("fly"))
+        .then(applyUpgrade("saturation")))
+        .then(applyUpgrade("movement_speed"))
+        .then(applyUpgrade("water_breathing"))
+        .then(applyUpgrade("regeneration"))
+        .then(applyUpgrade("night_vision"))
+        .then(applyUpgrade("dolphins_grace"))
+        .then(applyUpgrade("eldrin_sight"))
+        .then(applyUpgrade("wellspring_sight"))
+        .then(applyUpgrade("mana_boost"))
+        .then(applyUpgrade("mana_regen"))
+        .then(applyUpgrade("health_boost"))
+        .then(applyUpgrade("jump"))
+        .then(applyUpgrade("kinetic_resistance"))
+        .then(applyUpgrade("explosion_resistance"))
+        .then(applyUpgrade("meteor_jump"))
+        .then(applyUpgrade("fire_resistance"))
+        .then(applyUpgrade("elytra"))
+        .then(applyUpgrade("damage_resistance"))
+        .then(applyUpgrade("damage_boost")));
     }
 
     /**
@@ -133,14 +124,14 @@ public class Commands {
         return net.minecraft.commands.Commands.literal(upgradeName).then(net.minecraft.commands.Commands.argument("level", IntegerArgumentType.integer(0, (ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName) != null ? ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName).getMaxUpgradeLevel() : 0))).executes((command) -> {
             ServerPlayer player = command.getSource().getPlayerOrException();
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (player instanceof Player && chest.getItem() instanceof DragonMageArmor){
+            if (chest.getItem() instanceof DragonMageArmor){
                 if(ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName) == null){
                     command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.upgradedoesnotexist.error"), true);
                 } else if (((DragonMageArmor) chest.getItem()).isSetEquipped(player)){
                     TranslatableComponent component_one = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.one");
                     TranslatableComponent component_two = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.two");
 
-                    command.getSource().sendSuccess(new TextComponent(component_one.getString() + upgradeName + component_two.getString() + Integer.toString(IntegerArgumentType.getInteger(command, "level"))), true);
+                    command.getSource().sendSuccess(new TextComponent(component_one.getString() + upgradeName + component_two.getString() + IntegerArgumentType.getInteger(command, "level")), true);
                     ((DragonMageArmor) chest.getItem()).setUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName), IntegerArgumentType.getInteger(command, "level"), player);
                 }else{
                     command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.no.armor.equipped.error"), true);

@@ -55,7 +55,7 @@ public class DamageEventHandler {
         if(living instanceof Player player){
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 
-            //Spell:
+            //Spell
             if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
                 applySpell(false, player, source, chest);
                 if(source != null){
@@ -90,7 +90,7 @@ public class DamageEventHandler {
                 //protection against fire
                 if (event.getSource().isFire() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 1) {
 
-                    IPlayerMagic magic = (IPlayerMagic)player.getCapability(PlayerMagicProvider.MAGIC).orElse((IPlayerMagic) null);
+                    IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
                     if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, ArmorUpgradeInit.MANA_PER_FIRE_DAMAGE)) {
                         magic.getCastingResource().consume(player, ArmorUpgradeInit.MANA_PER_FIRE_DAMAGE);
                         event.setCanceled(true);
@@ -174,13 +174,13 @@ public class DamageEventHandler {
                     int delay = (int)(c.getValue(com.mna.api.spells.attributes.Attribute.DELAY) * 20.0F);
                     boolean appliedComponent = false;
                     if (delay > 0) {
-                        DelayedEventQueue.pushEvent(self.level, new TimedDelayedSpellEffect(((SpellEffect)c.getPart()).getRegistryName().toString(), delay, spellSource, new SpellTarget(isOther ? other : self ), c, context));
+                        DelayedEventQueue.pushEvent(self.level, new TimedDelayedSpellEffect(c.getPart().getRegistryName().toString(), delay, spellSource, new SpellTarget(isOther ? other : self ), c, context));
                         appliedComponent = true;
-                    } else if (((SpellEffect)c.getPart()).ApplyEffect(spellSource, new SpellTarget(isOther ? other : self), c, context) == ComponentApplicationResult.SUCCESS) {
+                    } else if (c.getPart().ApplyEffect(spellSource, new SpellTarget(isOther ? other : self), c, context) == ComponentApplicationResult.SUCCESS) {
                         appliedComponent = true;
                     }
                     if (appliedComponent) {
-                        SpellCaster.addComponentRoteProgress((Player)self, (SpellEffect)c.getPart());
+                        SpellCaster.addComponentRoteProgress(self, c.getPart());
                     }
                 });
             }

@@ -77,24 +77,16 @@ public class DragonMageArmorRitual extends RitualEffect {
 
 
         if(chest.getItem() instanceof BoneArmorItem){
-            getBoneInitEffects().forEach((key, value) -> {
-                upgrade(context, (ArmorUpgrade) key, (int)value);
-            });
+            getBoneInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
         else if(chest.getItem() instanceof CouncilArmorItem){
-            getCouncilInitEffects().forEach((key, value) -> {
-                upgrade(context, (ArmorUpgrade) key, (int)value);
-            });
+            getCouncilInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
         else if(chest.getItem() instanceof DemonArmorItem){
-            getDemonInitEffects().forEach((key, value) -> {
-                upgrade(context, (ArmorUpgrade) key, (int)value);
-            });
+            getDemonInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
         else if(chest.getItem() instanceof FeyArmorItem){
-            getFeyInitEffects().forEach((key, value) -> {
-                upgrade(context, (ArmorUpgrade) key, (int)value);
-            });
+            getFeyInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
 
         return  true;
@@ -144,7 +136,8 @@ public class DragonMageArmorRitual extends RitualEffect {
             put(ArmorUpgradeInit.getArmorUpgradeFromString("movement_speed"), 3);
             put(ArmorUpgradeInit.getArmorUpgradeFromString("jump"), 3);
             put(ArmorUpgradeInit.getArmorUpgradeFromString("fire_resistance"), 2);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("damage_boost"), 2);
+            put(ArmorUpgradeInit.getArmorUpgradeFromString("explosion_resistance"), 1);
+            put(ArmorUpgradeInit.getArmorUpgradeFromString("meteor_jump"), 1);
         }};
     }
 
@@ -163,7 +156,7 @@ public class DragonMageArmorRitual extends RitualEffect {
             put(ArmorUpgradeInit.getArmorUpgradeFromString("water_breathing"), 2);
             put(ArmorUpgradeInit.getArmorUpgradeFromString("health_boost"), 2);
             put(ArmorUpgradeInit.getArmorUpgradeFromString("damage_boost"), 2);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("damage_resistance"), 1);
+            put(ArmorUpgradeInit.getArmorUpgradeFromString("damage_resistance"), 2);
 
         }};
     }

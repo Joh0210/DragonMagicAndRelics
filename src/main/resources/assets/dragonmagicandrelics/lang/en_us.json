@@ -8,6 +8,7 @@
   "item.dragonmagicandrelics.dragon_mage_boots": "Dragon Mage Boots",
 
   "item.dragonmagicandrelics.upgrade_seal_explosion_resistance": "Upgrade Glyph Explosion Resistance",
+  "item.dragonmagicandrelics.upgrade_meteor_jump": "Upgrade Glyph Meteor Jump",
   "item.dragonmagicandrelics.upgrade_seal_fly_i": "Upgrade Glyph Fly I",
   "item.dragonmagicandrelics.upgrade_seal_fly_ii": "Upgrade Glyph Fly II",
   "item.dragonmagicandrelics.upgrade_seal_saturation": "Upgrade Glyph Saturation",
@@ -92,6 +93,7 @@
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base": "You have installed the following upgrades:",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.explosion_resistance": "§bExplosion Resistance§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.elytra": "§fElytra§r",
+  "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.meteor_jump": "§6Meteor Jump§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.fly": "§fFly§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.fire_resistance": "§6Fire Resistance§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.movement_speed": "§bMovement Speed§r",

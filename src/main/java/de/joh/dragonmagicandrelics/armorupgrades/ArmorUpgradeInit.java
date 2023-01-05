@@ -7,6 +7,7 @@ import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.world.effect.MobEffects;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An initialization of all upgrades for the Dragon Mage Armor.
@@ -37,9 +38,10 @@ public class ArmorUpgradeInit {
      */
     public static IArmorUpgradeOnArmorTick[] ARMOR_UPGRADE_ON_ARMOR_TICK = new IArmorUpgradeOnArmorTick[]{
             new ArmorUpgradeFly("fly", 2),
-            new ArmorUpgradeSaturation("saturation", 1), //Höher bringt nix
-            new ArmorUpgradeSpeed("movement_speed", 3), //Höher bringt nix
-            new ArmorUpgradeWaterbreathing("water_breathing", 2), //Höher bringt nix //Stufe 2 --> Keine Mana Kosten
+            new ArmorUpgradeSaturation("saturation", 1),
+            new ArmorUpgradeSpeed("movement_speed", 3),
+            new ArmorUpgradeWaterbreathing("water_breathing", 2),
+            new ArmorUpgradeMeteorJump("meteor_jump", 1)
     };
 
     /**
@@ -48,7 +50,6 @@ public class ArmorUpgradeInit {
      * @see IArmorUpgradeOnArmorTick
      */
     public static ArmorUpgradePotionEffect[] ARMOR_UPGRADE_POTION_EFFECT = new ArmorUpgradePotionEffect[]{
-            //new ArmorUpgradePotionEffect("night_vision", 1, MobEffects.NIGHT_VISION),
             new ArmorUpgradePotionEffect("dolphins_grace", 2, MobEffects.DOLPHINS_GRACE),
             new ArmorUpgradePotionEffect("regeneration", 1, MobEffects.REGENERATION),
             new ArmorUpgradePotionEffect("wellspring_sight", 1, EffectInit.WELLSPRING_SIGHT.get()),
@@ -134,16 +135,11 @@ public class ArmorUpgradeInit {
      * @return A list of all upgrades
      */
     public static ArmorUpgrade[] getAllUpgrades(){
-        ArrayList<ArmorUpgrade> upgradeList = new ArrayList<ArmorUpgrade>();
-        for(ArmorUpgrade armorUpgrade: ARMOR_UPGRADE_ON_ARMOR_TICK){
-            upgradeList.add(armorUpgrade);
-        }
-        for(ArmorUpgrade armorUpgrade: ARMOR_UPGRADE_POTION_EFFECT){
-            upgradeList.add(armorUpgrade);
-        }
-        for(ArmorUpgrade armorUpgrade: ARMOR_UPGRADE_ON_FULLY_EQUIPPED){
-            upgradeList.add(armorUpgrade);
-        }
+        ArrayList<ArmorUpgrade> upgradeList = new ArrayList<>();
+        upgradeList.addAll(List.of(ARMOR_UPGRADE_ON_ARMOR_TICK));
+        upgradeList.addAll(List.of(ARMOR_UPGRADE_POTION_EFFECT));
+        upgradeList.addAll(List.of(ARMOR_UPGRADE_ON_FULLY_EQUIPPED));
+
         upgradeList.add(KINETIC_RESISTANCE);
         upgradeList.add(EXPLOSION_RESISTANCE);
         upgradeList.add(JUMP);

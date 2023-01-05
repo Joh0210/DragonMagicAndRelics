@@ -7,8 +7,8 @@ import com.mna.api.items.IFactionSpecific;
 import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.items.armor.ISetItem;
+import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
@@ -16,7 +16,6 @@ import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradePotionEffect;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.IArmorUpgradeOnArmorTick;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.IArmorUpgradeOnFullyEquipped;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
-import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.particles.ParticleType;
@@ -57,7 +56,7 @@ import java.util.function.Consumer;
  * @author Joh0210
  */
 public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem, IFactionSpecific {
-    private AnimationFactory factory = new AnimationFactory(this);
+    private final AnimationFactory factory = new AnimationFactory(this);
     private static final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_armor_set_bonus");
     public Faction faction = null;
 
@@ -70,13 +69,13 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     public String getTextureLocation(){
         if(faction == Faction.ANCIENT_WIZARDS){
-            return "textures/models/armor/dragon_mage_armor_texture_arcient_wizards.png";
+            return "textures/models/armor/arch_dragon_mage_armor_texture.png";
         } else if(faction == Faction.FEY_COURT){
-            return "textures/models/armor/dragon_mage_armor_texture_fey_court.png";
+            return "textures/models/armor/wild_dragon_mage_armor_texture.png";
         } else if(faction == Faction.UNDEAD){
-            return "textures/models/armor/dragon_mage_armor_texture_undead.png";
+            return "textures/models/armor/abyssal_dragon_mage_armor_texture.png";
         }
-        return "textures/models/armor/dragon_mage_armor_texture.png";
+        return "textures/models/armor/infernal_dragon_mage_armor_texture.png";
     }
 
     /**
@@ -87,12 +86,9 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     @Override
     public void onArmorTick(ItemStack stack, Level world, Player player) {
-        player.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
-            faction = p.getAlliedFaction();
-        });
         if(slot == EquipmentSlot.CHEST && isSetEquipped(player)){
             this.usedByPlayer(player);
-            IPlayerMagic magic = (IPlayerMagic)player.getCapability(PlayerMagicProvider.MAGIC).orElse((IPlayerMagic) null);
+            IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
 
             //Armor Upgrades: On Armor Tick
             for(IArmorUpgradeOnArmorTick upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_ARMOR_TICK){
@@ -262,7 +258,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                 this.usedByPlayer((Player)entity);
             }
 
-            IPlayerMagic magic = (IPlayerMagic)((Player)entity).getCapability(PlayerMagicProvider.MAGIC).orElse((IPlayerMagic) null);
+            IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
             if (magic != null && magic.getCastingResource().hasEnoughAbsolute(entity, 0.75F)) {
                 Vec3 look = entity.getLookAngle();
                 Vec3 pos;
@@ -296,7 +292,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                 if (entity.level.isClientSide) {
                     pos = entity.position().add(look.scale(3.0D));
                     for(int i = 0; i < 5; ++i) {
-                        entity.level.addParticle((new MAParticleType((ParticleType) ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
+                        entity.level.addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
                     }
                 }
                 return true;

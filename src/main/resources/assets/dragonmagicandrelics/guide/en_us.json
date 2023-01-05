@@ -935,6 +935,34 @@
       }
     ]
   },
+  "Upgrade Glyph Meteor Jump": {
+    "index": 1,
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Meteor Jump"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "With the upgrade, when I sprint, jump, and then sneak, I can crash onto the ground like a meteor and cause an explosion."
+        }
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "Meteor Jump is Tier 3"
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_meteor_jump"
+      }
+    ]
+  },
   "Upgrade Glyph Fire Resistance": {
     "index": 1,
     "category": "eldrin_altar",
@@ -1166,13 +1194,13 @@
       {
         "type": "text",
         "json": {
-          "text": "With the Infernal Armor, I get the Damage Boost II, Fire Resistance II, Movement Speed III, and Jump Boost III upgrades."
+          "text": "With the Infernal Armor, I get the Explosion Resistance I, Fire Resistance II, Meteor Jump I, Movement Speed III, and Jump Boost III upgrades."
         }
       },
       {
         "type": "text",
         "json": {
-          "text": "With the Witherbone Armor, I get the Damage Boost II, Damage Resistance I, Health Boost II, and Water Breathing II upgrades."
+          "text": "With the Witherbone Armor, I get the Damage Boost II, Damage Resistance II, Health Boost II, and Water Breathing II upgrades."
         }
       }
     ],

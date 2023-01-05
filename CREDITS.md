@@ -5,10 +5,12 @@ Thanks to Mithion for helping creating some code elements of this mod. Also than
 
 ## Dragon Mage Armor
 The amazing armor [model](/src/main/resources/assets/dragonmagicandrelics/geo/dragon_mage_armor.geo.json) 
-and [texture](/src/main/resources/assets/dragonmagicandrelics/textures/models/armor/dragon_mage_armor_texture.png) 
+and [texture](/src/main/resources/assets/dragonmagicandrelics/textures/models/armor/infernal_dragon_mage_armor_texture.png) 
 of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/jsementj/).
 <br>__Important:__ If you want to use this or any other of jsementj's models for your own mod or other projects, you must get in touch with jsementj and ask about permission!
 
+## Translations
+- Chinese translation from [Kasualix](https://github.com/Joh0210/DragonMagicAndRelics/commits?author=Kasualix)
 
 ## Spell Icons
 The following pictures can be found [here](https://game-icons.net). 
