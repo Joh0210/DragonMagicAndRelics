@@ -7,12 +7,15 @@ import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.world.effect.MobEffects;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
  * An initialization of all upgrades for the Dragon Mage Armor.
  * Each new upgrade must also be entered getAllUpgrades or in one of the arrays!
+ * Each new upgrade must also be listed in the configs for the initial upgrades!
  * @see DragonMageArmor
+ * @see de.joh.dragonmagicandrelics.config.CommonConfigs
  * @author Joh0210
  */
 public class ArmorUpgradeInit {
@@ -149,6 +152,7 @@ public class ArmorUpgradeInit {
         upgradeList.add(DAMAGE_BOOST);
         upgradeList.add(NIGHT_VISION);
 
+        upgradeList.sort(Comparator.comparing(ArmorUpgrade::getUpgradeId));
         return upgradeList.toArray(new ArmorUpgrade[0]);
     }
 

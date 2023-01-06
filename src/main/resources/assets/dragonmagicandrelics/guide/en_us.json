@@ -127,7 +127,7 @@
       {
         "type": "text",
         "json": {
-          "text": "I believe that with enough effort, I can even produce water despite infernal heat."
+          "text": "I believe that with enough effort, I can even produce water despite infernal heat.\n[This can be adjusted in the confings]"
         }
       }
     ],
@@ -1201,6 +1201,13 @@
         "type": "text",
         "json": {
           "text": "With the Witherbone Armor, I get the Damage Boost II, Damage Resistance II, Health Boost II, and Water Breathing II upgrades."
+        }
+      }
+    ,
+      {
+        "type": "text",
+        "json": {
+          "text": "(The initial upgrades of each faction can be adjusted in the config.)"
         }
       }
     ],

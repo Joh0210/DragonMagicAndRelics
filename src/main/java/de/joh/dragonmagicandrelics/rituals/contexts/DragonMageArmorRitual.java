@@ -4,10 +4,10 @@ import com.mna.api.rituals.IRitualContext;
 import com.mna.api.rituals.RitualEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.items.armor.*;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
+import de.joh.dragonmagicandrelics.config.CommonConfigs;
+import de.joh.dragonmagicandrelics.item.ItemInit;
+import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -15,7 +15,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import java.util.HashMap;
 
 /**
  * This ritual upgrades faction armor to Dragon Mage Armor.
@@ -77,16 +76,16 @@ public class DragonMageArmorRitual extends RitualEffect {
 
 
         if(chest.getItem() instanceof BoneArmorItem){
-            getBoneInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
+            CommonConfigs.getBoneInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
         else if(chest.getItem() instanceof CouncilArmorItem){
-            getCouncilInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
+            CommonConfigs.getCouncilInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
         else if(chest.getItem() instanceof DemonArmorItem){
-            getDemonInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
+            CommonConfigs.getDemonInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
         else if(chest.getItem() instanceof FeyArmorItem){
-            getFeyInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
+            CommonConfigs.getFeyInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
 
         return  true;
@@ -119,43 +118,5 @@ public class DragonMageArmorRitual extends RitualEffect {
     @Override
     protected int getApplicationTicks(IRitualContext iRitualContext) {
         return 0;
-    }
-
-    private static HashMap getCouncilInitEffects(){
-        return new HashMap<ArmorUpgrade, Integer>() {{
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("fly"), 1);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("mana_boost"), 5);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("mana_regen"), 5);
-        }};
-    }
-
-    private static HashMap getDemonInitEffects(){
-        return new HashMap<ArmorUpgrade, Integer>() {{
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("movement_speed"), 3);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("jump"), 3);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("fire_resistance"), 2);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("explosion_resistance"), 1);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("meteor_jump"), 1);
-        }};
-    }
-
-    private static HashMap getFeyInitEffects(){
-        return new HashMap<ArmorUpgrade, Integer>() {{
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("fly"), 2);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("health_boost"), 1);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("kinetic_resistance"), 1);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("elytra"), 2);
-
-        }};
-    }
-
-    private static HashMap getBoneInitEffects(){
-        return new HashMap<ArmorUpgrade, Integer>() {{
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("water_breathing"), 2);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("health_boost"), 2);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("damage_boost"), 2);
-            put(ArmorUpgradeInit.getArmorUpgradeFromString("damage_resistance"), 2);
-
-        }};
     }
 }

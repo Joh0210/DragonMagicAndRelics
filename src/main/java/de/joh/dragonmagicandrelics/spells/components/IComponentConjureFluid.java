@@ -8,6 +8,7 @@ import com.mna.api.spells.parts.SpellEffect;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
+import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.ResourceLocation;
@@ -139,7 +140,7 @@ public abstract class IComponentConjureFluid extends SpellEffect {
         FluidStack resource = this.fluidStack;
         BlockState state = this.fluidStack.getFluid().getAttributes().getBlock(world, blockPos, this.fluidStack.getFluid().defaultFluidState());
         BlockWrapper wrapper = new BlockWrapper(state, world, blockPos);
-        if (world.dimensionType().ultraWarm() && resource.getFluid().getAttributes().doesVaporize(world, blockPos, resource) && !ignoreVaporize) {
+        if (world.dimensionType().ultraWarm() && resource.getFluid().getAttributes().doesVaporize(world, blockPos, resource) && !(ignoreVaporize && CommonConfigs.CAN_CONJURE_FLUID_IGNORE_VAPORIZE.get())) {
             resource.getFluid().getAttributes().vaporize(player, world, blockPos, resource);
             return true;
         } else {
