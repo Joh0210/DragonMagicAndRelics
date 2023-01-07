@@ -20,21 +20,6 @@ import java.util.List;
  */
 public class ArmorUpgradeInit {
     /**
-     * By what percentage is the damage reduced by the damage resistance upgrade.
-     */
-    public static final float DAMAGE_REDUCTION_PER_LEVEL = 0.2f;
-
-    /**
-     * How much mana does the fire resistance upgrade consume for one tick of fire damage?
-     */
-    public static final int MANA_PER_FIRE_DAMAGE = 20;
-
-    /**
-     * How many mana is consumed every tick when the wearer flies with the Elytra upgrade
-     */
-    public static final float ELYTRA_MANA_COST_PER_TICK = 0.75F;
-
-    /**
      * List of all upgrades with a function performed on each tick
      * @see DragonMageArmor
      * @see IArmorUpgradeOnArmorTick
@@ -83,7 +68,6 @@ public class ArmorUpgradeInit {
 
     /**
      * This upgrade increases the damage dealt by the wearer of the Dragon Mage Armor. Both spells and normal weapons.
-     * Currently 20% reduction per level. Adjustable by: DAMAGE_REDUCTION_PER_LEVEL
      * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
      */
     public static ArmorUpgrade DAMAGE_BOOST = new ArmorUpgrade("damage_boost", 4);

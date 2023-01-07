@@ -5,6 +5,7 @@ import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.api.sound.SFX;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
+import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +16,8 @@ import net.minecraft.world.phys.Vec3;
  * Makes the wearer of the Dragon Mage Armor significantly faster when sprinting.
  * However, this consumes a small amount of mana.
  * Function and constructor are initialized versions of parent class function/constructor.
+ * Configurable in the CommonConfigs.
+ * @see CommonConfigs
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
@@ -22,7 +25,6 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnArmorTick {
     private static final AttributeModifier runSpeed1 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_1", 0.05f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier runSpeed2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_2", 0.05f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier runSpeed3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_3", 0.05f, AttributeModifier.Operation.ADDITION);
-    private static final float MANA_PRO_SPEED_LEVEL = 0.25f;
 
     public ArmorUpgradeSpeed(String upgradeId, int maxUpgradeLevel) {
         super(upgradeId, maxUpgradeLevel);
@@ -32,8 +34,8 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnArmorTick {
     public void onArmorTick(Level world, Player player, int level, IPlayerMagic magic) {
         boolean showParticles = false;
 
-        if (player.isSprinting() && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, MANA_PRO_SPEED_LEVEL * level)) {
-            magic.getCastingResource().consume(player, MANA_PRO_SPEED_LEVEL * level);
+        if (player.isSprinting() && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.getSpeedManaCostPerTickPerLevel() * level)) {
+            magic.getCastingResource().consume(player, CommonConfigs.getSpeedManaCostPerTickPerLevel() * level);
             if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed1)){
                 if(level >= 1){
                     player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 0.8F);

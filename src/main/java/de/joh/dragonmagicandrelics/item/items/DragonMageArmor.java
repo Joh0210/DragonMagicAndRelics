@@ -15,10 +15,10 @@ import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradePotionEffect;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.IArmorUpgradeOnArmorTick;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.IArmorUpgradeOnFullyEquipped;
+import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.core.particles.ParticleType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
@@ -42,7 +42,6 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
-
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -240,7 +239,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     @Override
     public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-        return (getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) > 0) && !entity.isInWaterOrBubble() && !entity.isInLava() && this.isSetEquipped(entity) && entity.getCapability(PlayerMagicProvider.MAGIC).isPresent() && entity.getCapability(PlayerMagicProvider.MAGIC).orElse((IPlayerMagic) null).getCastingResource().hasEnoughAbsolute(entity, ArmorUpgradeInit.ELYTRA_MANA_COST_PER_TICK);
+        return (getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) > 0) && !entity.isInWaterOrBubble() && !entity.isInLava() && this.isSetEquipped(entity) && entity.getCapability(PlayerMagicProvider.MAGIC).isPresent() && entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null).getCastingResource().hasEnoughAbsolute(entity, CommonConfigs.getElytraManaCostPerTick());
     }
 
     /**
@@ -266,7 +265,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                 double lookScale;
                 Vec3 scaled_look;
                 if (!entity.isShiftKeyDown()) {
-                    magic.getCastingResource().consume(entity, ArmorUpgradeInit.ELYTRA_MANA_COST_PER_TICK);
+                    magic.getCastingResource().consume(entity, CommonConfigs.getElytraManaCostPerTick());
                     pos = entity.getDeltaMovement();
                     maxLength = 1.75F;
                     lookScale = 0.06D;
@@ -277,7 +276,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                     }
                     entity.setDeltaMovement(pos);
                 } else {
-                    magic.getCastingResource().consume(entity, ArmorUpgradeInit.ELYTRA_MANA_COST_PER_TICK /2.0f);
+                    magic.getCastingResource().consume(entity, CommonConfigs.getElytraManaCostPerTick() /2.0f);
                     pos = entity.getDeltaMovement();
                     maxLength = 0.1F;
                     lookScale = -0.01D;

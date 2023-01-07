@@ -6,6 +6,7 @@ import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.effects.EffectInit;
+import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -14,21 +15,12 @@ import net.minecraft.world.phys.Vec3;
  * Allows the wearer of Dragon Mage Armor to fly on every tick.
  * However, this requires a little bit of mana.
  * Function and constructor are initialized versions of parent class function/constructor.
+ * Configurable in the CommonConfigs.
+ * @see CommonConfigs
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
 public class ArmorUpgradeFly extends IArmorUpgradeOnArmorTick {
-
-    /**
-     * Defines whether it is possible to additionally sprint while flying with the Dragon Mage armor
-     */
-    private static final boolean ALLOW_SPRTINTING_WHILE_FLYING = true;
-    private static final float FLIGHT_MANA_COST_PER_TICK = 0.75F;
-    /**
-     * This times level = speed when flying. (0.5 is default creative)
-     */
-    private static final float SPEED_PER_LEVEL = 0.02F;
-
     public ArmorUpgradeFly(String upgradeId, int maxUpgradeLevel) {
         super(upgradeId, maxUpgradeLevel);
     }
@@ -46,18 +38,18 @@ public class ArmorUpgradeFly extends IArmorUpgradeOnArmorTick {
                         world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() + look.x, player.getY(), player.getZ() + look.z, 0.0D, -0.05000000074505806D, 0.0D);
                         world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() - look.x, player.getY(), player.getZ() - look.z, 0.0D, -0.05000000074505806D, 0.0D);
                     } else {
-                        m.getCastingResource().consume(player, FLIGHT_MANA_COST_PER_TICK);
+                        m.getCastingResource().consume(player, CommonConfigs.getFlyManaCostPerTick());
                     }
                 }
 
                 //Actual flying
-                if (!m.getCastingResource().hasEnoughAbsolute(player, FLIGHT_MANA_COST_PER_TICK)) {
+                if (!m.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.getFlyManaCostPerTick())) {
                     ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
                 } else {
                     ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
                     if (!player.isCreative() && !player.isSpectator()) {
-                        ManaAndArtifice.instance.proxy.setFlySpeed(player, level*SPEED_PER_LEVEL);
-                        if (!ALLOW_SPRTINTING_WHILE_FLYING && player.getAbilities().flying) {
+                        ManaAndArtifice.instance.proxy.setFlySpeed(player, level*CommonConfigs.getFlySpeedPerLevel());
+                        if (!CommonConfigs.FLY_ALLOW_SPRTINTING_WHILE_FLYING.get() && player.getAbilities().flying) {
                             player.setSprinting(false);
                         }
                     } else {

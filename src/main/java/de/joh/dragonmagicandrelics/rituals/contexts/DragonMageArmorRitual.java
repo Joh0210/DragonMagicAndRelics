@@ -5,7 +5,7 @@ import com.mna.api.rituals.RitualEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.items.armor.*;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
-import de.joh.dragonmagicandrelics.config.CommonConfigs;
+import de.joh.dragonmagicandrelics.config.InitialUpgradesConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.nbt.CompoundTag;
@@ -76,16 +76,16 @@ public class DragonMageArmorRitual extends RitualEffect {
 
 
         if(chest.getItem() instanceof BoneArmorItem){
-            CommonConfigs.getBoneInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
+            InitialUpgradesConfigs.getBoneInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
         else if(chest.getItem() instanceof CouncilArmorItem){
-            CommonConfigs.getCouncilInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
+            InitialUpgradesConfigs.getCouncilInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
         else if(chest.getItem() instanceof DemonArmorItem){
-            CommonConfigs.getDemonInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
+            InitialUpgradesConfigs.getDemonInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
         else if(chest.getItem() instanceof FeyArmorItem){
-            CommonConfigs.getFeyInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
+            InitialUpgradesConfigs.getFeyInitEffects().forEach((key, value) -> upgrade(context, (ArmorUpgrade) key, (int)value));
         }
 
         return  true;

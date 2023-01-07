@@ -6,6 +6,7 @@ import com.mna.api.particles.ParticleInit;
 import com.mna.api.sound.SFX;
 import com.mna.config.GeneralModConfig;
 import com.mna.entities.utility.MAExplosion;
+import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
@@ -17,12 +18,13 @@ import net.minecraft.world.level.Level;
  * If the wielder shifts during a sprint jump, it lands like a metor on the ground and creates an explosion
  * This consumes a small amount of mana
  * Function and constructor are initialized versions of parent class function/constructor.
+ * Configurable in the CommonConfigs.
+ * @see CommonConfigs
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
 public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnArmorTick {
     private static final int reqHeight = 5;
-    private static final float MANA_COST = 40.0F;
 
     public ArmorUpgradeMeteorJump(String upgradeId, int maxUpgradeLevel) {
         super(upgradeId, maxUpgradeLevel);
@@ -30,7 +32,7 @@ public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnArmorTick {
 
     @Override
     public void onArmorTick(Level world, Player player, int level, IPlayerMagic magic) {
-        if (!player.isOnGround() && player.getDeltaMovement().y < 0.0D && player.isCrouching() && magic.getCastingResource().hasEnough(player, MANA_COST) && !player.getPersistentData().contains("dmnr_meteor_jumping") && player.isSprinting()) {
+        if (!player.isOnGround() && player.getDeltaMovement().y < 0.0D && player.isCrouching() && magic.getCastingResource().hasEnough(player, CommonConfigs.METEOR_JUMP_MANA_COST.get()) && !player.getPersistentData().contains("dmnr_meteor_jumping") && player.isSprinting()) {
             int heightAboveGround = 0;
             for(BlockPos pos = player.blockPosition(); player.level.isEmptyBlock(pos) && heightAboveGround < reqHeight; ++heightAboveGround) {
                 pos = pos.below();
@@ -39,7 +41,7 @@ public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnArmorTick {
             if (heightAboveGround >= reqHeight) {
                 player.getPersistentData().putBoolean("dmnr_meteor_jumping", true);
                 player.playSound(SFX.Event.Artifact.METEOR_JUMP, 0.25F, 0.8F);
-                magic.getCastingResource().consume(player, MANA_COST);
+                magic.getCastingResource().consume(player, CommonConfigs.METEOR_JUMP_MANA_COST.get());
             }
         }
 
@@ -65,7 +67,7 @@ public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnArmorTick {
             player.getPersistentData().remove("dmnr_meteor_jumping");
             player.setSprinting(false);
             if (!player.level.isClientSide) {
-                MAExplosion.make(player, (ServerLevel)player.level, player.getX(), player.getY(), player.getZ(), 2, 8, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
+                MAExplosion.make(player, (ServerLevel)player.level, player.getX(), player.getY(), player.getZ(), CommonConfigs.METEOR_JUMP_IMPACT.get(), CommonConfigs.METEOR_JUMP_IMPACT.get()*4, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
             }
         }
     }

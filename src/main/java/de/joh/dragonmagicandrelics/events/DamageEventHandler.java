@@ -13,6 +13,7 @@ import com.mna.spells.crafting.SpellRecipe;
 import de.joh.dragonmagicandrelics.Commands;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
@@ -64,7 +65,7 @@ public class DamageEventHandler {
 
             //Damage Resistance
             if(chest.getItem() instanceof DragonMageArmor mmaArmor){
-                event.setAmount(event.getAmount() * (1.0f - (float)mmaArmor.getUpgradeLevel(ArmorUpgradeInit.DAMAGE_RESISTANCE, player)* ArmorUpgradeInit.DAMAGE_REDUCTION_PER_LEVEL));
+                event.setAmount(event.getAmount() * (1.0f - (float)mmaArmor.getUpgradeLevel(ArmorUpgradeInit.DAMAGE_RESISTANCE, player)* CommonConfigs.getDamageResistanceDamageReductionPerLevel()));
             }
         }
 
@@ -90,8 +91,8 @@ public class DamageEventHandler {
                 if (event.getSource().isFire() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 1) {
 
                     IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-                    if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, ArmorUpgradeInit.MANA_PER_FIRE_DAMAGE)) {
-                        magic.getCastingResource().consume(player, ArmorUpgradeInit.MANA_PER_FIRE_DAMAGE);
+                    if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get())) {
+                        magic.getCastingResource().consume(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get());
                         event.setCanceled(true);
                         return;
                     }
@@ -164,8 +165,8 @@ public class DamageEventHandler {
                     c.getCastingResource().consume(self, recipe.getManaCost());
                     consumed.setTrue();
                 }
-
             });
+
             if (consumed.getValue()) {
                 SpellSource spellSource = new SpellSource(self, InteractionHand.MAIN_HAND);
                 SpellContext context = new SpellContext((ServerLevel)self.level, recipe);
