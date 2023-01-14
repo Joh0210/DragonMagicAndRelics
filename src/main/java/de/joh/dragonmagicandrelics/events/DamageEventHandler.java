@@ -8,24 +8,29 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.api.timing.DelayedEventQueue;
 import com.mna.api.timing.TimedDelayedSpellEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
+import com.mna.entities.utility.EntityPresentItem;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
 import de.joh.dragonmagicandrelics.Commands;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
+import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -143,6 +148,18 @@ public class DamageEventHandler {
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * Drops the Dragon Core when the Ender Dragon dies
+     */
+    @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event){
+        if(event.getEntityLiving().getType() == EntityType.ENDER_DRAGON){
+            Level world = event.getEntityLiving().getLevel();
+            EntityPresentItem item = new EntityPresentItem(world, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), new ItemStack(ItemInit.DRAGON_CORE.get()));
+            world.addFreshEntity(item);
         }
     }
 

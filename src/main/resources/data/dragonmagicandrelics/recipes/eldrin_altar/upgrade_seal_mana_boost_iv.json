@@ -10,8 +10,8 @@
     "mna:major_mana_gem",
     "mna:rune_arcane",
     "mna:eldrin_bracelet",
-    "minecraft:dragon_egg",
-    "minecraft:dragon_egg"
+    "dragonmagicandrelics:dragon_core",
+    "dragonmagicandrelics:dragon_core"
   ],
   "power_requirements": [
     {

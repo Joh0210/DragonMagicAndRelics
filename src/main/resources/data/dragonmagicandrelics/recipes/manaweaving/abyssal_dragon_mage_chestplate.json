@@ -1,15 +1,16 @@
 {
   "type": "mna:manaweaving-recipe",
   "tier": 5,
-  "output": "dragonmagicandrelics:dragon_mage_chestplate",
+  "output": "dragonmagicandrelics:abyssal_dragon_mage_chestplate",
+  "requiredFaction": "UNDEAD",
   "quantity": 1,
   "items": [
     "minecraft:netherite_chestplate",
     "minecraft:nether_star",
     "minecraft:nether_star",
     "mna:rune_defense",
-    "mna:rune_defense"
-
+    "mna:rune_defense",
+    "mna:greater_mote_ender"
   ],
   "patterns": [
     "mna:manaweave_patterns/infinity",

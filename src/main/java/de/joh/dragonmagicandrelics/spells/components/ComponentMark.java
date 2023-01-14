@@ -39,7 +39,7 @@ public class ComponentMark extends SpellEffect {
             setPos(markingRune, target.getBlock(), target.getBlockFace(null), context.getWorld());
         }
 
-        return ComponentApplicationResult.FAIL;
+        return ComponentApplicationResult.SUCCESS;
     }
 
     @Override

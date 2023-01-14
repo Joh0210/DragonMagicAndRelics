@@ -29,7 +29,7 @@
   {
     "A":
     {
-      "item": "dragon_egg",
+      "item": "dragonmagicandrelics:dragon_core",
       "optional": false,
       "consume": true
     },

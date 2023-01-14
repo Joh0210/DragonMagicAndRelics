@@ -11,7 +11,7 @@
     "minecraft:diamond_sword",
     "minecraft:netherite_sword",
     "mna:allfather_axe",
-    "minecraft:dragon_egg"
+    "dragonmagicandrelics:dragon_core"
   ],
   "power_requirements": [
     {

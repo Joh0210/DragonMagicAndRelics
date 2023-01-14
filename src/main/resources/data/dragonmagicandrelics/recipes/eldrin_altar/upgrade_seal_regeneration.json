@@ -10,8 +10,8 @@
     "minecraft:glistering_melon_slice",
     "minecraft:golden_apple",
     "minecraft:golden_apple",
-    "minecraft:dragon_egg",
-    "minecraft:dragon_egg"
+    "dragonmagicandrelics:dragon_core",
+    "dragonmagicandrelics:dragon_core"
   ],
   "power_requirements": [
     {

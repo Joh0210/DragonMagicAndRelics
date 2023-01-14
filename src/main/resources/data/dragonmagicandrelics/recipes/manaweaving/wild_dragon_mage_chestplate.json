@@ -1,0 +1,22 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 5,
+  "output": "dragonmagicandrelics:wild_dragon_mage_chestplate",
+  "quantity": 1,
+  "requiredFaction": "FEY_COURT",
+  "items": [
+    "minecraft:netherite_chestplate",
+    "minecraft:nether_star",
+    "minecraft:nether_star",
+    "mna:rune_defense",
+    "mna:rune_defense",
+    "mna:greater_mote_air"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/infinity",
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/hourglass",
+    "mna:manaweave_patterns/inverted_split_triangle",
+    "mna:manaweave_patterns/infinity"
+  ]
+}

@@ -2,7 +2,7 @@
 A minecraft mod to expand your magic to compete with gods!
 <br>This mod is an extension for the magic mod [Mana and Artifice](https://www.curseforge.com/minecraft/mc-mods/mana-and-artifice) for version 1.18.2.
 The amazing armor [model](/src/main/resources/assets/dragonmagicandrelics/geo/dragon_mage_armor.geo.json)
-and [texture](/src/main/resources/assets/dragonmagicandrelics/textures/models/armor/dragon_mage_armor_texture.png)
+and [texture](/src/main/resources/assets/dragonmagicandrelics/textures/models/armor/infernal_dragon_mage_armor_texture.png)
 of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/jsementj/). And thanks to Mithion for helping creating the mod. Also thanks to Ceddi and Nico for helping with testing and balancing.
 <br>The full credits can be viewed [here](/CREDITS.md). 
 

@@ -273,7 +273,22 @@
       }
     ]
   },
-
+  "Dragon Core": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Dragon Core"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "The Core of the End, The Essence of the Dragon, an Item of Immeasurable Power!\n\nThis item can be obtained by slaying the Titan of the End. The ender dragon!"
+        }
+      }
+    ]
+  },
   "Dragon Mage Armor": {
     "index": 1,
     "category": "artifice",
@@ -316,7 +331,19 @@
     "related_recipes": [
       {
         "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/dragon_mage_chestplate"
+        "location": "dragonmagicandrelics:manaweaving/abyssal_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dragonmagicandrelics:manaweaving/arch_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dragonmagicandrelics:manaweaving/infernal_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dragonmagicandrelics:manaweaving/wild_dragon_mage_chestplate"
       },
       {
         "type": "ritual",

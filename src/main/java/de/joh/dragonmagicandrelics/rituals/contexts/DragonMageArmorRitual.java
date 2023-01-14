@@ -43,10 +43,37 @@ public class DragonMageArmorRitual extends RitualEffect {
             return false;
         }
 
-        ItemStack headNew = new ItemStack(ItemInit.DRAGON_MAGE_HELMET.get());
-        ItemStack chestNew = new ItemStack(ItemInit.DRAGON_MAGE_CHESTPLATE.get());
-        ItemStack legsNew = new ItemStack(ItemInit.DRAGON_MAGE_LEGGING.get());
-        ItemStack feetNew = new ItemStack(ItemInit.DRAGON_MAGE_BOOTS.get());
+        ItemStack headNew = null;
+        ItemStack chestNew = null;
+        ItemStack legsNew = null;
+        ItemStack feetNew = null;
+
+        if(chest.getItem() instanceof BoneArmorItem){
+            headNew = new ItemStack(ItemInit.ABYSSAL_DRAGON_MAGE_HELMET.get());
+            chestNew = new ItemStack(ItemInit.ABYSSAL_DRAGON_MAGE_CHESTPLATE.get());
+            legsNew = new ItemStack(ItemInit.ABYSSAL_DRAGON_MAGE_LEGGING.get());
+            feetNew = new ItemStack(ItemInit.ABYSSAL_DRAGON_MAGE_BOOTS.get());
+        }
+        else if(chest.getItem() instanceof CouncilArmorItem){
+            headNew = new ItemStack(ItemInit.ARCH_DRAGON_MAGE_HELMET.get());
+            chestNew = new ItemStack(ItemInit.ARCH_DRAGON_MAGE_CHESTPLATE.get());
+            legsNew = new ItemStack(ItemInit.ARCH_DRAGON_MAGE_LEGGING.get());
+            feetNew = new ItemStack(ItemInit.ARCH_DRAGON_MAGE_BOOTS.get());
+        }
+        else if(chest.getItem() instanceof FeyArmorItem){
+            headNew = new ItemStack(ItemInit.WILD_DRAGON_MAGE_HELMET.get());
+            chestNew = new ItemStack(ItemInit.WILD_DRAGON_MAGE_CHESTPLATE.get());
+            legsNew = new ItemStack(ItemInit.WILD_DRAGON_MAGE_LEGGING.get());
+            feetNew = new ItemStack(ItemInit.WILD_DRAGON_MAGE_BOOTS.get());
+        }
+        else {
+            //DemonArmorItem
+            headNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_HELMET.get());
+            chestNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_CHESTPLATE.get());
+            legsNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_LEGGING.get());
+            feetNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_BOOTS.get());
+        }
+
 
         if(head.hasTag()){
             CompoundTag nbtData = new CompoundTag();

@@ -59,8 +59,9 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     private static final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_armor_set_bonus");
     public Faction faction = null;
 
-    public DragonMageArmor(ArmorMaterial pMaterial, EquipmentSlot pSlot) {
+    public DragonMageArmor(ArmorMaterial pMaterial, EquipmentSlot pSlot, Faction faction) {
         super(pMaterial, pSlot, new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant());
+        this.faction = faction;
     }
 
     /**
