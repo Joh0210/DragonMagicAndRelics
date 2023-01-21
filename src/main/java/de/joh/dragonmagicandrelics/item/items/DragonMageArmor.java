@@ -115,7 +115,6 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     @Override
     public void applySetBonus(LivingEntity living, EquipmentSlot... setSlots) {
         if(living instanceof Player player){
-            //Temporary solution: outsourcing to ARMOR_UPGRADE_POTION_EFFECT
             for(IArmorUpgradeOnFullyEquipped upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_FULLY_EQUIPPED){
                 upgrade.applySetBonus(player, getUpgradeLevel(upgrade, player));
             }

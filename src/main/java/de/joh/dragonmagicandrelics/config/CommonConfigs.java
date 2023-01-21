@@ -129,22 +129,22 @@ public class CommonConfigs {
         SPEC = BUILDER.build();
     }
 
-    public static final float getFlySpeedPerLevel(){
+    public static float getFlySpeedPerLevel(){
         return FLY_SPEED_PER_LEVEL.get()/100.0F;
     }
-    public static final float getFlyManaCostPerTick(){
+    public static float getFlyManaCostPerTick(){
         return FLY_MANA_COST_PER_TICK.get()/100.0F;
     }
 
-    public static final float getElytraManaCostPerTick(){
+    public static float getElytraManaCostPerTick(){
         return ELYTRA_MANA_COST_PER_TICK.get()/100.0F;
     }
 
-    public static final float getSpeedManaCostPerTickPerLevel(){
+    public static float getSpeedManaCostPerTickPerLevel(){
         return SPEED_MANA_PER_TICK_PER_LEVEL.get()/100.0F;
     }
 
-    public static final float getDamageResistanceDamageReductionPerLevel(){
+    public static float getDamageResistanceDamageReductionPerLevel(){
         return DAMAGE_RESISTANCE_DAMAGE_REDUCTION_PER_LEVEL.get()/100.0F;
     }
 }

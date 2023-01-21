@@ -6,7 +6,6 @@ import net.minecraft.world.entity.player.Player;
 
 /**
  * Upgrades of this type add a permanent effect to the wearer.
- * However, there is an error with these effects. Further information on this:
  * @see de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.ArmorUpgradeFly
  *
  * @see DragonMageArmor

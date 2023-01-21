@@ -13,7 +13,7 @@ public class ArmorUpgradeManaBoost  extends IArmorUpgradeOnFullyEquipped {
     public ArmorUpgradeManaBoost(String upgradeId, int maxUpgradeLevel) {
         super(upgradeId, maxUpgradeLevel);
     }
-    public static int MANA_PER_MANABOOST = 250;
+    public static int MANA_PER_MANABOOST = 200;
 
     @Override
     public void applySetBonus(Player player, int level) {

@@ -2,6 +2,9 @@ package de.joh.dragonmagicandrelics.armorupgrades;
 
 import com.mna.effects.EffectInit;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.*;
+import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.ArmorUpgradeHealthBoost;
+import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.ArmorUpgradeManaBoost;
+import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.ArmorUpgradeManaRegeneration;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.IArmorUpgradeOnFullyEquipped;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.world.effect.MobEffects;
@@ -42,12 +45,6 @@ public class ArmorUpgradeInit {
             new ArmorUpgradePotionEffect("regeneration", 1, MobEffects.REGENERATION),
             new ArmorUpgradePotionEffect("wellspring_sight", 1, EffectInit.WELLSPRING_SIGHT.get()),
             new ArmorUpgradePotionEffect("eldrin_sight", 1, EffectInit.ELDRIN_SIGHT.get()),
-
-            //Todo: Outsource to ARMOR_UPGRADE_ON_FULLY_EQUIPPED:
-            new ArmorUpgradePotionEffect("mana_boost", 5, EffectInit.MANA_BOOST.get(), 4),
-            new ArmorUpgradePotionEffect("mana_regen", 5, EffectInit.MANA_REGEN.get()),
-            new ArmorUpgradePotionEffect("health_boost", 5, MobEffects.HEALTH_BOOST)
-
     };
 
     /**
@@ -55,9 +52,9 @@ public class ArmorUpgradeInit {
      * @see DragonMageArmor
      */
     public static IArmorUpgradeOnFullyEquipped[] ARMOR_UPGRADE_ON_FULLY_EQUIPPED = new IArmorUpgradeOnFullyEquipped[]{
-            //new ArmorUpgradeManaBoost("mana_boost", 4),
-            //new ArmorUpgradeManaRegeneration("mana_regen", 4),
-            //new ArmorUpgradeHealthBoost("health_boost", 4)
+            new ArmorUpgradeManaBoost("mana_boost", 5),
+            new ArmorUpgradeManaRegeneration("mana_regen", 5),
+            new ArmorUpgradeHealthBoost("health_boost", 5)
     };
 
     /**
