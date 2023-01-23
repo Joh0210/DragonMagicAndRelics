@@ -56,26 +56,32 @@ import java.util.function.Consumer;
  */
 public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem, IFactionSpecific {
     private final AnimationFactory factory = new AnimationFactory(this);
-    private static final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_armor_set_bonus");
-    public Faction faction = null;
+    private final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS;
+    public final String TEXTURE_LOCATION;
 
     public DragonMageArmor(ArmorMaterial pMaterial, EquipmentSlot pSlot, Faction faction) {
         super(pMaterial, pSlot, new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant());
-        this.faction = faction;
+
+        if(faction == Faction.ANCIENT_WIZARDS){
+            TEXTURE_LOCATION = "textures/models/armor/arch_dragon_mage_armor_texture.png";
+            DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_arch_armor_set_bonus");
+        } else if(faction == Faction.FEY_COURT){
+            TEXTURE_LOCATION = "textures/models/armor/wild_dragon_mage_armor_texture.png";
+            DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_wild_armor_set_bonus");
+        } else if(faction == Faction.UNDEAD){
+            TEXTURE_LOCATION = "textures/models/armor/abyssal_dragon_mage_armor_texture.png";
+            DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_abyssal_armor_set_bonus");
+        } else{
+            TEXTURE_LOCATION = "textures/models/armor/infernal_dragon_mage_armor_texture.png";
+            DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_infernal_armor_set_bonus");
+        }
     }
 
     /**
      * Depending on the faction, a different texture will be returned.
      */
     public String getTextureLocation(){
-        if(faction == Faction.ANCIENT_WIZARDS){
-            return "textures/models/armor/arch_dragon_mage_armor_texture.png";
-        } else if(faction == Faction.FEY_COURT){
-            return "textures/models/armor/wild_dragon_mage_armor_texture.png";
-        } else if(faction == Faction.UNDEAD){
-            return "textures/models/armor/abyssal_dragon_mage_armor_texture.png";
-        }
-        return "textures/models/armor/infernal_dragon_mage_armor_texture.png";
+        return TEXTURE_LOCATION;
     }
 
     /**
@@ -87,6 +93,10 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     @Override
     public void onArmorTick(ItemStack stack, Level world, Player player) {
         if(slot == EquipmentSlot.CHEST && isSetEquipped(player)){
+            for(IArmorUpgradeOnFullyEquipped upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_FULLY_EQUIPPED){
+                upgrade.applySetBonus(player, getUpgradeLevel(upgrade, player));
+            }
+
             this.usedByPlayer(player);
             IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
 
@@ -104,19 +114,6 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                         }
                     }
                 }
-            }
-        }
-    }
-
-    /**
-     * Adds the permanent effects of ARMOR_UPGRADE_ON_FULLY_EQUIPPED when armor is equipped.
-     * Call from the game itself.
-     */
-    @Override
-    public void applySetBonus(LivingEntity living, EquipmentSlot... setSlots) {
-        if(living instanceof Player player){
-            for(IArmorUpgradeOnFullyEquipped upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_FULLY_EQUIPPED){
-                upgrade.applySetBonus(player, getUpgradeLevel(upgrade, player));
             }
         }
     }

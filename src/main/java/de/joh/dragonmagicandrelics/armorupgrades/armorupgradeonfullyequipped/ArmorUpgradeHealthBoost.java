@@ -56,5 +56,7 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnFullyEquipped {
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost3);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost4);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost5);
+
+        player.setHealth(Math.min(player.getMaxHealth(), player.getHealth()));
     }
 }

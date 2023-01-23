@@ -140,7 +140,10 @@
 
   "itemGroup.dragonmagicandrelicstab": "Modular Magic Armor",
 
-  "dragonmagicandrelics:mma_armor_set_bonus": "(4) Set Bonus:\n Advanced Flight\n Attacker Levitation/Teleport\n Projectile Reflect Chance\n Low HP Regen",
+  "dragonmagicandrelics:dragonmagicandrelics_arch_armor_set_bonus": "A Set Bonus",
+  "dragonmagicandrelics:dragonmagicandrelics_wild_armor_set_bonus": "B Set Bonus",
+  "dragonmagicandrelics:dragonmagicandrelics_abyssal_armor_set_bonus": "C Set Bonus",
+  "dragonmagicandrelics:dragonmagicandrelics_infernal_armor_set_bonus": "D Set Bonus",
 
   "dragonmagicandrelics:rituals/dragon_mage_ritual": "Ritual of the Dragon Mage Armor",
   "dragonmagicandrelics:rituals/upgrade_ritual_tier_i": "Ritual of Upgrade Tier I",
