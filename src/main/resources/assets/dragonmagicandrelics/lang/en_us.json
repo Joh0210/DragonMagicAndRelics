@@ -22,6 +22,7 @@
 
   "item.dragonmagicandrelics.upgrade_seal_explosion_resistance": "Upgrade Glyph Explosion Resistance",
   "item.dragonmagicandrelics.upgrade_meteor_jump": "Upgrade Glyph Meteor Jump",
+  "item.dragonmagicandrelics.upgrade_seal_mist_form": "Upgrade Glyph Mist Form",
   "item.dragonmagicandrelics.upgrade_seal_fly_i": "Upgrade Glyph Fly I",
   "item.dragonmagicandrelics.upgrade_seal_fly_ii": "Upgrade Glyph Fly II",
   "item.dragonmagicandrelics.upgrade_seal_saturation": "Upgrade Glyph Saturation",
@@ -116,6 +117,7 @@
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.regeneration": "§cRegeneration§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.damage_resistance": "§7Damage Resistance§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.kinetic_resistance": "§7Kinetic Resistance§r",
+  "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.mist_form": "§7Mist Form§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.water_breathing": "§9Water Breathing§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.night_vision": "§1Night Vision§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.saturation": "§eSaturation§r",

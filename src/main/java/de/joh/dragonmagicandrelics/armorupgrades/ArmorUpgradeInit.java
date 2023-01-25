@@ -90,6 +90,12 @@ public class ArmorUpgradeInit {
      */
     public static ArmorUpgrade EXPLOSION_RESISTANCE = new ArmorUpgrade("explosion_resistance", 1);
 
+    /**
+     * This upgrade lets you enter Mist Form when you are about to die.
+     * Increasing the maximum level has no effect without further adjustments.
+     * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
+     */
+    public static ArmorUpgrade MIST_FORM = new ArmorUpgrade("mist_form", 1);
 
     /**
      * This upgrade increases the jump height of the wearer of the Dragon Mage Armor.
@@ -127,6 +133,7 @@ public class ArmorUpgradeInit {
         upgradeList.add(KINETIC_RESISTANCE);
         upgradeList.add(EXPLOSION_RESISTANCE);
         upgradeList.add(JUMP);
+        upgradeList.add(MIST_FORM);
         upgradeList.add(FIRE_RESISTANCE);
         upgradeList.add(ELYTRA);
         upgradeList.add(DAMAGE_RESISTANCE);

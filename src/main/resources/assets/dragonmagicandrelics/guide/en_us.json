@@ -570,6 +570,34 @@
       }
     ]
   },
+  "Upgrade Glyph Mist Form": {
+    "index": 1,
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Mist Form"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "This upgrade provides a limited Mist Form on Death."
+        }
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "Mist Form is Tier 4"
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mist_form"
+      }
+    ]
+  },
   "Upgrade Glyph Regeneration": {
     "index": 1,
     "category": "eldrin_altar",
@@ -654,6 +682,7 @@
       }
     ]
   },
+
   "Upgrade Glyph Mana Boost": {
     "index": 1,
     "category": "eldrin_altar",
@@ -733,7 +762,7 @@
       {
         "type": "text",
         "json": {
-          "text": "Okay, maybe more mana isn't enough. Then this glyph might help me. Each level increases my mana regeneration"
+          "text": "Okay, maybe more mana isn't enough. Then this glyph might help me. Each level increases my mana regeneration.\n\nBeing part of the Undead faction, Mana Regeneration causes me to gain Souls just by hurting others."
         }
       },
       {
@@ -1227,7 +1256,7 @@
       {
         "type": "text",
         "json": {
-          "text": "With the Witherbone Armor, I get the Damage Boost II, Damage Resistance II, Health Boost II, and Water Breathing II upgrades."
+          "text": "With the Witherbone Armor, I get the Damage Resistance I, Mana Regen II, Mist Form I and Water Breathing II upgrades."
         }
       }
     ,

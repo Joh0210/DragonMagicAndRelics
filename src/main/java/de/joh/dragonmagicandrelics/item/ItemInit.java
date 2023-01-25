@@ -102,6 +102,9 @@ public class ItemInit {
 
     public static final RegistryObject<Item> UPGRADE_SEAL_METEOR_JUMP = ITEMS.register("upgrade_seal_meteor_jump", () -> new UpgradeSeal(3, "meteor_jump", 1));
 
+    public static final RegistryObject<Item> UPGRADE_SEAL_MIST_FORM = ITEMS.register("upgrade_seal_mist_form", () -> new UpgradeSeal(4, "mist_form", 1));
+
+
     public static final RegistryObject<Item> UPGRADE_SEAL_MOVEMENT_SPEED_I = ITEMS.register("upgrade_seal_movement_speed_i", () -> new UpgradeSeal(1, "movement_speed"));
     public static final RegistryObject<Item> UPGRADE_SEAL_MOVEMENT_SPEED_II = ITEMS.register("upgrade_seal_movement_speed_ii", () -> new UpgradeSeal(2, "movement_speed"));
     public static final RegistryObject<Item> UPGRADE_SEAL_MOVEMENT_SPEED_III = ITEMS.register("upgrade_seal_movement_speed_iii", () -> new UpgradeSeal(3, "movement_speed"));

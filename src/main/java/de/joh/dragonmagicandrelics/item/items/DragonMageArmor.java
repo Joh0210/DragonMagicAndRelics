@@ -331,4 +331,10 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     public AnimationFactory getFactory() {
         return this.factory;
     }
+
+//    @Override
+//    @OnlyIn(Dist.CLIENT)
+//    public boolean isFoil(ItemStack itemStack){
+//        return false;
+//    }
 }

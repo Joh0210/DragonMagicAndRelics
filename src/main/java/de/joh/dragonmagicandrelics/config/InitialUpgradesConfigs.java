@@ -29,6 +29,7 @@ public class InitialUpgradesConfigs {
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_MANA_BOOST;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_MANA_REGEN;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_METEOR_JUMP;
+    public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_MIST_FORM;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_MOVEMENT_SPEED;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_NIGHT_VISION;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_REGENERATION;
@@ -50,6 +51,7 @@ public class InitialUpgradesConfigs {
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_MANA_BOOST;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_MANA_REGEN;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_METEOR_JUMP;
+    public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_MIST_FORM;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_MOVEMENT_SPEED;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_NIGHT_VISION;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_REGENERATION;
@@ -71,6 +73,7 @@ public class InitialUpgradesConfigs {
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_MANA_BOOST;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_MANA_REGEN;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_METEOR_JUMP;
+    public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_MIST_FORM;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_MOVEMENT_SPEED;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_NIGHT_VISION;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_REGENERATION;
@@ -92,6 +95,7 @@ public class InitialUpgradesConfigs {
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_MANA_BOOST;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_MANA_REGEN;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_METEOR_JUMP;
+    public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_MIST_FORM;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_MOVEMENT_SPEED;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_NIGHT_VISION;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_REGENERATION;
@@ -120,6 +124,7 @@ public class InitialUpgradesConfigs {
         SPELLWEAVER_MANA_BOOST = BUILDER.defineInRange("sw_mana_boost", 5, 0, 5);
         SPELLWEAVER_MANA_REGEN = BUILDER.defineInRange("sw_mana_regen", 5, 0, 5);
         SPELLWEAVER_METEOR_JUMP = BUILDER.defineInRange("sw_meteor_jump", 0, 0, 1);
+        SPELLWEAVER_MIST_FORM = BUILDER.defineInRange("sw_mist_form", 0, 0, 1);
         SPELLWEAVER_MOVEMENT_SPEED = BUILDER.defineInRange("sw_movement_speed", 0, 0, 3);
         SPELLWEAVER_NIGHT_VISION = BUILDER.defineInRange("sw_night_vision", 0, 0, 1);
         SPELLWEAVER_REGENERATION = BUILDER.defineInRange("sw_regeneration", 0, 0, 1);
@@ -143,6 +148,7 @@ public class InitialUpgradesConfigs {
         DRUID_MANA_BOOST = BUILDER.defineInRange("dr_mana_boost", 0, 0, 5);
         DRUID_MANA_REGEN = BUILDER.defineInRange("dr_mana_regen", 0, 0, 5);
         DRUID_METEOR_JUMP = BUILDER.defineInRange("dr_meteor_jump", 0, 0, 1);
+        DRUID_MIST_FORM = BUILDER.defineInRange("dr_mist_form", 0, 0, 1);
         DRUID_MOVEMENT_SPEED = BUILDER.defineInRange("dr_movement_speed", 0, 0, 3);
         DRUID_NIGHT_VISION = BUILDER.defineInRange("dr_night_vision", 0, 0, 1);
         DRUID_REGENERATION = BUILDER.defineInRange("dr_regeneration", 0, 0, 1);
@@ -166,6 +172,7 @@ public class InitialUpgradesConfigs {
         INFERNAL_MANA_BOOST = BUILDER.defineInRange("if_mana_boost", 0, 0, 5);
         INFERNAL_MANA_REGEN = BUILDER.defineInRange("if_mana_regen", 0, 0, 5);
         INFERNAL_METEOR_JUMP = BUILDER.defineInRange("if_meteor_jump", 1, 0, 1);
+        INFERNAL_MIST_FORM = BUILDER.defineInRange("if_mist_form", 0, 0, 1);
         INFERNAL_MOVEMENT_SPEED = BUILDER.defineInRange("if_movement_speed", 3, 0, 3);
         INFERNAL_NIGHT_VISION = BUILDER.defineInRange("if_night_vision", 0, 0, 1);
         INFERNAL_REGENERATION = BUILDER.defineInRange("if_regeneration", 0, 0, 1);
@@ -175,20 +182,21 @@ public class InitialUpgradesConfigs {
         BUILDER.pop();
 
         BUILDER.push("witherbone_armor");
-        WITHERBONE_DAMAGE_BOOST = BUILDER.defineInRange("wi_damage_boost", 2, 0, 4);
-        WITHERBONE_DAMAGE_RESISTANCE = BUILDER.defineInRange("wi_damage_resistance", 2, 0, 3);
+        WITHERBONE_DAMAGE_BOOST = BUILDER.defineInRange("wi_damage_boost", 0, 0, 4);
+        WITHERBONE_DAMAGE_RESISTANCE = BUILDER.defineInRange("wi_damage_resistance", 1, 0, 3);
         WITHERBONE_DOLPHINS_GRACE = BUILDER.defineInRange("wi_dolphins_grace", 0, 0, 2);
         WITHERBONE_EDLRIN_SIGHT = BUILDER.defineInRange("wi_eldrin_sight", 0, 0, 1);
         WITHERBONE_ELYTRA = BUILDER.defineInRange("wi_elytra", 0, 0, 2);
         WITHERBONE_EXPLOSION_RESISTANCE = BUILDER.defineInRange("wi_explosion_resistance", 0, 0, 1);
         WITHERBONE_FIRE_RESISTANCE = BUILDER.defineInRange("wi_fire_resistance", 0, 0, 2);
         WITHERBONE_FLY = BUILDER.defineInRange("wi_fly", 0, 0, 2);
-        WITHERBONE_HEALTH_BOOST = BUILDER.defineInRange("wi_health_boost", 2, 0, 5);
+        WITHERBONE_HEALTH_BOOST = BUILDER.defineInRange("wi_health_boost", 0, 0, 5);
         WITHERBONE_JUMP = BUILDER.defineInRange("wi_jump", 0, 0, 3);
         WITHERBONE_KINETIC_RESISTANCE = BUILDER.defineInRange("wi_kinetic_resistance", 0, 0, 1);
         WITHERBONE_MANA_BOOST = BUILDER.defineInRange("wi_mana_boost", 0, 0, 5);
-        WITHERBONE_MANA_REGEN = BUILDER.defineInRange("wi_mana_regen", 0, 0, 5);
+        WITHERBONE_MANA_REGEN = BUILDER.defineInRange("wi_mana_regen", 2, 0, 5);
         WITHERBONE_METEOR_JUMP = BUILDER.defineInRange("wi_meteor_jump", 0, 0, 1);
+        WITHERBONE_MIST_FORM = BUILDER.defineInRange("wi_mist_form", 1, 0, 1);
         WITHERBONE_MOVEMENT_SPEED = BUILDER.defineInRange("wi_movement_speed", 0, 0, 3);
         WITHERBONE_NIGHT_VISION = BUILDER.defineInRange("wi_night_vision", 0, 0, 1);
         WITHERBONE_REGENERATION = BUILDER.defineInRange("wi_regeneration", 0, 0, 1);
@@ -247,6 +255,9 @@ public class InitialUpgradesConfigs {
         }
         if(SPELLWEAVER_METEOR_JUMP.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("meteor_jump"), SPELLWEAVER_METEOR_JUMP.get());
+        }
+        if(SPELLWEAVER_MIST_FORM.get() > 0){
+            ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("mist_form"), SPELLWEAVER_MIST_FORM.get());
         }
         if(SPELLWEAVER_MOVEMENT_SPEED.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("movement_speed"), SPELLWEAVER_MOVEMENT_SPEED.get());
@@ -318,6 +329,9 @@ public class InitialUpgradesConfigs {
         if(DRUID_METEOR_JUMP.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("meteor_jump"), DRUID_METEOR_JUMP.get());
         }
+        if(DRUID_MIST_FORM.get() > 0){
+            ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("mist_form"), DRUID_MIST_FORM.get());
+        }
         if(DRUID_MOVEMENT_SPEED.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("movement_speed"), DRUID_MOVEMENT_SPEED.get());
         }
@@ -388,6 +402,9 @@ public class InitialUpgradesConfigs {
         if(INFERNAL_METEOR_JUMP.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("meteor_jump"), INFERNAL_METEOR_JUMP.get());
         }
+        if(INFERNAL_MIST_FORM.get() > 0){
+            ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("mist_form"), INFERNAL_MIST_FORM.get());
+        }
         if(INFERNAL_MOVEMENT_SPEED.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("movement_speed"), INFERNAL_MOVEMENT_SPEED.get());
         }
@@ -457,6 +474,9 @@ public class InitialUpgradesConfigs {
         }
         if(WITHERBONE_METEOR_JUMP.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("meteor_jump"), WITHERBONE_METEOR_JUMP.get());
+        }
+        if(WITHERBONE_MIST_FORM.get() > 0){
+            ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("mist_form"), WITHERBONE_MIST_FORM.get());
         }
         if(WITHERBONE_MOVEMENT_SPEED.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("movement_speed"), WITHERBONE_MOVEMENT_SPEED.get());
