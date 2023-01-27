@@ -24,6 +24,7 @@
     "dragonmagicandrelics:upgrade_seal_mana_regen_ii",
     "dragonmagicandrelics:upgrade_seal_movement_speed_ii",
     "dragonmagicandrelics:upgrade_seal_meteor_jump",
+    "dragonmagicandrelics:upgrade_seal_projectile_reflection_i",
     "dragonmagicandrelics:upgrade_seal_water_breathing_ii",
 
     "dragonmagicandrelics:upgrade_seal_damage_boost_ii",
@@ -34,6 +35,7 @@
     "dragonmagicandrelics:upgrade_seal_mana_boost_iii",
     "dragonmagicandrelics:upgrade_seal_mana_regen_iii",
     "dragonmagicandrelics:upgrade_seal_movement_speed_iii",
+    "dragonmagicandrelics:upgrade_seal_projectile_reflection_ii",
     "dragonmagicandrelics:upgrade_seal_saturation"
   ]
 }

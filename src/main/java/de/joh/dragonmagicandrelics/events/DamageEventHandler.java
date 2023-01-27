@@ -18,10 +18,12 @@ import com.mna.entities.utility.EntityPresentItem;
 import com.mna.items.artifice.FactionSpecificSpellModifierRing;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
+import com.mna.tools.ProjectileHelper;
 import com.mna.tools.SummonUtils;
 import de.joh.dragonmagicandrelics.Commands;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeProjectileReflectionHelper;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
@@ -36,7 +38,7 @@ import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -47,7 +49,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.apache.commons.lang3.mutable.MutableFloat;
-import top.theillusivec4.curios.api.CuriosApi;
 
 import javax.annotation.Nullable;
 
@@ -64,7 +65,6 @@ public class DamageEventHandler {
      * @see ArmorUpgradeInit
      * @see Commands
      * @see de.joh.dragonmagicandrelics.rituals.contexts.FusionRitual
-     * @param event
      */
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -98,16 +98,18 @@ public class DamageEventHandler {
     }
 
     /**
-     * Processing of the fire resistance, explosion resistance and kinetic resistance upgrades resistance through jumpboost.
+     * Processing of the projectile reflection, fire resistance, explosion resistance and kinetic resistance upgrades resistance through jumpboost.
      * @see ArmorUpgradeInit
      */
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
         if(event.getEntityLiving() instanceof Player player){
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor) {
+            if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor  && dragonMageArmor.isSetEquipped(player)) {
+                DamageSource source = event.getSource();
+
                 //protection against fire
-                if (event.getSource().isFire() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 1) {
+                if (source.isFire() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 1) {
 
                     IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
                     if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get())) {
@@ -116,28 +118,35 @@ public class DamageEventHandler {
                         return;
                     }
                 }
-                else if (event.getSource().isFire() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 2) {
+                else if (source.isFire() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 2) {
                     event.setCanceled(true);
                     return;
                 }
 
                 //protection against explosions
-                if (event.getSource().isExplosion() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.EXPLOSION_RESISTANCE, player) == 1) {
+                if (source.isExplosion() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.EXPLOSION_RESISTANCE, player) == 1) {
                     event.setCanceled(true);
                     return;
                 }
 
                 //Protection from falling through jumpboost
-                if(event.getSource() == DamageSource.FALL && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
-                    if((event.getAmount() - ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3) <= 0){
+                if(source == DamageSource.FALL && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
+                    if((event.getAmount() - dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3) <= 0){
                         event.setCanceled(true);
                         return;
                     }
                 }
 
                 //Protection from kinetic energy
-                if((event.getSource() == DamageSource.FALL || event.getSource() == DamageSource.FLY_INTO_WALL) && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.KINETIC_RESISTANCE, player) == 1){
+                if((source == DamageSource.FALL || source == DamageSource.FLY_INTO_WALL) && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.KINETIC_RESISTANCE, player) == 1){
                     event.setCanceled(true);
+                    return;
+                }
+
+                //Projectile Reflection
+                if(source.getDirectEntity() instanceof Projectile && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.PROJECTILE_REFLECTION, player) > 0 && ArmorUpgradeProjectileReflectionHelper.consumeReflectCharge(player)){
+                    event.setCanceled(true);
+                    ProjectileHelper.ReflectProjectile(player, (Projectile)source.getDirectEntity(), true, 10.0F);
                     return;
                 }
             }

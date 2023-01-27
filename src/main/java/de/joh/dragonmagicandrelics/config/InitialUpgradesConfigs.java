@@ -32,6 +32,7 @@ public class InitialUpgradesConfigs {
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_MIST_FORM;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_MOVEMENT_SPEED;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_NIGHT_VISION;
+    public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_PROJECTILE_REFLECTION;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_REGENERATION;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_SATURATION;
     public static final ForgeConfigSpec.ConfigValue<Integer> SPELLWEAVER_WATER_BREATHING;
@@ -54,6 +55,7 @@ public class InitialUpgradesConfigs {
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_MIST_FORM;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_MOVEMENT_SPEED;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_NIGHT_VISION;
+    public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_PROJECTILE_REFLECTION;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_REGENERATION;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_SATURATION;
     public static final ForgeConfigSpec.ConfigValue<Integer> DRUID_WATER_BREATHING;
@@ -76,6 +78,7 @@ public class InitialUpgradesConfigs {
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_MIST_FORM;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_MOVEMENT_SPEED;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_NIGHT_VISION;
+    public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_PROJECTILE_REFLECTION;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_REGENERATION;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_SATURATION;
     public static final ForgeConfigSpec.ConfigValue<Integer> INFERNAL_WATER_BREATHING;
@@ -98,6 +101,7 @@ public class InitialUpgradesConfigs {
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_MIST_FORM;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_MOVEMENT_SPEED;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_NIGHT_VISION;
+    public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_PROJECTILE_REFLECTION;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_REGENERATION;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_SATURATION;
     public static final ForgeConfigSpec.ConfigValue<Integer> WITHERBONE_WATER_BREATHING;
@@ -127,6 +131,7 @@ public class InitialUpgradesConfigs {
         SPELLWEAVER_MIST_FORM = BUILDER.defineInRange("sw_mist_form", 0, 0, 1);
         SPELLWEAVER_MOVEMENT_SPEED = BUILDER.defineInRange("sw_movement_speed", 0, 0, 3);
         SPELLWEAVER_NIGHT_VISION = BUILDER.defineInRange("sw_night_vision", 0, 0, 1);
+        SPELLWEAVER_PROJECTILE_REFLECTION = BUILDER.defineInRange("sw_projectile_reflection", 0, 0, 3);
         SPELLWEAVER_REGENERATION = BUILDER.defineInRange("sw_regeneration", 0, 0, 1);
         SPELLWEAVER_SATURATION = BUILDER.defineInRange("sw_saturation", 0, 0, 1);
         SPELLWEAVER_WATER_BREATHING = BUILDER.defineInRange("sw_water_breathing", 0, 0, 2);
@@ -151,6 +156,7 @@ public class InitialUpgradesConfigs {
         DRUID_MIST_FORM = BUILDER.defineInRange("dr_mist_form", 0, 0, 1);
         DRUID_MOVEMENT_SPEED = BUILDER.defineInRange("dr_movement_speed", 0, 0, 3);
         DRUID_NIGHT_VISION = BUILDER.defineInRange("dr_night_vision", 0, 0, 1);
+        DRUID_PROJECTILE_REFLECTION = BUILDER.defineInRange("dr_projectile_reflection", 0, 0, 3);
         DRUID_REGENERATION = BUILDER.defineInRange("dr_regeneration", 0, 0, 1);
         DRUID_SATURATION = BUILDER.defineInRange("dr_saturation", 0, 0, 1);
         DRUID_WATER_BREATHING = BUILDER.defineInRange("dr_water_breathing", 0, 0, 2);
@@ -175,6 +181,7 @@ public class InitialUpgradesConfigs {
         INFERNAL_MIST_FORM = BUILDER.defineInRange("if_mist_form", 0, 0, 1);
         INFERNAL_MOVEMENT_SPEED = BUILDER.defineInRange("if_movement_speed", 3, 0, 3);
         INFERNAL_NIGHT_VISION = BUILDER.defineInRange("if_night_vision", 0, 0, 1);
+        INFERNAL_PROJECTILE_REFLECTION = BUILDER.defineInRange("if_projectile_reflection", 0, 0, 3);
         INFERNAL_REGENERATION = BUILDER.defineInRange("if_regeneration", 0, 0, 1);
         INFERNAL_SATURATION = BUILDER.defineInRange("if_saturation", 0, 0, 1);
         INFERNAL_WATER_BREATHING = BUILDER.defineInRange("if_water_breathing", 0, 0, 2);
@@ -199,6 +206,7 @@ public class InitialUpgradesConfigs {
         WITHERBONE_MIST_FORM = BUILDER.defineInRange("wi_mist_form", 1, 0, 1);
         WITHERBONE_MOVEMENT_SPEED = BUILDER.defineInRange("wi_movement_speed", 0, 0, 3);
         WITHERBONE_NIGHT_VISION = BUILDER.defineInRange("wi_night_vision", 0, 0, 1);
+        WITHERBONE_PROJECTILE_REFLECTION = BUILDER.defineInRange("wi_projectile_reflection", 0, 0, 3);
         WITHERBONE_REGENERATION = BUILDER.defineInRange("wi_regeneration", 0, 0, 1);
         WITHERBONE_SATURATION = BUILDER.defineInRange("wi_saturation", 0, 0, 1);
         WITHERBONE_WATER_BREATHING = BUILDER.defineInRange("wi_water_breathing", 2, 0, 2);
@@ -265,6 +273,9 @@ public class InitialUpgradesConfigs {
 
         if(SPELLWEAVER_NIGHT_VISION.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("night_vision"), SPELLWEAVER_NIGHT_VISION.get());
+        }
+        if(SPELLWEAVER_PROJECTILE_REFLECTION.get() > 0){
+            ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("projectile_reflection"), SPELLWEAVER_PROJECTILE_REFLECTION.get());
         }
         if(SPELLWEAVER_REGENERATION.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("regeneration"), SPELLWEAVER_REGENERATION.get());
@@ -339,6 +350,9 @@ public class InitialUpgradesConfigs {
         if(DRUID_NIGHT_VISION.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("night_vision"), DRUID_NIGHT_VISION.get());
         }
+        if(DRUID_PROJECTILE_REFLECTION.get() > 0){
+            ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("projectile_reflection"), DRUID_PROJECTILE_REFLECTION.get());
+        }
         if(DRUID_REGENERATION.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("regeneration"), DRUID_REGENERATION.get());
         }
@@ -412,6 +426,9 @@ public class InitialUpgradesConfigs {
         if(INFERNAL_NIGHT_VISION.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("night_vision"), INFERNAL_NIGHT_VISION.get());
         }
+        if(INFERNAL_PROJECTILE_REFLECTION.get() > 0){
+            ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("projectile_reflection"), INFERNAL_PROJECTILE_REFLECTION.get());
+        }
         if(INFERNAL_REGENERATION.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("regeneration"), INFERNAL_REGENERATION.get());
         }
@@ -484,6 +501,9 @@ public class InitialUpgradesConfigs {
 
         if(WITHERBONE_NIGHT_VISION.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("night_vision"), WITHERBONE_NIGHT_VISION.get());
+        }
+        if(WITHERBONE_PROJECTILE_REFLECTION.get() > 0){
+            ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("projectile_reflection"), WITHERBONE_PROJECTILE_REFLECTION.get());
         }
         if(WITHERBONE_REGENERATION.get() > 0){
             ret.put(ArmorUpgradeInit.getArmorUpgradeFromString("regeneration"), WITHERBONE_REGENERATION.get());

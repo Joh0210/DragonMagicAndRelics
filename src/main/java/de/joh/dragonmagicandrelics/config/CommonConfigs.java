@@ -79,6 +79,12 @@ public class CommonConfigs {
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE;
 
+    /**
+     * projectile reflection upgrade:
+     * How many ticks it takes to regenerate a Charge
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> PROJECTILE_REFLECTION_TICKS_PER_CHARGE;
+
     static {
         BUILDER.push("General Configs");
 
@@ -109,6 +115,10 @@ public class CommonConfigs {
             BUILDER.push("Meteor Jump upgrade");
             METEOR_JUMP_IMPACT = BUILDER.defineInRange("Strength of the Impact:", 3, 1, 5);
             METEOR_JUMP_MANA_COST = BUILDER.defineInRange("Mana cost per meteor jump:", 40, 0, 400);
+            BUILDER.pop();
+
+            BUILDER.push("Projectile Reflection");
+            PROJECTILE_REFLECTION_TICKS_PER_CHARGE = BUILDER.defineInRange("How many ticks it takes to regenerate a Charge:", 200, 20, 2000);
             BUILDER.pop();
 
             BUILDER.push("Saturation upgrade");

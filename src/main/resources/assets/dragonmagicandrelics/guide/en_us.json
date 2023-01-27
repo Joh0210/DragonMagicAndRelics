@@ -1019,6 +1019,54 @@
       }
     ]
   },
+  "Upgrade Glyph Projectile Reflection": {
+    "index": 1,
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Projectile Reflection"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "Why are you hitting yourself with the arrow? Why are you hitting yourself with the arrow? Why are you hitting yourself with the arrow?\n\nOh yeah, my fault. I have a glyph for it."
+        }
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "Projectile Reflection I is Tier 2"
+        }
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "Projectile Reflection II is Tier 3"
+        }
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "Projectile Reflection III is Tier 4"
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_projectile_reflection_i"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_projectile_reflection_ii"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_projectile_reflection_iii"
+      }
+    ]
+  },
   "Upgrade Glyph Fire Resistance": {
     "index": 1,
     "category": "eldrin_altar",

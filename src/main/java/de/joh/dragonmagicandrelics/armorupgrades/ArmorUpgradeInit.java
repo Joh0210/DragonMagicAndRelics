@@ -91,6 +91,13 @@ public class ArmorUpgradeInit {
     public static ArmorUpgrade EXPLOSION_RESISTANCE = new ArmorUpgrade("explosion_resistance", 1);
 
     /**
+     * This upgrade reflects projectiles when they try to hit you.
+     * With each upgrade, a projectile can be reflected more before it needs to recharge.
+     * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
+     */
+    public static ArmorUpgrade PROJECTILE_REFLECTION = new ArmorUpgrade("projectile_reflection", 3);
+
+    /**
      * This upgrade lets you enter Mist Form when you are about to die.
      * Increasing the maximum level has no effect without further adjustments.
      * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
@@ -132,6 +139,7 @@ public class ArmorUpgradeInit {
 
         upgradeList.add(KINETIC_RESISTANCE);
         upgradeList.add(EXPLOSION_RESISTANCE);
+        upgradeList.add(PROJECTILE_REFLECTION);
         upgradeList.add(JUMP);
         upgradeList.add(MIST_FORM);
         upgradeList.add(FIRE_RESISTANCE);

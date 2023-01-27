@@ -111,6 +111,10 @@ public class ItemInit {
 
     public static final RegistryObject<Item> UPGRADE_SEAL_NIGHT_VISION = ITEMS.register("upgrade_seal_night_vision", () -> new UpgradeSeal(1, "night_vision"));
 
+    public static final RegistryObject<Item> UPGRADE_SEAL_PROJECTILE_REFLECTION_I = ITEMS.register("upgrade_seal_projectile_reflection_i", () -> new UpgradeSeal(2, "projectile_reflection", 1));
+    public static final RegistryObject<Item> UPGRADE_SEAL_PROJECTILE_REFLECTION_II = ITEMS.register("upgrade_seal_projectile_reflection_ii", () -> new UpgradeSeal(3, "projectile_reflection",2));
+    public static final RegistryObject<Item> UPGRADE_SEAL_PROJECTILE_REFLECTION_III = ITEMS.register("upgrade_seal_projectile_reflection_iii", () -> new UpgradeSeal(4, "projectile_reflection",3));
+
     public static final RegistryObject<Item> UPGRADE_SEAL_REGENERATION = ITEMS.register("upgrade_seal_regeneration", () -> new UpgradeSeal(4, "regeneration", 1));
 
     public static final RegistryObject<Item> UPGRADE_SEAL_SATURATION = ITEMS.register("upgrade_seal_saturation", () -> new UpgradeSeal(3, "saturation", 1));

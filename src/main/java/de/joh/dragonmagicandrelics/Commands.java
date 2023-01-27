@@ -108,6 +108,7 @@ public class Commands {
         .then(applyUpgrade("kinetic_resistance"))
         .then(applyUpgrade("explosion_resistance"))
         .then(applyUpgrade("mist_form"))
+        .then(applyUpgrade("projectile_reflection"))
         .then(applyUpgrade("meteor_jump"))
         .then(applyUpgrade("fire_resistance"))
         .then(applyUpgrade("elytra"))

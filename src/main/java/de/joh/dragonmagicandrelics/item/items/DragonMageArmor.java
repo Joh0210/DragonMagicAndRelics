@@ -13,6 +13,7 @@ import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradePotionEffect;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeProjectileReflectionHelper;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.IArmorUpgradeOnArmorTick;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.IArmorUpgradeOnFullyEquipped;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
@@ -42,6 +43,7 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
+
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -114,6 +116,11 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                         }
                     }
                 }
+            }
+
+            //Recharge of the Projectile Reflection
+            if(getUpgradeLevel(ArmorUpgradeInit.PROJECTILE_REFLECTION, player) > 0){
+                ArmorUpgradeProjectileReflectionHelper.tickReflectCharges(player);
             }
         }
     }
