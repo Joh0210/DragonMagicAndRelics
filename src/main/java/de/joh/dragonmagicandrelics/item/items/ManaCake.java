@@ -1,6 +1,7 @@
 package de.joh.dragonmagicandrelics.item.items;
 
 import com.mna.api.capabilities.IPlayerMagic;
+import com.mna.api.items.ITieredItem;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.item.ItemInit;
@@ -15,7 +16,7 @@ import net.minecraft.world.level.Level;
 /**
  * A cake to eat endlessly with mana consumption.
  */
-public class ManaCake  extends Item {
+public class ManaCake  extends Item implements ITieredItem<ManaCake> {
     /**
      * Mana cost to "repair" the cake
      */
@@ -30,6 +31,12 @@ public class ManaCake  extends Item {
      * How much saturation does the cake give?
      */
     private static final float SATURATION = 0.6f;
+
+    /**
+     * M&A Item Tier:
+     * Determined by the crafting recipe Tier
+     */
+    private int _tier = -1;
 
     public ManaCake() {
         super(new Item.Properties().tab(CreativeModeTab.CreativeModeTab).stacksTo(1).rarity(Rarity.COMMON)
@@ -52,6 +59,16 @@ public class ManaCake  extends Item {
         } else {
             return itemstack;
         }
+    }
+
+    @Override
+    public void setCachedTier(int tier) {
+        this._tier = tier;
+    }
+
+    @Override
+    public int getCachedtier() {
+        return this._tier;
     }
 
 }
