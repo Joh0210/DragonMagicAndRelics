@@ -6,41 +6,40 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
 
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
+plugins {
+    id 'net.minecraftforge.gradle' version '5.1.+'
+}
+apply plugin: 'org.parchmentmc.librarian.forgegradle' version '1.+'
 
 
 group = 'de.joh'
-version = '1.18.2-1.1.4'
+version = '1.16.5-1.0.0'
 
 java {
     archivesBaseName = 'dragonmagicandrelics'
-    toolchain.languageVersion = JavaLanguageVersion.of(17)
+    toolchain.languageVersion = JavaLanguageVersion.of(8)
 }
 
 minecraft {
-    mappings channel: 'parchment', version: '2022.09.04-1.18.2'
+    mappings channel: 'snapshot', version: '20210309-1.16.5'
     runs {
         client {
             workingDirectory project.file('run')
 
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-
             property 'forge.logging.markers', 'REGISTRIES'
+
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'modularmagicarmor'
 
             mods {
-                modularmagicarmor {
+                test {
                     source sourceSets.main
                 }
             }
@@ -49,33 +48,13 @@ minecraft {
         server {
             workingDirectory project.file('run')
 
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-
             property 'forge.logging.markers', 'REGISTRIES'
 
             property 'forge.logging.console.level', 'debug'
 
-            property 'forge.enabledGameTestNamespaces', 'modularmagicarmor'
 
             mods {
-                modularmagicarmor {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        gameTestServer {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-
-            property 'forge.logging.console.level', 'debug'
-
-            property 'forge.enabledGameTestNamespaces', 'modularmagicarmor'
-
-            mods {
-                modularmagicarmor {
+                test {
                     source sourceSets.main
                 }
             }
@@ -88,10 +67,10 @@ minecraft {
 
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'modularmagicarmor', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'test', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                modularmagicarmor {
+                test {
                     source sourceSets.main
                 }
             }
@@ -110,15 +89,15 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.76'
+    minecraft 'net.minecraftforge:forge:1.16.5-36.2.39'
 
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.7.1:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.8.2")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.16.5-4.0.8.2:api")
 
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.37')
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.16.5:3.0.106')
 
-    compileOnly fg.deobf("blank:mna-1.7.2.5:api")
-    runtimeOnly fg.deobf("blank:mna:1.7.2.5")
+    compileOnly fg.deobf("blank:mana-and-artifice-1.5.1.7:api")
+    runtimeOnly fg.deobf("blank:mana-and-artifice:1.5.1.7")
 }
 
 jar {
@@ -129,8 +108,8 @@ jar {
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "Joh0210",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                "Implementation-Vendor"   : "Joh0210"/*,
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")*/
         ])
     }
 }

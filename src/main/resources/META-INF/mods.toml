@@ -17,34 +17,34 @@ A mod to expand your magic to compete with gods!
 [[dependencies.dragonmagicandrelics]]
    modId="forge"
    mandatory=true
-   versionRange="[40.1.20,)"
+   versionRange="[36.2.34,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.dragonmagicandrelics]]
    modId="mna"
    mandatory=true
-   versionRange="[1.7.2.5,)"
+   versionRange="[1.5.1.7,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.dragonmagicandrelics]]
    modId="curios"
    mandatory=true
-   versionRange="[1.18.2-5,)"
+   versionRange="[1.16.5-4,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.dragonmagicandrelics]]
    modId="geckolib3"
    mandatory=true
-   versionRange="[forge-3.0.18,)"
+   versionRange="[forge-3.0.106,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.dragonmagicandrelics]]
    modId="minecraft"
    mandatory=true
-   versionRange="[1.18.2]"
+   versionRange="[1.16.5]"
    ordering="NONE"
    side="BOTH"
