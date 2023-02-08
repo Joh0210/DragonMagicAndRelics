@@ -1,25 +1,23 @@
 package de.joh.dragonmagicandrelics;
 
-import com.mna.api.guidebook.RegisterGuidebooksEvent;
-import com.mojang.logging.LogUtils;
+import com.ma.guide.GuideBookEntries;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.config.InitialUpgradesConfigs;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
 import de.joh.dragonmagicandrelics.utils.KeybindInit;
-import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.slf4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Main class of this mod, and initialization of some elements.
@@ -28,7 +26,7 @@ import org.slf4j.Logger;
 @Mod(DragonMagicAndRelics.MOD_ID)
 public class DragonMagicAndRelics {
     public static final String MOD_ID = "dragonmagicandrelics";
-    public static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public DragonMagicAndRelics() {
 
@@ -37,6 +35,11 @@ public class DragonMagicAndRelics {
         EffectInit.register(eventBus);
 
         eventBus.addListener(this::setup);
+
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            MinecraftForge.EVENT_BUS.register(GuideBookEntries.class);
+            eventBus.register(KeybindInit.class);
+        });
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.register(KeybindInit.class));
 
@@ -50,13 +53,5 @@ public class DragonMagicAndRelics {
         event.enqueueWork(ModMessages::register);
 
         LOGGER.info(MOD_ID + ": init");
-    }
-
-    /**
-     * Registration of the ingame guide. Called by the game itself.
-     */
-    @SubscribeEvent
-    public void onRegisterGuidebooks(final RegisterGuidebooksEvent event) {
-        event.getRegistry().addGuidebookPath(RLoc.create("guide"));
     }
 }

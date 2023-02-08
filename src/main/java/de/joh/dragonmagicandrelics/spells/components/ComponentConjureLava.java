@@ -1,15 +1,11 @@
 package de.joh.dragonmagicandrelics.spells.components;
 
-import com.mna.api.affinity.Affinity;
-import com.mna.api.spells.attributes.AttributeValuePair;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Fluids;
-
-import javax.annotation.Nullable;
+import com.ma.api.affinity.Affinity;
+import com.ma.api.spells.attributes.AttributeValuePair;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
 
 /**
  * Lava version of IComponentConjureFluid.
@@ -23,7 +19,7 @@ public class ComponentConjureLava extends IComponentConjureFluid {
 
     @Override
     public SoundEvent SoundEffect() {
-        return SoundEvents.BUCKET_EMPTY_LAVA;
+        return SoundEvents.ITEM_BUCKET_EMPTY_LAVA;
     }
 
     public Affinity getAffinity() {
@@ -36,11 +32,5 @@ public class ComponentConjureLava extends IComponentConjureFluid {
 
     public int requiredXPForRote() {
         return 500;
-    }
-
-    @Override
-    @Nullable
-    public Block getCauldronType(){
-        return Blocks.LAVA_CAULDRON;
     }
 }

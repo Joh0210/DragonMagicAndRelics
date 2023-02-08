@@ -3,9 +3,9 @@ package de.joh.dragonmagicandrelics.armorupgrades;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
 
 /**
  * This Helper is used to reflects projectiles
@@ -18,7 +18,7 @@ public class ArmorUpgradeProjectileReflectionHelper {
      * @see de.joh.dragonmagicandrelics.item.items.DragonMageArmor
      * @param player wearer of the armor
      */
-    public static void tickReflectCharges(Player player) {
+    public static void tickReflectCharges(PlayerEntity player) {
         int[] reflections = getReflectCharges(player);
 
         for(int i = 0; i < reflections.length; ++i) {
@@ -36,7 +36,7 @@ public class ArmorUpgradeProjectileReflectionHelper {
      * @param player wearer of the armor
      * @return Can the player reflect a projectile?
      */
-    public static boolean consumeReflectCharge(Player player) {
+    public static boolean consumeReflectCharge(PlayerEntity player) {
         int[] reflections = getReflectCharges(player);
 
         DragonMagicAndRelics.LOGGER.info("NEXT");
@@ -55,10 +55,11 @@ public class ArmorUpgradeProjectileReflectionHelper {
         return false;
     }
 
-    private static int[] getReflectCharges(Player player) {
+    private static int[] getReflectCharges(PlayerEntity player) {
         int[] reflections;
-        ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-        if (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
+        ItemStack chest = player.getItemStackFromSlot(EquipmentSlotType.CHEST);
+        if (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor && ((DragonMageArmor) chest.getItem()).isSetEquipped(player)) {
+            DragonMageArmor dragonMageArmor = (DragonMageArmor) chest.getItem();
             if (!player.getPersistentData().contains("dragon_mage_armor_reflect_counters")) {
                 reflections = new int[(Integer) dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.PROJECTILE_REFLECTION, player)];
             } else {
@@ -74,7 +75,7 @@ public class ArmorUpgradeProjectileReflectionHelper {
         return reflections;
     }
 
-    private static void updateReflectCharges(Player player, int[] reflections) {
+    private static void updateReflectCharges(PlayerEntity player, int[] reflections) {
         player.getPersistentData().putIntArray("dragon_mage_armor_reflect_counters", reflections);
     }
 }

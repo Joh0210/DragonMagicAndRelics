@@ -1,7 +1,7 @@
 package de.joh.dragonmagicandrelics.utils;
 
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * Creation of the ResourceLocations for this mod.

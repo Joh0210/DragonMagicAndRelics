@@ -1,24 +1,23 @@
 package de.joh.dragonmagicandrelics.rituals.contexts;
 
-import com.mna.api.rituals.IRitualContext;
-import com.mna.api.rituals.RitualEffect;
-import com.mna.items.ItemInit;
-import com.mna.spells.crafting.SpellRecipe;
+import com.ma.api.rituals.IRitualContext;
+import com.ma.api.rituals.RitualEffect;
+import com.ma.items.ItemInit;
+import com.ma.spells.crafting.SpellRecipe;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LightningBolt;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
-
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.effect.LightningBoltEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import java.util.List;
 
 /**
@@ -37,10 +36,10 @@ public class FusionRitual extends RitualEffect {
 
     @Override
     protected boolean applyRitualEffect(IRitualContext context) {
-        Player caster = context.getCaster();
-        Level world = context.getWorld();
+        PlayerEntity caster = context.getCaster();
+        World world = context.getWorld();
         BlockPos pos = context.getCenter();
-        ItemStack chest = caster.getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack chest = caster.getItemStackFromSlot(EquipmentSlotType.CHEST);
 
         boolean offensive = context.getCollectedReagents((i) -> i.getItem() == Items.NETHERITE_SWORD).size() == 1;
 
@@ -49,15 +48,15 @@ public class FusionRitual extends RitualEffect {
         List<ItemStack> spell = context.getCollectedReagents((r) -> r.getItem() == ItemInit.SPELL.get());
 
         if (spell.size() == 1) {
-            if (!spell.get(0).isEmpty() && SpellRecipe.stackContainsSpell(spell.get(0)) && !caster.level.isClientSide){
-                CompoundTag compoundTag = new CompoundTag();
+            if (!spell.get(0).isEmpty() && SpellRecipe.stackContainsSpell(spell.get(0)) && !caster.world.isRemote){
+                CompoundNBT compoundTag = new CompoundNBT();
                 compoundTag.put(DragonMagicAndRelics.MOD_ID+type, spell.get(0).getTag().getCompound("spell"));
                 compoundTag.putString(DragonMagicAndRelics.MOD_ID+type+"_name", spell.get(0).getTag().getCompound("display").toString().replace( "{Name:'{\"text\":\"", "").replace( "\"}'}", ""));
                 chest.getTag().merge(compoundTag);
 
-                LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
-                lightningboltentity.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
-                world.addFreshEntity(lightningboltentity);
+                LightningBoltEntity lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
+                lightningboltentity.setPosition((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
+                world.addEntity(lightningboltentity);
                 return true;
             }
         }
@@ -70,11 +69,11 @@ public class FusionRitual extends RitualEffect {
     }
 
     @Override
-    public Component canRitualStart(IRitualContext context) {
-        Player caster = context.getCaster();
+    public TextComponent canRitualStart(IRitualContext context) {
+        PlayerEntity caster = context.getCaster();
 
-        if(!(caster.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor mmaArmor) || !mmaArmor.isSetEquipped(caster)){
-            return new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.no.armor.equipped.error");
+        if(!(caster.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem() instanceof DragonMageArmor) || !((DragonMageArmor)caster.getItemStackFromSlot(EquipmentSlotType.CHEST).getItem()).isSetEquipped(caster)){
+            return new TranslationTextComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.no.armor.equipped.error");
         }
 
         return null;

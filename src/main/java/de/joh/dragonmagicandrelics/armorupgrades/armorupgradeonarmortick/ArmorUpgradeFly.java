@@ -1,15 +1,16 @@
 package de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick;
 
-import com.mna.ManaAndArtifice;
-import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.api.particles.MAParticleType;
-import com.mna.api.particles.ParticleInit;
-import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import com.mna.effects.EffectInit;
+import com.ma.ManaAndArtifice;
+import com.ma.api.capabilities.IPlayerMagic;
+import com.ma.api.particles.MAParticleType;
+import com.ma.api.particles.ParticleInit;
+import com.ma.capabilities.playerdata.magic.PlayerMagicProvider;
+import com.ma.effects.EffectInit;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.Effect;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.world.World;
 
 /**
  * Allows the wearer of Dragon Mage Armor to fly on every tick.
@@ -26,30 +27,30 @@ public class ArmorUpgradeFly extends IArmorUpgradeOnArmorTick {
     }
 
     @Override
-    public void onArmorTick(Level world, Player player, int level, IPlayerMagic magic) {
+    public void onArmorTick(World world, PlayerEntity player, int level, IPlayerMagic magic) {
         if (0 < level) {
             player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> {
                 //Creation of particles
-                if (player.getAbilities().flying && !player.hasEffect(EffectInit.LEVITATION.get())) {
-                    if (world.isClientSide) {
-                        Vec3 look = player.getForward().cross(new Vec3(0.0D, 1.0D, 0.0D));
+                if (player.abilities.isFlying && !player.isPotionActive((Effect)EffectInit.LEVITATION.get())) {
+                    if (world.isRemote) {
+                        Vector3d look = player.getForward().crossProduct(new Vector3d(0.0D, 1.0D, 0.0D));
                         float offset = (float)(Math.random() * 0.2D);
                         look = look.scale(offset);
-                        world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() + look.x, player.getY(), player.getZ() + look.z, 0.0D, -0.05000000074505806D, 0.0D);
-                        world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() - look.x, player.getY(), player.getZ() - look.z, 0.0D, -0.05000000074505806D, 0.0D);
+                        world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getPosX() + look.x, player.getPosY(), player.getPosZ() + look.z, 0.0D, -0.05000000074505806D, 0.0D);
+                        world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getPosX() - look.x, player.getPosY(), player.getPosZ() - look.z, 0.0D, -0.05000000074505806D, 0.0D);
                     } else {
-                        m.getCastingResource().consume(player, CommonConfigs.getFlyManaCostPerTick());
+                        m.getCastingResource().consume(CommonConfigs.getFlyManaCostPerTick());
                     }
                 }
 
                 //Actual flying
-                if (!m.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.getFlyManaCostPerTick())) {
+                if (m.getCastingResource().getAmount() < CommonConfigs.getFlyManaCostPerTick()) {
                     ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
                 } else {
                     ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
                     if (!player.isCreative() && !player.isSpectator()) {
                         ManaAndArtifice.instance.proxy.setFlySpeed(player, level*CommonConfigs.getFlySpeedPerLevel());
-                        if (!CommonConfigs.FLY_ALLOW_SPRTINTING_WHILE_FLYING.get() && player.getAbilities().flying) {
+                        if (!CommonConfigs.FLY_ALLOW_SPRTINTING_WHILE_FLYING.get() && player.abilities.isFlying) {
                             player.setSprinting(false);
                         }
                     } else {

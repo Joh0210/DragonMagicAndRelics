@@ -2,11 +2,11 @@ package de.joh.dragonmagicandrelics.networking;
 
 import de.joh.dragonmagicandrelics.networking.packet.ToggleNightVisionC2SPacket;
 import de.joh.dragonmagicandrelics.utils.RLoc;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkRegistry;
-import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraftforge.fml.network.NetworkDirection;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.PacketDistributor;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
 
 /**
  * Communication between client and server with packages of this mod.
@@ -45,7 +45,7 @@ public class ModMessages {
         INSTANCE.sendToServer(message);
     }
 
-    public static <MSG> void sendToPlayer(MSG message, ServerPlayer player){
+    public static <MSG> void sendToPlayer(MSG message, ServerPlayerEntity player){
         INSTANCE.send(PacketDistributor.PLAYER.with(()->player), message);
     }
 

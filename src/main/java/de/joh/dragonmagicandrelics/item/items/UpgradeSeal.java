@@ -1,16 +1,16 @@
 package de.joh.dragonmagicandrelics.item.items;
 
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.Level;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -45,7 +45,7 @@ public class UpgradeSeal extends Item {
      * @param maxArmorUpgradeLevel Which upgrade level is saved on the UpgradeSeal?
      */
     public UpgradeSeal(int tier, String armorUpgradename, int maxArmorUpgradeLevel) {
-        super(new Item.Properties().tab(CreativeModeTab.CreativeModeTab).stacksTo(1).rarity(getRarity(tier)));
+        super(new Item.Properties().group(CreativeModeTab.CreativeModeTab).maxStackSize(1).rarity(getRarity(tier)));
         this.tier = tier;
         this.armorUpgradename = armorUpgradename;
         this.upgradeLevel = maxArmorUpgradeLevel;
@@ -65,9 +65,10 @@ public class UpgradeSeal extends Item {
      * Call from the game itself.
      */
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
-        TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal");
-        tooltip.add(new TextComponent(component.getString() + " " + tier));
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        TranslationTextComponent component = new TranslationTextComponent("tooltip.dragonmagicandrelics.upgradeseal");
+        tooltip.add(new StringTextComponent(component.getString() + " " + tier));
     }
 
     /**
@@ -90,7 +91,7 @@ public class UpgradeSeal extends Item {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean isFoil(ItemStack itemstack) {
+    public boolean hasEffect(ItemStack itemstack) {
         return true;
     }
 

@@ -1,24 +1,17 @@
 package de.joh.dragonmagicandrelics.utils;
 
-import com.mna.items.ItemInit;
-import com.mna.items.runes.MarkBookItem;
-import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagic;
-import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagicProvider;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import com.ma.items.ItemInit;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import javax.annotation.Nullable;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * This class is a replacement for the Rune of Marking. Up to one instance of this class is saved per player and per dimension.
  * Furthermore, an instance can serve as a helper to pass marks.
- * @see PlayerDragonMagic
- * @see com.mna.items.runes.MarkBookItem
  * @author Joh0210
  */
 public class MarkSave {
@@ -38,7 +31,7 @@ public class MarkSave {
      * Format must correspond to saveNBT()!
      * @param nbt
      */
-    public MarkSave(CompoundTag nbt) {
+    public MarkSave(CompoundNBT nbt) {
         if (nbt.contains("x") && nbt.contains("y") && nbt.contains("z") && nbt.contains("direction")) {
             this.position = new BlockPos(nbt.getInt("x"), nbt.getInt("y"), nbt.getInt("z"));
             this.direction = Direction.byName(nbt.getString("direction"));
@@ -55,13 +48,13 @@ public class MarkSave {
         return direction;
     }
 
-    public CompoundTag saveNBT() {
-        CompoundTag nbt = new CompoundTag();
+    public CompoundNBT saveNBT() {
+        CompoundNBT nbt = new CompoundNBT();
 
         nbt.putInt("x", this.position.getX());
         nbt.putInt("y", this.position.getY());
         nbt.putInt("z", this.position.getZ());
-        nbt.putString("direction", this.direction.getName());
+        nbt.putString("direction", this.direction.getName2());
 
         return nbt;
     }
@@ -73,25 +66,26 @@ public class MarkSave {
      * @return Returns the Mark to use. The mark in hand has the highest priority. Then the Dragon Magic Mark.
      */
     @Nullable
-    public static MarkSave getMark(Player source, Level world){
+    public static MarkSave getMark(PlayerEntity source, World world){
         if(source == null){ //Wasn't executed by a player?
             return null;
         }
 
-        ItemStack markingRune = source.getMainHandItem().getItem() != ItemInit.RUNE_MARKING.get() && source.getMainHandItem().getItem() != ItemInit.BOOK_MARKS.get() ? source.getOffhandItem() : source.getMainHandItem();
+        ItemStack markingRune = source.getHeldItemMainhand().getItem() != ItemInit.RUNE_MARKING.get() ? source.getHeldItemOffhand() : source.getHeldItemMainhand();
 
-        if (markingRune.getItem() == ItemInit.RUNE_MARKING.get() || markingRune.getItem() == ItemInit.BOOK_MARKS.get()) {
-            return new MarkSave(MarkBookItem.getSelectedPos(markingRune), MarkBookItem.getSelectedFace(markingRune));
+        if (markingRune.getItem() == ItemInit.RUNE_MARKING.get()) {
+            return new MarkSave(ItemInit.RUNE_MARKING.get().getLocation(markingRune), ItemInit.RUNE_MARKING.get().getFace(markingRune));
         }
 
-        AtomicReference<MarkSave> playerMark = new AtomicReference<>();
-        AtomicBoolean isNotNull = new AtomicBoolean(false);
-        source.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> {
-            if(magic.hasValidMark(world)){
-                isNotNull.set(true);
-                playerMark.set(magic.getMark(world));
-            }
-        });
-        return isNotNull.get() ? playerMark.get() : null;
+//        AtomicReference<MarkSave> playerMark = new AtomicReference<>();
+//        AtomicBoolean isNotNull = new AtomicBoolean(false);
+//        source.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> {
+//            if(magic.hasValidMark(world)){
+//                isNotNull.set(true);
+//                playerMark.set(magic.getMark(world));
+//            }
+//        });
+//        return isNotNull.get() ? playerMark.get() : null;
+        return null;
     }
 }

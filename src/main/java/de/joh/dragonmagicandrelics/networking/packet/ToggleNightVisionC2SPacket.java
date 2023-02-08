@@ -2,14 +2,14 @@ package de.joh.dragonmagicandrelics.networking.packet;
 
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraftforge.fml.network.NetworkEvent;
+
 import java.util.function.Supplier;
 
 /**
@@ -21,9 +21,9 @@ import java.util.function.Supplier;
 public class ToggleNightVisionC2SPacket {
     public ToggleNightVisionC2SPacket(){}
 
-    public ToggleNightVisionC2SPacket(FriendlyByteBuf buf){}
+    public ToggleNightVisionC2SPacket(PacketBuffer buf){}
 
-    public void toBytes(FriendlyByteBuf buf){}
+    public void toBytes(PacketBuffer buf){}
 
     /**
      * Processing of the event on the SERVER SIDE!
@@ -31,16 +31,15 @@ public class ToggleNightVisionC2SPacket {
     public boolean handle(Supplier<NetworkEvent.Context> supplier){
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(()->{
-            ServerPlayer player = context.getSender();
-            ServerLevel level = player.getLevel();
+            ServerPlayerEntity player = context.getSender();
 
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+            ItemStack chest = player.getItemStackFromSlot(EquipmentSlotType.CHEST);
 
-            if(chest.getItem() instanceof DragonMageArmor mmaArmor && mmaArmor.getUpgradeLevel(ArmorUpgradeInit.NIGHT_VISION, player) >= 1){
-                if(player.hasEffect(MobEffects.NIGHT_VISION)){
-                    player.removeEffect(MobEffects.NIGHT_VISION);
+            if(chest.getItem() instanceof DragonMageArmor && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.NIGHT_VISION, player) >= 1){
+                if(player.getActivePotionEffect(Effects.NIGHT_VISION) != null){
+                    player.removePotionEffect(Effects.NIGHT_VISION);
                 }else{
-                    player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 100000, 0, false, false, true));
+                    player.addPotionEffect(new EffectInstance(Effects.NIGHT_VISION, 100000, 0, false, false, true));
                 }
             }
         });

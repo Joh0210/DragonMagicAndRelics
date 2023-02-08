@@ -2,7 +2,7 @@ package de.joh.dragonmagicandrelics.client.armor;
 
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.RLoc;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class DragonMageArmorModel extends AnimatedGeoModel<DragonMageArmor> {

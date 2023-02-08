@@ -1,6 +1,6 @@
 package de.joh.dragonmagicandrelics.rituals;
 
-import com.mna.api.rituals.RitualEffect;
+import com.ma.api.rituals.RitualEffect;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.rituals.contexts.*;
 import de.joh.dragonmagicandrelics.utils.RLoc;

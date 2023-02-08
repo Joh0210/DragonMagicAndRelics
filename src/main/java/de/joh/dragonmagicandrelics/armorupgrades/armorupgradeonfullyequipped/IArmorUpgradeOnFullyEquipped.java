@@ -2,7 +2,7 @@ package de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped;
 
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * Upgrades of this type add a permanent effect to the wearer.
@@ -23,11 +23,11 @@ public abstract class IArmorUpgradeOnFullyEquipped extends ArmorUpgrade {
      * @param player Wearer of the Dragon Mage Armor. Player exclusive, no other entities.
      * @param level The level of the installed upgrade.
      */
-    public abstract void applySetBonus(Player player, int level);
+    public abstract void applySetBonus(PlayerEntity player, int level);
 
     /**
      * This feature removes the permanent effect from the player when the wearer unequips at least one piece of armor.
      * @param player Wearer of the Dragon Mage Armor. Player exclusive, no other entities.
      */
-    public abstract void removeSetBonus(Player player);
+    public abstract void removeSetBonus(PlayerEntity player);
 }

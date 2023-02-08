@@ -24,7 +24,7 @@ public class ClientEvents {
          */
         @SubscribeEvent
         public static void onKeyRegister(InputEvent.KeyInputEvent event){
-            if(KeybindInit.TOGGLE_NIGHT_VISION_KEY.consumeClick()){
+            if(KeybindInit.TOGGLE_NIGHT_VISION_KEY.isPressed()){
                 ModMessages.sendToServer(new ToggleNightVisionC2SPacket());
             }
         }

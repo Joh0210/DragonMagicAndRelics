@@ -1,10 +1,10 @@
 package de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick;
 
-import com.mna.api.capabilities.IPlayerMagic;
+import com.ma.api.capabilities.IPlayerMagic;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
 
 /**
  * Each upgrade of this type has a function that is performed on each tick of the Dragon Mage Armor.
@@ -26,5 +26,5 @@ public abstract class IArmorUpgradeOnArmorTick extends ArmorUpgrade {
      * @see DragonMageArmor
      * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
      */
-    public abstract void onArmorTick(Level world, Player player, int level, IPlayerMagic magic);
+    public abstract void onArmorTick(World world, PlayerEntity player, int level, IPlayerMagic magic);
 }

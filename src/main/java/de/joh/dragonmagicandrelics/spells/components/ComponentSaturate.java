@@ -1,23 +1,23 @@
 package de.joh.dragonmagicandrelics.spells.components;
 
-import com.mna.api.affinity.Affinity;
-import com.mna.api.capabilities.Faction;
-import com.mna.api.spells.ComponentApplicationResult;
-import com.mna.api.spells.SpellPartTags;
-import com.mna.api.spells.attributes.AttributeValuePair;
-import com.mna.api.spells.base.IModifiedSpellPart;
-import com.mna.api.spells.parts.SpellEffect;
-import com.mna.api.spells.targeting.SpellContext;
-import com.mna.api.spells.targeting.SpellSource;
-import com.mna.api.spells.targeting.SpellTarget;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
+import com.ma.api.affinity.Affinity;
+import com.ma.api.capabilities.Faction;
+import com.ma.api.spells.ComponentApplicationResult;
+import com.ma.api.spells.SpellPartTags;
+import com.ma.api.spells.attributes.AttributeValuePair;
+import com.ma.api.spells.base.IModifiedSpellPart;
+import com.ma.api.spells.parts.Component;
+import com.ma.api.spells.targeting.SpellContext;
+import com.ma.api.spells.targeting.SpellSource;
+import com.ma.api.spells.targeting.SpellTarget;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * This spell satiates the user.
  * @author Joh0210
  */
-public class ComponentSaturate extends SpellEffect {
+public class ComponentSaturate extends Component {
     public ComponentSaturate(ResourceLocation registryName, ResourceLocation guiIcon) {
         super(registryName, guiIcon, new AttributeValuePair[0]);
     }
@@ -26,9 +26,9 @@ public class ComponentSaturate extends SpellEffect {
         return 200;
     }
 
-    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
-        if(target.getEntity() instanceof Player player){
-            player.getFoodData().eat(5, 6);
+    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<Component> modificationData, SpellContext context) {
+        if(target.getEntity() instanceof PlayerEntity){
+            ((PlayerEntity)target.getEntity()).getFoodStats().addStats(5, 6);
             return ComponentApplicationResult.SUCCESS;
         }
 

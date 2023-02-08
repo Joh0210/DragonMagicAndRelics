@@ -1,16 +1,16 @@
 package de.joh.dragonmagicandrelics.item.items;
 
-import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
+import com.ma.api.capabilities.IPlayerMagic;
+import com.ma.capabilities.playerdata.magic.PlayerMagicProvider;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.item.ItemInit;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Food;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Rarity;
+import net.minecraft.world.World;
 
 /**
  * A cake to eat endlessly with mana consumption.
@@ -32,8 +32,8 @@ public class ManaCake  extends Item {
     private static final float SATURATION = 0.6f;
 
     public ManaCake() {
-        super(new Item.Properties().tab(CreativeModeTab.CreativeModeTab).stacksTo(1).rarity(Rarity.COMMON)
-                .food((new FoodProperties.Builder()).nutrition(NUTRITION).saturationMod(SATURATION).build()));
+        super(new Item.Properties().group(CreativeModeTab.CreativeModeTab).maxStackSize(1).rarity(Rarity.COMMON)
+                .food((new Food.Builder()).hunger(NUTRITION).saturation(SATURATION).build()));
     }
 
     /**
@@ -41,13 +41,13 @@ public class ManaCake  extends Item {
      * Call from the game itself.
      */
     @Override
-    public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+    public ItemStack onItemUseFinish(ItemStack itemstack, World world, LivingEntity entity) {
         ItemStack retval = new ItemStack(ItemInit.MANA_CAKE.get());
-        super.finishUsingItem(itemstack, world, entity);
+        super.onItemUseFinish(itemstack, world, entity);
         IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
 
-        if (itemstack.isEmpty() && entity instanceof Player && magic != null && magic.getCastingResource().hasEnoughAbsolute(entity, MANA_COSTS)) {
-            magic.getCastingResource().consume(entity, MANA_COSTS);
+        if (itemstack.isEmpty() && entity instanceof PlayerEntity && magic != null && magic.getCastingResource().getAmount() > MANA_COSTS) {
+            magic.getCastingResource().consume(MANA_COSTS);
             return retval;
         } else {
             return itemstack;

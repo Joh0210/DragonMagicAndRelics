@@ -1,10 +1,9 @@
 package de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped;
 
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.ai.attributes.Attributes;
+import net.minecraft.entity.player.PlayerEntity;
 
-//todo
 /**
  * If upgrades of this type are installed, the player receives a certain number of additional HP.
  * Function and constructor are initialized versions of parent class function/constructor.
@@ -27,21 +26,21 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnFullyEquipped {
     }
 
     @Override
-    public void applySetBonus(Player player, int level) {
+    public void applySetBonus(PlayerEntity player, int level) {
         if (!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(healthBoost1) && level >= 1){
-            player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(healthBoost1);
+            player.getAttribute(Attributes.MAX_HEALTH).applyNonPersistentModifier(healthBoost1);
 
             if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(healthBoost2) && level >= 2){
-                player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(healthBoost2);
+                player.getAttribute(Attributes.MAX_HEALTH).applyNonPersistentModifier(healthBoost2);
 
                 if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(healthBoost3) && level >= 3){
-                    player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(healthBoost3);
+                    player.getAttribute(Attributes.MAX_HEALTH).applyNonPersistentModifier(healthBoost3);
 
                     if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(healthBoost4) && level >= 4){
-                        player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(healthBoost4);
+                        player.getAttribute(Attributes.MAX_HEALTH).applyNonPersistentModifier(healthBoost4);
 
                         if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(healthBoost5) && level >= 5){
-                            player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(healthBoost5);
+                            player.getAttribute(Attributes.MAX_HEALTH).applyNonPersistentModifier(healthBoost5);
                         }
                     }
                 }
@@ -50,7 +49,7 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnFullyEquipped {
     }
 
     @Override
-    public void removeSetBonus(Player player) {
+    public void removeSetBonus(PlayerEntity player) {
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost1);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost2);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost3);

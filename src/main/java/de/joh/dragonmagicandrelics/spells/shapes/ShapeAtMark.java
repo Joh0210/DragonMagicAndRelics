@@ -1,24 +1,24 @@
 package de.joh.dragonmagicandrelics.spells.shapes;
 
-import com.mna.api.spells.attributes.Attribute;
-import com.mna.api.spells.attributes.AttributeValuePair;
-import com.mna.api.spells.base.IModifiedSpellPart;
-import com.mna.api.spells.base.ISpellDefinition;
-import com.mna.api.spells.parts.Shape;
-import com.mna.api.spells.targeting.SpellSource;
-import com.mna.api.spells.targeting.SpellTarget;
+import com.ma.api.spells.attributes.Attribute;
+import com.ma.api.spells.attributes.AttributeValuePair;
+import com.ma.api.spells.base.IModifiedSpellPart;
+import com.ma.api.spells.base.ISpellDefinition;
+import com.ma.api.spells.parts.Shape;
+import com.ma.api.spells.targeting.SpellSource;
+import com.ma.api.spells.targeting.SpellTarget;
 import de.joh.dragonmagicandrelics.utils.MarkSave;
-import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.AABB;
-
+import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This shape casts the spell at the position marked with the Rune of Marking in the caster's offhand.
@@ -30,11 +30,11 @@ public class ShapeAtMark extends Shape {
     }
 
     @Override
-    public List<SpellTarget> Target(SpellSource source, Level world, IModifiedSpellPart<Shape> modificationData, ISpellDefinition iSpellDefinition) {
-        if(!world.isClientSide()){
+    public List<SpellTarget> Target(SpellSource source, World world, IModifiedSpellPart<Shape> modificationData, ISpellDefinition iSpellDefinition) {
+        if(!world.isRemote){
             MarkSave mark = MarkSave.getMark(source.getPlayer(), world);
             if (mark != null) {
-                double dist = source.getCaster().blockPosition().distSqr(mark.getPosition());
+                double dist = source.getCaster().getPosition().distanceSq(mark.getPosition());
                 double maxDist = modificationData.getValue(Attribute.MAGNITUDE) * 500.0F;
                 if (!(dist > maxDist * maxDist)) {
                     //block-targets in the area
@@ -51,26 +51,26 @@ public class ShapeAtMark extends Shape {
                     }
 
                     //entity-targets in the area
-                    List<SpellTarget> targetsEntity = world.getEntities((Entity) null, (new AABB(mark.getPosition())).inflate(radius), (entity) -> {
-                        return entity.isPickable() && entity.isAlive() && entity != source.getCaster();
+                    List<SpellTarget> targetsEntity = world.getEntitiesInAABBexcluding(source.getCaster(), (new AxisAlignedBB(mark.getPosition())).grow((double)radius), (entity) -> {
+                        return entity.canBeCollidedWith() && entity.isAlive() && entity != source.getCaster();
                     }).stream().map((e) -> {
                         return new SpellTarget(e);
-                    }).toList();
+                    }).collect(Collectors.toList());
                     targets.addAll(targetsEntity);
 
 
                     return targets;
                 } else {
-                    source.getPlayer().sendMessage(new TranslatableComponent("mna:components/recall.too_far"), Util.NIL_UUID);
+                    source.getPlayer().sendMessage(new TranslationTextComponent("mna:components/recall.too_far"), Util.DUMMY_UUID);
                 }
             } else {
                 if (source.isPlayerCaster()) {
-                    source.getPlayer().sendMessage(new TranslatableComponent("dragonmagicandrelics.shapes.atmark.nomark.error"), Util.NIL_UUID);
+                    source.getPlayer().sendMessage(new TranslationTextComponent("dragonmagicandrelics.shapes.atmark.nomark.error"), Util.DUMMY_UUID);
                 }
             }
         }
 
-        return List.of(SpellTarget.NONE);
+        return Collections.singletonList(SpellTarget.NONE);
     }
 
     /**
@@ -81,7 +81,7 @@ public class ShapeAtMark extends Shape {
         Direction face = origin.getBlockFace(null);
         BlockPos targetPos = origin.getBlock();
         if (face == null) {
-            return List.of(SpellTarget.NONE);
+            return Collections.singletonList(SpellTarget.NONE);
         } else {
             ArrayList<SpellTarget> targets = new ArrayList();
             int x;
@@ -90,7 +90,7 @@ public class ShapeAtMark extends Shape {
             for(x = -radius; x <= radius; ++x) {
                 for(y = -radius; y <= radius; ++y) {
                     for(z = -radius; z <= radius; ++z) {
-                        targets.add(new SpellTarget(targetPos.offset(x, y, z), face));
+                        targets.add(new SpellTarget(targetPos.add(x, y, z), face));
                     }
                 }
             }

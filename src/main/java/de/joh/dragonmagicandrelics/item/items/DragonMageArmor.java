@@ -1,13 +1,13 @@
 package de.joh.dragonmagicandrelics.item.items;
 
-import com.mna.ManaAndArtifice;
-import com.mna.api.capabilities.Faction;
-import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.api.items.IFactionSpecific;
-import com.mna.api.particles.MAParticleType;
-import com.mna.api.particles.ParticleInit;
-import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import com.mna.items.armor.ISetItem;
+import com.ma.ManaAndArtifice;
+import com.ma.api.capabilities.Faction;
+import com.ma.api.capabilities.IPlayerMagic;
+import com.ma.api.items.IFactionSpecific;
+import com.ma.api.particles.MAParticleType;
+import com.ma.api.particles.ParticleInit;
+import com.ma.capabilities.playerdata.magic.PlayerMagicProvider;
+import com.ma.items.armor.ISetItem;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
@@ -19,19 +19,20 @@ import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.IAr
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.utils.RLoc;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.*;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.extensions.IForgeItem;
@@ -43,7 +44,6 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
-
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -61,8 +61,8 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     private final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS;
     public final String TEXTURE_LOCATION;
 
-    public DragonMageArmor(ArmorMaterial pMaterial, EquipmentSlot pSlot, Faction faction) {
-        super(pMaterial, pSlot, new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant());
+    public DragonMageArmor(IArmorMaterial pMaterial, EquipmentSlotType pSlot, Faction faction) {
+        super(pMaterial, pSlot, new Item.Properties().group(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).isImmuneToFire());
 
         if(faction == Faction.ANCIENT_WIZARDS){
             TEXTURE_LOCATION = "textures/models/armor/arch_dragon_mage_armor_texture.png";
@@ -93,8 +93,8 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      * @see ArmorUpgradeInit
      */
     @Override
-    public void onArmorTick(ItemStack stack, Level world, Player player) {
-        if(slot == EquipmentSlot.CHEST && isSetEquipped(player)){
+    public void onArmorTick(ItemStack stack, World world, PlayerEntity player) {
+        if(slot == EquipmentSlotType.CHEST && isSetEquipped(player)){
             for(IArmorUpgradeOnFullyEquipped upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_FULLY_EQUIPPED){
                 upgrade.applySetBonus(player, getUpgradeLevel(upgrade, player));
             }
@@ -108,7 +108,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
             }
 
             //Armor Upgrades: Potion Effects
-            if(!world.isClientSide()) {
+            if(!world.isRemote) {
                 if(this.isSetEquipped(player)) {
                     for(ArmorUpgradePotionEffect upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_POTION_EFFECT){
                         if(getUpgradeLevel(upgrade, player) > 0){
@@ -132,16 +132,16 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      * Call from the game itself.
      */
     @Override
-    public void removeSetBonus(LivingEntity living, EquipmentSlot... setSlots) {
-        living.removeEffect(MobEffects.NIGHT_VISION);
+    public void removeSetBonus(LivingEntity living, EquipmentSlotType... setSlots) {
+        living.removePotionEffect(Effects.NIGHT_VISION);
 
-        if (living instanceof Player player) {
+        if (living instanceof PlayerEntity) {
             for(IArmorUpgradeOnFullyEquipped upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_FULLY_EQUIPPED){
-                upgrade.removeSetBonus(player);
+                upgrade.removeSetBonus((PlayerEntity) living);
             }
 
-            ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
-            ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
+            ManaAndArtifice.instance.proxy.setFlySpeed((PlayerEntity) living, 0.05F);
+            ManaAndArtifice.instance.proxy.setFlightEnabled((PlayerEntity) living, false);
         }
     }
 
@@ -152,15 +152,15 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     public int getUpgradeLevel(ArmorUpgrade upgrade, LivingEntity entity){
         //Chestplate only and Full Armor only
-        if (!(entity instanceof Player) || slot != EquipmentSlot.CHEST || !this.isSetEquipped(entity)){
+        if (!(entity instanceof PlayerEntity) || slot != EquipmentSlotType.CHEST || !this.isSetEquipped(entity)){
             return 0;
         }
 
-        if(entity.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
+        if(entity.getActivePotionEffect(EffectInit.ULTIMATE_ARMOR.get()) != null){
             return upgrade.getMaxUpgradeLevel();
         }
 
-        ItemStack chest = entity.getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack chest = entity.getItemStackFromSlot(EquipmentSlotType.CHEST);
         if(!chest.hasTag() || chest.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("")){
             return 0;
         }
@@ -182,16 +182,16 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     public void setUpgradeLevel(ArmorUpgrade upgrade, int level, LivingEntity entity){
         //Chestplate only
-        if (!(entity instanceof Player) || slot != EquipmentSlot.CHEST){
+        if (!(entity instanceof PlayerEntity) || slot != EquipmentSlotType.CHEST){
             return;
         }
 
         if(upgrade.isLevelCorreckt(level)){
-            ItemStack chest = entity.getItemBySlot(EquipmentSlot.CHEST);
+            ItemStack chest = entity.getItemStackFromSlot(EquipmentSlotType.CHEST);
             if(chest.hasTag() && !chest.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("")){
                 chest.getTag().remove(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId());
             }
-            CompoundTag nbtData = new CompoundTag();
+            CompoundNBT nbtData = new CompoundNBT();
             nbtData.putString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId(), Integer.toString(level));
             chest.getTag().merge(nbtData);
         }
@@ -204,8 +204,8 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
-        if(this.slot != EquipmentSlot.CHEST){
+    public void addInformation(ItemStack stack, World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        if(this.slot != EquipmentSlotType.CHEST){
             return;
         }
 
@@ -213,27 +213,27 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
             if(stack.hasTag()){
                 //Spell Tooltiip
                 if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name").equals("")){
-                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.other");
-                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name")));
+                    TranslationTextComponent component = new TranslationTextComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.other");
+                    tooltip.add(new StringTextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name")));
                 }
                 if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name").equals("")){
-                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.self");
-                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name")));
+                    TranslationTextComponent component = new TranslationTextComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.self");
+                    tooltip.add(new StringTextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name")));
                 }
 
                 //Upgrade Tooltip
-                tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
+                tooltip.add(new TranslationTextComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
                 ArmorUpgrade[] allUpgrades = ArmorUpgradeInit.getAllUpgrades();
                 for(ArmorUpgrade upgrade : allUpgrades){
                     if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("") && !stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("0")){
-                        TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade."+upgrade.getUpgradeId());
-                        tooltip.add(new TextComponent(component.getString() + ": " + stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId())));
+                        TranslationTextComponent component = new TranslationTextComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade."+upgrade.getUpgradeId());
+                        tooltip.add(new StringTextComponent(component.getString() + ": " + stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId())));
                     }
                 }
             }
         }
         else{
-            tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip"));
+            tooltip.add(new TranslationTextComponent("tooltip.dragonmagicandrelics.armor.tooltip"));
         }
     }
 
@@ -243,7 +243,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     @Override
     public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-        return (getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) > 0) && !entity.isInWaterOrBubble() && !entity.isInLava() && this.isSetEquipped(entity) && entity.getCapability(PlayerMagicProvider.MAGIC).isPresent() && entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null).getCastingResource().hasEnoughAbsolute(entity, CommonConfigs.getElytraManaCostPerTick());
+        return (getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) > 0) && !entity.isInWaterOrBubbleColumn() && !entity.isInLava() && this.isSetEquipped(entity) && entity.getCapability(PlayerMagicProvider.MAGIC).isPresent() && entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null).getCastingResource().getAmount() > CommonConfigs.getElytraManaCostPerTick();
     }
 
     /**
@@ -252,25 +252,25 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     @Override
     public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
-        if (!(entity instanceof Player)) {
+        if (!(entity instanceof PlayerEntity)) {
             return false;
         } else if(getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) == 1){
             return true;
         } else {
             if (flightTicks % 100 == 0) {
-                this.usedByPlayer((Player)entity);
+                this.usedByPlayer((PlayerEntity) entity);
             }
 
             IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-            if (magic != null && magic.getCastingResource().hasEnoughAbsolute(entity, 0.75F)) {
-                Vec3 look = entity.getLookAngle();
-                Vec3 pos;
+            if (magic != null && magic.getCastingResource().getAmount() >= 0.75F) {
+                Vector3d look = entity.getLookVec();
+                Vector3d pos;
                 float maxLength;
                 double lookScale;
-                Vec3 scaled_look;
-                if (!entity.isShiftKeyDown()) {
-                    magic.getCastingResource().consume(entity, CommonConfigs.getElytraManaCostPerTick());
-                    pos = entity.getDeltaMovement();
+                Vector3d scaled_look;
+                if (!entity.isSneaking()) {
+                    magic.getCastingResource().consume(CommonConfigs.getElytraManaCostPerTick());
+                    pos = entity.getMotion();
                     maxLength = 1.75F;
                     lookScale = 0.06D;
                     scaled_look = look.scale(lookScale);
@@ -278,10 +278,10 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                     if (pos.length() > (double)maxLength) {
                         pos = pos.scale((double)maxLength / pos.length());
                     }
-                    entity.setDeltaMovement(pos);
+                    entity.setMotion(pos);
                 } else {
-                    magic.getCastingResource().consume(entity, CommonConfigs.getElytraManaCostPerTick() /2.0f);
-                    pos = entity.getDeltaMovement();
+                    magic.getCastingResource().consume(CommonConfigs.getElytraManaCostPerTick() /2.0f);
+                    pos = entity.getMotion();
                     maxLength = 0.1F;
                     lookScale = -0.01D;
                     scaled_look = look.scale(lookScale);
@@ -289,13 +289,13 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                     if (pos.length() < (double)maxLength) {
                         pos = pos.scale((double)maxLength / pos.length());
                     }
-                    entity.setDeltaMovement(pos);
+                    entity.setMotion(pos);
                 }
 
-                if (entity.level.isClientSide) {
-                    pos = entity.position().add(look.scale(3.0D));
+                if (entity.world.isRemote) {
+                    pos = entity.positionOffset().add(look.scale(3.0D));
                     for(int i = 0; i < 5; ++i) {
-                        entity.level.addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
+                        entity.world.addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
                     }
                 }
                 return true;
@@ -341,7 +341,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
 
 //    @Override
 //    @OnlyIn(Dist.CLIENT)
-//    public boolean isFoil(ItemStack itemStack){
+//    public boolean hasEffect(ItemStack itemStack){
 //        return false;
 //    }
 }

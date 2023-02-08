@@ -1,7 +1,7 @@
 package de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped;
 
-import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import net.minecraft.world.entity.player.Player;
+import com.ma.capabilities.playerdata.magic.PlayerMagicProvider;
+import net.minecraft.entity.player.PlayerEntity;
 
 /**
  * If upgrades of this type are installed, the player receives a certain number of additional Mana.
@@ -16,12 +16,12 @@ public class ArmorUpgradeManaBoost  extends IArmorUpgradeOnFullyEquipped {
     public static int MANA_PER_MANABOOST = 200;
 
     @Override
-    public void applySetBonus(Player player, int level) {
+    public void applySetBonus(PlayerEntity player, int level) {
         player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().addModifier("mma_magic_set_bonus", MANA_PER_MANABOOST * level));
     }
 
     @Override
-    public void removeSetBonus(Player player) {
+    public void removeSetBonus(PlayerEntity player) {
         (player).getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().removeModifier("mma_magic_set_bonus"));
     }
 }

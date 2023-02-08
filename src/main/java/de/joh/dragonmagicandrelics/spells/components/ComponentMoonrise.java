@@ -1,38 +1,39 @@
 package de.joh.dragonmagicandrelics.spells.components;
 
-import com.mna.api.affinity.Affinity;
-import com.mna.api.spells.ComponentApplicationResult;
-import com.mna.api.spells.SpellPartTags;
-import com.mna.api.spells.attributes.AttributeValuePair;
-import com.mna.api.spells.base.IModifiedSpellPart;
-import com.mna.api.spells.parts.SpellEffect;
-import com.mna.api.spells.targeting.SpellContext;
-import com.mna.api.spells.targeting.SpellSource;
-import com.mna.api.spells.targeting.SpellTarget;
-import com.mna.entities.EntityInit;
-import com.mna.entities.rituals.EntityTimeChangeBall;
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.MobSpawnType;
+import com.ma.api.affinity.Affinity;
+import com.ma.api.spells.ComponentApplicationResult;
+import com.ma.api.spells.SpellPartTags;
+import com.ma.api.spells.attributes.AttributeValuePair;
+import com.ma.api.spells.base.IModifiedSpellPart;
+import com.ma.api.spells.parts.Component;
+import com.ma.api.spells.targeting.SpellContext;
+import com.ma.api.spells.targeting.SpellSource;
+import com.ma.api.spells.targeting.SpellTarget;
+import com.ma.entities.EntityInit;
+import com.ma.entities.rituals.EntityTimeChangeBall;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+
 
 /**
  * This spell turns day into night.
  * @author Joh0210
  */
-public class ComponentMoonrise extends SpellEffect {
+public class ComponentMoonrise extends Component {
     public ComponentMoonrise(final ResourceLocation registryName, final ResourceLocation guiIcon) {
         super(registryName, guiIcon, new AttributeValuePair[0]);
     }
 
-    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
-        if (!context.getWorld().isDay()) {
+    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<Component> modificationData, SpellContext context) {
+        if (!context.getWorld().isDaytime()) {
             return ComponentApplicationResult.FAIL;
         } else {
 
-            BlockPos blockPos = (target.isBlock()) ? (new BlockPos(target.getBlock().getX(), (target.getBlock().getY() + 3), target.getBlock().getZ())) : (new BlockPos(target.getEntity().getOnPos().getX(), (target.getEntity().getOnPos().getY() + 3), target.getEntity().getOnPos().getZ()));
+            BlockPos blockPos = (target.isBlock()) ? (new BlockPos(target.getBlock().getX(), (target.getBlock().getY() + 3), target.getBlock().getZ())) : (new BlockPos(target.getEntity().getPosition().getX(), (target.getEntity().getPosition().getY() + 3), target.getEntity().getPosition().getZ()));
 
-            Entity auroraBall = EntityInit.STARBALL_ENTITY.get().spawn(context.getWorld(), null, null, blockPos, MobSpawnType.TRIGGERED, true, false);
+            Entity auroraBall = EntityInit.STARBALL_ENTITY.get().spawn(context.getWorld(), null, null, blockPos, SpawnReason.TRIGGERED, true, false);
             if (auroraBall != null && auroraBall instanceof EntityTimeChangeBall) {
                 ((EntityTimeChangeBall) auroraBall).setTimeChangeType(EntityTimeChangeBall.TIME_CHANGE_NIGHT);
                 return ComponentApplicationResult.SUCCESS;

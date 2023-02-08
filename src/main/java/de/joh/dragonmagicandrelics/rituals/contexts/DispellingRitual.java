@@ -1,14 +1,14 @@
 package de.joh.dragonmagicandrelics.rituals.contexts;
 
-import com.mna.api.rituals.IRitualContext;
-import com.mna.api.rituals.RitualEffect;
-import com.mna.items.ItemInit;
-import com.mna.spells.crafting.SpellRecipe;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
+import com.ma.api.rituals.IRitualContext;
+import com.ma.api.rituals.RitualEffect;
+import com.ma.items.ItemInit;
+import com.ma.spells.crafting.SpellRecipe;
+import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
@@ -26,12 +26,12 @@ public class DispellingRitual extends RitualEffect {
 
     @Override
     protected boolean applyRitualEffect(IRitualContext context) {
-        Player caster = context.getCaster();
-        Level world = context.getWorld();
+        PlayerEntity caster = context.getCaster();
+        World world = context.getWorld();
 
         for(ItemStack itemStack : getRecipeItems(getSpell(context))){
-            ItemEntity item = new ItemEntity(world, caster.getX(), caster.getY(), caster.getZ(), itemStack);
-            world.addFreshEntity(item);
+            ItemEntity item = new ItemEntity(world, caster.getPosX(), caster.getPosX(), caster.getPosX(), itemStack);
+            world.addEntity(item);
         }
 
         return true;

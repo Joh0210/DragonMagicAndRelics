@@ -1,21 +1,20 @@
 package de.joh.dragonmagicandrelics.rituals.contexts;
 
-import com.mna.api.rituals.IRitualContext;
-import com.mna.api.rituals.RitualEffect;
-import com.mna.effects.EffectInit;
-import com.mna.tools.TeleportHelper;
+import com.ma.api.rituals.IRitualContext;
+import com.ma.api.rituals.RitualEffect;
+import com.ma.effects.EffectInit;
+import com.ma.tools.TeleportHelper;
 import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChance;
 import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChanceProvider;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
-
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.world.World;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -33,21 +32,21 @@ public class PhoenixRitual extends RitualEffect {
 
     @Override
     protected boolean applyRitualEffect(IRitualContext context) {
-        Player caster = context.getCaster();
+        PlayerEntity caster = context.getCaster();
 
         caster.getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> {
-            ResourceKey<Level> dimension = secondChance.getDimension();
-            if(!caster.getLevel().dimension().location().toString().equals(dimension.location().toString())){
-                Vec3 targetPosition = new Vec3(secondChance.getPosition().getX()+0.5,secondChance.getPosition().getY(),secondChance.getPosition().getZ()+0.5);
+            RegistryKey<World> dimension = secondChance.getDimension();
+            if(!caster.getEntityWorld().getDimensionKey().getLocation().toString().equals(dimension.getLocation().toString())){
+                Vector3d targetPosition = new Vector3d(secondChance.getPosition().getX()+0.5,secondChance.getPosition().getY(),secondChance.getPosition().getZ()+0.5);
                 TeleportHelper.teleportEntity(caster, dimension, targetPosition);
             } else {
-                caster.teleportTo(secondChance.getPosition().getX()+0.5,secondChance.getPosition().getY(),secondChance.getPosition().getZ()+0.5);
+                caster.teleportKeepLoaded(secondChance.getPosition().getX()+0.5,secondChance.getPosition().getY(),secondChance.getPosition().getZ()+0.5);
             }
         });
 
-        caster.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 300));
-        caster.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 300, 2));
-        caster.addEffect(new MobEffectInstance(EffectInit.LEVITATION.get(), 300));
+        caster.addPotionEffect(new EffectInstance(Effects.FIRE_RESISTANCE, 300));
+        caster.addPotionEffect(new EffectInstance(Effects.RESISTANCE, 300, 2));
+        caster.addPotionEffect(new EffectInstance(EffectInit.LEVITATION.get(), 300));
 
         return true;
     }
@@ -58,12 +57,12 @@ public class PhoenixRitual extends RitualEffect {
     }
 
     @Override
-    public Component canRitualStart(IRitualContext context) {
+    public TextComponent canRitualStart(IRitualContext context) {
         AtomicBoolean isValid = new AtomicBoolean(false);
 
         context.getCaster().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> isValid.set(secondChance.isValid()));
 
-        return isValid.get() ? null : new TranslatableComponent("dragonmagicandrelics.ritual.output.secondchanceritual.missing.nbt.error");
+        return isValid.get() ? null : new TranslationTextComponent("dragonmagicandrelics.ritual.output.secondchanceritual.missing.nbt.error");
     }
 
     @Override

@@ -1,27 +1,27 @@
 package de.joh.dragonmagicandrelics.spells.components;
 
-import com.mna.api.affinity.Affinity;
-import com.mna.api.spells.ComponentApplicationResult;
-import com.mna.api.spells.SpellPartTags;
-import com.mna.api.spells.SpellReagent;
-import com.mna.api.spells.attributes.Attribute;
-import com.mna.api.spells.attributes.AttributeValuePair;
-import com.mna.api.spells.base.IModifiedSpellPart;
-import com.mna.api.spells.parts.SpellEffect;
-import com.mna.api.spells.targeting.SpellContext;
-import com.mna.api.spells.targeting.SpellSource;
-import com.mna.api.spells.targeting.SpellTarget;
-import com.mna.spells.components.PotionEffectComponent;
+import com.ma.api.affinity.Affinity;
+import com.ma.api.spells.ComponentApplicationResult;
+import com.ma.api.spells.SpellPartTags;
+import com.ma.api.spells.SpellReagent;
+import com.ma.api.spells.attributes.Attribute;
+import com.ma.api.spells.attributes.AttributeValuePair;
+import com.ma.api.spells.base.IModifiedSpellPart;
+import com.ma.api.spells.parts.Component;
+import com.ma.api.spells.targeting.SpellContext;
+import com.ma.api.spells.targeting.SpellSource;
+import com.ma.api.spells.targeting.SpellTarget;
+import com.ma.spells.components.PotionEffectComponent;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.ResourceLocation;
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,7 +36,7 @@ public class ComponentUltimateArmor extends PotionEffectComponent {
     }
 
     @Override
-    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
+    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<Component> modificationData, SpellContext context) {
         if (ComponentApplicationResult.FAIL == super.ApplyEffect(source, target, modificationData, context)){
             return ComponentApplicationResult.FAIL;
         }
@@ -44,10 +44,10 @@ public class ComponentUltimateArmor extends PotionEffectComponent {
         if(target.isEntity()){
             Entity targetEntity = target.getEntity();
 
-            if (targetEntity instanceof Player targetPlayer){
-                ItemStack chest = targetPlayer.getItemBySlot(EquipmentSlot.CHEST);
-                if (chest.getItem() instanceof DragonMageArmor mmaArmor){
-                    mmaArmor.applySetBonus(targetPlayer, EquipmentSlot.CHEST);
+            if (targetEntity instanceof PlayerEntity ){
+                ItemStack chest = ((PlayerEntity)targetEntity).getItemStackFromSlot(EquipmentSlotType.CHEST);
+                if (chest.getItem() instanceof DragonMageArmor){
+                    ((DragonMageArmor)chest.getItem()).applySetBonus((PlayerEntity)targetEntity, EquipmentSlotType.CHEST);
                 }
             }
         }
@@ -73,7 +73,9 @@ public class ComponentUltimateArmor extends PotionEffectComponent {
     }
 
     @Override
-    public List<SpellReagent> getRequiredReagents(@Nullable Player caster) {
-        return List.of(new SpellReagent(new ItemStack(Items.NETHER_STAR), false, true, true));
+    public List<SpellReagent> getRequiredReagents(@Nullable PlayerEntity caster) {
+        ArrayList list = new ArrayList();
+        list.add(new SpellReagent(new ItemStack(Items.NETHER_STAR), false, true, true));
+        return list;
     }
 }

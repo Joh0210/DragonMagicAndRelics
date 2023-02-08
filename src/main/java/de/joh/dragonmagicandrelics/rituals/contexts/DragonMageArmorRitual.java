@@ -1,20 +1,20 @@
 package de.joh.dragonmagicandrelics.rituals.contexts;
 
-import com.mna.api.rituals.IRitualContext;
-import com.mna.api.rituals.RitualEffect;
-import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import com.mna.items.armor.*;
+import com.ma.api.rituals.IRitualContext;
+import com.ma.api.rituals.RitualEffect;
+import com.ma.capabilities.playerdata.magic.PlayerMagicProvider;
+import com.ma.items.armor.*;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.config.InitialUpgradesConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 /**
  * This ritual upgrades faction armor to Dragon Mage Armor.
@@ -29,14 +29,14 @@ public class DragonMageArmorRitual extends RitualEffect {
 
     @Override
     protected boolean applyRitualEffect(IRitualContext context) {
-        ItemStack head = context.getCaster().getItemBySlot(EquipmentSlot.HEAD);
-        ItemStack chest = context.getCaster().getItemBySlot(EquipmentSlot.CHEST);
-        ItemStack legs = context.getCaster().getItemBySlot(EquipmentSlot.LEGS);
-        ItemStack feet = context.getCaster().getItemBySlot(EquipmentSlot.FEET);
+        ItemStack head = context.getCaster().getItemStackFromSlot(EquipmentSlotType.HEAD);
+        ItemStack chest = context.getCaster().getItemStackFromSlot(EquipmentSlotType.CHEST);
+        ItemStack legs = context.getCaster().getItemStackFromSlot(EquipmentSlotType.LEGS);
+        ItemStack feet = context.getCaster().getItemStackFromSlot(EquipmentSlotType.FEET);
 
         //Only possible in creative:
         if ((chest.getItem() instanceof BoneArmorItem || chest.getItem() instanceof CouncilArmorItem || chest.getItem() instanceof DemonArmorItem || chest.getItem() instanceof FeyArmorItem) && ((ISetItem) chest.getItem()).isSetEquipped(context.getCaster())){
-            ((ISetItem)context.getCaster().getItemBySlot(EquipmentSlot.CHEST).getItem()).removeSetBonus(context.getCaster(), EquipmentSlot.CHEST);
+            ((ISetItem)context.getCaster().getItemStackFromSlot(EquipmentSlotType.CHEST).getItem()).removeSetBonus(context.getCaster(), EquipmentSlotType.CHEST);
         }else{
             //If you remove your armor while the ritual is active, it will fail
             //The ingredients will be lost
@@ -76,30 +76,30 @@ public class DragonMageArmorRitual extends RitualEffect {
 
 
         if(head.hasTag()){
-            CompoundTag nbtData = new CompoundTag();
-            nbtData.put("Enchantments", head.getEnchantmentTags());
+            CompoundNBT nbtData = new CompoundNBT();
+            nbtData.put("Enchantments", head.getEnchantmentTagList());
             headNew.getTag().merge(nbtData);
         }
         if(chest.hasTag()){
-            CompoundTag nbtData = new CompoundTag();
-            nbtData.put("Enchantments", chest.getEnchantmentTags());
+            CompoundNBT nbtData = new CompoundNBT();
+            nbtData.put("Enchantments", chest.getEnchantmentTagList());
             chestNew.getTag().merge(nbtData);
         }
         if(legs.hasTag()){
-            CompoundTag nbtData = new CompoundTag();
-            nbtData.put("Enchantments", legs.getEnchantmentTags());
+            CompoundNBT nbtData = new CompoundNBT();
+            nbtData.put("Enchantments", legs.getEnchantmentTagList());
             legsNew.getTag().merge(nbtData);
         }
         if(feet.hasTag()){
-            CompoundTag nbtData = new CompoundTag();
-            nbtData.put("Enchantments", feet.getEnchantmentTags());
+            CompoundNBT nbtData = new CompoundNBT();
+            nbtData.put("Enchantments", feet.getEnchantmentTagList());
             feetNew.getTag().merge(nbtData);
         }
 
-        context.getCaster().setItemSlot(EquipmentSlot.HEAD, headNew);
-        context.getCaster().setItemSlot(EquipmentSlot.CHEST, chestNew);
-        context.getCaster().setItemSlot(EquipmentSlot.LEGS, legsNew);
-        context.getCaster().setItemSlot(EquipmentSlot.FEET, feetNew);
+        context.getCaster().setItemStackToSlot(EquipmentSlotType.HEAD, headNew);
+        context.getCaster().setItemStackToSlot(EquipmentSlotType.CHEST, chestNew);
+        context.getCaster().setItemStackToSlot(EquipmentSlotType.LEGS, legsNew);
+        context.getCaster().setItemStackToSlot(EquipmentSlotType.FEET, feetNew);
 
 
         if(chest.getItem() instanceof BoneArmorItem){
@@ -119,7 +119,7 @@ public class DragonMageArmorRitual extends RitualEffect {
     }
 
     public void upgrade(IRitualContext context, ArmorUpgrade upgrade, int level){
-        ((DragonMageArmor)context.getCaster().getItemBySlot(EquipmentSlot.CHEST).getItem()).setUpgradeLevel(upgrade, level, context.getCaster());
+        ((DragonMageArmor)context.getCaster().getItemStackFromSlot(EquipmentSlotType.CHEST).getItem()).setUpgradeLevel(upgrade, level, context.getCaster());
     }
 
     @Override
@@ -128,18 +128,18 @@ public class DragonMageArmorRitual extends RitualEffect {
     }
 
     @Override
-    public Component canRitualStart(IRitualContext context) {
-        Player player = context.getCaster();
-        ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+    public TextComponent canRitualStart(IRitualContext context) {
+        PlayerEntity player = context.getCaster();
+        ItemStack chest = player.getItemStackFromSlot(EquipmentSlotType.CHEST);
 
         if (!(chest.getItem() instanceof BoneArmorItem || chest.getItem() instanceof CouncilArmorItem || chest.getItem() instanceof DemonArmorItem || chest.getItem() instanceof FeyArmorItem) || !((ISetItem) chest.getItem()).isSetEquipped(player)){
-            return new TranslatableComponent("dragonmagicandrelics.ritual.output.dragonmagearmorritual.wrong.armor.error");
+            return new TranslationTextComponent("dragonmagicandrelics.ritual.output.dragonmagearmorritual.wrong.armor.error");
         }
         final boolean[] isLevel75 = {false};
 
         player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> isLevel75[0] = 75 <= m.getMagicLevel());
 
-        return isLevel75[0] ? null : new TranslatableComponent("dragonmagicandrelics.ritual.output.dragonmagearmorritual.to.low.level.error");
+        return isLevel75[0] ? null : new TranslationTextComponent("dragonmagicandrelics.ritual.output.dragonmagearmorritual.to.low.level.error");
     }
 
     @Override

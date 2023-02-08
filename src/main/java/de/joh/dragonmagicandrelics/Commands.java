@@ -1,20 +1,20 @@
 package de.joh.dragonmagicandrelics;
 
-import com.mna.spells.crafting.SpellRecipe;
+import com.ma.spells.crafting.SpellRecipe;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.command.CommandSource;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.EquipmentSlotType;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.Hand;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.common.Mod;
 
 /**
@@ -29,8 +29,8 @@ public class Commands {
      * Root for all commands of this mod
      * @param dispatcher Standard parameters for commands
      */
-    public Commands(CommandDispatcher<CommandSourceStack> dispatcher){
-        dispatcher.register(net.minecraft.commands.Commands.literal(DragonMagicAndRelics.MOD_ID).requires((commandSource) -> commandSource.hasPermission(2))
+    public Commands(CommandDispatcher<CommandSource> dispatcher){
+        dispatcher.register(net.minecraft.command.Commands.literal(DragonMagicAndRelics.MOD_ID).requires((commandSource) -> commandSource.hasPermissionLevel(2))
                 .then(addUpgrade())
                 .then(addSpellToArmor()));
     }
@@ -40,8 +40,8 @@ public class Commands {
      * The spell is cast when the wearer of the Dragon Mage Armor takes damage.
      * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
      */
-    private ArgumentBuilder<CommandSourceStack, ?> addSpellToArmor() {
-        return ((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal("addSpellToArmor")
+    private ArgumentBuilder<CommandSource, ?> addSpellToArmor() {
+        return ((LiteralArgumentBuilder) net.minecraft.command.Commands.literal("addSpellToArmor")
                 .then(writeSpellToArmor(false)))
                 .then(writeSpellToArmor(true));
     }
@@ -51,37 +51,37 @@ public class Commands {
      * @param isOffensive Hit the attacker? Doesn't hit you?
      * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
      */
-    private ArgumentBuilder<CommandSourceStack, ?> writeSpellToArmor(boolean isOffensive) {
-        return net.minecraft.commands.Commands.literal(isOffensive ? "offensive" : "defensive").executes((command) -> {
-            ServerPlayer player = command.getSource().getPlayerOrException();
-            ItemStack spellInHand = player.getItemInHand(InteractionHand.MAIN_HAND);
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+    private ArgumentBuilder<CommandSource, ?> writeSpellToArmor(boolean isOffensive) {
+        return net.minecraft.command.Commands.literal(isOffensive ? "offensive" : "defensive").executes((command) -> {
+            ServerPlayerEntity player = command.getSource().asPlayer();
+            ItemStack spellInHand = player.getHeldItem(Hand.MAIN_HAND);
+            ItemStack chest = player.getItemStackFromSlot(EquipmentSlotType.CHEST);
 
-            if (!spellInHand.isEmpty() && SpellRecipe.stackContainsSpell(spellInHand) && !player.level.isClientSide){
+            if (!spellInHand.isEmpty() && SpellRecipe.stackContainsSpell(spellInHand) && !player.world.isRemote){
 
                 if(chest == null || !(chest.getItem() instanceof DragonMageArmor) || !((DragonMageArmor) chest.getItem()).isSetEquipped(player)){
-                    command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.no.armor.equipped.error"), true);
+                    command.getSource().sendFeedback(new TranslationTextComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.no.armor.equipped.error"), true);
                     return 1;
                 }
 
                 String name = spellInHand.getTag().getCompound("display").toString().replace( "{Name:'{\"text\":\"", "").replace( "\"}'}", "");
 
-                CompoundTag compoundTag = new CompoundTag();
+                CompoundNBT compoundTag = new CompoundNBT();
                 compoundTag.put(DragonMagicAndRelics.MOD_ID+(isOffensive ? "spell_other" : "spell_self"), spellInHand.getTag().getCompound("spell"));
                 compoundTag.putString(DragonMagicAndRelics.MOD_ID+(isOffensive ? "spell_other" : "spell_self")+"_name", name);
                 chest.getTag().merge(compoundTag);
 
                 //Text Output
-                TranslatableComponent component_one = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.one");
-                TranslatableComponent component_two = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.two");
-                TranslatableComponent component_three = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.three");
-                TranslatableComponent component_offensive = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.offensive");
-                TranslatableComponent component_defensive = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.defensive");
+                TranslationTextComponent component_one = new TranslationTextComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.one");
+                TranslationTextComponent component_two = new TranslationTextComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.two");
+                TranslationTextComponent component_three = new TranslationTextComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.three");
+                TranslationTextComponent component_offensive = new TranslationTextComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.offensive");
+                TranslationTextComponent component_defensive = new TranslationTextComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.defensive");
 
-                command.getSource().sendSuccess(new TextComponent(component_one.getString() + name + component_two.getString() + (isOffensive ? component_offensive.getString() : component_defensive.getString()) + component_three.getString()), true);
+                command.getSource().sendFeedback(new StringTextComponent(component_one.getString() + name + component_two.getString() + (isOffensive ? component_offensive.getString() : component_defensive.getString()) + component_three.getString()), true);
             }
             else{
-                command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.no.valid.spell.error"), true);
+                command.getSource().sendFeedback(new TranslationTextComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.no.valid.spell.error"), true);
             }
             return 1;
         });
@@ -90,8 +90,8 @@ public class Commands {
     /**
      * Adds one of the upgrades to your Dragon Mage Armor.
      */
-    private ArgumentBuilder<CommandSourceStack, ?> addUpgrade() {
-        return ((LiteralArgumentBuilder) ((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal("addUpgrade")
+    private ArgumentBuilder<CommandSource, ?> addUpgrade() {
+        return ((LiteralArgumentBuilder) ((LiteralArgumentBuilder) net.minecraft.command.Commands.literal("addUpgrade")
         .then(applyUpgrade("fly"))
         .then(applyUpgrade("saturation")))
         .then(applyUpgrade("movement_speed"))
@@ -122,21 +122,21 @@ public class Commands {
      * @param upgradeName ID of the corresponding upgrade
      * @see ArmorUpgradeInit
      */
-    private ArgumentBuilder<CommandSourceStack, ?> applyUpgrade(String upgradeName) {
-        return net.minecraft.commands.Commands.literal(upgradeName).then(net.minecraft.commands.Commands.argument("level", IntegerArgumentType.integer(0, (ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName) != null ? ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName).getMaxUpgradeLevel() : 0))).executes((command) -> {
-            ServerPlayer player = command.getSource().getPlayerOrException();
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+    private ArgumentBuilder<CommandSource, ?> applyUpgrade(String upgradeName) {
+        return net.minecraft.command.Commands.literal(upgradeName).then(net.minecraft.command.Commands.argument("level", IntegerArgumentType.integer(0, (ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName) != null ? ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName).getMaxUpgradeLevel() : 0))).executes((command) -> {
+            ServerPlayerEntity player = command.getSource().asPlayer();
+            ItemStack chest = player.getItemStackFromSlot(EquipmentSlotType.CHEST);
             if (chest.getItem() instanceof DragonMageArmor){
                 if(ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName) == null){
-                    command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.upgradedoesnotexist.error"), true);
+                    command.getSource().sendFeedback(new TranslationTextComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.upgradedoesnotexist.error"), true);
                 } else if (((DragonMageArmor) chest.getItem()).isSetEquipped(player)){
-                    TranslatableComponent component_one = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.one");
-                    TranslatableComponent component_two = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.two");
+                    TranslationTextComponent component_one = new TranslationTextComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.one");
+                    TranslationTextComponent component_two = new TranslationTextComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.two");
 
-                    command.getSource().sendSuccess(new TextComponent(component_one.getString() + upgradeName + component_two.getString() + IntegerArgumentType.getInteger(command, "level")), true);
+                    command.getSource().sendFeedback(new StringTextComponent(component_one.getString() + upgradeName + component_two.getString() + IntegerArgumentType.getInteger(command, "level")), true);
                     ((DragonMageArmor) chest.getItem()).setUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString(upgradeName), IntegerArgumentType.getInteger(command, "level"), player);
                 }else{
-                    command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.no.armor.equipped.error"), true);
+                    command.getSource().sendFeedback(new TranslationTextComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.no.armor.equipped.error"), true);
                 }
             }
             return 1;

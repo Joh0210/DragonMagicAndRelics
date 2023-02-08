@@ -1,23 +1,23 @@
 package de.joh.dragonmagicandrelics.spells.components;
 
-import com.mna.api.spells.ComponentApplicationResult;
-import com.mna.api.spells.SpellPartTags;
-import com.mna.api.spells.attributes.AttributeValuePair;
-import com.mna.api.spells.base.IModifiedSpellPart;
-import com.mna.api.spells.parts.SpellEffect;
-import com.mna.api.spells.targeting.SpellContext;
-import com.mna.api.spells.targeting.SpellSource;
-import com.mna.api.spells.targeting.SpellTarget;
+import com.ma.api.spells.ComponentApplicationResult;
+import com.ma.api.spells.SpellPartTags;
+import com.ma.api.spells.attributes.AttributeValuePair;
+import com.ma.api.spells.base.IModifiedSpellPart;
+import com.ma.api.spells.parts.Component;
+import com.ma.api.spells.targeting.SpellContext;
+import com.ma.api.spells.targeting.SpellSource;
+import com.ma.api.spells.targeting.SpellTarget;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.util.Direction;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -29,7 +29,7 @@ import javax.annotation.Nullable;
  * This spell places a liquid, pouring it into a container or cauldron.
  * @author Joh0210
  */
-public abstract class IComponentConjureFluid extends SpellEffect {
+public abstract class IComponentConjureFluid extends Component {
     /**
      * Liquid the spell places
      */
@@ -49,17 +49,17 @@ public abstract class IComponentConjureFluid extends SpellEffect {
         return false;
     }
 
-    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
-        Level world = source.getCaster().getCommandSenderWorld();
+    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<Component> modificationData, SpellContext context) {
+        World world = source.getCaster().getEntityWorld();
 
         if(!target.isBlock()){
             return ComponentApplicationResult.FAIL;
         }
 
-        if(!world.isClientSide){
+        if(!world.isRemote){
             Block block = world.getBlockState(target.getBlock()).getBlock();
             if (getCauldronType() != null && (block == Blocks.CAULDRON || block == getCauldronType())){
-                world.setBlockAndUpdate(target.getBlock(), getCauldronBlockState());
+                world.setBlockState(target.getBlock(), getCauldronBlockState());
 
                 return ComponentApplicationResult.SUCCESS;
             }
@@ -79,11 +79,11 @@ public abstract class IComponentConjureFluid extends SpellEffect {
             }
 
             if (destination == null && destinationSide == null) {
-                BlockPos targetPos = target.getBlock().relative(target.getBlockFace(null));
+                BlockPos targetPos = target.getBlock().offset(target.getBlockFace(null));
                 if (world.getBlockState(targetPos).getBlock() != Blocks.AIR && world.getBlockState(targetPos).getBlock() != Blocks.CAVE_AIR){
                     return ComponentApplicationResult.FAIL;
                 }
-                if (source.getCaster() instanceof Player player && tryPlaceSigilFluid(player, world, targetPos, modificationData, false)) {
+                if (source.getCaster() instanceof PlayerEntity && tryPlaceSigilFluid((PlayerEntity) source.getCaster(), world, targetPos, modificationData, false)) {
                     return ComponentApplicationResult.SUCCESS;
                 }
             }
@@ -110,10 +110,10 @@ public abstract class IComponentConjureFluid extends SpellEffect {
      */
     @Nullable
     public BlockState getCauldronBlockState(){
-        return (getCauldronType() != null) ? getCauldronType().defaultBlockState() : null;
+        return (getCauldronType() != null) ? getCauldronType().getDefaultState() : null;
     }
 
-    private IFluidHandler getFluidHandler(Level world, BlockPos blockPos, @Nullable Direction side) {
+    private IFluidHandler getFluidHandler(World world, BlockPos blockPos, @Nullable Direction side) {
         return FluidUtil.getFluidHandler(world, blockPos, side).orElse(null);
     }
 
@@ -136,11 +136,11 @@ public abstract class IComponentConjureFluid extends SpellEffect {
      * @param ignoreVaporize Should it be possible to place evaporating liquids (e.g. water) in ultra hot dimensions (e.g. nether)?
      * @return Liquid can be placed (even if it evaporates)
      */
-    public boolean tryPlaceSigilFluid(Player player, Level world, BlockPos blockPos, IModifiedSpellPart<SpellEffect> modificationData, boolean ignoreVaporize) {
+    public boolean tryPlaceSigilFluid(PlayerEntity player, World world, BlockPos blockPos, IModifiedSpellPart<Component> modificationData, boolean ignoreVaporize) {
         FluidStack resource = this.fluidStack;
-        BlockState state = this.fluidStack.getFluid().getAttributes().getBlock(world, blockPos, this.fluidStack.getFluid().defaultFluidState());
+        BlockState state = this.fluidStack.getFluid().getAttributes().getBlock(world, blockPos, this.fluidStack.getFluid().getDefaultState());
         BlockWrapper wrapper = new BlockWrapper(state, world, blockPos);
-        if (world.dimensionType().ultraWarm() && resource.getFluid().getAttributes().doesVaporize(world, blockPos, resource) && !(ignoreVaporize && CommonConfigs.CAN_CONJURE_FLUID_IGNORE_VAPORIZE.get())) {
+        if (world.getDimensionType().isUltrawarm() && resource.getFluid().getAttributes().doesVaporize(world, blockPos, resource) && !(ignoreVaporize && CommonConfigs.CAN_CONJURE_FLUID_IGNORE_VAPORIZE.get())) {
             resource.getFluid().getAttributes().vaporize(player, world, blockPos, resource);
             return true;
         } else {

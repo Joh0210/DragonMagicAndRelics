@@ -1,9 +1,9 @@
 package de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick;
 
-import com.mna.api.capabilities.IPlayerMagic;
+import com.ma.api.capabilities.IPlayerMagic;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.World;
 
 /**
  * Feeds the wearer of Dragon Mage Armor, but requires a certain amount of mana to do so.
@@ -20,12 +20,12 @@ public class ArmorUpgradeSaturation extends IArmorUpgradeOnArmorTick {
     }
 
     @Override
-    public void onArmorTick(Level world, Player player, int level, IPlayerMagic magic) {
+    public void onArmorTick(World world, PlayerEntity player, int level, IPlayerMagic magic) {
         if(level > 0){
             // Only if the wearer is actually hungry
-            if (player.getFoodData().getFoodLevel()  < 20 && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.SATURATION_MANA_PER_NUTRITION.get())) {
-                player.getFoodData().eat(1, 1);
-                magic.getCastingResource().consume(player, CommonConfigs.SATURATION_MANA_PER_NUTRITION.get());
+            if (player.getFoodStats().getFoodLevel()  < 20 && magic != null && magic.getCastingResource().getAmount() > CommonConfigs.SATURATION_MANA_PER_NUTRITION.get()) {
+                player.getFoodStats().addStats(1, 1);
+                magic.getCastingResource().consume(CommonConfigs.SATURATION_MANA_PER_NUTRITION.get());
             }
         }
     }

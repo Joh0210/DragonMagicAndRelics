@@ -1,8 +1,8 @@
 package de.joh.dragonmagicandrelics.spells;
 
 
-import com.mna.api.spells.parts.Shape;
-import com.mna.api.spells.parts.SpellEffect;
+import com.ma.api.spells.parts.Component;
+import com.ma.api.spells.parts.Shape;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.spells.components.*;
 import de.joh.dragonmagicandrelics.spells.shapes.ShapeAtMark;
@@ -20,16 +20,16 @@ public class SpellInit {
 
     public static Shape ATMARK;
 
-    public static SpellEffect ALTERNATIVERECALL;
-    public static SpellEffect SUNRISE;
-    public static SpellEffect MOONRISE;
-    public static SpellEffect ULTIMATEARMOR;
-    public static SpellEffect BANISHRAIN;
-    public static SpellEffect CONJURESTORM;
-    public static SpellEffect CONJUREWATER;
-    public static SpellEffect CONJURELAVA;
-    public static SpellEffect SATURATE;
-    public static SpellEffect MARK;
+    public static Component ALTERNATIVERECALL;
+    public static Component SUNRISE;
+    public static Component MOONRISE;
+    public static Component ULTIMATEARMOR;
+    public static Component BANISHRAIN;
+    public static Component CONJURESTORM;
+    public static Component CONJUREWATER;
+    public static Component CONJURELAVA;
+    public static Component SATURATE;
+    //public static Component MARK;
 
     @SubscribeEvent
     public static void registerShapes(final RegistryEvent.Register<Shape> event) {
@@ -37,7 +37,7 @@ public class SpellInit {
     }
 
     @SubscribeEvent
-    public static void registerComponents(final RegistryEvent.Register<SpellEffect> event) {
+    public static void registerComponents(final RegistryEvent.Register<Component> event) {
         event.getRegistry().register(SpellInit.SUNRISE);
         event.getRegistry().register(SpellInit.MOONRISE);
         event.getRegistry().register(SpellInit.ULTIMATEARMOR);
@@ -46,7 +46,7 @@ public class SpellInit {
         event.getRegistry().register(SpellInit.CONJUREWATER);
         event.getRegistry().register(SpellInit.CONJURELAVA);
         event.getRegistry().register(SpellInit.SATURATE);
-        event.getRegistry().register(SpellInit.MARK);
+        //event.getRegistry().register(SpellInit.MARK);
         event.getRegistry().register(SpellInit.ALTERNATIVERECALL);
     }
 
@@ -61,7 +61,7 @@ public class SpellInit {
         SpellInit.CONJUREWATER = new ComponentConjureWater(RLoc.create("components/conjurewater"), RLoc.create("textures/spell/component/conjurewater.png"));
         SpellInit.CONJURELAVA = new ComponentConjureLava(RLoc.create("components/conjurelava"), RLoc.create("textures/spell/component/conjurelava.png"));
         SpellInit.SATURATE = new ComponentSaturate(RLoc.create("components/saturate"), RLoc.create("textures/spell/component/saturate.png"));
-        SpellInit.MARK = new ComponentMark(RLoc.create("components/mark"), RLoc.create("textures/spell/component/mark.png"));
+        //SpellInit.MARK = new ComponentMark(RLoc.create("components/mark"), RLoc.create("textures/spell/component/mark.png"));
         SpellInit.ALTERNATIVERECALL = new ComponentAlternativeRecall(RLoc.create("components/alternativerecall"), RLoc.create("textures/spell/component/alternativerecall.png"));
     }
 }

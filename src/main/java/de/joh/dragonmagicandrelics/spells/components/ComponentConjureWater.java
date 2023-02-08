@@ -1,24 +1,18 @@
 package de.joh.dragonmagicandrelics.spells.components;
 
-import com.mna.api.affinity.Affinity;
-import com.mna.api.spells.SpellPartTags;
-import com.mna.api.spells.attributes.Attribute;
-import com.mna.api.spells.attributes.AttributeValuePair;
-import com.mna.api.spells.base.IModifiedSpellPart;
-import com.mna.api.spells.parts.SpellEffect;
-import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.material.Fluids;
-
-import javax.annotation.Nullable;
+import com.ma.api.affinity.Affinity;
+import com.ma.api.spells.SpellPartTags;
+import com.ma.api.spells.attributes.Attribute;
+import com.ma.api.spells.attributes.AttributeValuePair;
+import com.ma.api.spells.base.IModifiedSpellPart;
+import com.ma.api.spells.parts.Component;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.SoundEvents;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 /**
  * Water version of IComponentConjureFluid.
@@ -33,7 +27,7 @@ public class ComponentConjureWater extends IComponentConjureFluid {
 
     @Override
     public SoundEvent SoundEffect() {
-        return SoundEvents.PLAYER_SPLASH;
+        return SoundEvents.ENTITY_PLAYER_SPLASH;
     }
 
     public Affinity getAffinity() {
@@ -53,23 +47,11 @@ public class ComponentConjureWater extends IComponentConjureFluid {
         return 250;
     }
 
-    @Override
-    @Nullable
-    public Block getCauldronType(){
-        return Blocks.WATER_CAULDRON;
-    }
-
-    @Override
-    @Nullable
-    public BlockState getCauldronBlockState(){
-        return getCauldronType().defaultBlockState().setValue(BlockStateProperties.LEVEL_CAULDRON, 3);
-    }
-
     /**
      * Allow water to be placed in Nether when magnitude has been increased.
      */
     @Override
-    public boolean tryPlaceSigilFluid(Player player, Level world, BlockPos blockPos, IModifiedSpellPart<SpellEffect> modificationData, boolean ignoreVaporize) {
+    public boolean tryPlaceSigilFluid(PlayerEntity player, World world, BlockPos blockPos, IModifiedSpellPart<Component> modificationData, boolean ignoreVaporize) {
         return super.tryPlaceSigilFluid(player, world, blockPos, modificationData, 1.5F <= (modificationData.getValue(Attribute.MAGNITUDE)));
     }
 }

@@ -1,25 +1,25 @@
 package de.joh.dragonmagicandrelics.spells.components;
 
-import com.mna.api.affinity.Affinity;
-import com.mna.api.capabilities.Faction;
-import com.mna.api.spells.ComponentApplicationResult;
-import com.mna.api.spells.SpellPartTags;
-import com.mna.api.spells.attributes.Attribute;
-import com.mna.api.spells.attributes.AttributeValuePair;
-import com.mna.api.spells.base.IModifiedSpellPart;
-import com.mna.api.spells.parts.SpellEffect;
-import com.mna.api.spells.targeting.SpellContext;
-import com.mna.api.spells.targeting.SpellSource;
-import com.mna.api.spells.targeting.SpellTarget;
-import com.mna.tools.TeleportHelper;
+import com.ma.api.affinity.Affinity;
+import com.ma.api.capabilities.Faction;
+import com.ma.api.spells.ComponentApplicationResult;
+import com.ma.api.spells.SpellPartTags;
+import com.ma.api.spells.attributes.Attribute;
+import com.ma.api.spells.attributes.AttributeValuePair;
+import com.ma.api.spells.base.IModifiedSpellPart;
+import com.ma.api.spells.parts.Component;
+import com.ma.api.spells.targeting.SpellContext;
+import com.ma.api.spells.targeting.SpellSource;
+import com.ma.api.spells.targeting.SpellTarget;
+import com.ma.tools.TeleportHelper;
 import de.joh.dragonmagicandrelics.utils.MarkSave;
-import net.minecraft.Util;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.phys.Vec3;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.vector.Vector3d;
+import net.minecraft.util.text.TranslationTextComponent;
 
-public class ComponentAlternativeRecall extends SpellEffect {
+public class ComponentAlternativeRecall extends Component {
     public ComponentAlternativeRecall(ResourceLocation registryName, ResourceLocation guiIcon) {
         super(registryName, guiIcon, new AttributeValuePair[]{new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 5.0F, 1.0F, 50.0F)});
     }
@@ -28,17 +28,17 @@ public class ComponentAlternativeRecall extends SpellEffect {
         return 200;
     }
 
-    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
-        if (source.hasCasterReference() && target.isEntity() && target.getEntity().isAlive() && target.getEntity().canChangeDimensions()) {
-            MarkSave markSave = MarkSave.getMark(source.getPlayer(), source.getCaster().getCommandSenderWorld());
+    public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<Component> modificationData, SpellContext context) {
+        if (source.hasCasterReference() && target.isEntity() && target.getEntity().isAlive() && target.getEntity().canChangeDimension()) {
+            MarkSave markSave = MarkSave.getMark(source.getPlayer(), source.getCaster().getEntityWorld());
             if (markSave != null) {
                 BlockPos pos = markSave.getPosition();
-                double dist = target.getEntity().blockPosition().distSqr(pos);
+                double dist = target.getEntity().getPosition().distanceSq(pos);
                 double maxDist = modificationData.getValue(Attribute.MAGNITUDE) * 1000.0F;
                 if (!(dist > maxDist * maxDist)) {
                     int magnitude = (int)modificationData.getValue(Attribute.MAGNITUDE);
                     if (this.magnitudeHealthCheck(source, target, magnitude, 20)) {
-                        TeleportHelper.teleportEntity(target.getEntity(), context.getWorld().dimension(), new Vec3((double)pos.getX() + 0.5, pos.getY() + 1, (double)pos.getZ() + 0.5));
+                        TeleportHelper.teleportEntity(target.getEntity(), context.getWorld().getDimensionKey(), new Vector3d((double)pos.getX() + 0.5, pos.getY() + 1, (double)pos.getZ() + 0.5));
                         return ComponentApplicationResult.SUCCESS;
                     }
 
@@ -46,11 +46,11 @@ public class ComponentAlternativeRecall extends SpellEffect {
                 }
 
                 if (source.isPlayerCaster()) {
-                    source.getPlayer().sendMessage(new TranslatableComponent("mna:components/recall.too_far"), Util.NIL_UUID);
+                    source.getPlayer().sendMessage(new TranslationTextComponent("mna:components/recall.too_far"), Util.DUMMY_UUID);
                 }
             } else {
                 if (source.isPlayerCaster()) {
-                    source.getPlayer().sendMessage(new TranslatableComponent("dragonmagicandrelics.shapes.atmark.nomark.error"), Util.NIL_UUID);
+                    source.getPlayer().sendMessage(new TranslationTextComponent("dragonmagicandrelics.shapes.atmark.nomark.error"), Util.DUMMY_UUID);
                 }
             }
         }

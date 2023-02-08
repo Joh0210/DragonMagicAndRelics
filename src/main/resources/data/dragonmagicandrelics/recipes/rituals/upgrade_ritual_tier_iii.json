@@ -35,7 +35,7 @@
   {
     "A":
     {
-      "item": "dragonmagicandrelics:upgrade_seal_tier_iii",
+      "tag": "dragonmagicandrelics:upgrade_seal_tier_iii",
       "optional": false,
       "consume": true
     },

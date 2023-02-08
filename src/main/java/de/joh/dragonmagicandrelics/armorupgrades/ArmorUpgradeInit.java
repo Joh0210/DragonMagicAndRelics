@@ -1,17 +1,16 @@
 package de.joh.dragonmagicandrelics.armorupgrades;
 
-import com.mna.effects.EffectInit;
+import com.ma.effects.EffectInit;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.*;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.ArmorUpgradeHealthBoost;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.ArmorUpgradeManaBoost;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.ArmorUpgradeManaRegeneration;
 import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.IArmorUpgradeOnFullyEquipped;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import net.minecraft.world.effect.MobEffects;
-
+import net.minecraft.potion.Effects;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * An initialization of all upgrades for the Dragon Mage Armor.
@@ -41,8 +40,8 @@ public class ArmorUpgradeInit {
      * @see IArmorUpgradeOnArmorTick
      */
     public static ArmorUpgradePotionEffect[] ARMOR_UPGRADE_POTION_EFFECT = new ArmorUpgradePotionEffect[]{
-            new ArmorUpgradePotionEffect("dolphins_grace", 2, MobEffects.DOLPHINS_GRACE),
-            new ArmorUpgradePotionEffect("regeneration", 1, MobEffects.REGENERATION),
+            new ArmorUpgradePotionEffect("dolphins_grace", 2, Effects.DOLPHINS_GRACE),
+            new ArmorUpgradePotionEffect("regeneration", 1, Effects.REGENERATION),
             new ArmorUpgradePotionEffect("wellspring_sight", 1, EffectInit.WELLSPRING_SIGHT.get()),
             new ArmorUpgradePotionEffect("eldrin_sight", 1, EffectInit.ELDRIN_SIGHT.get()),
     };
@@ -133,9 +132,9 @@ public class ArmorUpgradeInit {
      */
     public static ArmorUpgrade[] getAllUpgrades(){
         ArrayList<ArmorUpgrade> upgradeList = new ArrayList<>();
-        upgradeList.addAll(List.of(ARMOR_UPGRADE_ON_ARMOR_TICK));
-        upgradeList.addAll(List.of(ARMOR_UPGRADE_POTION_EFFECT));
-        upgradeList.addAll(List.of(ARMOR_UPGRADE_ON_FULLY_EQUIPPED));
+        Collections.addAll(upgradeList, ARMOR_UPGRADE_ON_ARMOR_TICK);
+        Collections.addAll(upgradeList, ARMOR_UPGRADE_POTION_EFFECT);
+        Collections.addAll(upgradeList, ARMOR_UPGRADE_ON_FULLY_EQUIPPED);
 
         upgradeList.add(KINETIC_RESISTANCE);
         upgradeList.add(EXPLOSION_RESISTANCE);
