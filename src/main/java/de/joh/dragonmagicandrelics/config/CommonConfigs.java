@@ -118,7 +118,7 @@ public class CommonConfigs {
             BUILDER.pop();
 
             BUILDER.push("Projectile Reflection");
-            PROJECTILE_REFLECTION_TICKS_PER_CHARGE = BUILDER.defineInRange("How many ticks it takes to regenerate a Charge:", 200, 20, 2000);
+            PROJECTILE_REFLECTION_TICKS_PER_CHARGE = BUILDER.defineInRange("How many ticks it takes to regenerate a Charge:", 400, 20, 4000);
             BUILDER.pop();
 
             BUILDER.push("Saturation upgrade");
