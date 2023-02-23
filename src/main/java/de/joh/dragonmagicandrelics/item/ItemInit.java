@@ -3,10 +3,8 @@ package de.joh.dragonmagicandrelics.item;
 import com.mna.api.capabilities.Faction;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import de.joh.dragonmagicandrelics.item.items.ManaCake;
-import de.joh.dragonmagicandrelics.item.items.ArmorMaterials;
-import de.joh.dragonmagicandrelics.item.items.UpgradeSeal;
+import de.joh.dragonmagicandrelics.block.BlockInit;
+import de.joh.dragonmagicandrelics.item.items.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -123,6 +121,8 @@ public class ItemInit {
     public static final RegistryObject<Item> UPGRADE_SEAL_WATER_BREATHING_II = ITEMS.register("upgrade_seal_water_breathing_ii", () -> new UpgradeSeal(2, "water_breathing"));
 
     public static final RegistryObject<Item> UPGRADE_SEAL_WELLSPRING_SIGHT = ITEMS.register("upgrade_seal_wellspring_sight", () -> new UpgradeSeal(1, "wellspring_sight", 1));
+
+    public static final RegistryObject<Item> RIFT_EMITTER_ITEM = ITEMS.register("rift_emitter", () -> new RiftEmitterItem(BlockInit.RIFT_EMITTER.get(), new Item.Properties().tab(CreativeModeTab.CreativeModeTab)));
 
 
     public static void register(IEventBus eventBus){

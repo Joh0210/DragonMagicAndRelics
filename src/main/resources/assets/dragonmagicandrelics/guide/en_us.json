@@ -251,6 +251,28 @@
     ]
   },
 
+  "Rift Emitter": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Rift Emitter"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "I found a way to keep the small dimensional rift open longer. With this contraption I can now keep the Rift open in a stationary manner."
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dragonmagicandrelics:manaweaving/rift_emitter"
+      }
+    ]
+  },
   "Mana Cake": {
     "index": 1,
     "category": "artifice",

@@ -19,6 +19,7 @@
   "item.dragonmagicandrelics.wild_dragon_mage_chestplate": "Wild Dragon Mage Chestplate",
   "item.dragonmagicandrelics.wild_dragon_mage_leggings": "Wild Dragon Mage Leggings",
   "item.dragonmagicandrelics.wild_dragon_mage_boots": "Wild Dragon Mage Boots",
+  "item.dragonmagicandrelics.rift_emitter": "Rift Emitter",
 
   "item.dragonmagicandrelics.upgrade_seal_explosion_resistance": "Upgrade Glyph Explosion Resistance",
   "item.dragonmagicandrelics.upgrade_seal_meteor_jump": "Upgrade Glyph Meteor Jump",
@@ -70,6 +71,8 @@
   "item.dragonmagicandrelics.upgrade_seal_damage_boost_ii": "Upgrade Glyph Damage Boost II",
   "item.dragonmagicandrelics.upgrade_seal_damage_boost_iii": "Upgrade Glyph Damage Boost III",
   "item.dragonmagicandrelics.upgrade_seal_damage_boost_iv": "Upgrade Glyph Damage Boost IV",
+
+  "block.dragonmagicandrelics.rift_emitter": "Rift Emitter",
 
   "key.categories.mma": "Modular Magic Armor",
   "key.mma.spellbookopen": "Book Quick Select",

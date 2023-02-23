@@ -64,15 +64,15 @@ public abstract class IComponentConjureFluid extends SpellEffect {
                 return ComponentApplicationResult.SUCCESS;
             }
             IFluidHandler destination = getFluidHandler(world, target.getBlock(), null);
-            if(destination != null && this.tryInsertSigilFluid(destination, false)){
-                boolean result = this.tryInsertSigilFluid(destination, true);
+            if(destination != null && this.tryInsertFluid(destination, false)){
+                boolean result = this.tryInsertFluid(destination, true);
                 if (result) {
                     return ComponentApplicationResult.SUCCESS;
                 }
             }
             IFluidHandler destinationSide = getFluidHandler(world, target.getBlock(), target.getBlockFace(null));
-            if (destinationSide != null && this.tryInsertSigilFluid(destinationSide, false)) {
-                boolean result = this.tryInsertSigilFluid(destinationSide, true);
+            if (destinationSide != null && this.tryInsertFluid(destinationSide, false)) {
+                boolean result = this.tryInsertFluid(destinationSide, true);
                 if (result) {
                     return ComponentApplicationResult.SUCCESS;
                 }
@@ -83,7 +83,7 @@ public abstract class IComponentConjureFluid extends SpellEffect {
                 if (world.getBlockState(targetPos).getBlock() != Blocks.AIR && world.getBlockState(targetPos).getBlock() != Blocks.CAVE_AIR){
                     return ComponentApplicationResult.FAIL;
                 }
-                if (source.getCaster() instanceof Player player && tryPlaceSigilFluid(player, world, targetPos, modificationData, false)) {
+                if (source.getCaster() instanceof Player player && tryPlaceFluid(player, world, targetPos, modificationData, false)) {
                     return ComponentApplicationResult.SUCCESS;
                 }
             }
@@ -123,7 +123,7 @@ public abstract class IComponentConjureFluid extends SpellEffect {
      * @param doTransfer Should the liquid be added?
      * @return Can Liquid be added?
      */
-    private boolean tryInsertSigilFluid(IFluidHandler destination, boolean doTransfer) {
+    private boolean tryInsertFluid(IFluidHandler destination, boolean doTransfer) {
         if (destination == null) {
             return false;
         } else {
@@ -136,7 +136,7 @@ public abstract class IComponentConjureFluid extends SpellEffect {
      * @param ignoreVaporize Should it be possible to place evaporating liquids (e.g. water) in ultra hot dimensions (e.g. nether)?
      * @return Liquid can be placed (even if it evaporates)
      */
-    public boolean tryPlaceSigilFluid(Player player, Level world, BlockPos blockPos, IModifiedSpellPart<SpellEffect> modificationData, boolean ignoreVaporize) {
+    public boolean tryPlaceFluid(Player player, Level world, BlockPos blockPos, IModifiedSpellPart<SpellEffect> modificationData, boolean ignoreVaporize) {
         FluidStack resource = this.fluidStack;
         BlockState state = this.fluidStack.getFluid().getAttributes().getBlock(world, blockPos, this.fluidStack.getFluid().defaultFluidState());
         BlockWrapper wrapper = new BlockWrapper(state, world, blockPos);

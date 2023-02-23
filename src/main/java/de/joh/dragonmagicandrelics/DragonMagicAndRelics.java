@@ -2,6 +2,8 @@ package de.joh.dragonmagicandrelics;
 
 import com.mna.api.guidebook.RegisterGuidebooksEvent;
 import com.mojang.logging.LogUtils;
+import de.joh.dragonmagicandrelics.block.BlockInit;
+import de.joh.dragonmagicandrelics.block.entity.BlockEntitieInit;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.config.InitialUpgradesConfigs;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
@@ -34,7 +36,9 @@ public class DragonMagicAndRelics {
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
         ItemInit.register(eventBus);
+        BlockInit.register(eventBus);
         EffectInit.register(eventBus);
+        BlockEntitieInit.register(eventBus);
 
         eventBus.addListener(this::setup);
 

@@ -69,7 +69,7 @@ public class ComponentConjureWater extends IComponentConjureFluid {
      * Allow water to be placed in Nether when magnitude has been increased.
      */
     @Override
-    public boolean tryPlaceSigilFluid(Player player, Level world, BlockPos blockPos, IModifiedSpellPart<SpellEffect> modificationData, boolean ignoreVaporize) {
-        return super.tryPlaceSigilFluid(player, world, blockPos, modificationData, 1.5F <= (modificationData.getValue(Attribute.MAGNITUDE)));
+    public boolean tryPlaceFluid(Player player, Level world, BlockPos blockPos, IModifiedSpellPart<SpellEffect> modificationData, boolean ignoreVaporize) {
+        return super.tryPlaceFluid(player, world, blockPos, modificationData, 1.5F <= (modificationData.getValue(Attribute.MAGNITUDE)));
     }
 }
