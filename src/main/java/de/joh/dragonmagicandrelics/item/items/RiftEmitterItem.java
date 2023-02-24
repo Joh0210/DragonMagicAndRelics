@@ -1,6 +1,7 @@
 package de.joh.dragonmagicandrelics.item.items;
 
-import de.joh.dragonmagicandrelics.item.items.client.RiftEmitterItemRenderer;
+import com.mna.api.items.ITieredItem;
+import de.joh.dragonmagicandrelics.item.client.RiftEmitterItemRenderer;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.Block;
@@ -15,8 +16,14 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 
 import java.util.function.Consumer;
 
-public class RiftEmitterItem extends BlockItem implements IAnimatable {
+/**
+ * Matching item for the Rift Emitter (Block)
+ * @see de.joh.dragonmagicandrelics.block.RiftEmitter
+ * @author Joh0210
+ */
+public class RiftEmitterItem extends BlockItem implements IAnimatable, ITieredItem<RiftEmitterItem> {
     public AnimationFactory factory = new AnimationFactory(this);
+    private int _tier = -1;
 
     public RiftEmitterItem(Block block, Properties settings) {
         super(block, settings);
@@ -50,5 +57,15 @@ public class RiftEmitterItem extends BlockItem implements IAnimatable {
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
+    }
+
+    @Override
+    public void setCachedTier(int tier) {
+        this._tier = tier;
+    }
+
+    @Override
+    public int getCachedtier() {
+        return this._tier;
     }
 }

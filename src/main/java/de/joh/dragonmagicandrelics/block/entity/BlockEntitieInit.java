@@ -8,6 +8,12 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+/**
+ * Inits of all mod Blocks-Entities.
+ * Registration through DragonMagicAndRelics
+ * @see DragonMagicAndRelics
+ * @author Joh0210
+ */
 public class BlockEntitieInit {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
             DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, DragonMagicAndRelics.MOD_ID);

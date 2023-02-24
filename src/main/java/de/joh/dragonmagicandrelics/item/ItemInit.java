@@ -27,6 +27,8 @@ public class ItemInit {
 
     public static final RegistryObject<Item> MANA_CAKE = ITEMS.register("mana_cake", ManaCake::new);
 
+    public static final RegistryObject<Item> RIFT_EMITTER_ITEM = ITEMS.register("rift_emitter", () -> new RiftEmitterItem(BlockInit.RIFT_EMITTER.get(), new Item.Properties().stacksTo(1).tab(CreativeModeTab.CreativeModeTab)));
+
     public static final RegistryObject<Item> ABYSSAL_DRAGON_MAGE_HELMET = ITEMS.register("abyssal_dragon_mage_helmet", () -> new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.HEAD, Faction.UNDEAD));
     public static final RegistryObject<Item> ABYSSAL_DRAGON_MAGE_CHESTPLATE = ITEMS.register("abyssal_dragon_mage_chestplate", () -> new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.CHEST, Faction.UNDEAD));
     public static final RegistryObject<Item> ABYSSAL_DRAGON_MAGE_LEGGING = ITEMS.register("abyssal_dragon_mage_leggings", () -> new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.LEGS, Faction.UNDEAD));
@@ -122,7 +124,6 @@ public class ItemInit {
 
     public static final RegistryObject<Item> UPGRADE_SEAL_WELLSPRING_SIGHT = ITEMS.register("upgrade_seal_wellspring_sight", () -> new UpgradeSeal(1, "wellspring_sight", 1));
 
-    public static final RegistryObject<Item> RIFT_EMITTER_ITEM = ITEMS.register("rift_emitter", () -> new RiftEmitterItem(BlockInit.RIFT_EMITTER.get(), new Item.Properties().tab(CreativeModeTab.CreativeModeTab)));
 
 
     public static void register(IEventBus eventBus){

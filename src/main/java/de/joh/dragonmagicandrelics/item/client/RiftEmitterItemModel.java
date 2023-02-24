@@ -1,4 +1,4 @@
-package de.joh.dragonmagicandrelics.item.items.client;
+package de.joh.dragonmagicandrelics.item.client;
 
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.block.entity.RiftEmitterEntity;
@@ -6,6 +6,11 @@ import de.joh.dragonmagicandrelics.item.items.RiftEmitterItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib3.model.AnimatedGeoModel;
 
+/**
+ * GeckoLib model for the RiftEmitterItem.
+ * <br> This code is generic.
+ * @author Joh021
+ */
 public class RiftEmitterItemModel extends AnimatedGeoModel<RiftEmitterItem> {
         @Override
         public ResourceLocation getModelLocation(RiftEmitterItem object) {

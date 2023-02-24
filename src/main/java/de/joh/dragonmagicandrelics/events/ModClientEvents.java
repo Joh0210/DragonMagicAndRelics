@@ -4,7 +4,7 @@ package de.joh.dragonmagicandrelics.events;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.block.entity.BlockEntitieInit;
 import de.joh.dragonmagicandrelics.block.entity.client.RiftEmitterRenderer;
-import de.joh.dragonmagicandrelics.client.armor.DragonMageArmorRenderer;
+import de.joh.dragonmagicandrelics.item.client.armor.DragonMageArmorRenderer;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;

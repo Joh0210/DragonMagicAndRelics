@@ -11,8 +11,11 @@ import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 
+/**
+ * Creation of the GeckoLib model (from the RiftEmitter) as an entity.
+ */
 public class RiftEmitterEntity extends BlockEntity implements IAnimatable {
-    private AnimationFactory factory = new AnimationFactory(this);
+    private final AnimationFactory factory = new AnimationFactory(this);
 
     public RiftEmitterEntity(BlockPos pPos, BlockState pBlockState) {
         super(BlockEntitieInit.RIFT_EMITTER_ENTITY.get(), pPos, pBlockState);
