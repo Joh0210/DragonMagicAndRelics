@@ -311,6 +311,28 @@
       }
     ]
   },
+  "Faction Amulet": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Faction Amulet"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "With this amulet I don't have to worry about faction raids anymore!"
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/faction_amulet"
+      }
+    ]
+  },
   "Dragon Mage Armor": {
     "index": 1,
     "category": "artifice",

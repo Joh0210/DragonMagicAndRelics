@@ -1,6 +1,6 @@
 {
   "type": "mna:component",
-  "tier": 3,
+  "tier": 4,
   "output": "dragonmagicandrelics:components/saturate",
   "items": [
     "dragonmagicandrelics:mana_cake",
