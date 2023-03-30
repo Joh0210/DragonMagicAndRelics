@@ -19,6 +19,11 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 
+/**
+ * Revision of M&As recall
+ * @see com.mna.spells.components.ComponentRecall
+ * @author Joh0210
+ */
 public class ComponentAlternativeRecall extends SpellEffect {
     public ComponentAlternativeRecall(ResourceLocation registryName, ResourceLocation guiIcon) {
         super(registryName, guiIcon, new AttributeValuePair[]{new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 5.0F, 1.0F, 50.0F)});
@@ -58,8 +63,6 @@ public class ComponentAlternativeRecall extends SpellEffect {
 
         return ComponentApplicationResult.FAIL;
     }
-
-
 
     @Override
     public boolean targetsBlocks() {

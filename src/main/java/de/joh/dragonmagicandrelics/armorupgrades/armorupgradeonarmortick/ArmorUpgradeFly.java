@@ -7,6 +7,7 @@ import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.effects.EffectInit;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -27,7 +28,7 @@ public class ArmorUpgradeFly extends IArmorUpgradeOnArmorTick {
 
     @Override
     public void onArmorTick(Level world, Player player, int level, IPlayerMagic magic) {
-        if (0 < level) {
+        if (0 < level && !player.hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.FLY_DISABLED.get())) {
             player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> {
                 //Creation of particles
                 if (player.getAbilities().flying && !player.hasEffect(EffectInit.LEVITATION.get())) {
@@ -37,7 +38,7 @@ public class ArmorUpgradeFly extends IArmorUpgradeOnArmorTick {
                         look = look.scale(offset);
                         world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() + look.x, player.getY(), player.getZ() + look.z, 0.0D, -0.05000000074505806D, 0.0D);
                         world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() - look.x, player.getY(), player.getZ() - look.z, 0.0D, -0.05000000074505806D, 0.0D);
-                    } else {
+                    } else if (!player.hasEffect(EffectInit.MIST_FORM.get())) { //No mana consumption in mist form
                         m.getCastingResource().consume(player, CommonConfigs.getFlyManaCostPerTick());
                     }
                 }
@@ -57,8 +58,6 @@ public class ArmorUpgradeFly extends IArmorUpgradeOnArmorTick {
                     }
                 }
             });
-        } else {
-            player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> ManaAndArtifice.instance.proxy.setFlightEnabled(player, false));
         }
     }
 }

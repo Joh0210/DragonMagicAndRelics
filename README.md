@@ -17,7 +17,11 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 
 ### New Items
 - Dragon Mage Armor with Upgrade Glyphs
+- Faction Amulet
 - Mana Cake
+
+### New Blocks
+- Rift Emitter
 
 ### New Rituals
 - Fusion Ritual

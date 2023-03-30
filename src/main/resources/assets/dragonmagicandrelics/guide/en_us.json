@@ -312,8 +312,8 @@
     ]
   },
   "Faction Amulet": {
-    "index": 1,
-    "category": "artifice",
+    "index": 0,
+    "category": "eldrin_altar",
     "sections": [
       {
         "type": "title",

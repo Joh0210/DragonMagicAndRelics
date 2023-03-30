@@ -79,6 +79,7 @@
   "key.mma.spellbookopen": "Book Quick Select",
 
   "effect.dragonmagicandrelics.ultimate_armor": "Ultimate Armor",
+  "effect.dragonmagicandrelics.fly_disabled": "Disabled DM&R Fly",
 
   "dragonmagicandrelics.commands.output.writeSpellToArmor.no.armor.equipped.error": "You must be wearing full set of Dragon Mage Armor for the command to work.",
   "dragonmagicandrelics.commands.output.writeSpellToArmor.no.valid.spell.error": "You have no valid spell in your main hand.",
@@ -165,5 +166,8 @@
   "dragonmagicandrelics:rituals/phoenix_ritual": "Ritual of the Phoenix",
   "dragonmagicandrelics:rituals/betrayal_ritual": "Ritual of Betrayal",
 
-  "dragonmagicandrelics.key.togglenightvision": "DM&R: Toggle Night Vision"
+  "dragonmagicandrelics.key.togglenightvision": "DM&R: Toggle Night Vision",
+  "dragonmagicandrelics.key.toggleflight": "DM&R: Toggle Flight",
+  "dragonmagicandrelics.key.output.disabledfly.true": "The Dragon Mage Armor fly has been activated",
+  "dragonmagicandrelics.key.output.disabledfly.false": "The Dragon Mage Armor fly has been disabled"
 }

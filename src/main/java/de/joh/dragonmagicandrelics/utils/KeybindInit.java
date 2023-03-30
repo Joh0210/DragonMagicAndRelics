@@ -17,9 +17,12 @@ public class KeybindInit {
 
     public static final KeyMapping TOGGLE_NIGHT_VISION_KEY = new KeyMapping("dragonmagicandrelics.key.togglenightvision", GLFW.GLFW_KEY_O, "key.categories.mna");
 
+    public static final KeyMapping TOGGLE_FLIGHT_KEY = new KeyMapping("dragonmagicandrelics.key.toggleflight", GLFW.GLFW_KEY_Y, "key.categories.mna");
+
     @SubscribeEvent
     public static void init(FMLClientSetupEvent event) {
         ClientRegistry.registerKeyBinding(TOGGLE_NIGHT_VISION_KEY);
+        ClientRegistry.registerKeyBinding(TOGGLE_FLIGHT_KEY);
         DragonMagicAndRelics.LOGGER.info("DM&R -> Keybindings Registered");
     }
 }

@@ -2,6 +2,7 @@ package de.joh.dragonmagicandrelics.effects;
 
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.effects.beneficial.EffectUltimateArmor;
+import de.joh.dragonmagicandrelics.effects.neutral.EffectFlyDisabled;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,6 +20,7 @@ public class EffectInit {
             DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, DragonMagicAndRelics.MOD_ID);
 
     public static final RegistryObject<MobEffect> ULTIMATE_ARMOR = EFFECTS.register("ultimate_armor", EffectUltimateArmor::new);
+    public static final RegistryObject<MobEffect> FLY_DISABLED = EFFECTS.register("fly_disabled", EffectFlyDisabled::new);
 
     public static void register(IEventBus eventBus){
         EFFECTS.register(eventBus);

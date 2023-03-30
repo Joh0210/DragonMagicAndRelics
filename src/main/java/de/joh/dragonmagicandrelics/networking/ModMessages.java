@@ -1,5 +1,6 @@
 package de.joh.dragonmagicandrelics.networking;
 
+import de.joh.dragonmagicandrelics.networking.packet.ToggleFlightC2SPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleNightVisionC2SPacket;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.server.level.ServerPlayer;
@@ -38,6 +39,12 @@ public class ModMessages {
                 .decoder(ToggleNightVisionC2SPacket::new)
                 .encoder((ToggleNightVisionC2SPacket::toBytes))
                 .consumer(ToggleNightVisionC2SPacket::handle)
+                .add();
+
+        net.messageBuilder(ToggleFlightC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(ToggleFlightC2SPacket::new)
+                .encoder((ToggleFlightC2SPacket::toBytes))
+                .consumer(ToggleFlightC2SPacket::handle)
                 .add();
     }
 
