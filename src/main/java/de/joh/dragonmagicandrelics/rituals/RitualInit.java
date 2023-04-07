@@ -23,7 +23,6 @@ public class RitualInit {
             new UpgradeRitual(RLoc.create("rituals/upgrade_ritual_tier_iii")).setRegistryName(RLoc.create("ritual-upgrade-ritual-tier-iii")),
             new UpgradeRitual(RLoc.create("rituals/upgrade_ritual_tier_iv")).setRegistryName(RLoc.create("ritual-upgrade-ritual-tier-iv")),
             new FusionRitual(RLoc.create("rituals/fusion_ritual")).setRegistryName(RLoc.create("ritual-fusion-ritual")),
-            new DispellingRitual(RLoc.create("rituals/dispelling_ritual")).setRegistryName(RLoc.create("ritual-dispelling-ritual")),
             new PhoenixRitual(RLoc.create("rituals/phoenix_ritual")).setRegistryName(RLoc.create("ritual-phoenix-ritual")),
             new BetrayalRitual(RLoc.create("rituals/betrayal_ritual")).setRegistryName(RLoc.create("ritual-betrayal-ritual"))
         );

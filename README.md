@@ -50,6 +50,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 ### Commands
 - ```/dragonmagicandrelics addSpellToArmor <offensive/defensive>```: Adds the spell in your main hand to your Dragon Mage Armor. (cf. Fusion Ritual)
 - ```/dragonmagicandrelics addUpgrade <armor upgrade name> <level>```: Adds the selected upgrade to your Dragon Mage Armor at the selected level.
+- ```/dragonmagicandrelics changeDragonMageArmor <ancient_wizards/demons/fey_court/undead> <target>```: Exchange the Current Dragon Mage Armor to a different set. (Inherits enchantments, upgrades and spells from previous armor).
 
 ## Feedback
 I appreciate any kind of constructive feedback. If you find errors in the mod, it is of course good to let me know. But you can also tell me about recipe adjustments or new elements that should be added. 

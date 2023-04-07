@@ -1,13 +1,16 @@
 package de.joh.dragonmagicandrelics;
 
+import com.mna.api.capabilities.Faction;
 import com.mna.spells.crafting.SpellRecipe;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.events.additional.DragonUpgradeEvent;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -15,6 +18,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 
 /**
@@ -32,7 +36,43 @@ public class Commands {
     public Commands(CommandDispatcher<CommandSourceStack> dispatcher){
         dispatcher.register(net.minecraft.commands.Commands.literal(DragonMagicAndRelics.MOD_ID).requires((commandSource) -> commandSource.hasPermission(2))
                 .then(addUpgrade())
+                .then(changeDragonMageArmor())
                 .then(addSpellToArmor()));
+    }
+
+    private ArgumentBuilder<CommandSourceStack, ?> changeDragonMageArmor() {
+        return ((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal("changeDragonMageArmor")
+                .then(changeDragonMageArmorTarget(Faction.UNDEAD)))
+                .then(changeDragonMageArmorTarget(Faction.DEMONS))
+                .then(changeDragonMageArmorTarget(Faction.ANCIENT_WIZARDS))
+                .then(changeDragonMageArmorTarget(Faction.FEY_COURT));
+    }
+
+    private ArgumentBuilder<CommandSourceStack, ?> changeDragonMageArmorTarget(Faction faction){
+        String factionString = "none";
+        switch (faction){
+            case DEMONS -> factionString = "demons";
+            case FEY_COURT -> factionString = "fey_court";
+            case ANCIENT_WIZARDS -> factionString = "ancient_wizards";
+            case UNDEAD -> factionString = "undead";
+        }
+
+        return net.minecraft.commands.Commands.literal(factionString).then(net.minecraft.commands.Commands.argument("target", EntityArgument.player()).executes((command) -> {
+            ServerPlayer player = EntityArgument.getPlayer(command, "target");
+            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+
+            if(chest.getItem() instanceof DragonMageArmor && ((DragonMageArmor) chest.getItem()).isSetEquipped(player)) {
+                DragonUpgradeEvent event = new DragonUpgradeEvent(player, faction);
+                MinecraftForge.EVENT_BUS.post(event);
+
+                if (event.canBeUpgraded()) {
+                    event.performUpgradeFromDMArmor();
+                }
+            } else {
+                command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.changeDragonMageArmorTarget.no.valid.armor.error"), true);
+            }
+            return 1;
+        }));
     }
 
     /**

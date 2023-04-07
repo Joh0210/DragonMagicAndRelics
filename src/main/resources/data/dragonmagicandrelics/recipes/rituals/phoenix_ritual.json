@@ -1,6 +1,6 @@
 {
   "type": "mna:ritual",
-  "tier": 4,
+  "tier": 3,
   "pattern":
   [
     [-1, 0, 0, 0, 0, 0,-1],

@@ -77,7 +77,7 @@ public class DamageEventHandler {
             //Spell
             if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
                 applySpell(false, player, source, chest);
-                if(source != null){
+                if(source != null && source != player){
                     applySpell(true, player, source, chest);
                 }
             }

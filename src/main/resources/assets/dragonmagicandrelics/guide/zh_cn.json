@@ -1343,28 +1343,6 @@
       }
     ]
   },
-  "Ritual of Dispelling": {
-    "index": "0",
-    "category": "rituals",
-    "sections": [
-      {
-        "type": "title",
-        "value": "驱散仪式"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "魔法也许很强，但是一些素材可能比魔法更有价值。\n是时候把魔法变回素材了！\n\n使用这个仪式，可以将魔法还原为它的素材。"
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/dispelling_ritual"
-      }
-    ]
-  },
   "Ritual of the Phoenix": {
     "index": "0",
     "category": "rituals",

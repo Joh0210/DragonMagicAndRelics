@@ -83,6 +83,7 @@
 
   "dragonmagicandrelics.commands.output.writeSpellToArmor.no.armor.equipped.error": "You must be wearing full set of Dragon Mage Armor for the command to work.",
   "dragonmagicandrelics.commands.output.writeSpellToArmor.no.valid.spell.error": "You have no valid spell in your main hand.",
+  "dragonmagicandrelics.commands.output.changeDragonMageArmorTarget.no.valid.armor.error": "This command requires the target to wear full Dragon Mage Armor",
   "dragonmagicandrelics.commands.output.writeSpellToArmor.success.one": "You added the spell \"",
   "dragonmagicandrelics.commands.output.writeSpellToArmor.success.two": "\" to your armor as an ",
   "dragonmagicandrelics.commands.output.writeSpellToArmor.success.three": " spell.",

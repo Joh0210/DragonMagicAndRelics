@@ -1464,28 +1464,6 @@
       }
     ]
   },
-  "Ritual of Dispelling": {
-    "index": "0",
-    "category": "rituals",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Ritual of Dispelling"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "My spells may be powerful, but some ingredients are worth more then the spells ...\nMaybe it's time I disassemble them again!\n\nWith this ritual, I can break a spell back into its components."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/dispelling_ritual"
-      }
-    ]
-  },
   "Ritual of the Phoenix": {
     "index": "0",
     "category": "rituals",
