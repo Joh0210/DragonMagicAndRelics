@@ -11,7 +11,7 @@ public class CreativeModeTab {
     public static final net.minecraft.world.item.CreativeModeTab CreativeModeTab = new net.minecraft.world.item.CreativeModeTab("dragonmagicandrelics"){
         @Override
         public ItemStack makeIcon(){
-            return new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_CHESTPLATE.get());
+            return new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_HELMET.get());
         }
     };
 }

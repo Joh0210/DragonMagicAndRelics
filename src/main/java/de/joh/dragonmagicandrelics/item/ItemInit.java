@@ -23,7 +23,7 @@ public class ItemInit {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, DragonMagicAndRelics.MOD_ID);
 
-    public static final RegistryObject<Item> DRAGON_CORE = ITEMS.register("dragon_core", ()->new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(CreativeModeTab.CreativeModeTab)));
+    public static final RegistryObject<Item> DRAGON_CORE = ITEMS.register("dragon_core", ()->new DragonCore(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(CreativeModeTab.CreativeModeTab)));
 
     public static final RegistryObject<Item> MANA_CAKE = ITEMS.register("mana_cake", ManaCake::new);
 

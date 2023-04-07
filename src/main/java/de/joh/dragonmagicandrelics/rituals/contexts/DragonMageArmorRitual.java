@@ -64,7 +64,7 @@ public class DragonMageArmorRitual extends RitualEffect {
         HasMaxFactionEvent event = new HasMaxFactionEvent(player);
         MinecraftForge.EVENT_BUS.post(event);
 
-        if (event.hasMaxFactionArmor()){
+        if (!event.hasMaxFactionArmor()){
             return new TranslatableComponent("dragonmagicandrelics.ritual.output.dragonmagearmorritual.wrong.armor.error");
         }
         final boolean[] isLevel75 = {false};
