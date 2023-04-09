@@ -174,7 +174,7 @@ public class InitialUpgradesConfigs {
         INFERNAL_FLY = BUILDER.defineInRange("if_fly", 0, 0, 2);
         INFERNAL_HEALTH_BOOST = BUILDER.defineInRange("if_health_boost", 0, 0, 5);
         INFERNAL_JUMP = BUILDER.defineInRange("if_jump", 3, 0, 3);
-        INFERNAL_KINETIC_RESISTANCE = BUILDER.defineInRange("if_kinetic_resistance", 0, 0, 1);
+        INFERNAL_KINETIC_RESISTANCE = BUILDER.defineInRange("if_kinetic_resistance", 1, 0, 1);
         INFERNAL_MANA_BOOST = BUILDER.defineInRange("if_mana_boost", 0, 0, 5);
         INFERNAL_MANA_REGEN = BUILDER.defineInRange("if_mana_regen", 0, 0, 5);
         INFERNAL_METEOR_JUMP = BUILDER.defineInRange("if_meteor_jump", 1, 0, 1);

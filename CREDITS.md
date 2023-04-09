@@ -12,7 +12,7 @@ of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/
 ## Translations
 - Chinese translation from [Kasualix](https://github.com/Joh0210/DragonMagicAndRelics/commits?author=Kasualix)
 
-## Spell Icons
+## Icons
 The following pictures can be found [here](https://game-icons.net). 
   
 
@@ -24,6 +24,7 @@ The following pictures can be found [here](https://game-icons.net).
 | [conjurelava.png](/src/main/resources/assets/dragonmagicandrelics/textures/spell/component/conjurelava.png)                                                                                                                                                                                                                              |         Caldera icon by Lorc under CC BY 3.0         |
 | [conjurestorm.png](/src/main/resources/assets/dragonmagicandrelics/textures/spell/component/conjurestorm.png)                                                                                                                                                                                                                            |     Lightning storm icon by Lorc under CC BY 3.0     |
 | [conjurewater.png](/src/main/resources/assets/dragonmagicandrelics/textures/spell/component/conjurewater.png)                                                                                                                                                                                                                            |       Water drop icon by sbed under CC BY 3.0        |
+| [elytra.png](src/main/resources/assets/dragonmagicandrelics/textures/mob_effect/elytra.png)                                                                                                                                                                                                                                              |        Bat wing icon by Lorc under CC BY 3.0         |
 | [fly_disabled.png](src/main/resources/assets/dragonmagicandrelics/textures/mob_effect/fly_disabled.png)                                                                                                                                                                                                                                  |        Bat wing icon by Lorc under CC BY 3.0         |
 | [mark.png](/src/main/resources/assets/dragonmagicandrelics/textures/spell/component/mark.png)                                                                                                                                                                                                                                            |       Cross mark icon by Lorc under CC BY 3.0        |
 | [moonrise.png](/src/main/resources/assets/dragonmagicandrelics/textures/spell/component/moonrise.png)                                                                                                                                                                                                                                    |         Eclipse icon by Lorc under CC BY 3.0         |

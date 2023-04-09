@@ -37,15 +37,13 @@ public class ToggleFlightC2SPacket {
 
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 
-            if(chest.getItem() instanceof DragonMageArmor mmaArmor && mmaArmor.getUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString("fly"), player) >= 1){
-                if(player.hasEffect(EffectInit.FLY_DISABLED.get())){
-                    player.removeEffect(EffectInit.FLY_DISABLED.get());
-                }else{
-                    player.addEffect(new MobEffectInstance(EffectInit.FLY_DISABLED.get(), 100000, 0, false, false, true));
+            if(player.hasEffect(EffectInit.FLY_DISABLED.get())){
+                player.removeEffect(EffectInit.FLY_DISABLED.get());
+            }else{
+                player.addEffect(new MobEffectInstance(EffectInit.FLY_DISABLED.get(), 100000, 0, false, false, true));
 
-                    ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
-                    ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
-                }
+                ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
+                ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
             }
         });
         return true;
