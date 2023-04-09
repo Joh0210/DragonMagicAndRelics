@@ -16,17 +16,18 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 <br>Another way to maximize the potential of the Dragon Mage Armor is to fuse it with your spells!
 
 ### New Items
-- Dragon Mage Armor with Upgrade Glyphs
+- Brimstone Chalk
+- Dragon Core
+- **Dragon Mage Armor with Upgrade Glyphs**
 - Faction Amulet
 - Mana Cake
 
 ### New Blocks
-- Rift Emitter
+- Rift Emitter 
 
 ### New Rituals
 - Fusion Ritual
 - Ritual of Betrayal
-- Ritual of Dispelling
 - Ritual of the Dragon Mage Armor
 - Ritual of the Phoenix
 - Ritual of Upgrade Tier I

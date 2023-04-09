@@ -251,6 +251,28 @@
     ]
   },
 
+  "Brimstone Chalk": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Brimstone Chalk"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "If I have too many Brimstone Charms and my broken chalk is bothering me, I might try the indestructible Brimstone Chalk."
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dragonmagicandrelics:manaweaving/brimstone_chalk"
+      }
+    ]
+  },
   "Rift Emitter": {
     "index": 1,
     "category": "artifice",
