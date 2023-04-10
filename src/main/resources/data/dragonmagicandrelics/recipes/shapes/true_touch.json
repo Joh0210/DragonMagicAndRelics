@@ -1,0 +1,21 @@
+{
+	"type": "mna:shape",
+	"output": "dragonmagicandrelics:shapes/true_touch",
+	"tier": 2,
+	"items":
+	[
+		"mna:aum",
+		"armor_stand",
+		"mna:vinteum_dust",
+		"mna:infused_silk",
+		"feather",
+		"clay"
+	],
+	"patterns":
+	[
+		"mna:manaweave_patterns/circle",
+		"mna:manaweave_patterns/triangle",
+		"mna:manaweave_patterns/square",
+		"mna:manaweave_patterns/circle"
+	]
+}

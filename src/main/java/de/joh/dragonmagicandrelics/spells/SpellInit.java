@@ -6,6 +6,7 @@ import com.mna.api.spells.parts.SpellEffect;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.spells.components.*;
 import de.joh.dragonmagicandrelics.spells.shapes.ShapeAtMark;
+import de.joh.dragonmagicandrelics.spells.shapes.ShapeTrueTouch;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -19,6 +20,7 @@ import net.minecraftforge.fml.common.Mod;
 public class SpellInit {
 
     public static Shape ATMARK;
+    public static Shape TRUE_TOUCH;
 
     public static SpellEffect ALTERNATIVERECALL;
     public static SpellEffect SUNRISE;
@@ -34,6 +36,7 @@ public class SpellInit {
     @SubscribeEvent
     public static void registerShapes(final RegistryEvent.Register<Shape> event) {
         event.getRegistry().register(SpellInit.ATMARK);
+        event.getRegistry().register(SpellInit.TRUE_TOUCH);
     }
 
     @SubscribeEvent
@@ -52,6 +55,7 @@ public class SpellInit {
 
     static {
         SpellInit.ATMARK = new ShapeAtMark(RLoc.create("shapes/atmark"), RLoc.create("textures/spell/shape/atmark.png"));
+        SpellInit.TRUE_TOUCH = new ShapeTrueTouch(RLoc.create("shapes/true_touch"), RLoc.create("textures/spell/shape/true_touch.png"));
 
         SpellInit.SUNRISE = new ComponentSunrise(RLoc.create("components/sunrise"), RLoc.create("textures/spell/component/sunrise.png"));
         SpellInit.MOONRISE = new ComponentMoonrise(RLoc.create("components/moonrise"), RLoc.create("textures/spell/component/moonrise.png"));

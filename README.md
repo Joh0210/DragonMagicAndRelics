@@ -48,6 +48,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Nightfall
 - Saturate (Fey only)
 - Sunrise
+- True Touch (Shape)
 
 ### Commands
 - ```/dragonmagicandrelics addSpellToArmor <offensive/defensive>```: Adds the spell in your main hand to your Dragon Mage Armor. (cf. Fusion Ritual)

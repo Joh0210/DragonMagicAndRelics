@@ -23,6 +23,26 @@
       }
     ]
   },
+  "Shape: True Touch": {
+    "index": "1",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Shape: True Touch"
+      },
+      {
+        "type": "text",
+        "value": "Against some opponents it is better to stand in pairs.\n\nThis shape allows me to boost my allies and myself with my magic alike. When I'm sneaking, the spell targets the person (or block) I'm hitting. Otherwise, I'll target me."
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dragonmagicandrelics:shapes/true_touch"
+      }
+    ]
+  },
 
   "Component: Nightfall": {
     "index": "2",
@@ -270,6 +290,28 @@
       {
         "type": "manaweaving_altar",
         "location": "dragonmagicandrelics:manaweaving/brimstone_chalk"
+      }
+    ]
+  },
+  "Voidfeather Charm": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Voidfeather Charm"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "This charm brings me back to my bed if I fall into the endless nothingness of the void."
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dragonmagicandrelics:manaweaving/voidfeather_charm"
       }
     ]
   },

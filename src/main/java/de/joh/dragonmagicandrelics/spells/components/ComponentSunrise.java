@@ -51,11 +51,11 @@ public class ComponentSunrise extends SpellEffect {
     }
 
     public float initialComplexity() {
-        return 250.0f;
+        return 75.0f;
     }
 
     public int requiredXPForRote() {
-        return 100;
+        return 150;
     }
 
 
