@@ -1,0 +1,18 @@
+{
+	"type": "mna:manaweaving-recipe",
+	"output": "dragonmagicandrelics:voidfeather_charm",
+	"tier": 2,
+	"items": [
+		"minecraft:blaze_rod",
+		"minecraft:ender_pearl",
+		"minecraft:feather",
+		"mna:infused_silk",
+		"minecraft:black_dye",		
+		"mna:purified_vinteum_dust"
+	],
+	"patterns": [
+		"mna:triangle",
+		"mna:square",
+		"mna:triangle"
+	]
+}

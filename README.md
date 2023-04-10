@@ -21,6 +21,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - **Dragon Mage Armor with Upgrade Glyphs**
 - Faction Amulet
 - Mana Cake
+- Voidfeather Charm
 
 ### New Blocks
 - Rift Emitter 

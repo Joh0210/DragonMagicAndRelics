@@ -15,11 +15,14 @@ import com.mna.config.GeneralModConfig;
 import com.mna.effects.EffectInit;
 import com.mna.entities.sorcery.EntityDecoy;
 import com.mna.entities.utility.EntityPresentItem;
+import com.mna.interop.CuriosInterop;
 import com.mna.items.artifice.FactionSpecificSpellModifierRing;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
+import com.mna.tools.InventoryUtilities;
 import com.mna.tools.ProjectileHelper;
 import com.mna.tools.SummonUtils;
+import com.mna.tools.TeleportHelper;
 import de.joh.dragonmagicandrelics.Commands;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
@@ -27,8 +30,12 @@ import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeProjectileReflectio
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -41,14 +48,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.items.wrapper.InvWrapper;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.apache.commons.lang3.mutable.MutableFloat;
+import top.theillusivec4.curios.api.SlotTypePreset;
 
 import javax.annotation.Nullable;
 
@@ -104,6 +114,10 @@ public class DamageEventHandler {
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
         if(event.getEntityLiving() instanceof Player player){
+            if (checkAndConsumeVoidfeatherCharm(event, player)) {
+                return;
+            }
+
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
             if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor  && dragonMageArmor.isSetEquipped(player)) {
                 DamageSource source = event.getSource();
@@ -204,6 +218,44 @@ public class DamageEventHandler {
         if (event.getAmount() <= 0.0F) {
             event.setCanceled(true);
         }
+    }
+
+    /**
+     * @param event  LivingAttackEvent event on which the check takes place
+     * @param player Player wearing the charm
+     * @return Was the charm used and destroyed?
+     */
+    private static boolean checkAndConsumeVoidfeatherCharm(LivingAttackEvent event, Player player) {
+        if (!player.isCreative() && !player.isSpectator() && !player.level.isClientSide) {
+            ServerPlayer spe = (ServerPlayer)player;
+
+            if (event.getSource() == DamageSource.OUT_OF_WORLD && player.getHealth() - event.getAmount() <= 10) {
+                boolean consumed_charm = false;
+                if (CuriosInterop.IsItemInCurioSlot(ItemInit.VOIDFEATHER_CHARM.get(), player, SlotTypePreset.CHARM)) {
+                    consumed_charm = true;
+                    CuriosInterop.DamageCurioInSlot(ItemInit.VOIDFEATHER_CHARM.get(), player, SlotTypePreset.CHARM, 999);
+                } else if (InventoryUtilities.removeItemFromInventory(new ItemStack(ItemInit.VOIDFEATHER_CHARM.get()), true, true, new InvWrapper(player.getInventory()))) {
+                    consumed_charm = true;
+                }
+
+                if (consumed_charm) {
+                    event.setCanceled(true);
+                    player.resetFallDistance();
+                    BlockPos bedPos = spe.getRespawnPosition();
+
+                    if (bedPos == null) {
+                        bedPos = player.level.getServer().getLevel(player.level.dimension()).getSharedSpawnPos();
+                    }
+
+                    player.level.playSound(null, spe.getX(), spe.getY(), spe.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+                    TeleportHelper.teleportEntity(spe,spe.getRespawnDimension(), new Vec3((double)bedPos.getX() + 0.5, (double)bedPos.getY(), (double)bedPos.getZ() + 0.5));
+                    player.level.playSound(null, bedPos.getX(), bedPos.getY(), bedPos.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+                    player.level.broadcastEntityEvent(spe, (byte)46);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     /** Provides the souls given by a monster to an Undead upon death
