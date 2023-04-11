@@ -2,15 +2,12 @@ package de.joh.dragonmagicandrelics.utils;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -18,14 +15,6 @@ import java.util.stream.Collectors;
  * @author Joh0210
  */
 public class ModTags {
-    public static boolean isItemEqual(ItemStack stack, ResourceLocation rLoc) {
-        if (ForgeRegistries.ITEMS.containsKey(rLoc)) {
-            return ForgeRegistries.ITEMS.getValue(rLoc) == stack.getItem();
-        } else {
-            return isItemIn(stack.getItem(), rLoc);
-        }
-    }
-
     public static List<Item> getItemTagContents(ResourceLocation tagID) {
         try {
             ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(ForgeRegistries.ITEMS.tags().createTagKey(tagID));
@@ -50,16 +39,18 @@ public class ModTags {
         return new ArrayList();
     }
 
-    public static List<Item> smartLookupItem(ResourceLocation rLoc) {
-        if (rLoc == null) {
-            return new ArrayList();
-        } else {
-            return ForgeRegistries.ITEMS.containsKey(rLoc) ? Arrays.asList((Item)ForgeRegistries.ITEMS.getValue(rLoc)) : getItemTagContents(rLoc);
+    public static Block getRandomBlocks(ResourceLocation tag) {
+    //public static Block getRandomBlocks(ResourceLocation tag, ResourceLocation additionalTag) {
+        try {
+            Random random = new Random();
+            List<Block> list = getBlockTagContents(tag);
+//            if(additionalTag != null){
+//                list.addAll(getBlockTagContents(additionalTag));
+//            }
+            return list.get(random.nextInt(list.size()));
+        } catch (Exception var3) {
+            return null;
         }
-    }
-
-    public static ItemStack lookupItem(ResourceLocation rLoc) {
-        return ForgeRegistries.ITEMS.containsKey(rLoc) ? new ItemStack((ItemLike)ForgeRegistries.ITEMS.getValue(rLoc)) : ItemStack.EMPTY;
     }
 
     public static boolean isBlockIn(Block block, ResourceLocation tag) {
@@ -75,6 +66,14 @@ public class ModTags {
             return getItemTagContents(tag).contains(item);
         } catch (Exception var3) {
             return false;
+        }
+    }
+
+    public static class Blocks {
+        public static ResourceLocation TALL_FLOWERS = new ResourceLocation("minecraft","tall_flowers");
+        public static ResourceLocation MUTANDIS_PLANTS = RLoc.create("mutandis_plants");
+
+        public Blocks() {
         }
     }
 

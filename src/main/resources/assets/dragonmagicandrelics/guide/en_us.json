@@ -359,6 +359,28 @@
       }
     ]
   },
+  "Mutandis": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Mutandis"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "A mysterious powder that causes the cells of the plants to mutate. This allows plants to transform into one another.\n\nThe Wither Rose is a dead plant and cannot be created or mutated by the powder."
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dragonmagicandrelics:manaweaving/mutandis"
+      }
+    ]
+  },
   "Dragon Core": {
     "index": 1,
     "category": "artifice",

@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "#minecraft:flowers",
+    "#minecraft:saplings",
+    "minecraft:cactus",
+    "minecraft:sugar_cane",
+    "minecraft:bamboo",
+    "minecraft:vine",
+    "minecraft:glow_lichen",
+    "minecraft:lily_pad",
+    "minecraft:big_dripleaf",
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom"
+  ]
+}

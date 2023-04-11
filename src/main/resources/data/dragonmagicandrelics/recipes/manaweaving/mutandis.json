@@ -1,0 +1,18 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 1,
+  "output": "dragonmagicandrelics:mutandis",
+  "quantity": 16,
+  "items": [
+    "mna:vinteum_dust",
+    "minecraft:egg",
+    "minecraft:nether_wart",
+    "minecraft:bone_meal",
+    "mna:ma_flowers"
+  ],
+  "patterns": [
+    "mna:square",
+    "mna:triangle",
+    "mna:square"
+  ]
+}

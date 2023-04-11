@@ -7,7 +7,7 @@ of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/
 <br>The full credits can be viewed [here](/CREDITS.md). 
 
 The Codex has all the necessary information about the added elements.
-<br>The focus of this mod is for the use in modpacks to extend the late and after game of Mana and Artifice and make it on par with other high level mods. The mod can be added to modpacks. No need to ask.
+<br>The main focus of this mod is for the use in modpacks to extend the late and after game of Mana and Artifice and make it on par with other high level mods. The mod can be added to modpacks. No need to ask.
 
 ## Dragon Mage Armor
 ![The Dragon Mage Armor](/src/main/resources/the_dragon_mage_armor.png)
@@ -21,6 +21,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - **Dragon Mage Armor with Upgrade Glyphs**
 - Faction Amulet
 - Mana Cake
+- Mutandis
 - Voidfeather Charm
 
 ### New Blocks
