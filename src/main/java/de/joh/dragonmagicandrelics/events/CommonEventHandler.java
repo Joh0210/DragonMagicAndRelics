@@ -60,7 +60,10 @@ public class CommonEventHandler {
      */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onGlideTick(TickEvent.PlayerTickEvent event){
-        if(event.player.hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()) && !event.player.hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.FLY_DISABLED.get())) {
+        IPlayerMagic magic = event.player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
+        if(event.player.hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get())
+                && (event.player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier() != 1 || (magic != null && magic.getCastingResource().hasEnoughAbsolute(event.player, CommonConfigs.getElytraManaCostPerTick())))
+                && !event.player.hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.FLY_DISABLED.get())) {
             AttributeInstance attributeInstance = event.player.getAttribute(CaelusApi.getInstance().getFlightAttribute());
             if(attributeInstance != null && !attributeInstance.hasModifier(CaelusApi.getInstance().getElytraModifier()))
                 attributeInstance.addTransientModifier(CaelusApi.getInstance().getElytraModifier());
@@ -99,7 +102,7 @@ public class CommonEventHandler {
 
             if(player.isFallFlying()) {
                 IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-                if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.getElytraManaCostPerTick())) {
+                if (player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier() != 1 || (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.getElytraManaCostPerTick()))) {
                     Vec3 look = player.getLookAngle();
                     Vec3 pos;
                     float maxLength;
@@ -139,6 +142,8 @@ public class CommonEventHandler {
                             player.level.addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
                         }
                     }
+                } else {
+                    player.stopFallFlying();
                 }
             }
         }
@@ -188,7 +193,4 @@ public class CommonEventHandler {
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(PlayerSecondChance.class);
     }
-
-
-
 }

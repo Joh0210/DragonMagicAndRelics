@@ -60,21 +60,26 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     private final AnimationFactory factory = new AnimationFactory(this);
     private final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS;
     public final String TEXTURE_LOCATION;
+    public final ResourceLocation WING_TEXTURE_LOCATION;
 
     public DragonMageArmor(ArmorMaterial pMaterial, EquipmentSlot pSlot, Faction faction) {
         super(pMaterial, pSlot, new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant());
 
         if(faction == Faction.ANCIENT_WIZARDS){
             TEXTURE_LOCATION = "textures/models/armor/arch_dragon_mage_armor_texture.png";
+            WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/arch_dragon_wing.png");
             DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_arch_armor_set_bonus");
         } else if(faction == Faction.FEY_COURT){
             TEXTURE_LOCATION = "textures/models/armor/wild_dragon_mage_armor_texture.png";
+            WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/wild_dragon_wing.png");
             DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_wild_armor_set_bonus");
         } else if(faction == Faction.UNDEAD){
             TEXTURE_LOCATION = "textures/models/armor/abyssal_dragon_mage_armor_texture.png";
+            WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/abyssal_dragon_wing.png");
             DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_abyssal_armor_set_bonus");
         } else{
             TEXTURE_LOCATION = "textures/models/armor/infernal_dragon_mage_armor_texture.png";
+            WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/infernal_dragon_wing.png");
             DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_infernal_armor_set_bonus");
         }
     }
@@ -262,7 +267,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
             }
 
             IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-            if (magic != null && magic.getCastingResource().hasEnoughAbsolute(entity, 0.75F)) {
+            if (magic != null && magic.getCastingResource().hasEnoughAbsolute(entity, CommonConfigs.getElytraManaCostPerTick())) {
                 Vec3 look = entity.getLookAngle();
                 Vec3 pos;
                 float maxLength;

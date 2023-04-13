@@ -22,11 +22,6 @@ public class EffectElytra extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
-
-    }
-
-    @Override
     public void removeAttributeModifiers(LivingEntity living, AttributeMap attributemods, int p_111187_3_) {
         super.removeAttributeModifiers(living, attributemods, p_111187_3_);
         if (living instanceof ServerPlayer) {

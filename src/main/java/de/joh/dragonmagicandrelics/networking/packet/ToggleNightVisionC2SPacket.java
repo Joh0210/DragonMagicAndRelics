@@ -32,7 +32,6 @@ public class ToggleNightVisionC2SPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(()->{
             ServerPlayer player = context.getSender();
-            ServerLevel level = player.getLevel();
 
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 

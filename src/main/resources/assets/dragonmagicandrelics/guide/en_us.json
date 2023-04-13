@@ -337,6 +337,32 @@
       }
     ]
   },
+  "Angel Ring": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Angel Ring"
+      },
+      {
+        "type": "text",
+        "json": {
+          "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\n\nWith this amulet I can fly through the air like one of her angels without having to take off my armor.\n\nThe Fallen version doesn't even consume my mana."
+        }
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dragonmagicandrelics:manaweaving/angel_ring"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dragonmagicandrelics:manaweaving/fallen_angel_ring"
+      }
+    ]
+  },
   "Mana Cake": {
     "index": 1,
     "category": "artifice",

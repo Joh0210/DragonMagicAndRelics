@@ -58,6 +58,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.apache.commons.lang3.mutable.MutableFloat;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
 import javax.annotation.Nullable;
@@ -110,6 +111,7 @@ public class DamageEventHandler {
     /**
      * Processing of the projectile reflection, fire resistance, explosion resistance and kinetic resistance upgrades resistance through jumpboost.
      * @see ArmorUpgradeInit
+     * @see de.joh.dragonmagicandrelics.item.items.AngelRing
      */
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
@@ -117,11 +119,9 @@ public class DamageEventHandler {
             if (checkAndConsumeVoidfeatherCharm(event, player)) {
                 return;
             }
-
+            DamageSource source = event.getSource();
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
             if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor  && dragonMageArmor.isSetEquipped(player)) {
-                DamageSource source = event.getSource();
-
                 //protection against fire
                 if (source.isFire() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 1) {
 
@@ -164,6 +164,12 @@ public class DamageEventHandler {
                     return;
                 }
             }
+
+            //Protection from kinetic energy
+            if((source == DamageSource.FALL || source == DamageSource.FLY_INTO_WALL) && (CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.ANGEL_RING.get(), player).isPresent() || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.FALLEN_ANGEL_RING.get(), player).isPresent()            )){
+                event.setCanceled(true);
+                return;
+            }
         }
     }
 
@@ -196,7 +202,7 @@ public class DamageEventHandler {
         //Receiving Souls through Mana Reagen for Undeads
         LivingEntity living = event.getEntityLiving();
         Entity source = event.getSource().getEntity();
-        if (source != null && source instanceof LivingEntity && source != event.getEntity() && source instanceof Player sourcePlayer) {
+        if (source instanceof LivingEntity && source != event.getEntity() && source instanceof Player sourcePlayer) {
             sourcePlayer.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
                 if (p.getAlliedFaction() == Faction.UNDEAD) {
                     ItemStack chest = sourcePlayer.getItemBySlot(EquipmentSlot.CHEST);

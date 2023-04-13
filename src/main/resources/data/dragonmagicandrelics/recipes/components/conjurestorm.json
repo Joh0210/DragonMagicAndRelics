@@ -5,9 +5,10 @@
   "items": [
     "mna:greater_mote_water",
     "mna:wakebloom",
-    "mna:stone_rune_red",
+    "mna:stone_rune_blue",
     "mna:living_flame",
-    "minecraft:trident"
+    "minecraft:prismarine_shard",
+    "minecraft:lightning_rod"
   ],
   "patterns": [
     "mna:manaweave_patterns/circle",
