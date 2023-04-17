@@ -1,8 +1,10 @@
 package de.joh.dragonmagicandrelics.events;
 
+import com.mna.api.ManaAndArtificeMod;
 import com.mna.api.capabilities.Faction;
 import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.entities.IFactionEnemy;
+import com.mna.api.items.ChargeableItem;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
@@ -10,6 +12,7 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.api.timing.DelayedEventQueue;
 import com.mna.api.timing.TimedDelayedSpellEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
+import com.mna.capabilities.playerdata.progression.PlayerProgression;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.config.GeneralModConfig;
 import com.mna.effects.EffectInit;
@@ -17,6 +20,7 @@ import com.mna.entities.sorcery.EntityDecoy;
 import com.mna.entities.utility.EntityPresentItem;
 import com.mna.interop.CuriosInterop;
 import com.mna.items.artifice.FactionSpecificSpellModifierRing;
+import com.mna.items.artifice.curio.ItemEmberglowBracelet;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
 import com.mna.tools.InventoryUtilities;
@@ -49,10 +53,7 @@ import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDamageEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.wrapper.InvWrapper;
@@ -62,6 +63,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
 import javax.annotation.Nullable;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * These event handlers take care of processing damage events.
@@ -75,6 +77,7 @@ public class DamageEventHandler {
      * Casts a spell on the player or the source when the wearer of the Dragon Mage Armor takes damage.
      * @see ArmorUpgradeInit
      * @see Commands
+     * @see de.joh.dragonmagicandrelics.item.items.FactionAmulet
      * @see de.joh.dragonmagicandrelics.rituals.contexts.FusionRitual
      */
     @SubscribeEvent
@@ -86,7 +89,7 @@ public class DamageEventHandler {
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 
             //Spell
-            if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
+            if(!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
                 applySpell(false, player, source, chest);
                 if(source != null && source != player){
                     applySpell(true, player, source, chest);
@@ -99,11 +102,47 @@ public class DamageEventHandler {
             }
         }
 
+        AtomicReference<Faction> faction = new AtomicReference<>(Faction.NONE);
+        if(living instanceof Player player){
+            player.getCapability(ManaAndArtificeMod.getProgressionCapability()).ifPresent((p)-> {
+                faction.set(p.getAlliedFaction());
+            });
+        }
+
+        if((living instanceof IFactionEnemy || faction.get() != Faction.NONE) && source instanceof LivingEntity && ((LivingEntity)source).hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get())){
+            ((LivingEntity)source).removeEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get());
+            ((LivingEntity)source).addEffect(new MobEffectInstance((de.joh.dragonmagicandrelics.effects.EffectInit.BROKEN_PEACE_EFFECT.get()), 12000));
+            if(source instanceof Player){
+                source.getLevel().playSound(null, source.getX(), source.getY(), source.getZ(), SoundEvents.RAID_HORN, SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
+            }
+
+        }
+
         //Damage Boost
         if (source instanceof Player player){
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
             if(chest.getItem() instanceof DragonMageArmor mmaArmor) {
                 event.setAmount(event.getAmount() * (1.0f + (float)mmaArmor.getUpgradeLevel(ArmorUpgradeInit.DAMAGE_BOOST, player)*0.25f));
+            }
+        }
+    }
+
+    /**
+     * @see de.joh.dragonmagicandrelics.item.items.FactionAmulet
+     */
+    @SubscribeEvent
+    public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
+        if(event.getEntityLiving() instanceof IFactionEnemy){
+            if(event.getNewTarget() == null){
+                return;
+            }
+
+            if(event.getNewTarget().hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get())){
+                event.setNewTarget(null);
+            } else if(!event.getNewTarget().hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.BROKEN_PEACE_EFFECT.get())
+                    && ((ChargeableItem)(ItemInit.FACTION_AMULET.get())).isEquippedAndHasMana(event.getNewTarget(), 50.0F, true)){
+                event.getNewTarget().addEffect(new MobEffectInstance((de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get()), 600));
+                event.setNewTarget(null);
             }
         }
     }

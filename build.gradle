@@ -24,7 +24,7 @@ configurations {
 }
 
 group = 'de.joh'
-version = '1.18.2-1.1.15'
+version = '1.18.2-1.1.17'
 
 java {
     archivesBaseName = 'dragonmagicandrelics'
@@ -122,7 +122,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.1.76'
+    minecraft 'net.minecraftforge:forge:1.18.2-40.1.84'
 
     shade fg.deobf("com.github.LlamaLad7:MixinExtras:0.0.12")
     library fg.deobf("com.github.LlamaLad7:MixinExtras:0.0.12")

@@ -15,6 +15,8 @@ import net.minecraftforge.common.extensions.IForgeItem;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
+import javax.annotation.Nullable;
+
 /**
  * This item allows a player to fly in creative mode or use the Elytra Fly.
  * The version for the undead does not consume any mana.
@@ -72,7 +74,7 @@ public class AngelRing extends TieredItem implements IForgeItem, ICurioItem, IFa
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean isFoil(ItemStack itemStack){
+    public boolean isFoil(@Nullable ItemStack itemStack){
         return true;
     }
 }

@@ -84,6 +84,8 @@
 
   "effect.dragonmagicandrelics.ultimate_armor": "Ultimate Armor",
   "effect.dragonmagicandrelics.fly_disabled": "Disabled DM&R Fly",
+  "effect.dragonmagicandrelics.peace": "Peace",
+  "effect.dragonmagicandrelics.broken_peace": "Broken Peace",
   "effect.dragonmagicandrelics.elytra": "Angel Fly",
 
   "dragonmagicandrelics.commands.output.writeSpellToArmor.no.armor.equipped.error": "You must be wearing full set of Dragon Mage Armor for the command to work.",
