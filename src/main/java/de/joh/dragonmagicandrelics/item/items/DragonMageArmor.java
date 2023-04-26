@@ -3,7 +3,6 @@ package de.joh.dragonmagicandrelics.item.items;
 import com.mna.ManaAndArtifice;
 import com.mna.api.capabilities.Faction;
 import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.api.items.IFactionSpecific;
 import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
@@ -56,7 +55,7 @@ import java.util.function.Consumer;
  * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
  * @author Joh0210
  */
-public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem, IFactionSpecific {
+public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem {
     private final AnimationFactory factory = new AnimationFactory(this);
     private final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS;
     public final String TEXTURE_LOCATION;
@@ -104,7 +103,6 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                 upgrade.applySetBonus(player, getUpgradeLevel(upgrade, player));
             }
 
-            this.usedByPlayer(player);
             IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
 
             //Armor Upgrades: On Armor Tick
@@ -262,10 +260,6 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
         } else if(getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) == 1){
             return true;
         } else {
-            if (flightTicks % 100 == 0) {
-                this.usedByPlayer((Player)entity);
-            }
-
             IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
             if (magic != null && magic.getCastingResource().hasEnoughAbsolute(entity, CommonConfigs.getElytraManaCostPerTick())) {
                 Vec3 look = entity.getLookAngle();

@@ -32,7 +32,7 @@ public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnArmorTick {
 
     @Override
     public void onArmorTick(Level world, Player player, int level, IPlayerMagic magic) {
-        if (!player.isOnGround() && player.getDeltaMovement().y < 0.0D && player.isCrouching() && magic.getCastingResource().hasEnough(player, CommonConfigs.METEOR_JUMP_MANA_COST.get()) && !player.getPersistentData().contains("dmnr_meteor_jumping") && player.isSprinting()) {
+        if (level > 0 && !player.isOnGround() && player.getDeltaMovement().y < 0.0D && !player.isFallFlying() && player.isCrouching() && magic.getCastingResource().hasEnough(player, CommonConfigs.METEOR_JUMP_MANA_COST.get()) && !player.getPersistentData().contains("dmnr_meteor_jumping") && player.isSprinting()) {
             int heightAboveGround = 0;
             for(BlockPos pos = player.blockPosition(); player.level.isEmptyBlock(pos) && heightAboveGround < reqHeight; ++heightAboveGround) {
                 pos = pos.below();

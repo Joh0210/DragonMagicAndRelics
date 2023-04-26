@@ -16,10 +16,12 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 <br>Another way to maximize the potential of the Dragon Mage Armor is to fuse it with your spells!
 
 ### New Items
+- Angel Ring (Fey only)
 - Brimstone Chalk
 - Dragon Core
 - **Dragon Mage Armor with Upgrade Glyphs**
 - Faction Amulet
+- Fallen Angel Ring (Undead only)
 - Mana Cake
 - Mutandis
 - Voidfeather Charm
