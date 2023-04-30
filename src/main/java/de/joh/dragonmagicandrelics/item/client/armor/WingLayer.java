@@ -3,6 +3,7 @@ package de.joh.dragonmagicandrelics.item.client.armor;
 import com.mna.api.capabilities.Faction;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.AngelRing;
@@ -36,7 +37,7 @@ public class WingLayer<T extends LivingEntity, M extends EntityModel<T>> extends
 
     public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         ItemStack chest = entity.getItemBySlot(EquipmentSlot.CHEST);
-        if (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor dmArmor && dmArmor.getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) >= 1) {
+        if (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor dmArmor && chest.hasTag() && chest.getTag().getBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra")) {
             matrixStackIn.pushPose();
             matrixStackIn.translate(0.0D, 0.0D, 0.125D);
             this.getParentModel().copyPropertiesTo(this.modelElytra);

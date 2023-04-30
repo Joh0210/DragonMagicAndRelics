@@ -16,14 +16,17 @@ import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -192,5 +195,24 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(PlayerSecondChance.class);
+    }
+
+    /**
+     * Makes Cosmetic Armor Reworked with the Elytra Compatibility:
+     * --> Elytra were previously not displayed if you didn't have the armor fully visible
+     * @see DragonMageArmor
+     * @see net.minecraft.client.renderer.entity.layers.ElytraLayer
+     */
+    @SubscribeEvent
+    public static void onLivingEquipmentChange(LivingEquipmentChangeEvent event){
+        if(event.getEntity() instanceof LivingEntity){
+            Item toItem = event.getTo().getItem();
+
+            if(toItem instanceof DragonMageArmor && ((DragonMageArmor)toItem).getSlot() == EquipmentSlot.CHEST){
+                if(event.getTo().hasTag() && event.getTo().getTag().getBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra")){
+                    event.getTo().getTag().remove(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra");
+                }
+            }
+        }
     }
 }

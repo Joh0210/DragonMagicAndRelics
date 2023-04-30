@@ -17,7 +17,7 @@ public class ArmorUpgradeManaRegeneration extends IArmorUpgradeOnFullyEquipped {
     }
 
     @Override
-    public void applySetBonus(Player player, int level) {
+    public void onArmorTick(Player player, int level) {
         player.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
             if (p.getAlliedFaction() != Faction.UNDEAD) {
                 player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().addRegenerationModifier("mma_magic_set_bonus", -0.1F * (float)level));
