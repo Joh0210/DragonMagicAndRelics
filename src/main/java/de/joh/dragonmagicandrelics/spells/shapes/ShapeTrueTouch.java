@@ -23,7 +23,7 @@ public class ShapeTrueTouch extends ShapeRaytrace {
     }
 
     public List<SpellTarget> Target(SpellSource source, Level world, IModifiedSpellPart<Shape> modificationData, ISpellDefinition recipe) {
-        if (source.getCaster() != null && !source.getCaster().isShiftKeyDown()){
+        if (source.getCaster() != null && source.getCaster().isShiftKeyDown()){
             return Arrays.asList(new SpellTarget(source.getCaster()));
         }
 

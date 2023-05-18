@@ -12,7 +12,6 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.api.timing.DelayedEventQueue;
 import com.mna.api.timing.TimedDelayedSpellEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import com.mna.capabilities.playerdata.progression.PlayerProgression;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.config.GeneralModConfig;
 import com.mna.effects.EffectInit;
@@ -20,7 +19,6 @@ import com.mna.entities.sorcery.EntityDecoy;
 import com.mna.entities.utility.EntityPresentItem;
 import com.mna.interop.CuriosInterop;
 import com.mna.items.artifice.FactionSpecificSpellModifierRing;
-import com.mna.items.artifice.curio.ItemEmberglowBracelet;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
 import com.mna.tools.InventoryUtilities;
@@ -183,7 +181,7 @@ public class DamageEventHandler {
                 }
 
                 //Protection from falling through jumpboost
-                if(source == DamageSource.FALL && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
+                if(source.isFall() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
                     if((event.getAmount() - dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3) <= 0){
                         event.setCanceled(true);
                         return;
@@ -191,7 +189,7 @@ public class DamageEventHandler {
                 }
 
                 //Protection from kinetic energy
-                if((source == DamageSource.FALL || source == DamageSource.FLY_INTO_WALL) && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.KINETIC_RESISTANCE, player) == 1){
+                if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.KINETIC_RESISTANCE, player) == 1){
                     event.setCanceled(true);
                     return;
                 }
@@ -205,7 +203,7 @@ public class DamageEventHandler {
             }
 
             //Protection from kinetic energy
-            if((source == DamageSource.FALL || source == DamageSource.FLY_INTO_WALL) && (CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.ANGEL_RING.get(), player).isPresent() || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.FALLEN_ANGEL_RING.get(), player).isPresent()            )){
+            if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && (CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.ANGEL_RING.get(), player).isPresent() || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.FALLEN_ANGEL_RING.get(), player).isPresent()            )){
                 event.setCanceled(true);
                 return;
             }
@@ -223,7 +221,7 @@ public class DamageEventHandler {
             if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor) {
 
                 //Protection from falling through jumpboost
-                if(event.getSource() == DamageSource.FALL && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
+                if(event.getSource().isFall() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
                     int amount = (int)event.getAmount() - ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3;
                     if(amount > 0){
                         event.setAmount(amount);
