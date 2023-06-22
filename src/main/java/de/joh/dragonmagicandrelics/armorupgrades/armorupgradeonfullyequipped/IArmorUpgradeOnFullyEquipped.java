@@ -23,7 +23,7 @@ public abstract class IArmorUpgradeOnFullyEquipped extends ArmorUpgrade {
      * @param player Wearer of the Dragon Mage Armor. Player exclusive, no other entities.
      * @param level The level of the installed upgrade.
      */
-    public abstract void applySetBonus(Player player, int level);
+    public abstract void onArmorTick(Player player, int level);
 
     /**
      * This feature removes the permanent effect from the player when the wearer unequips at least one piece of armor.

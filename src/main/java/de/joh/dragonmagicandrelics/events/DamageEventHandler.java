@@ -182,7 +182,7 @@ public class DamageEventHandler {
                 }
 
                 //Protection from falling through jumpboost
-                if(source == DamageSource.FALL && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
+                if(source.isFall() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
                     if((event.getAmount() - dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3) <= 0){
                         event.setCanceled(true);
                         return;
@@ -222,7 +222,7 @@ public class DamageEventHandler {
             if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor) {
 
                 //Protection from falling through jumpboost
-                if(event.getSource() == DamageSource.FALL && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
+                if(event.getSource().isFall() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
                     int amount = (int)event.getAmount() - ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3;
                     if(amount > 0){
                         event.setAmount(amount);

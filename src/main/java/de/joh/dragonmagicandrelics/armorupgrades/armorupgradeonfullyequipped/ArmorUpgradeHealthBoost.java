@@ -4,14 +4,9 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
-//todo
 /**
  * If upgrades of this type are installed, the player receives a certain number of additional HP.
  * Function and constructor are initialized versions of parent class function/constructor.
- * However, there is currently an error:
- * When you log in to the world again, the additional HP is no longer available.
- * You have to take your armor off and on again to get your life back.
- * The error is fixed at times, but the effect has been swapped out as a potion effect for the time being.
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
@@ -27,7 +22,7 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnFullyEquipped {
     }
 
     @Override
-    public void applySetBonus(Player player, int level) {
+    public void onArmorTick(Player player, int level) {
         if (!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(healthBoost1) && level >= 1){
             player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(healthBoost1);
 

@@ -16,7 +16,7 @@ public class ArmorUpgradeManaBoost  extends IArmorUpgradeOnFullyEquipped {
     public static int MANA_PER_MANABOOST = 200;
 
     @Override
-    public void applySetBonus(Player player, int level) {
+    public void onArmorTick(Player player, int level) {
         player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().addModifier("mma_magic_set_bonus", MANA_PER_MANABOOST * level));
     }
 

@@ -103,7 +103,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     public void onArmorTick(ItemStack stack, Level world, Player player) {
         if(slot == EquipmentSlot.CHEST && isSetEquipped(player)){
             for(IArmorUpgradeOnFullyEquipped upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_FULLY_EQUIPPED){
-                upgrade.applySetBonus(player, getUpgradeLevel(upgrade, player));
+                upgrade.onArmorTick(player, getUpgradeLevel(upgrade, player));
             }
 
             IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
@@ -146,8 +146,32 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                 upgrade.removeSetBonus(player);
             }
 
+            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+            if(chest.getItem() instanceof DragonMageArmor){
+                if(chest.hasTag() && chest.getTag().getBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra")){
+                    chest.getTag().remove(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra");
+                }
+            }
+
             ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
             ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
+        }
+    }
+
+
+
+    @Override
+    public void applySetBonus(LivingEntity living, EquipmentSlot... setSlots) {
+        if (living instanceof Player player) {
+            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+            if(chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString("elytra"), player) > 0){
+                if(chest.hasTag() && !chest.getTag().getBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra")){
+                    chest.getTag().remove(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra");
+                }
+                CompoundTag nbtData = new CompoundTag();
+                nbtData.putBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra", true);
+                chest.getTag().merge(nbtData);
+            }
         }
     }
 
@@ -249,7 +273,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
      */
     @Override
     public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-        return (getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) > 0)  && !entity.hasEffect(EffectInit.FLY_DISABLED.get()) && !entity.isInWaterOrBubble() && !entity.isInLava() && this.isSetEquipped(entity) && entity.getCapability(PlayerMagicProvider.MAGIC).isPresent() && entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null).getCastingResource().hasEnoughAbsolute(entity, CommonConfigs.getElytraManaCostPerTick());
+        return (getUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString("elytra"), entity) > 0)  && !entity.hasEffect(EffectInit.FLY_DISABLED.get()) && !entity.isInWaterOrBubble() && !entity.isInLava() && this.isSetEquipped(entity) && entity.getCapability(PlayerMagicProvider.MAGIC).isPresent() && entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null).getCastingResource().hasEnoughAbsolute(entity, CommonConfigs.getElytraManaCostPerTick());
     }
 
     /**
@@ -260,7 +284,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
         if (!(entity instanceof Player)) {
             return false;
-        } else if(getUpgradeLevel(ArmorUpgradeInit.ELYTRA, entity) == 1){
+        } else if(getUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString("elytra"), entity) == 1){
             return true;
         } else {
             IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
