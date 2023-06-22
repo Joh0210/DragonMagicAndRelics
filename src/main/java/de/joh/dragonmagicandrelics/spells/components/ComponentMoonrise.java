@@ -10,9 +10,10 @@ import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.entities.EntityInit;
-import com.mna.entities.rituals.EntityTimeChangeBall;
+import com.mna.entities.rituals.TimeChangeBall;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.MobSpawnType;
 
@@ -32,9 +33,9 @@ public class ComponentMoonrise extends SpellEffect {
 
             BlockPos blockPos = (target.isBlock()) ? (new BlockPos(target.getBlock().getX(), (target.getBlock().getY() + 3), target.getBlock().getZ())) : (new BlockPos(target.getEntity().getOnPos().getX(), (target.getEntity().getOnPos().getY() + 3), target.getEntity().getOnPos().getZ()));
 
-            Entity auroraBall = EntityInit.STARBALL_ENTITY.get().spawn(context.getWorld(), null, null, blockPos, MobSpawnType.TRIGGERED, true, false);
-            if (auroraBall != null && auroraBall instanceof EntityTimeChangeBall) {
-                ((EntityTimeChangeBall) auroraBall).setTimeChangeType(EntityTimeChangeBall.TIME_CHANGE_NIGHT);
+            Entity auroraBall = EntityInit.STARBALL_ENTITY.get().spawn((ServerLevel)context.getWorld(), null, null, blockPos, MobSpawnType.TRIGGERED, true, false);
+            if (auroraBall != null && auroraBall instanceof TimeChangeBall) {
+                ((TimeChangeBall) auroraBall).setTimeChangeType(TimeChangeBall.TIME_CHANGE_NIGHT);
                 return ComponentApplicationResult.SUCCESS;
             }
         }

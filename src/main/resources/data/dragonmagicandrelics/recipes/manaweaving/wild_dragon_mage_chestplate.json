@@ -3,7 +3,7 @@
   "tier": 5,
   "output": "dragonmagicandrelics:wild_dragon_mage_chestplate",
   "quantity": 1,
-  "requiredFaction": "FEY_COURT",
+  "requiredFaction": "mna:fey",
   "items": [
     "minecraft:netherite_chestplate",
     "minecraft:nether_star",

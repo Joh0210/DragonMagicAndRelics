@@ -1,6 +1,5 @@
 package de.joh.dragonmagicandrelics.rituals.contexts;
 
-import com.mna.api.capabilities.Faction;
 import com.mna.api.rituals.IRitualContext;
 import com.mna.api.rituals.RitualEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
@@ -28,11 +27,11 @@ public class BetrayalRitual extends RitualEffect {
 
         caster.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
             p.setFactionStanding(0);
-            p.setAlliedFaction(Faction.NONE, caster);
+            p.setAlliedFaction(null, caster);
             p.setTier(2, caster);
         });
 
-        caster.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.setMagicLevel(29));
+        caster.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.setMagicLevel(caster,29));
 
         LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(context.getWorld());
         lightningboltentity.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);

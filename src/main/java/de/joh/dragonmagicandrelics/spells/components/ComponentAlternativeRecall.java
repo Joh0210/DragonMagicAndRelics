@@ -1,7 +1,7 @@
 package de.joh.dragonmagicandrelics.spells.components;
 
 import com.mna.api.affinity.Affinity;
-import com.mna.api.capabilities.Faction;
+import com.mna.api.faction.IFaction;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.SpellPartTags;
 import com.mna.api.spells.attributes.Attribute;
@@ -11,6 +11,7 @@ import com.mna.api.spells.parts.SpellEffect;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
+import com.mna.factions.Factions;
 import com.mna.tools.TeleportHelper;
 import de.joh.dragonmagicandrelics.utils.MarkSave;
 import net.minecraft.Util;
@@ -74,8 +75,8 @@ public class ComponentAlternativeRecall extends SpellEffect {
     }
 
     @Override
-    public Faction getFactionRequirement() {
-        return Faction.ANCIENT_WIZARDS;
+    public IFaction getFactionRequirement() {
+        return Factions.COUNCIL;
     }
 
     public float initialComplexity() {

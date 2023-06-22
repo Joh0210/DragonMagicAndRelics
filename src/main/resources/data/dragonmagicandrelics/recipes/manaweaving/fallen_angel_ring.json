@@ -2,7 +2,7 @@
   "type": "mna:manaweaving-recipe",
   "tier": 5,
   "output": "dragonmagicandrelics:fallen_angel_ring",
-  "requiredFaction": "UNDEAD",
+  "requiredFaction": "mna:undead",
   "quantity": 1,
   "items": [
     "dragonmagicandrelics:dragon_core",

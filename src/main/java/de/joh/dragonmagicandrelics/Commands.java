@@ -1,6 +1,7 @@
 package de.joh.dragonmagicandrelics;
 
-import com.mna.api.capabilities.Faction;
+import com.mna.api.faction.IFaction;
+import com.mna.factions.Factions;
 import com.mna.spells.crafting.SpellRecipe;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -42,19 +43,22 @@ public class Commands {
 
     private ArgumentBuilder<CommandSourceStack, ?> changeDragonMageArmor() {
         return ((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal("changeDragonMageArmor")
-                .then(changeDragonMageArmorTarget(Faction.UNDEAD)))
-                .then(changeDragonMageArmorTarget(Faction.DEMONS))
-                .then(changeDragonMageArmorTarget(Faction.ANCIENT_WIZARDS))
-                .then(changeDragonMageArmorTarget(Faction.FEY_COURT));
+                .then(changeDragonMageArmorTarget(Factions.UNDEAD)))
+                .then(changeDragonMageArmorTarget(Factions.DEMONS))
+                .then(changeDragonMageArmorTarget(Factions.COUNCIL))
+                .then(changeDragonMageArmorTarget(Factions.FEY));
     }
 
-    private ArgumentBuilder<CommandSourceStack, ?> changeDragonMageArmorTarget(Faction faction){
+    private ArgumentBuilder<CommandSourceStack, ?> changeDragonMageArmorTarget(IFaction faction){
         String factionString = "none";
-        switch (faction){
-            case DEMONS -> factionString = "demons";
-            case FEY_COURT -> factionString = "fey_court";
-            case ANCIENT_WIZARDS -> factionString = "ancient_wizards";
-            case UNDEAD -> factionString = "undead";
+        if (Factions.DEMONS.equals(faction)) {
+            factionString = "demons";
+        } else if (Factions.FEY.equals(faction)) {
+            factionString = "fey";
+        } else if (Factions.COUNCIL.equals(faction)) {
+            factionString = "council";
+        } else if (Factions.UNDEAD.equals(faction)) {
+            factionString = "undead";
         }
 
         return net.minecraft.commands.Commands.literal(factionString).then(net.minecraft.commands.Commands.argument("target", EntityArgument.player()).executes((command) -> {

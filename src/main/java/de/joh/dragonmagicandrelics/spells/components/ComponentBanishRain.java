@@ -24,7 +24,7 @@ public class ComponentBanishRain extends SpellEffect {
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
-        context.getWorld().setWeatherParameters(6000, 0, false, false);
+        ((ServerLevel)context.getWorld()).setWeatherParameters(6000, 0, false, false);
         return ComponentApplicationResult.SUCCESS;
     }
     @Override

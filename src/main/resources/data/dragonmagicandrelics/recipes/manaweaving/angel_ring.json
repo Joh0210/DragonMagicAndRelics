@@ -3,7 +3,7 @@
   "tier": 5,
   "output": "dragonmagicandrelics:angel_ring",
   "quantity": 1,
-  "requiredFaction": "FEY_COURT",
+  "requiredFaction": "mna:fey",
   "items": [
     "minecraft:nether_star",
     "minecraft:gold_block",

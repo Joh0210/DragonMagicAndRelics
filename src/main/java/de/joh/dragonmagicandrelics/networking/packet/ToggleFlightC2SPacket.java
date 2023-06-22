@@ -35,8 +35,6 @@ public class ToggleFlightC2SPacket {
         context.enqueueWork(()->{
             ServerPlayer player = context.getSender();
 
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-
             if(player.hasEffect(EffectInit.FLY_DISABLED.get())){
                 player.removeEffect(EffectInit.FLY_DISABLED.get());
             }else{

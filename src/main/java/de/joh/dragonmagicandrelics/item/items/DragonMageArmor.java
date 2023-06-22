@@ -1,11 +1,11 @@
 package de.joh.dragonmagicandrelics.item.items;
 
 import com.mna.ManaAndArtifice;
-import com.mna.api.capabilities.Faction;
 import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
+import com.mna.factions.Factions;
 import com.mna.items.armor.ISetItem;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
@@ -37,11 +37,13 @@ import net.minecraftforge.common.extensions.IForgeItem;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
+import software.bernie.geckolib3.core.builder.ILoopType;
 import software.bernie.geckolib3.core.controller.AnimationController;
 import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
 import software.bernie.geckolib3.core.manager.AnimationData;
 import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
+import software.bernie.geckolib3.util.GeckoLibUtil;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -56,23 +58,23 @@ import java.util.function.Consumer;
  * @author Joh0210
  */
 public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem {
-    private final AnimationFactory factory = new AnimationFactory(this);
+    private final AnimationFactory factory =  GeckoLibUtil.createFactory(this);
     private final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS;
     public final String TEXTURE_LOCATION;
     public final ResourceLocation WING_TEXTURE_LOCATION;
 
-    public DragonMageArmor(ArmorMaterial pMaterial, EquipmentSlot pSlot, Faction faction) {
+    public DragonMageArmor(ArmorMaterial pMaterial, EquipmentSlot pSlot, ResourceLocation faction) {
         super(pMaterial, pSlot, new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant());
 
-        if(faction == Faction.ANCIENT_WIZARDS){
+        if(faction == Factions.COUNCIL.getRegistryName()){
             TEXTURE_LOCATION = "textures/models/armor/arch_dragon_mage_armor_texture.png";
             WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/arch_dragon_wing.png");
             DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_arch_armor_set_bonus");
-        } else if(faction == Faction.FEY_COURT){
+        } else if(faction == Factions.FEY.getRegistryName()){
             TEXTURE_LOCATION = "textures/models/armor/wild_dragon_mage_armor_texture.png";
             WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/wild_dragon_wing.png");
             DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_wild_armor_set_bonus");
-        } else if(faction == Faction.UNDEAD){
+        } else if(faction == Factions.UNDEAD.getRegistryName()){
             TEXTURE_LOCATION = "textures/models/armor/abyssal_dragon_mage_armor_texture.png";
             WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/abyssal_dragon_wing.png");
             DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_abyssal_armor_set_bonus");
@@ -86,8 +88,9 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     /**
      * Depending on the faction, a different texture will be returned.
      */
-    public String getTextureLocation(){
-        return TEXTURE_LOCATION;
+    public ResourceLocation getTextureLocation(){
+//        return new ResourceLocation("minecraft:textures/entity/end_portal.png");
+        return RLoc.create(TEXTURE_LOCATION);
     }
 
     /**
@@ -329,7 +332,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     }
 
     private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", true));
+        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", ILoopType.EDefaultLoopTypes.LOOP));
         return PlayState.CONTINUE;
     }
 

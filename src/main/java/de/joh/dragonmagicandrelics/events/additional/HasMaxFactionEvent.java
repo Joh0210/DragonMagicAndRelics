@@ -1,12 +1,14 @@
 package de.joh.dragonmagicandrelics.events.additional;
 
-import com.mna.api.capabilities.Faction;
+import com.mna.Registries;
+import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
 import com.mna.items.armor.*;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
 /**
  * If the Dragon Mage Armor Ritual is to be started, the wearer must be wearing appropriate armor.
@@ -17,14 +19,14 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
  */
 public class HasMaxFactionEvent extends PlayerEvent {
     private boolean hasMaxFactionArmor;
-    private Faction targetFaction;
+    private IFaction targetFaction;
 
     public HasMaxFactionEvent(Player player) {
         super(player);
         ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
         hasMaxFactionArmor = (chest.getItem() instanceof BoneArmorItem || chest.getItem() instanceof CouncilArmorItem || chest.getItem() instanceof DemonArmorItem || chest.getItem() instanceof FeyArmorItem) && ((ISetItem) chest.getItem()).isSetEquipped(player);
         if(chest.getItem() instanceof IFactionSpecific){
-            targetFaction = ((IFactionSpecific)chest.getItem()).getFaction();
+            targetFaction = (IFaction)((IForgeRegistry) Registries.Factions.get()).getValue(((IFactionSpecific)chest.getItem()).getFaction());
         }
     }
 
@@ -33,7 +35,7 @@ public class HasMaxFactionEvent extends PlayerEvent {
      * @param hasMaxFactionArmor Is the player wearing maximum faction armor?
      * @param targetFaction Which faction does this armor belong to?
      */
-    public void setValues(boolean hasMaxFactionArmor, Faction targetFaction){
+    public void setValues(boolean hasMaxFactionArmor, IFaction targetFaction){
         this.hasMaxFactionArmor = hasMaxFactionArmor;
         this.targetFaction = targetFaction;
     }
@@ -42,7 +44,7 @@ public class HasMaxFactionEvent extends PlayerEvent {
         return hasMaxFactionArmor;
     }
 
-    public Faction getTargetFaction(){
+    public IFaction getTargetFaction(){
         return targetFaction;
     }
 }

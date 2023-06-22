@@ -2,7 +2,7 @@
   "type": "mna:manaweaving-recipe",
   "tier": 5,
   "output": "dragonmagicandrelics:abyssal_dragon_mage_chestplate",
-  "requiredFaction": "UNDEAD",
+  "requiredFaction": "mna:undead",
   "quantity": 1,
   "items": [
     "minecraft:netherite_chestplate",

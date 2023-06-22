@@ -1,6 +1,7 @@
 package de.joh.dragonmagicandrelics.events.additional;
 
-import com.mna.api.capabilities.Faction;
+import com.mna.api.faction.IFaction;
+import com.mna.factions.Factions;
 import com.mna.items.armor.*;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.config.InitialUpgradesConfigs;
@@ -23,7 +24,7 @@ import java.util.HashMap;
  */
 public class DragonUpgradeEvent extends PlayerEvent {
     private boolean canBeUpgraded;
-    private final Faction targetFaction;
+    private final IFaction targetFaction;
     private HashMap initialUpgrades;
     private final ItemStack headOld;
     private final ItemStack chestOld;
@@ -39,7 +40,7 @@ public class DragonUpgradeEvent extends PlayerEvent {
      * @param player Player who gets the armor
      * @param targetFaction Target faction you want the armor to have
      */
-    public DragonUpgradeEvent(Player player, Faction targetFaction){
+    public DragonUpgradeEvent(Player player, IFaction targetFaction){
         super(player);
         this.targetFaction = targetFaction;
 
@@ -56,41 +57,41 @@ public class DragonUpgradeEvent extends PlayerEvent {
             return;
         }
 
-        if(targetFaction == Faction.UNDEAD){
+        if(targetFaction == Factions.UNDEAD){
             headNew = new ItemStack(ItemInit.ABYSSAL_DRAGON_MAGE_HELMET.get());
             chestNew = new ItemStack(ItemInit.ABYSSAL_DRAGON_MAGE_CHESTPLATE.get());
             legsNew = new ItemStack(ItemInit.ABYSSAL_DRAGON_MAGE_LEGGING.get());
             feetNew = new ItemStack(ItemInit.ABYSSAL_DRAGON_MAGE_BOOTS.get());
         }
-        else if(targetFaction == Faction.ANCIENT_WIZARDS){
+        else if(targetFaction == Factions.COUNCIL){
             headNew = new ItemStack(ItemInit.ARCH_DRAGON_MAGE_HELMET.get());
             chestNew = new ItemStack(ItemInit.ARCH_DRAGON_MAGE_CHESTPLATE.get());
             legsNew = new ItemStack(ItemInit.ARCH_DRAGON_MAGE_LEGGING.get());
             feetNew = new ItemStack(ItemInit.ARCH_DRAGON_MAGE_BOOTS.get());
         }
-        else if(targetFaction == Faction.FEY_COURT){
+        else if(targetFaction == Factions.FEY){
             headNew = new ItemStack(ItemInit.WILD_DRAGON_MAGE_HELMET.get());
             chestNew = new ItemStack(ItemInit.WILD_DRAGON_MAGE_CHESTPLATE.get());
             legsNew = new ItemStack(ItemInit.WILD_DRAGON_MAGE_LEGGING.get());
             feetNew = new ItemStack(ItemInit.WILD_DRAGON_MAGE_BOOTS.get());
         }
-        else if (targetFaction == Faction.DEMONS){
+        else if (targetFaction == Factions.DEMONS){
             headNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_HELMET.get());
             chestNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_CHESTPLATE.get());
             legsNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_LEGGING.get());
             feetNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_BOOTS.get());
         }
 
-        if(targetFaction == Faction.UNDEAD){
+        if(targetFaction == Factions.UNDEAD){
             initialUpgrades = InitialUpgradesConfigs.getBoneInitEffects();
         }
-        else if(targetFaction == Faction.ANCIENT_WIZARDS){
+        else if(targetFaction == Factions.COUNCIL){
             initialUpgrades = InitialUpgradesConfigs.getCouncilInitEffects();
         }
-        else if(targetFaction == Faction.DEMONS){
+        else if(targetFaction == Factions.DEMONS){
             initialUpgrades = InitialUpgradesConfigs.getDemonInitEffects();
         }
-        else if(targetFaction == Faction.FEY_COURT){
+        else if(targetFaction == Factions.FEY){
             initialUpgrades = InitialUpgradesConfigs.getFeyInitEffects();
         }
 
@@ -163,7 +164,7 @@ public class DragonUpgradeEvent extends PlayerEvent {
     /**
      * @return Which faction color should have the armor
      */
-    public Faction getTargetFaction(){
+    public IFaction getTargetFaction(){
         return targetFaction;
     }
 

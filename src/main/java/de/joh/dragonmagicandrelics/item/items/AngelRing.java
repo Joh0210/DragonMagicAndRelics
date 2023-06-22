@@ -1,8 +1,8 @@
 package de.joh.dragonmagicandrelics.item.items;
 
-import com.mna.api.capabilities.Faction;
 import com.mna.api.items.IFactionSpecific;
 import com.mna.api.items.TieredItem;
+import com.mna.factions.Factions;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.resources.ResourceLocation;
@@ -23,17 +23,17 @@ import javax.annotation.Nullable;
  * @author Joh0210
  */
 public class AngelRing extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific {
-    private final Faction faction;
+    private final ResourceLocation faction;
     private final int level;
 
-    public AngelRing(Properties itemProperties, Faction faction) {
+    public AngelRing(Properties itemProperties, ResourceLocation faction) {
         super(itemProperties);
         this.faction = faction;
-        this.level = (faction == Faction.UNDEAD) ? 2 : 1;
+        this.level = (faction == Factions.UNDEAD.getRegistryName()) ? 2 : 1;
     }
 
-    public static ResourceLocation getWingTextureLocation(Faction faction){
-        if(faction == Faction.FEY_COURT) {
+    public static ResourceLocation getWingTextureLocation(ResourceLocation faction){
+        if(faction == Factions.FEY.getRegistryName()) {
             return RLoc.create("textures/models/angel_ring_wing.png");
         }
         else {
@@ -42,13 +42,13 @@ public class AngelRing extends TieredItem implements IForgeItem, ICurioItem, IFa
     }
 
     @Override
-    public Faction getFaction() {
+    public ResourceLocation getFaction() {
         return faction;
     }
 
     @Override
     public boolean makesPiglinsNeutral(SlotContext slotContext, ItemStack stack){
-        return faction == Faction.FEY_COURT;
+        return faction == Factions.FEY.getRegistryName();
     }
 
     @Override

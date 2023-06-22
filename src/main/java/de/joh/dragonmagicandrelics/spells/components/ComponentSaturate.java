@@ -1,7 +1,7 @@
 package de.joh.dragonmagicandrelics.spells.components;
 
 import com.mna.api.affinity.Affinity;
-import com.mna.api.capabilities.Faction;
+import com.mna.api.faction.IFaction;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.SpellPartTags;
 import com.mna.api.spells.attributes.AttributeValuePair;
@@ -10,6 +10,7 @@ import com.mna.api.spells.parts.SpellEffect;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
+import com.mna.factions.Factions;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 
@@ -45,8 +46,8 @@ public class ComponentSaturate extends SpellEffect {
     }
 
     @Override
-    public Faction getFactionRequirement() {
-        return Faction.FEY_COURT;
+    public IFaction getFactionRequirement() {
+        return Factions.FEY;
     }
 
     public float initialComplexity() {

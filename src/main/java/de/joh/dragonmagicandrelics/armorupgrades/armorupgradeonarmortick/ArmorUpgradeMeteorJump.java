@@ -67,7 +67,8 @@ public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnArmorTick {
             player.getPersistentData().remove("dmnr_meteor_jumping");
             player.setSprinting(false);
             if (!player.level.isClientSide) {
-                MAExplosion.make(player, (ServerLevel)player.level, player.getX(), player.getY(), player.getZ(), CommonConfigs.METEOR_JUMP_IMPACT.get(), CommonConfigs.METEOR_JUMP_IMPACT.get()*4, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
+                MAExplosion.make(player, (ServerLevel)player.level, player.getX(), player.getY(), player.getZ(), CommonConfigs.METEOR_JUMP_IMPACT.get(), CommonConfigs.METEOR_JUMP_IMPACT.get()*4, true, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
+
             }
         }
     }

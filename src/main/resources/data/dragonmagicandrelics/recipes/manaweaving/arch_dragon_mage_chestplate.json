@@ -1,7 +1,7 @@
 {
   "type": "mna:manaweaving-recipe",
   "tier": 5,
-  "requiredFaction": "ANCIENT_WIZARDS",
+  "requiredFaction": "mna:council",
   "output": "dragonmagicandrelics:arch_dragon_mage_chestplate",
   "quantity": 1,
   "items": [

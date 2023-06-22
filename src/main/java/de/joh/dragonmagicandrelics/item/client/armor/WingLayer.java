@@ -1,6 +1,6 @@
 package de.joh.dragonmagicandrelics.item.client.armor;
 
-import com.mna.api.capabilities.Faction;
+import com.mna.factions.Factions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
@@ -50,7 +50,7 @@ public class WingLayer<T extends LivingEntity, M extends EntityModel<T>> extends
             matrixStackIn.translate(0.0D, 0.0D, 0.125D);
             this.getParentModel().copyPropertiesTo(this.modelElytra);
             this.modelElytra.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(AngelRing.getWingTextureLocation(Faction.FEY_COURT)), false, false);
+            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(AngelRing.getWingTextureLocation(Factions.FEY.getRegistryName())), false, false);
             this.modelElytra.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             matrixStackIn.popPose();
         }
@@ -59,7 +59,7 @@ public class WingLayer<T extends LivingEntity, M extends EntityModel<T>> extends
             matrixStackIn.translate(0.0D, 0.0D, 0.125D);
             this.getParentModel().copyPropertiesTo(this.modelElytra);
             this.modelElytra.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(AngelRing.getWingTextureLocation(Faction.UNDEAD)), false, false);
+            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(AngelRing.getWingTextureLocation(Factions.UNDEAD.getRegistryName())), false, false);
             this.modelElytra.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             matrixStackIn.popPose();
         }

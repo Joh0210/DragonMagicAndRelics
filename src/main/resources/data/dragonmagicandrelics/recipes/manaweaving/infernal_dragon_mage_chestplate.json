@@ -3,7 +3,7 @@
   "tier": 5,
   "output": "dragonmagicandrelics:infernal_dragon_mage_chestplate",
   "quantity": 1,
-  "requiredFaction": "DEMONS",
+  "requiredFaction": "mna:demons",
   "items": [
     "minecraft:netherite_chestplate",
     "minecraft:nether_star",

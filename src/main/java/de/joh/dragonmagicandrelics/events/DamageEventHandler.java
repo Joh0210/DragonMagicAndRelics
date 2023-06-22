@@ -1,9 +1,9 @@
 package de.joh.dragonmagicandrelics.events;
 
 import com.mna.api.ManaAndArtificeMod;
-import com.mna.api.capabilities.Faction;
 import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.entities.IFactionEnemy;
+import com.mna.api.faction.IFaction;
 import com.mna.api.items.ChargeableItem;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.targeting.SpellContext;
@@ -12,15 +12,14 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.api.timing.DelayedEventQueue;
 import com.mna.api.timing.TimedDelayedSpellEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import com.mna.capabilities.playerdata.progression.PlayerProgression;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.config.GeneralModConfig;
 import com.mna.effects.EffectInit;
 import com.mna.entities.sorcery.EntityDecoy;
-import com.mna.entities.utility.EntityPresentItem;
+import com.mna.entities.utility.PresentItem;
+import com.mna.factions.Factions;
 import com.mna.interop.CuriosInterop;
 import com.mna.items.artifice.FactionSpecificSpellModifierRing;
-import com.mna.items.artifice.curio.ItemEmberglowBracelet;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
 import com.mna.tools.InventoryUtilities;
@@ -102,14 +101,14 @@ public class DamageEventHandler {
             }
         }
 
-        AtomicReference<Faction> faction = new AtomicReference<>(Faction.NONE);
+        AtomicReference<IFaction> faction = new AtomicReference<>(null);
         if(living instanceof Player player){
             player.getCapability(ManaAndArtificeMod.getProgressionCapability()).ifPresent((p)-> {
                 faction.set(p.getAlliedFaction());
             });
         }
 
-        if((living instanceof IFactionEnemy || faction.get() != Faction.NONE) && source instanceof LivingEntity && ((LivingEntity)source).hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get())){
+        if((living instanceof IFactionEnemy || faction.get() != null) && source instanceof LivingEntity && ((LivingEntity)source).hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get())){
             ((LivingEntity)source).removeEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get());
             ((LivingEntity)source).addEffect(new MobEffectInstance((de.joh.dragonmagicandrelics.effects.EffectInit.BROKEN_PEACE_EFFECT.get()), 12000));
             if(source instanceof Player){
@@ -191,7 +190,7 @@ public class DamageEventHandler {
                 }
 
                 //Protection from kinetic energy
-                if((source == DamageSource.FALL || source == DamageSource.FLY_INTO_WALL) && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.KINETIC_RESISTANCE, player) == 1){
+                if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.KINETIC_RESISTANCE, player) == 1){
                     event.setCanceled(true);
                     return;
                 }
@@ -205,7 +204,7 @@ public class DamageEventHandler {
             }
 
             //Protection from kinetic energy
-            if((source == DamageSource.FALL || source == DamageSource.FLY_INTO_WALL) && (CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.ANGEL_RING.get(), player).isPresent() || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.FALLEN_ANGEL_RING.get(), player).isPresent()            )){
+            if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && (CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.ANGEL_RING.get(), player).isPresent() || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.FALLEN_ANGEL_RING.get(), player).isPresent()            )){
                 event.setCanceled(true);
                 return;
             }
@@ -243,7 +242,7 @@ public class DamageEventHandler {
         Entity source = event.getSource().getEntity();
         if (source instanceof LivingEntity && source != event.getEntity() && source instanceof Player sourcePlayer) {
             sourcePlayer.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
-                if (p.getAlliedFaction() == Faction.UNDEAD) {
+                if (p.getAlliedFaction() == Factions.UNDEAD) {
                     ItemStack chest = sourcePlayer.getItemBySlot(EquipmentSlot.CHEST);
                     if (!chest.isEmpty() && !sourcePlayer.level.isClientSide && chest.getItem() instanceof DragonMageArmor) {
                         int manaRegenLevel = ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString("mana_regen"), sourcePlayer);
@@ -354,7 +353,7 @@ public class DamageEventHandler {
     public static void onLivingDeath(LivingDeathEvent event){
         if(event.getEntityLiving().getType() == EntityType.ENDER_DRAGON){
             Level world = event.getEntityLiving().getLevel();
-            EntityPresentItem item = new EntityPresentItem(world, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), new ItemStack(ItemInit.DRAGON_CORE.get()));
+            PresentItem item = new PresentItem(world, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), new ItemStack(ItemInit.DRAGON_CORE.get()));
             world.addFreshEntity(item);
         }
     }
