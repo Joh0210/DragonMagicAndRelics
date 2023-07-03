@@ -1,17 +1,12 @@
 package de.joh.dragonmagicandrelics.events;
 
-import com.mna.api.capabilities.Faction;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.item.ItemInit;
-import de.joh.dragonmagicandrelics.item.items.AngelRing;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleFlightC2SPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleNightVisionC2SPacket;
 import de.joh.dragonmagicandrelics.utils.KeybindInit;
-import net.minecraft.client.renderer.entity.ItemRenderer;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

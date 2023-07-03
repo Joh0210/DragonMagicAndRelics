@@ -1,515 +1,6 @@
 {
-  "Shape: At Mark": {
-    "index": "1",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Shape: At Mark"
-      },
-      {
-        "type": "text",
-        "value": "This shape activates the spell where I placed my mark. To do this, I need a Rune of Marking in my offhand. The range is capped at 500 blocks, but I can increase that range with Magnitude."
-      },
-      {
-        "type": "text",
-        "value": "When I use a Spell with this Shape and don't have a Rune of Marking in my off-Hand, I cast the spell in the location, saved by the mark spell."
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:shapes/atmark"
-      }
-    ]
-  },
-  "Shape: True Touch": {
-    "index": "1",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Shape: True Touch"
-      },
-      {
-        "type": "text",
-        "value": "Against some opponents it is better to stand in pairs.\n\nThis shape allows me to boost my allies and myself with my magic alike. When I'm sneaking, the spell targets the person (or block) I'm hitting. Otherwise, I'll target me."
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:shapes/true_touch"
-      }
-    ]
-  },
-
-  "Component: Nightfall": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Nightfall"
-      },
-      {
-        "type": "text",
-        "value": "I've learned to bend time to my will. With this spell, I can turn day into night."
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/moonrise"
-      }
-    ]
-  },
-  "Component: Saturate": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Saturate"
-      },
-      {
-        "type": "text",
-        "value": "This fey exclusive spell replenishes a small portion of my hunger."
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/saturate"
-      }
-    ]
-  },
-  "Component: Sunrise": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Sunrise"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "I've learned to bend time to my will. With this spell, I can turn night into day."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/sunrise"
-      }
-    ]
-  },
-  "Component: Alternative Recall": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Alternative Recall"
-      },
-      {
-        "type": "text",
-        "value": "I can focus my arcane magic on a Rune of Marking held in my hand to transport the spell's target to its marked location instantly.  It can go about 1.000 blocks per magnitude, and might get them into trouble if the marked location is in a different dimension.  In those cases, a Ritual of Return would be the better choice."
-      },
-      {
-        "type": "text",
-        "value": "When I use the Mark Spell and don't have a Rune of Marking in my hand, I teleport to the location I marked by the mark spell."
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/alternativerecall"
-      }
-    ]
-  },
-  "Component: Conjure Water": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Conjure Water"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "Water, the source of all life, and I can summon it whenever I need it."
-        }
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "I believe that with enough effort, I can even produce water despite infernal heat.\n[This can be adjusted in the confings]"
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/conjurewater"
-      }
-    ]
-  },
-  "Component: Conjure Lava": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Conjure Lava"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "I can use my power to summon a small amount of the Infernal Lakes."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/conjurelava"
-      }
-    ]
-  },
-  "Component: Banish Rain": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Banish Rain"
-      },
-      {
-        "type": "text",
-        "value": "This spell allows me to change the weather to be clear blue skies. Reciting the magic words 'rain, rain, go away, come again another day' does not seem to have any extra effect."
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/banishrain"
-      }
-    ]
-  },
-  "Component: Conjure Storm": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Conjure Storm"
-      },
-      {
-        "type": "text",
-        "value": "I can use this spell to summon a torrent of rain. If I increase the magnitude, it will cause a thunderstorm."
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/conjurestorm"
-      }
-    ]
-  },
-  "Component: Ultimate Armor": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Ultimate Armor"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "Maybe I'm not strong enough to wear all the effects on my Dragon Mage Armor all the time. But for a little while, I can channel that sheer-less power into my armor.\n\nTo use the spell, I need a Nether Star."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/ultimatearmor"
-      }
-    ]
-  },
-  "Component: Mark": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Mark"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "With this spell I can scribe the Rune of Marking. The place where the spell hits is marked in the rune."
-        }
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "If I don't have a Rune of Marking in my hand, I memorize its location and can reuse it for other spells. In each dimension I can remember exactly one position.\n\nCompatible Spells: Alternative Recall or At Mark."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location": "dragonmagicandrelics:components/mark"
-      }
-    ]
-  },
-
-  "Brimstone Chalk": {
-    "index": 1,
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Brimstone Chalk"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "If I have too many Brimstone Charms and my broken chalk is bothering me, I might try the indestructible Brimstone Chalk."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/brimstone_chalk"
-      }
-    ]
-  },
-  "Voidfeather Charm": {
-    "index": 1,
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Voidfeather Charm"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "This charm brings me back to my bed if I fall into the endless nothingness of the void."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/voidfeather_charm"
-      }
-    ]
-  },
-  "Rift Emitter": {
-    "index": 1,
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Rift Emitter"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "I found a way to keep the small dimensional rift open longer. With this contraption I can now keep the Rift open in a stationary manner."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/rift_emitter"
-      }
-    ]
-  },
-  "Angel Ring": {
-    "index": 1,
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Angel Ring"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\n\nWith this amulet I can fly through the air like one of her angels without having to take off my armor.\n\nThe Fallen version doesn't even consume my mana."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/angel_ring"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/fallen_angel_ring"
-      }
-    ]
-  },
-  "Mana Cake": {
-    "index": 1,
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Mana Cake"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "I baked a very sweet cake. I replaced some of the sugar with Vinteum Dust and now the cake seems to be infused with magical threads.\n\nIf I eat the cake, it uses a portion of my mana and regenerates. But I have to be careful! If I don't have enough mana, I'll probably eat the whole cake!"
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/mana_cake"
-      }
-    ]
-  },
-  "Mutandis": {
-    "index": 1,
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Mutandis"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "A mysterious powder that causes the cells of the plants to mutate. This allows plants to transform into one another.\n\nThe Wither Rose is a dead plant and cannot be created or mutated by the powder."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/mutandis"
-      }
-    ]
-  },
-  "Dragon Core": {
-    "index": 1,
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Dragon Core"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "The Core of the End, The Essence of the Dragon, an Item of Immeasurable Power!\n\nThis item can be obtained by slaying the Titan of the End. The ender dragon!"
-        }
-      }
-    ]
-  },
-  "Faction Amulet": {
-    "index": 0,
-    "category": "eldrin_altar",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Faction Amulet"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "With this amulet I make peace with the other factions. I don't have to worry about enemies running around or even raids.\n\nBut the peace is fragile. An attack from my side declares war!"
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/faction_amulet"
-      }
-    ]
-  },
-  "Dragon Mage Armor": {
-    "index": 1,
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Dragon Mage Armor"
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "My magic has made me the powerful being that I am. My words make mountains collapse and my movements bring my opponents to their knees. But I don't have enough. Why should I still bow to the gods when I can be one myself?"
-        }
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "With the \"Ritual of the Dragon Mage Armor\" I can upgrade my armor to a Dragon Mage Armor. This already offers a fairly high level of protection, but I can still improve it. With Upgrade Glyphs I can add some more abilities to the armor. From Fly to Damage Boost, the Upgrade Glyphs offer the potential!"
-        }
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "Depending on which armor I upgrade, I already have some glyphs installed. See \"Ritual of the Dragon Mage Armor\" for more information."
-        }
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "Another way to optimize the armor's potential is with the \"Fusion Ritual\", which can combine the power of my spells with the power of my armor."
-        }
-      },
-      {
-        "type": "text",
-        "json": {
-          "text": "While I have to put on full armor to use their effects, all runes seem to be installed only on the chestplate."
-        }
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/abyssal_dragon_mage_chestplate"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/arch_dragon_mage_chestplate"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/infernal_dragon_mage_chestplate"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location": "dragonmagicandrelics:manaweaving/wild_dragon_mage_chestplate"
-      },
-      {
-        "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/dragon_mage_ritual"
-      }
-    ]
-  },
-
   "Upgrade Glyph Night Vision": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -518,15 +9,30 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "\"For the night is dark and full of terrors.\"\nNo, not for me.\n\nWith this upgrade I can activate my night vision by pressing the \"DM&R: Toggle Night Vision\"-button (Default \"o\")."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "\"For the night is dark and full of terrors.\"",
+            "color": ""
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "No, not for me.With this upgrade I can activate my night vision by pressing the \"DM&R: Toggle Night Vision\"-button (Default \"o\").",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Night Vision is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Night Vision is Tier 1",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -536,8 +42,9 @@
       }
     ]
   },
+
   "Upgrade Glyph Fly": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -546,21 +53,33 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "Putting this glyph on my armor will allow me to take to the skies. Each additional level increases my speed. However, to overcome gravity, I need a small amount of mana."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Putting this glyph on my armor will allow me to take to the skies. Each additional level increases my speed. However, to overcome gravity, I need a small amount of mana.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Fly I is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Fly I is Tier 2",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Fly II is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Fly II is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -575,7 +94,7 @@
     ]
   },
   "Upgrade Glyph Saturation": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -584,15 +103,23 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "With this rune, running out of food is no longer a problem. It feeds me with my mana."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With this rune, running out of food is no longer a problem. It feeds me with my mana.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Saturation is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Saturation is Tier 3",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -603,7 +130,7 @@
     ]
   },
   "Upgrade Glyph Movement Speed": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -612,27 +139,43 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "With this rune I can walk much faster. When I run normally, my speed doesn't change. However, when I sprint, I am immensely faster. This seems to consume mana though."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With this rune I can walk much faster. When I run normally, my speed doesn't change. However, when I sprint, I am immensely faster. This seems to consume mana though.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Movement Speed I is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Movement Speed I is Tier 1",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Movement Speed II is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Movement Speed II is Tier 2",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Movement Speed III is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Movement Speed III is Tier 3",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -651,7 +194,7 @@
     ]
   },
   "Upgrade Glyph Water Breathing": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -660,21 +203,33 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "This glyph creates breathable air for me. At level I I need mana for this, at level II it's completely free."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "This glyph creates breathable air for me. At level I I need mana for this, at level II it's completely free.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Water Breathing I is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Water Breathing I is Tier 1",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Water Breathing II is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Water Breathing II is Tier 2",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -689,7 +244,7 @@
     ]
   },
   "Upgrade Glyph Dolphins Grace": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -698,21 +253,33 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "This glyph made me feel like a dolphin in the water. Each level increases my speed in water immensely."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "This glyph made me feel like a dolphin in the water. Each level increases my speed in water immensely.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Dolphins Grace I is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Dolphins Grace I is Tier 1",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Dolphins Grace II is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Dolphins Grace II is Tier 2",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -727,7 +294,7 @@
     ]
   },
   "Upgrade Glyph Mist Form": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -736,15 +303,23 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "This upgrade provides a limited Mist Form on Death."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "This upgrade provides a limited Mist Form on Death.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mist Form is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mist Form is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -755,7 +330,7 @@
     ]
   },
   "Upgrade Glyph Regeneration": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -764,15 +339,23 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "A permanent, passive regeneration. A dream? No! A glyph!"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "A permanent, passive regeneration. A dream? No! A glyph!",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Regeneration is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Regeneration is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -783,7 +366,7 @@
     ]
   },
   "Upgrade Glyph Wellspring Sight": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -792,15 +375,23 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "Spotting wellsprings can be annoying. With this glyph I can do that permanently and easily."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Spotting wellsprings can be annoying. With this glyph I can do that permanently and easily.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Wellspring Sight is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Wellspring Sight is Tier 1",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -811,7 +402,7 @@
     ]
   },
   "Upgrade Glyph Eldrin Sight": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -820,15 +411,23 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "With this glyph, I have permanent Eldrin Sight."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With this glyph, I have permanent Eldrin Sight.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Eldrin Sight is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Eldrin Sight is Tier 3",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -838,9 +437,8 @@
       }
     ]
   },
-
   "Upgrade Glyph Mana Boost": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -849,39 +447,63 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "My Mana is running out. Anyway, I'll just take more! I get 200 Mana Points per glyph."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "My Mana is running out. Anyway, I'll just take more! I get 200 Mana Points per glyph.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Boost I is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Boost I is Tier 1",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Boost II is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Boost II is Tier 2",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Boost III is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Boost III is Tier 3",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Boost IV is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Boost IV is Tier 4",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Boost V is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Boost V is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -908,7 +530,7 @@
     ]
   },
   "Upgrade Glyph Mana Regeneration": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -917,39 +539,63 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "Okay, maybe more mana isn't enough. Then this glyph might help me. Each level increases my mana regeneration.\n\nBeing part of the Undead faction, Mana Regeneration causes me to gain Souls just by hurting others."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Okay, maybe more mana isn't enough. Then this glyph might help me. Each level increases my mana regeneration.\n\nBeing part of the Undead faction, Mana Regeneration causes me to gain Souls just by hurting others.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Regeneration I is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Regeneration I is Tier 1",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Regeneration II is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Regeneration II is Tier 2",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Regeneration III is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Regeneration III is Tier 3",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Regeneration IV is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Regeneration IV is Tier 4",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Mana Regeneration V is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Mana Regeneration V is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -976,7 +622,7 @@
     ]
   },
   "Upgrade Glyph Health Boost": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -985,39 +631,63 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "I'm wearing Dragon Mage Armor and I'm still afraid of dying? Okay, how about more lifes? Each level of the glyph gives me 2 extra hearts."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "I'm wearing Dragon Mage Armor and I'm still afraid of dying? Okay, how about more lifes? Each level of the glyph gives me 2 extra hearts.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Health Boost I is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Health Boost I is Tier 1",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Health Boost II is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Health Boost II is Tier 2",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Health Boost III is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Health Boost III is Tier 3",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Health Boost IV is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Health Boost IV is Tier 4",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Health Boost V is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Health Boost V is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1044,7 +714,7 @@
     ]
   },
   "Upgrade Glyph Jump Boost": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -1053,27 +723,43 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "With this glyph I can jump higher per level while sprinting."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With this glyph I can jump higher per level while sprinting.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Jump Boost I is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Jump Boost I is Tier 1",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Jump Boost II is Tier 1"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Jump Boost II is Tier 1",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Jump Boost III is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Jump Boost III is Tier 2",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1092,7 +778,7 @@
     ]
   },
   "Upgrade Glyph Explosion Resistance": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -1101,15 +787,23 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "Kaboom. Oh, TNT is just beautiful. And with the upgrade, I don't mind the explosion anymore either! But the environment is still not protected...\n\nAnyways. TNT!"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Kaboom. Oh, TNT is just beautiful. And with the upgrade, I don't mind the explosion anymore either! But the environment is still not protected...\n\nAnyways. TNT!",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Explosion Resistance is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Explosion Resistance is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1120,7 +814,7 @@
     ]
   },
   "Upgrade Glyph Kinetic Resistance": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -1129,15 +823,23 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "With the Elytra you can become very fast... and can fly against the wall very fast. So that I don't mind that anymore, I developed this upgrade. It protects me from the elytra's kinetic damage and fall damage."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With the Elytra you can become very fast... and can fly against the wall very fast. So that I don't mind that anymore, I developed this upgrade. It protects me from the elytra's kinetic damage and fall damage.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Kinetic Resistance is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Kinetic Resistance is Tier 2",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1148,7 +850,7 @@
     ]
   },
   "Upgrade Glyph Meteor Jump": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -1157,15 +859,23 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "With the upgrade, when I sprint, jump, and then sneak, I can crash onto the ground like a meteor and cause an explosion."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With the upgrade, when I sprint, jump, and then sneak, I can crash onto the ground like a meteor and cause an explosion.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Meteor Jump is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Meteor Jump is Tier 3",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1176,7 +886,7 @@
     ]
   },
   "Upgrade Glyph Projectile Reflection": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -1185,27 +895,43 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "Why are you hitting yourself with the arrow? Why are you hitting yourself with the arrow? Why are you hitting yourself with the arrow?\n\nOh yeah, my fault. I have a glyph for it."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Why are you hitting yourself with the arrow? Why are you hitting yourself with the arrow? Why are you hitting yourself with the arrow?\n\nOh yeah, my fault. I have a glyph for it.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Projectile Reflection I is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Projectile Reflection I is Tier 2",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Projectile Reflection II is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Projectile Reflection II is Tier 3",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Projectile Reflection III is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Projectile Reflection III is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1224,7 +950,7 @@
     ]
   },
   "Upgrade Glyph Fire Resistance": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -1233,21 +959,43 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "Oh man, the fires of hell are getting too annoying for me. With this rune, I can count on it tugging at a little bit of my mana instead of my life. With level 2 it is completely free."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Oh man, the fires of hell are getting too annoying for me. With this rune, I can count on it tugging at a little bit of my mana instead of my life. With level 2 it is completely free.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Fire Resistance I is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Fire Resistance I is Tier 2",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Fire Resistance II is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Fire Resistance II is Tier 3",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Projectile Reflection III is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1262,7 +1010,7 @@
     ]
   },
   "Upgrade Glyph Elytra": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -1271,21 +1019,33 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "The Elytra, a beautiful tool of the end. I'll just put them on my armor. With stage 2 I'm even accelerated. Acceleration stops when I sneak."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "The Elytra, a beautiful tool of the end. I'll just put them on my armor. With stage 2 I'm even accelerated. Acceleration stops when I sneak.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Elytra I is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Elytra I is Tier 2",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Elytra II is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Elytra II is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1300,7 +1060,7 @@
     ]
   },
   "Upgrade Glyph Damage Resistance": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -1309,27 +1069,43 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "A cut is pretty annoying. I should do something against it. With each level, all damage I receive is reduced by 20%."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "A cut is pretty annoying. I should do something against it. With each level, all damage I receive is reduced by 20%.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Damage Resistance I is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Damage Resistance I is Tier 3",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Damage Resistance II is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Damage Resistance II is Tier 4",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Damage Resistance III is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Damage Resistance III is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1348,7 +1124,7 @@
     ]
   },
   "Upgrade Glyph Damage Boost": {
-    "index": 1,
+    "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
@@ -1357,33 +1133,53 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "Hm, I mean spells are powerful. But a little more damage never hurts... at least not me."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Hm, I mean spells are powerful. But a little more damage never hurts... at least not me.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Damage Boost I is Tier 2"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Damage Boost I is Tier 2",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Damage Boost II is Tier 3"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Damage Boost II is Tier 3",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Damage Boost III is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Damage Boost III is Tier 4",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Damage Boost IV is Tier 4"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Damage Boost IV is Tier 4",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
@@ -1406,9 +1202,677 @@
     ]
   },
 
-
-  "Ritual of the Dragon Mage Armor": {
+  "Shape: At Mark": {
+    "index": "1",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Shape: At Mark"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This shape activates the spell where I placed my mark. To do this, I need a Rune of Marking in my offhand. The range is capped at 500 blocks, but I can increase that range with Magnitude.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "When I use a Spell with this Shape and don't have a Rune of Marking in my off-Hand, I cast the spell in the location, saved by the mark spell.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:shapes/atmark"
+      }
+    ]
+  },
+  "Shape: True Touch": {
+    "index": "1",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Shape: True Touch"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Against some opponents it is better to stand in pairs.\\n\\nThis shape allows me to boost my allies and myself with my magic alike. When I'm sneaking, the spell targets the person (or block) I'm hitting. Otherwise, I'll target me.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:shapes/true_touch"
+      }
+    ]
+  },
+  "Component: Nightfall": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Nightfall"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I've learned to bend time to my will. With this spell, I can turn day into night.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/moonrise"
+      }
+    ]
+  },
+  "Component: Saturate": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Saturate"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This fey exclusive spell replenishes a small portion of my hunger.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/saturate"
+      }
+    ]
+  },
+  "Component: Sunrise": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Sunrise"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I've learned to bend time to my will. With this spell, I can turn night into day.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/sunrise"
+      }
+    ]
+  },
+  "Component: Alternative Recall": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Alternative Recall"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I can focus my arcane magic on a Rune of Marking held in my hand to transport the spell's target to its marked location instantly. It can go about 1.000 blocks per magnitude, and might get them into trouble if the marked location is in a different dimension. In those cases, a Ritual of Return would be the better choice.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "When I use the Mark Spell and don't have a Rune of Marking in my hand, I teleport to the location I marked by the mark spell.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/alternativerecall"
+      }
+    ]
+  },
+  "Component: Conjure Water": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Conjure Water"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Water, the source of all life, and I can summon it whenever I need it.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I believe that with enough effort, I can even produce water despite infernal heat.",
+            "color": ""
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "[This can be adjusted in the confings]",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/conjurewater"
+      }
+    ]
+  },
+  "Conjure Lava": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Conjure Lava"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I can use my power to summon a small amount of the Infernal Lakes.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/conjurelava"
+      }
+    ]
+  },
+  "Component: Banish Rain": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Banish Rain"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This spell allows me to change the weather to be clear blue skies. Reciting the magic words 'rain, rain, go away, come again another day' does not seem to have any extra effect.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/banishrain"
+      }
+    ]
+  },
+  "Component: Conjure Storm": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Conjure Storm"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I can use this spell to summon a torrent of rain. If I increase the magnitude, it will cause a thunderstorm.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/conjurestorm"
+      }
+    ]
+  },
+  "Component: Ultimate Armor": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ultimate Armor"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Maybe I'm not strong enough to wear all the effects on my Dragon Mage Armor all the time. But for a little while, I can channel that sheer-less power into my armor.",
+            "color": ""
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "To use the spell, I need a Nether Star.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "crafting",
+        "location":"dragonmagicandrelics:components/ultimatearmor"
+      }
+    ]
+  },
+  "Component: Mark": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Mark"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "With this spell I can scribe the Rune of Marking. The place where the spell hits is marked in the rune.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "If I don't have a Rune of Marking in my hand, I memorize its location and can reuse it for other spells. In each dimension I can remember exactly one position.\\n\\nCompatible Spells: Alternative Recall or At Mark.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/mark"
+      }
+    ]
+  },
+  "Brimstone Chalk": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Brimstone Chalk"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "If I have too many Brimstone Charms and my broken chalk is bothering me, I might try the indestructible Brimstone Chalk.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/brimstone_chalk"
+      }
+    ]
+  },
+  "Voidfeather Charm": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Voidfeather Charm"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This charm brings me back to my bed if I fall into the endless nothingness of the void.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/voidfeather_charm"
+      }
+    ]
+  },
+  "Rift Emitter": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Rift Emitter"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I found a way to keep the small dimensional rift open longer. With this contraption I can now keep the Rift open in a stationary manner.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/rift_emitter"
+      }
+    ]
+  },
+  "Angel Ring": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Angel Ring"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\\n\\nWith this amulet I can fly through the air like one of her angels without having to take off my armor.\\n\\nThe Fallen version doesn't even consume my mana.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/angel_ring"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/fallen_angel_ring"
+      }
+    ]
+  },
+  "Mana Cake": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Mana Cake"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I baked a very sweet cake. I replaced some of the sugar with Vinteum Dust and now the cake seems to be infused with magical threads.",
+            "color": ""
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "If I eat the cake, it uses a portion of my mana and regenerates. But I have to be careful! If I don't have enough mana, I'll probably eat the whole cake!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/mana_cake"
+      }
+    ]
+  },
+  "Mutandis": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Mutandis"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "A mysterious powder that causes the cells of the plants to mutate. This allows plants to transform into one another.\\n\\nThe Wither Rose is a dead plant and cannot be created or mutated by the powder.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/mutandis"
+      }
+    ]
+  },
+  "Dragon Core": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Dragon Core"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The Core of the End, The Essence of the Dragon, an Item of Immeasurable Power!",
+            "color": ""
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "This item can be obtained by slaying the Titan of the End. The ender dragon!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": []
+  },
+  "Faction Amulet": {
     "index": "0",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Faction Amulet"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "With this amulet I make peace with the other factions. I don't have to worry about enemies running around or even raids.\\n\\nBut the peace is fragile. An attack from my side declares war!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location":"dragonmagicandrelics:eldrin_altar/faction_amulet"
+      }
+    ]
+  },
+  "Dragon Mage Armor": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Dragon Mage Armor"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "My magic has made me the powerful being that I am. My words make mountains collapse and my movements bring my opponents to their knees. But I don't have enough. Why should I still bow to the gods when I can be one myself?",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "With the \"Ritual of the Dragon Mage Armor\" I can upgrade my armor to a Dragon Mage Armor. This already offers a fairly high level of protection, but I can still improve it. With Upgrade Glyphs I can add some more abilities to the armor. From Fly to Damage Boost, the Upgrade Glyphs offer the potential!",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Depending on which armor I upgrade, I already have some glyphs installed. See \"Ritual of the Dragon Mage Armor\" for more information.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Another way to optimize the armor's potential is with the \"Fusion Ritual\", which can combine the power of my spells with the power of my armor.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "While I have to put on full armor to use their effects, all runes seem to be installed only on the chestplate.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/abyssal_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/arch_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/infernal_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/wild_dragon_mage_chestplate"
+      },
+      {
+        "type": "ritual",
+        "location":"dragonmagicandrelics:rituals/dragon_mage_ritual"
+      }
+    ]
+  },
+  "Ritual of the Dragon Mage Armor": {
+    "index": 0,
     "category": "rituals",
     "sections": [
       {
@@ -1417,69 +1881,104 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "With this ritual I can upgrade my faction armor to Dragon Mage Armor."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With this ritual I can upgrade my faction armor to Dragon Mage Armor.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "I must wear my full faction armor to perform this ritual. This is then fused with the power of the dragons and becomes the Dragon Mage armor. Enchantments are carried over."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "I must wear my full faction armor to perform this ritual. This is then fused with the power of the dragons and becomes the Dragon Mage armor. Enchantments are carried over.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "It seems to me that I can only start the ritual if I have maxed out my magic skills. In other words, I have to be level 75 to use this ritual."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "It seems to me that I can only start the ritual if I have maxed out my magic skills. In other words, I have to be level 75 to use this ritual.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "Depending on which faction armor I use, different starting upgrades will be installed."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "Depending on which faction armor I use, different starting upgrades will be installed.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "With the Spellweaver Robes, I get the Fly I, Mana Boost V, and Mana Regen V upgrades"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With the Spellweaver Robes, I get the Fly I, Mana Boost V, and Mana Regen V upgrades.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "With the Druid Robes I get the Elytra II, Fly II, Health Boost I and Kinetic Resistance I upgrades."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With the Druid Robes I get the Elytra II, Fly II, Health Boost I and Kinetic Resistance I upgrades.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "With the Infernal Armor, I get the Explosion Resistance I, Fire Resistance II, Kinetic Resistance I, Meteor Jump I, Movement Speed III, and Jump Boost III upgrades."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With the Infernal Armor, I get the Explosion Resistance I, Fire Resistance II, Kinetic Resistance I, Meteor Jump I, Movement Speed III, and Jump Boost III upgrades.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "With the Witherbone Armor, I get the Damage Resistance I, Mana Regen II, Mist Form I and Water Breathing II upgrades."
-        }
-      }
-    ,
+        "value": "",
+        "json": [
+          {
+            "text": "With the Witherbone Armor, I get the Damage Resistance I, Mana Regen II, Mist Form I and Water Breathing II upgrades.",
+            "color": ""
+          }
+        ]
+      },
       {
         "type": "text",
-        "json": {
-          "text": "(The initial upgrades of each faction can be adjusted in the config.)"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "(The initial upgrades of each faction can be adjusted in the config.)",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
       {
         "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/dragon_mage_ritual"
+        "location":"dragonmagicandrelics:rituals/dragon_mage_ritual"
       }
     ]
   },
   "Fusion Ritual": {
-    "index": "0",
+    "index": 0,
     "category": "rituals",
     "sections": [
       {
@@ -1488,38 +1987,54 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "In order to use the full potential of my Dragon Mage Armor, I should fuse it with my spells."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "In order to use the full potential of my Dragon Mage Armor, I should fuse it with my spells.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "With this ritual I can combine up to 2 spells with my armor. One offensive and one defensive. Both spells trigger when I take damage. The offensive spell hits the aggressor, the defensive spell hits me."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With this ritual I can combine up to 2 spells with my armor. One offensive and one defensive. Both spells trigger when I take damage. The offensive spell hits the aggressor, the defensive spell hits me.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "In order to start the ritual, I must wear my full Dragon Mage Armor. When I add the Netherite Sword, the spell is stored as an offensive in my armor. If I leave it out, the spell is for me."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "In order to start the ritual, I must wear my full Dragon Mage Armor. When I add the Netherite Sword, the spell is stored as an offensive in my armor. If I leave it out, the spell is for me.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "By performing the ritual again, I can override the corresponding spell."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "By performing the ritual again, I can override the corresponding spell.",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
       {
         "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/fusion_ritual"
+        "location":"dragonmagicandrelics:rituals/fusion_ritual"
       }
     ]
   },
   "Ritual of Upgrade": {
-    "index": "0",
+    "index": 0,
     "category": "rituals",
     "sections": [
       {
@@ -1528,56 +2043,76 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "The power of my Dragon Mage Armor is not based on the almighty metal of the armor, but on the runes on it."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "The power of my Dragon Mage Armor is not based on the almighty metal of the armor, but on the runes on it.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "With this ritual I can add upgrade glyphs to my armor. Each glyph has a special ability that transfers to my armor. I can read about this on the relevant upgrade glyphs page."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "With this ritual I can add upgrade glyphs to my armor. Each glyph has a special ability that transfers to my armor. I can read about this on the relevant upgrade glyphs page.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "However, it is important to note that upgrade glyphs each have a level and a tier."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "However, it is important to note that upgrade glyphs each have a level and a tier.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "The level determines the strength of the glyph, e.g. Fly II lets you fly faster than Fly I. In order to put a higher level glyph on your armor, I need to have the previous glyph installed as well, e.g. I can only install Fly II on my armor if I have Fly I."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "The level determines the strength of the glyph, e.g. Fly II lets you fly faster than Fly I. In order to put a higher level glyph on your armor, I need to have the previous glyph installed as well, e.g. I can only install Fly II on my armor if I have Fly I.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "The tier on the other hand gives a statement of which ritual tier I must use to affix the glyph to my armor, e.g. Fly I is Tear 2. Accordingly, I have to use the Ritual of Upgrade at least at tier 2 in order to install the glyph. Which tier a glyph has can be read either in the book or by hovering over the item."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "The tier on the other hand gives a statement of which ritual tier I must use to affix the glyph to my armor, e.g. Fly I is Tear 2. Accordingly, I have to use the Ritual of Upgrade at least at tier 2 in order to install the glyph. Which tier a glyph has can be read either in the book or by hovering over the item.",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
       {
         "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/upgrade_ritual_tier_i"
+        "location":"dragonmagicandrelics:rituals/upgrade_ritual_tier_i"
       },
       {
         "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/upgrade_ritual_tier_ii"
+        "location":"dragonmagicandrelics:rituals/upgrade_ritual_tier_ii"
       },
       {
         "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/upgrade_ritual_tier_iii"
+        "location":"dragonmagicandrelics:rituals/upgrade_ritual_tier_iii"
       },
       {
         "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/upgrade_ritual_tier_iv"
+        "location":"dragonmagicandrelics:rituals/upgrade_ritual_tier_iv"
       }
     ]
   },
   "Ritual of the Phoenix": {
-    "index": "0",
+    "index": 0,
     "category": "rituals",
     "sections": [
       {
@@ -1586,26 +2121,34 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "I may be strong, but I'm not invincible. Perhaps I should prepare myself to be defeated one day, to rise from my ashes, to defeat those who killed me!"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "I may be strong, but I'm not invincible. Perhaps I should prepare myself to be defeated one day, to rise from my ashes, to defeat those who killed me!",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "This ritual returns me to the spot where my former self was murdered."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "This ritual returns me to the spot where my former self was murdered.",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
       {
         "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/phoenix_ritual"
+        "location":"dragonmagicandrelics:rituals/phoenix_ritual"
       }
     ]
   },
   "Ritual of Betrayal": {
-    "index": "0",
+    "index": 0,
     "category": "rituals",
     "sections": [
       {
@@ -1614,21 +2157,29 @@
       },
       {
         "type": "text",
-        "json": {
-          "text": "My faction brought me to where I am today. But isn't my potential higher? Couldn't I reach more? Is my faction holding me back? Maybe I should free myself from this burden."
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "My faction brought me to where I am today. But isn't my potential higher? Couldn't I reach more? Is my faction holding me back? Maybe I should free myself from this burden.",
+            "color": ""
+          }
+        ]
       },
       {
         "type": "text",
-        "json": {
-          "text": "WARNING: With this ritual I free myself from my faction. But I'm also losing every step I've made since then!"
-        }
+        "value": "",
+        "json": [
+          {
+            "text": "WARNING: With this ritual I free myself from my faction. But I'm also losing every step I've made since then!",
+            "color": ""
+          }
+        ]
       }
     ],
     "related_recipes": [
       {
         "type": "ritual",
-        "location": "dragonmagicandrelics:rituals/betrayal_ritual"
+        "location":"dragonmagicandrelics:rituals/betrayal_ritual"
       }
     ]
   },
