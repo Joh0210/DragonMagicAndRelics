@@ -1,5 +1,9 @@
 package de.joh.dragonmagicandrelics.config;
 
+import de.joh.dragonmagicandrelics.armorupgrades.init.ArmorUpgradeFly;
+import de.joh.dragonmagicandrelics.armorupgrades.init.ArmorUpgradeMeteorJump;
+import de.joh.dragonmagicandrelics.armorupgrades.init.ArmorUpgradeSaturation;
+import de.joh.dragonmagicandrelics.armorupgrades.init.ArmorUpgradeSpeed;
 import net.minecraftforge.common.ForgeConfigSpec;
 /**
  * This file creates the entire Common Configs of this mod.
@@ -22,43 +26,43 @@ public class CommonConfigs {
     /**
      * fly upgrade:
      * Defines whether it is possible to additionally sprint while flying with the Dragon Mage armor
-     * @see de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.ArmorUpgradeFly
+     * @see ArmorUpgradeFly
      */
     public static final ForgeConfigSpec.ConfigValue<Boolean> FLY_ALLOW_SPRTINTING_WHILE_FLYING;
     /**
      * fly upgrade:
      * mana cost while flying * 100
-     * @see de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.ArmorUpgradeFly
+     * @see ArmorUpgradeFly
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> FLY_MANA_COST_PER_TICK;
 
     /**
      * meteor jump upgrade:
-     * @see de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.ArmorUpgradeMeteorJump
+     * @see ArmorUpgradeMeteorJump
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> METEOR_JUMP_MANA_COST;
     /**
      * meteor jump upgrade:
      * Power of the Jump Impact
-     * @see de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.ArmorUpgradeMeteorJump
+     * @see ArmorUpgradeMeteorJump
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> METEOR_JUMP_IMPACT;
 
     /**
      * saturation upgrade:
-     * @see de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.ArmorUpgradeSaturation
+     * @see ArmorUpgradeSaturation
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> SATURATION_MANA_PER_NUTRITION;
 
     /**
      * speed upgrade:
-     * @see de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.ArmorUpgradeSpeed
+     * @see ArmorUpgradeSpeed
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> SPEED_MANA_PER_TICK_PER_LEVEL;
 
     /**
      * waterbreathing upgrade:
-     * @see de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.ArmorUpgradeSpeed
+     * @see ArmorUpgradeSpeed
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> WATERBREATHING_MANA_PRO_OXIGEN_BUBBLE;
 

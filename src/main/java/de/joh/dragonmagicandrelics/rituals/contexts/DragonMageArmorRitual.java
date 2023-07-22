@@ -6,10 +6,14 @@ import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import de.joh.dragonmagicandrelics.events.additional.DragonUpgradeEvent;
 import de.joh.dragonmagicandrelics.events.additional.HasMaxFactionEvent;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.MinecraftForge;
 
 /**
@@ -29,6 +33,8 @@ public class DragonMageArmorRitual extends RitualEffect {
     @Override
     protected boolean applyRitualEffect(IRitualContext context) {
         Player player = context.getCaster();
+        Level world = context.getWorld();
+        BlockPos pos = context.getCenter();
 
         HasMaxFactionEvent factionEvent = new HasMaxFactionEvent(player);
         MinecraftForge.EVENT_BUS.post(factionEvent);
@@ -40,6 +46,10 @@ public class DragonMageArmorRitual extends RitualEffect {
         if(event.canBeUpgraded()){
             event.performUpgrade(true);
         }
+
+        LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(world);
+        lightningbolt.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
+        world.addFreshEntity(lightningbolt);
 
         return  true;
     }

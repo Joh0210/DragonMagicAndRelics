@@ -85,11 +85,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_fly_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_fly_ii"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_fly"
       }
     ]
   },
@@ -181,15 +177,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_movement_speed_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_movement_speed_ii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_movement_speed_iii"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_movement_speed"
       }
     ]
   },
@@ -235,11 +223,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_water_breathing_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_water_breathing_ii"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_water_breathing"
       }
     ]
   },
@@ -285,11 +269,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_dolphins_grace_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_dolphins_grace_ii"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_dolphins_grace"
       }
     ]
   },
@@ -509,23 +489,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_boost_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_boost_ii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_boost_iii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_boost_iv"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_boost_v"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_boost"
       }
     ]
   },
@@ -601,23 +565,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_regen_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_regen_ii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_regen_iii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_regen_iv"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_regen_v"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_regen"
       }
     ]
   },
@@ -693,23 +641,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_health_boost_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_health_boost_ii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_health_boost_iii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_health_boost_iv"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_health_boost_v"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_health_boost"
       }
     ]
   },
@@ -765,15 +697,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_jump_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_jump_ii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_jump_iii"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_jump"
       }
     ]
   },
@@ -937,15 +861,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_projectile_reflection_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_projectile_reflection_ii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_projectile_reflection_iii"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_projectile_reflection"
       }
     ]
   },
@@ -1001,11 +917,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_fire_resistance_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_fire_resistance_ii"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_fire_resistance"
       }
     ]
   },
@@ -1051,11 +963,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_elytra_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_elytra_ii"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_elytra"
       }
     ]
   },
@@ -1111,15 +1019,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_damage_resistance_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_damage_resistance_ii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_damage_resistance_iii"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_damage_resistance"
       }
     ]
   },
@@ -1185,19 +1085,7 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_damage_boost_i"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_damage_boost_ii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_damage_boost_iii"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_damage_boost_iv"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_damage_boost"
       }
     ]
   },
@@ -2095,19 +1983,7 @@
     "related_recipes": [
       {
         "type": "ritual",
-        "location":"dragonmagicandrelics:rituals/upgrade_ritual_tier_i"
-      },
-      {
-        "type": "ritual",
-        "location":"dragonmagicandrelics:rituals/upgrade_ritual_tier_ii"
-      },
-      {
-        "type": "ritual",
-        "location":"dragonmagicandrelics:rituals/upgrade_ritual_tier_iii"
-      },
-      {
-        "type": "ritual",
-        "location":"dragonmagicandrelics:rituals/upgrade_ritual_tier_iv"
+        "location":"dragonmagicandrelics:rituals/upgrade_ritual"
       }
     ]
   },

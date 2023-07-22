@@ -5,7 +5,6 @@ import com.mojang.logging.LogUtils;
 import de.joh.dragonmagicandrelics.block.BlockInit;
 import de.joh.dragonmagicandrelics.block.entity.BlockEntitieInit;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
-import de.joh.dragonmagicandrelics.config.InitialUpgradesConfigs;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
@@ -45,7 +44,6 @@ public class DragonMagicAndRelics {
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.register(KeybindInit.class));
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfigs.SPEC, MOD_ID+"-common.toml");
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, InitialUpgradesConfigs.SPEC, MOD_ID+"-initial-upgrades.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
     }

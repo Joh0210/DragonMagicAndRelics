@@ -1,0 +1,82 @@
+{
+  "type": "mna:ritual",
+  "tier": 5,
+  "pattern":
+  [
+    [ 0, 0,10,-1, 3, 0, 0],
+    [ 0,-1, 0,-1, 0,-1, 0],
+    [ 9, 0, 0, 1, 0, 0, 4],
+    [-1,-1,-1,-1,-1,-1,-1],
+    [ 8, 0, 0,12, 0, 0, 5],
+    [ 0,-1, 0,-1, 0,-1, 0],
+    [ 0, 0, 7,-1, 6, 0, 0]
+  ],
+  "displayPattern":
+  [
+    [ 0, 0,10,12, 3, 0, 0],
+    [ 0,-1, 0,-1, 0,-1, 0],
+    [ 9, 0, 0,17, 0, 0, 4],
+    [15,-1,20, 1,18,-1,13],
+    [ 8, 0, 0,19, 0, 0, 5],
+    [ 0,-1, 0,-1, 0,-1, 0],
+    [ 0, 0, 7,14, 6, 0, 0]
+  ],
+  "reagents":
+  [
+    "  N M  ",
+    "       ",
+    "D  A  N",
+    "       ",
+    "N  B  D",
+    "       ",
+    "  M N  "
+  ],
+  "keys":
+  {
+    "A":
+    {
+      "item": "dragonmagicandrelics:upgrade_seal",
+      "optional": false,
+      "consume": true
+    },
+    "B":
+    {
+      "item": "dragonmagicandrelics:dragon_magic_container",
+      "optional": false,
+      "consume": true
+    },
+    "D":
+    {
+      "item": "dragonmagicandrelics:dragon_core",
+      "optional": false,
+      "consume": true
+    },
+    "M":
+    {
+      "item": "mna:major_mana_gem",
+      "optional": false,
+      "consume": true
+    },
+    "N":
+    {
+      "item": "nether_star",
+      "optional": false,
+      "consume": true
+    }
+  },
+  "manaweave":
+  [
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/slash",
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/inverted_triangle"
+  ],
+  "parameters":
+  {
+    "innerColor": "0xffffff",
+    "outerColor": "0x8800ff",
+    "displayIndexes": false,
+    "connectBeam": true,
+    "beamColor": "0x8800ff"
+  }
+}

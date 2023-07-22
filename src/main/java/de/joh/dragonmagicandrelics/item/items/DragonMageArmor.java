@@ -1,38 +1,20 @@
 package de.joh.dragonmagicandrelics.item.items;
 
-import com.mna.ManaAndArtifice;
-import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.api.particles.MAParticleType;
-import com.mna.api.particles.ParticleInit;
-import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.factions.Factions;
 import com.mna.items.armor.ISetItem;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradePotionEffect;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeProjectileReflectionHelper;
-import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.IArmorUpgradeOnArmorTick;
-import de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonfullyequipped.IArmorUpgradeOnFullyEquipped;
-import de.joh.dragonmagicandrelics.config.CommonConfigs;
-import de.joh.dragonmagicandrelics.effects.EffectInit;
+import de.joh.dragonmagicandrelics.item.util.DragonMagicContainer;
 import de.joh.dragonmagicandrelics.utils.RLoc;
-import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraftforge.common.extensions.IForgeItem;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -45,7 +27,6 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -57,7 +38,7 @@ import java.util.function.Consumer;
  * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
  * @author Joh0210
  */
-public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem {
+public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem, DragonMagicContainer {
     private final AnimationFactory factory =  GeckoLibUtil.createFactory(this);
     private final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS;
     public final String TEXTURE_LOCATION;
@@ -93,243 +74,63 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
         return RLoc.create(TEXTURE_LOCATION);
     }
 
-    /**
-     * Executes the effects of ARMOR_UPGRADE_ON_ARMOR_TICK effects every tick.
-     * In addition, the potion effects of the ARMOR_UPGRADE_POTION_EFFECT are updated.
-     * Call from the game itself.
-     * @see ArmorUpgradeInit
-     */
     @Override
-    public void onArmorTick(ItemStack stack, Level world, Player player) {
-        if(slot == EquipmentSlot.CHEST && isSetEquipped(player)){
-            for(IArmorUpgradeOnFullyEquipped upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_FULLY_EQUIPPED){
-                upgrade.onArmorTick(player, getUpgradeLevel(upgrade, player));
-            }
+    public int getMaxDragonMagic() {
+        return slot == EquipmentSlot.CHEST ? 64 : 0; //Todo: adjust
+    }
 
-            IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-
-            //Armor Upgrades: On Armor Tick
-            for(IArmorUpgradeOnArmorTick upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_ARMOR_TICK){
-                upgrade.onArmorTick(world, player, getUpgradeLevel(upgrade, player), magic);
-            }
-
-            //Armor Upgrades: Potion Effects
-            if(!world.isClientSide()) {
-                if(this.isSetEquipped(player)) {
-                    for(ArmorUpgradePotionEffect upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_POTION_EFFECT){
-                        if(getUpgradeLevel(upgrade, player) > 0){
-                            upgrade.applyPotionAffect(player, getUpgradeLevel(upgrade, player));
-                        }
-                    }
-                }
-            }
-
-            //Recharge of the Projectile Reflection
-            if(getUpgradeLevel(ArmorUpgradeInit.PROJECTILE_REFLECTION, player) > 0){
-                ArmorUpgradeProjectileReflectionHelper.tickReflectCharges(player);
-            }
+    public void onEquip(ItemStack itemStack, LivingEntity entity) {
+        if(entity instanceof Player){
+            this.addDragonMagic(itemStack, (Player) entity, "dm_armor");
         }
     }
 
-    /**
-     * Removes the permanent effects of ARMOR_UPGRADE_ON_FULLY_EQUIPPED when armor is deequipped.
-     * Removes the Night Vision effect in case the Night Vision upgrade was installed.
-     * Reset the fly values in case the fly upgrade was installed.
-     * Call from the game itself.
-     */
-    @Override
-    public void removeSetBonus(LivingEntity living, EquipmentSlot... setSlots) {
-        living.removeEffect(MobEffects.NIGHT_VISION);
-
-        if (living instanceof Player player) {
-            for(IArmorUpgradeOnFullyEquipped upgrade : ArmorUpgradeInit.ARMOR_UPGRADE_ON_FULLY_EQUIPPED){
-                upgrade.removeSetBonus(player);
-            }
-
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if(chest.getItem() instanceof DragonMageArmor){
-                if(chest.hasTag() && chest.getTag().getBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra")){
-                    chest.getTag().remove(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra");
-                }
-            }
-
-            ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
-            ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
+    public void onDiscard(ItemStack itemStack, LivingEntity entity) {
+        if(entity instanceof Player){
+            this.removeDragonMagic(itemStack, (Player) entity, "dm_armor");
         }
     }
 
-
-
-    @Override
-    public void applySetBonus(LivingEntity living, EquipmentSlot... setSlots) {
-        if (living instanceof Player player) {
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if(chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString("elytra"), player) > 0){
-                if(chest.hasTag() && !chest.getTag().getBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra")){
-                    chest.getTag().remove(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra");
-                }
-                CompoundTag nbtData = new CompoundTag();
-                nbtData.putBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra", true);
-                chest.getTag().merge(nbtData);
-            }
-        }
-    }
-
-    /**
-     * @param upgrade Upgrade to review.
-     * @param entity Wearer of armor.
-     * @return What level of upgrade is installed.
-     */
-    public int getUpgradeLevel(ArmorUpgrade upgrade, LivingEntity entity){
-        //Chestplate only and Full Armor only
-        if (!(entity instanceof Player) || slot != EquipmentSlot.CHEST || !this.isSetEquipped(entity)){
-            return 0;
-        }
-
-        if(entity.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
-            return upgrade.getMaxUpgradeLevel();
-        }
-
-        ItemStack chest = entity.getItemBySlot(EquipmentSlot.CHEST);
-        if(!chest.hasTag() || chest.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("")){
-            return 0;
-        }
-        else{
-            try{
-                int level = Integer.parseInt(chest.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()));
-                return (0 <= level && level <= upgrade.getMaxUpgradeLevel())? level : 0;
-            }catch (NumberFormatException ex){
-                return 0;
-            }
-        }
-    }
-
-    /**
-     * Adds an upgrade to armor.
-     * @param upgrade Upgrade to install.
-     * @param level Level at which the upgrade should be installed.
-     * @param entity Wearer of armor.
-     */
-    public void setUpgradeLevel(ArmorUpgrade upgrade, int level, LivingEntity entity){
-        //Chestplate only
-        if (!(entity instanceof Player) || slot != EquipmentSlot.CHEST){
-            return;
-        }
-
-        if(upgrade.isLevelCorreckt(level)){
-            ItemStack chest = entity.getItemBySlot(EquipmentSlot.CHEST);
-            if(chest.hasTag() && !chest.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("")){
-                chest.getTag().remove(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId());
-            }
-            CompoundTag nbtData = new CompoundTag();
-            nbtData.putString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId(), Integer.toString(level));
-            chest.getTag().merge(nbtData);
-        }
-    }
-
-    /**
-     * Adds a tooltip (when hovering over the item) to the item.
-     * The installed spells and upgrades are listed.
-     * Call from the game itself.
-     */
-    @OnlyIn(Dist.CLIENT)
-    @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
-        if(this.slot != EquipmentSlot.CHEST){
-            return;
-        }
-
-        if(Screen.hasShiftDown()){
-            if(stack.hasTag()){
-                //Spell Tooltiip
-                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name").equals("")){
-                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.other");
-                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name")));
-                }
-                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name").equals("")){
-                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.self");
-                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name")));
-                }
-
-                //Upgrade Tooltip
-                tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
-                ArmorUpgrade[] allUpgrades = ArmorUpgradeInit.getAllUpgrades();
-                for(ArmorUpgrade upgrade : allUpgrades){
-                    if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("") && !stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("0")){
-                        TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade."+upgrade.getUpgradeId());
-                        tooltip.add(new TextComponent(component.getString() + ": " + stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId())));
-                    }
-                }
-            }
-        }
-        else{
-            tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip"));
-        }
-    }
-
-    /**
-     * Processing of the Elytra upgrade.
-     * Call from the game itself.
-     */
-    @Override
-    public boolean canElytraFly(ItemStack stack, LivingEntity entity) {
-        return (getUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString("elytra"), entity) > 0)  && !entity.hasEffect(EffectInit.FLY_DISABLED.get()) && !entity.isInWaterOrBubble() && !entity.isInLava() && this.isSetEquipped(entity) && entity.getCapability(PlayerMagicProvider.MAGIC).isPresent() && entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null).getCastingResource().hasEnoughAbsolute(entity, CommonConfigs.getElytraManaCostPerTick());
-    }
-
-    /**
-     * Processing of the elytra upgrade and the of the elytra-boost
-     * Call from the game itself.
-     */
-    @Override
-    public boolean elytraFlightTick(ItemStack stack, LivingEntity entity, int flightTicks) {
-        if (!(entity instanceof Player)) {
-            return false;
-        } else if(getUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString("elytra"), entity) == 1){
-            return true;
-        } else {
-            IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-            if (magic != null && magic.getCastingResource().hasEnoughAbsolute(entity, CommonConfigs.getElytraManaCostPerTick())) {
-                Vec3 look = entity.getLookAngle();
-                Vec3 pos;
-                float maxLength;
-                double lookScale;
-                Vec3 scaled_look;
-                if (!entity.isShiftKeyDown()) {
-                    magic.getCastingResource().consume(entity, CommonConfigs.getElytraManaCostPerTick());
-                    pos = entity.getDeltaMovement();
-                    maxLength = 1.75F;
-                    lookScale = 0.06D;
-                    scaled_look = look.scale(lookScale);
-                    pos = pos.add(scaled_look);
-                    if (pos.length() > (double)maxLength) {
-                        pos = pos.scale((double)maxLength / pos.length());
-                    }
-                    entity.setDeltaMovement(pos);
-                } else {
-                    magic.getCastingResource().consume(entity, CommonConfigs.getElytraManaCostPerTick() /2.0f);
-                    pos = entity.getDeltaMovement();
-                    maxLength = 0.1F;
-                    lookScale = -0.01D;
-                    scaled_look = look.scale(lookScale);
-                    pos = pos.add(scaled_look);
-                    if (pos.length() < (double)maxLength) {
-                        pos = pos.scale((double)maxLength / pos.length());
-                    }
-                    entity.setDeltaMovement(pos);
-                }
-
-                if (entity.level.isClientSide) {
-                    pos = entity.position().add(look.scale(3.0D));
-                    for(int i = 0; i < 5; ++i) {
-                        entity.level.addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
-                    }
-                }
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
+    //todo
+//    /**
+//     * Adds a tooltip (when hovering over the item) to the item.
+//     * The installed spells and upgrades are listed.
+//     * Call from the game itself.
+//     */
+//    @OnlyIn(Dist.CLIENT)
+//    @Override
+//    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+//        if(this.slot != EquipmentSlot.CHEST){
+//            return;
+//        }
+//
+//        if(Screen.hasShiftDown()){
+//            if(stack.hasTag()){
+//                //Spell Tooltiip
+//                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name").equals("")){
+//                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.other");
+//                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name")));
+//                }
+//                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name").equals("")){
+//                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.self");
+//                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name")));
+//                }
+//
+//                //Upgrade Tooltip
+//                tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
+//                ArmorUpgrade[] allUpgrades = ArmorUpgradeInit.getAllUpgrades();
+//                for(ArmorUpgrade upgrade : allUpgrades){
+//                    if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("") && !stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("0")){
+//                        TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade."+upgrade.getUpgradeId());
+//                        tooltip.add(new TextComponent(component.getString() + ": " + stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId())));
+//                    }
+//                }
+//            }
+//        }
+//        else{
+//            tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip"));
+//        }
+//    }
 
     /**
      * Armor does not break

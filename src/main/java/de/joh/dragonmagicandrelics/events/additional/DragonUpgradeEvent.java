@@ -3,8 +3,8 @@ package de.joh.dragonmagicandrelics.events.additional;
 import com.mna.api.faction.IFaction;
 import com.mna.factions.Factions;
 import com.mna.items.armor.*;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgrade;
-import de.joh.dragonmagicandrelics.config.InitialUpgradesConfigs;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
+import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.nbt.CompoundTag;
@@ -14,18 +14,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 
 import java.util.HashMap;
+
 /**
  * This event is called when the player gets the Dragon Mage Armor.
  * If you want to add more Dragon Mage Armos for new factions, this event must be caught
  * and entered via setAlternativeArmorValues() (if the condition is met)
  * @see de.joh.dragonmagicandrelics.rituals.contexts.DragonMageArmorRitual
- * @see de.joh.dragonmagicandrelics.Commands
+ * @see Commands
  * @author Joh0210
  */
 public class DragonUpgradeEvent extends PlayerEvent {
     private boolean canBeUpgraded;
     private final IFaction targetFaction;
-    private HashMap initialUpgrades;
+    private HashMap<ArmorUpgrade, Integer> initialUpgrades;
     private final ItemStack headOld;
     private final ItemStack chestOld;
     private final ItemStack legsOld;
@@ -81,20 +82,6 @@ public class DragonUpgradeEvent extends PlayerEvent {
             legsNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_LEGGING.get());
             feetNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_BOOTS.get());
         }
-
-        if(targetFaction == Factions.UNDEAD){
-            initialUpgrades = InitialUpgradesConfigs.getBoneInitEffects();
-        }
-        else if(targetFaction == Factions.COUNCIL){
-            initialUpgrades = InitialUpgradesConfigs.getCouncilInitEffects();
-        }
-        else if(targetFaction == Factions.DEMONS){
-            initialUpgrades = InitialUpgradesConfigs.getDemonInitEffects();
-        }
-        else if(targetFaction == Factions.FEY){
-            initialUpgrades = InitialUpgradesConfigs.getFeyInitEffects();
-        }
-
         canBeUpgraded = true;
     }
 
@@ -151,7 +138,8 @@ public class DragonUpgradeEvent extends PlayerEvent {
     }
 
     private void addUpgrade(ArmorUpgrade upgrade, int level){
-        ((DragonMageArmor)this.getPlayer().getItemBySlot(EquipmentSlot.CHEST).getItem()).setUpgradeLevel(upgrade, level, this.getPlayer());
+        ItemStack itemStack = this.getPlayer().getItemBySlot(EquipmentSlot.CHEST);
+        ((DragonMageArmor)itemStack.getItem()).addDragonMagicToItem(itemStack, upgrade, level, true);
     }
 
     /**
@@ -174,7 +162,7 @@ public class DragonUpgradeEvent extends PlayerEvent {
      * you have to catch the event and add the armor with this function
      * @param initialUpgrades HashMap with the initial upgrades the armor gets
      */
-    public void setAlternativeArmorValues(ItemStack headNew, ItemStack chestNew, ItemStack legsNew, ItemStack feetNew, HashMap initialUpgrades){
+    public void setAlternativeArmorValues(ItemStack headNew, ItemStack chestNew, ItemStack legsNew, ItemStack feetNew, HashMap<ArmorUpgrade, Integer> initialUpgrades){
         this.headNew = headNew;
         this.chestNew = chestNew;
         this.legsNew = legsNew;

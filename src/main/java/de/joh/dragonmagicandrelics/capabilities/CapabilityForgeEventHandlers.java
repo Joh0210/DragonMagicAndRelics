@@ -31,7 +31,7 @@ public class CapabilityForgeEventHandlers {
         original.reviveCaps();
         player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((magic) -> {
             original.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((oldMagic) -> {
-                magic.copyFrom(oldMagic);
+                magic.copyFrom(oldMagic, player);
             });
         });
         event.getOriginal().invalidateCaps();

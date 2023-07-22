@@ -15,6 +15,7 @@ import com.mna.spells.components.PotionEffectComponent;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -73,7 +74,7 @@ public class ComponentUltimateArmor extends PotionEffectComponent {
     }
 
     @Override
-    public List<SpellReagent> getRequiredReagents(@Nullable Player caster) {
+    public List<SpellReagent> getRequiredReagents(@Nullable Player caster, @Nullable InteractionHand hand) {
         return List.of(new SpellReagent(new ItemStack(Items.NETHER_STAR), false, true, true));
     }
 }

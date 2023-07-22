@@ -1,15 +1,13 @@
 package de.joh.dragonmagicandrelics.networking.packet;
 
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
+
 import java.util.function.Supplier;
 
 /**
@@ -32,14 +30,13 @@ public class ToggleNightVisionC2SPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(()->{
             ServerPlayer player = context.getSender();
-
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-
-            if(chest.getItem() instanceof DragonMageArmor mmaArmor && mmaArmor.getUpgradeLevel(ArmorUpgradeInit.NIGHT_VISION, player) >= 1){
-                if(player.hasEffect(MobEffects.NIGHT_VISION)){
-                    player.removeEffect(MobEffects.NIGHT_VISION);
-                }else{
-                    player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 100000, 0, false, false, true));
+            if(player != null){
+                if(ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.NIGHT_VISION) >= 1){
+                    if(player.hasEffect(MobEffects.NIGHT_VISION)){
+                        player.removeEffect(MobEffects.NIGHT_VISION);
+                    }else{
+                        player.addEffect(new MobEffectInstance(MobEffects.NIGHT_VISION, 100000, 0, false, false, true));
+                    }
                 }
             }
         });

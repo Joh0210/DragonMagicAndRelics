@@ -4,7 +4,7 @@ import com.mna.factions.Factions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.armorupgrades.init.ArmorUpgradeFly;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.AngelRing;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
@@ -24,7 +24,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 /**
  * This class adds visible wings to the player when wearing the Dragon Mage armor and has the Elytra upgrade installed.
- * @see de.joh.dragonmagicandrelics.armorupgrades.armorupgradeonarmortick.ArmorUpgradeFly
+ * @see ArmorUpgradeFly
  * @see DragonMageArmor
  */
 public class WingLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {

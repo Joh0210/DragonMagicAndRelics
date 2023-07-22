@@ -6,11 +6,11 @@ import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.effects.EffectInit;
-import de.joh.dragonmagicandrelics.Commands;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChance;
 import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChanceProvider;
+import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.RLoc;
@@ -20,14 +20,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -41,18 +39,20 @@ import top.theillusivec4.caelus.api.CaelusApi;
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CommonEventHandler {
-
     /**
-     * Processing of the jump upgrade.
-     * @see ArmorUpgradeInit
+     * Causes DMArmor effects to be removed when armor is removed.
      */
     @SubscribeEvent
-    public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
-        if(event.getEntityLiving() instanceof Player player){
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (player.isSprinting() && !chest.isEmpty() && chest.getItem() instanceof DragonMageArmor) {
-                float boost = ((float)((DragonMageArmor)chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player)/10.0f);
-                player.push((float)(event.getEntityLiving().getDeltaMovement().x * boost), boost*2, (float)(event.getEntityLiving().getDeltaMovement().z * boost));
+    public static void onLivingEquipmentChange(LivingEquipmentChangeEvent event){
+        if(event.getEntity() instanceof LivingEntity entity && event.getSlot().getType() == EquipmentSlot.Type.ARMOR){
+            Item fromItem = event.getFrom().getItem();
+            Item toItem = event.getTo().getItem();
+
+            if(fromItem instanceof DragonMageArmor){
+                ((DragonMageArmor)fromItem).onDiscard(event.getFrom(), entity);
+            }
+            if(toItem instanceof DragonMageArmor){
+                ((DragonMageArmor)toItem).onEquip(event.getTo(), entity);
             }
         }
     }
@@ -75,11 +75,14 @@ public class CommonEventHandler {
 
     /**
      * If the player has the elytra effect on level 1 or higher, they get the creative fly and speed boost here.
+     * And performs each of the player's OnTick Upgrade
      * @see de.joh.dragonmagicandrelics.effects.beneficial.EffectElytra
      */
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         Player player = event.player;
+        ArmorUpgradeHelper.applyOnTickUpgrade(player);
+
         if (!player.hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.FLY_DISABLED.get())
                 && player.hasEffect((de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()))
                 && player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier() >= 1
@@ -195,24 +198,5 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(PlayerSecondChance.class);
-    }
-
-    /**
-     * Makes Cosmetic Armor Reworked with the Elytra Compatibility:
-     * --> Elytra were previously not displayed if you didn't have the armor fully visible
-     * @see DragonMageArmor
-     * @see net.minecraft.client.renderer.entity.layers.ElytraLayer
-     */
-    @SubscribeEvent
-    public static void onLivingEquipmentChange(LivingEquipmentChangeEvent event){
-        if(event.getEntity() instanceof LivingEntity){
-            Item toItem = event.getTo().getItem();
-
-            if(toItem instanceof DragonMageArmor && ((DragonMageArmor)toItem).getSlot() == EquipmentSlot.CHEST){
-                if(event.getTo().hasTag() && event.getTo().getTag().getBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra")){
-                    event.getTo().getTag().remove(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra");
-                }
-            }
-        }
     }
 }

@@ -79,10 +79,8 @@ public class ModTags {
 
     public static class Items {
 
-        public static ResourceLocation UPGRADE_SEAL_TIER_I = RLoc.create("upgrade_seal_tier_i");
-        public static ResourceLocation UPGRADE_SEAL_TIER_II = RLoc.create("upgrade_seal_tier_ii");
-        public static ResourceLocation UPGRADE_SEAL_TIER_III = RLoc.create("upgrade_seal_tier_iii");
-        public static ResourceLocation UPGRADE_SEAL_TIER_IV = RLoc.create("upgrade_seal_tier_iv");
+        public static ResourceLocation UPGRADE_SEAL_TIER = RLoc.create("upgrade_seal_tier");
+        public static ResourceLocation DRAGON_MAGIC_CONTAINER = RLoc.create("dragon_magic_container");
 
         public Items() {
         }

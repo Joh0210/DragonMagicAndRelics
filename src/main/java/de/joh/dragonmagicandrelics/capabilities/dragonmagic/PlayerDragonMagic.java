@@ -1,5 +1,9 @@
 package de.joh.dragonmagicandrelics.capabilities.dragonmagic;
 
+import de.joh.dragonmagicandrelics.Registries;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
+import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
+import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
 import de.joh.dragonmagicandrelics.utils.MarkSave;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -7,7 +11,10 @@ import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import oshi.util.tuples.Pair;
+
 import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +29,9 @@ import java.util.Map;
  * @author Joh0210
  */
 public class PlayerDragonMagic {
+    protected HashMap<String, Pair<ArmorUpgrade, Integer>> onEventUpgrade = new HashMap<>();
+    protected HashMap<String, Pair<IArmorUpgradeOnTick, Integer>> onTickUpgrade = new HashMap<>();
+    protected HashMap<String, Pair<IArmorUpgradeOnEquipped, Integer>> onEquipUpgrade = new HashMap<>();
     /**
      * List of dimensions with corresponding mark, for ComponentMark, ComponentAlternativeRecall, ...
      */
@@ -49,8 +59,17 @@ public class PlayerDragonMagic {
         return markMap.get(world.dimension());
     }
 
-    public void copyFrom(PlayerDragonMagic source) {
+    public void copyFrom(PlayerDragonMagic source, Player player) {
         this.markMap = source.getMarkMap();
+        for(Map.Entry<String, Pair<ArmorUpgrade, Integer>> entry : onEventUpgrade.entrySet()) {
+            addUpgrade(entry.getKey(), entry.getValue().getA(), entry.getValue().getB(), player);
+        }
+        for(Map.Entry<String,  Pair<IArmorUpgradeOnTick, Integer>> entry : onTickUpgrade.entrySet()) {
+            addUpgrade(entry.getKey(), entry.getValue().getA(), entry.getValue().getB(), player);
+        }
+        for(Map.Entry<String, Pair<IArmorUpgradeOnEquipped, Integer>> entry : onEquipUpgrade.entrySet()) {
+            addUpgrade(entry.getKey(), entry.getValue().getA(), entry.getValue().getB(), player);
+        }
     }
 
     public HashMap<ResourceKey<Level>, MarkSave> getMarkMap() {
@@ -59,15 +78,32 @@ public class PlayerDragonMagic {
 
     public void saveNBT(CompoundTag compound) {
         CompoundTag nbt = new CompoundTag();
+        int upgradeSize = 0;
+        for(Map.Entry<String, Pair<ArmorUpgrade, Integer>> entry : onEventUpgrade.entrySet()) {
+            nbt.putString("upgrade_source_" + upgradeSize, entry.getKey());
+            nbt.putString("upgrade_value_" + upgradeSize, entry.getValue().getA().getRegistryName().toString());
+            nbt.putInt("upgrade_int_" + upgradeSize, entry.getValue().getB());
+            upgradeSize++;
+        }
+        for(Map.Entry<String, Pair<IArmorUpgradeOnTick, Integer>> entry : onTickUpgrade.entrySet()) {
+            nbt.putString("upgrade_source_" + upgradeSize, entry.getKey());
+            nbt.putString("upgrade_value_" + upgradeSize, entry.getValue().getA().getRegistryName().toString());
+            nbt.putInt("upgrade_int_" + upgradeSize, entry.getValue().getB());
+            upgradeSize++;
+        }
+        for(Map.Entry<String, Pair<IArmorUpgradeOnEquipped, Integer>> entry : onEquipUpgrade.entrySet()) {
+            nbt.putString("upgrade_source_" + upgradeSize, entry.getKey());
+            nbt.putString("upgrade_value_" + upgradeSize, entry.getValue().getA().getRegistryName().toString());
+            nbt.putInt("upgrade_int_" + upgradeSize, entry.getValue().getB());
+            upgradeSize++;
+        }
+        nbt.putInt("upgrades_size", upgradeSize);
 
         nbt.putInt("mark_map_size", markMap.size());
-
         int i = 0;
-
         for(Map.Entry<ResourceKey<Level>, MarkSave> entry : markMap.entrySet()) {
             nbt.putString("mark_map_dimension_" + i, entry.getKey().location().toString());
             nbt.put("mark_map_mark_save_" + i, entry.getValue().saveNBT());
-
             i++;
         }
 
@@ -75,8 +111,17 @@ public class PlayerDragonMagic {
     }
 
     public void loadNBT(CompoundTag compound) {
+        //todo here
         if (compound.contains("dragon_magic_data")) {
             CompoundTag nbt = compound.getCompound("dragon_magic_data");
+
+            for(int i = 0; i< nbt.getInt("upgrades_size"); i++){
+                addUpgrade(
+                        nbt.getString("upgrade_source_" + i),
+                        Registries.ARMOR_UPGRADE.get().getValue(new ResourceLocation(nbt.getString("upgrade_value_" + i))),
+                        nbt.getInt("upgrade_int_" + i)
+                );
+            }
 
             if(nbt.contains("mark_map_size")){
                 for(int i = 0; i< nbt.getInt("mark_map_size"); i++){
@@ -86,6 +131,42 @@ public class PlayerDragonMagic {
                     );
                 }
             }
+        }
+    }
+
+    public void addUpgrade(String source, @Nullable ArmorUpgrade armorUpgrade, int level, Player player){
+        if(armorUpgrade != null){
+            if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
+                ((IArmorUpgradeOnEquipped) armorUpgrade).onEquip(player, level);
+            }
+            addUpgrade(source, armorUpgrade, level);
+        }
+    }
+
+    public void removeUpgrade(String source, Player player){
+        Pair<IArmorUpgradeOnTick, Integer> armorUpgrade0 = onTickUpgrade.remove(source);
+        if(armorUpgrade0 != null){
+            armorUpgrade0.getA().onRemove(player);
+        }
+        Pair<IArmorUpgradeOnEquipped, Integer> armorUpgrade1 = onEquipUpgrade.remove(source);
+        if(armorUpgrade1 != null){
+            armorUpgrade1.getA().onRemove(player);
+        }
+        Pair<ArmorUpgrade, Integer> armorUpgrade2 = onEventUpgrade.remove(source);
+        if(armorUpgrade2 != null){
+            armorUpgrade2.getA().onRemove(player);
+        }
+    }
+
+    private void addUpgrade(String source, @Nullable ArmorUpgrade armorUpgrade, int level){
+        if(armorUpgrade instanceof IArmorUpgradeOnTick){
+            onTickUpgrade.put(source, new Pair<>((IArmorUpgradeOnTick)armorUpgrade, level));
+        }
+        else if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
+            onEquipUpgrade.put(source, new Pair<>((IArmorUpgradeOnEquipped) armorUpgrade, level));
+        }
+        else if (armorUpgrade != null){
+            onEventUpgrade.put(source, new Pair<>(armorUpgrade, level));
         }
     }
 }

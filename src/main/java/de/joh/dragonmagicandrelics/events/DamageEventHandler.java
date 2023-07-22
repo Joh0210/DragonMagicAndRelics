@@ -26,10 +26,11 @@ import com.mna.tools.InventoryUtilities;
 import com.mna.tools.ProjectileHelper;
 import com.mna.tools.SummonUtils;
 import com.mna.tools.TeleportHelper;
-import de.joh.dragonmagicandrelics.Commands;
+import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeProjectileReflectionHelper;
+import de.joh.dragonmagicandrelics.utils.ProjectileReflectionHelper;
+import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
@@ -96,9 +97,7 @@ public class DamageEventHandler {
             }
 
             //Damage Resistance
-            if(chest.getItem() instanceof DragonMageArmor mmaArmor){
-                event.setAmount(event.getAmount() * (1.0f - (float)mmaArmor.getUpgradeLevel(ArmorUpgradeInit.DAMAGE_RESISTANCE, player)* CommonConfigs.getDamageResistanceDamageReductionPerLevel()));
-            }
+            event.setAmount(event.getAmount() * (1.0f - (float) ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.DAMAGE_RESISTANCE)* CommonConfigs.getDamageResistanceDamageReductionPerLevel()));
         }
 
         AtomicReference<IFaction> faction = new AtomicReference<>(null);
@@ -119,10 +118,7 @@ public class DamageEventHandler {
 
         //Damage Boost
         if (source instanceof Player player){
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if(chest.getItem() instanceof DragonMageArmor mmaArmor) {
-                event.setAmount(event.getAmount() * (1.0f + (float)mmaArmor.getUpgradeLevel(ArmorUpgradeInit.DAMAGE_BOOST, player)*0.25f));
-            }
+            event.setAmount(event.getAmount() * (1.0f + ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.DAMAGE_BOOST)*0.25f));
         }
     }
 
@@ -158,10 +154,9 @@ public class DamageEventHandler {
                 return;
             }
             DamageSource source = event.getSource();
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor  && dragonMageArmor.isSetEquipped(player)) {
+            if (!player.level.isClientSide) {
                 //protection against fire
-                if (source.isFire() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 1) {
+                if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.FIRE_RESISTANCE) == 1) {
 
                     IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
                     if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get())) {
@@ -170,33 +165,33 @@ public class DamageEventHandler {
                         return;
                     }
                 }
-                else if (source.isFire() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.FIRE_RESISTANCE, player) == 2) {
+                else if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.FIRE_RESISTANCE) == 2) {
                     event.setCanceled(true);
                     return;
                 }
 
                 //protection against explosions
-                if (source.isExplosion() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.EXPLOSION_RESISTANCE, player) == 1) {
+                if (source.isExplosion() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.EXPLOSION_RESISTANCE) == 1) {
                     event.setCanceled(true);
                     return;
                 }
 
                 //Protection from falling through jumpboost
-                if(source.isFall() && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
-                    if((event.getAmount() - dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3) <= 0){
+                if(source.isFall() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1){
+                    if((event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) * 3) <= 0){
                         event.setCanceled(true);
                         return;
                     }
                 }
 
                 //Protection from kinetic energy
-                if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.KINETIC_RESISTANCE, player) == 1){
+                if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.KINETIC_RESISTANCE) == 1){
                     event.setCanceled(true);
                     return;
                 }
 
                 //Projectile Reflection
-                if(source.getDirectEntity() instanceof Projectile && dragonMageArmor.getUpgradeLevel(ArmorUpgradeInit.PROJECTILE_REFLECTION, player) > 0 && ArmorUpgradeProjectileReflectionHelper.consumeReflectCharge(player)){
+                if(source.getDirectEntity() instanceof Projectile && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.PROJECTILE_REFLECTION) > 0 && ProjectileReflectionHelper.consumeReflectCharge(player)){
                     event.setCanceled(true);
                     ProjectileHelper.ReflectProjectile(player, (Projectile)source.getDirectEntity(), true, 10.0F);
                     return;
@@ -218,18 +213,17 @@ public class DamageEventHandler {
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
         if(event.getEntityLiving() instanceof Player player){
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if (!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor) {
+            if (!player.level.isClientSide) {
 
                 //Protection from falling through jumpboost
-                if(event.getSource().isFall() && ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) >= 1){
-                    int amount = (int)event.getAmount() - ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.JUMP, player) * 3;
+                if(event.getSource().isFall() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1){
+                    int amount = (int)event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) * 3;
                     if(amount > 0){
                         event.setAmount(amount);
                     }
                 }
 
-                if (((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.MIST_FORM, player) >= 1 && !event.getSource().isBypassInvul() && player.getHealth() > 1.0F && event.getAmount() > player.getHealth()) {
+                if (ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MIST_FORM) >= 1 && !event.getSource().isBypassInvul() && player.getHealth() > 1.0F && event.getAmount() > player.getHealth()) {
                     player.addEffect(new MobEffectInstance(EffectInit.MIST_FORM.get(), 200, 0, true, true));
                     player.setHealth(1.0F);
                     event.setCanceled(true);
@@ -243,9 +237,8 @@ public class DamageEventHandler {
         if (source instanceof LivingEntity && source != event.getEntity() && source instanceof Player sourcePlayer) {
             sourcePlayer.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
                 if (p.getAlliedFaction() == Factions.UNDEAD) {
-                    ItemStack chest = sourcePlayer.getItemBySlot(EquipmentSlot.CHEST);
-                    if (!chest.isEmpty() && !sourcePlayer.level.isClientSide && chest.getItem() instanceof DragonMageArmor) {
-                        int manaRegenLevel = ((DragonMageArmor) chest.getItem()).getUpgradeLevel(ArmorUpgradeInit.getArmorUpgradeFromString("mana_regen"), sourcePlayer);
+                    if (!sourcePlayer.level.isClientSide) {
+                        int manaRegenLevel = ArmorUpgradeHelper.getUpgradeLevel(sourcePlayer, ArmorUpgradeInit.MANA_REGEN);
                         if (manaRegenLevel > 0) {
                             float souls = getSoulsRestored(sourcePlayer, living);
                             if (souls > 0.0F) {

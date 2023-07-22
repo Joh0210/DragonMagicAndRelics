@@ -2,16 +2,14 @@ package de.joh.dragonmagicandrelics.rituals.contexts;
 
 import com.mna.api.rituals.IRitualContext;
 import com.mna.api.rituals.RitualEffect;
+import com.mna.entities.utility.PresentItem;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.item.items.UpgradeSeal;
+import de.joh.dragonmagicandrelics.item.util.DragonMagicContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LightningBolt;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -34,43 +32,31 @@ public class UpgradeRitual extends RitualEffect {
 
     @Override
     protected boolean applyRitualEffect(IRitualContext context) {
-        Player caster = context.getCaster();
         Level world = context.getWorld();
         BlockPos pos = context.getCenter();
 
-
-
         List<ItemStack> upgradeSealList = context.getCollectedReagents((r) -> r.getItem() instanceof UpgradeSeal);
+        List<ItemStack> dMContainerList = context.getCollectedReagents((r) -> r.getItem() instanceof DragonMagicContainer);
 
-        if (upgradeSealList.size() == 1) {
-            if(upgradeSealList.get(0).getItem() instanceof UpgradeSeal upgradeSeal){
-                if(caster.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor mmaArmor){
-                    if(!mmaArmor.isSetEquipped(caster)){
-                        errorOccurred(new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.no.armor.equipped.error"), context);
-                        return false;
-                    }
+        if (upgradeSealList.size() == 1 && dMContainerList.size() == 1) {
+            if(upgradeSealList.get(0).getItem() instanceof UpgradeSeal upgradeSeal && dMContainerList.get(0).getItem() instanceof DragonMagicContainer dMContainer){
+                //todo: Has enough points free?
 
-                    if(upgradeSeal.getUpgradeLevel() < mmaArmor.getUpgradeLevel(upgradeSeal.getArmorUpgrade(), caster)){
-                        errorOccurred(new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.already.installed.error"), context);
-                        return false;
-                    }
-
-                    if(mmaArmor.getUpgradeLevel(upgradeSeal.getArmorUpgrade(), caster) + 1 != upgradeSeal.getUpgradeLevel()){
-                        TranslatableComponent component1 = new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.missing.predecessor.one.error");
-                        TranslatableComponent component2 = new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.missing.predecessor.two.error");
-
-                        errorOccurred(new TextComponent(component1.getString() + (upgradeSeal.getUpgradeLevel() -1) + component2.getString()), context);
-                        return false;
-                    }
-                    mmaArmor.setUpgradeLevel(upgradeSeal.getArmorUpgrade(), upgradeSeal.getUpgradeLevel(), caster);
-
-                    LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(world);
-                    lightningboltentity.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
-                    world.addFreshEntity(lightningboltentity);
-
-                    return true;
-
+                int currentLevel = dMContainer.getUpgradeLevel(dMContainerList.get(0), upgradeSeal.getArmorUpgrade());
+                if(upgradeSeal.getArmorUpgrade().getMaxUpgradeLevel() <= currentLevel){
+                    errorOccurred(new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.already_at_max.error"), context);
+                    return false;
                 }
+
+                if(!dMContainer.addDragonMagicToItem(dMContainerList.get(0), upgradeSeal.getArmorUpgrade(), currentLevel + 1, false)){
+                    errorOccurred(new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.unexpected.error"), context);
+                    return false;
+                }
+
+                PresentItem item = new PresentItem(world, (double)pos.getX() + 0.5D, pos.getY() + 1 , (double)pos.getZ() + 0.5D, dMContainerList.get(0));
+                world.addFreshEntity(item);
+
+                return true;
             }
         }
         errorOccurred(new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.wrong.ritual.arrangement.error"), context);
@@ -82,15 +68,17 @@ public class UpgradeRitual extends RitualEffect {
         return true;
     }
 
-    @Override
-    public Component canRitualStart(IRitualContext context) {
-        Player caster = context.getCaster();
-        if(!(caster.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor mmaArmor) || !mmaArmor.isSetEquipped(caster)){
-            return new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.no.armor.equipped.error");
-        }
-
-        return null;
-    }
+    //todo: Has enough points free?
+//    @Override
+//    public Component canRitualStart(IRitualContext context) {
+//        Player caster = context.getCaster();
+//
+//        if(!(caster.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor mmaArmor) || !mmaArmor.isSetEquipped(caster)){
+//            return new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.no.armor.equipped.error");
+//        }
+//
+//        return null;
+//    }
 
     /**
      * An error has occurred and the ritual ends.

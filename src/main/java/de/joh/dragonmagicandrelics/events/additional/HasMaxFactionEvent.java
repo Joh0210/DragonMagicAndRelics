@@ -8,7 +8,6 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.registries.IForgeRegistry;
 
 /**
  * If the Dragon Mage Armor Ritual is to be started, the wearer must be wearing appropriate armor.
@@ -26,7 +25,7 @@ public class HasMaxFactionEvent extends PlayerEvent {
         ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
         hasMaxFactionArmor = (chest.getItem() instanceof BoneArmorItem || chest.getItem() instanceof CouncilArmorItem || chest.getItem() instanceof DemonArmorItem || chest.getItem() instanceof FeyArmorItem) && ((ISetItem) chest.getItem()).isSetEquipped(player);
         if(chest.getItem() instanceof IFactionSpecific){
-            targetFaction = (IFaction)((IForgeRegistry) Registries.Factions.get()).getValue(((IFactionSpecific)chest.getItem()).getFaction());
+            targetFaction = Registries.Factions.get().getValue(((IFactionSpecific)chest.getItem()).getFaction());
         }
     }
 
