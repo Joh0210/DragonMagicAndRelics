@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class ArmorUpgradeManaRegeneration extends IArmorUpgradeOnEquipped {
     public ArmorUpgradeManaRegeneration(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel);
+        super(registryName, maxUpgradeLevel, true);
     }
 
     @Override

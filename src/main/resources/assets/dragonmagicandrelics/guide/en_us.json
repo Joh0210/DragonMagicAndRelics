@@ -227,13 +227,13 @@
       }
     ]
   },
-  "Upgrade Glyph Dolphins Grace": {
+  "Upgrade Glyph Swim Speed": {
     "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
         "type": "title",
-        "value": "Upgrade Glyph Dolphins Grace"
+        "value": "Upgrade Glyph Swim Speed"
       },
       {
         "type": "text",
@@ -250,7 +250,7 @@
         "value": "",
         "json": [
           {
-            "text": "Dolphins Grace I is Tier 1",
+            "text": "Swim Speed I is Tier 1",
             "color": ""
           }
         ]
@@ -260,7 +260,7 @@
         "value": "",
         "json": [
           {
-            "text": "Dolphins Grace II is Tier 2",
+            "text": "Swim Speed II is Tier 2",
             "color": ""
           }
         ]
@@ -964,6 +964,10 @@
       {
         "type": "eldrin_altar",
         "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_elytra"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_angel_flight"
       }
     ]
   },

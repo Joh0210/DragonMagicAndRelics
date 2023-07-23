@@ -1,10 +1,12 @@
 package de.joh.dragonmagicandrelics.armorupgrades.types;
 
+import com.mna.api.capabilities.IPlayerMagic;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -13,34 +15,32 @@ import org.jetbrains.annotations.NotNull;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public class ArmorUpgradePotionEffect extends ArmorUpgrade{
+public abstract class IArmorUpgradePotionEffect extends IArmorUpgradeOnTick{
     /**
      * Time you want the effect to last. Will be reseted every tick.
      */
-    private static final int EFFECT_DURATION = 10;
-    private final MobEffect mobEffect;
+    public static final int EFFECT_DURATION = 10;
     private final int factor;
 
     /**
      * @param registryName ID under which the upgrade can be recognized.
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
-     * @param mobEffect Potion Effect to add to the wearer.
      * @param factor Optional. Factor by which The Potion Effect should be amplified.
      */
-    public ArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, MobEffect mobEffect, int factor) {
-        super(registryName, maxUpgradeLevel);
-        this.mobEffect = mobEffect;
+    public IArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int factor,boolean isInfStackable) {
+        super(registryName, maxUpgradeLevel, isInfStackable);
         this.factor = factor;
     }
 
     /**
      * @param registryName ID under which the upgrade can be recognized.
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
-     * @param mobEffect Potion Effect to add to the wearer.
      */
-    public ArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, MobEffect mobEffect) {
-        this(registryName, maxUpgradeLevel, mobEffect, 1);
+    public IArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable) {
+        this(registryName, maxUpgradeLevel, 1, isInfStackable);
     }
+
+    public abstract MobEffect getMobEffect();
 
     /**
      * Adds or updates the Potion Effect for the Dragon Mage Armor wearer.
@@ -49,12 +49,17 @@ public class ArmorUpgradePotionEffect extends ArmorUpgrade{
      * @param level The level of the installed upgrade.
      */
     public void applyPotionAffect(Player player, int level){
-        if(!player.hasEffect(mobEffect) || player.getEffect(mobEffect).getAmplifier() < (level*factor - 1)){
-            player.addEffect(new MobEffectInstance(mobEffect, EFFECT_DURATION, level*factor - 1, false, false, false));
+        if(!player.hasEffect(getMobEffect()) || player.getEffect(getMobEffect()).getAmplifier() < (level*factor - 1)){
+            player.addEffect(new MobEffectInstance(getMobEffect(), EFFECT_DURATION, level*factor - 1, false, false, false));
         }
         else{
             //Update the duration of the effect.
-            player.getEffect(mobEffect).update(new MobEffectInstance(mobEffect, EFFECT_DURATION, level*factor - 1, false, false, false));
+            player.getEffect(getMobEffect()).update(new MobEffectInstance(getMobEffect(), EFFECT_DURATION, level*factor - 1, false, false, false));
         }
+    }
+
+    @Override
+    public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
+        applyPotionAffect(player, level);
     }
 }

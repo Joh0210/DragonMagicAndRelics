@@ -36,7 +36,7 @@
   "item.dragonmagicandrelics.upgrade_seal_movement_speed": "Upgrade Glyph Movement Speed",
   "item.dragonmagicandrelics.upgrade_seal_water_breathing": "Upgrade Glyph Water Breathing",
   "item.dragonmagicandrelics.upgrade_seal_night_vision": "Upgrade Glyph Night Vision",
-  "item.dragonmagicandrelics.upgrade_seal_dolphins_grace": "Upgrade Glyph Dolphins Grace",
+  "item.dragonmagicandrelics.upgrade_seal_dolphins_grace": "Upgrade Glyph Swim Speed",
   "item.dragonmagicandrelics.upgrade_seal_regeneration": "Upgrade Glyph Regeneration",
   "item.dragonmagicandrelics.upgrade_seal_mana_boost": "Upgrade Glyph Mana Boost",
   "item.dragonmagicandrelics.upgrade_seal_mana_regen": "Upgrade Glyph Mana Regeneration",
@@ -46,6 +46,7 @@
   "item.dragonmagicandrelics.upgrade_seal_fire_resistance": "Upgrade Glyph Fire Resistance",
   "item.dragonmagicandrelics.upgrade_seal_projectile_reflection": "Upgrade Glyph Projectile Reflection",
   "item.dragonmagicandrelics.upgrade_seal_elytra": "Upgrade Glyph Elytra",
+  "item.dragonmagicandrelics.upgrade_seal_angel_flight": "Upgrade Glyph Angel Flight",
   "item.dragonmagicandrelics.upgrade_seal_damage_resistance": "Upgrade Glyph Damage Resistance",
   "item.dragonmagicandrelics.upgrade_seal_damage_boost": "Upgrade Glyph Damage Boost",
 
@@ -93,6 +94,7 @@
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base": "You have installed the following upgrades:",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.explosion_resistance": "§bExplosion Resistance§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.elytra": "§fElytra§r",
+  "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.angel_flight": "§fAngel Flight§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.meteor_jump": "§6Meteor Jump§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.fly": "§fFly§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.projectile_reflection": "§fProjectile Reflection§r",
@@ -108,7 +110,7 @@
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.water_breathing": "§9Water Breathing§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.night_vision": "§1Night Vision§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.saturation": "§eSaturation§r",
-  "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.dolphins_grace": "§3Dolphins Grace§r",
+  "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.dolphins_grace": "§3Swim Speed§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.mana_boost": "§bMana Boost§r",
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.mana_regen": "§bMana Regeneration§r",
 

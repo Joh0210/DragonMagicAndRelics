@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class ArmorUpgradeManaBoost  extends IArmorUpgradeOnEquipped {
     public ArmorUpgradeManaBoost(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel);
+        super(registryName, maxUpgradeLevel, true);
     }
     public static int MANA_PER_MANABOOST = 200;
 

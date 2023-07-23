@@ -5,14 +5,17 @@ import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.api.sound.SFX;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -29,8 +32,8 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnTick {
     private static final AttributeModifier runSpeed2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_2", 0.05f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier runSpeed3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_3", 0.05f, AttributeModifier.Operation.ADDITION);
 
-    public ArmorUpgradeSpeed(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel);
+    public ArmorUpgradeSpeed(ResourceLocation upgradeId, int maxUpgradeLevel) {
+        super(upgradeId, maxUpgradeLevel, false);
     }
 
     @Override

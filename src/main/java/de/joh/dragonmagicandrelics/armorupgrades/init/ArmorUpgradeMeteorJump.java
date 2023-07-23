@@ -30,7 +30,7 @@ public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnTick {
     private static final int reqHeight = 5;
 
     public ArmorUpgradeMeteorJump(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel);
+        super(registryName, maxUpgradeLevel, false);
     }
 
     @Override

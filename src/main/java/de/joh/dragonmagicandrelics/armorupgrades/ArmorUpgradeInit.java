@@ -3,7 +3,7 @@ package de.joh.dragonmagicandrelics.armorupgrades;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.init.*;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
-import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradePotionEffect;
+import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradePotionEffect;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.world.effect.MobEffects;
@@ -75,20 +75,15 @@ public class ArmorUpgradeInit {
      */
     public static ArmorUpgrade MIST_FORM;
 
-    //todo
-    /**
-     * This upgrade increases the jump height of the wearer of the Dragon Mage Armor.
-     * Effect only applies while sprinting.
-     */
     public static ArmorUpgrade JUMP;
 
-    //todo
     /**
      * This upgrade allows the wearer to use Elytra Flight. Level 2 gives a permanent boost, but needs mana.
      * Increasing the maximum level has no effect without further adjustments.
      * @see DragonMageArmor
      */
     public static ArmorUpgrade ELYTRA;
+    public static ArmorUpgrade ANGEL_FLIGHT;
 
     public static ArmorUpgrade NIGHT_VISION;
     
@@ -117,6 +112,7 @@ public class ArmorUpgradeInit {
         event.getRegistry().register(ArmorUpgradeInit.MIST_FORM);
         event.getRegistry().register(ArmorUpgradeInit.JUMP);
         event.getRegistry().register(ArmorUpgradeInit.ELYTRA);
+        event.getRegistry().register(ArmorUpgradeInit.ANGEL_FLIGHT);
         event.getRegistry().register(ArmorUpgradeInit.NIGHT_VISION);
     }
 
@@ -127,23 +123,24 @@ public class ArmorUpgradeInit {
         ArmorUpgradeInit.WATER_BREATHING = new ArmorUpgradeWaterbreathing(RLoc.create("armorupgrade/water_breathing"), 2);
 
         ArmorUpgradeInit.METEOR_JUMP = new ArmorUpgradeMeteorJump(RLoc.create("armorupgrade/meteor_jump"), 1);
-        ArmorUpgradeInit.DOLPHINS_GRACE = new ArmorUpgradePotionEffect(RLoc.create("armorupgrade/dolphins_grace"), 2, MobEffects.DOLPHINS_GRACE);
-        ArmorUpgradeInit.REGENERATION = new ArmorUpgradePotionEffect(RLoc.create("armorupgrade/regeneration"), 1, MobEffects.REGENERATION);
+        ArmorUpgradeInit.DOLPHINS_GRACE = new ArmorUpgradeSwimSpeed(RLoc.create("armorupgrade/dolphins_grace"), 2);
+        ArmorUpgradeInit.REGENERATION = new ArmorUpgradeRegeneration(RLoc.create("armorupgrade/regeneration"), 1);
         ArmorUpgradeInit.MANA_BOOST = new ArmorUpgradeManaBoost(RLoc.create("armorupgrade/mana_boost"), 5);
 
         ArmorUpgradeInit.MANA_REGEN = new ArmorUpgradeManaRegeneration(RLoc.create("armorupgrade/mana_regen"), 5);
         ArmorUpgradeInit.HEALTH_BOOST = new ArmorUpgradeHealthBoost(RLoc.create("armorupgrade/health_boost"), 5);
-        ArmorUpgradeInit.DAMAGE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/damage_resistance"), 3);
-        ArmorUpgradeInit.DAMAGE_BOOST = new ArmorUpgrade(RLoc.create("armorupgrade/damage_boost"), 4);
+        ArmorUpgradeInit.DAMAGE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/damage_resistance"), 3, true);
+        ArmorUpgradeInit.DAMAGE_BOOST = new ArmorUpgrade(RLoc.create("armorupgrade/damage_boost"), 4, true);
 
-        ArmorUpgradeInit.FIRE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/fire_resistance"), 2);
-        ArmorUpgradeInit.KINETIC_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/kinetic_resistance"), 1);
-        ArmorUpgradeInit.EXPLOSION_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/explosion_resistance"), 1);
-        ArmorUpgradeInit.PROJECTILE_REFLECTION = new ArmorUpgrade(RLoc.create("armorupgrade/projectile_reflection"), 3);
+        ArmorUpgradeInit.FIRE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/fire_resistance"), 2, false);
+        ArmorUpgradeInit.KINETIC_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/kinetic_resistance"), 1, false);
+        ArmorUpgradeInit.EXPLOSION_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/explosion_resistance"), 1, false);
+        ArmorUpgradeInit.PROJECTILE_REFLECTION = new ArmorUpgrade(RLoc.create("armorupgrade/projectile_reflection"), 3, true);
 
-        ArmorUpgradeInit.MIST_FORM = new ArmorUpgrade(RLoc.create("armorupgrade/mist_form"), 1);
-        ArmorUpgradeInit.JUMP = new ArmorUpgrade(RLoc.create("armorupgrade/jump"), 3);
-        ArmorUpgradeInit.ELYTRA = new ArmorUpgrade(RLoc.create("armorupgrade/elytra"), 2);
+        ArmorUpgradeInit.MIST_FORM = new ArmorUpgrade(RLoc.create("armorupgrade/mist_form"), 1, false);
+        ArmorUpgradeInit.JUMP = new ArmorUpgradeJump(RLoc.create("armorupgrade/jump"), 3);
+        ArmorUpgradeInit.ELYTRA = new ArmorUpgradeElytra(RLoc.create("armorupgrade/elytra"), 1, true);
+        ArmorUpgradeInit.ANGEL_FLIGHT = new ArmorUpgradeElytra(RLoc.create("armorupgrade/angel_flight"), 2, false);
         ArmorUpgradeInit.NIGHT_VISION = new ArmorUpgradeNightVision(RLoc.create("armorupgrade/night_vision"), 1);
     }
 }

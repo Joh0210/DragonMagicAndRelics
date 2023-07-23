@@ -71,7 +71,7 @@ public class ArmorUpgradeHelper {
 
             if(player.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
                 for(ArmorUpgrade armorUpgrade : Registries.ARMOR_UPGRADE.get().getValues()){
-                    if(armorUpgrade instanceof IArmorUpgradeOnTick){
+                    if(armorUpgrade instanceof IArmorUpgradeOnTick && !armorUpgrade.hasStrongerAlternative()){
                         ((IArmorUpgradeOnTick)armorUpgrade).onTick(player.getLevel(), player, armorUpgrade.getMaxUpgradeLevel(), magic);
                     }
                 }
@@ -80,7 +80,9 @@ public class ArmorUpgradeHelper {
 
             player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
                 for(Pair<IArmorUpgradeOnTick, Integer> pair : playerCapability.onTickUpgrade.values()){
-                    pair.getA().onTick(player.getLevel(), player, pair.getB(), magic);
+                    if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
+                        pair.getA().onTick(player.getLevel(), player, pair.getB(), magic);
+                    }
                 }
             });
         }

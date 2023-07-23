@@ -1,16 +1,16 @@
 {
   "type": "mna:eldrin-altar",
-  "output": "dragonmagicandrelics:upgrade_seal_elytra_i",
+  "output": "dragonmagicandrelics:upgrade_seal_angel_flight",
   "tier": 5,
   "items": [
     "mna:stone_rune_white",
-    "minecraft:elytra",
+    "dragonmagicandrelics:angel_ring",
     "mna:greater_mote_air",
     "mna:greater_mote_air",
     "mna:rune_air",
     "mna:rune_air",
     "minecraft:nether_star",
-    "minecraft:feather",
+    "minecraft:firework_rocket",
     "minecraft:phantom_membrane"
   ],
   "power_requirements": [

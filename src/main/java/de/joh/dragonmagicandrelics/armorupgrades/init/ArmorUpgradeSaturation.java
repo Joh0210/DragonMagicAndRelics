@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 public class ArmorUpgradeSaturation extends IArmorUpgradeOnTick {
 
     public ArmorUpgradeSaturation(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel);
+        super(registryName, maxUpgradeLevel, false);
     }
 
     @Override

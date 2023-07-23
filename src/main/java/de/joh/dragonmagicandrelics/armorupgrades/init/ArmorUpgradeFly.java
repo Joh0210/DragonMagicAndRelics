@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class ArmorUpgradeFly extends IArmorUpgradeOnTick {
     public ArmorUpgradeFly(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel);
+        super(registryName, maxUpgradeLevel, true);
     }
 
     @Override

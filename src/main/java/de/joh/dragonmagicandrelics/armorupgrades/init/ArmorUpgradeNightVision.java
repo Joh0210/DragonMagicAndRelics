@@ -21,7 +21,7 @@ public class ArmorUpgradeNightVision extends ArmorUpgrade {
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      */
     public ArmorUpgradeNightVision(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel);
+        super(registryName, maxUpgradeLevel, false);
     }
 
     @Override

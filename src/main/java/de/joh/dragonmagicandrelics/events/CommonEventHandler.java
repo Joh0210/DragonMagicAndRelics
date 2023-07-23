@@ -7,6 +7,7 @@ import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.effects.EffectInit;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChance;
 import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChanceProvider;
@@ -26,6 +27,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -39,6 +41,21 @@ import top.theillusivec4.caelus.api.CaelusApi;
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class CommonEventHandler {
+    /**
+     * Processing of the jump upgrade.
+     * @see de.joh.dragonmagicandrelics.armorupgrades.init.ArmorUpgradeJump
+     */
+    @SubscribeEvent
+    public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
+        if(event.getEntityLiving() instanceof Player player && !player.getLevel().isClientSide()){
+            if (player.isSprinting()) {
+                float boost = ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP)/10.0f);
+                player.push((float)(player.getDeltaMovement().x * boost), boost * 2, (float)(player.getDeltaMovement().z * boost));
+                player.hurtMarked = true;
+            }
+        }
+    }
+
     /**
      * Causes DMArmor effects to be removed when armor is removed.
      */

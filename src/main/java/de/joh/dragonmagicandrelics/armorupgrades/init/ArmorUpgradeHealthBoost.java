@@ -21,7 +21,7 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnEquipped {
     private static final AttributeModifier healthBoost5 = new AttributeModifier("mma_armor_health_boost_5", 4, AttributeModifier.Operation.ADDITION);
 
     public ArmorUpgradeHealthBoost(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel);
+        super(registryName, maxUpgradeLevel, false);
     }
 
     @Override
