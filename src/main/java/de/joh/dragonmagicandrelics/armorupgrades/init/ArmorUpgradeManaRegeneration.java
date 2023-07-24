@@ -29,7 +29,7 @@ public class ArmorUpgradeManaRegeneration extends IArmorUpgradeOnEquipped {
     }
 
     @Override
-    public void onRemove(Player player) {
+    public void onRemove(Player player, int level) {
         (player).getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().removeRegenerationModifier("mma_magic_set_bonus"));
     }
 }

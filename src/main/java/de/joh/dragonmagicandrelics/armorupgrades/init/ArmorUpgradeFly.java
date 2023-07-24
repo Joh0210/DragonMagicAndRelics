@@ -64,7 +64,7 @@ public class ArmorUpgradeFly extends IArmorUpgradeOnTick {
     }
 
     @Override
-    public void onRemove(Player player) {
+    public void onRemove(Player player, int level) {
         ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
         ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
     }

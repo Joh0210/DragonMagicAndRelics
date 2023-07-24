@@ -6,6 +6,7 @@ import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.effects.EffectInit;
+import com.mna.events.MissingMappingsHandler;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
@@ -70,6 +71,14 @@ public class CommonEventHandler {
             }
             if(toItem instanceof DragonMageArmor){
                 ((DragonMageArmor)toItem).onEquip(event.getTo(), entity);
+            }
+
+            //apply/remove Dragon Magic Set
+            if(fromItem instanceof DragonMageArmor && ((DragonMageArmor)fromItem).wouldSetBeEquipped(entity,fromItem)){
+                ((DragonMageArmor)fromItem).removeDragonMagicSetBonus(entity);
+            }
+            if(toItem instanceof DragonMageArmor && ((DragonMageArmor)toItem).isSetEquipped(entity)){
+                ((DragonMageArmor)toItem).applyDragonMagicSetBonus(entity);
             }
         }
     }
@@ -191,9 +200,7 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
         if(event.isWasDeath()) {
-            event.getPlayer().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> {
-                secondChance.setSecondChance(event.getOriginal());
-            });
+            event.getPlayer().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> secondChance.setSecondChance(event.getOriginal()));
         }
     }
 

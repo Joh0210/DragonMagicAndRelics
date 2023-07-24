@@ -1,6 +1,7 @@
 package de.joh.dragonmagicandrelics.events;
 
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
+import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
@@ -50,7 +51,7 @@ public class ClientEvents {
             if (event.getEntity() instanceof Player player){
                 ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
                 if (
-                        (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor dmArmor && chest.hasTag() && chest.getTag().getBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra"))
+                        (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor && chest.hasTag() && player.hasEffect(EffectInit.ELYTRA.get()))
                         || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.ANGEL_RING.get(), player).isPresent()
                         || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.FALLEN_ANGEL_RING.get(), player).isPresent()
                 ) {

@@ -4,6 +4,7 @@ import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
+import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.MarkSave;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -11,6 +12,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import oshi.util.tuples.Pair;
@@ -137,7 +139,9 @@ public class PlayerDragonMagic {
     public void addUpgrade(String source, @Nullable ArmorUpgrade armorUpgrade, int level, Player player){
         if(armorUpgrade != null){
             if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
-                ((IArmorUpgradeOnEquipped) armorUpgrade).onEquip(player, level);
+                if(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
+                    ((IArmorUpgradeOnEquipped) armorUpgrade).onEquip(player, level);
+                }
             }
             addUpgrade(source, armorUpgrade, level);
         }
@@ -146,15 +150,15 @@ public class PlayerDragonMagic {
     public void removeUpgrade(String source, Player player){
         Pair<IArmorUpgradeOnTick, Integer> armorUpgrade0 = onTickUpgrade.remove(source);
         if(armorUpgrade0 != null){
-            armorUpgrade0.getA().onRemove(player);
+            armorUpgrade0.getA().onRemove(player, armorUpgrade0.getB());
         }
         Pair<IArmorUpgradeOnEquipped, Integer> armorUpgrade1 = onEquipUpgrade.remove(source);
         if(armorUpgrade1 != null){
-            armorUpgrade1.getA().onRemove(player);
+            armorUpgrade1.getA().onRemove(player, armorUpgrade1.getB());
         }
         Pair<ArmorUpgrade, Integer> armorUpgrade2 = onEventUpgrade.remove(source);
         if(armorUpgrade2 != null){
-            armorUpgrade2.getA().onRemove(player);
+            armorUpgrade2.getA().onRemove(player, armorUpgrade2.getB());
         }
     }
 

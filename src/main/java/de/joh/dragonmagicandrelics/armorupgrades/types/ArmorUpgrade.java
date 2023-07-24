@@ -56,7 +56,7 @@ public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
      * This feature removes the permanent effect from the player when the wearer unequips at least one piece of armor.
      * @param player Wearer of the Dragon Mage Armor. Player exclusive, no other entities.
      */
-    public void onRemove(Player player){
+    public void onRemove(Player player, int level){
     }
 
     /**

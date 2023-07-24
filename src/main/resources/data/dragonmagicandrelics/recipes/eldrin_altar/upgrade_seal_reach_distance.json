@@ -1,17 +1,15 @@
 {
   "type": "mna:eldrin-altar",
-  "output": "dragonmagicandrelics:upgrade_seal_fire_resistance",
+  "output": "dragonmagicandrelics:upgrade_seal_reach_distance",
   "tier": 5,
   "items": [
     "mna:stone_rune_orange",
     "minecraft:soul_campfire",
     "minecraft:fire_charge",
     "mna:living_flame",
-    "mna:greater_mote_fire",
     "mna:rune_fire",
-    "mna:brimstone_charm",
     "mna:brimstone_boat",
-    "mna:emberglow_bracelet"
+    "minecraft:nether_star"
   ],
   "power_requirements": [
     {

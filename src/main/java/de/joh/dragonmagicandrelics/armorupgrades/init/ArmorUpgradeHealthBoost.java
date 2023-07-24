@@ -48,7 +48,7 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnEquipped {
     }
 
     @Override
-    public void onRemove(Player player) {
+    public void onRemove(Player player, int level) {
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost1);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost2);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost3);

@@ -19,30 +19,27 @@ import com.mna.entities.sorcery.EntityDecoy;
 import com.mna.entities.utility.PresentItem;
 import com.mna.factions.Factions;
 import com.mna.interop.CuriosInterop;
-import com.mna.items.artifice.FactionSpecificSpellModifierRing;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
 import com.mna.tools.InventoryUtilities;
 import com.mna.tools.ProjectileHelper;
 import com.mna.tools.SummonUtils;
 import com.mna.tools.TeleportHelper;
-import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
-import de.joh.dragonmagicandrelics.utils.ProjectileReflectionHelper;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
+import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.utils.ProjectileReflectionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.AbstractGolem;
@@ -102,9 +99,7 @@ public class DamageEventHandler {
 
         AtomicReference<IFaction> faction = new AtomicReference<>(null);
         if(living instanceof Player player){
-            player.getCapability(ManaAndArtificeMod.getProgressionCapability()).ifPresent((p)-> {
-                faction.set(p.getAlliedFaction());
-            });
+            player.getCapability(ManaAndArtificeMod.getProgressionCapability()).ifPresent((p)-> faction.set(p.getAlliedFaction()));
         }
 
         if((living instanceof IFactionEnemy || faction.get() != null) && source instanceof LivingEntity && ((LivingEntity)source).hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get())){
@@ -156,18 +151,16 @@ public class DamageEventHandler {
             DamageSource source = event.getSource();
             if (!player.level.isClientSide) {
                 //protection against fire
-                if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.FIRE_RESISTANCE) == 1) {
-
+                if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE) >= 1) {
+                    event.setCanceled(true);
+                    return;
+                } else if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MINOR_FIRE_RESISTANCE) >= 1) {
                     IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
                     if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get())) {
                         magic.getCastingResource().consume(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get());
                         event.setCanceled(true);
                         return;
                     }
-                }
-                else if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.FIRE_RESISTANCE) == 2) {
-                    event.setCanceled(true);
-                    return;
                 }
 
                 //protection against explosions
@@ -303,32 +296,32 @@ public class DamageEventHandler {
     private static float getSoulsRestored(Player soulRecipient, Entity target) {
         if (soulRecipient == null) {
             return 0.0F;
-        } else if (target instanceof LivingEntity && (!(target instanceof PathfinderMob) || !SummonUtils.isSummon((PathfinderMob)target))) {
+        } else if (target instanceof LivingEntity && (!(target instanceof PathfinderMob) || !SummonUtils.isSummon(target))) {
             if (target instanceof EntityDecoy) {
                 return 0.0F;
             } else {
                 MutableFloat restoreAmount = new MutableFloat(1.0F);
                 if (target instanceof Player) {
-                    restoreAmount.setValue((Number) GeneralModConfig.MA_SOULS_PLAYER.get());
+                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_PLAYER.get());
                 } else if (target instanceof Villager) {
-                    restoreAmount.setValue((Number)GeneralModConfig.MA_SOULS_VILLAGER.get());
+                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_VILLAGER.get());
                 } else if (target instanceof IFactionEnemy) {
-                    restoreAmount.setValue((Number)GeneralModConfig.MA_SOULS_FACTION.get());
+                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_FACTION.get());
                 } else if (((LivingEntity)target).isInvertedHealAndHarm()) {
-                    restoreAmount.setValue((Number)GeneralModConfig.MA_SOULS_UNDEAD.get());
+                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_UNDEAD.get());
                 } else if (target instanceof Animal) {
-                    restoreAmount.setValue((Number)GeneralModConfig.MA_SOULS_ANIMAL.get());
+                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_ANIMAL.get());
                 } else if (target instanceof AbstractGolem) {
                     restoreAmount.setValue(0.0F);
                 } else if (target instanceof Mob) {
-                    restoreAmount.setValue((Number)GeneralModConfig.MA_SOULS_MOB.get());
+                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_MOB.get());
                 }
 
-                if (((LivingEntity)target).hasEffect((MobEffect) EffectInit.SOUL_VULNERABILITY.get())) {
+                if (((LivingEntity)target).hasEffect(EffectInit.SOUL_VULNERABILITY.get())) {
                     restoreAmount.setValue(restoreAmount.getValue() * 5.0F);
                 }
 
-                if (((FactionSpecificSpellModifierRing) com.mna.items.ItemInit.BONE_RING.get()).isEquippedAndHasMana(soulRecipient, 3.5F, true)) {
+                if (com.mna.items.ItemInit.BONE_RING.get().isEquippedAndHasMana(soulRecipient, 3.5F, true)) {
                     restoreAmount.setValue(restoreAmount.getValue() * 2.25F);
                 }
 
@@ -374,7 +367,7 @@ public class DamageEventHandler {
 
             if (consumed.getValue()) {
                 SpellSource spellSource = new SpellSource(self, InteractionHand.MAIN_HAND);
-                SpellContext context = new SpellContext((ServerLevel)self.level, recipe);
+                SpellContext context = new SpellContext(self.level, recipe);
                 recipe.iterateComponents((c) -> {
                     int delay = (int)(c.getValue(com.mna.api.spells.attributes.Attribute.DELAY) * 20.0F);
                     boolean appliedComponent = false;

@@ -3,8 +3,8 @@ package de.joh.dragonmagicandrelics.item.client.armor;
 import com.mna.factions.Factions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.init.ArmorUpgradeFly;
+import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.AngelRing;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
@@ -32,12 +32,12 @@ public class WingLayer<T extends LivingEntity, M extends EntityModel<T>> extends
 
     public WingLayer(RenderLayerParent<T, M> rendererIn, EntityModelSet p_174494_) {
         super(rendererIn);
-        this.modelElytra = new ElytraModel(p_174494_.bakeLayer(ModelLayers.ELYTRA));
+        this.modelElytra = new ElytraModel<>(p_174494_.bakeLayer(ModelLayers.ELYTRA));
     }
 
     public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         ItemStack chest = entity.getItemBySlot(EquipmentSlot.CHEST);
-        if (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor dmArmor && chest.hasTag() && chest.getTag().getBoolean(DragonMagicAndRelics.MOD_ID + "Fullset_Elytra")) {
+        if (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor dmArmor && entity.hasEffect(EffectInit.ELYTRA.get())) {
             matrixStackIn.pushPose();
             matrixStackIn.translate(0.0D, 0.0D, 0.125D);
             this.getParentModel().copyPropertiesTo(this.modelElytra);

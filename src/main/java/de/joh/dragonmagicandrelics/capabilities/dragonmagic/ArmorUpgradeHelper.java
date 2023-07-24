@@ -87,4 +87,61 @@ public class ArmorUpgradeHelper {
             });
         }
     }
+
+    public static void deactivateAll(Player player){
+        player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
+            for(Pair<ArmorUpgrade, Integer> pair : playerCapability.onEventUpgrade.values()){
+                if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
+                    pair.getA().onRemove(player, pair.getB());
+                }
+            }
+            for(Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.onEquipUpgrade.values()){
+                if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
+                    pair.getA().onRemove(player, pair.getB());
+                }
+            }
+            for(Pair<IArmorUpgradeOnTick, Integer> pair : playerCapability.onTickUpgrade.values()){
+                if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
+                    pair.getA().onRemove(player, pair.getB());
+                }
+            }
+        });
+    }
+
+    /**
+     * Only activates when the DM Armor is worn
+     */
+    public static void activateOnEquip(Player player){
+        if(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor dma && dma.isSetEquipped(player)) {
+            player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
+                for (Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.onEquipUpgrade.values()) {
+                    if (!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0) {
+                        pair.getA().onEquip(player, pair.getB());
+                    }
+                }
+            });
+        }
+    }
+
+    //todo: If I plan to adjust that in the future so that you no longer have to wear the DMA, that can cause problems.
+    public static void ultimateArmorStart(Player player){
+        deactivateAll(player);
+
+        if(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor dma && dma.isSetEquipped(player)){
+            for(ArmorUpgrade armorUpgrade: Registries.ARMOR_UPGRADE.get().getValues()){
+                if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
+                    ((IArmorUpgradeOnEquipped)armorUpgrade).onEquip(player, armorUpgrade.getMaxUpgradeLevel());
+                }
+            }
+        }
+    }
+
+    //todo: If I plan to adjust that in the future so that you no longer have to wear the DMA, that can cause problems.
+    public static void ultimateArmorFin(Player player){
+        for(ArmorUpgrade armorUpgrade: Registries.ARMOR_UPGRADE.get().getValues()){
+            armorUpgrade.onRemove(player, armorUpgrade.getMaxUpgradeLevel());
+        }
+
+        activateOnEquip(player);
+    }
 }

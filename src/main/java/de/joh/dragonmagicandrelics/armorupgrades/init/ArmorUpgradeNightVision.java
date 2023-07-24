@@ -25,7 +25,7 @@ public class ArmorUpgradeNightVision extends ArmorUpgrade {
     }
 
     @Override
-    public void onRemove(Player player) {
+    public void onRemove(Player player, int level) {
         player.removeEffect(MobEffects.NIGHT_VISION);
     }
 }

@@ -57,11 +57,13 @@ public class ItemInit {
     public static final RegistryObject<Item> UPGRADE_SEAL_DAMAGE_BOOST = ITEMS.register("upgrade_seal_damage_boost", () -> new UpgradeSeal(RLoc.create("armorupgrade/damage_boost"), Rarity.UNCOMMON));
     public static final RegistryObject<Item> UPGRADE_SEAL_DAMAGE_RESISTANCE = ITEMS.register("upgrade_seal_damage_resistance", () -> new UpgradeSeal(RLoc.create("armorupgrade/damage_resistance"), Rarity.RARE));
     public static final RegistryObject<Item> UPGRADE_SEAL_DOLPHINS_GRACE = ITEMS.register("upgrade_seal_dolphins_grace", () -> new UpgradeSeal(RLoc.create("armorupgrade/dolphins_grace"), Rarity.COMMON));
+    public static final RegistryObject<Item> UPGRADE_SEAL_REACH_DISTANCE = ITEMS.register("upgrade_seal_reach_distance", () -> new UpgradeSeal(RLoc.create("armorupgrade/reach_distance"), Rarity.EPIC));
 
     public static final RegistryObject<Item> UPGRADE_SEAL_ELYTRA = ITEMS.register("upgrade_seal_elytra", () -> new UpgradeSeal(RLoc.create("armorupgrade/elytra"), Rarity.UNCOMMON));
     public static final RegistryObject<Item> UPGRADE_SEAL_ANGEL_FLIGHT = ITEMS.register("upgrade_seal_angel_flight", () -> new UpgradeSeal(RLoc.create("armorupgrade/angel_flight"), Rarity.EPIC));
     public static final RegistryObject<Item> UPGRADE_SEAL_EXPLOSION_RESISTANCE = ITEMS.register("upgrade_seal_explosion_resistance", () -> new UpgradeSeal(RLoc.create("armorupgrade/explosion_resistance"), Rarity.RARE));
-    public static final RegistryObject<Item> UPGRADE_SEAL_FIRE_RESISTANCE = ITEMS.register("upgrade_seal_fire_resistance", () -> new UpgradeSeal(RLoc.create("armorupgrade/fire_resistance"), Rarity.COMMON));
+    public static final RegistryObject<Item> UPGRADE_SEAL_MAJOR_FIRE_RESISTANCE = ITEMS.register("upgrade_seal_major_fire_resistance", () -> new UpgradeSeal(RLoc.create("armorupgrade/major_fire_resistance"), Rarity.UNCOMMON));
+    public static final RegistryObject<Item> UPGRADE_SEAL_MINOR_FIRE_RESISTANCE = ITEMS.register("upgrade_seal_minor_fire_resistance", () -> new UpgradeSeal(RLoc.create("armorupgrade/minor_fire_resistance"), Rarity.COMMON));
     public static final RegistryObject<Item> UPGRADE_SEAL_HEALTH_BOOST = ITEMS.register("upgrade_seal_health_boost", () -> new UpgradeSeal(RLoc.create("armorupgrade/health_boost"), Rarity.UNCOMMON));
 
     public static final RegistryObject<Item> UPGRADE_SEAL_JUMP = ITEMS.register("upgrade_seal_jump", () -> new UpgradeSeal(RLoc.create("armorupgrade/jump"), Rarity.COMMON));

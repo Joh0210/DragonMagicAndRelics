@@ -5,17 +5,19 @@
     "dragonmagicandrelics:upgrade_seal_health_boost",
     "dragonmagicandrelics:upgrade_seal_jump",
     "dragonmagicandrelics:upgrade_seal_night_vision",
+    "dragonmagicandrelics:upgrade_seal_fly",
 
     "dragonmagicandrelics:upgrade_seal_mana_boost",
     "dragonmagicandrelics:upgrade_seal_mana_regen",
     "dragonmagicandrelics:upgrade_seal_movement_speed",
     "dragonmagicandrelics:upgrade_seal_water_breathing",
+    "dragonmagicandrelics:upgrade_seal_reach_distance",
 
     "dragonmagicandrelics:upgrade_seal_damage_boost",
     "dragonmagicandrelics:upgrade_seal_elytra",
     "dragonmagicandrelics:upgrade_seal_angel_flight",
-    "dragonmagicandrelics:upgrade_seal_fire_resistance",
-    "dragonmagicandrelics:upgrade_seal_fly",
+    "dragonmagicandrelics:upgrade_seal_minor_fire_resistance",
+    "dragonmagicandrelics:upgrade_seal_major_fire_resistance",
 
     "dragonmagicandrelics:upgrade_seal_kinetic_resistance",
     "dragonmagicandrelics:upgrade_seal_projectile_reflection",

@@ -31,6 +31,7 @@ public class ArmorUpgradeInit {
     public static ArmorUpgrade MANA_BOOST;
     public static ArmorUpgrade MANA_REGEN;
     public static ArmorUpgrade HEALTH_BOOST;
+    public static ArmorUpgrade REACH_DISTANCE;
     /**
      * This upgrade reduces the damage the wearer receives, regardless of the source. Currently 20% reduction per level.
      * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
@@ -41,12 +42,8 @@ public class ArmorUpgradeInit {
      * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
      */
     public static ArmorUpgrade DAMAGE_BOOST;
-    /**
-     * This upgrade protects you from fire damage. Level 1 Consumes mana instead. Level 2 protects you completely.
-     * Increasing the maximum level has no effect without further adjustments.
-     * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
-     */
-    public static ArmorUpgrade FIRE_RESISTANCE;
+    public static ArmorUpgrade MINOR_FIRE_RESISTANCE;
+    public static ArmorUpgrade MAJOR_FIRE_RESISTANCE;
     /**
      * This upgrade protects you from fall- and kinetic damage.
      * Increasing the maximum level has no effect without further adjustments.
@@ -103,8 +100,10 @@ public class ArmorUpgradeInit {
         event.getRegistry().register(ArmorUpgradeInit.HEALTH_BOOST);
         event.getRegistry().register(ArmorUpgradeInit.DAMAGE_RESISTANCE);
         event.getRegistry().register(ArmorUpgradeInit.DAMAGE_BOOST);
+        event.getRegistry().register(ArmorUpgradeInit.REACH_DISTANCE);
 
-        event.getRegistry().register(ArmorUpgradeInit.FIRE_RESISTANCE);
+        event.getRegistry().register(ArmorUpgradeInit.MINOR_FIRE_RESISTANCE);
+        event.getRegistry().register(ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE);
         event.getRegistry().register(ArmorUpgradeInit.KINETIC_RESISTANCE);
         event.getRegistry().register(ArmorUpgradeInit.EXPLOSION_RESISTANCE);
         event.getRegistry().register(ArmorUpgradeInit.PROJECTILE_REFLECTION);
@@ -127,12 +126,14 @@ public class ArmorUpgradeInit {
         ArmorUpgradeInit.REGENERATION = new ArmorUpgradeRegeneration(RLoc.create("armorupgrade/regeneration"), 1);
         ArmorUpgradeInit.MANA_BOOST = new ArmorUpgradeManaBoost(RLoc.create("armorupgrade/mana_boost"), 5);
 
+        ArmorUpgradeInit.REACH_DISTANCE = new ArmorUpgradeReachDistance(RLoc.create("armorupgrade/reach_distance"), 3);
         ArmorUpgradeInit.MANA_REGEN = new ArmorUpgradeManaRegeneration(RLoc.create("armorupgrade/mana_regen"), 5);
         ArmorUpgradeInit.HEALTH_BOOST = new ArmorUpgradeHealthBoost(RLoc.create("armorupgrade/health_boost"), 5);
         ArmorUpgradeInit.DAMAGE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/damage_resistance"), 3, true);
         ArmorUpgradeInit.DAMAGE_BOOST = new ArmorUpgrade(RLoc.create("armorupgrade/damage_boost"), 4, true);
 
-        ArmorUpgradeInit.FIRE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/fire_resistance"), 2, false);
+        ArmorUpgradeInit.MINOR_FIRE_RESISTANCE = new ArmorUpgradeFireResistance(RLoc.create("armorupgrade/minor_fire_resistance"), 1, true);
+        ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE = new ArmorUpgradeFireResistance(RLoc.create("armorupgrade/major_fire_resistance"), 1, false);
         ArmorUpgradeInit.KINETIC_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/kinetic_resistance"), 1, false);
         ArmorUpgradeInit.EXPLOSION_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/explosion_resistance"), 1, false);
         ArmorUpgradeInit.PROJECTILE_REFLECTION = new ArmorUpgrade(RLoc.create("armorupgrade/projectile_reflection"), 3, true);

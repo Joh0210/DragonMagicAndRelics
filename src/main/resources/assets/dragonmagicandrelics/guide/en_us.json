@@ -917,7 +917,11 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_fire_resistance"
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_minor_fire_resistance"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_major_fire_resistance"
       }
     ]
   },
@@ -968,6 +972,32 @@
       {
         "type": "eldrin_altar",
         "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_angel_flight"
+      }
+    ]
+  },
+  "Upgrade Glyph Reach Distance": {
+    "index": "1",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Reach Distance"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Increases the range in which the user can interact.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_reach_distance"
       }
     ]
   },

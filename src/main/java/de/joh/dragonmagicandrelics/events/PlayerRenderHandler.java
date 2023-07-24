@@ -20,7 +20,7 @@ public class PlayerRenderHandler {
     @OnlyIn(Dist.CLIENT)
     public static void onPlayerRenderPre(RenderPlayerEvent.Pre event) {
         if (!addedDragonWingLayer) {
-            event.getRenderer().addLayer(new WingLayer(event.getRenderer(), Minecraft.getInstance().getEntityModels()));
+            event.getRenderer().addLayer(new WingLayer<>(event.getRenderer(), Minecraft.getInstance().getEntityModels()));
             addedDragonWingLayer = true;
         }
     }

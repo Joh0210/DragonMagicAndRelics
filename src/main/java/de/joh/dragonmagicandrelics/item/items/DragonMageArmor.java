@@ -5,16 +5,15 @@ import com.mna.items.armor.ISetItem;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
+import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.util.DragonMagicContainer;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ArmorMaterial;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraftforge.common.extensions.IForgeItem;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -77,6 +76,27 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     @Override
     public int getMaxDragonMagic() {
         return slot == EquipmentSlot.CHEST ? 64 : 0; //Todo: adjust
+    }
+
+
+    public void applyDragonMagicSetBonus(LivingEntity living) {
+        if(living instanceof Player){
+            if(living.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
+                ArmorUpgradeHelper.ultimateArmorStart((Player) living);
+            } else {
+                ArmorUpgradeHelper.activateOnEquip((Player) living);
+            }
+        }
+    }
+
+    public void removeDragonMagicSetBonus(LivingEntity living) {
+        if(living instanceof Player){
+            if(living.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
+                ArmorUpgradeHelper.ultimateArmorFin((Player) living);
+            } else {
+                ArmorUpgradeHelper.deactivateAll((Player) living);
+            }
+        }
     }
 
     public void onEquip(ItemStack itemStack, LivingEntity entity) {
@@ -164,6 +184,41 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     @Override
     public AnimationFactory getFactory() {
         return this.factory;
+    }
+
+    public boolean wouldSetBeEquipped(LivingEntity living, Item item) {
+        if (living == null) {
+            return false;
+        } else {
+            int count = 0;
+            this.getValidSetSlots();
+
+            for(int i = 0; i < this.getValidSetSlots().length; ++i) {
+                EquipmentSlot slot = this.getValidSetSlots()[i];
+                if (slot != EquipmentSlot.MAINHAND && slot != EquipmentSlot.OFFHAND) {
+                    ItemStack stack = living.getItemBySlot(slot);
+                    if (stack.getItem() instanceof DragonMageArmor && ((DragonMageArmor)stack.getItem()).getSetIdentifier().equals(this.getSetIdentifier())) {
+                        count++;
+                    }
+                }
+            }
+
+            if(item instanceof DragonMageArmor){
+                boolean isValidSlot = false;
+                EquipmentSlot slot = ((ArmorItem)item).getSlot();
+                for(EquipmentSlot es : getValidSetSlots()){
+                    isValidSlot = isValidSlot || slot == es;
+                }
+                if(isValidSlot){
+                    ItemStack stack = living.getItemBySlot(slot);
+                    if (!(stack.getItem() instanceof DragonMageArmor && ((DragonMageArmor)stack.getItem()).getSetIdentifier().equals(this.getSetIdentifier()))) {
+                        count++;
+                    }
+                }
+            }
+
+            return count >= this.itemsForSetBonus();
+        }
     }
 
 //    @Override
