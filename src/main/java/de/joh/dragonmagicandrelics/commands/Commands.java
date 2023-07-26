@@ -141,7 +141,7 @@ public class Commands {
      * The command contains another (int) level parameter
      */
     private static ArgumentBuilder<CommandSourceStack, ?> addUpgrade() {
-        return net.minecraft.commands.Commands.literal("addUpgrade").then(net.minecraft.commands.Commands.argument("armor_upgrade", new ArmorUpgradeArgument()).then(net.minecraft.commands.Commands.argument("level", IntegerArgumentType.integer(0)).then(net.minecraft.commands.Commands.argument("force", BoolArgumentType.bool()).executes((command) -> {
+        return net.minecraft.commands.Commands.literal("addUpgrade").then(net.minecraft.commands.Commands.argument("armor_upgrade", new ArmorUpgradeArgument()).then(net.minecraft.commands.Commands.argument("level", IntegerArgumentType.integer(0, 255)).then(net.minecraft.commands.Commands.argument("force", BoolArgumentType.bool()).executes((command) -> {
             ServerPlayer player = command.getSource().getPlayerOrException();
 
             if(!Registries.ARMOR_UPGRADE.get().containsKey(ResourceLocationArgument.getId(command, "armor_upgrade"))){
@@ -151,11 +151,17 @@ public class Commands {
                 if(item.getItem() instanceof DragonMagicContainer){
                     ArmorUpgrade armorUpgrade = Registries.ARMOR_UPGRADE.get().getValue(ResourceLocationArgument.getId(command, "armor_upgrade"));
 
-                    ((DragonMagicContainer) item.getItem()).addDragonMagicToItem(item, armorUpgrade, IntegerArgumentType.getInteger(command, "level"), BoolArgumentType.getBool(command, "force"));
+                    int level = IntegerArgumentType.getInteger(command, "level");
+
+                    if(!BoolArgumentType.getBool(command, "force") || !armorUpgrade.isInfStackable) {
+                        level = Math.min(level, armorUpgrade.maxUpgradeLevel);
+                    }
+
+                    ((DragonMagicContainer) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level, BoolArgumentType.getBool(command, "force"));
                     TranslatableComponent component_one = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.one");
                     TranslatableComponent component_two = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.two");
 
-                    command.getSource().sendSuccess(new TextComponent(component_one.getString() + armorUpgrade.getRegistryName().toString() + component_two.getString() + Math.min(IntegerArgumentType.getInteger(command, "level"), armorUpgrade.getMaxUpgradeLevel())), true);
+                    command.getSource().sendSuccess(new TextComponent(component_one.getString() + armorUpgrade.getRegistryName().toString() + component_two.getString() + level), true);
                 } else {
                     command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.no.armor.equipped.error"), true);
                 }

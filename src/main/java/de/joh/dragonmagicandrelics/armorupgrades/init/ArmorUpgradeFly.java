@@ -24,8 +24,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public class ArmorUpgradeFly extends IArmorUpgradeOnTick {
-    public ArmorUpgradeFly(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, true);
+    public ArmorUpgradeFly(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, true, upgradeCost);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ArmorUpgradeFly extends IArmorUpgradeOnTick {
     }
 
     @Override
-    public void onRemove(Player player, int level) {
+    public void onRemove(Player player) {
         ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
         ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
     }

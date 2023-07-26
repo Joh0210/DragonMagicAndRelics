@@ -13,8 +13,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class ArmorUpgradeElytra extends IArmorUpgradePotionEffect {
     private final boolean hasStrongerAlternative;
-    public ArmorUpgradeElytra(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean hasStrongerAlternative) {
-        super(registryName, maxUpgradeLevel, hasStrongerAlternative ? 1 : 2, !hasStrongerAlternative);
+    public ArmorUpgradeElytra(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean hasStrongerAlternative, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, hasStrongerAlternative ? 1 : 2, !hasStrongerAlternative, upgradeCost);
         this.hasStrongerAlternative = hasStrongerAlternative;
     }
 

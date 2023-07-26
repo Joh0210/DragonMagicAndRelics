@@ -7,8 +7,8 @@ import net.minecraft.world.effect.MobEffects;
 import org.jetbrains.annotations.NotNull;
 
 public class ArmorUpgradeRegeneration extends IArmorUpgradePotionEffect {
-    public ArmorUpgradeRegeneration(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, true);
+    public ArmorUpgradeRegeneration(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, true, upgradeCost);
     }
 
     @Override

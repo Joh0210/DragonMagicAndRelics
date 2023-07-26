@@ -150,15 +150,15 @@ public class PlayerDragonMagic {
     public void removeUpgrade(String source, Player player){
         Pair<IArmorUpgradeOnTick, Integer> armorUpgrade0 = onTickUpgrade.remove(source);
         if(armorUpgrade0 != null){
-            armorUpgrade0.getA().onRemove(player, armorUpgrade0.getB());
+            armorUpgrade0.getA().onRemove(player);
         }
         Pair<IArmorUpgradeOnEquipped, Integer> armorUpgrade1 = onEquipUpgrade.remove(source);
         if(armorUpgrade1 != null){
-            armorUpgrade1.getA().onRemove(player, armorUpgrade1.getB());
+            armorUpgrade1.getA().onRemove(player);
         }
         Pair<ArmorUpgrade, Integer> armorUpgrade2 = onEventUpgrade.remove(source);
         if(armorUpgrade2 != null){
-            armorUpgrade2.getA().onRemove(player, armorUpgrade2.getB());
+            armorUpgrade2.getA().onRemove(player);
         }
     }
 

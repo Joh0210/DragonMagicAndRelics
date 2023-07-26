@@ -23,7 +23,7 @@ public interface DragonMagicContainer {
     /**
      * What is the Dragon Magic budget of this item
      */
-    int getMaxDragonMagic();
+    int getMaxDragonMagic(ItemStack itemStack);
 
     /**
      * @return The level of the wanted upgrade in the container (0 = absent)
@@ -49,20 +49,42 @@ public interface DragonMagicContainer {
      */
     default boolean addDragonMagicToItem(ItemStack itemStack, ArmorUpgrade armorUpgrade, int level, boolean force){
         if(itemStack.hasTag()){
-            level = Math.min(level, armorUpgrade.getMaxUpgradeLevel());
+            if(!force || !armorUpgrade.isInfStackable){
+                level = Math.min(level, armorUpgrade.maxUpgradeLevel);
+            }
+
             CompoundTag nbt = new CompoundTag();
 
             if(itemStack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
                 nbt = itemStack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
             }
 
-            itemStack.getTag().remove(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
-            nbt.putInt(armorUpgrade.getRegistryName().toString(), level);
-            itemStack.getTag().put(DragonMagicAndRelics.MOD_ID + "armor_upgrade", nbt);
-            return true;
-        } else{
-            return false;
+            int spentPoints = 0;
+            for(String key : nbt.getAllKeys()){
+                ArmorUpgrade savedUpgrade = Registries.ARMOR_UPGRADE.get().getValue(new ResourceLocation(key));
+                if(savedUpgrade != armorUpgrade && savedUpgrade != null){
+                    spentPoints += savedUpgrade.upgradeCost * nbt.getInt(key);
+                }
+            }
+
+            spentPoints += armorUpgrade.upgradeCost * level;
+
+            if(spentPoints < getMaxDragonMagic(itemStack) || force){
+                itemStack.getTag().remove(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
+                nbt.putInt(armorUpgrade.getRegistryName().toString(), level);
+                itemStack.getTag().putInt(DragonMagicAndRelics.MOD_ID + "spent_dp", spentPoints);
+                itemStack.getTag().put(DragonMagicAndRelics.MOD_ID + "armor_upgrade", nbt);
+                return true;
+            }
         }
+        return false;
+    }
+
+    default int getSpentDragonPoints(ItemStack itemStack){
+        if(itemStack.hasTag()){
+            return itemStack.getTag().getInt(DragonMagicAndRelics.MOD_ID + "spent_dp");
+        }
+        return 0;
     }
 
     /**

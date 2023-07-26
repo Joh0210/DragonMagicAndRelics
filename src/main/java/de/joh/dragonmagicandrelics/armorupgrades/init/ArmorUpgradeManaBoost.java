@@ -13,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public class ArmorUpgradeManaBoost  extends IArmorUpgradeOnEquipped {
-    public ArmorUpgradeManaBoost(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, true);
+    public ArmorUpgradeManaBoost(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, true, upgradeCost);
     }
     public static int MANA_PER_MANABOOST = 200;
 
@@ -24,7 +24,7 @@ public class ArmorUpgradeManaBoost  extends IArmorUpgradeOnEquipped {
     }
 
     @Override
-    public void onRemove(Player player, int level) {
+    public void onRemove(Player player) {
         (player).getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().removeModifier("mma_magic_set_bonus"));
     }
 }

@@ -19,8 +19,8 @@ public class ArmorUpgradeFireResistance extends ArmorUpgrade {
      * @param registryName ID under which the upgrade can be recognized.
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      */
-    public ArmorUpgradeFireResistance(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean hasStrongerAlternative) {
-        super(registryName, maxUpgradeLevel, false);
+    public ArmorUpgradeFireResistance(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean hasStrongerAlternative, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, false, upgradeCost);
         this.hasStrongerAlternative = hasStrongerAlternative;
     }
 

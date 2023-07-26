@@ -28,7 +28,7 @@ public class ArmorUpgradeHelper {
                 return 0;
             }
             if(player.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
-                return armorUpgrade.getMaxUpgradeLevel();
+                return armorUpgrade.maxUpgradeLevel;
             }
 
             AtomicInteger level = new AtomicInteger();
@@ -72,7 +72,7 @@ public class ArmorUpgradeHelper {
             if(player.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
                 for(ArmorUpgrade armorUpgrade : Registries.ARMOR_UPGRADE.get().getValues()){
                     if(armorUpgrade instanceof IArmorUpgradeOnTick && !armorUpgrade.hasStrongerAlternative()){
-                        ((IArmorUpgradeOnTick)armorUpgrade).onTick(player.getLevel(), player, armorUpgrade.getMaxUpgradeLevel(), magic);
+                        ((IArmorUpgradeOnTick)armorUpgrade).onTick(player.getLevel(), player, armorUpgrade.maxUpgradeLevel, magic);
                     }
                 }
                 return;
@@ -80,7 +80,7 @@ public class ArmorUpgradeHelper {
 
             player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
                 for(Pair<IArmorUpgradeOnTick, Integer> pair : playerCapability.onTickUpgrade.values()){
-                    if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
+                    if(pair.getB() > 0 && (!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0)){
                         pair.getA().onTick(player.getLevel(), player, pair.getB(), magic);
                     }
                 }
@@ -92,17 +92,17 @@ public class ArmorUpgradeHelper {
         player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
             for(Pair<ArmorUpgrade, Integer> pair : playerCapability.onEventUpgrade.values()){
                 if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
-                    pair.getA().onRemove(player, pair.getB());
+                    pair.getA().onRemove(player);
                 }
             }
             for(Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.onEquipUpgrade.values()){
                 if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
-                    pair.getA().onRemove(player, pair.getB());
+                    pair.getA().onRemove(player);
                 }
             }
             for(Pair<IArmorUpgradeOnTick, Integer> pair : playerCapability.onTickUpgrade.values()){
                 if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
-                    pair.getA().onRemove(player, pair.getB());
+                    pair.getA().onRemove(player);
                 }
             }
         });
@@ -130,7 +130,7 @@ public class ArmorUpgradeHelper {
         if(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor dma && dma.isSetEquipped(player)){
             for(ArmorUpgrade armorUpgrade: Registries.ARMOR_UPGRADE.get().getValues()){
                 if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
-                    ((IArmorUpgradeOnEquipped)armorUpgrade).onEquip(player, armorUpgrade.getMaxUpgradeLevel());
+                    ((IArmorUpgradeOnEquipped)armorUpgrade).onEquip(player, armorUpgrade.maxUpgradeLevel);
                 }
             }
         }
@@ -139,7 +139,7 @@ public class ArmorUpgradeHelper {
     //todo: If I plan to adjust that in the future so that you no longer have to wear the DMA, that can cause problems.
     public static void ultimateArmorFin(Player player){
         for(ArmorUpgrade armorUpgrade: Registries.ARMOR_UPGRADE.get().getValues()){
-            armorUpgrade.onRemove(player, armorUpgrade.getMaxUpgradeLevel());
+            armorUpgrade.onRemove(player);
         }
 
         activateOnEquip(player);

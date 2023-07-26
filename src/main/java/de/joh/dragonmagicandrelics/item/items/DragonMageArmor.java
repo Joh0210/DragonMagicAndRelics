@@ -4,16 +4,26 @@ import com.mna.factions.Factions;
 import com.mna.items.armor.ISetItem;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
+import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.util.DragonMagicContainer;
 import de.joh.dragonmagicandrelics.utils.RLoc;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.extensions.IForgeItem;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -26,6 +36,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -74,7 +85,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
     }
 
     @Override
-    public int getMaxDragonMagic() {
+    public int getMaxDragonMagic(ItemStack itemStack) {
         return slot == EquipmentSlot.CHEST ? 64 : 0; //Todo: adjust
     }
 
@@ -111,46 +122,51 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
         }
     }
 
-    //todo
-//    /**
-//     * Adds a tooltip (when hovering over the item) to the item.
-//     * The installed spells and upgrades are listed.
-//     * Call from the game itself.
-//     */
-//    @OnlyIn(Dist.CLIENT)
-//    @Override
-//    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
-//        if(this.slot != EquipmentSlot.CHEST){
-//            return;
-//        }
-//
-//        if(Screen.hasShiftDown()){
-//            if(stack.hasTag()){
-//                //Spell Tooltiip
-//                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name").equals("")){
-//                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.other");
-//                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name")));
-//                }
-//                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name").equals("")){
-//                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.self");
-//                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name")));
-//                }
-//
-//                //Upgrade Tooltip
-//                tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
-//                ArmorUpgrade[] allUpgrades = ArmorUpgradeInit.getAllUpgrades();
-//                for(ArmorUpgrade upgrade : allUpgrades){
-//                    if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("") && !stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId()).equals("0")){
-//                        TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade."+upgrade.getUpgradeId());
-//                        tooltip.add(new TextComponent(component.getString() + ": " + stack.getTag().getString(DragonMagicAndRelics.MOD_ID + "ArmorTag_" + upgrade.getUpgradeId())));
-//                    }
-//                }
-//            }
-//        }
-//        else{
-//            tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip"));
-//        }
-//    }
+    /**
+     * Adds a tooltip (when hovering over the item) to the item.
+     * The installed spells and upgrades are listed.
+     * Call from the game itself.
+     */
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+        if(this.slot != EquipmentSlot.CHEST){
+            return;
+        }
+
+        if(Screen.hasShiftDown()){
+            if(stack.hasTag()){
+                //Spell Tooltiip
+                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name").equals("")){
+                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.other");
+                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name")));
+                }
+                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name").equals("")){
+                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.self");
+                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name")));
+                }
+
+                //Upgrade Tooltip
+                tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
+                if(stack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
+                    CompoundTag nbt = stack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
+
+                    for(String key : nbt.getAllKeys()){
+                        if(nbt.getInt(key) > 0){
+                            TranslatableComponent component = new TranslatableComponent(key);
+                            tooltip.add(new TextComponent(component.getString() + ": " + nbt.getInt(key)));
+                        }
+                    }
+                }
+            }
+
+            TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.dm_container.tooltip.remaining.dmpoints");
+            tooltip.add(new TextComponent(component.getString() + (getMaxDragonMagic(stack) - getSpentDragonPoints(stack))));
+        }
+        else{
+            tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip"));
+        }
+    }
 
     /**
      * Armor does not break

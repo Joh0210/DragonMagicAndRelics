@@ -20,12 +20,12 @@ public class ArmorUpgradeNightVision extends ArmorUpgrade {
      * @param registryName    ID under which the upgrade can be recognized.
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      */
-    public ArmorUpgradeNightVision(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, false);
+    public ArmorUpgradeNightVision(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, false, upgradeCost);
     }
 
     @Override
-    public void onRemove(Player player, int level) {
+    public void onRemove(Player player) {
         player.removeEffect(MobEffects.NIGHT_VISION);
     }
 }

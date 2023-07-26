@@ -20,8 +20,8 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnEquipped {
     private static final AttributeModifier healthBoost4 = new AttributeModifier("mma_armor_health_boost_4", 4, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier healthBoost5 = new AttributeModifier("mma_armor_health_boost_5", 4, AttributeModifier.Operation.ADDITION);
 
-    public ArmorUpgradeHealthBoost(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, false);
+    public ArmorUpgradeHealthBoost(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, false, upgradeCost);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnEquipped {
     }
 
     @Override
-    public void onRemove(Player player, int level) {
+    public void onRemove(Player player) {
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost1);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost2);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost3);

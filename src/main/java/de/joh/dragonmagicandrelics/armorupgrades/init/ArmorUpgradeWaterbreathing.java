@@ -17,8 +17,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public class ArmorUpgradeWaterbreathing extends IArmorUpgradeOnTick {
-    public ArmorUpgradeWaterbreathing(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, true);
+    public ArmorUpgradeWaterbreathing(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, true, upgradeCost);
     }
 
     @Override

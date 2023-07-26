@@ -17,31 +17,30 @@ import org.jetbrains.annotations.Nullable;
  * @author Joh0210
  */
 public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
-    public static ArmorUpgrade INSTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/none"), 0, false);
+    public static ArmorUpgrade INSTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/none"), 0, false, 0);
+
+    public final int upgradeCost;
 
     /**
      * Maximum upgrade level that can be installed for this type.
      */
-    private final int maxUpgradeLevel;
+    public final int maxUpgradeLevel;
 
     /**
      * Can you upgrade the armor an infinite number of times with this upgrade?
      */
-    private final boolean isInfStackable;
+    public final boolean isInfStackable;
 
     /**
      * @param registryName ID under which the upgrade can be recognized.
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      * @param isInfStackable Can you upgrade the armor an infinite number of times with this upgrade?
      */
-    public ArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable){
+    public ArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost){
         this.setRegistryName(registryName);
         this.maxUpgradeLevel = maxUpgradeLevel;
         this.isInfStackable = isInfStackable;
-    }
-
-    public int getMaxUpgradeLevel(){
-        return maxUpgradeLevel;
+        this.upgradeCost = upgradeCost;
     }
 
     /**
@@ -56,7 +55,7 @@ public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
      * This feature removes the permanent effect from the player when the wearer unequips at least one piece of armor.
      * @param player Wearer of the Dragon Mage Armor. Player exclusive, no other entities.
      */
-    public void onRemove(Player player, int level){
+    public void onRemove(Player player){
     }
 
     /**

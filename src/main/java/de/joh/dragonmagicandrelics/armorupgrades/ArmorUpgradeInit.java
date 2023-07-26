@@ -115,33 +115,34 @@ public class ArmorUpgradeInit {
         event.getRegistry().register(ArmorUpgradeInit.NIGHT_VISION);
     }
 
+    //todo: revise upgrade costs
     static {
-        ArmorUpgradeInit.FLY = new ArmorUpgradeFly(RLoc.create("armorupgrade/fly"), 2);
-        ArmorUpgradeInit.SATURATION = new ArmorUpgradeSaturation(RLoc.create("armorupgrade/saturation"), 1);
-        ArmorUpgradeInit.MOVEMENT_SPEED = new ArmorUpgradeSpeed(RLoc.create("armorupgrade/movement_speed"), 3);
-        ArmorUpgradeInit.WATER_BREATHING = new ArmorUpgradeWaterbreathing(RLoc.create("armorupgrade/water_breathing"), 2);
+        ArmorUpgradeInit.FLY = new ArmorUpgradeFly(RLoc.create("armorupgrade/fly"), 2, 1);
+        ArmorUpgradeInit.SATURATION = new ArmorUpgradeSaturation(RLoc.create("armorupgrade/saturation"), 1, 1);
+        ArmorUpgradeInit.MOVEMENT_SPEED = new ArmorUpgradeSpeed(RLoc.create("armorupgrade/movement_speed"), 3, 1);
+        ArmorUpgradeInit.WATER_BREATHING = new ArmorUpgradeWaterbreathing(RLoc.create("armorupgrade/water_breathing"), 2, 1);
 
-        ArmorUpgradeInit.METEOR_JUMP = new ArmorUpgradeMeteorJump(RLoc.create("armorupgrade/meteor_jump"), 1);
-        ArmorUpgradeInit.DOLPHINS_GRACE = new ArmorUpgradeSwimSpeed(RLoc.create("armorupgrade/dolphins_grace"), 2);
-        ArmorUpgradeInit.REGENERATION = new ArmorUpgradeRegeneration(RLoc.create("armorupgrade/regeneration"), 1);
-        ArmorUpgradeInit.MANA_BOOST = new ArmorUpgradeManaBoost(RLoc.create("armorupgrade/mana_boost"), 5);
+        ArmorUpgradeInit.METEOR_JUMP = new ArmorUpgradeMeteorJump(RLoc.create("armorupgrade/meteor_jump"), 1, 1);
+        ArmorUpgradeInit.DOLPHINS_GRACE = new ArmorUpgradeSwimSpeed(RLoc.create("armorupgrade/dolphins_grace"), 2, 1);
+        ArmorUpgradeInit.REGENERATION = new ArmorUpgradeRegeneration(RLoc.create("armorupgrade/regeneration"), 1, 1);
+        ArmorUpgradeInit.MANA_BOOST = new ArmorUpgradeManaBoost(RLoc.create("armorupgrade/mana_boost"), 5, 1);
 
-        ArmorUpgradeInit.REACH_DISTANCE = new ArmorUpgradeReachDistance(RLoc.create("armorupgrade/reach_distance"), 3);
-        ArmorUpgradeInit.MANA_REGEN = new ArmorUpgradeManaRegeneration(RLoc.create("armorupgrade/mana_regen"), 5);
-        ArmorUpgradeInit.HEALTH_BOOST = new ArmorUpgradeHealthBoost(RLoc.create("armorupgrade/health_boost"), 5);
-        ArmorUpgradeInit.DAMAGE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/damage_resistance"), 3, true);
-        ArmorUpgradeInit.DAMAGE_BOOST = new ArmorUpgrade(RLoc.create("armorupgrade/damage_boost"), 4, true);
+        ArmorUpgradeInit.REACH_DISTANCE = new ArmorUpgradeReachDistance(RLoc.create("armorupgrade/reach_distance"), 3, 1);
+        ArmorUpgradeInit.MANA_REGEN = new ArmorUpgradeManaRegeneration(RLoc.create("armorupgrade/mana_regen"), 5, 1);
+        ArmorUpgradeInit.HEALTH_BOOST = new ArmorUpgradeHealthBoost(RLoc.create("armorupgrade/health_boost"), 5, 1);
+        ArmorUpgradeInit.DAMAGE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/damage_resistance"), 3, true, 1);
+        ArmorUpgradeInit.DAMAGE_BOOST = new ArmorUpgrade(RLoc.create("armorupgrade/damage_boost"), 4, true, 1);
 
-        ArmorUpgradeInit.MINOR_FIRE_RESISTANCE = new ArmorUpgradeFireResistance(RLoc.create("armorupgrade/minor_fire_resistance"), 1, true);
-        ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE = new ArmorUpgradeFireResistance(RLoc.create("armorupgrade/major_fire_resistance"), 1, false);
-        ArmorUpgradeInit.KINETIC_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/kinetic_resistance"), 1, false);
-        ArmorUpgradeInit.EXPLOSION_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/explosion_resistance"), 1, false);
-        ArmorUpgradeInit.PROJECTILE_REFLECTION = new ArmorUpgrade(RLoc.create("armorupgrade/projectile_reflection"), 3, true);
+        ArmorUpgradeInit.MINOR_FIRE_RESISTANCE = new ArmorUpgradeFireResistance(RLoc.create("armorupgrade/minor_fire_resistance"), 1, true, 1);
+        ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE = new ArmorUpgradeFireResistance(RLoc.create("armorupgrade/major_fire_resistance"), 1, false, 1);
+        ArmorUpgradeInit.KINETIC_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/kinetic_resistance"), 1, false, 1);
+        ArmorUpgradeInit.EXPLOSION_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/explosion_resistance"), 1, false, 1);
+        ArmorUpgradeInit.PROJECTILE_REFLECTION = new ArmorUpgrade(RLoc.create("armorupgrade/projectile_reflection"), 3, true, 1);
 
-        ArmorUpgradeInit.MIST_FORM = new ArmorUpgrade(RLoc.create("armorupgrade/mist_form"), 1, false);
-        ArmorUpgradeInit.JUMP = new ArmorUpgradeJump(RLoc.create("armorupgrade/jump"), 3);
-        ArmorUpgradeInit.ELYTRA = new ArmorUpgradeElytra(RLoc.create("armorupgrade/elytra"), 1, true);
-        ArmorUpgradeInit.ANGEL_FLIGHT = new ArmorUpgradeElytra(RLoc.create("armorupgrade/angel_flight"), 2, false);
-        ArmorUpgradeInit.NIGHT_VISION = new ArmorUpgradeNightVision(RLoc.create("armorupgrade/night_vision"), 1);
+        ArmorUpgradeInit.MIST_FORM = new ArmorUpgrade(RLoc.create("armorupgrade/mist_form"), 1, false, 1);
+        ArmorUpgradeInit.JUMP = new ArmorUpgradeJump(RLoc.create("armorupgrade/jump"), 3, 1);
+        ArmorUpgradeInit.ELYTRA = new ArmorUpgradeElytra(RLoc.create("armorupgrade/elytra"), 1, true, 1);
+        ArmorUpgradeInit.ANGEL_FLIGHT = new ArmorUpgradeElytra(RLoc.create("armorupgrade/angel_flight"), 2, false, 1);
+        ArmorUpgradeInit.NIGHT_VISION = new ArmorUpgradeNightVision(RLoc.create("armorupgrade/night_vision"), 1, 1);
     }
 }

@@ -32,8 +32,8 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnTick {
     private static final AttributeModifier runSpeed2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_2", 0.05f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier runSpeed3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_3", 0.05f, AttributeModifier.Operation.ADDITION);
 
-    public ArmorUpgradeSpeed(ResourceLocation upgradeId, int maxUpgradeLevel) {
-        super(upgradeId, maxUpgradeLevel, false);
+    public ArmorUpgradeSpeed(ResourceLocation upgradeId, int maxUpgradeLevel, int upgradeCost) {
+        super(upgradeId, maxUpgradeLevel, false, upgradeCost);
     }
 
     @Override

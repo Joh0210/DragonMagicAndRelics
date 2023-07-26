@@ -22,8 +22,8 @@ public class ArmorUpgradeReachDistance extends IArmorUpgradeOnEquipped {
     private static final AttributeModifier attackRangBoost3 = new AttributeModifier("mma_armor_attack_range_boost_3", 1, AttributeModifier.Operation.ADDITION);
 
 
-    public ArmorUpgradeReachDistance(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, false);
+    public ArmorUpgradeReachDistance(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, false, upgradeCost);
     }
 
     @Override
@@ -57,6 +57,7 @@ public class ArmorUpgradeReachDistance extends IArmorUpgradeOnEquipped {
         }
     }
 
+    @Override
     public void onRemove(Player player) {
         AttributeInstance reach = player.getAttribute(ForgeMod.REACH_DISTANCE.get());
         AttributeInstance attackRange = player.getAttribute(ForgeMod.ATTACK_RANGE.get());

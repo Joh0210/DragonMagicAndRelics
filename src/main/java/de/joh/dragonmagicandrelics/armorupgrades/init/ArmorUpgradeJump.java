@@ -26,8 +26,8 @@ public class ArmorUpgradeJump extends IArmorUpgradeOnTick {
 
 
 
-    public ArmorUpgradeJump(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, false); //false --> onTick would have to be reworked.
+    public ArmorUpgradeJump(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, false, upgradeCost); //false --> onTick would have to be reworked.
     }
 
     @Override

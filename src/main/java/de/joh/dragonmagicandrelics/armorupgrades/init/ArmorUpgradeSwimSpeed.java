@@ -23,8 +23,8 @@ public class ArmorUpgradeSwimSpeed extends IArmorUpgradeOnEquipped {
     private static final AttributeModifier swimBoost2 = new AttributeModifier("mma_armor_swim_boost_2", 0.5, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier swimBoost3 = new AttributeModifier("mma_armor_swim_boost_3", 0.5, AttributeModifier.Operation.ADDITION);
 
-    public ArmorUpgradeSwimSpeed(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, false);
+    public ArmorUpgradeSwimSpeed(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, false, upgradeCost);
     }
 
     @Override
@@ -44,6 +44,7 @@ public class ArmorUpgradeSwimSpeed extends IArmorUpgradeOnEquipped {
         }
     }
 
+    @Override
     public void onRemove(Player player) {
         AttributeInstance swimSpeed = player.getAttribute(ForgeMod.SWIM_SPEED.get());
 

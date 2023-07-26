@@ -15,8 +15,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public abstract class IArmorUpgradeOnEquipped extends ArmorUpgrade {
-    public IArmorUpgradeOnEquipped(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable) {
-        super(registryName, maxUpgradeLevel, isInfStackable);
+    public IArmorUpgradeOnEquipped(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, isInfStackable, upgradeCost);
     }
 
     /**

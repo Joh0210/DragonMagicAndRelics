@@ -27,8 +27,8 @@ public abstract class IArmorUpgradePotionEffect extends IArmorUpgradeOnTick{
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      * @param factor Optional. Factor by which The Potion Effect should be amplified.
      */
-    public IArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int factor,boolean isInfStackable) {
-        super(registryName, maxUpgradeLevel, isInfStackable);
+    public IArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int factor,boolean isInfStackable, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, isInfStackable, upgradeCost);
         this.factor = factor;
     }
 
@@ -36,8 +36,8 @@ public abstract class IArmorUpgradePotionEffect extends IArmorUpgradeOnTick{
      * @param registryName ID under which the upgrade can be recognized.
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      */
-    public IArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable) {
-        this(registryName, maxUpgradeLevel, 1, isInfStackable);
+    public IArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost) {
+        this(registryName, maxUpgradeLevel, 1, isInfStackable, upgradeCost);
     }
 
     public abstract MobEffect getMobEffect();

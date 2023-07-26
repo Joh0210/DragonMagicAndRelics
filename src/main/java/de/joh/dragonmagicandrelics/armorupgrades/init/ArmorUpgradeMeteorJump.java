@@ -27,10 +27,10 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnTick {
-    private static final int reqHeight = 5;
+    private static final int reqHeight = 4;
 
-    public ArmorUpgradeMeteorJump(@NotNull ResourceLocation registryName, int maxUpgradeLevel) {
-        super(registryName, maxUpgradeLevel, false);
+    public ArmorUpgradeMeteorJump(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, false, upgradeCost);
     }
 
     @Override
