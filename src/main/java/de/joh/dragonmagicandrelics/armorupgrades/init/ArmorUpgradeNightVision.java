@@ -18,10 +18,9 @@ import org.jetbrains.annotations.NotNull;
 public class ArmorUpgradeNightVision extends ArmorUpgrade {
     /**
      * @param registryName    ID under which the upgrade can be recognized.
-     * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      */
-    public ArmorUpgradeNightVision(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, false, upgradeCost);
+    public ArmorUpgradeNightVision(@NotNull ResourceLocation registryName, int upgradeCost) {
+        super(registryName, 1, false, upgradeCost);
     }
 
     @Override

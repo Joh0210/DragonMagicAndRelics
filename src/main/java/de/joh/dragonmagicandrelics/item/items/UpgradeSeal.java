@@ -4,7 +4,9 @@ import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -15,6 +17,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -29,14 +32,14 @@ public class UpgradeSeal extends Item {
     /**
      * ID of the armor upgrade that can be installed with this UpgradeSeal
      */
-    private final ResourceLocation armorUpgrade;
+    private final ResourceLocation armorUpgradeRL;
 
     /**
      * @param armorUpgrade ID of the armor upgrade that can be installed with this UpgradeSeal
      */
     public UpgradeSeal(ResourceLocation armorUpgrade, Rarity rarity) {
         super(new Item.Properties().tab(CreativeModeTab.ArmorUpgradeModeTab).stacksTo(1).rarity(rarity));
-        this.armorUpgrade = armorUpgrade;
+        this.armorUpgradeRL = armorUpgrade;
     }
 
     /**
@@ -46,9 +49,27 @@ public class UpgradeSeal extends Item {
      */
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(@NotNull ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
-        //todo: Display point cost
-        TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal");
-        //tooltip.add(new TextComponent(component.getString() + " " + tier));
+        if(Screen.hasShiftDown()) {
+            ArmorUpgrade armorUpgrade = getArmorUpgrade();
+            if (armorUpgrade != null) {
+                tooltip.add(new TranslatableComponent(armorUpgrade.getRegistryName().toString() + ".description"));
+                TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal");
+                tooltip.add(new TextComponent(component.getString() + " " + armorUpgrade.upgradeCost));
+
+                if (armorUpgrade.hasStrongerAlternative()) {
+                    TranslatableComponent component2 = new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal.stronger_version");
+                    TranslatableComponent component3 = new TranslatableComponent(String.valueOf(armorUpgrade.getStrongerAlternative().getRegistryName()));
+                    tooltip.add(new TextComponent(component2.getString() + " " + component3.getString()));
+                }
+
+                if (!armorUpgrade.supportsOnExtraLevel) {
+                    tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal.not_supports_extra_level"));
+                }
+            }
+        }
+        else{
+            tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip"));
+        }
     }
 
     @Override
@@ -57,7 +78,8 @@ public class UpgradeSeal extends Item {
         return true;
     }
 
+    @Nullable
     public ArmorUpgrade getArmorUpgrade(){
-        return Registries.ARMOR_UPGRADE.get().getValue(armorUpgrade);
+        return Registries.ARMOR_UPGRADE.get().getValue(armorUpgradeRL);
     }
 }

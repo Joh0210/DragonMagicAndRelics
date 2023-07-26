@@ -6,6 +6,8 @@ import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.effects.EffectInit;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.resources.ResourceLocation;
@@ -13,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Allows the wearer of Dragon Mage Armor to fly on every tick.
@@ -24,8 +27,13 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public class ArmorUpgradeFly extends IArmorUpgradeOnTick {
-    public ArmorUpgradeFly(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, true, upgradeCost);
+    public ArmorUpgradeFly(@NotNull ResourceLocation registryName, int upgradeCost) {
+        super(registryName, 1, true, upgradeCost);
+    }
+
+    @Override
+    public @Nullable ArmorUpgrade getStrongerAlternative() {
+        return ArmorUpgradeInit.ANGEL_FLIGHT;
     }
 
     @Override

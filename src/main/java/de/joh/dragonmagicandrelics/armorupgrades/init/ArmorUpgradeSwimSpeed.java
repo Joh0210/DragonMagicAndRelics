@@ -22,9 +22,10 @@ public class ArmorUpgradeSwimSpeed extends IArmorUpgradeOnEquipped {
     private static final AttributeModifier swimBoost1 = new AttributeModifier("mma_armor_swim_boost_1", 0.5, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier swimBoost2 = new AttributeModifier("mma_armor_swim_boost_2", 0.5, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier swimBoost3 = new AttributeModifier("mma_armor_swim_boost_3", 0.5, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier swimBoost4 = new AttributeModifier("mma_armor_swim_boost_4", 0.5, AttributeModifier.Operation.ADDITION);
 
     public ArmorUpgradeSwimSpeed(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, false, upgradeCost);
+        super(registryName, maxUpgradeLevel, false, true, upgradeCost);
     }
 
     @Override
@@ -39,6 +40,10 @@ public class ArmorUpgradeSwimSpeed extends IArmorUpgradeOnEquipped {
 
                 if(!swimSpeed.hasModifier(swimBoost3) && level >= 3){
                     swimSpeed.addTransientModifier(swimBoost3);
+
+                    if(!swimSpeed.hasModifier(swimBoost4) && level >= 4){
+                        swimSpeed.addTransientModifier(swimBoost4);
+                    }
                 }
             }
         }
@@ -51,5 +56,6 @@ public class ArmorUpgradeSwimSpeed extends IArmorUpgradeOnEquipped {
         swimSpeed.removeModifier(swimBoost1);
         swimSpeed.removeModifier(swimBoost2);
         swimSpeed.removeModifier(swimBoost3);
+        swimSpeed.removeModifier(swimBoost4);
     }
 }

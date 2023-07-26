@@ -19,9 +19,10 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnEquipped {
     private static final AttributeModifier healthBoost3 = new AttributeModifier("mma_armor_health_boost_3", 4, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier healthBoost4 = new AttributeModifier("mma_armor_health_boost_4", 4, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier healthBoost5 = new AttributeModifier("mma_armor_health_boost_5", 4, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier healthBoost6 = new AttributeModifier("mma_armor_health_boost_6", 4, AttributeModifier.Operation.ADDITION);
 
-    public ArmorUpgradeHealthBoost(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, false, upgradeCost);
+    public ArmorUpgradeHealthBoost(@NotNull ResourceLocation registryName, int upgradeCost) {
+        super(registryName, 5, false, true, upgradeCost);
     }
 
     @Override
@@ -40,6 +41,10 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnEquipped {
 
                         if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(healthBoost5) && level >= 5){
                             player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(healthBoost5);
+
+                            if(!player.getAttribute(Attributes.MAX_HEALTH).hasModifier(healthBoost6) && level >= 6){
+                                player.getAttribute(Attributes.MAX_HEALTH).addTransientModifier(healthBoost6);
+                            }
                         }
                     }
                 }
@@ -54,6 +59,7 @@ public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnEquipped {
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost3);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost4);
         player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost5);
+        player.getAttribute(Attributes.MAX_HEALTH).removeModifier(healthBoost6);
 
         player.setHealth(Math.min(player.getMaxHealth(), player.getHealth()));
     }

@@ -16,14 +16,16 @@ public class ArmorUpgradeReachDistance extends IArmorUpgradeOnEquipped {
     private static final AttributeModifier reachBoost1 = new AttributeModifier("mma_armor_reach_boost_1", 1, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier reachBoost2 = new AttributeModifier("mma_armor_reach_boost_2", 1, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier reachBoost3 = new AttributeModifier("mma_armor_reach_boost_3", 1, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier reachBoost4 = new AttributeModifier("mma_armor_reach_boost_4", 1, AttributeModifier.Operation.ADDITION);
 
     private static final AttributeModifier attackRangBoost1 = new AttributeModifier("mma_armor_attack_range_boost_1", 1, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier attackRangBoost2 = new AttributeModifier("mma_armor_attack_range_boost_2", 1, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier attackRangBoost3 = new AttributeModifier("mma_armor_attack_range_boost_3", 1, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier attackRangBoost4 = new AttributeModifier("mma_armor_attack_range_boost_4", 1, AttributeModifier.Operation.ADDITION);
 
 
     public ArmorUpgradeReachDistance(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, false, upgradeCost);
+        super(registryName, maxUpgradeLevel, false, true, upgradeCost);
     }
 
     @Override
@@ -38,6 +40,10 @@ public class ArmorUpgradeReachDistance extends IArmorUpgradeOnEquipped {
 
                 if (!reach.hasModifier(reachBoost3) && level >= 3) {
                     reach.addTransientModifier(reachBoost3);
+
+                    if (!reach.hasModifier(reachBoost4) && level >= 4) {
+                        reach.addTransientModifier(reachBoost4);
+                    }
                 }
             }
         }
@@ -52,6 +58,10 @@ public class ArmorUpgradeReachDistance extends IArmorUpgradeOnEquipped {
 
                 if (!attackRange.hasModifier(attackRangBoost3) && level >= 3) {
                     attackRange.addTransientModifier(attackRangBoost3);
+
+                    if (!attackRange.hasModifier(attackRangBoost4) && level >= 4) {
+                        attackRange.addTransientModifier(attackRangBoost4);
+                    }
                 }
             }
         }
@@ -65,8 +75,10 @@ public class ArmorUpgradeReachDistance extends IArmorUpgradeOnEquipped {
         reach.removeModifier(reachBoost1);
         reach.removeModifier(reachBoost2);
         reach.removeModifier(reachBoost3);
+        reach.removeModifier(reachBoost4);
         attackRange.removeModifier(attackRangBoost1);
         attackRange.removeModifier(attackRangBoost2);
         attackRange.removeModifier(attackRangBoost3);
+        attackRange.removeModifier(attackRangBoost4);
     }
 }

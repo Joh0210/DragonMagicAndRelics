@@ -1,5 +1,6 @@
 package de.joh.dragonmagicandrelics.utils;
 
+import com.mna.api.items.IPositionalItem;
 import com.mna.items.ItemInit;
 import com.mna.items.runes.MarkBookItem;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagic;
@@ -80,8 +81,8 @@ public class MarkSave {
 
         ItemStack markingRune = source.getMainHandItem().getItem() != ItemInit.RUNE_MARKING.get() && source.getMainHandItem().getItem() != ItemInit.BOOK_MARKS.get() ? source.getOffhandItem() : source.getMainHandItem();
 
-        if (markingRune.getItem() == ItemInit.RUNE_MARKING.get() || markingRune.getItem() == ItemInit.BOOK_MARKS.get()) {
-            return new MarkSave(MarkBookItem.getSelectedPos(markingRune), MarkBookItem.getSelectedFace(markingRune));
+        if (markingRune.getItem() instanceof IPositionalItem) {
+            return new MarkSave(((IPositionalItem)markingRune.getItem()).getLocation(markingRune), ((IPositionalItem)markingRune.getItem()).getFace(markingRune));
         }
 
         AtomicReference<MarkSave> playerMark = new AtomicReference<>();

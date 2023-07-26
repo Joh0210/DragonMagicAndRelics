@@ -49,8 +49,10 @@ public interface DragonMagicContainer {
      */
     default boolean addDragonMagicToItem(ItemStack itemStack, ArmorUpgrade armorUpgrade, int level, boolean force){
         if(itemStack.hasTag()){
-            if(!force || !armorUpgrade.isInfStackable){
+            if(!force){
                 level = Math.min(level, armorUpgrade.maxUpgradeLevel);
+            } else if(!armorUpgrade.isInfStackable){
+                level = Math.min(level, armorUpgrade.supportsOnExtraLevel ? armorUpgrade.maxUpgradeLevel+1 : armorUpgrade.maxUpgradeLevel);
             }
 
             CompoundTag nbt = new CompoundTag();

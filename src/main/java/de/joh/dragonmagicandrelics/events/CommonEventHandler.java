@@ -6,7 +6,6 @@ import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.effects.EffectInit;
-import com.mna.events.MissingMappingsHandler;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
@@ -125,7 +124,9 @@ public class CommonEventHandler {
                 } else {
                     ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
                     if (!player.isCreative() && !player.isSpectator()) {
-                        ManaAndArtifice.instance.proxy.setFlySpeed(player, CommonConfigs.getFlySpeedPerLevel());
+                        int mod = player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier();
+                        mod = (mod >= 2) ? mod - 1 : mod;
+                        ManaAndArtifice.instance.proxy.setFlySpeed(player, mod * CommonConfigs.getFlySpeedPerLevel());
                     } else {
                         ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
                     }

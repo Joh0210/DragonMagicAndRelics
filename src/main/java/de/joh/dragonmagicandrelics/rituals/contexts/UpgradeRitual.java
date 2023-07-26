@@ -68,18 +68,6 @@ public class UpgradeRitual extends RitualEffect {
         return true;
     }
 
-    //todo: Has enough points free?
-//    @Override
-//    public Component canRitualStart(IRitualContext context) {
-//        Player caster = context.getCaster();
-//
-//        if(!(caster.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor mmaArmor) || !mmaArmor.isSetEquipped(caster)){
-//            return new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.no.armor.equipped.error");
-//        }
-//
-//        return null;
-//    }
-
     /**
      * An error has occurred and the ritual ends.
      * Any item used in the ritual will be returned and the error will be thrown.

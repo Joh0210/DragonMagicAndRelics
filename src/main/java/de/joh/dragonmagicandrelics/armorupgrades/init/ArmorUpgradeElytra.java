@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 public class ArmorUpgradeElytra extends IArmorUpgradePotionEffect {
     private final boolean hasStrongerAlternative;
     public ArmorUpgradeElytra(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean hasStrongerAlternative, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, hasStrongerAlternative ? 1 : 2, !hasStrongerAlternative, upgradeCost);
+        super(registryName, maxUpgradeLevel, !hasStrongerAlternative, upgradeCost);
         this.hasStrongerAlternative = hasStrongerAlternative;
     }
 
@@ -39,7 +39,7 @@ public class ArmorUpgradeElytra extends IArmorUpgradePotionEffect {
                 player.getEffect(getMobEffect()).update(new MobEffectInstance(getMobEffect(), EFFECT_DURATION, 0, false, false, false));
             }
         } else {
-            super.applyPotionAffect(player, level);
+            super.applyPotionAffect(player, level + 1);
         }
     }
 }

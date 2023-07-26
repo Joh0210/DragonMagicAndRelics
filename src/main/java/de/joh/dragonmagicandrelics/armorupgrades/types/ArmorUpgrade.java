@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Joh0210
  */
 public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
-    public static ArmorUpgrade INSTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/none"), 0, false, 0);
+    public static ArmorUpgrade INSTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/none"), 0, false, false, 0);
 
     public final int upgradeCost;
 
@@ -25,6 +25,8 @@ public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
      * Maximum upgrade level that can be installed for this type.
      */
     public final int maxUpgradeLevel;
+
+    public final boolean supportsOnExtraLevel;
 
     /**
      * Can you upgrade the armor an infinite number of times with this upgrade?
@@ -36,11 +38,20 @@ public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      * @param isInfStackable Can you upgrade the armor an infinite number of times with this upgrade?
      */
+    public ArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost){
+        this.setRegistryName(registryName);
+        this.maxUpgradeLevel = maxUpgradeLevel;
+        this.isInfStackable = isInfStackable;
+        this.upgradeCost = upgradeCost;
+        this.supportsOnExtraLevel = supportsOnExtraLevel;
+    }
+
     public ArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost){
         this.setRegistryName(registryName);
         this.maxUpgradeLevel = maxUpgradeLevel;
         this.isInfStackable = isInfStackable;
         this.upgradeCost = upgradeCost;
+        this.supportsOnExtraLevel = isInfStackable;
     }
 
     /**

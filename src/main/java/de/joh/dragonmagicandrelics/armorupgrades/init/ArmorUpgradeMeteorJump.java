@@ -29,6 +29,7 @@ import org.jetbrains.annotations.NotNull;
 public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnTick {
     private static final int reqHeight = 4;
 
+    //todo: higher level --> stronger
     public ArmorUpgradeMeteorJump(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
         super(registryName, maxUpgradeLevel, false, upgradeCost);
     }

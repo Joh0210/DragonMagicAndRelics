@@ -153,8 +153,10 @@ public class Commands {
 
                     int level = IntegerArgumentType.getInteger(command, "level");
 
-                    if(!BoolArgumentType.getBool(command, "force") || !armorUpgrade.isInfStackable) {
+                    if(!BoolArgumentType.getBool(command, "force")) {
                         level = Math.min(level, armorUpgrade.maxUpgradeLevel);
+                    } else if(!armorUpgrade.isInfStackable){
+                        level = Math.min(level, armorUpgrade.supportsOnExtraLevel ? armorUpgrade.maxUpgradeLevel + 1 : armorUpgrade.maxUpgradeLevel);
                     }
 
                     ((DragonMagicContainer) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level, BoolArgumentType.getBool(command, "force"));

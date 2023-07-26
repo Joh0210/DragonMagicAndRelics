@@ -31,9 +31,10 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnTick {
     private static final AttributeModifier runSpeed1 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_1", 0.05f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier runSpeed2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_2", 0.05f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier runSpeed3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_3", 0.05f, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier runSpeed4 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_4", 0.05f, AttributeModifier.Operation.ADDITION);
 
     public ArmorUpgradeSpeed(ResourceLocation upgradeId, int maxUpgradeLevel, int upgradeCost) {
-        super(upgradeId, maxUpgradeLevel, false, upgradeCost);
+        super(upgradeId, maxUpgradeLevel, false, true, upgradeCost);
     }
 
     @Override
@@ -53,6 +54,10 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnTick {
 
                         if(!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed3) &&  level >= 3){
                             player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed3);
+
+                            if(!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed4) &&  level >= 4){
+                                player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed4);
+                            }
                         }
                     }
                 }
@@ -77,6 +82,7 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnTick {
             player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(runSpeed1);
             player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(runSpeed2);
             player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(runSpeed3);
+            player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(runSpeed4);
         }
     }
 }
