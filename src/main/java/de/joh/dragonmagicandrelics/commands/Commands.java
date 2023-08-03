@@ -13,7 +13,7 @@ import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.events.additional.DragonUpgradeEvent;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
-import de.joh.dragonmagicandrelics.item.util.DragonMagicContainer;
+import de.joh.dragonmagicandrelics.item.util.IDragonMagicContainer;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.ResourceLocationArgument;
@@ -148,7 +148,7 @@ public class Commands {
                 command.getSource().sendSuccess((new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.upgradedoesnotexist.error")), true);
             } else {
                 ItemStack item = player.getItemBySlot(EquipmentSlot.MAINHAND);
-                if(item.getItem() instanceof DragonMagicContainer){
+                if(item.getItem() instanceof IDragonMagicContainer){
                     ArmorUpgrade armorUpgrade = Registries.ARMOR_UPGRADE.get().getValue(ResourceLocationArgument.getId(command, "armor_upgrade"));
 
                     int level = IntegerArgumentType.getInteger(command, "level");
@@ -159,7 +159,7 @@ public class Commands {
                         level = Math.min(level, armorUpgrade.supportsOnExtraLevel ? armorUpgrade.maxUpgradeLevel + 1 : armorUpgrade.maxUpgradeLevel);
                     }
 
-                    ((DragonMagicContainer) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level, BoolArgumentType.getBool(command, "force"));
+                    ((IDragonMagicContainer) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level, BoolArgumentType.getBool(command, "force"));
                     TranslatableComponent component_one = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.one");
                     TranslatableComponent component_two = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.two");
 

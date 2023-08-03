@@ -5,7 +5,7 @@ import com.mna.api.rituals.RitualEffect;
 import com.mna.entities.utility.PresentItem;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.item.items.UpgradeSeal;
-import de.joh.dragonmagicandrelics.item.util.DragonMagicContainer;
+import de.joh.dragonmagicandrelics.item.util.IDragonMagicContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -36,10 +36,10 @@ public class UpgradeRitual extends RitualEffect {
         BlockPos pos = context.getCenter();
 
         List<ItemStack> upgradeSealList = context.getCollectedReagents((r) -> r.getItem() instanceof UpgradeSeal);
-        List<ItemStack> dMContainerList = context.getCollectedReagents((r) -> r.getItem() instanceof DragonMagicContainer);
+        List<ItemStack> dMContainerList = context.getCollectedReagents((r) -> r.getItem() instanceof IDragonMagicContainer);
 
         if (upgradeSealList.size() == 1 && dMContainerList.size() == 1) {
-            if(upgradeSealList.get(0).getItem() instanceof UpgradeSeal upgradeSeal && dMContainerList.get(0).getItem() instanceof DragonMagicContainer dMContainer){
+            if(upgradeSealList.get(0).getItem() instanceof UpgradeSeal upgradeSeal && dMContainerList.get(0).getItem() instanceof IDragonMagicContainer dMContainer){
                 //todo: Has enough points free?
 
                 int currentLevel = dMContainer.getUpgradeLevel(dMContainerList.get(0), upgradeSeal.getArmorUpgrade());

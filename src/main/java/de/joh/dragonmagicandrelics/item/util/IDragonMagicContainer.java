@@ -18,7 +18,7 @@ import net.minecraft.world.item.ItemStack;
  * @see de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagic
  * @author Joh0210
  */
-public interface DragonMagicContainer {
+public interface IDragonMagicContainer {
     //todo add max Upgrade number per Item
     /**
      * What is the Dragon Magic budget of this item
@@ -48,6 +48,35 @@ public interface DragonMagicContainer {
      * @return false = The upgrade could not be added
      */
     default boolean addDragonMagicToItem(ItemStack itemStack, ArmorUpgrade armorUpgrade, int level, boolean force){
+        if(!itemStack.hasTag()){
+            if(!force){
+                level = Math.min(level, armorUpgrade.maxUpgradeLevel);
+            } else if(!armorUpgrade.isInfStackable){
+                level = Math.min(level, armorUpgrade.supportsOnExtraLevel ? armorUpgrade.maxUpgradeLevel+1 : armorUpgrade.maxUpgradeLevel);
+            }
+
+            CompoundTag nbt = new CompoundTag();
+
+            int spentPoints = 0;
+            for(String key : nbt.getAllKeys()){
+                ArmorUpgrade savedUpgrade = Registries.ARMOR_UPGRADE.get().getValue(new ResourceLocation(key));
+                if(savedUpgrade != armorUpgrade && savedUpgrade != null){
+                    spentPoints += savedUpgrade.upgradeCost * nbt.getInt(key);
+                }
+            }
+
+            spentPoints += armorUpgrade.upgradeCost * level;
+
+            if(spentPoints < getMaxDragonMagic(itemStack) || force){
+                CompoundTag mainNBT = new CompoundTag();
+                nbt.putInt(armorUpgrade.getRegistryName().toString(), level);
+                mainNBT.putInt(DragonMagicAndRelics.MOD_ID + "spent_dp", spentPoints);
+                mainNBT.put(DragonMagicAndRelics.MOD_ID + "armor_upgrade", nbt);
+                itemStack.setTag(mainNBT);
+                return true;
+            }
+        }
+
         if(itemStack.hasTag()){
             if(!force){
                 level = Math.min(level, armorUpgrade.maxUpgradeLevel);

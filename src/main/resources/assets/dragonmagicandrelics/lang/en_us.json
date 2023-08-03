@@ -21,6 +21,7 @@
   "item.dragonmagicandrelics.wild_dragon_mage_chestplate": "Wild Dragon Mage Chestplate",
   "item.dragonmagicandrelics.wild_dragon_mage_leggings": "Wild Dragon Mage Leggings",
   "item.dragonmagicandrelics.wild_dragon_mage_boots": "Wild Dragon Mage Boots",
+  "item.dragonmagicandrelics.ring_of_power": "Ring of Power",
   "item.dragonmagicandrelics.rift_emitter": "Rift Emitter",
   "item.dragonmagicandrelics.faction_amulet": "Faction Amulet",
   "item.dragonmagicandrelics.brimstone_chalk" : "Brimstone Chalk",
@@ -88,6 +89,8 @@
   "dragonmagicandrelics.ritual.output.dragonmagearmorritual.to.low.level.error": "You must be level 75 in order to perform this ritual.",
   "dragonmagicandrelics.ritual.output.secondchanceritual.missing.nbt.error":"There's no place I could go back to.",
 
+  "tooltip.dragonmagicandrelics.ring_of_power.tooltip.one": "One Ring to rule them all!",
+  "tooltip.dragonmagicandrelics.ring_of_power.tooltip.two": "One Ring that increases each of its upgrades by 1!",
   "tooltip.dragonmagicandrelics.upgradeseal": "Dragon Magic Points needed for this upgrade: ",
   "tooltip.dragonmagicandrelics.upgradeseal.stronger_version": "The upgrade also exists in a stronger version: ",
   "tooltip.dragonmagicandrelics.upgradeseal.not_supports_extra_level": "The upgrade is not compatible with the Amulet of Power",

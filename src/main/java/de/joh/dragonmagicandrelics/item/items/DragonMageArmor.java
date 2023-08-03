@@ -4,12 +4,10 @@ import com.mna.factions.Factions;
 import com.mna.items.armor.ISetItem;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
-import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
-import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
-import de.joh.dragonmagicandrelics.item.util.DragonMagicContainer;
+import de.joh.dragonmagicandrelics.item.util.IDragonMagicContainer;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
@@ -48,7 +46,7 @@ import java.util.function.Consumer;
  * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
  * @author Joh0210
  */
-public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem, DragonMagicContainer {
+public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem, IDragonMagicContainer {
     private final AnimationFactory factory =  GeckoLibUtil.createFactory(this);
     private final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS;
     public final String TEXTURE_LOCATION;
