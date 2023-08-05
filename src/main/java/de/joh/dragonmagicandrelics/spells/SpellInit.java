@@ -23,6 +23,7 @@ public class SpellInit {
     public static Shape TRUE_TOUCH;
 
     public static SpellEffect ALTERNATIVERECALL;
+    public static SpellEffect FORCE_DAMAGE;
     public static SpellEffect SUNRISE;
     public static SpellEffect MOONRISE;
     public static SpellEffect ULTIMATEARMOR;
@@ -51,6 +52,7 @@ public class SpellInit {
         event.getRegistry().register(SpellInit.SATURATE);
         event.getRegistry().register(SpellInit.MARK);
         event.getRegistry().register(SpellInit.ALTERNATIVERECALL);
+        event.getRegistry().register(SpellInit.FORCE_DAMAGE);
     }
 
     static {
@@ -66,6 +68,7 @@ public class SpellInit {
         SpellInit.CONJURELAVA = new ComponentConjureLava(RLoc.create("components/conjurelava"), RLoc.create("textures/spell/component/conjurelava.png"));
         SpellInit.SATURATE = new ComponentSaturate(RLoc.create("components/saturate"), RLoc.create("textures/spell/component/saturate.png"));
         SpellInit.MARK = new ComponentMark(RLoc.create("components/mark"), RLoc.create("textures/spell/component/mark.png"));
+        SpellInit.FORCE_DAMAGE = new ComponentForceDamage(RLoc.create("components/forcedamage"), RLoc.create("textures/spell/component/forcedamage.png"));
         SpellInit.ALTERNATIVERECALL = new ComponentAlternativeRecall(RLoc.create("components/alternativerecall"), RLoc.create("textures/spell/component/alternativerecall.png"));
     }
 }

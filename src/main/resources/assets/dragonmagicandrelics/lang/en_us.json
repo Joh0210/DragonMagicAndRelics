@@ -162,6 +162,7 @@
   "dragonmagicandrelics:components/conjurelava": "Conjure Lava",
   "dragonmagicandrelics:components/saturate": "Saturate",
   "dragonmagicandrelics:components/mark": "Mark",
+  "dragonmagicandrelics:components/forcedamage": "Force Damage",
   "dragonmagicandrelics:components/alternativerecall": "Alternative Recall",
 
   "itemGroup.dragonmagicandrelicstab": "Dragon Magic",

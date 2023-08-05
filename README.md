@@ -24,6 +24,8 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Fallen Angel Ring (Undead only)
 - Mana Cake
 - Mutandis
+- Ring of Power
+- Ring of Ruling
 - Voidfeather Charm
 
 ### New Blocks
@@ -46,6 +48,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Conjure Storm
 - Conjure Water
 - Banish Rain
+- Force Damage
 - Ultimate Armor
 - Mark
 - Nightfall

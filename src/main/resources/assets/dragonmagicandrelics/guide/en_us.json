@@ -1300,6 +1300,61 @@
       }
     ]
   },
+  "Component: Force Damage": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Force Damage"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Should my enemies wear armor, I'll just let their armor crush them!",
+            "color": ""
+          }
+        ]
+      },{
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This spell deals physical damage to opponents, some of which can be absorbed by armor. In addition, the opponent is thrown back a bit, which can cause additional impact damage.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "By increasing the Magnitude, the factor that the armor absorbs decreases more and more. At maximum strength, they takes even more damage than if they were not wearing armor (up to 50% of the theoretically reduced damage).",
+            "color": ""
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "\n"
+          },
+          {
+            "text": "Lesser Magnitude increases the recoil the spell applies.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:components/forcedamage"
+      }
+    ]
+  },
   "Component: Conjure Water": {
     "index": "2",
     "category": "sorcery",
