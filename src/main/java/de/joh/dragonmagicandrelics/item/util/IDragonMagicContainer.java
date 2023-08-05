@@ -3,9 +3,12 @@ package de.joh.dragonmagicandrelics.item.util;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
+import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagicProvider;
+import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
@@ -134,6 +137,14 @@ public interface IDragonMagicContainer {
                     }
                 }
             });
+
+            ArmorUpgradeHelper.deactivateAllPerma(player, false);
+            ArmorUpgradeHelper.activateOnEquipPerma(player);
+            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+            if(!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)){
+                ArmorUpgradeHelper.deactivateAll(player, false);
+                ArmorUpgradeHelper.activateOnEquip(player);
+            }
         }
     }
 
@@ -152,6 +163,14 @@ public interface IDragonMagicContainer {
                     }
                 }
             });
+        }
+
+        ArmorUpgradeHelper.deactivateAllPerma(player, false);
+        ArmorUpgradeHelper.activateOnEquipPerma(player);
+        ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
+        if(!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)){
+            ArmorUpgradeHelper.deactivateAll(player, false);
+            ArmorUpgradeHelper.activateOnEquip(player);
         }
     }
 }

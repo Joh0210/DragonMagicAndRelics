@@ -52,6 +52,7 @@ public class ItemInit {
     public static final RegistryObject<Item> WILD_DRAGON_MAGE_BOOTS = ITEMS.register("wild_dragon_mage_boots", () -> new DragonMageArmor(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, EquipmentSlot.FEET, Factions.FEY.getRegistryName()));
     public static final RegistryObject<Item> DRAGON_MAGE_TEST_CURIOS = ITEMS.register("dragon_mage_test_curios", () -> new DragonMageCurios(16, "dm_test_curios", new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.RARE).fireResistant()));
     public static final RegistryObject<Item> RING_OF_POWER = ITEMS.register("ring_of_power", RingOfPower::new);
+    public static final RegistryObject<Item> RING_OF_RULING = ITEMS.register("ring_of_ruling", RingOfRuling::new);
 
 
 

@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import oshi.util.tuples.Pair;
 
@@ -34,6 +35,10 @@ public class PlayerDragonMagic {
     protected HashMap<String, Pair<ArmorUpgrade, Integer>> onEventUpgrade = new HashMap<>();
     protected HashMap<String, Pair<IArmorUpgradeOnTick, Integer>> onTickUpgrade = new HashMap<>();
     protected HashMap<String, Pair<IArmorUpgradeOnEquipped, Integer>> onEquipUpgrade = new HashMap<>();
+
+    protected HashMap<String, Pair<ArmorUpgrade, Integer>> onEventPermaUpgrade = new HashMap<>();
+    protected HashMap<String, Pair<IArmorUpgradeOnTick, Integer>> onTickPermaUpgrade = new HashMap<>();
+    protected HashMap<String, Pair<IArmorUpgradeOnEquipped, Integer>> onEquipPermaUpgrade = new HashMap<>();
     /**
      * List of dimensions with corresponding mark, for ComponentMark, ComponentAlternativeRecall, ...
      */
@@ -101,6 +106,27 @@ public class PlayerDragonMagic {
         }
         nbt.putInt("upgrades_size", upgradeSize);
 
+        int upgradePermaSize = 0;
+        for(Map.Entry<String, Pair<ArmorUpgrade, Integer>> entry : onEventPermaUpgrade.entrySet()) {
+            nbt.putString("perma_upgrade_source_" + upgradePermaSize, entry.getKey());
+            nbt.putString("perma_upgrade_value_" + upgradePermaSize, entry.getValue().getA().getRegistryName().toString());
+            nbt.putInt("perma_upgrade_int_" + upgradePermaSize, entry.getValue().getB());
+            upgradePermaSize++;
+        }
+        for(Map.Entry<String, Pair<IArmorUpgradeOnTick, Integer>> entry : onTickPermaUpgrade.entrySet()) {
+            nbt.putString("perma_upgrade_source_" + upgradePermaSize, entry.getKey());
+            nbt.putString("perma_upgrade_value_" + upgradePermaSize, entry.getValue().getA().getRegistryName().toString());
+            nbt.putInt("perma_upgrade_int_" + upgradePermaSize, entry.getValue().getB());
+            upgradePermaSize++;
+        }
+        for(Map.Entry<String, Pair<IArmorUpgradeOnEquipped, Integer>> entry : onEquipPermaUpgrade.entrySet()) {
+            nbt.putString("perma_upgrade_source_" + upgradePermaSize, entry.getKey());
+            nbt.putString("perma_upgrade_value_" + upgradePermaSize, entry.getValue().getA().getRegistryName().toString());
+            nbt.putInt("perma_upgrade_int_" + upgradePermaSize, entry.getValue().getB());
+            upgradePermaSize++;
+        }
+        nbt.putInt("perma_upgrades_size", upgradePermaSize);
+
         nbt.putInt("mark_map_size", markMap.size());
         int i = 0;
         for(Map.Entry<ResourceKey<Level>, MarkSave> entry : markMap.entrySet()) {
@@ -113,7 +139,6 @@ public class PlayerDragonMagic {
     }
 
     public void loadNBT(CompoundTag compound) {
-        //todo here
         if (compound.contains("dragon_magic_data")) {
             CompoundTag nbt = compound.getCompound("dragon_magic_data");
 
@@ -121,7 +146,15 @@ public class PlayerDragonMagic {
                 addUpgrade(
                         nbt.getString("upgrade_source_" + i),
                         Registries.ARMOR_UPGRADE.get().getValue(new ResourceLocation(nbt.getString("upgrade_value_" + i))),
-                        nbt.getInt("upgrade_int_" + i)
+                        nbt.getInt("upgrade_int_" + i), false
+                );
+            }
+
+            for(int i = 0; i< nbt.getInt("perma_upgrades_size"); i++){
+                addUpgrade(
+                        nbt.getString("perma_upgrade_source_" + i),
+                        Registries.ARMOR_UPGRADE.get().getValue(new ResourceLocation(nbt.getString("perma_upgrade_value_" + i))),
+                        nbt.getInt("perma_upgrade_int_" + i), true
                 );
             }
 
@@ -137,13 +170,12 @@ public class PlayerDragonMagic {
     }
 
     public void addUpgrade(String source, @Nullable ArmorUpgrade armorUpgrade, int level, Player player){
+        this.addUpgrade(source, armorUpgrade, level, player, false);
+    }
+
+    public void addUpgrade(String source, @Nullable ArmorUpgrade armorUpgrade, int level, Player player, boolean isPermaUpgrade){
         if(armorUpgrade != null){
-            if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
-                if(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
-                    ((IArmorUpgradeOnEquipped) armorUpgrade).onEquip(player, level);
-                }
-            }
-            addUpgrade(source, armorUpgrade, level);
+            addUpgrade(source, armorUpgrade, level, isPermaUpgrade);
         }
     }
 
@@ -160,17 +192,41 @@ public class PlayerDragonMagic {
         if(armorUpgrade2 != null){
             armorUpgrade2.getA().onRemove(player);
         }
+        Pair<IArmorUpgradeOnTick, Integer> armorUpgrade3 = onTickPermaUpgrade.remove(source);
+        if(armorUpgrade3 != null){
+            armorUpgrade3.getA().onRemove(player);
+        }
+        Pair<IArmorUpgradeOnEquipped, Integer> armorUpgrade4 = onEquipPermaUpgrade.remove(source);
+        if(armorUpgrade4 != null){
+            armorUpgrade4.getA().onRemove(player);
+        }
+        Pair<ArmorUpgrade, Integer> armorUpgrade5 = onEventPermaUpgrade.remove(source);
+        if(armorUpgrade5 != null){
+            armorUpgrade5.getA().onRemove(player);
+        }
     }
 
-    private void addUpgrade(String source, @Nullable ArmorUpgrade armorUpgrade, int level){
-        if(armorUpgrade instanceof IArmorUpgradeOnTick){
-            onTickUpgrade.put(source, new Pair<>((IArmorUpgradeOnTick)armorUpgrade, level));
-        }
-        else if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
-            onEquipUpgrade.put(source, new Pair<>((IArmorUpgradeOnEquipped) armorUpgrade, level));
-        }
-        else if (armorUpgrade != null){
-            onEventUpgrade.put(source, new Pair<>(armorUpgrade, level));
+    private void addUpgrade(String source, @Nullable ArmorUpgrade armorUpgrade, int level, boolean isPermaUpgrade){
+        if(!isPermaUpgrade){
+            if(armorUpgrade instanceof IArmorUpgradeOnTick){
+                onTickUpgrade.put(source, new Pair<>((IArmorUpgradeOnTick)armorUpgrade, level));
+            }
+            else if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
+                onEquipUpgrade.put(source, new Pair<>((IArmorUpgradeOnEquipped) armorUpgrade, level));
+            }
+            else if (armorUpgrade != null){
+                onEventUpgrade.put(source, new Pair<>(armorUpgrade, level));
+            }
+        } else {
+            if(armorUpgrade instanceof IArmorUpgradeOnTick){
+                onTickPermaUpgrade.put(source, new Pair<>((IArmorUpgradeOnTick)armorUpgrade, level));
+            }
+            else if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
+                onEquipPermaUpgrade.put(source, new Pair<>((IArmorUpgradeOnEquipped) armorUpgrade, level));
+            }
+            else if (armorUpgrade != null){
+                onEventPermaUpgrade.put(source, new Pair<>(armorUpgrade, level));
+            }
         }
     }
 }
