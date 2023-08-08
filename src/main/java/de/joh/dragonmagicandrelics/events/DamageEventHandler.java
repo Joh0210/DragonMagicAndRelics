@@ -3,9 +3,11 @@ package de.joh.dragonmagicandrelics.events;
 import com.mna.api.ManaAndArtificeMod;
 import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.entities.IFactionEnemy;
+import com.mna.api.events.ComponentApplyingEvent;
 import com.mna.api.faction.IFaction;
 import com.mna.api.items.ChargeableItem;
 import com.mna.api.spells.ComponentApplicationResult;
+import com.mna.api.spells.SpellPartTags;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
@@ -31,6 +33,7 @@ import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
+import de.joh.dragonmagicandrelics.item.items.BraceletOfFriendship;
 import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.ProjectileReflectionHelper;
 import net.minecraft.core.BlockPos;
@@ -57,6 +60,7 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.apache.commons.lang3.mutable.MutableFloat;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
 import javax.annotation.Nullable;
@@ -114,6 +118,22 @@ public class DamageEventHandler {
         //Damage Boost
         if (source instanceof Player player){
             event.setAmount(event.getAmount() * (1.0f + ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.DAMAGE_BOOST)*0.25f));
+        }
+    }
+
+    /**
+     * Prevents friends from getting hurt
+     * @see BraceletOfFriendship
+     */
+    @SubscribeEvent
+    public static void onComponentApplying(ComponentApplyingEvent event){
+        if(event.getSource().getCaster() instanceof Player player && event.getTarget().isLivingEntity() && event.getComponent().getUseTag() == SpellPartTags.HARMFUL){
+            for(SlotResult curios : CuriosApi.getCuriosHelper().findCurios(player, ItemInit.BRACELET_OF_FRIENDSHIP.get())){
+                if(curios.stack().getItem() instanceof BraceletOfFriendship && ((BraceletOfFriendship)curios.stack().getItem()).getPlayerTarget(curios.stack(), player.getLevel()) == event.getTarget().getEntity()){
+                    event.setCanceled(true);
+                    return;
+                }
+            }
         }
     }
 
@@ -195,6 +215,15 @@ public class DamageEventHandler {
             if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && (CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.ANGEL_RING.get(), player).isPresent() || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.FALLEN_ANGEL_RING.get(), player).isPresent()            )){
                 event.setCanceled(true);
                 return;
+            }
+
+            if(source.getEntity() instanceof Player sourceEntity){
+                for(SlotResult curios : CuriosApi.getCuriosHelper().findCurios(sourceEntity, ItemInit.BRACELET_OF_FRIENDSHIP.get())){
+                    if(curios.stack().getItem() instanceof BraceletOfFriendship && ((BraceletOfFriendship)curios.stack().getItem()).getPlayerTarget(curios.stack(), player.getLevel()) == player){
+                        event.setCanceled(true);
+                        return;
+                    }
+                }
             }
         }
     }

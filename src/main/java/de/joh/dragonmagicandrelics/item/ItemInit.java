@@ -53,6 +53,7 @@ public class ItemInit {
     public static final RegistryObject<Item> DRAGON_MAGE_TEST_CURIOS = ITEMS.register("dragon_mage_test_curios", () -> new DragonMageCurios(16, "dm_test_curios", new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.RARE).fireResistant()));
     public static final RegistryObject<Item> RING_OF_POWER = ITEMS.register("ring_of_power", RingOfPower::new);
     public static final RegistryObject<Item> RING_OF_RULING = ITEMS.register("ring_of_ruling", RingOfRuling::new);
+    public static final RegistryObject<Item> BRACELET_OF_FRIENDSHIP = ITEMS.register("bracelet_of_friendship", () -> new BraceletOfFriendship(new Item.Properties().tab(CreativeModeTab.CreativeModeTab).stacksTo(1)));
 
 
 
