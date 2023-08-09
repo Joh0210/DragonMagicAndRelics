@@ -7,6 +7,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import org.jetbrains.annotations.NotNull;
 
 public class VoidfeatherCharm extends TieredItem {
 
@@ -38,7 +39,7 @@ public class VoidfeatherCharm extends TieredItem {
         return 0;
     }
 
-    public boolean isEnchantable(ItemStack p_77616_1_) {
+    public boolean isEnchantable(@NotNull ItemStack itemStack) {
         return false;
     }
 

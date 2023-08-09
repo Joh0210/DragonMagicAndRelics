@@ -69,6 +69,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * These event handlers take care of processing damage events.
  * Functions marked with @SubscribeEvent are called by the forge event bus handler.
+ * @author Joh0210
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DamageEventHandler {
@@ -129,9 +130,13 @@ public class DamageEventHandler {
     public static void onComponentApplying(ComponentApplyingEvent event){
         if(event.getSource().getCaster() instanceof Player player && event.getTarget().isLivingEntity() && event.getComponent().getUseTag() == SpellPartTags.HARMFUL){
             for(SlotResult curios : CuriosApi.getCuriosHelper().findCurios(player, ItemInit.BRACELET_OF_FRIENDSHIP.get())){
-                if(curios.stack().getItem() instanceof BraceletOfFriendship && ((BraceletOfFriendship)curios.stack().getItem()).getPlayerTarget(curios.stack(), player.getLevel()) == event.getTarget().getEntity()){
-                    event.setCanceled(true);
-                    return;
+                if(curios.stack().getItem() instanceof BraceletOfFriendship){
+                    for(Player friend : ((BraceletOfFriendship)curios.stack().getItem()).getPlayerTargets(curios.stack(), player.getLevel())){
+                        if(friend == event.getTarget().getEntity()){
+                            event.setCanceled(true);
+                            return;
+                        }
+                    }
                 }
             }
         }
@@ -219,9 +224,13 @@ public class DamageEventHandler {
 
             if(source.getEntity() instanceof Player sourceEntity){
                 for(SlotResult curios : CuriosApi.getCuriosHelper().findCurios(sourceEntity, ItemInit.BRACELET_OF_FRIENDSHIP.get())){
-                    if(curios.stack().getItem() instanceof BraceletOfFriendship && ((BraceletOfFriendship)curios.stack().getItem()).getPlayerTarget(curios.stack(), player.getLevel()) == player){
-                        event.setCanceled(true);
-                        return;
+                    if(curios.stack().getItem() instanceof BraceletOfFriendship){
+                        for(Player friend : ((BraceletOfFriendship)curios.stack().getItem()).getPlayerTargets(curios.stack(), player.getLevel())){
+                            if(friend  == player){
+                                event.setCanceled(true);
+                                return;
+                            }
+                        }
                     }
                 }
             }

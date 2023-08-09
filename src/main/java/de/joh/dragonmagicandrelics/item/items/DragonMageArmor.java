@@ -142,18 +142,21 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
                 if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name").equals("")){
                     TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.self");
                     tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name")));
+                    tooltip.add(new TextComponent("  "));
                 }
 
                 //Upgrade Tooltip
-                tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
                 if(stack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
                     CompoundTag nbt = stack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
-
-                    for(String key : nbt.getAllKeys()){
-                        if(nbt.getInt(key) > 0){
-                            TranslatableComponent component = new TranslatableComponent(key);
-                            tooltip.add(new TextComponent(component.getString() + ": " + nbt.getInt(key)));
+                    if(nbt.getAllKeys().size() > 0){
+                        tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
+                        for(String key : nbt.getAllKeys()){
+                            if(nbt.getInt(key) > 0){
+                                TranslatableComponent component = new TranslatableComponent(key);
+                                tooltip.add(new TextComponent(component.getString() + ": " + nbt.getInt(key)));
+                            }
                         }
+                        tooltip.add(new TextComponent("  "));
                     }
                 }
             }

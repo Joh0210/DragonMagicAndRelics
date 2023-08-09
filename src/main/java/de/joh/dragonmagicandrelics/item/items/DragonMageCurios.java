@@ -81,16 +81,17 @@ public class DragonMageCurios extends Item implements ICurioItem, IDragonMagicCo
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
         if(Screen.hasShiftDown()){
             if(stack.hasTag()){
-                //Upgrade Tooltip
-                tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
                 if(stack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
                     CompoundTag nbt = stack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
-
-                    for(String key : nbt.getAllKeys()){
-                        if(nbt.getInt(key) > 0){
-                            TranslatableComponent component = new TranslatableComponent(key);
-                            tooltip.add(new TextComponent(component.getString() + ": " + nbt.getInt(key)));
+                    if(nbt.getAllKeys().size() > 0){
+                        tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base"));
+                        for(String key : nbt.getAllKeys()){
+                            if(nbt.getInt(key) > 0){
+                                TranslatableComponent component = new TranslatableComponent(key);
+                                tooltip.add(new TextComponent(component.getString() + ": " + nbt.getInt(key)));
+                            }
                         }
+                        tooltip.add(new TextComponent("  "));
                     }
                 }
             }
