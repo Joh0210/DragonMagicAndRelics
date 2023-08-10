@@ -8,7 +8,7 @@ import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

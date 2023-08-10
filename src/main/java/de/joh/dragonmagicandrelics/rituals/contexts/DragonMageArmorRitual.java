@@ -5,7 +5,7 @@ import com.mna.api.rituals.RitualEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import de.joh.dragonmagicandrelics.events.additional.DragonUpgradeEvent;
 import de.joh.dragonmagicandrelics.events.additional.HasMaxFactionEvent;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;

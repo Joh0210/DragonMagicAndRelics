@@ -3,7 +3,7 @@ package de.joh.dragonmagicandrelics.rituals.contexts;
 import com.mna.api.rituals.IRitualContext;
 import com.mna.api.rituals.RitualEffect;
 import com.mna.entities.utility.PresentItem;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.item.items.UpgradeSeal;
 import de.joh.dragonmagicandrelics.item.util.IDragonMagicContainer;
 import net.minecraft.core.BlockPos;

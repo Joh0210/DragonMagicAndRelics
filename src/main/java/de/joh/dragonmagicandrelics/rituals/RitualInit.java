@@ -19,7 +19,6 @@ public class RitualInit {
         event.getRegistry().registerAll(
             new DragonMageArmorRitual(RLoc.create("rituals/dragon_mage_ritual")).setRegistryName(RLoc.create("ritual-dragon_mage_ritual")),
             new UpgradeRitual(RLoc.create("rituals/upgrade_ritual")).setRegistryName(RLoc.create("ritual-upgrade-ritual")),
-            new FusionRitual(RLoc.create("rituals/fusion_ritual")).setRegistryName(RLoc.create("ritual-fusion-ritual")),
             new PhoenixRitual(RLoc.create("rituals/phoenix_ritual")).setRegistryName(RLoc.create("ritual-phoenix-ritual")),
             new BetrayalRitual(RLoc.create("rituals/betrayal_ritual")).setRegistryName(RLoc.create("ritual-betrayal-ritual"))
         );

@@ -1,20 +1,35 @@
-package de.joh.dragonmagicandrelics.item.items;
+package de.joh.dragonmagicandrelics.item.items.dragonmagearmor;
 
-import com.mna.factions.Factions;
+import com.mna.api.spells.ComponentApplicationResult;
+import com.mna.api.spells.targeting.SpellContext;
+import com.mna.api.spells.targeting.SpellSource;
+import com.mna.api.spells.targeting.SpellTarget;
+import com.mna.api.timing.DelayedEventQueue;
+import com.mna.api.timing.TimedDelayedSpellEffect;
+import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
+import com.mna.inventory.ItemInventoryBase;
+import com.mna.items.ItemInit;
 import com.mna.items.armor.ISetItem;
+import com.mna.items.base.IItemWithGui;
+import com.mna.spells.SpellCaster;
+import com.mna.spells.crafting.SpellRecipe;
 import de.joh.dragonmagicandrelics.CreativeModeTab;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
+import de.joh.dragonmagicandrelics.item.util.ArmorMaterials;
 import de.joh.dragonmagicandrelics.item.util.IDragonMagicContainer;
-import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -23,6 +38,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.extensions.IForgeItem;
+import org.apache.commons.lang3.mutable.MutableBoolean;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -34,6 +50,7 @@ import software.bernie.geckolib3.core.manager.AnimationFactory;
 import software.bernie.geckolib3.item.GeoArmorItem;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -46,41 +63,69 @@ import java.util.function.Consumer;
  * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
  * @author Joh0210
  */
-public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForgeItem, ISetItem, IDragonMagicContainer {
+public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithGui<DragonMageArmor>, IAnimatable, IForgeItem, ISetItem, IDragonMagicContainer {
     private final AnimationFactory factory =  GeckoLibUtil.createFactory(this);
-    private final ResourceLocation DRAGON_MAGE_ARMOR_SET_BONUS;
-    public final String TEXTURE_LOCATION;
-    public final ResourceLocation WING_TEXTURE_LOCATION;
+    private final ResourceLocation dragonMageArmorSetBonus;
 
-    public DragonMageArmor(ArmorMaterial pMaterial, EquipmentSlot pSlot, ResourceLocation faction) {
-        super(pMaterial, pSlot, new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant());
+    public DragonMageArmor(EquipmentSlot pSlot, ResourceLocation dragonMageArmorSetBonus) {
+        super(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, pSlot, new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant());
+        this.dragonMageArmorSetBonus = dragonMageArmorSetBonus;
+    }
 
-        if(faction == Factions.COUNCIL.getRegistryName()){
-            TEXTURE_LOCATION = "textures/models/armor/arch_dragon_mage_armor_texture.png";
-            WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/arch_dragon_wing.png");
-            DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_arch_armor_set_bonus");
-        } else if(faction == Factions.FEY.getRegistryName()){
-            TEXTURE_LOCATION = "textures/models/armor/wild_dragon_mage_armor_texture.png";
-            WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/wild_dragon_wing.png");
-            DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_wild_armor_set_bonus");
-        } else if(faction == Factions.UNDEAD.getRegistryName()){
-            TEXTURE_LOCATION = "textures/models/armor/abyssal_dragon_mage_armor_texture.png";
-            WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/abyssal_dragon_wing.png");
-            DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_abyssal_armor_set_bonus");
-        } else{
-            TEXTURE_LOCATION = "textures/models/armor/infernal_dragon_mage_armor_texture.png";
-            WING_TEXTURE_LOCATION = RLoc.create("textures/models/armor/infernal_dragon_wing.png");
-            DRAGON_MAGE_ARMOR_SET_BONUS = RLoc.create(DragonMagicAndRelics.MOD_ID + "_infernal_armor_set_bonus");
+    public abstract ResourceLocation getWingTextureLocation();
+
+    /**
+     * Performs one of the two spells from the Dragon Mage Armor.
+     * @param stack Dragon Mage Armor Chestplate with the spells.
+     * @param isOther Should the source be hit? Should the offensive spell be used?
+     * @param self Wearer of armor.
+     * @param other Source of damage (only as entity).
+     */
+    public static void applySpell(ItemStack stack, boolean isOther, Player self, @Nullable Entity other) {
+        if(stack.getItem() instanceof DragonMageArmor && ((DragonMageArmor)stack.getItem()).slot == EquipmentSlot.CHEST){
+            ItemInventoryBase inv = new ItemInventoryBase(stack);
+            ItemStack slot = inv.getStackInSlot(isOther ? 1 : 0);
+            if (slot.getItem() != ItemInit.ENCHANTED_VELLUM.get() && (!isOther || other != null)) {
+                if (!slot.isEmpty() && SpellRecipe.stackContainsSpell(slot) && !self.level.isClientSide) {
+                    SpellRecipe recipe = SpellRecipe.fromNBT(slot.getTag());
+                    if (recipe.isValid()) {
+                        MutableBoolean consumed = new MutableBoolean(false);
+                        self.getCapability(PlayerMagicProvider.MAGIC).ifPresent((c) -> {
+                            if (c.getCastingResource().hasEnoughAbsolute(self, recipe.getManaCost())) {
+                                c.getCastingResource().consume(self, recipe.getManaCost());
+                                consumed.setTrue();
+                            }
+
+                        });
+                        if (consumed.getValue()) {
+                            SpellSource source = new SpellSource(self, InteractionHand.MAIN_HAND);
+                            SpellContext context = new SpellContext(self.level, recipe);
+                            recipe.iterateComponents((c) -> {
+                                int delay = (int)(c.getValue(com.mna.api.spells.attributes.Attribute.DELAY) * 20.0F);
+                                boolean appliedComponent = false;
+                                if (delay > 0) {
+                                    DelayedEventQueue.pushEvent(self.level, new TimedDelayedSpellEffect(c.getPart().getRegistryName().toString(), delay, source, new SpellTarget(isOther ? other : self), c, context));
+                                    appliedComponent = true;
+                                } else if (c.getPart().ApplyEffect(source, new SpellTarget(isOther ? other : self), c, context) == ComponentApplicationResult.SUCCESS) {
+                                    appliedComponent = true;
+                                }
+
+                                if (appliedComponent) {
+                                    SpellCaster.addComponentRoteProgress(self, c.getPart());
+                                }
+
+                            });
+                        }
+                    }
+                }
+            }
         }
     }
 
     /**
      * Depending on the faction, a different texture will be returned.
      */
-    public ResourceLocation getTextureLocation(){
-//        return new ResourceLocation("minecraft:textures/entity/end_portal.png");
-        return RLoc.create(TEXTURE_LOCATION);
-    }
+    public abstract ResourceLocation getTextureLocation();
 
     @Override
     public int getMaxDragonMagic(ItemStack itemStack) {
@@ -118,6 +163,18 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
         if(entity instanceof Player){
             this.removeDragonMagic(itemStack, (Player) entity, "dm_armor");
         }
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+        if (!world.isClientSide && this.slot == EquipmentSlot.CHEST) {
+            ItemStack held = player.getItemInHand(hand);
+            if (this.openGuiIfModifierPressed(held, player, world)) {
+                return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
+            }
+        }
+
+        return new InteractionResultHolder<>(InteractionResult.PASS, player.getItemInHand(hand));
     }
 
     /**
@@ -163,6 +220,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
 
             TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.dm_container.tooltip.remaining.dmpoints");
             tooltip.add(new TextComponent(component.getString() + (getMaxDragonMagic(stack) - getSpentDragonPoints(stack))));
+            super.appendHoverText(stack, world, tooltip, flag);
         }
         else{
             tooltip.add(new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip"));
@@ -179,7 +237,7 @@ public class DragonMageArmor extends GeoArmorItem implements IAnimatable, IForge
 
     @Override
     public ResourceLocation getSetIdentifier() {
-        return DRAGON_MAGE_ARMOR_SET_BONUS;
+        return dragonMageArmorSetBonus;
     }
 
     @Override

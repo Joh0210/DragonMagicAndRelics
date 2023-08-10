@@ -6,6 +6,7 @@ import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagicProvider;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;

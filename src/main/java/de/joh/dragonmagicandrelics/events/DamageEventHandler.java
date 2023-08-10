@@ -34,7 +34,7 @@ import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.BraceletOfFriendship;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.ProjectileReflectionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -80,7 +80,6 @@ public class DamageEventHandler {
      * @see ArmorUpgradeInit
      * @see Commands
      * @see de.joh.dragonmagicandrelics.item.items.FactionAmulet
-     * @see de.joh.dragonmagicandrelics.rituals.contexts.FusionRitual
      */
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -92,9 +91,9 @@ public class DamageEventHandler {
 
             //Spell
             if(!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
-                applySpell(false, player, source, chest);
+                DragonMageArmor.applySpell(chest, false, player, source);
                 if(source != null && source != player){
-                    applySpell(true, player, source, chest);
+                    DragonMageArmor.applySpell(chest, true, player, source);
                 }
             }
 
@@ -379,47 +378,6 @@ public class DamageEventHandler {
             Level world = event.getEntityLiving().getLevel();
             PresentItem item = new PresentItem(world, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), new ItemStack(ItemInit.DRAGON_CORE.get()));
             world.addFreshEntity(item);
-        }
-    }
-
-    /**
-     * Performs one of the two spells from the Dragon Mage Armor.
-     * @param isOther Should the source be hit? Should the offensive spell be used?
-     * @param self Wearer of armor.
-     * @param other Source of damage (only as entity).
-     * @param chest Dragon Mage Armor Chestplate with the spells
-     */
-    public static void applySpell(boolean isOther, Player self, @Nullable Entity other, ItemStack chest){
-        CompoundTag compoundTag = new CompoundTag();
-        compoundTag.put("spell", chest.getTag().getCompound(DragonMagicAndRelics.MOD_ID+(isOther ? "spell_other" : "spell_self")));
-        SpellRecipe recipe = SpellRecipe.fromNBT(compoundTag);
-
-        if (recipe.isValid()) {
-            MutableBoolean consumed = new MutableBoolean(false);
-            self.getCapability(PlayerMagicProvider.MAGIC).ifPresent((c) -> {
-                if (c.getCastingResource().hasEnoughAbsolute(self, recipe.getManaCost())) {
-                    c.getCastingResource().consume(self, recipe.getManaCost());
-                    consumed.setTrue();
-                }
-            });
-
-            if (consumed.getValue()) {
-                SpellSource spellSource = new SpellSource(self, InteractionHand.MAIN_HAND);
-                SpellContext context = new SpellContext(self.level, recipe);
-                recipe.iterateComponents((c) -> {
-                    int delay = (int)(c.getValue(com.mna.api.spells.attributes.Attribute.DELAY) * 20.0F);
-                    boolean appliedComponent = false;
-                    if (delay > 0) {
-                        DelayedEventQueue.pushEvent(self.level, new TimedDelayedSpellEffect(c.getPart().getRegistryName().toString(), delay, spellSource, new SpellTarget(isOther ? other : self ), c, context));
-                        appliedComponent = true;
-                    } else if (c.getPart().ApplyEffect(spellSource, new SpellTarget(isOther ? other : self), c, context) == ComponentApplicationResult.SUCCESS) {
-                        appliedComponent = true;
-                    }
-                    if (appliedComponent) {
-                        SpellCaster.addComponentRoteProgress(self, c.getPart());
-                    }
-                });
-            }
         }
     }
 }

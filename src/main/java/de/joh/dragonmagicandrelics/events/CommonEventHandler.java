@@ -13,7 +13,7 @@ import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChance;
 import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChanceProvider;
 import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;

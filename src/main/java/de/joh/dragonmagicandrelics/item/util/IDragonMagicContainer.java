@@ -5,7 +5,7 @@ import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagicProvider;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,7 +16,7 @@ import net.minecraft.world.item.ItemStack;
  * DragonMagicContainers have the power to hold Dragon Magic (Armor Upgrades).
  * Drawing on the item transfers the power to the player.
  * If he has full Dragon Mage Armor on, he can use these powers.
- * @see de.joh.dragonmagicandrelics.item.items.DragonMageArmor
+ * @see DragonMageArmor
  * @see ArmorUpgrade
  * @see de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagic
  * @author Joh0210

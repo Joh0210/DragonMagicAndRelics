@@ -1,14 +1,10 @@
 package de.joh.dragonmagicandrelics.networking.packet;
 
 import com.mna.ManaAndArtifice;
-import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.network.NetworkEvent;
 
 import java.util.function.Supplier;

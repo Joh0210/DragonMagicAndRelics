@@ -17,6 +17,22 @@ public class ContainerInit {
     @ObjectHolder(BRACELET_OF_FRIENDSHIP_ID)
     public static final MenuType<ContainerBraceletOfFriendship> BRACELET_OF_FRIENDSHIP;
 
+    static final String ABYSSAL_DRAGON_MAGE_CHESTPLATE_ID = "dragonmagicandrelics:abyssal_dragon_mage_chestplate";
+    @ObjectHolder(ABYSSAL_DRAGON_MAGE_CHESTPLATE_ID)
+    public static final MenuType<ContainerAbyssalDragonMageArmor> ABYSSAL_DRAGON_MAGE_CHESTPLATE;
+
+    static final String ARCH_DRAGON_MAGE_CHESTPLATE_ID = "dragonmagicandrelics:arch_dragon_mage_chestplate";
+    @ObjectHolder(ARCH_DRAGON_MAGE_CHESTPLATE_ID)
+    public static final MenuType<ContainerArchDragonMageArmor> ARCH_DRAGON_MAGE_CHESTPLATE;
+
+    static final String INFERNAL_DRAGON_MAGE_CHESTPLATE_ID = "dragonmagicandrelics:infernal_dragon_mage_chestplate";
+    @ObjectHolder(INFERNAL_DRAGON_MAGE_CHESTPLATE_ID)
+    public static final MenuType<ContainerInfernalDragonMageArmor> INFERNAL_DRAGON_MAGE_CHESTPLATE;
+
+    static final String WILD_DRAGON_MAGE_CHESTPLATE_ID = "dragonmagicandrelics:wild_dragon_mage_chestplate";
+    @ObjectHolder(WILD_DRAGON_MAGE_CHESTPLATE_ID)
+    public static final MenuType<ContainerWildDragonMageArmor> WILD_DRAGON_MAGE_CHESTPLATE;
+
     public ContainerInit() {
     }
 
@@ -24,10 +40,18 @@ public class ContainerInit {
     public static void registerContainers(RegistryEvent.Register<MenuType<?>> event) {
         IForgeRegistry<MenuType<?>> r = event.getRegistry();
         r.register((new MenuType<>(ContainerBraceletOfFriendship::new)).setRegistryName(BRACELET_OF_FRIENDSHIP_ID));
+        r.register((new MenuType<>(ContainerAbyssalDragonMageArmor::new)).setRegistryName(ABYSSAL_DRAGON_MAGE_CHESTPLATE_ID));
+        r.register((new MenuType<>(ContainerArchDragonMageArmor::new)).setRegistryName(ARCH_DRAGON_MAGE_CHESTPLATE_ID));
+        r.register((new MenuType<>(ContainerInfernalDragonMageArmor::new)).setRegistryName(INFERNAL_DRAGON_MAGE_CHESTPLATE_ID));
+        r.register((new MenuType<>(ContainerWildDragonMageArmor::new)).setRegistryName(WILD_DRAGON_MAGE_CHESTPLATE_ID));
     }
 
     static {
         CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, DragonMagicAndRelics.MOD_ID);
         BRACELET_OF_FRIENDSHIP = null;
+        ABYSSAL_DRAGON_MAGE_CHESTPLATE = null;
+        ARCH_DRAGON_MAGE_CHESTPLATE = null;
+        INFERNAL_DRAGON_MAGE_CHESTPLATE = null;
+        WILD_DRAGON_MAGE_CHESTPLATE = null;
     }
 }

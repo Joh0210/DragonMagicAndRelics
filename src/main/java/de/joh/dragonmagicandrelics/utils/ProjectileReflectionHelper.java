@@ -3,6 +3,7 @@ package de.joh.dragonmagicandrelics.utils;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.world.entity.player.Player;
 
 /**
@@ -14,7 +15,7 @@ public class ProjectileReflectionHelper {
 
     /**
      * This function is called by the Dragon Mage Armor every tick (if the upgrade is installed) to recharge the reflections
-     * @see de.joh.dragonmagicandrelics.item.items.DragonMageArmor
+     * @see DragonMageArmor
      * @param player wearer of the armor
      */
     public static void tickReflectCharges(Player player) {

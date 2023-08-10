@@ -3,7 +3,7 @@ package de.joh.dragonmagicandrelics.events;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.ItemInit;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleFlightC2SPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleNightVisionC2SPacket;

@@ -12,7 +12,7 @@ import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.events.additional.DragonUpgradeEvent;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.item.util.IDragonMagicContainer;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -42,8 +42,7 @@ public class Commands {
     public Commands(CommandDispatcher<CommandSourceStack> dispatcher){
         dispatcher.register(net.minecraft.commands.Commands.literal(DragonMagicAndRelics.MOD_ID).requires((commandSource) -> commandSource.hasPermission(2))
                 .then(addUpgrade())
-                .then(changeDragonMageArmor())
-                .then(addSpellToArmor()));
+                .then(changeDragonMageArmor()));
     }
 
     private ArgumentBuilder<CommandSourceStack, ?> changeDragonMageArmor() {
@@ -82,58 +81,6 @@ public class Commands {
             }
             return 1;
         }));
-    }
-
-    /**
-     * Adds the spell in your main hand to your Dragon Mage Armor.
-     * The spell is cast when the wearer of the Dragon Mage Armor takes damage.
-     * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
-     */
-    private ArgumentBuilder<CommandSourceStack, ?> addSpellToArmor() {
-        return ((LiteralArgumentBuilder) net.minecraft.commands.Commands.literal("addSpellToArmor")
-                .then(writeSpellToArmor(false)))
-                .then(writeSpellToArmor(true));
-    }
-
-    /**
-     * Actually adding the spell to the Dragon Mage Armor.
-     * @param isOffensive Hit the attacker? Doesn't hit you?
-     * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
-     */
-    private ArgumentBuilder<CommandSourceStack, ?> writeSpellToArmor(boolean isOffensive) {
-        return net.minecraft.commands.Commands.literal(isOffensive ? "offensive" : "defensive").executes((command) -> {
-            ServerPlayer player = command.getSource().getPlayerOrException();
-            ItemStack spellInHand = player.getItemInHand(InteractionHand.MAIN_HAND);
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-
-            if (!spellInHand.isEmpty() && SpellRecipe.stackContainsSpell(spellInHand) && !player.level.isClientSide){
-
-                if(chest == null || !(chest.getItem() instanceof DragonMageArmor) || !((DragonMageArmor) chest.getItem()).isSetEquipped(player)){
-                    command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.no.armor.equipped.error"), true);
-                    return 1;
-                }
-
-                String name = spellInHand.getTag().getCompound("display").toString().replace( "{Name:'{\"text\":\"", "").replace( "\"}'}", "");
-
-                CompoundTag compoundTag = new CompoundTag();
-                compoundTag.put(DragonMagicAndRelics.MOD_ID+(isOffensive ? "spell_other" : "spell_self"), spellInHand.getTag().getCompound("spell"));
-                compoundTag.putString(DragonMagicAndRelics.MOD_ID+(isOffensive ? "spell_other" : "spell_self")+"_name", name);
-                chest.getTag().merge(compoundTag);
-
-                //Text Output
-                TranslatableComponent component_one = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.one");
-                TranslatableComponent component_two = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.two");
-                TranslatableComponent component_three = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.three");
-                TranslatableComponent component_offensive = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.offensive");
-                TranslatableComponent component_defensive = new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.success.defensive");
-
-                command.getSource().sendSuccess(new TextComponent(component_one.getString() + name + component_two.getString() + (isOffensive ? component_offensive.getString() : component_defensive.getString()) + component_three.getString()), true);
-            }
-            else{
-                command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.writeSpellToArmor.no.valid.spell.error"), true);
-            }
-            return 1;
-        });
     }
 
     /**

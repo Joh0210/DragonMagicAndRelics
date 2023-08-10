@@ -7,7 +7,7 @@ import de.joh.dragonmagicandrelics.armorupgrades.init.ArmorUpgradeFly;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.AngelRing;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.client.model.ElytraModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -42,7 +42,7 @@ public class WingLayer<T extends LivingEntity, M extends EntityModel<T>> extends
             matrixStackIn.translate(0.0D, 0.0D, 0.125D);
             this.getParentModel().copyPropertiesTo(this.modelElytra);
             this.modelElytra.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(dmArmor.WING_TEXTURE_LOCATION), false, dmArmor.isFoil(chest));
+            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(dmArmor.getWingTextureLocation()), false, dmArmor.isFoil(chest));
             this.modelElytra.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             matrixStackIn.popPose();
         }

@@ -4,7 +4,6 @@ import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.MarkSave;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,9 +11,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import oshi.util.tuples.Pair;
 

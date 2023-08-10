@@ -1,6 +1,6 @@
 package de.joh.dragonmagicandrelics.item.client.armor;
 
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import software.bernie.geckolib3.renderers.geo.GeoArmorRenderer;
 
 /**

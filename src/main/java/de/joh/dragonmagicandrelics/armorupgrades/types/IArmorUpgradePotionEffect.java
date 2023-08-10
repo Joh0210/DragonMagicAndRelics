@@ -1,7 +1,7 @@
 package de.joh.dragonmagicandrelics.armorupgrades.types;
 
 import com.mna.api.capabilities.IPlayerMagic;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;

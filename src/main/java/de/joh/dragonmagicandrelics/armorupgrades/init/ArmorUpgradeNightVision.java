@@ -1,7 +1,7 @@
 package de.joh.dragonmagicandrelics.armorupgrades.init;
 
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
-import de.joh.dragonmagicandrelics.item.items.DragonMageArmor;
+import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
