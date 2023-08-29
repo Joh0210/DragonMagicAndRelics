@@ -42,7 +42,6 @@
       }
     ]
   },
-
   "Upgrade Glyph Fly": {
     "index": "1",
     "category": "eldrin_altar",
@@ -1186,6 +1185,7 @@
       }
     ]
   },
+
   "Component: Nightfall": {
     "index": "2",
     "category": "sorcery",
@@ -1545,6 +1545,7 @@
       }
     ]
   },
+
   "Brimstone Chalk": {
     "index": "1",
     "category": "artifice",
@@ -1848,6 +1849,7 @@
       }
     ]
   },
+
   "Ritual of the Dragon Mage Armor": {
     "index": 0,
     "category": "rituals",
@@ -1951,62 +1953,6 @@
       {
         "type": "ritual",
         "location":"dragonmagicandrelics:rituals/dragon_mage_ritual"
-      }
-    ]
-  },
-  "Fusion Ritual": {
-    "index": 0,
-    "category": "rituals",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Fusion Ritual"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "In order to use the full potential of my Dragon Mage Armor, I should fuse it with my spells.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With this ritual I can combine up to 2 spells with my armor. One offensive and one defensive. Both spells trigger when I take damage. The offensive spell hits the aggressor, the defensive spell hits me.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "In order to start the ritual, I must wear my full Dragon Mage Armor. When I add the Netherite Sword, the spell is stored as an offensive in my armor. If I leave it out, the spell is for me.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "By performing the ritual again, I can override the corresponding spell.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "ritual",
-        "location":"dragonmagicandrelics:rituals/fusion_ritual"
       }
     ]
   },

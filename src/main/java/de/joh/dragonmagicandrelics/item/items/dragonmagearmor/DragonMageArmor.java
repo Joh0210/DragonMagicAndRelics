@@ -39,6 +39,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.extensions.IForgeItem;
 import org.apache.commons.lang3.mutable.MutableBoolean;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
 import software.bernie.geckolib3.core.builder.AnimationBuilder;
@@ -166,7 +167,7 @@ public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithG
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level world, @NotNull Player player, @NotNull InteractionHand hand) {
         if (!world.isClientSide && this.slot == EquipmentSlot.CHEST) {
             ItemStack held = player.getItemInHand(hand);
             if (this.openGuiIfModifierPressed(held, player, world)) {
@@ -178,31 +179,17 @@ public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithG
     }
 
     /**
-     * Adds a tooltip (when hovering over the item) to the item.
-     * The installed spells and upgrades are listed.
-     * Call from the game itself.
+     * Adds a tooltip (when hovering over the item) to the item, so that the installed upgrades will be listed.
      */
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         if(this.slot != EquipmentSlot.CHEST){
             return;
         }
 
         if(Screen.hasShiftDown()){
             if(stack.hasTag()){
-                //Spell Tooltiip
-                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name").equals("")){
-                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.other");
-                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_other_name")));
-                }
-                if(!stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name").equals("")){
-                    TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.armor.tooltip.spell.self");
-                    tooltip.add(new TextComponent(component.getString() + stack.getTag().getString(DragonMagicAndRelics.MOD_ID +"spell_self_name")));
-                    tooltip.add(new TextComponent("  "));
-                }
-
-                //Upgrade Tooltip
                 if(stack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
                     CompoundTag nbt = stack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
                     if(nbt.getAllKeys().size() > 0){
@@ -220,6 +207,7 @@ public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithG
 
             TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.dm_container.tooltip.remaining.dmpoints");
             tooltip.add(new TextComponent(component.getString() + (getMaxDragonMagic(stack) - getSpentDragonPoints(stack))));
+            tooltip.add(new TextComponent("  "));
             super.appendHoverText(stack, world, tooltip, flag);
         }
         else{
@@ -247,8 +235,7 @@ public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithG
 
     @Override
     public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<>(this, "controller",
-                20, this::predicate));
+        data.addAnimationController(new AnimationController<>(this, "controller", 20, this::predicate));
     }
 
     private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
@@ -296,9 +283,9 @@ public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithG
         }
     }
 
-//    @Override
-//    @OnlyIn(Dist.CLIENT)
-//    public boolean isFoil(ItemStack itemStack){
-//        return false;
-//    }
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public boolean isFoil(@NotNull ItemStack itemStack){
+        return false;
+    }
 }

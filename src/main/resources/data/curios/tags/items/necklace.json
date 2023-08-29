@@ -1,6 +1,7 @@
 {
 	"replace": false,
 	"values": [
-		"dragonmagicandrelics:faction_amulet"
+		"dragonmagicandrelics:faction_amulet",
+		"dragonmagicandrelics:amulet_of_dragon_power"
 	]
 }
