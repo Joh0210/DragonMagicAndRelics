@@ -54,8 +54,10 @@ public class UpgradeSeal extends Item {
             ArmorUpgrade armorUpgrade = getArmorUpgrade();
             if (armorUpgrade != null) {
                 tooltip.add(new TranslatableComponent(armorUpgrade.getRegistryName().toString() + ".description"));
-                TranslatableComponent component = new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal");
-                tooltip.add(new TextComponent(component.getString() + " " + armorUpgrade.upgradeCost));
+                TranslatableComponent component0 = new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal.max_level");
+                tooltip.add(new TextComponent(component0.getString() + " " + armorUpgrade.maxUpgradeLevel));
+                TranslatableComponent component1 = new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal");
+                tooltip.add(new TextComponent(component1.getString() + " " + armorUpgrade.upgradeCost));
                 if (armorUpgrade.hasStrongerAlternative()) {
                     tooltip.add(new TextComponent("  "));
                     TranslatableComponent component2 = new TranslatableComponent("tooltip.dragonmagicandrelics.upgradeseal.stronger_version");

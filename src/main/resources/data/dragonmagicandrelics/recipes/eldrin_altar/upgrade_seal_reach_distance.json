@@ -4,16 +4,22 @@
   "tier": 5,
   "items": [
     "mna:stone_rune_orange",
-    "minecraft:soul_campfire",
-    "minecraft:fire_charge",
-    "mna:living_flame",
-    "mna:rune_fire",
-    "mna:brimstone_boat",
+    "minecraft:sticky_piston",
+    "minecraft:sticky_piston",
+    "minecraft:crossbow",
+    "minecraft:snowball",
+    "minecraft:ghast_tear",
+    "minecraft:ender_pearl",
+    "minecraft:ender_pearl",
     "minecraft:nether_star"
   ],
   "power_requirements": [
     {
-      "affinity": "FIRE",
+      "affinity": "EARTH",
+      "amount": 1000
+    },
+    {
+      "affinity": "ARCANE",
       "amount": 1000
     }
   ]

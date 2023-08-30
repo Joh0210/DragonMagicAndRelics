@@ -1687,6 +1687,51 @@
       }
     ]
   },
+  "Bracelet of Friendship": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Bracelet of Friendship"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Wearing this bracelet will spare my allies if it would end up as collateral damage. "
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Using a "
+          },
+          {
+            "text": "player charm",
+            "color": "blue"
+          },
+          {
+            "text": " in the bracelet, I mark a player as my ally."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "mna:manaweaving/rituals/player_charm"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/bracelet_of_friendship"
+      }
+    ]
+  },
   "Mutandis": {
     "index": "1",
     "category": "artifice",
@@ -1790,8 +1835,38 @@
         "value": "",
         "json": [
           {
-            "text": "With the \"Ritual of the Dragon Mage Armor\" I can upgrade my armor to a Dragon Mage Armor. This already offers a fairly high level of protection, but I can still improve it. With Upgrade Glyphs I can add some more abilities to the armor. From Fly to Damage Boost, the Upgrade Glyphs offer the potential!",
+            "text": "With the ",
             "color": ""
+          },
+          {
+            "text": "Ritual of the Dragon Mage Armor",
+            "color": "blue"
+          },
+          {
+            "text": " I can upgrade my armor to a Dragon Mage Armor. This already offers a fairly high level of protection, but I can still improve it. With ",
+            "color": ""
+          },
+          {
+            "text": "Upgrade Glyphs",
+            "color": "blue"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "I can add some more abilities to the armor. All I have to do is fuse the glyph to my armor via the ",
+            "color": ""
+          },
+          {
+            "text": "Ritual of Upgrade",
+            "color": "blue"
+          },
+          {
+            "text": ".",
+            "color": ""
+          },
+          {
+            "text": "\n\nHowever, the amount of Dragon Magic that I can add to my armor is limited to 64. All installed glyphs combined cannot exceed the amount of Dragon Magic Points of the armor. However, there are also other containers I can channel my dragon magic into."
           }
         ]
       },
@@ -1800,17 +1875,7 @@
         "value": "",
         "json": [
           {
-            "text": "Depending on which armor I upgrade, I already have some glyphs installed. See \"Ritual of the Dragon Mage Armor\" for more information.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Another way to optimize the armor's potential is with the \"Fusion Ritual\", which can combine the power of my spells with the power of my armor.",
+            "text": "My glyphs aren't the only way I have to maximize my armor's potential. I can also fortify my armor with spells, which activate as soon as I take damage (Sneak and right click to open the menu). One spell hits me, the other targets the person who attacked me.",
             "color": ""
           }
         ]
@@ -1846,6 +1911,154 @@
       {
         "type": "ritual",
         "location":"dragonmagicandrelics:rituals/dragon_mage_ritual"
+      }
+    ]
+  },
+  "Amulet of Dragon Power": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Amulet of Dragon Power"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Another container to channel my dragon magic into with 32 slots. Correspondingly, like the Dragon Magic Armor, I can merge ",
+            "color": ""
+          },
+          {
+            "text": "glyphs ",
+            "color": "blue"
+          },
+          {
+            "text": "with the amulet, but I still have to wear the full ",
+            "color": ""
+          },
+          {
+            "text": "Dragon Mage Armor",
+            "color": "blue"
+          },
+          {
+            "text": ".",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/amulet_of_dragon_power"
+      },
+      {
+        "type": "ritual",
+        "location":"dragonmagicandrelics:rituals/upgrade_ritual"
+      }
+    ]
+  },
+  "Ring of Power": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ring of Power"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Another container to channel my dragon magic into with 16 slots. Correspondingly, like the Dragon Magic Armor, I can merge ",
+            "color": ""
+          },
+          {
+            "text": "glyphs ",
+            "color": "blue"
+          },
+          {
+            "text": "with the amulet, but I still have to wear the full ",
+            "color": ""
+          },
+          {
+            "text": "Dragon Mage Armor",
+            "color": "blue"
+          },
+          {
+            "text": ".",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Additionally, each upgrade of this ring is enhanced by one unit."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/ring_of_power"
+      },
+      {
+        "type": "ritual",
+        "location":"dragonmagicandrelics:rituals/upgrade_ritual"
+      }
+    ]
+  },
+  "Ring of Ruling": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ring of Ruling"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Another container to channel my dragon magic into with 16 slots.",
+            "color": ""
+          },
+          {
+            "text": "glyphs ",
+            "color": "blue"
+          },
+          {
+            "text": "with the amulet.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "However, in order to obtain the effects, I don'h have to wear Dragon Mage Armor"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/ring_of_ruling"
+      },
+      {
+        "type": "ritual",
+        "location":"dragonmagicandrelics:rituals/upgrade_ritual"
       }
     ]
   },
@@ -1887,66 +2100,6 @@
             "color": ""
           }
         ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Depending on which faction armor I use, different starting upgrades will be installed.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With the Spellweaver Robes, I get the Fly I, Mana Boost V, and Mana Regen V upgrades.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With the Druid Robes I get the Elytra II, Fly II, Health Boost I and Kinetic Resistance I upgrades.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With the Infernal Armor, I get the Explosion Resistance I, Fire Resistance II, Kinetic Resistance I, Meteor Jump I, Movement Speed III, and Jump Boost III upgrades.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With the Witherbone Armor, I get the Damage Resistance I, Mana Regen II, Mist Form I and Water Breathing II upgrades.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "(The initial upgrades of each faction can be adjusted in the config.)",
-            "color": ""
-          }
-        ]
       }
     ],
     "related_recipes": [
@@ -1979,7 +2132,7 @@
         "value": "",
         "json": [
           {
-            "text": "With this ritual I can add upgrade glyphs to my armor. Each glyph has a special ability that transfers to my armor. I can read about this on the relevant upgrade glyphs page.",
+            "text": "With this ritual I can add upgrade glyphs to my armor and other Dragon Magic Containers. Each glyph has a special ability that transfers to my armor. I can read about this on the relevant upgrade glyphs page.",
             "color": ""
           }
         ]
@@ -1989,7 +2142,7 @@
         "value": "",
         "json": [
           {
-            "text": "However, it is important to note that upgrade glyphs each have a level and a tier.",
+            "text": "Each Glyph has a maximum level at which it can be installed.",
             "color": ""
           }
         ]
@@ -1999,17 +2152,7 @@
         "value": "",
         "json": [
           {
-            "text": "The level determines the strength of the glyph, e.g. Fly II lets you fly faster than Fly I. In order to put a higher level glyph on your armor, I need to have the previous glyph installed as well, e.g. I can only install Fly II on my armor if I have Fly I.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The tier on the other hand gives a statement of which ritual tier I must use to affix the glyph to my armor, e.g. Fly I is Tear 2. Accordingly, I have to use the Ritual of Upgrade at least at tier 2 in order to install the glyph. Which tier a glyph has can be read either in the book or by hovering over the item.",
+            "text": "In addition, a glyph also has a cost, which is how much Dragon Magic it takes to increase the installed level by one.",
             "color": ""
           }
         ]

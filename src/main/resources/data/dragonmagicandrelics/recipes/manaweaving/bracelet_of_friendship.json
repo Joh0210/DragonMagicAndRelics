@@ -1,0 +1,23 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 3,
+  "output": "dragonmagicandrelics:bracelet_of_friendship",
+  "quantity": 1,
+  "items": [
+    "mna:mundane_bracelet",
+    "minecraft:gold_ingot",
+    "minecraft:glistering_melon_slice",
+    "minecraft:golden_carrot",
+    "minecraft:golden_apple",
+    "minecraft:amethyst_shard",
+    "minecraft:amethyst_shard",
+    "mna:player_charm",
+    "mna:rune_defense"
+  ],
+  "patterns": [
+    "mna:triangle",
+    "mna:slash",
+    "mna:backslash",
+    "mna:triangle"
+  ]
+}

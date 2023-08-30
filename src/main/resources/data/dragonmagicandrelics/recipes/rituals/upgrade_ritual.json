@@ -53,7 +53,7 @@
     },
     "M":
     {
-      "item": "mna:major_mana_gem",
+      "item": "mna:minor_mana_gem",
       "optional": false,
       "consume": true
     },
