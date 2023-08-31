@@ -81,6 +81,8 @@ public class ArmorUpgradeInit {
     public static ArmorUpgrade ANGEL_FLIGHT;
 
     public static ArmorUpgrade NIGHT_VISION;
+
+    public static ArmorUpgrade BURNING_FRENZY;
     
     @SubscribeEvent
     public static void registerArmorUpgrades(final RegistryEvent.Register<ArmorUpgrade> event) {
@@ -111,22 +113,24 @@ public class ArmorUpgradeInit {
         event.getRegistry().register(ArmorUpgradeInit.ELYTRA);
         event.getRegistry().register(ArmorUpgradeInit.ANGEL_FLIGHT);
         event.getRegistry().register(ArmorUpgradeInit.NIGHT_VISION);
+
+        event.getRegistry().register(ArmorUpgradeInit.BURNING_FRENZY);
     }
 
     //todo: revise upgrade costs and recipes
     static {
         ArmorUpgradeInit.FLY = new ArmorUpgradeFly(RLoc.create("armorupgrade/fly"), 1);
         ArmorUpgradeInit.SATURATION = new ArmorUpgradeSaturation(RLoc.create("armorupgrade/saturation"), 1);
-        ArmorUpgradeInit.MOVEMENT_SPEED = new ArmorUpgradeSpeed(RLoc.create("armorupgrade/movement_speed"), 3, 1);
+        ArmorUpgradeInit.MOVEMENT_SPEED = new ArmorUpgradeSpeed(RLoc.create("armorupgrade/movement_speed"), 1);
         ArmorUpgradeInit.WATER_BREATHING = new ArmorUpgradeWaterbreathing(RLoc.create("armorupgrade/water_breathing"), 2, 1);
 
-        ArmorUpgradeInit.METEOR_JUMP = new ArmorUpgradeMeteorJump(RLoc.create("armorupgrade/meteor_jump"), 1, 1);
+        ArmorUpgradeInit.METEOR_JUMP = new ArmorUpgradeMeteorJump(RLoc.create("armorupgrade/meteor_jump"), 1, 1);           //todo: make it upgradable
         ArmorUpgradeInit.DOLPHINS_GRACE = new ArmorUpgradeSwimSpeed(RLoc.create("armorupgrade/dolphins_grace"), 2, 1);
         ArmorUpgradeInit.REGENERATION = new ArmorUpgradeRegeneration(RLoc.create("armorupgrade/regeneration"), 1, 1);
-        ArmorUpgradeInit.MANA_BOOST = new ArmorUpgradeManaBoost(RLoc.create("armorupgrade/mana_boost"), 5, 1);
+        ArmorUpgradeInit.MANA_BOOST = new ArmorUpgradeManaBoost(RLoc.create("armorupgrade/mana_boost"), 5, 1);              //todo: Better version for Counsel
 
         ArmorUpgradeInit.REACH_DISTANCE = new ArmorUpgradeReachDistance(RLoc.create("armorupgrade/reach_distance"), 3, 1);
-        ArmorUpgradeInit.MANA_REGEN = new ArmorUpgradeManaRegeneration(RLoc.create("armorupgrade/mana_regen"), 5, 1);
+        ArmorUpgradeInit.MANA_REGEN = new ArmorUpgradeManaRegeneration(RLoc.create("armorupgrade/mana_regen"), 5, 1);       //todo: Better version for Counsel
         ArmorUpgradeInit.HEALTH_BOOST = new ArmorUpgradeHealthBoost(RLoc.create("armorupgrade/health_boost"), 1);
         ArmorUpgradeInit.DAMAGE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/damage_resistance"), 3, true, 1);
         ArmorUpgradeInit.DAMAGE_BOOST = new ArmorUpgrade(RLoc.create("armorupgrade/damage_boost"), 4, true, 1);
@@ -140,7 +144,8 @@ public class ArmorUpgradeInit {
         ArmorUpgradeInit.MIST_FORM = new ArmorUpgrade(RLoc.create("armorupgrade/mist_form"), 1, false, 1);
         ArmorUpgradeInit.JUMP = new ArmorUpgradeJump(RLoc.create("armorupgrade/jump"), 1);
         ArmorUpgradeInit.ELYTRA = new ArmorUpgradeElytra(RLoc.create("armorupgrade/elytra"), 1, true, 1);
-        ArmorUpgradeInit.ANGEL_FLIGHT = new ArmorUpgradeElytra(RLoc.create("armorupgrade/angel_flight"), 2, false, 1);
+        ArmorUpgradeInit.ANGEL_FLIGHT = new ArmorUpgradeElytra(RLoc.create("armorupgrade/angel_flight"), 2, false, 1);  //todo: Always mana cost
         ArmorUpgradeInit.NIGHT_VISION = new ArmorUpgradeNightVision(RLoc.create("armorupgrade/night_vision"), 1);
+        ArmorUpgradeInit.BURNING_FRENZY = new ArmorUpgradeBurningFrenzy(RLoc.create("armorupgrade/burning_frenzy"), 1);
     }
 }

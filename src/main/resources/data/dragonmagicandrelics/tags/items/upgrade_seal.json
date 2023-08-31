@@ -23,10 +23,11 @@
     "dragonmagicandrelics:upgrade_seal_projectile_reflection",
     "dragonmagicandrelics:upgrade_seal_damage_resistance",
     "dragonmagicandrelics:upgrade_seal_meteor_jump",
-
     "dragonmagicandrelics:upgrade_seal_saturation",
+
     "dragonmagicandrelics:upgrade_seal_explosion_resistance",
     "dragonmagicandrelics:upgrade_seal_mist_form",
-    "dragonmagicandrelics:upgrade_seal_regeneration"
+    "dragonmagicandrelics:upgrade_seal_regeneration",
+    "dragonmagicandrelics:upgrade_seal_burning_frenzy"
   ]
 }

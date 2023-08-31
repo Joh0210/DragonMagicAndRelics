@@ -6,6 +6,7 @@ import com.mna.api.particles.ParticleInit;
 import com.mna.api.sound.SFX;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.resources.ResourceLocation;
@@ -17,6 +18,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Makes the wearer of the Dragon Mage Armor significantly faster when sprinting.
@@ -28,25 +30,27 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public class ArmorUpgradeSpeed extends IArmorUpgradeOnTick {
-    private static final AttributeModifier runSpeed1 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_1", 0.05f, AttributeModifier.Operation.ADDITION);
-    private static final AttributeModifier runSpeed2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_2", 0.05f, AttributeModifier.Operation.ADDITION);
-    private static final AttributeModifier runSpeed3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_3", 0.05f, AttributeModifier.Operation.ADDITION);
-    private static final AttributeModifier runSpeed4 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_4", 0.05f, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier runSpeed1 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_1", 0.025f, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier runSpeed2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_2", 0.025f, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier runSpeed3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_3", 0.025f, AttributeModifier.Operation.ADDITION);
+    private static final AttributeModifier runSpeed4 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_4", 0.025f, AttributeModifier.Operation.ADDITION);
 
-    public ArmorUpgradeSpeed(ResourceLocation upgradeId, int maxUpgradeLevel, int upgradeCost) {
-        super(upgradeId, maxUpgradeLevel, false, true, upgradeCost);
+    public ArmorUpgradeSpeed(ResourceLocation upgradeId, int upgradeCost) {
+        super(upgradeId, 3, false, true, upgradeCost);
+    }
+
+    @Override
+    public @Nullable ArmorUpgrade getStrongerAlternative() {
+        return ArmorUpgradeInit.BURNING_FRENZY;
     }
 
     @Override
     public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
-        boolean showParticles = false;
-
         if (player.isSprinting() && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.getSpeedManaCostPerTickPerLevel() * level)) {
             magic.getCastingResource().consume(player, CommonConfigs.getSpeedManaCostPerTickPerLevel() * level);
             if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed1)){
                 if(level >= 1){
                     player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 0.8F);
-                    showParticles = true;
                     player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed1);
 
                     if(!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed2) && level >= 2){
@@ -60,22 +64,6 @@ public class ArmorUpgradeSpeed extends IArmorUpgradeOnTick {
                             }
                         }
                     }
-                }
-            } else{
-                showParticles = true;
-            }
-
-            //Particles
-            if (world.isClientSide && showParticles) {
-                Vec3 motion = player.getDeltaMovement();
-                Vec3 look = player.getForward().cross(new Vec3(0.0D, 1.0D, 0.0D));
-                float offset = (float)(Math.random() * 0.2D);
-                float yOffset = 0.2F;
-                look = look.scale(offset);
-
-                for(int i = 0; i < 5; ++i) {
-                    world.addParticle(new MAParticleType(ParticleInit.FLAME.get()), player.getX() + look.x + Math.random() * motion.x * 2.0D, player.getY() + (double)yOffset + Math.random() * motion.y * 2.0D, player.getZ() + look.z + Math.random() * motion.z * 2.0D, 0.0D, 0.0D, 0.0D);
-                    world.addParticle(new MAParticleType(ParticleInit.FLAME.get()), player.getX() - look.x + Math.random() * motion.x * 2.0D, player.getY() + (double)yOffset + Math.random() * motion.y * 2.0D, player.getZ() - look.z + Math.random() * motion.z * 2.0D, 0.0D, 0.0D, 0.0D);
                 }
             }
         }else{

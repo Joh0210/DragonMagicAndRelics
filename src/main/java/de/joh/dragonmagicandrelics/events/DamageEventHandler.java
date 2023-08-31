@@ -194,10 +194,18 @@ public class DamageEventHandler {
                 }
 
                 //Protection from falling through jumpboost
-                if(source.isFall() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1){
-                    if((event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) * 3) <= 0){
-                        event.setCanceled(true);
-                        return;
+                if(source.isFall()){
+                    if(ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1){
+                        if((event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) * 3) <= 0){
+                            event.setCanceled(true);
+                            return;
+                        }
+                    }
+                    else if(ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY) >= 1){
+                        if((event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY) * 9) <= 0){
+                            event.setCanceled(true);
+                            return;
+                        }
                     }
                 }
 
@@ -246,10 +254,18 @@ public class DamageEventHandler {
             if (!player.level.isClientSide) {
 
                 //Protection from falling through jumpboost
-                if(event.getSource().isFall() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1){
-                    int amount = (int)event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) * 3;
-                    if(amount > 0){
-                        event.setAmount(amount);
+                if(event.getSource().isFall()){
+                    if(ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1){
+                        int amount = (int)event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) * 3;
+                        if(amount > 0){
+                            event.setAmount(amount);
+                        }
+                    }
+                    else if(ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY) >= 1){
+                        int amount = (int)event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY) * 9;
+                        if(amount > 0){
+                            event.setAmount(amount);
+                        }
                     }
                 }
 

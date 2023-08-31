@@ -49,7 +49,7 @@ public class CommonEventHandler {
     public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
         if(event.getEntityLiving() instanceof Player player && !player.getLevel().isClientSide()){
             if (player.isSprinting()) {
-                float boost = ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP)/10.0f);
+                float boost = ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP)/10.0f) + ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)/3.0f);
                 player.push((float)(player.getDeltaMovement().x * boost), boost * 2, (float)(player.getDeltaMovement().z * boost));
                 player.hurtMarked = true;
             }

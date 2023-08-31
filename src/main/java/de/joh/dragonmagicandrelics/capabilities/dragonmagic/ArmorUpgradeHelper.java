@@ -24,6 +24,10 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class ArmorUpgradeHelper {
     public static int getUpgradeLevel(Player player, ArmorUpgrade armorUpgrade){
+        if(armorUpgrade.hasStrongerAlternative() && getUpgradeLevel(player, armorUpgrade.getStrongerAlternative()) > 0){
+            return 0;
+        }
+
         ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 
         AtomicInteger level = new AtomicInteger(0);

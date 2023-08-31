@@ -924,6 +924,62 @@
       }
     ]
   },
+  "Upgrade Glyph BurningFrenzy": {
+    "index": "1",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph BurningFrenzy"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "With this glyph I can reach unimaginable speeds by running.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Fire Resistance I is Tier 2",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Fire Resistance II is Tier 3",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Projectile Reflection III is Tier 4",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_burning_frenzy"
+      }
+    ]
+  },
   "Upgrade Glyph Elytra": {
     "index": "1",
     "category": "eldrin_altar",

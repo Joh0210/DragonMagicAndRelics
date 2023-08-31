@@ -3,6 +3,8 @@ package de.joh.dragonmagicandrelics.armorupgrades.init;
 import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.sound.SFX;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.resources.ResourceLocation;
@@ -12,6 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * This upgrade increases the jump height of the wearer of the Dragon Mage Armor.
@@ -23,12 +26,14 @@ public class ArmorUpgradeJump extends IArmorUpgradeOnTick {
     private static final AttributeModifier stepMod1 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_step_bonus_1", 0.5f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier stepMod2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_step_bonus_2", 0.5f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier stepMod3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_step_bonus_3", 0.5f, AttributeModifier.Operation.ADDITION);
-    private static final AttributeModifier stepMod4 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_step_bonus_4", 0.5f, AttributeModifier.Operation.ADDITION);
 
-
+    @Override
+    public @Nullable ArmorUpgrade getStrongerAlternative() {
+        return ArmorUpgradeInit.BURNING_FRENZY;
+    }
 
     public ArmorUpgradeJump(@NotNull ResourceLocation registryName, int upgradeCost) {
-        super(registryName, 3, false, true, upgradeCost); //false --> onTick would have to be reworked.
+        super(registryName, 2, false, true, upgradeCost); //false --> onTick would have to be reworked.
     }
 
     @Override
@@ -45,10 +50,6 @@ public class ArmorUpgradeJump extends IArmorUpgradeOnTick {
 
                         if(!player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).hasModifier(stepMod3) &&  level >= 3){
                             player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).addTransientModifier(stepMod3);
-
-                            if(!player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).hasModifier(stepMod4) &&  level >= 4){
-                                player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).addTransientModifier(stepMod4);
-                            }
                         }
                     }
                 }
@@ -57,7 +58,6 @@ public class ArmorUpgradeJump extends IArmorUpgradeOnTick {
             player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).removeModifier(stepMod1);
             player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).removeModifier(stepMod2);
             player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).removeModifier(stepMod3);
-            player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).removeModifier(stepMod4);
         }
     }
 }

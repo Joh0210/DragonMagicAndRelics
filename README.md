@@ -16,7 +16,9 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 <br>Another way to maximize the potential of the Dragon Mage Armor is to fuse it with your spells!
 
 ### New Items
+- Amulet of Dragon Power
 - Angel Ring (Fey only)
+- Bracelet of Friendship
 - Brimstone Chalk
 - Dragon Core
 - **Dragon Mage Armor with Upgrade Glyphs**
@@ -31,33 +33,53 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 ### New Blocks
 - Rift Emitter 
 
+### Armor Upgrades
+- Angel Flight
+- BurningFrenzy
+- Damage Boost
+- Damage Resistance
+- Elytra
+- Explosion Resistance
+- Fire Resistance (Minor & Major)
+- Fly
+- Health Boost
+- Jump
+- Kinetic Resistance
+- Mana Boost
+- Mana Regeneration
+- Meteor Jump
+- Mist Form
+- Movement Speed
+- Night Vision
+- Projectile Reflection
+- Reach Distance
+- Regeneration
+- Saturation
+- Swim Speed
+- Water Breathing
+
 ### New Rituals
-- Fusion Ritual
 - Ritual of Betrayal
 - Ritual of the Dragon Mage Armor
 - Ritual of the Phoenix
-- Ritual of Upgrade Tier I
-- Ritual of Upgrade Tier II
-- Ritual of Upgrade Tier III
-- Ritual of Upgrade Tier IV
+- Ritual of Upgrade
 
 ### New Spells
 - Alternative Recall (Council only)
 - At Mark (Shape)
+- Banish Rain
 - Conjure Lava
 - Conjure Storm
 - Conjure Water
-- Banish Rain
 - Force Damage
-- Ultimate Armor
 - Mark
 - Nightfall
 - Saturate (Fey only)
 - Sunrise
 - True Touch (Shape)
+- Ultimate Armor
 
 ### Commands
-- ```/dragonmagicandrelics addSpellToArmor <offensive/defensive>```: Adds the spell in your main hand to your Dragon Mage Armor. (cf. Fusion Ritual)
 - ```/dragonmagicandrelics addUpgrade <armor upgrade name> <level>```: Adds the selected upgrade to your Dragon Mage Armor at the selected level.
 - ```/dragonmagicandrelics changeDragonMageArmor <council/demons/fey/undead> <target>```: Exchange the Current Dragon Mage Armor to a different set. (Inherits enchantments, upgrades and spells from previous armor).
 
