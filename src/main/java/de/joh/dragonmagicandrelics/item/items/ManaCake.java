@@ -12,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A cake to eat endlessly with mana consumption.
@@ -20,7 +21,7 @@ public class ManaCake  extends Item implements ITieredItem<ManaCake> {
     /**
      * Mana cost to "repair" the cake
      */
-    private static final int MANA_COSTS = 60;
+    private static final int MANA_COSTS = 80;
 
     /**
      * How much nutrition does the cake give?
@@ -30,7 +31,7 @@ public class ManaCake  extends Item implements ITieredItem<ManaCake> {
     /**
      * How much saturation does the cake give?
      */
-    private static final float SATURATION = 0.6f;
+    private static final float SATURATION = 0.4f;
 
     /**
      * M&A Item Tier:
@@ -40,7 +41,7 @@ public class ManaCake  extends Item implements ITieredItem<ManaCake> {
 
     public ManaCake() {
         super(new Item.Properties().tab(CreativeModeTab.CreativeModeTab).stacksTo(1).rarity(Rarity.COMMON)
-                .food((new FoodProperties.Builder()).nutrition(NUTRITION).saturationMod(SATURATION).build()));
+                .food((new FoodProperties.Builder()).nutrition(NUTRITION).saturationMod(SATURATION).alwaysEat().build()));
     }
 
     /**
@@ -48,7 +49,7 @@ public class ManaCake  extends Item implements ITieredItem<ManaCake> {
      * Call from the game itself.
      */
     @Override
-    public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
         ItemStack retval = new ItemStack(ItemInit.MANA_CAKE.get());
         super.finishUsingItem(itemstack, world, entity);
         IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);

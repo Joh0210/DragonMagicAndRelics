@@ -35,7 +35,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 
 ### Armor Upgrades
 - Angel Flight
-- BurningFrenzy
+- Burning Frenzy
 - Damage Boost
 - Damage Resistance
 - Elytra

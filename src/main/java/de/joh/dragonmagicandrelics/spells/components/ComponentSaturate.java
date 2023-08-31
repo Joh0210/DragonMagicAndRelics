@@ -4,6 +4,7 @@ import com.mna.api.affinity.Affinity;
 import com.mna.api.faction.IFaction;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.SpellPartTags;
+import com.mna.api.spells.attributes.Attribute;
 import com.mna.api.spells.attributes.AttributeValuePair;
 import com.mna.api.spells.base.IModifiedSpellPart;
 import com.mna.api.spells.parts.SpellEffect;
@@ -20,7 +21,7 @@ import net.minecraft.world.entity.player.Player;
  */
 public class ComponentSaturate extends SpellEffect {
     public ComponentSaturate(ResourceLocation registryName, ResourceLocation guiIcon) {
-        super(registryName, guiIcon, new AttributeValuePair[0]);
+        super(registryName, guiIcon, new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 5.0F, 1.0F, 10F));
     }
 
     public int requiredXPForRote() {
@@ -28,8 +29,9 @@ public class ComponentSaturate extends SpellEffect {
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
+        int magnitude = (int) modificationData.getValue(Attribute.MAGNITUDE);
         if(target.getEntity() instanceof Player player){
-            player.getFoodData().eat(5, 6);
+            player.getFoodData().eat(magnitude, 0.1f * magnitude);
             return ComponentApplicationResult.SUCCESS;
         }
 
@@ -51,7 +53,7 @@ public class ComponentSaturate extends SpellEffect {
     }
 
     public float initialComplexity() {
-        return 50.0F;
+        return 30.0F;
     }
 
     @Override
