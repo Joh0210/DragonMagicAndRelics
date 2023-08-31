@@ -43,27 +43,22 @@ public class ArmorUpgradeBurningFrenzy extends IArmorUpgradeOnTick {
 
     @Override
     public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
-        boolean showParticles = false;
-        boolean removeModifier = true;
         if (player.isSprinting() && magic.getCastingResource().hasEnoughAbsolute(player, 0.25F)) {
             if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_1)) {
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed_1);
                 player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).addTransientModifier(stepMod1);
-                DelayedEventQueue.pushEvent(world, new TimedDelayedEvent<>("demon_armor_set_bonus_2", 60, player, this::addDelayedRunSpeed));
-                DelayedEventQueue.pushEvent(world, new TimedDelayedEvent<>("demon_armor_set_bonus_3", 120, player, this::addDelayedRunSpeed));
+                DelayedEventQueue.pushEvent(world, new TimedDelayedEvent<>(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_2", 60, player, this::addDelayedRunSpeed));
+                DelayedEventQueue.pushEvent(world, new TimedDelayedEvent<>(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_3", 120, player, this::addDelayedRunSpeed));
                 if(level > 1) {
-                    DelayedEventQueue.pushEvent(world, new TimedDelayedEvent<>("demon_armor_set_bonus_4", 180, player, this::addDelayedRunSpeed));
-                    DelayedEventQueue.pushEvent(world, new TimedDelayedEvent<>("demon_armor_set_bonus_5", 240, player, this::addDelayedRunSpeed));
+                    DelayedEventQueue.pushEvent(world, new TimedDelayedEvent<>(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_4", 180, player, this::addDelayedRunSpeed));
+                    DelayedEventQueue.pushEvent(world, new TimedDelayedEvent<>(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_5", 240, player, this::addDelayedRunSpeed));
                 }
                 player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 0.8F);
             }
 
             magic.getCastingResource().consume(player, 0.25F);
-            removeModifier = false;
-            showParticles = true;
         }
-
-        if (removeModifier) {
+        else  {
             player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(runSpeed_1);
             player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(runSpeed_2);
             player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(runSpeed_3);
@@ -76,35 +71,36 @@ public class ArmorUpgradeBurningFrenzy extends IArmorUpgradeOnTick {
             player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).removeModifier(stepMod5);
         }
 
-        if (world.isClientSide && showParticles) {
-            Vec3 motion = player.getDeltaMovement();
-            Vec3 look = player.getForward().cross(new Vec3(0.0D, 1.0D, 0.0D));
-            float offset = (float)(Math.random() * 0.2D);
-            float yOffset = 0.2F;
-            look = look.scale(offset);
-
-            for(int i = 0; i < 5; ++i) {
-                world.addParticle(new MAParticleType(ParticleInit.FLAME.get()), player.getX() + look.x + Math.random() * motion.x * 2.0D, player.getY() + (double)yOffset + Math.random() * motion.y * 2.0D, player.getZ() + look.z + Math.random() * motion.z * 2.0D, 0.0D, 0.0D, 0.0D);
-                world.addParticle(new MAParticleType(ParticleInit.FLAME.get()), player.getX() - look.x + Math.random() * motion.x * 2.0D, player.getY() + (double)yOffset + Math.random() * motion.y * 2.0D, player.getZ() - look.z + Math.random() * motion.z * 2.0D, 0.0D, 0.0D, 0.0D);
-            }
-        }
+        //todo: Particles --> isClientSide is always false!
+//        if (world.isClientSide && showParticles) {
+//            Vec3 motion = player.getDeltaMovement();
+//            Vec3 look = player.getForward().cross(new Vec3(0.0D, 1.0D, 0.0D));
+//            float offset = (float)(Math.random() * 0.2D);
+//            float yOffset = 0.2F;
+//            look = look.scale(offset);
+//
+//            for(int i = 0; i < 5; ++i) {
+//                world.addParticle(new MAParticleType(ParticleInit.FLAME.get()), player.getX() + look.x + Math.random() * motion.x * 2.0D, player.getY() + (double)yOffset + Math.random() * motion.y * 2.0D, player.getZ() + look.z + Math.random() * motion.z * 2.0D, 0.0D, 0.0D, 0.0D);
+//                world.addParticle(new MAParticleType(ParticleInit.FLAME.get()), player.getX() - look.x + Math.random() * motion.x * 2.0D, player.getY() + (double)yOffset + Math.random() * motion.y * 2.0D, player.getZ() - look.z + Math.random() * motion.z * 2.0D, 0.0D, 0.0D, 0.0D);
+//            }
+//        }
     }
 
     public void addDelayedRunSpeed(String identifier, Player player) {
         if (player.isSprinting()) {
-            if (identifier == "_armor_burning_frenzy_2" && !player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_2)) {
+            if (identifier.equals(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_2") && !player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_2)) {
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed_2);
                 player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).addTransientModifier(stepMod2);
                 player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 1.0F);
-            } else if (identifier == "_armor_burning_frenzy_3" && !player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_3)) {
+            } else if (identifier.equals(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_3") && !player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_3)) {
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed_3);
                 player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).addTransientModifier(stepMod3);
                 player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 1.2F);
-            } else if (identifier == "_armor_burning_frenzy_4" && !player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_4)) {
+            } else if (identifier.equals(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_4") && !player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_4)) {
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed_4);
                 player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).addTransientModifier(stepMod4);
                 player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 1.4F);
-            } else if (identifier == "_armor_burning_frenzy_5" && !player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_5)) {
+            } else if (identifier.equals(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_5") && !player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_5)) {
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed_5);
                 player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).addTransientModifier(stepMod5);
                 player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 1.6F);

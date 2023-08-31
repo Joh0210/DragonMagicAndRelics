@@ -29,7 +29,7 @@ public class AngelRing extends TieredItem implements IForgeItem, ICurioItem, IFa
     public AngelRing(Properties itemProperties, ResourceLocation faction) {
         super(itemProperties);
         this.faction = faction;
-        this.level = (faction == Factions.UNDEAD.getRegistryName()) ? 2 : 1;
+        this.level = (faction == Factions.UNDEAD.getRegistryName()) ? 0 : 1;
     }
 
     public static ResourceLocation getWingTextureLocation(ResourceLocation faction){

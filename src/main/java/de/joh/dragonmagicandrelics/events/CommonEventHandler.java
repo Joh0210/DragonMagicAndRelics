@@ -49,7 +49,7 @@ public class CommonEventHandler {
     public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
         if(event.getEntityLiving() instanceof Player player && !player.getLevel().isClientSide()){
             if (player.isSprinting()) {
-                float boost = ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP)/10.0f) + ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)/3.0f);
+                float boost = ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP)/10.0f) + ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)/4.0f);
                 player.push((float)(player.getDeltaMovement().x * boost), boost * 2, (float)(player.getDeltaMovement().z * boost));
                 player.hurtMarked = true;
             }
@@ -90,7 +90,7 @@ public class CommonEventHandler {
     public static void onGlideTick(TickEvent.PlayerTickEvent event){
         IPlayerMagic magic = event.player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
         if(event.player.hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get())
-                && (event.player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier() != 1 || (magic != null && magic.getCastingResource().hasEnoughAbsolute(event.player, CommonConfigs.getElytraManaCostPerTick())))
+                && (magic != null && magic.getCastingResource().hasEnoughAbsolute(event.player, CommonConfigs.getElytraManaCostPerTick()))
                 && !event.player.hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.FLY_DISABLED.get())) {
             AttributeInstance attributeInstance = event.player.getAttribute(CaelusApi.getInstance().getFlightAttribute());
             if(attributeInstance != null && !attributeInstance.hasModifier(CaelusApi.getInstance().getElytraModifier()))
@@ -99,87 +99,12 @@ public class CommonEventHandler {
     }
 
     /**
-     * If the player has the elytra effect on level 1 or higher, they get the creative fly and speed boost here.
-     * And performs each of the player's OnTick Upgrade
+     * This event performs each of the player's OnTick Upgrade
      * @see de.joh.dragonmagicandrelics.effects.beneficial.EffectElytra
      */
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event){
-        Player player = event.player;
-        ArmorUpgradeHelper.applyOnTickUpgrade(player);
-
-        if (!player.hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.FLY_DISABLED.get())
-                && player.hasEffect((de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()))
-                && player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier() >= 1
-        ) {
-            player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> {
-                if (player.getAbilities().flying && !player.hasEffect(EffectInit.LEVITATION.get())) {
-                    if (!player.hasEffect(EffectInit.MIST_FORM.get()) && !(player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier() >= 2)) { //No mana consumption in mist form
-                        m.getCastingResource().consume(player, CommonConfigs.getFlyManaCostPerTick());
-                    }
-                }
-
-                if (!m.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.getFlyManaCostPerTick())) {
-                    ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
-                } else {
-                    ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
-                    if (!player.isCreative() && !player.isSpectator()) {
-                        int mod = player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier();
-                        mod = (mod >= 2) ? mod - 1 : mod;
-                        ManaAndArtifice.instance.proxy.setFlySpeed(player, mod * CommonConfigs.getFlySpeedPerLevel());
-                    } else {
-                        ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
-                    }
-                }
-            });
-
-            if(player.isFallFlying()) {
-                IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-                if (player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier() != 1 || (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.getElytraManaCostPerTick()))) {
-                    Vec3 look = player.getLookAngle();
-                    Vec3 pos;
-                    float maxLength;
-                    double lookScale;
-                    Vec3 scaled_look;
-                    if (!player.isShiftKeyDown()) {
-                        if(!(player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier() >= 2)){
-                            magic.getCastingResource().consume(player, CommonConfigs.getElytraManaCostPerTick());
-                        }
-                        pos = player.getDeltaMovement();
-                        maxLength = 1.75F;
-                        lookScale = 0.06D;
-                        scaled_look = look.scale(lookScale);
-                        pos = pos.add(scaled_look);
-                        if (pos.length() > (double)maxLength) {
-                            pos = pos.scale((double)maxLength / pos.length());
-                        }
-                        player.setDeltaMovement(pos);
-                    } else {
-                        if(!(player.getEffect(de.joh.dragonmagicandrelics.effects.EffectInit.ELYTRA.get()).getAmplifier() >= 2)){
-                            magic.getCastingResource().consume(player, CommonConfigs.getElytraManaCostPerTick() /2.0f);
-                        }
-                        pos = player.getDeltaMovement();
-                        maxLength = 0.1F;
-                        lookScale = -0.01D;
-                        scaled_look = look.scale(lookScale);
-                        pos = pos.add(scaled_look);
-                        if (pos.length() < (double)maxLength) {
-                            pos = pos.scale((double)maxLength / pos.length());
-                        }
-                        player.setDeltaMovement(pos);
-                    }
-
-                    if (player.level.isClientSide) {
-                        pos = player.position().add(look.scale(3.0D));
-                        for(int i = 0; i < 5; ++i) {
-                            player.level.addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
-                        }
-                    }
-                } else {
-                    player.stopFallFlying();
-                }
-            }
-        }
+        ArmorUpgradeHelper.applyOnTickUpgrade(event.player);
     }
 
     /**

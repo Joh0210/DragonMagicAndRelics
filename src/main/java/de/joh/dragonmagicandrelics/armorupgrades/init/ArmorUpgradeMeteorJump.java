@@ -6,7 +6,9 @@ import com.mna.api.particles.ParticleInit;
 import com.mna.api.sound.SFX;
 import com.mna.config.GeneralModConfig;
 import com.mna.entities.utility.MAExplosion;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
+import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -29,9 +31,8 @@ import org.jetbrains.annotations.NotNull;
 public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnTick {
     private static final int reqHeight = 4;
 
-    //todo: higher level --> stronger
-    public ArmorUpgradeMeteorJump(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, false, upgradeCost);
+    public ArmorUpgradeMeteorJump(@NotNull ResourceLocation registryName, int upgradeCost) {
+        super(registryName, 1, true, upgradeCost);
     }
 
     @Override
@@ -68,10 +69,12 @@ public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnTick {
      */
     private void handlePlayerMeteorJumpImpact(Player player) {
         if (player.getPersistentData().contains("dmnr_meteor_jumping")) {
+            int level = ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.METEOR_JUMP);
+
             player.getPersistentData().remove("dmnr_meteor_jumping");
             player.setSprinting(false);
             if (!player.level.isClientSide) {
-                MAExplosion.make(player, (ServerLevel)player.level, player.getX(), player.getY(), player.getZ(), CommonConfigs.METEOR_JUMP_IMPACT.get(), CommonConfigs.METEOR_JUMP_IMPACT.get()*4, true, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
+                MAExplosion.make(player, (ServerLevel)player.level, player.getX(), player.getY(), player.getZ(), CommonConfigs.METEOR_JUMP_IMPACT.get() * level, CommonConfigs.METEOR_JUMP_IMPACT.get() * 4 * level, true, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
 
             }
         }
