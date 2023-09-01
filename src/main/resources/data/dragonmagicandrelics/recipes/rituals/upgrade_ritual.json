@@ -3,13 +3,13 @@
   "tier": 5,
   "pattern":
   [
-    [ 0, 0,10,-1, 3, 0, 0],
+    [ 0, 0,-1, 3,-1, 0, 0],
     [ 0,-1, 0,-1, 0,-1, 0],
-    [ 9, 0, 0, 1, 0, 0, 4],
-    [-1,-1,-1,-1,-1,-1,-1],
-    [ 8, 0, 0,12, 0, 0, 5],
+    [-1, 0, 0, 8, 0, 0,-1],
+    [ 6,-1,11, 1, 9,-1, 4],
+    [-1, 0, 0,10, 0, 0,-1],
     [ 0,-1, 0,-1, 0,-1, 0],
-    [ 0, 0, 7,-1, 6, 0, 0]
+    [ 0, 0,-1, 5,-1, 0, 0]
   ],
   "displayPattern":
   [
@@ -23,13 +23,13 @@
   ],
   "reagents":
   [
-    "  N M  ",
+    "   N   ",
     "       ",
-    "D  A  N",
+    "   A   ",
+    "N EDF N",
+    "   B   ",
     "       ",
-    "N  B  D",
-    "       ",
-    "  M N  "
+    "   N   "
   ],
   "keys":
   {
@@ -51,9 +51,15 @@
       "optional": false,
       "consume": true
     },
-    "M":
+    "E":
     {
-      "item": "mna:minor_mana_gem",
+      "item": "mna:runesmith_hammer",
+      "optional": false,
+      "consume": true
+    },
+    "F":
+    {
+      "item": "mna:runesmith_chisel",
       "optional": false,
       "consume": true
     },

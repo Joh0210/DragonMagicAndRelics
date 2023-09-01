@@ -188,12 +188,13 @@ public class DragonUpgradeEvent extends PlayerEvent {
             ret.put(ArmorUpgradeInit.MANA_REGEN, 3);
         }
         else if(targetFaction == Factions.FEY){
-            ret.put(ArmorUpgradeInit.ANGEL_FLIGHT, 1);
+            ret.put(ArmorUpgradeInit.ANGEL_FLIGHT, 2);
             ret.put(ArmorUpgradeInit.SATURATION, 1);
             ret.put(ArmorUpgradeInit.REACH_DISTANCE, 1);
         }
         else if (targetFaction == Factions.DEMONS){
             ret.put(ArmorUpgradeInit.BURNING_FRENZY, 1);
+            ret.put(ArmorUpgradeInit.METEOR_JUMP, 1);
             ret.put(ArmorUpgradeInit.DAMAGE_BOOST, 2);
             ret.put(ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE, 1);
         }

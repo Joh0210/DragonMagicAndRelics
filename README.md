@@ -26,7 +26,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Fallen Angel Ring (Undead only)
 - Mana Cake
 - Mutandis
-- Purified Mutandis
+- Purified Mutandis (Fey only)
 - Ring of Power
 - Ring of Ruling
 - Voidfeather Charm

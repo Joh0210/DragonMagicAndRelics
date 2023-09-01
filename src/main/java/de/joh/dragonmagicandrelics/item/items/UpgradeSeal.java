@@ -39,7 +39,7 @@ public class UpgradeSeal extends Item {
      * @param armorUpgrade ID of the armor upgrade that can be installed with this UpgradeSeal
      */
     public UpgradeSeal(ResourceLocation armorUpgrade) {
-        super(new Item.Properties().tab(CreativeModeTab.ArmorUpgradeModeTab).stacksTo(1)); //.rarity(rarity));
+        super(new Item.Properties().tab(CreativeModeTab.ArmorUpgradeModeTab).stacksTo(1).rarity(Rarity.RARE)); //.rarity(rarity));
         this.armorUpgradeRL = armorUpgrade;
     }
 

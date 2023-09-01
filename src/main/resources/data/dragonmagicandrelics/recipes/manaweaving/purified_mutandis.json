@@ -9,7 +9,11 @@
     "minecraft:egg",
     "minecraft:nether_wart",
     "minecraft:bone_meal",
-    "mna:ma_flowers"
+    "mna:ma_flowers",
+    "mna:purified_vinteum_dust",
+    "mna:purified_vinteum_dust",
+    "mna:purified_vinteum_dust",
+    "mna:purified_vinteum_dust"
   ],
   "patterns": [
     "mna:diamond",

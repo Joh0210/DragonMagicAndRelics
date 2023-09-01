@@ -29,7 +29,7 @@
         "value": "",
         "json": [
           {
-            "text": "Night Vision is Tier 1",
+            "text": "Dragon Magic Points per level: 2",
             "color": ""
           }
         ]
@@ -65,7 +65,7 @@
         "value": "",
         "json": [
           {
-            "text": "Night Vision is Tier 1",
+            "text": "Dragon Magic Points per level: 6",
             "color": ""
           }
         ]
@@ -101,7 +101,7 @@
         "value": "",
         "json": [
           {
-            "text": "Fly I is Tier 2",
+            "text": "The effect is disabled by the \"DM&R: Toggle Flight\" key (or \"Disabled DM&R Fly\" effect).",
             "color": ""
           }
         ]
@@ -111,7 +111,7 @@
         "value": "",
         "json": [
           {
-            "text": "Fly II is Tier 4",
+            "text": "Dragon Magic Points per level: 7",
             "color": ""
           }
         ]
@@ -147,7 +147,7 @@
         "value": "",
         "json": [
           {
-            "text": "Saturation is Tier 3",
+            "text": "Dragon Magic Points per level: 8",
             "color": ""
           }
         ]
@@ -183,27 +183,7 @@
         "value": "",
         "json": [
           {
-            "text": "Movement Speed I is Tier 1",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Movement Speed II is Tier 2",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Movement Speed III is Tier 3",
+            "text": "Dragon Magic Points per level: 4",
             "color": ""
           }
         ]
@@ -239,17 +219,7 @@
         "value": "",
         "json": [
           {
-            "text": "Water Breathing I is Tier 1",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Water Breathing II is Tier 2",
+            "text": "Dragon Magic Points per level: 2",
             "color": ""
           }
         ]
@@ -285,17 +255,7 @@
         "value": "",
         "json": [
           {
-            "text": "Swim Speed I is Tier 1",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Swim Speed II is Tier 2",
+            "text": "Dragon Magic Points per level: 2",
             "color": ""
           }
         ]
@@ -331,7 +291,7 @@
         "value": "",
         "json": [
           {
-            "text": "Mist Form is Tier 4",
+            "text": "Dragon Magic Points per level: 8",
             "color": ""
           }
         ]
@@ -367,7 +327,7 @@
         "value": "",
         "json": [
           {
-            "text": "Regeneration is Tier 4",
+            "text": "Dragon Magic Points per level: 10",
             "color": ""
           }
         ]
@@ -377,78 +337,6 @@
       {
         "type": "eldrin_altar",
         "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_regeneration"
-      }
-    ]
-  },
-  "Upgrade Glyph Wellspring Sight": {
-    "index": "1",
-    "category": "eldrin_altar",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Upgrade Glyph Wellspring Sight"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Spotting wellsprings can be annoying. With this glyph I can do that permanently and easily.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Wellspring Sight is Tier 1",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_wellspring_sight"
-      }
-    ]
-  },
-  "Upgrade Glyph Eldrin Sight": {
-    "index": "1",
-    "category": "eldrin_altar",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Upgrade Glyph Eldrin Sight"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With this glyph, I have permanent Eldrin Sight.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Eldrin Sight is Tier 3",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_eldrin_sight"
       }
     ]
   },
@@ -465,7 +353,7 @@
         "value": "",
         "json": [
           {
-            "text": "My Mana is running out. Anyway, I'll just take more! I get 100 Mana Points per glyph.",
+            "text": "My Mana is running out. Anyway, I'll just take more! I get 250 Mana Points per Major Glyph. (100 with the Minor Glyph)",
             "color": ""
           }
         ]
@@ -475,7 +363,7 @@
         "value": "",
         "json": [
           {
-            "text": "Mana Boost I is Tier 1",
+            "text": "Minor: Dragon Magic Points per level: 4",
             "color": ""
           }
         ]
@@ -485,37 +373,7 @@
         "value": "",
         "json": [
           {
-            "text": "Mana Boost II is Tier 2",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Mana Boost III is Tier 3",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Mana Boost IV is Tier 4",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Mana Boost V is Tier 4",
+            "text": "Major: Dragon Magic Points per level: 5",
             "color": ""
           }
         ]
@@ -555,47 +413,7 @@
         "value": "",
         "json": [
           {
-            "text": "Mana Regeneration I is Tier 1",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Mana Regeneration II is Tier 2",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Mana Regeneration III is Tier 3",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Mana Regeneration IV is Tier 4",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Mana Regeneration V is Tier 4",
+            "text": "Dragon Magic Points per level: 5",
             "color": ""
           }
         ]
@@ -631,47 +449,7 @@
         "value": "",
         "json": [
           {
-            "text": "Health Boost I is Tier 1",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Health Boost II is Tier 2",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Health Boost III is Tier 3",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Health Boost IV is Tier 4",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Health Boost V is Tier 4",
+            "text": "Dragon Magic Points per level: 2",
             "color": ""
           }
         ]
@@ -707,27 +485,7 @@
         "value": "",
         "json": [
           {
-            "text": "Jump Boost I is Tier 1",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Jump Boost II is Tier 1",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Jump Boost III is Tier 2",
+            "text": "Dragon Magic Points per level: 2",
             "color": ""
           }
         ]
@@ -763,7 +521,7 @@
         "value": "",
         "json": [
           {
-            "text": "Explosion Resistance is Tier 4",
+            "text": "Dragon Magic Points per level: 4",
             "color": ""
           }
         ]
@@ -799,7 +557,7 @@
         "value": "",
         "json": [
           {
-            "text": "Kinetic Resistance is Tier 2",
+            "text": "Dragon Magic Points per level: 4",
             "color": ""
           }
         ]
@@ -835,7 +593,7 @@
         "value": "",
         "json": [
           {
-            "text": "Meteor Jump is Tier 3",
+            "text": "Dragon Magic Points per level: 3",
             "color": ""
           }
         ]
@@ -871,27 +629,7 @@
         "value": "",
         "json": [
           {
-            "text": "Projectile Reflection I is Tier 2",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Projectile Reflection II is Tier 3",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Projectile Reflection III is Tier 4",
+            "text": "Dragon Magic Points per level: 2",
             "color": ""
           }
         ]
@@ -917,7 +655,7 @@
         "value": "",
         "json": [
           {
-            "text": "Oh man, the fires of hell are getting too annoying for me. With this rune, I can count on it tugging at a little bit of my mana instead of my life. With level 2 it is completely free.",
+            "text": "Oh man, the fires of hell are getting too annoying for me. With this rune, I can count on it tugging at a little bit of my mana instead of my life. With the Major Glyph it is completely free.",
             "color": ""
           }
         ]
@@ -927,7 +665,7 @@
         "value": "",
         "json": [
           {
-            "text": "Fire Resistance I is Tier 2",
+            "text": "Minor: Dragon Magic Points per level: 4",
             "color": ""
           }
         ]
@@ -937,17 +675,7 @@
         "value": "",
         "json": [
           {
-            "text": "Fire Resistance II is Tier 3",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Projectile Reflection III is Tier 4",
+            "text": "Major: Dragon Magic Points per level: 2",
             "color": ""
           }
         ]
@@ -964,13 +692,13 @@
       }
     ]
   },
-  "Upgrade Glyph BurningFrenzy": {
+  "Upgrade Glyph Burning Frenzy": {
     "index": "1",
     "category": "eldrin_altar",
     "sections": [
       {
         "type": "title",
-        "value": "Upgrade Glyph BurningFrenzy"
+        "value": "Upgrade Glyph Burning Frenzy"
       },
       {
         "type": "text",
@@ -987,27 +715,7 @@
         "value": "",
         "json": [
           {
-            "text": "Fire Resistance I is Tier 2",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Fire Resistance II is Tier 3",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Projectile Reflection III is Tier 4",
+            "text": "Dragon Magic Points per level: 6",
             "color": ""
           }
         ]
@@ -1033,7 +741,7 @@
         "value": "",
         "json": [
           {
-            "text": "The Elytra, a beautiful tool of the end. I'll just put them on my armor. With stage 2 I'm even accelerated. Acceleration stops when I sneak.",
+            "text": "The Elytra, a beautiful tool of the end. I'll just put them on my armor.",
             "color": ""
           }
         ]
@@ -1043,17 +751,7 @@
         "value": "",
         "json": [
           {
-            "text": "Elytra I is Tier 2",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Elytra II is Tier 4",
+            "text": "Dragon Magic Points per level: 5",
             "color": ""
           }
         ]
@@ -1063,7 +761,39 @@
       {
         "type": "eldrin_altar",
         "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_elytra"
+      }
+    ]
+  },
+  "Upgrade Glyph Angel Flight": {
+    "index": "1",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Angel Flight"
       },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I've always known that I'm above the others... That's how I can fly above them. Either quietly and slowly or at a breathtaking speed. (Elytra acceleration stops when I sneak)",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Dragon Magic Points per level: 5",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
       {
         "type": "eldrin_altar",
         "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_angel_flight"
@@ -1084,6 +814,16 @@
         "json": [
           {
             "text": "Increases the range in which the user can interact.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Dragon Magic Points per level: 8",
             "color": ""
           }
         ]
@@ -1119,27 +859,7 @@
         "value": "",
         "json": [
           {
-            "text": "Damage Resistance I is Tier 3",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Damage Resistance II is Tier 4",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Damage Resistance III is Tier 4",
+            "text": "Dragon Magic Points per level: 8",
             "color": ""
           }
         ]
@@ -1175,37 +895,7 @@
         "value": "",
         "json": [
           {
-            "text": "Damage Boost I is Tier 2",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Damage Boost II is Tier 3",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Damage Boost III is Tier 4",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Damage Boost IV is Tier 4",
+            "text": "Dragon Magic Points per level: 7",
             "color": ""
           }
         ]
@@ -1841,7 +1531,17 @@
         "value": "",
         "json": [
           {
-            "text": "A mysterious powder that causes the cells of the plants to mutate. This allows plants to transform into one another.\\n\\nThe Wither Rose is a dead plant and cannot be created or mutated by the powder.",
+            "text": "A mysterious powder that causes the cells of the plants to mutate. This allows plants to transform into one another.\n\nThe Wither Rose is a dead plant and cannot be created or mutated by the powder.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The Fey can also refine the powder even further, so it only produces Magical Flowers",
             "color": ""
           }
         ]
@@ -1851,6 +1551,10 @@
       {
         "type": "manaweaving_altar",
         "location":"dragonmagicandrelics:manaweaving/mutandis"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/purified_mutandis"
       }
     ]
   },
