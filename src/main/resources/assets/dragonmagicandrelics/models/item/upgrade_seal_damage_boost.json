@@ -2,6 +2,6 @@
   "parent": "item/generated",
   "textures": {
     "layer0": "mna:item/rituals/stone_rune_red",
-    "layer1": "dragonmagicandrelics:item/seal_tier_frame_1"
+    "layer1": "dragonmagicandrelics:item/seal_tier_frame_2"
   }
 }

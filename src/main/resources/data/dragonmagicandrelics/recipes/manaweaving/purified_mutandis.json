@@ -1,0 +1,19 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 3,
+  "output": "dragonmagicandrelics:purified_mutandis",
+  "quantity": 8,
+  "requiredFaction": "mna:fey",
+  "items": [
+    "dragonmagicandrelics:mutandis",
+    "minecraft:egg",
+    "minecraft:nether_wart",
+    "minecraft:bone_meal",
+    "mna:ma_flowers"
+  ],
+  "patterns": [
+    "mna:diamond",
+    "mna:slash",
+    "mna:backslash"
+  ]
+}

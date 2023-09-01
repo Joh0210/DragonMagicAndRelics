@@ -18,8 +18,11 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public class Mutandis extends TieredItem {
-    public Mutandis(Properties pProperties) {
+    private final boolean isPurified;
+
+    public Mutandis(boolean isPurified, Properties pProperties) {
         super(pProperties);
+        this.isPurified = isPurified;
     }
 
     @Override
@@ -35,7 +38,7 @@ public class Mutandis extends TieredItem {
 
                 Block block;
                 do {
-                    block = ModTags.getRandomBlocks(ModTags.Blocks.MUTANDIS_PLANTS);
+                    block = ModTags.getRandomBlocks(isPurified ? ModTags.Blocks.MNA_FLOWERS : ModTags.Blocks.MUTANDIS_PLANTS);
                     if(block == null){
                         return InteractionResult.FAIL;
                     }

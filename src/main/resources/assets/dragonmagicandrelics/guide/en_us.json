@@ -42,6 +42,42 @@
       }
     ]
   },
+  "Upgrade Glyph Burning Frenzy": {
+    "index": "1",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Burning Frenzy"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Run faster, jump higher and climb mountains without lifting your knee.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Night Vision is Tier 1",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_burning_frenzy"
+      }
+    ]
+  },
   "Upgrade Glyph Fly": {
     "index": "1",
     "category": "eldrin_altar",
