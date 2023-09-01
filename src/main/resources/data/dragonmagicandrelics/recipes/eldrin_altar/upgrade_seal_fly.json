@@ -4,19 +4,19 @@
   "tier": 5,
   "items": [
     "mna:stone_rune_white",
-    "dragonmagicandrelics:angel_ring",
+    "minecraft:elytra",
     "mna:greater_mote_air",
     "mna:greater_mote_air",
     "mna:greater_mote_air",
     "mna:rune_air",
     "mna:rune_air",
-    "mna:rune_air",
+    "dragonmagicandrelics:dragon_core",
     "minecraft:phantom_membrane"
   ],
   "power_requirements": [
     {
       "affinity": "WIND",
-      "amount": 1000
+      "amount": 1200
     }
   ]
 }

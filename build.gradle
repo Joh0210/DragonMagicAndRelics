@@ -24,7 +24,7 @@ configurations {
 }
 
 group = 'de.joh'
-version = '1.18.2-2.1.4'
+version = '1.18.2-2.1.16'
 
 java {
     archivesBaseName = 'dragonmagicandrelics'

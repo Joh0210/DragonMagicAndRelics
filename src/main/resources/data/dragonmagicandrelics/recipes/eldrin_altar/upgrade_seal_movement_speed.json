@@ -16,7 +16,7 @@
   "power_requirements": [
     {
       "affinity": "WIND",
-      "amount": 1000
+      "amount": 400
     }
   ]
 }

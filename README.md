@@ -45,7 +45,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Health Boost
 - Jump
 - Kinetic Resistance
-- Mana Boost
+- Mana Boost (Minor & Major)
 - Mana Regeneration
 - Meteor Jump
 - Mist Form

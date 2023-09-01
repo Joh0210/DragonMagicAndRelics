@@ -422,14 +422,14 @@
     "sections": [
       {
         "type": "title",
-        "value": "Upgrade Glyph Mana Boost"
+        "value": "Upgrade Glyph Minor Mana Boost"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "My Mana is running out. Anyway, I'll just take more! I get 200 Mana Points per glyph.",
+            "text": "My Mana is running out. Anyway, I'll just take more! I get 100 Mana Points per glyph.",
             "color": ""
           }
         ]
@@ -489,6 +489,10 @@
       {
         "type": "eldrin_altar",
         "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_boost"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_major_mana_boost"
       }
     ]
   },

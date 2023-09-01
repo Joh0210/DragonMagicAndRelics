@@ -3,6 +3,7 @@ package de.joh.dragonmagicandrelics.events.additional;
 import com.mna.api.faction.IFaction;
 import com.mna.factions.Factions;
 import com.mna.items.armor.*;
+import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
 import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.item.ItemInit;
@@ -44,7 +45,7 @@ public class DragonUpgradeEvent extends PlayerEvent {
     public DragonUpgradeEvent(Player player, IFaction targetFaction){
         super(player);
         this.targetFaction = targetFaction;
-
+        initialUpgrades = getBaseInitialUpgrades(targetFaction);
         headOld = player.getItemBySlot(EquipmentSlot.HEAD);
         chestOld = player.getItemBySlot(EquipmentSlot.CHEST);
         legsOld = player.getItemBySlot(EquipmentSlot.LEGS);
@@ -82,6 +83,7 @@ public class DragonUpgradeEvent extends PlayerEvent {
             legsNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_LEGGING.get());
             feetNew = new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_BOOTS.get());
         }
+
         canBeUpgraded = true;
     }
 
@@ -170,5 +172,31 @@ public class DragonUpgradeEvent extends PlayerEvent {
         this.initialUpgrades = initialUpgrades;
 
         canBeUpgraded = true;
+    }
+
+    private static HashMap<ArmorUpgrade, Integer> getBaseInitialUpgrades(IFaction targetFaction){
+        HashMap<ArmorUpgrade, Integer> ret = new HashMap<>();
+        if(targetFaction == Factions.UNDEAD){
+            ret.put(ArmorUpgradeInit.MIST_FORM, 1);
+            ret.put(ArmorUpgradeInit.DAMAGE_BOOST, 2);
+            ret.put(ArmorUpgradeInit.DAMAGE_RESISTANCE, 1);
+        }
+        else if(targetFaction == Factions.COUNCIL){
+            ret.put(ArmorUpgradeInit.FLY, 1);
+            ret.put(ArmorUpgradeInit.PROJECTILE_REFLECTION, 3);
+            ret.put(ArmorUpgradeInit.MAJOR_MANA_BOOST, 4);
+            ret.put(ArmorUpgradeInit.MANA_REGEN, 3);
+        }
+        else if(targetFaction == Factions.FEY){
+            ret.put(ArmorUpgradeInit.ANGEL_FLIGHT, 1);
+            ret.put(ArmorUpgradeInit.SATURATION, 1);
+            ret.put(ArmorUpgradeInit.REACH_DISTANCE, 1);
+        }
+        else if (targetFaction == Factions.DEMONS){
+            ret.put(ArmorUpgradeInit.BURNING_FRENZY, 1);
+            ret.put(ArmorUpgradeInit.DAMAGE_BOOST, 2);
+            ret.put(ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE, 1);
+        }
+        return ret;
     }
 }

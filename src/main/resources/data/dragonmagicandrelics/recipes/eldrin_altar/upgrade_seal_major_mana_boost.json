@@ -1,16 +1,16 @@
 {
   "type": "mna:eldrin-altar",
-  "output": "dragonmagicandrelics:upgrade_seal_mana_boost",
+  "output": "dragonmagicandrelics:upgrade_seal_major_mana_boost",
   "tier": 5,
   "items": [
     "mna:stone_rune_light_blue",
-    "mna:major_mana_gem",
-    "mna:major_mana_gem",
-    "mna:major_mana_gem",
-    "mna:major_mana_gem",
+    "mna:mana_crystal_fragment",
+    "mna:mana_crystal_fragment",
+    "mna:mana_crystal_fragment",
+    "mna:mana_crystal_fragment",
     "mna:rune_arcane",
     "mna:rune_arcane",
-    "minecraft:nether_star",
+    "mna:eldrin_bracelet",
     "dragonmagicandrelics:dragon_core"
   ],
   "power_requirements": [

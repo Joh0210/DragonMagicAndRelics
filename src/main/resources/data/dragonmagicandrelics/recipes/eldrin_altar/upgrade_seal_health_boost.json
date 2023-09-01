@@ -5,22 +5,22 @@
   "items": [
     "mna:stone_rune_red",
     "minecraft:ghast_tear",
-    "minecraft:netherite_block",
-    "mna:rune_defense",
+    "minecraft:iron_chestplate",
+    "minecraft:golden_chestplate",
+    "minecraft:diamond_chestplate",
+    "minecraft:netherite_chestplate",
     "mna:rune_defense",
     "minecraft:nether_star",
-    "minecraft:nether_star",
-    "dragonmagicandrelics:dragon_core",
     "dragonmagicandrelics:dragon_core"
   ],
   "power_requirements": [
     {
       "affinity": "EARTH",
-      "amount": 1000
+      "amount": 400
     },
     {
       "affinity": "ARCANE",
-      "amount": 1000
+      "amount": 200
     }
   ]
 }

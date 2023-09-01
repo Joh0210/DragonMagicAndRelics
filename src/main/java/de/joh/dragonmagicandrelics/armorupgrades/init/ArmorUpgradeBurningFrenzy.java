@@ -1,8 +1,6 @@
 package de.joh.dragonmagicandrelics.armorupgrades.init;
 
 import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.api.particles.MAParticleType;
-import com.mna.api.particles.ParticleInit;
 import com.mna.api.sound.SFX;
 import com.mna.api.timing.DelayedEventQueue;
 import com.mna.api.timing.TimedDelayedEvent;
@@ -13,7 +11,6 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import org.jetbrains.annotations.NotNull;
 

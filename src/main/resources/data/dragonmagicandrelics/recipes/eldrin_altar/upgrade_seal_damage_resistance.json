@@ -9,26 +9,26 @@
     "minecraft:netherite_chestplate",
     "minecraft:netherite_block",
     "minecraft:nether_star",
-    "minecraft:nether_star",
     "mna:rune_defense",
+    "dragonmagicandrelics:dragon_core",
     "dragonmagicandrelics:dragon_core"
   ],
   "power_requirements": [
     {
       "affinity": "EARTH",
-      "amount": 1000
+      "amount": 1200
     },
     {
       "affinity": "WIND",
-      "amount": 1000
+      "amount": 1200
     },
     {
       "affinity": "ARCANE",
-      "amount": 1000
+      "amount": 1200
     },
     {
       "affinity": "ENDER",
-      "amount": 1000
+      "amount": 1200
     }
   ]
 }

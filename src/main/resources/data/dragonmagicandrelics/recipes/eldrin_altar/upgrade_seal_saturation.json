@@ -16,7 +16,7 @@
   "power_requirements": [
     {
       "affinity": "EARTH",
-      "amount": 1000
+      "amount": 1200
     }
   ]
 }

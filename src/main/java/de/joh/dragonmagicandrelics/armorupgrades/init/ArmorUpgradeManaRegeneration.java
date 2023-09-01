@@ -23,7 +23,7 @@ public class ArmorUpgradeManaRegeneration extends IArmorUpgradeOnEquipped {
     public void onEquip(Player player, int level) {
         player.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
             if (p.getAlliedFaction() != Factions.UNDEAD) {
-                player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().addRegenerationModifier("mma_magic_set_bonus", -0.1F * (float)level));
+                player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.getCastingResource().addRegenerationModifier("mma_magic_set_bonus", -0.15F * (float)level));
             }
         });
     }

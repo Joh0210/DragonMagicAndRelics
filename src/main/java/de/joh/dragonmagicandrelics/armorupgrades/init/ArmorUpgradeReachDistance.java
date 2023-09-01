@@ -24,8 +24,8 @@ public class ArmorUpgradeReachDistance extends IArmorUpgradeOnEquipped {
     private static final AttributeModifier attackRangBoost4 = new AttributeModifier("mma_armor_attack_range_boost_4", 1, AttributeModifier.Operation.ADDITION);
 
 
-    public ArmorUpgradeReachDistance(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, false, true, upgradeCost);
+    public ArmorUpgradeReachDistance(@NotNull ResourceLocation registryName, int upgradeCost) {
+        super(registryName, 2, false, true, upgradeCost);
     }
 
     @Override

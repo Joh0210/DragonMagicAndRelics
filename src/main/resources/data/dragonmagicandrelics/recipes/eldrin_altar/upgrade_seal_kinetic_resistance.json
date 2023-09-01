@@ -16,11 +16,11 @@
   "power_requirements": [
     {
       "affinity": "WATER",
-      "amount": 1000
+      "amount": 750
     },
     {
       "affinity": "WIND",
-      "amount": 1000
+      "amount": 750
     }
   ]
 }

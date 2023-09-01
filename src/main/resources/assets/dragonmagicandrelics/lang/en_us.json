@@ -43,6 +43,7 @@
   "item.dragonmagicandrelics.upgrade_seal_dolphins_grace": "Upgrade Glyph Swim Speed",
   "item.dragonmagicandrelics.upgrade_seal_regeneration": "Upgrade Glyph Regeneration",
   "item.dragonmagicandrelics.upgrade_seal_mana_boost": "Upgrade Glyph Mana Boost",
+  "item.dragonmagicandrelics.upgrade_seal_major_mana_boost": "Upgrade Glyph Major Mana Boost",
   "item.dragonmagicandrelics.upgrade_seal_mana_regen": "Upgrade Glyph Mana Regeneration",
   "item.dragonmagicandrelics.upgrade_seal_health_boost": "Upgrade Glyph Health Boost",
   "item.dragonmagicandrelics.upgrade_seal_jump": "Upgrade Glyph Jump Boost",
@@ -153,6 +154,8 @@
   "dragonmagicandrelics:armorupgrade/dolphins_grace.description": "Allows the player to swim significantly faster.",
   "dragonmagicandrelics:armorupgrade/mana_boost": "§bMana Boost§r",
   "dragonmagicandrelics:armorupgrade/mana_boost.description": "Increases the user's maximum mana storage.",
+  "dragonmagicandrelics:armorupgrade/major_mana_boost": "§bMajor Mana Boost§r",
+  "dragonmagicandrelics:armorupgrade/major_mana_boost.description": "Increases the user's maximum mana storage.",
   "dragonmagicandrelics:armorupgrade/mana_regen": "§bMana Regeneration§r",
   "dragonmagicandrelics:armorupgrade/mana_regen.description": "Increases the rate at which the user's mana regenerates.",
 

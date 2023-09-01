@@ -99,6 +99,11 @@ public class MissingMappingsHandler {
                         } else if (armorUpgrade == ArmorUpgradeInit.MINOR_FIRE_RESISTANCE && level >= 2){
                             armorUpgrade = ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE;
                             level -= 1;
+                        } else if (armorUpgrade == ArmorUpgradeInit.MANA_BOOST && level >= 4){
+                            armorUpgrade = ArmorUpgradeInit.MAJOR_MANA_BOOST;
+                            level -= 1;
+                        } else if (armorUpgrade == ArmorUpgradeInit.MANA_REGEN){
+                            level = Math.round(level/2.0F);
                         }
 
                         ((DragonMageArmor)chest.getItem()).addDragonMagicToItem(chest, armorUpgrade, level, true);
@@ -164,11 +169,11 @@ public class MissingMappingsHandler {
         reMapItem.put("upgrade_seal_jump_ii", ItemInit.UPGRADE_SEAL_JUMP.getId());
         reMapItem.put("upgrade_seal_jump_iii", ItemInit.UPGRADE_SEAL_JUMP.getId());
         reMapItem.put("upgrade_seal_kinetic_resistance", ItemInit.UPGRADE_SEAL_KINETIC_RESISTANCE.getId());
-        reMapItem.put("upgrade_seal_mana_boost_i", ItemInit.UPGRADE_SEAL_MANA_BOOST.getId());
-        reMapItem.put("upgrade_seal_mana_boost_ii", ItemInit.UPGRADE_SEAL_MANA_BOOST.getId());
-        reMapItem.put("upgrade_seal_mana_boost_iii", ItemInit.UPGRADE_SEAL_MANA_BOOST.getId());
-        reMapItem.put("upgrade_seal_mana_boost_iv", ItemInit.UPGRADE_SEAL_MANA_BOOST.getId());
-        reMapItem.put("upgrade_seal_mana_boost_v", ItemInit.UPGRADE_SEAL_MANA_BOOST.getId());
+        reMapItem.put("upgrade_seal_mana_boost_i", ItemInit.UPGRADE_SEAL_MINOR_MANA_BOOST.getId());
+        reMapItem.put("upgrade_seal_mana_boost_ii", ItemInit.UPGRADE_SEAL_MINOR_MANA_BOOST.getId());
+        reMapItem.put("upgrade_seal_mana_boost_iii", ItemInit.UPGRADE_SEAL_MINOR_MANA_BOOST.getId());
+        reMapItem.put("upgrade_seal_mana_boost_iv", ItemInit.UPGRADE_SEAL_MINOR_MANA_BOOST.getId());
+        reMapItem.put("upgrade_seal_mana_boost_v", ItemInit.UPGRADE_SEAL_MINOR_MANA_BOOST.getId());
         reMapItem.put("upgrade_seal_mana_regen_i", ItemInit.UPGRADE_SEAL_MANA_REGEN.getId());
         reMapItem.put("upgrade_seal_mana_regen_ii", ItemInit.UPGRADE_SEAL_MANA_REGEN.getId());
         reMapItem.put("upgrade_seal_mana_regen_iii", ItemInit.UPGRADE_SEAL_MANA_REGEN.getId());

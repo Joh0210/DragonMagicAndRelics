@@ -6,7 +6,9 @@
     "mna:stone_rune_orange",
     "minecraft:soul_campfire",
     "minecraft:fire_charge",
-    "mna:living_flame",
+    "minecraft:powered_rail",
+    "minecraft:powered_rail",
+    "mna:pilgrim_staff",
     "mna:brimstone_charm",
     "mna:brimstone_boat",
     "mna:emberglow_bracelet"
@@ -14,7 +16,11 @@
   "power_requirements": [
     {
       "affinity": "FIRE",
-      "amount": 1000
+      "amount": 900
+    },
+    {
+      "affinity": "WIND",
+      "amount": 700
     }
   ]
 }

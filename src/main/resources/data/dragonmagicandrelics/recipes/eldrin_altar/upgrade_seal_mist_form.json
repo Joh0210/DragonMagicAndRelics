@@ -16,7 +16,7 @@
   "power_requirements": [
     {
       "affinity": "ENDER",
-      "amount": 1000
+      "amount": 1200
     }
   ]
 }

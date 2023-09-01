@@ -11,16 +11,16 @@
     "minecraft:ghast_tear",
     "minecraft:ender_pearl",
     "minecraft:ender_pearl",
-    "minecraft:nether_star"
+    "dragonmagicandrelics:dragon_core"
   ],
   "power_requirements": [
     {
       "affinity": "EARTH",
-      "amount": 1000
+      "amount": 1200
     },
     {
       "affinity": "ARCANE",
-      "amount": 1000
+      "amount": 600
     }
   ]
 }

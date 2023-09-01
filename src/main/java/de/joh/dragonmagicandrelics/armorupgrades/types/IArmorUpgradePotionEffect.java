@@ -5,6 +5,7 @@ import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
@@ -15,11 +16,12 @@ import org.jetbrains.annotations.NotNull;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public abstract class IArmorUpgradePotionEffect extends IArmorUpgradeOnTick{
+public abstract class IArmorUpgradePotionEffect extends IArmorUpgradeOnEquipped { //extends IArmorUpgradeOnTick{
+
     /**
      * Time you want the effect to last. Will be reseted every tick.
      */
-    public static final int EFFECT_DURATION = 10;
+    public static final int EFFECT_DURATION = 100000;
     private final int factor;
 
     /**
@@ -59,7 +61,18 @@ public abstract class IArmorUpgradePotionEffect extends IArmorUpgradeOnTick{
     }
 
     @Override
-    public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
+    public void onRemove(Player player) {
+        player.removeEffect(getMobEffect());
+    }
+
+    //todo reapply the Effekt if it was removed while the glyph is aktive
+//    @Override
+//    public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
+//        applyPotionAffect(player, level);
+//    }
+
+    @Override
+    public void onEquip(Player player, int level){
         applyPotionAffect(player, level);
     }
 }

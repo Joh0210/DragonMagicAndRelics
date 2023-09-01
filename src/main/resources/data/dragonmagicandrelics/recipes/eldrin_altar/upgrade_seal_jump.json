@@ -8,12 +8,13 @@
     "minecraft:rabbit_foot",
     "minecraft:rabbit_foot",
     "minecraft:rabbit_hide",
+    "minecraft:feather",
     "mna:mote_air"
   ],
   "power_requirements": [
     {
       "affinity": "WIND",
-      "amount": 1000
+      "amount": 300
     }
   ]
 }
