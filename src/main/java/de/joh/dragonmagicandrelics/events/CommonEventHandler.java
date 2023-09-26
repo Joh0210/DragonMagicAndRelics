@@ -14,7 +14,10 @@ import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChanceP
 import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
+import de.joh.dragonmagicandrelics.networking.ModMessages;
+import de.joh.dragonmagicandrelics.networking.packet.ToggleMajorFireResS2CPacket;
 import de.joh.dragonmagicandrelics.utils.RLoc;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,6 +29,7 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -148,5 +152,14 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         event.register(PlayerSecondChance.class);
+    }
+
+    @SubscribeEvent
+    public static void onPlayerJoinWorld(EntityJoinWorldEvent event) {
+        if(!event.getWorld().isClientSide()) {
+            if(event.getEntity() instanceof ServerPlayer player) {
+                ModMessages.sendToPlayer(new ToggleMajorFireResS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE)) >= 1), player);
+            }
+        }
     }
 }

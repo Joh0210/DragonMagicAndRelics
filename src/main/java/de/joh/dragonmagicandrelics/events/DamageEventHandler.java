@@ -180,9 +180,12 @@ public class DamageEventHandler {
                     return;
                 } else if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MINOR_FIRE_RESISTANCE) >= 1) {
                     IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-                    if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get())) {
-                        magic.getCastingResource().consume(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get());
+                    if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get()/5.0f)) {
+                        magic.getCastingResource().consume(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get()/5.0f);
                         event.setCanceled(true);
+                        if(player.isOnFire()){
+                            player.clearFire();
+                        }
                         return;
                     }
                 }
