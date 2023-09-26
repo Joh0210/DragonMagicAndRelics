@@ -36,31 +36,31 @@
 
     "B":
     {
-      "item": "netherite_helmet",
+      "item": "minecraft:netherite_helmet",
       "optional": false,
       "consume": true
     },
     "C":
     {
-      "item": "netherite_chestplate",
+      "item": "minecraft:netherite_chestplate",
       "optional": false,
       "consume": true
     },
     "D":
     {
-      "item": "netherite_leggings",
+      "item": "minecraft:netherite_leggings",
       "optional": false,
       "consume": true
     },
     "E":
     {
-      "item": "netherite_boots",
+      "item": "minecraft:netherite_boots",
       "optional": false,
       "consume": true
     },
     "X":
     {
-      "item": "nether_star",
+      "item": "minecraft:nether_star",
       "optional": false,
       "consume": true
     }

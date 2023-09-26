@@ -11,10 +11,10 @@
     "mna:stone_rune_cyan"
   ],
   "patterns": [
-    "mna:inverted_triangle",
-    "mna:knot4",
-    "mna:circle",
-    "mna:knot",
-    "mna:inverted_triangle"
+    "mna:manaweave_patterns/inverted_triangle",
+    "mna:manaweave_patterns/knot4",
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/knot",
+    "mna:manaweave_patterns/inverted_triangle"
   ]
 }

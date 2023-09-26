@@ -41,25 +41,25 @@
   {
     "A":
     {
-      "item": "netherite_sword",
+      "item": "minecraft:netherite_sword",
       "optional": false,
       "consume": true
     },
     "B":
     {
-      "item": "blaze_rod",
+      "item": "minecraft:blaze_rod",
       "optional": false,
       "consume": true
     },
     "C":
     {
-      "item": "tnt",
+      "item": "minecraft:tnt",
       "optional": false,
       "consume": true
     },
     "D":
     {
-      "item": "poisonous_potato",
+      "item": "minecraft:poisonous_potato",
       "optional": false,
       "consume": true
     },
@@ -71,48 +71,48 @@
     },
     "F":
     {
-      "item": "fermented_spider_eye",
+      "item": "minecraft:fermented_spider_eye",
       "optional": false,
       "consume": true
     },
     "G":
     {
-      "item": "golden_apple",
+      "item": "minecraft:golden_apple",
       "optional": false,
       "consume": true
     },
     "H":
     {
-      "item": "nether_wart",
+      "item": "minecraft:nether_wart",
       "optional": false,
       "consume": true
     },
     "P":
     {
-      "item": "pufferfish",
+      "item": "minecraft:pufferfish",
       "optional": false,
       "consume": true
     },
     "S":
     {
-      "item": "nether_star",
+      "item": "minecraft:nether_star",
       "optional": false,
       "consume": true
     },
     "T":
     {
-      "item": "ghast_tear",
+      "item": "minecraft:ghast_tear",
       "optional": false,
       "consume": true
     }
   },
   "manaweave":
   [
-    "mna:star",
-    "mna:hourglass",
-    "mna:diamond",
-    "mna:inverted_split_triangle",
-    "mna:infinity"
+    "mna:manaweave_patterns/star",
+    "mna:manaweave_patterns/hourglass",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/inverted_split_triangle",
+    "mna:manaweave_patterns/infinity"
   ],
   "parameters":
   {

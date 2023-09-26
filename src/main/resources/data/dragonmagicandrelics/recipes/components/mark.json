@@ -6,11 +6,12 @@
     "mna:book_marks",
     "mna:rune_marking",
     "mna:rune_ender",
-    "compass"
+    "minecraft:compass"
   ],
-  "patterns": [
-    "mna:knot4",
-    "mna:diamond",
-    "mna:knot"
+  "patterns":
+  [
+    "mna:manaweave_patterns/slash",
+    "mna:manaweave_patterns/knot2",
+    "mna:manaweave_patterns/knot"
   ]
 }

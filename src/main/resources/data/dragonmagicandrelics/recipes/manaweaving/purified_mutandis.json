@@ -16,8 +16,8 @@
     "mna:purified_vinteum_dust"
   ],
   "patterns": [
-    "mna:diamond",
-    "mna:slash",
-    "mna:backslash"
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/slash",
+    "mna:manaweave_patterns/backslash"
   ]
 }

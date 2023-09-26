@@ -135,8 +135,8 @@ dependencies {
 
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
 
-    compileOnly fg.deobf("blank:mna-2.0.0.29:api")
-    runtimeOnly fg.deobf("blank:mna:2.0.0.29")
+    compileOnly fg.deobf("blank:mna-2.0.0.30:api")
+    runtimeOnly fg.deobf("blank:mna:2.0.0.30")
 }
 
 jar {

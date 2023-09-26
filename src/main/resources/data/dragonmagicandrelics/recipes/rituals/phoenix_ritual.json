@@ -35,19 +35,19 @@
   {
     "B":
     {
-      "item": "blaze_powder",
+      "item": "minecraft:blaze_powder",
       "optional": false,
       "consume": true
     },
     "C":
     {
-      "item": "clock",
+      "item": "minecraft:clock",
       "optional": false,
       "consume": true
     },
     "E":
     {
-      "item": "ender_pearl",
+      "item": "minecraft:ender_pearl",
       "optional": false,
       "consume": true
     },
@@ -59,7 +59,7 @@
     },
     "D":
     {
-      "item": "compass",
+      "item": "minecraft:compass",
       "optional": false,
       "consume": true
     }

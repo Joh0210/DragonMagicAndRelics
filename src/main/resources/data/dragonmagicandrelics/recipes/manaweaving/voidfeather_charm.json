@@ -11,8 +11,8 @@
 		"mna:purified_vinteum_dust"
 	],
 	"patterns": [
-		"mna:triangle",
-		"mna:square",
-		"mna:triangle"
+		"mna:manaweave_patterns/triangle",
+		"mna:manaweave_patterns/square",
+		"mna:manaweave_patterns/triangle"
 	]
 }

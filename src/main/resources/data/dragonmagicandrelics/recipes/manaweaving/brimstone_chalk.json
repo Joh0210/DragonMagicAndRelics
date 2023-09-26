@@ -8,8 +8,8 @@
     "mna:wizard_chalk"
   ],
   "patterns": [
-    "mna:triangle",
-    "mna:circle",
-    "mna:triangle"
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/triangle"
   ]
 }
