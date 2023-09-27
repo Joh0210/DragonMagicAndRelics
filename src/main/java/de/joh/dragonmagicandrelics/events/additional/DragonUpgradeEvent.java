@@ -125,7 +125,7 @@ public class DragonUpgradeEvent extends PlayerEvent {
         this.getPlayer().setItemSlot(EquipmentSlot.FEET, feetNew);
 
         if(addBaseUpgrades){
-            this.initialUpgrades.forEach((key, value) -> addUpgrade((ArmorUpgrade) key, (int)value));
+            this.initialUpgrades.forEach(this::addUpgrade);
         }
     }
 

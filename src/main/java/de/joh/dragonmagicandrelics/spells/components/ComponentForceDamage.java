@@ -28,6 +28,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.event.entity.living.LivingKnockBackEvent;
@@ -44,9 +45,20 @@ public class ComponentForceDamage extends SpellEffect implements IDamageComponen
         if (target.isEntity() && target.getEntity() instanceof LivingEntity entity) {
             //determination of the damage
             float damage = modificationData.getValue(Attribute.DAMAGE) * GeneralModConfig.getDamageMultiplier();
-            float reduction = 1 - CombatRules.getDamageAfterAbsorb(damage, (float)entity.getArmorValue(), (float)entity.getAttributeValue(Attributes.ARMOR_TOUGHNESS))/damage;
-            damage = damage * (1 - reduction + reduction * modificationData.getValue(Attribute.MAGNITUDE)/4);
 
+
+//            //Uses Armor + Prot.
+//            float reduction = 0;
+//            int k = EnchantmentHelper.getDamageProtection(entity.getArmorSlots(), DamageSource.FLY_INTO_WALL.getMsgId());
+//            if (k > 0) {
+//                reduction = 1 - CombatRules.getDamageAfterMagicAbsorb(CombatRules.getDamageAfterAbsorb(damage, (float)entity.getArmorValue(), (float)entity.getAttributeValue(Attributes.ARMOR_TOUGHNESS)), (float)k)/damage;
+//            } else {
+//                reduction = 1 - CombatRules.getDamageAfterAbsorb(damage, (float)entity.getArmorValue(), (float)entity.getAttributeValue(Attributes.ARMOR_TOUGHNESS))/damage;
+//            }
+
+            //Uses Armor
+            float reduction = 1 - CombatRules.getDamageAfterAbsorb(damage, (float)entity.getArmorValue(), (float)entity.getAttributeValue(Attributes.ARMOR_TOUGHNESS))/damage;
+            damage = damage * (1 - reduction + reduction * modificationData.getValue(Attribute.MAGNITUDE)/3); //+15% to Iron; +45% to Dia
             //injure
             target.getEntity().hurt(createSourcedDamageType(source.getCaster()), damage);
 
