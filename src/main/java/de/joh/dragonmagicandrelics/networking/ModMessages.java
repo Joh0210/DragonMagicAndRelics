@@ -1,5 +1,6 @@
 package de.joh.dragonmagicandrelics.networking;
 
+import de.joh.dragonmagicandrelics.networking.packet.ToggleBurningFrenzyS2CPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleFlightC2SPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleMajorFireResS2CPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleNightVisionC2SPacket;
@@ -52,6 +53,12 @@ public class ModMessages {
                 .decoder(ToggleMajorFireResS2CPacket::new)
                 .encoder(ToggleMajorFireResS2CPacket::toBytes)
                 .consumer(ToggleMajorFireResS2CPacket::handle)
+                .add();
+
+        net.messageBuilder(ToggleBurningFrenzyS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ToggleBurningFrenzyS2CPacket::new)
+                .encoder(ToggleBurningFrenzyS2CPacket::toBytes)
+                .consumer(ToggleBurningFrenzyS2CPacket::handle)
                 .add();
     }
 

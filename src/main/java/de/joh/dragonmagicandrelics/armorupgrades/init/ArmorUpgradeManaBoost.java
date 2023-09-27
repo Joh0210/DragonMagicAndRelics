@@ -3,7 +3,7 @@ package de.joh.dragonmagicandrelics.armorupgrades.init;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnEquipped;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public class ArmorUpgradeManaBoost  extends IArmorUpgradeOnEquipped {
+public class ArmorUpgradeManaBoost  extends ArmorUpgradeOnEquipped {
     public ArmorUpgradeManaBoost(@NotNull ResourceLocation registryName, boolean isMajor, int upgradeCost) {
         super(registryName, 4, true, upgradeCost);
         this.isMajor = isMajor;

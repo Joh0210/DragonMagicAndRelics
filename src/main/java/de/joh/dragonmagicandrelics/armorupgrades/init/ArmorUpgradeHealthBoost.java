@@ -1,6 +1,6 @@
 package de.joh.dragonmagicandrelics.armorupgrades.init;
 
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnEquipped;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public class ArmorUpgradeHealthBoost extends IArmorUpgradeOnEquipped {
+public class ArmorUpgradeHealthBoost extends ArmorUpgradeOnEquipped {
     private static final AttributeModifier healthBoost1 = new AttributeModifier("mma_armor_health_boost_1", 4, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier healthBoost2 = new AttributeModifier("mma_armor_health_boost_2", 4, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier healthBoost3 = new AttributeModifier("mma_armor_health_boost_3", 4, AttributeModifier.Operation.ADDITION);

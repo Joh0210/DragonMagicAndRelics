@@ -1,13 +1,10 @@
 package de.joh.dragonmagicandrelics.armorupgrades.types;
 
-import com.mna.api.capabilities.IPlayerMagic;
 import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -16,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public abstract class IArmorUpgradePotionEffect extends IArmorUpgradeOnEquipped { //extends IArmorUpgradeOnTick{
+public abstract class ArmorUpgradePotionEffect extends ArmorUpgradeOnEquipped { //extends IArmorUpgradeOnTick{
 
     /**
      * Time you want the effect to last. Will be reseted every tick.
@@ -29,7 +26,7 @@ public abstract class IArmorUpgradePotionEffect extends IArmorUpgradeOnEquipped 
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      * @param factor Optional. Factor by which The Potion Effect should be amplified.
      */
-    public IArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int factor, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost) {
+    public ArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int factor, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost) {
         super(registryName, maxUpgradeLevel, isInfStackable, supportsOnExtraLevel, upgradeCost);
         this.factor = factor;
     }
@@ -38,7 +35,7 @@ public abstract class IArmorUpgradePotionEffect extends IArmorUpgradeOnEquipped 
      * @param registryName ID under which the upgrade can be recognized.
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      */
-    public IArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost) {
+    public ArmorUpgradePotionEffect(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost) {
         this(registryName, maxUpgradeLevel, 1, isInfStackable, true, upgradeCost);
     }
 

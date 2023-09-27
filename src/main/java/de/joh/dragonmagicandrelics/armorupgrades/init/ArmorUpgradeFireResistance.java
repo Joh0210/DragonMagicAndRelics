@@ -2,7 +2,7 @@ package de.joh.dragonmagicandrelics.armorupgrades.init;
 
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnEquipped;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleMajorFireResS2CPacket;
 import net.minecraft.resources.ResourceLocation;
@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  * @see de.joh.dragonmagicandrelics.events.DamageEventHandler
  * @author Joh0210
  */
-public class ArmorUpgradeFireResistance extends IArmorUpgradeOnEquipped {
+public class ArmorUpgradeFireResistance extends ArmorUpgradeOnEquipped {
     public final boolean hasStrongerAlternative;
 
     /**

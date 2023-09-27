@@ -1,7 +1,7 @@
 package de.joh.dragonmagicandrelics.armorupgrades.init;
 
 import com.mna.api.capabilities.IPlayerMagic;
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public class ArmorUpgradeWaterbreathing extends IArmorUpgradeOnTick {
+public class ArmorUpgradeWaterbreathing extends ArmorUpgradeOnTick {
     public ArmorUpgradeWaterbreathing(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
         super(registryName, maxUpgradeLevel, true, upgradeCost);
     }

@@ -5,8 +5,13 @@ import com.mna.api.sound.SFX;
 import com.mna.api.timing.DelayedEventQueue;
 import com.mna.api.timing.TimedDelayedEvent;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnTick;
+import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
+import de.joh.dragonmagicandrelics.networking.ModMessages;
+import de.joh.dragonmagicandrelics.networking.packet.ToggleBurningFrenzyS2CPacket;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -20,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  * @see ArmorUpgradeSpeed
  * @author Joh0210
  */
-public class ArmorUpgradeBurningFrenzy extends IArmorUpgradeOnTick {
+public class ArmorUpgradeBurningFrenzy extends ArmorUpgradeOnTick implements IArmorUpgradeOnEquipped {
     public static final AttributeModifier runSpeed_1 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_1", 0.05D,AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier runSpeed_2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_2", 0.1D,AttributeModifier.Operation.ADDITION);
     public static final AttributeModifier runSpeed_3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_3", 0.1D,AttributeModifier.Operation.ADDITION);
@@ -103,5 +108,24 @@ public class ArmorUpgradeBurningFrenzy extends IArmorUpgradeOnTick {
                 player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 1.6F);
             }
         }
+    }
+
+    @Override
+    public void onEquip(Player player, int level) {
+        if(!this.hasStrongerAlternative() && level >= 1 && player instanceof ServerPlayer) {
+            ModMessages.sendToPlayer(new ToggleBurningFrenzyS2CPacket(true), (ServerPlayer) player);
+        }
+    }
+
+    @Override
+    public void onRemove(Player player) {
+        if(!this.hasStrongerAlternative() && player instanceof ServerPlayer) {
+            ModMessages.sendToPlayer(new ToggleBurningFrenzyS2CPacket(false), (ServerPlayer) player);
+        }
+    }
+
+    @Override
+    public ArmorUpgrade getArmorUpgrade() {
+        return this;
     }
 }

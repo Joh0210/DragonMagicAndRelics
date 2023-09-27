@@ -15,6 +15,7 @@ import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
+import de.joh.dragonmagicandrelics.networking.packet.ToggleBurningFrenzyS2CPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleMajorFireResS2CPacket;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.server.level.ServerPlayer;
@@ -159,6 +160,7 @@ public class CommonEventHandler {
         if(!event.getWorld().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
                 ModMessages.sendToPlayer(new ToggleMajorFireResS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE)) >= 1), player);
+                ModMessages.sendToPlayer(new ToggleBurningFrenzyS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)) >= 1), player);
             }
         }
     }

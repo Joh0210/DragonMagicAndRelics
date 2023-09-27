@@ -1,6 +1,6 @@
 package de.joh.dragonmagicandrelics.armorupgrades.init;
 
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnEquipped;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
  * Increases the range in which the user can interact
  * @author Joh0210
  */
-public class ArmorUpgradeReachDistance extends IArmorUpgradeOnEquipped {
+public class ArmorUpgradeReachDistance extends ArmorUpgradeOnEquipped {
     private static final AttributeModifier reachBoost1 = new AttributeModifier("mma_armor_reach_boost_1", 1, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier reachBoost2 = new AttributeModifier("mma_armor_reach_boost_2", 1, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier reachBoost3 = new AttributeModifier("mma_armor_reach_boost_3", 1, AttributeModifier.Operation.ADDITION);

@@ -5,11 +5,10 @@ import com.mna.api.sound.SFX;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
@@ -22,7 +21,7 @@ import org.jetbrains.annotations.Nullable;
  * @see de.joh.dragonmagicandrelics.events.CommonEventHandler
  * @author Joh0210
  */
-public class ArmorUpgradeJump extends IArmorUpgradeOnTick {
+public class ArmorUpgradeJump extends ArmorUpgradeOnTick {
     private static final AttributeModifier stepMod1 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_step_bonus_1", 0.5f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier stepMod2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_step_bonus_2", 0.5f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier stepMod3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_step_bonus_3", 0.5f, AttributeModifier.Operation.ADDITION);

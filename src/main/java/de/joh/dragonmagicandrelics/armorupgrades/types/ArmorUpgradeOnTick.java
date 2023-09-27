@@ -13,12 +13,12 @@ import org.jetbrains.annotations.NotNull;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public abstract class IArmorUpgradeOnTick extends ArmorUpgrade {
-    public IArmorUpgradeOnTick(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost) {
+public abstract class ArmorUpgradeOnTick extends ArmorUpgrade {
+    public ArmorUpgradeOnTick(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost) {
         super(registryName, maxUpgradeLevel, isInfStackable, supportsOnExtraLevel, upgradeCost);
     }
 
-    public IArmorUpgradeOnTick(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost) {
+    public ArmorUpgradeOnTick(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost) {
         super(registryName, maxUpgradeLevel, isInfStackable, upgradeCost);
     }
 

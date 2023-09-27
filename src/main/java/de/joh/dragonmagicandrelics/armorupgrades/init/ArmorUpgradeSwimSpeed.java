@@ -1,6 +1,6 @@
 package de.joh.dragonmagicandrelics.armorupgrades.init;
 
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnEquipped;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public class ArmorUpgradeSwimSpeed extends IArmorUpgradeOnEquipped {
+public class ArmorUpgradeSwimSpeed extends ArmorUpgradeOnEquipped {
     private static final AttributeModifier swimBoost1 = new AttributeModifier("mma_armor_swim_boost_1", 0.5, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier swimBoost2 = new AttributeModifier("mma_armor_swim_boost_2", 0.5, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier swimBoost3 = new AttributeModifier("mma_armor_swim_boost_3", 0.5, AttributeModifier.Operation.ADDITION);

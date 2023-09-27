@@ -3,7 +3,7 @@ package de.joh.dragonmagicandrelics.armorupgrades.init;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.factions.Factions;
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnEquipped;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public class ArmorUpgradeManaRegeneration extends IArmorUpgradeOnEquipped {
+public class ArmorUpgradeManaRegeneration extends ArmorUpgradeOnEquipped {
     public ArmorUpgradeManaRegeneration(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
         super(registryName, maxUpgradeLevel, true, upgradeCost);
     }

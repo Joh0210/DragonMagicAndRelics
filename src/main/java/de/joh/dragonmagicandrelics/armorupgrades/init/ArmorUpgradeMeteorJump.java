@@ -7,7 +7,7 @@ import com.mna.api.sound.SFX;
 import com.mna.config.GeneralModConfig;
 import com.mna.entities.utility.MAExplosion;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.core.BlockPos;
@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public class ArmorUpgradeMeteorJump extends IArmorUpgradeOnTick {
+public class ArmorUpgradeMeteorJump extends ArmorUpgradeOnTick {
     private static final int reqHeight = 4;
 
     public ArmorUpgradeMeteorJump(@NotNull ResourceLocation registryName, int upgradeCost) {

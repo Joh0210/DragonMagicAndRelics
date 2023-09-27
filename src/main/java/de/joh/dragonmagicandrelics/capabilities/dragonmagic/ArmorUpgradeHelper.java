@@ -5,8 +5,8 @@ import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import de.joh.dragonmagicandrelics.Registries;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnEquipped;
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -38,15 +38,15 @@ public class ArmorUpgradeHelper {
             }
 
             player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-                if(armorUpgrade instanceof IArmorUpgradeOnTick){
-                    for(Pair<IArmorUpgradeOnTick, Integer> equippedAU : playerCapability.onTickUpgrade.values()){
+                if(armorUpgrade instanceof ArmorUpgradeOnTick){
+                    for(Pair<ArmorUpgradeOnTick, Integer> equippedAU : playerCapability.onTickUpgrade.values()){
                         if(armorUpgrade.equals(equippedAU.getA())){
                             level.set(Math.max(level.get(), equippedAU.getB()));
                         }
                     }
                 }
                 else if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
-                    for(Pair<IArmorUpgradeOnEquipped, Integer> equippedAU : playerCapability.onEquipUpgrade.values()){
+                    for(Pair<IArmorUpgradeOnEquipped, Integer> equippedAU : playerCapability.getAllOnEquipUpgrade()){
                         if(armorUpgrade.equals(equippedAU.getA())){
                             level.set(Math.max(level.get(), equippedAU.getB()));
                         }
@@ -63,15 +63,15 @@ public class ArmorUpgradeHelper {
         }
 
         player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-            if(armorUpgrade instanceof IArmorUpgradeOnTick){
-                for (Pair<IArmorUpgradeOnTick, Integer> equippedAU : playerCapability.onTickPermaUpgrade.values()) {
+            if(armorUpgrade instanceof ArmorUpgradeOnTick){
+                for (Pair<ArmorUpgradeOnTick, Integer> equippedAU : playerCapability.onTickPermaUpgrade.values()) {
                     if (armorUpgrade.equals(equippedAU.getA())) {
                         level.set(Math.max(level.get(), equippedAU.getB()));
                     }
                 }
             }
             else if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
-                for (Pair<IArmorUpgradeOnEquipped, Integer> equippedAU : playerCapability.onEquipPermaUpgrade.values()) {
+                for (Pair<IArmorUpgradeOnEquipped, Integer> equippedAU : playerCapability.getAllOnEquipPermaUpgrade()) {
                     if (armorUpgrade.equals(equippedAU.getA())) {
                         level.set(Math.max(level.get(), equippedAU.getB()));
                     }
@@ -91,20 +91,20 @@ public class ArmorUpgradeHelper {
 
     public static void applyOnTickUpgrade(Player player){
         ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-        HashMap<IArmorUpgradeOnTick, Integer> toApply = new HashMap<>();
+        HashMap<ArmorUpgradeOnTick, Integer> toApply = new HashMap<>();
         IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
         if(!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
             if(player.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
                 for(ArmorUpgrade armorUpgrade : Registries.ARMOR_UPGRADE.get().getValues()){
-                    if(armorUpgrade instanceof IArmorUpgradeOnTick && !armorUpgrade.hasStrongerAlternative()){
-                        ((IArmorUpgradeOnTick)armorUpgrade).onTick(player.getLevel(), player, armorUpgrade.maxUpgradeLevel, magic);
+                    if(armorUpgrade instanceof ArmorUpgradeOnTick && !armorUpgrade.hasStrongerAlternative()){
+                        ((ArmorUpgradeOnTick)armorUpgrade).onTick(player.getLevel(), player, armorUpgrade.maxUpgradeLevel, magic);
                     }
                 }
                 return;
             }
 
             player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-                for(Pair<IArmorUpgradeOnTick, Integer> pair : playerCapability.onTickUpgrade.values()){
+                for(Pair<ArmorUpgradeOnTick, Integer> pair : playerCapability.onTickUpgrade.values()){
                     if(pair.getB() > 0){
                         toApply.put(pair.getA(),  Math.max(pair.getB(), toApply.getOrDefault(pair.getA(), 0)));
                     }
@@ -113,14 +113,14 @@ public class ArmorUpgradeHelper {
         }
 
         player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-            for(Pair<IArmorUpgradeOnTick, Integer> pair : playerCapability.onTickPermaUpgrade.values()){
+            for(Pair<ArmorUpgradeOnTick, Integer> pair : playerCapability.onTickPermaUpgrade.values()){
                 if(pair.getB() > 0){
                     toApply.put(pair.getA(),  Math.max(pair.getB(), toApply.getOrDefault(pair.getA(), 0)));
                 }
             }
         });
 
-        for(Map.Entry<IArmorUpgradeOnTick, Integer> entry : toApply.entrySet()){
+        for(Map.Entry<ArmorUpgradeOnTick, Integer> entry : toApply.entrySet()){
             if(!entry.getKey().hasStrongerAlternative() || getUpgradeLevel(player, entry.getKey().getStrongerAlternative()) == 0){
                 entry.getKey().onTick(player.getLevel(), player, entry.getValue(), magic);
             }
@@ -138,12 +138,12 @@ public class ArmorUpgradeHelper {
                     pair.getA().onRemove(player);
                 }
             }
-            for(Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.onEquipUpgrade.values()){
-                if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
-                    pair.getA().onRemove(player);
+            for(Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.getAllOnEquipUpgrade()){
+                if(!pair.getA().getArmorUpgrade().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getArmorUpgrade().getStrongerAlternative()) == 0){
+                    pair.getA().getArmorUpgrade().onRemove(player);
                 }
             }
-            for(Pair<IArmorUpgradeOnTick, Integer> pair : playerCapability.onTickUpgrade.values()){
+            for(Pair<ArmorUpgradeOnTick, Integer> pair : playerCapability.onTickUpgrade.values()){
                 if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
                     pair.getA().onRemove(player);
                 }
@@ -167,12 +167,12 @@ public class ArmorUpgradeHelper {
                     pair.getA().onRemove(player);
                 }
             }
-            for(Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.onEquipPermaUpgrade.values()){
-                if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
-                    pair.getA().onRemove(player);
+            for(Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.getAllOnEquipPermaUpgrade()){
+                if(!pair.getA().getArmorUpgrade().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getArmorUpgrade().getStrongerAlternative()) == 0){
+                    pair.getA().getArmorUpgrade().onRemove(player);
                 }
             }
-            for(Pair<IArmorUpgradeOnTick, Integer> pair : playerCapability.onTickPermaUpgrade.values()){
+            for(Pair<ArmorUpgradeOnTick, Integer> pair : playerCapability.onTickPermaUpgrade.values()){
                 if(!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0){
                     pair.getA().onRemove(player);
                 }
@@ -190,9 +190,9 @@ public class ArmorUpgradeHelper {
      */
     public static void activateOnEquipPerma(Player player){
         player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-            for (Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.onEquipPermaUpgrade.values()) {
-                if (!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0) {
-                    pair.getA().onEquip(player, getUpgradeLevel(player, pair.getA()));
+            for (Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.getAllOnEquipPermaUpgrade()) {
+                if (!pair.getA().getArmorUpgrade().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getArmorUpgrade().getStrongerAlternative()) == 0) {
+                    pair.getA().onEquip(player, getUpgradeLevel(player, pair.getA().getArmorUpgrade()));
                 }
             }
         });
@@ -201,9 +201,9 @@ public class ArmorUpgradeHelper {
     public static void activateOnEquip(Player player){
         if(player.getItemBySlot(EquipmentSlot.CHEST).getItem() instanceof DragonMageArmor dma && dma.isSetEquipped(player)) {
             player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-                for (Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.onEquipUpgrade.values()) {
-                    if (!pair.getA().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getStrongerAlternative()) == 0) {
-                        pair.getA().onEquip(player, getUpgradeLevel(player, pair.getA()));
+                for (Pair<IArmorUpgradeOnEquipped, Integer> pair : playerCapability.getAllOnEquipUpgrade()) {
+                    if (!pair.getA().getArmorUpgrade().hasStrongerAlternative() || getUpgradeLevel(player, pair.getA().getArmorUpgrade().getStrongerAlternative()) == 0) {
+                        pair.getA().onEquip(player, getUpgradeLevel(player, pair.getA().getArmorUpgrade()));
                     }
                 }
             });

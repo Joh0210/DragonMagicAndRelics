@@ -8,7 +8,7 @@ import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.effects.EffectInit;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
-import de.joh.dragonmagicandrelics.armorupgrades.types.IArmorUpgradeOnTick;
+import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgradeOnTick;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -26,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
  * @see de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit
  * @author Joh0210
  */
-public class ArmorUpgradeFly extends IArmorUpgradeOnTick {
+public class ArmorUpgradeFly extends ArmorUpgradeOnTick {
     public ArmorUpgradeFly(@NotNull ResourceLocation registryName, int upgradeCost) {
         super(registryName, 1, true, upgradeCost);
     }
