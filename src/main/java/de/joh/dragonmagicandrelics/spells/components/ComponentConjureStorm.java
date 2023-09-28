@@ -51,4 +51,13 @@ public class ComponentConjureStorm extends SpellEffect {
     public int requiredXPForRote() {
         return 150;
     }
+
+    public boolean canBeChanneled() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeOnRandomStaff() {
+        return false;
+    }
 }

@@ -82,4 +82,8 @@ public class ComponentMark extends SpellEffect {
             }
         }
     }
+
+    public boolean canBeChanneled() {
+        return false;
+    }
 }

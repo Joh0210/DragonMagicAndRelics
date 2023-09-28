@@ -45,13 +45,6 @@ public class ArmorUpgradeHelper {
                         }
                     }
                 }
-                else if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
-                    for(Pair<IArmorUpgradeOnEquipped, Integer> equippedAU : playerCapability.getAllOnEquipUpgrade()){
-                        if(armorUpgrade.equals(equippedAU.getA())){
-                            level.set(Math.max(level.get(), equippedAU.getB()));
-                        }
-                    }
-                }
                 else {
                     for(Pair<ArmorUpgrade, Integer> equippedAU : playerCapability.onEventUpgrade.values()){
                         if(armorUpgrade.equals(equippedAU.getA())){
@@ -65,13 +58,6 @@ public class ArmorUpgradeHelper {
         player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
             if(armorUpgrade instanceof ArmorUpgradeOnTick){
                 for (Pair<ArmorUpgradeOnTick, Integer> equippedAU : playerCapability.onTickPermaUpgrade.values()) {
-                    if (armorUpgrade.equals(equippedAU.getA())) {
-                        level.set(Math.max(level.get(), equippedAU.getB()));
-                    }
-                }
-            }
-            else if(armorUpgrade instanceof IArmorUpgradeOnEquipped){
-                for (Pair<IArmorUpgradeOnEquipped, Integer> equippedAU : playerCapability.getAllOnEquipPermaUpgrade()) {
                     if (armorUpgrade.equals(equippedAU.getA())) {
                         level.set(Math.max(level.get(), equippedAU.getB()));
                     }

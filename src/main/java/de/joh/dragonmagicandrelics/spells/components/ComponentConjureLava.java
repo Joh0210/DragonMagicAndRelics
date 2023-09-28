@@ -43,4 +43,9 @@ public class ComponentConjureLava extends IComponentConjureFluid {
     public Block getCauldronType(){
         return Blocks.LAVA_CAULDRON;
     }
+
+    @Override
+    public boolean canBeOnRandomStaff() {
+        return false;
+    }
 }

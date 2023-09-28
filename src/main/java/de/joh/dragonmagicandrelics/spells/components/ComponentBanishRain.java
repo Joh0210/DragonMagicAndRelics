@@ -48,4 +48,14 @@ public class ComponentBanishRain extends SpellEffect {
     public int requiredXPForRote() {
         return 150;
     }
+
+    @Override
+    public boolean canBeChanneled() {
+        return false;
+    }
+
+    @Override
+    public boolean canBeOnRandomStaff() {
+        return false;
+    }
 }

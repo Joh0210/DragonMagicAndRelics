@@ -59,5 +59,12 @@ public class ComponentSunrise extends SpellEffect {
         return 150;
     }
 
+    public boolean canBeChanneled() {
+        return false;
+    }
 
+    @Override
+    public boolean canBeOnRandomStaff() {
+        return false;
+    }
 }
