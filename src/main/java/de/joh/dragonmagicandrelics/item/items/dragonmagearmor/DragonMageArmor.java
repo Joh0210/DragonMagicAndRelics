@@ -130,7 +130,7 @@ public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithG
 
     @Override
     public int getMaxDragonMagic(ItemStack itemStack) {
-        return slot == EquipmentSlot.CHEST ? 64 : 0; //Todo: adjust
+        return slot == EquipmentSlot.CHEST ? 64 : 0;
     }
 
 

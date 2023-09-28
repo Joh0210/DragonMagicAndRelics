@@ -45,13 +45,15 @@ public class DragonMageArmorRitual extends RitualEffect {
 
         if(event.canBeUpgraded()){
             event.performUpgrade(true);
+
+            LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(world);
+            lightningbolt.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
+            world.addFreshEntity(lightningbolt);
+
+            return  true;
         }
 
-        LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(world);
-        lightningbolt.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
-        world.addFreshEntity(lightningbolt);
-
-        return  true;
+        return false;
     }
 
 
