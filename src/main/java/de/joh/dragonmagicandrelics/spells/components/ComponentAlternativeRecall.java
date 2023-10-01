@@ -27,7 +27,7 @@ import net.minecraft.world.phys.Vec3;
  */
 public class ComponentAlternativeRecall extends SpellEffect {
     public ComponentAlternativeRecall(ResourceLocation registryName, ResourceLocation guiIcon) {
-        super(registryName, guiIcon, new AttributeValuePair[]{new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 5.0F, 1.0F, 50.0F)});
+        super(registryName, guiIcon, new AttributeValuePair[]{new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 50.0F)});
     }
 
     public int requiredXPForRote() {
@@ -40,9 +40,9 @@ public class ComponentAlternativeRecall extends SpellEffect {
             if (markSave != null) {
                 BlockPos pos = markSave.getPosition();
                 double dist = target.getEntity().blockPosition().distSqr(pos);
-                double maxDist = modificationData.getValue(Attribute.MAGNITUDE) * 1000.0F;
+                double maxDist = modificationData.getValue(Attribute.RANGE) * 1000.0F;
                 if (!(dist > maxDist * maxDist)) {
-                    int magnitude = (int)modificationData.getValue(Attribute.MAGNITUDE);
+                    int magnitude = (int)modificationData.getValue(Attribute.RANGE);
                     if (this.magnitudeHealthCheck(source, target, magnitude, 20)) {
                         TeleportHelper.teleportEntity(target.getEntity(), context.getWorld().dimension(), new Vec3((double)pos.getX() + 0.5, pos.getY() + 1, (double)pos.getZ() + 0.5));
                         return ComponentApplicationResult.SUCCESS;

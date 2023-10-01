@@ -36,6 +36,13 @@ import top.theillusivec4.curios.api.SlotTypePreset;
 
 import java.util.List;
 
+/**
+ * This spell deals physical damage to opponents, some of which can be absorbed by armor.
+ * In addition, the opponent is thrown back a bit, which can cause additional impact damage.
+ * <br>By increasing the Magnitude, the factor that the armor absorbs decreases more and more.
+ * At maximum strength, they take even more damage than if they were not wearing armor.
+ * @author Joh0210
+ */
 public class ComponentForceDamage extends SpellEffect implements IDamageComponent {
     public ComponentForceDamage(ResourceLocation registryName, ResourceLocation icon) {
         super(registryName, icon, new AttributeValuePair[]{new AttributeValuePair(Attribute.DAMAGE, 5.0F, 1.0F, 20.0F, 0.5F, 3.0F), new AttributeValuePair(Attribute.LESSER_MAGNITUDE, 1.0F, 1.0F, 3.0F, 1.0F, 5.0F), new AttributeValuePair(Attribute.MAGNITUDE, 0.0F, 0.0F, 6.0F, 1.0F, 6.0F)});

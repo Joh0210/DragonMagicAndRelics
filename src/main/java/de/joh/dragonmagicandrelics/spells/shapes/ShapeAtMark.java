@@ -26,7 +26,7 @@ import java.util.List;
  */
 public class ShapeAtMark extends Shape {
     public ShapeAtMark(ResourceLocation registryName, ResourceLocation guiIcon) {
-        super(registryName, guiIcon, new AttributeValuePair[]{new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F), new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 5.0F, 1.0F, 50.0F)});
+        super(registryName, guiIcon, new AttributeValuePair[]{new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F), new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 50.0F)});
     }
 
     @Override
@@ -35,10 +35,10 @@ public class ShapeAtMark extends Shape {
             MarkSave mark = MarkSave.getMark(source.getPlayer(), world);
             if (mark != null) {
                 double dist = source.getCaster().blockPosition().distSqr(mark.getPosition());
-                double maxDist = modificationData.getValue(Attribute.MAGNITUDE) * 500.0F;
+                double maxDist = modificationData.getValue(Attribute.RANGE) * 500.0F;
                 if (!(dist > maxDist * maxDist)) {
                     //block-targets in the area
-                    List<SpellTarget> targets = new ArrayList();
+                    List<SpellTarget> targets = new ArrayList<>();
                     targets.add(new SpellTarget(mark.getPosition(), mark.getDirection()));
                     int radius = (int)Math.floor(modificationData.getValue(Attribute.RADIUS));
                     if (radius > 0) {
@@ -51,11 +51,7 @@ public class ShapeAtMark extends Shape {
                     }
 
                     //entity-targets in the area
-                    List<SpellTarget> targetsEntity = world.getEntities((Entity) null, (new AABB(mark.getPosition())).inflate(radius), (entity) -> {
-                        return entity.isPickable() && entity.isAlive() && entity != source.getCaster();
-                    }).stream().map((e) -> {
-                        return new SpellTarget(e);
-                    }).toList();
+                    List<SpellTarget> targetsEntity = world.getEntities((Entity) null, (new AABB(mark.getPosition())).inflate(radius), (entity) -> entity.isPickable() && entity.isAlive() && entity != source.getCaster()).stream().map(SpellTarget::new).toList();
                     targets.addAll(targetsEntity);
 
 
@@ -83,7 +79,7 @@ public class ShapeAtMark extends Shape {
         if (face == null) {
             return List.of(SpellTarget.NONE);
         } else {
-            ArrayList<SpellTarget> targets = new ArrayList();
+            ArrayList<SpellTarget> targets = new ArrayList<>();
             int x;
             int y;
             int z;
