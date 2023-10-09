@@ -1318,7 +1318,7 @@
         "value": "",
         "json": [
           {
-            "text": "If I don't have a Rune of Marking in my hand, I memorize its location and can reuse it for other spells. In each dimension I can remember exactly one position.\\n\\nCompatible Spells: Alternative Recall or At Mark.",
+            "text": "If I don't have a Rune of Marking in my hand, I memorize its location and can reuse it for other spells. In each dimension I can remember exactly one position.\n\nCompatible Spells: Alternative Recall or At Mark.",
             "color": ""
           }
         ]
@@ -1423,7 +1423,7 @@
         "value": "",
         "json": [
           {
-            "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\\n\\nWith this amulet I can fly through the air like one of her angels without having to take off my armor.\\n\\nThe Fallen version doesn't even consume my mana.",
+            "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\n\nWith this amulet I can fly through the air like one of her angels without having to take off my armor.\n\nThe Fallen version doesn't even consume my mana.",
             "color": ""
           }
         ]
@@ -1541,7 +1541,7 @@
         "value": "",
         "json": [
           {
-            "text": "The Fey can also refine the powder even further, so it only produces Magical Flowers",
+            "text": "The Fey can also refine the powder even further, so it only produces Magical Flowers.",
             "color": ""
           }
         ]
@@ -1846,7 +1846,7 @@
         "value": "",
         "json": [
           {
-            "text": "However, in order to obtain the effects, I don'h have to wear Dragon Mage Armor"
+            "text": "However, in order to obtain the effects, I don't have to wear Dragon Mage Armor."
           }
         ]
       }

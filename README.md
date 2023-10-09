@@ -6,7 +6,7 @@ and [texture](/src/main/resources/assets/dragonmagicandrelics/textures/models/ar
 of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/jsementj/). And thanks to Mithion for helping creating the mod. Also thanks to Ceddi and Nico for helping with testing and balancing.
 <br>The full credits can be viewed [here](/CREDITS.md). 
 
-The Codex has all the necessary information about the added elements.
+The Codex has all the necessary information about the added elements. (But the content is only displayed when playing in American English (en_us))
 <br>The main focus of this mod is for the use in modpacks to extend the late and after game of Mana and Artifice and make it on par with other high level mods. The mod can be added to modpacks. No need to ask.
 
 ## Dragon Mage Armor
