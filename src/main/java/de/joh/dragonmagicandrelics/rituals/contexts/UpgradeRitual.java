@@ -40,8 +40,6 @@ public class UpgradeRitual extends RitualEffect {
 
         if (upgradeSealList.size() == 1 && dMContainerList.size() == 1) {
             if(upgradeSealList.get(0).getItem() instanceof UpgradeSeal upgradeSeal && dMContainerList.get(0).getItem() instanceof IDragonMagicContainer dMContainer){
-                //todo: Has enough points free?
-
                 int currentLevel = dMContainer.getUpgradeLevel(dMContainerList.get(0), upgradeSeal.getArmorUpgrade());
                 if(upgradeSeal.getArmorUpgrade().maxUpgradeLevel <= currentLevel){
                     errorOccurred(new TranslatableComponent("dragonmagicandrelics.ritual.output.upgrade.ritual.already_at_max.error"), context);

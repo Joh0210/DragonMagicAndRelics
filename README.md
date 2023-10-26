@@ -1,4 +1,8 @@
 # Dragon Magic And Relics
+![download counter](https://cf.way2muchnoise.eu/full_785039_downloads.svg)
+![availability](https://cf.way2muchnoise.eu/versions/785039.svg)
+<br>Download on [CurseForge](https://www.curseforge.com/minecraft/mc-mods/dragon-magic-and-relics) or [Modrinth](https://modrinth.com/mod/dragon-magic-and-relics).
+
 A minecraft mod to expand your magic to compete with gods!
 <br>This mod is an extension for the magic mod [Mana and Artifice](https://www.curseforge.com/minecraft/mc-mods/mana-and-artifice) for version 1.18.2.
 The amazing armor [model](/src/main/resources/assets/dragonmagicandrelics/geo/dragon_mage_armor.geo.json)
