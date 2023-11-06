@@ -3,7 +3,6 @@
   "tier": 5,
   "output": "dragonmagicandrelics:amulet_of_dragon_power",
   "quantity": 1,
-  "requiredFaction": "mna:demons",
   "items": [
     "mna:mundane_amulet",
     "minecraft:gold_block",

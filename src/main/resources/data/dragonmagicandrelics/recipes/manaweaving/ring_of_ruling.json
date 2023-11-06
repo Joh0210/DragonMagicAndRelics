@@ -3,7 +3,6 @@
   "tier": 5,
   "output": "dragonmagicandrelics:ring_of_ruling",
   "quantity": 1,
-  "requiredFaction": "mna:demons",
   "items": [
     "mna:mundane_ring",
     "dragonmagicandrelics:dragon_core",
