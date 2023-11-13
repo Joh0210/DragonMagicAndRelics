@@ -1234,6 +1234,16 @@
         "value": "",
         "json": [
           {
+            "text": "When I hit a Player with the spell and have an Player Charm in my Offhand, the charm will be bound to the player.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
             "text": "If I don't have a Rune of Marking in my hand, I memorize its location and can reuse it for other spells. In each dimension I can remember exactly one position.\n\nCompatible Spells: Alternative Recall or At Mark.",
             "color": ""
           }
