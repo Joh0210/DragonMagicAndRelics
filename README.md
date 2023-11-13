@@ -33,6 +33,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Purified Mutandis (Fey only)
 - Ring of Power
 - Ring of Ruling
+- Staff of the Weather Fairy
 - Voidfeather Charm
 
 ### New Blocks
@@ -68,13 +69,14 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Ritual of the Dragon Mage Armor
 - Ritual of the Phoenix
 - Ritual of Upgrade
+- Ritual of Artifact Trade
 
 ### New Spells
 - Alternative Recall (Council only)
 - At Mark (Shape)
-- Banish Rain
+- ~~Banish Rain~~
 - Conjure Lava
-- Conjure Storm
+- ~~Conjure Storm~~
 - Conjure Water
 - Force Damage
 - Mark

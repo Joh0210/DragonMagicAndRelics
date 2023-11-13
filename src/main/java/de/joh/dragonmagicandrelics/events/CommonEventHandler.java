@@ -1,11 +1,7 @@
 package de.joh.dragonmagicandrelics.events;
 
-import com.mna.ManaAndArtifice;
 import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.api.particles.MAParticleType;
-import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import com.mna.effects.EffectInit;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.ArmorUpgradeHelper;
@@ -25,7 +21,6 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -124,7 +119,7 @@ public class CommonEventHandler {
 
     /**
      * Saving the player's position for the Phoenix Ritual when they die
-     * @see de.joh.dragonmagicandrelics.rituals.contexts.PhoenixRitual
+     * @see de.joh.dragonmagicandrelics.rituals.effects.PhoenixRitual
      * @see PlayerSecondChance
      * @see PlayerSecondChanceProvider
      */

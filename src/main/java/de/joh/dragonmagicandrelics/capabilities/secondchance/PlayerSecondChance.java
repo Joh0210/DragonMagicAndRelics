@@ -10,7 +10,7 @@ import net.minecraft.world.level.Level;
 
 /**
  * Saves the player's position upon death for the Phoenix ritual.
- * @see de.joh.dragonmagicandrelics.rituals.contexts.PhoenixRitual
+ * @see de.joh.dragonmagicandrelics.rituals.effects.PhoenixRitual
  * @see de.joh.dragonmagicandrelics.events.CommonEventHandler
  * @author Joh0210
  */

@@ -4,6 +4,7 @@
 
   "item.dragonmagicandrelics.modifier_book": "Modifier Book",
   "item.dragonmagicandrelics.mana_cake": "Mana Cake",
+  "item.dragonmagicandrelics.weather_fairy_staff": "Staff of the Weather Fairy",
   "item.dragonmagicandrelics.dragon_core": "Dragon Core",
   "item.dragonmagicandrelics.abyssal_dragon_mage_helmet": "Abyssal Dragon Mage Helmet",
   "item.dragonmagicandrelics.abyssal_dragon_mage_chestplate": "Abyssal Dragon Mage Chestplate",
@@ -95,6 +96,11 @@
   "dragonmagicandrelics.ritual.output.dragonmagearmorritual.to.low.level.error": "You must be level 75 in order to perform this ritual.",
   "dragonmagicandrelics.ritual.output.secondchanceritual.missing.nbt.error":"There's no place I could go back to.",
 
+  "dragonmagicandrelics.feedback.selected.weather": "Selected Weather: ",
+  "dragonmagicandrelics.feedback.weather.not_changable": "There is no weather in this region!",
+  "dragonmagicandrelics.feedback.selected.weather.rain": "Rain",
+  "dragonmagicandrelics.feedback.selected.weather.storm": "Storm",
+  "dragonmagicandrelics.feedback.selected.weather.sunshine": "Sunshine",
   "tooltip.dragonmagicandrelics.ring_of_power.tooltip.one": "One Ring to surpass them all!",
   "tooltip.dragonmagicandrelics.ring_of_power.tooltip.two": "One Ring that increases each of its upgrades by 1!",
   "tooltip.dragonmagicandrelics.ring_of_ruling.tooltip.one": "One Ring to rule them all!",
@@ -107,6 +113,7 @@
   "tooltip.dragonmagicandrelics.armor.tooltip.spell.other": "Offensive Spell: ",
   "tooltip.dragonmagicandrelics.armor.tooltip.spell.self": "Defensive Spell: ",
   "tooltip.dragonmagicandrelics.dm_container.tooltip.remaining.dmpoints": "Remaining Dragon Magic Points: ",
+  "tooltip.dragonmagicandrelics.weatherferystaff.how_to_change" : "Press §eSHIFT§r and §eSCROLL§r to change",
 
   "tooltip.dragonmagicandrelics.armor.tooltip.upgrade.base": "You have installed the following upgrades:",
   "dragonmagicandrelics:armorupgrade/explosion_resistance": "§bExplosion Resistance§r",
@@ -211,6 +218,7 @@
   "dragonmagicandrelics:rituals/dispelling_ritual": "Ritual of Dispelling",
   "dragonmagicandrelics:rituals/phoenix_ritual": "Ritual of the Phoenix",
   "dragonmagicandrelics:rituals/betrayal_ritual": "Ritual of Betrayal",
+  "dragonmagicandrelics:rituals/artefact_trade": "Ritual of Artifact Trade",
 
   "dragonmagicandrelics.key.togglenightvision": "DM&R: Toggle Night Vision",
   "dragonmagicandrelics.key.toggleflight": "DM&R: Toggle Flight",

@@ -2,6 +2,7 @@ package de.joh.dragonmagicandrelics.spells.components;
 
 import com.mna.api.affinity.Affinity;
 import com.mna.api.spells.ComponentApplicationResult;
+import com.mna.api.spells.SpellCraftingContext;
 import com.mna.api.spells.SpellPartTags;
 import com.mna.api.spells.attributes.AttributeValuePair;
 import com.mna.api.spells.base.IModifiedSpellPart;
@@ -56,6 +57,11 @@ public class ComponentBanishRain extends SpellEffect {
 
     @Override
     public boolean canBeOnRandomStaff() {
+        return false;
+    }
+
+    @Override
+    public boolean isCraftable(SpellCraftingContext context) {
         return false;
     }
 }

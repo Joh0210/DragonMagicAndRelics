@@ -3,11 +3,14 @@ package de.joh.dragonmagicandrelics.events;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.effects.EffectInit;
 import de.joh.dragonmagicandrelics.item.ItemInit;
+import de.joh.dragonmagicandrelics.item.items.WeatherFairyStaff;
 import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
+import de.joh.dragonmagicandrelics.networking.packet.IncrementWeatherC2SPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleFlightC2SPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleNightVisionC2SPacket;
 import de.joh.dragonmagicandrelics.utils.KeybindInit;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -25,6 +28,21 @@ import top.theillusivec4.curios.api.CuriosApi;
 public class ClientEvents {
     @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents{
+        private static Player getPlayer() {
+            return DragonMagicAndRelics.instance.getClientPlayer();
+        }
+
+        @SubscribeEvent
+        public static void onMouseScroll(InputEvent.MouseScrollEvent event){
+            if (getPlayer() != null
+                    && getPlayer().getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof WeatherFairyStaff staff
+                    && getPlayer().isShiftKeyDown())
+            {
+                ModMessages.sendToServer(new IncrementWeatherC2SPacket(event.getScrollDelta() < 0));
+                staff.incrementIterator(getPlayer().getItemBySlot(EquipmentSlot.MAINHAND), event.getScrollDelta() < 0, getPlayer());
+                event.setCanceled(true);
+            }
+        }
 
         /**
          * Has the button been pressed that activates Night Vision or DM&R Flight?

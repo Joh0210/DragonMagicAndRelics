@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Generate, load and save the NBT data from the player for PlayerSecondChance
  * @see PlayerSecondChance
- * @see de.joh.dragonmagicandrelics.rituals.contexts.PhoenixRitual
+ * @see de.joh.dragonmagicandrelics.rituals.effects.PhoenixRitual
  * @see de.joh.dragonmagicandrelics.events.CommonEventHandler
  * @author Joh0210
  */

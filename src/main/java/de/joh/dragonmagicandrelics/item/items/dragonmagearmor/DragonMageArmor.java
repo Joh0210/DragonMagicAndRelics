@@ -68,9 +68,13 @@ public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithG
     private final AnimationFactory factory =  GeckoLibUtil.createFactory(this);
     private final ResourceLocation dragonMageArmorSetBonus;
 
-    public DragonMageArmor(EquipmentSlot pSlot, ResourceLocation dragonMageArmorSetBonus) {
-        super(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, pSlot, new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant());
+    public DragonMageArmor(EquipmentSlot pSlot, ResourceLocation dragonMageArmorSetBonus, net.minecraft.world.item.CreativeModeTab tab) {
+        super(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, pSlot, new Item.Properties().tab(tab).rarity(Rarity.EPIC).fireResistant());
         this.dragonMageArmorSetBonus = dragonMageArmorSetBonus;
+    }
+
+    public DragonMageArmor(EquipmentSlot pSlot, ResourceLocation dragonMageArmorSetBonus) {
+        this(pSlot, dragonMageArmorSetBonus, CreativeModeTab.CreativeModeTab);
     }
 
     public abstract ResourceLocation getWingTextureLocation();
@@ -114,7 +118,6 @@ public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithG
                                 if (appliedComponent) {
                                     SpellCaster.addComponentRoteProgress(self, c.getPart());
                                 }
-
                             });
                         }
                     }

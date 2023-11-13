@@ -5,6 +5,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -39,7 +41,8 @@ public class ModTags {
         return new ArrayList();
     }
 
-    public static Block getRandomBlocks(ResourceLocation tag) {
+    @Nullable
+    public static Block getRandomBlock(ResourceLocation tag) {
     //public static Block getRandomBlocks(ResourceLocation tag, ResourceLocation additionalTag) {
         try {
             Random random = new Random();
@@ -47,6 +50,17 @@ public class ModTags {
 //            if(additionalTag != null){
 //                list.addAll(getBlockTagContents(additionalTag));
 //            }
+            return list.get(random.nextInt(list.size()));
+        } catch (Exception var3) {
+            return null;
+        }
+    }
+
+    @Nullable
+    public static Item getRandomItem(ResourceLocation tag) {
+        try {
+            Random random = new Random();
+            List<Item> list = getItemTagContents(tag);
             return list.get(random.nextInt(list.size()));
         } catch (Exception var3) {
             return null;
@@ -82,6 +96,7 @@ public class ModTags {
 
         public static ResourceLocation UPGRADE_SEAL_TIER = RLoc.create("upgrade_seal_tier");
         public static ResourceLocation DRAGON_MAGIC_CONTAINER = RLoc.create("dragon_magic_container");
+        public static ResourceLocation MNA_ARTIFACT = RLoc.create("mna_artifact");
 
         public Items() {
         }

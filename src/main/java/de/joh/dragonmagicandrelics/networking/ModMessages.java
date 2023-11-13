@@ -1,9 +1,6 @@
 package de.joh.dragonmagicandrelics.networking;
 
-import de.joh.dragonmagicandrelics.networking.packet.ToggleBurningFrenzyS2CPacket;
-import de.joh.dragonmagicandrelics.networking.packet.ToggleFlightC2SPacket;
-import de.joh.dragonmagicandrelics.networking.packet.ToggleMajorFireResS2CPacket;
-import de.joh.dragonmagicandrelics.networking.packet.ToggleNightVisionC2SPacket;
+import de.joh.dragonmagicandrelics.networking.packet.*;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
@@ -59,6 +56,12 @@ public class ModMessages {
                 .decoder(ToggleBurningFrenzyS2CPacket::new)
                 .encoder(ToggleBurningFrenzyS2CPacket::toBytes)
                 .consumer(ToggleBurningFrenzyS2CPacket::handle)
+                .add();
+
+        net.messageBuilder(IncrementWeatherC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(IncrementWeatherC2SPacket::new)
+                .encoder((IncrementWeatherC2SPacket::toBytes))
+                .consumer(IncrementWeatherC2SPacket::handle)
                 .add();
     }
 

@@ -422,6 +422,10 @@
     "related_recipes": [
       {
         "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_regen_undead"
+      },
+      {
+        "type": "eldrin_altar",
         "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_mana_regen"
       }
     ]
@@ -689,42 +693,6 @@
       {
         "type": "eldrin_altar",
         "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_major_fire_resistance"
-      }
-    ]
-  },
-  "Upgrade Glyph Burning Frenzy": {
-    "index": "1",
-    "category": "eldrin_altar",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Upgrade Glyph Burning Frenzy"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With this glyph I can reach unimaginable speeds by running.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Dragon Magic Points per level: 6",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "eldrin_altar",
-        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_burning_frenzy"
       }
     ]
   },
@@ -1207,58 +1175,6 @@
       {
         "type": "spell_part",
         "location":"dragonmagicandrelics:components/conjurelava"
-      }
-    ]
-  },
-  "Component: Banish Rain": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Banish Rain"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "This spell allows me to change the weather to be clear blue skies. Reciting the magic words 'rain, rain, go away, come again another day' does not seem to have any extra effect.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location":"dragonmagicandrelics:components/banishrain"
-      }
-    ]
-  },
-  "Component: Conjure Storm": {
-    "index": "2",
-    "category": "sorcery",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Conjure Storm"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "I can use this spell to summon a torrent of rain. If I increase the magnitude, it will cause a thunderstorm.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location":"dragonmagicandrelics:components/conjurestorm"
       }
     ]
   },
@@ -1998,6 +1914,42 @@
       {
         "type": "ritual",
         "location":"dragonmagicandrelics:rituals/phoenix_ritual"
+      }
+    ]
+  },
+  "Ritual of Artefact Trade": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ritual of Artefact Trade"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Even if I'm lucky enough to find one of the untold artifacts, it might not be the one I want.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "With this ritual I can trade it with another artifact.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location":"dragonmagicandrelics:rituals/artefact_trade"
       }
     ]
   },

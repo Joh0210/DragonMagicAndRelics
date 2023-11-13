@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * These seals can be used to add an upgrade to the Dragon Mage Armor via the Upgrade Ritual.
  * @see DragonMageArmor
- * @see de.joh.dragonmagicandrelics.rituals.contexts.UpgradeRitual
+ * @see de.joh.dragonmagicandrelics.rituals.effects.UpgradeRitual
  * @see ArmorUpgradeInit
  * @author Joh0210
  */
@@ -39,7 +39,11 @@ public class UpgradeSeal extends Item {
      * @param armorUpgrade ID of the armor upgrade that can be installed with this UpgradeSeal
      */
     public UpgradeSeal(ResourceLocation armorUpgrade) {
-        super(new Item.Properties().tab(CreativeModeTab.ArmorUpgradeModeTab).stacksTo(1).rarity(Rarity.RARE)); //.rarity(rarity));
+        this(armorUpgrade, CreativeModeTab.ArmorUpgradeModeTab);
+    }
+
+    public UpgradeSeal(ResourceLocation armorUpgrade, net.minecraft.world.item.CreativeModeTab tab) {
+        super(new Item.Properties().tab(tab).stacksTo(1).rarity(Rarity.RARE)); //.rarity(rarity));
         this.armorUpgradeRL = armorUpgrade;
     }
 
@@ -49,7 +53,7 @@ public class UpgradeSeal extends Item {
      * Call from the game itself.
      */
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(@NotNull ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         if(Screen.hasShiftDown()) {
             ArmorUpgrade armorUpgrade = getArmorUpgrade();
             if (armorUpgrade != null) {

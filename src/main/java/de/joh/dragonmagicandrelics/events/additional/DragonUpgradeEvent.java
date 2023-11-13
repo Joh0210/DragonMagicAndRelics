@@ -20,7 +20,7 @@ import java.util.HashMap;
  * This event is called when the player gets the Dragon Mage Armor.
  * If you want to add more Dragon Mage Armos for new factions, this event must be caught
  * and entered via setAlternativeArmorValues() (if the condition is met)
- * @see de.joh.dragonmagicandrelics.rituals.contexts.DragonMageArmorRitual
+ * @see de.joh.dragonmagicandrelics.rituals.effects.DragonMageArmorRitual
  * @see Commands
  * @author Joh0210
  */

@@ -38,7 +38,7 @@ public class Mutandis extends TieredItem {
 
                 Block block;
                 do {
-                    block = ModTags.getRandomBlocks(isPurified ? ModTags.Blocks.MNA_FLOWERS : ModTags.Blocks.MUTANDIS_PLANTS);
+                    block = ModTags.getRandomBlock(isPurified ? ModTags.Blocks.MNA_FLOWERS : ModTags.Blocks.MUTANDIS_PLANTS);
                     if(block == null){
                         return InteractionResult.FAIL;
                     }

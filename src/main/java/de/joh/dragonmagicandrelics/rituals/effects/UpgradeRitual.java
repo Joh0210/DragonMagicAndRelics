@@ -1,4 +1,4 @@
-package de.joh.dragonmagicandrelics.rituals.contexts;
+package de.joh.dragonmagicandrelics.rituals.effects;
 
 import com.mna.api.rituals.IRitualContext;
 import com.mna.api.rituals.RitualEffect;

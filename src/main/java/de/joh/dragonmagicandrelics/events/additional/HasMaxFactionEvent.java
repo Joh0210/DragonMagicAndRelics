@@ -13,7 +13,7 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
  * If the Dragon Mage Armor Ritual is to be started, the wearer must be wearing appropriate armor.
  * By default, only the default M&A armor is recognized, if you intercept this function in handlers,
  * you can determine whether he is wearing armor from a new faction and which faction it is.
- * @see de.joh.dragonmagicandrelics.rituals.contexts.DragonMageArmorRitual
+ * @see de.joh.dragonmagicandrelics.rituals.effects.DragonMageArmorRitual
  * @author Joh0210
  */
 public class HasMaxFactionEvent extends PlayerEvent {
