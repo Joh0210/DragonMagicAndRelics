@@ -466,6 +466,42 @@
       }
     ]
   },
+  "Upgrade Glyph Sorcerers Pride": {
+    "index": "1",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Sorcerers Pride"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Increases castet Spells Attributes:\n- Magnitude +0.5\n- Damage +3\n- Duration: +30%.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Dragon Magic Points per level: 5",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dragonmagicandrelics:eldrin_altar/upgrade_seal_sorcerers_pride"
+      }
+    ]
+  },
   "Upgrade Glyph Jump Boost": {
     "index": "1",
     "category": "eldrin_altar",

@@ -3,6 +3,7 @@ package de.joh.dragonmagicandrelics.armorupgrades;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.init.*;
 import de.joh.dragonmagicandrelics.armorupgrades.types.ArmorUpgrade;
+import de.joh.dragonmagicandrelics.events.CommonEventHandler;
 import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraftforge.event.RegistryEvent;
@@ -84,6 +85,15 @@ public class ArmorUpgradeInit {
 
     public static ArmorUpgrade BURNING_FRENZY;
     public static ArmorUpgrade MAJOR_MANA_BOOST;
+
+    /**
+     * Increases castet Spells Attributes:
+     * <br> - MAGNITUDE +0.5
+     * <br> - DAMAGE    +3
+     * <br> - DURATION: +30%
+     * @see CommonEventHandler
+     */
+    public static ArmorUpgrade SORCERERS_PRIDE;
     
     @SubscribeEvent
     public static void registerArmorUpgrades(final RegistryEvent.Register<ArmorUpgrade> event) {
@@ -117,6 +127,7 @@ public class ArmorUpgradeInit {
         event.getRegistry().register(ArmorUpgradeInit.NIGHT_VISION);
 
         event.getRegistry().register(ArmorUpgradeInit.BURNING_FRENZY);
+        event.getRegistry().register(ArmorUpgradeInit.SORCERERS_PRIDE);
     }
 
     //todo: revise upgrade costs and recipes
@@ -146,5 +157,6 @@ public class ArmorUpgradeInit {
         ArmorUpgradeInit.ANGEL_FLIGHT = new ArmorUpgradeElytra(RLoc.create("armorupgrade/angel_flight"), 2, false, 5);
         ArmorUpgradeInit.NIGHT_VISION = new ArmorUpgradeNightVision(RLoc.create("armorupgrade/night_vision"), 2);
         ArmorUpgradeInit.BURNING_FRENZY = new ArmorUpgradeBurningFrenzy(RLoc.create("armorupgrade/burning_frenzy"), 6);
+        ArmorUpgradeInit.SORCERERS_PRIDE = new ArmorUpgrade(RLoc.create("armorupgrade/sorcerers_pride"), 3, true, 5);
     }
 }

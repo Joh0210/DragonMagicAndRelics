@@ -1,6 +1,10 @@
 package de.joh.dragonmagicandrelics.events;
 
 import com.mna.api.capabilities.IPlayerMagic;
+import com.mna.api.events.SpellCastEvent;
+import com.mna.api.spells.attributes.Attribute;
+import com.mna.api.spells.base.IModifiedSpellPart;
+import com.mna.api.spells.parts.Shape;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import de.joh.dragonmagicandrelics.DragonMagicAndRelics;
 import de.joh.dragonmagicandrelics.armorupgrades.ArmorUpgradeInit;
@@ -15,6 +19,7 @@ import de.joh.dragonmagicandrelics.networking.packet.ToggleBurningFrenzyS2CPacke
 import de.joh.dragonmagicandrelics.networking.packet.ToggleMajorFireResS2CPacket;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -34,6 +39,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.server.command.ConfigCommand;
 import top.theillusivec4.caelus.api.CaelusApi;
+
+import java.util.Random;
 
 /**
  * These event handlers take care of processing events which are on the server and client. (No damage events)
@@ -157,6 +164,38 @@ public class CommonEventHandler {
                 ModMessages.sendToPlayer(new ToggleMajorFireResS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE)) >= 1), player);
                 ModMessages.sendToPlayer(new ToggleBurningFrenzyS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)) >= 1), player);
             }
+        }
+    }
+
+    /**
+     * Processing of {@link ArmorUpgradeInit#SORCERERS_PRIDE}
+     */
+    @SubscribeEvent
+    public static void onSpellCast(SpellCastEvent event){
+        Player caster = event.getCaster();
+        IModifiedSpellPart<Shape> shape = event.getSpell().getShape();
+
+        int level = ArmorUpgradeHelper.getUpgradeLevel(caster, ArmorUpgradeInit.SORCERERS_PRIDE);
+        if(level > 0 && shape != null){
+            shape.getContainedAttributes().stream()
+                    .filter(attribute -> attribute == Attribute.MAGNITUDE)
+                    .forEach(attribute -> shape.setValue(attribute, shape.getValue(attribute) + Math.round(level * 0.5f)));
+            shape.getContainedAttributes().stream()
+                    .filter(attribute -> attribute == Attribute.DAMAGE)
+                    .forEach(attribute -> shape.setValue(attribute, shape.getValue(attribute) + level * 3));
+            shape.getContainedAttributes().stream()
+                    .filter(attribute -> attribute == Attribute.DURATION)
+                    .forEach(attribute -> shape.setValue(attribute, shape.getValue(attribute) * (1 + level * 0.3f)));
+
+            event.getSpell().getComponents().forEach(modifiedSpellPart -> modifiedSpellPart.getContainedAttributes().stream()
+                    .filter(attribute -> attribute == Attribute.MAGNITUDE)
+                    .forEach(attribute -> modifiedSpellPart.setValue(attribute, modifiedSpellPart.getValue(attribute) + Math.round(level * 0.5f))));
+            event.getSpell().getComponents().forEach(modifiedSpellPart -> modifiedSpellPart.getContainedAttributes().stream()
+                    .filter(attribute -> attribute == Attribute.DAMAGE)
+                    .forEach(attribute -> modifiedSpellPart.setValue(attribute, modifiedSpellPart.getValue(attribute) + level * 3)));
+            event.getSpell().getComponents().forEach(modifiedSpellPart -> modifiedSpellPart.getContainedAttributes().stream()
+                    .filter(attribute -> attribute == Attribute.DURATION)
+                    .forEach(attribute -> modifiedSpellPart.setValue(attribute, modifiedSpellPart.getValue(attribute) * (1 + level * 0.3f))));
         }
     }
 }

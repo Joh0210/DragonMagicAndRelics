@@ -95,6 +95,7 @@ public class ItemInit {
     public static final RegistryObject<Item> UPGRADE_SEAL_REGENERATION = ITEMS.register("upgrade_seal_regeneration", () -> new UpgradeSeal(RLoc.create("armorupgrade/regeneration")));
     public static final RegistryObject<Item> UPGRADE_SEAL_SATURATION = ITEMS.register("upgrade_seal_saturation", () -> new UpgradeSeal(RLoc.create("armorupgrade/saturation")));
     public static final RegistryObject<Item> UPGRADE_SEAL_WATER_BREATHING = ITEMS.register("upgrade_seal_water_breathing", () -> new UpgradeSeal(RLoc.create("armorupgrade/water_breathing")));
+    public static final RegistryObject<Item> UPGRADE_SEAL_SORCERERS_PRIDE = ITEMS.register("upgrade_seal_sorcerers_pride", () -> new UpgradeSeal(RLoc.create("armorupgrade/sorcerers_pride")));
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);

@@ -59,6 +59,7 @@
   "item.dragonmagicandrelics.upgrade_seal_angel_flight": "Upgrade Glyph Angel Flight",
   "item.dragonmagicandrelics.upgrade_seal_damage_resistance": "Upgrade Glyph Damage Resistance",
   "item.dragonmagicandrelics.upgrade_seal_damage_boost": "Upgrade Glyph Damage Boost",
+  "item.dragonmagicandrelics.upgrade_seal_sorcerers_pride": "Upgrade Glyph Sorcerers Pride",
 
   "block.dragonmagicandrelics.rift_emitter": "Rift Emitter",
 
@@ -164,6 +165,8 @@
   "dragonmagicandrelics:armorupgrade/mana_boost.description": "Increases the user's maximum mana storage.",
   "dragonmagicandrelics:armorupgrade/major_mana_boost": "§bMajor Mana Boost§r",
   "dragonmagicandrelics:armorupgrade/major_mana_boost.description": "Increases the user's maximum mana storage.",
+  "dragonmagicandrelics:armorupgrade/sorcerers_pride": "§bSorcerers Pride§r",
+  "dragonmagicandrelics:armorupgrade/sorcerers_pride.description": "Increases castet Spells Attributes:\n- Magnitude +0.5\n- Damage +3\n- Duration: +30%",
   "dragonmagicandrelics:armorupgrade/mana_regen": "§bMana Regeneration§r",
   "dragonmagicandrelics:armorupgrade/mana_regen.description": "Increases the rate at which the user's mana regenerates.",
 
