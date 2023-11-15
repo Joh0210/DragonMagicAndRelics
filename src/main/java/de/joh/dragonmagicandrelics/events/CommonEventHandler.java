@@ -13,12 +13,15 @@ import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChance;
 import de.joh.dragonmagicandrelics.capabilities.secondchance.PlayerSecondChanceProvider;
 import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
+import de.joh.dragonmagicandrelics.item.ItemInit;
+import de.joh.dragonmagicandrelics.item.items.CurseProtectionAmulet;
 import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleBurningFrenzyS2CPacket;
 import de.joh.dragonmagicandrelics.networking.packet.ToggleMajorFireResS2CPacket;
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -26,6 +29,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -33,7 +37,9 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.PotionEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -163,6 +169,23 @@ public class CommonEventHandler {
             if(event.getEntity() instanceof ServerPlayer player) {
                 ModMessages.sendToPlayer(new ToggleMajorFireResS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE)) >= 1), player);
                 ModMessages.sendToPlayer(new ToggleBurningFrenzyS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)) >= 1), player);
+            }
+        }
+    }
+
+    /**
+     * Processing of {@link CurseProtectionAmulet}
+     */
+    @SubscribeEvent
+    public static void onPotionAdded(PotionEvent.PotionApplicableEvent event){
+        if(event.getPotionEffect().getDuration() < 6000
+                && event.getPotionEffect().getDuration() > 0
+                && event.getPotionEffect().getEffect().getCategory() == MobEffectCategory.HARMFUL
+                && event.getPotionEffect().getEffect().getCurativeItems().stream().anyMatch(s -> s.getItem() == Items.MILK_BUCKET)
+        ){
+            int amount = (int) Math.min(event.getPotionEffect().getDuration() * (event.getPotionEffect().getAmplifier() +1) / 20.0f, 150.0f);
+            if(((CurseProtectionAmulet) ItemInit.CURSE_PROTECTION_AMULET.get()).isEquippedAndHasMana(event.getEntityLiving(), amount, true)){
+                event.setResult(Event.Result.DENY);
             }
         }
     }

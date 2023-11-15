@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 
 public class ShapeTrueTouch extends ShapeRaytrace {
     public ShapeTrueTouch(ResourceLocation registryName, ResourceLocation icon) {
-        super(registryName, icon, new AttributeValuePair[]{new AttributeValuePair(Attribute.RANGE, 3.0F, 3.0F, 16.0F, 1.0F, 1.0F), new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F)});
+        super(registryName, icon, new AttributeValuePair(Attribute.RANGE, 3.0F, 3.0F, 16.0F, 1.0F, 1.0F), new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F));
     }
 
     public List<SpellTarget> Target(SpellSource source, Level world, IModifiedSpellPart<Shape> modificationData, ISpellDefinition recipe) {
         if (source.getCaster() != null && source.getCaster().isShiftKeyDown()){
-            return Arrays.asList(new SpellTarget(source.getCaster()));
+            return List.of(new SpellTarget(source.getCaster()));
         }
 
         List<SpellTarget> targets = super.Target(source, world, modificationData, recipe);
@@ -47,9 +47,9 @@ public class ShapeTrueTouch extends ShapeRaytrace {
         Direction face = origin.getBlockFace(null);
         BlockPos targetPos = origin.getBlock();
         if (face == null) {
-            return Arrays.asList(SpellTarget.NONE);
+            return List.of(SpellTarget.NONE);
         } else {
-            ArrayList<SpellTarget> targets = new ArrayList();
+            ArrayList<SpellTarget> targets = new ArrayList<>();
             int h;
             int y;
             if (face.getAxis() != Direction.Axis.X && face.getAxis() != Direction.Axis.Z) {

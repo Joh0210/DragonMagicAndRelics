@@ -913,6 +913,46 @@
     ]
   },
 
+  "Shape: Curse": {
+    "index": "1",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Shape: Curse"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This shape allows me to curse other players from a distance, even if I can't see them.\n\nIf I hold a player charm in my hand and it is within range (Range Mod * 20), the charm will be destroyed, but the spell will hit him.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "However, to escape the curse, you can protect yourself with an Amulet of Curse Protection.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:shapes/curse"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/curse_protection_amulet"
+      }
+    ]
+  },
   "Shape: At Mark": {
     "index": "1",
     "category": "sorcery",
@@ -1673,6 +1713,60 @@
       {
         "type": "ritual",
         "location":"dragonmagicandrelics:rituals/dragon_mage_ritual"
+      }
+    ]
+  },
+  "Amulet of Curse Protection": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Amulet of Curse Protection"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Magic has controlled me in many places, but I will no longer bow to it for its sake!"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "If a negative effect were to burden me, the crystal's mana would offset the obstacle and protect me from it. However, the amulet cannot protect me from effects that last too long."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "In addition to negative effects, it also protects me from spells cast via the "
+          },
+          {
+            "text": "Curse",
+            "color": "dark_blue"
+          },
+          {
+            "text": " Shape."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dragonmagicandrelics:manaweaving/curse_protection_amulet"
+      },
+      {
+        "type": "spell_part",
+        "location":"dragonmagicandrelics:shapes/curse"
       }
     ]
   },

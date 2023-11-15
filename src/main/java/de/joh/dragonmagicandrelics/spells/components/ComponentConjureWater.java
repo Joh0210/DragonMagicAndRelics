@@ -28,7 +28,7 @@ import javax.annotation.Nullable;
 public class ComponentConjureWater extends IComponentConjureFluid {
 
     public ComponentConjureWater(final ResourceLocation registryName, final ResourceLocation guiIcon) {
-        super(registryName, guiIcon, Fluids.WATER, new AttributeValuePair[]{new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 2.0F, 1.0F, 225.0F)});
+        super(registryName, guiIcon, Fluids.WATER, new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 2.0F, 1.0F, 225.0F));
     }
 
     @Override

@@ -34,6 +34,7 @@
   "item.dragonmagicandrelics.angel_ring": "Angel Ring",
   "item.dragonmagicandrelics.fallen_angel_ring": "Fallen Angel Ring",
   "item.dragonmagicandrelics.bracelet_of_friendship": "Bracelet of Friendship",
+  "item.dragonmagicandrelics.curse_protection_amulet": "Amulet of Curse Protection",
   "item.dragonmagicandrelics.upgrade_seal_explosion_resistance": "Upgrade Glyph Explosion Resistance",
   "item.dragonmagicandrelics.upgrade_seal_meteor_jump": "Upgrade Glyph Meteor Jump",
   "item.dragonmagicandrelics.upgrade_seal_mist_form": "Upgrade Glyph Mist Form",
@@ -88,6 +89,10 @@
 
   "dragonmagicandrelics.components.conjurefluid.occupied.error": "The block is already occupied.",
   "dragonmagicandrelics.shapes.atmark.nomark.error": "I need a Rune of Marking in my other hand or need to set a player mark with a Mark-Spell to use this spell.",
+  "dragonmagicandrelics.shapes.curse.no_charm.error": "I need a Player Charm in my other hand to use this spell.",
+  "dragonmagicandrelics.shapes.curse.no_target.error": "The selected Player does not exist.",
+  "dragonmagicandrelics.shapes.curse.too_far.error": "The selected Player is to far away.",
+  "dragonmagicandrelics.shapes.curse.protection.error": "The selected Player protects itself against your Magic.",
 
   "dragonmagicandrelics.ritual.output.upgrade.ritual.already_at_max.error": "The upgrade is already at maximum strength.",
   "dragonmagicandrelics.ritual.output.upgrade.ritual.unexpected.error": "You don't have enough Dragon Magic Points left.",
@@ -173,6 +178,8 @@
   "dragonmagicandrelics:shapes/atmark": "At Mark",
   "dragonmagicandrelics:shapes/atmark.desc.radius": "The radius of the mark's impact.",
   "dragonmagicandrelics:shapes/atmark.desc.range": "The maximum distance that the spell can be casted. Each point raises the cap by 500 blocks.",
+  "dragonmagicandrelics:shapes/curse": "Curse",
+  "dragonmagicandrelics:shapes/curse.desc.range": "Times 20 = The maximum distance that the target can be.",
   "dragonmagicandrelics:shapes/true_touch": "True Touch",
   "dragonmagicandrelics:shapes/true_touch.desc.range": "How far the touch reaches.",
   "dragonmagicandrelics:shapes/true_touch.desc.radius": "Applies a radius to the touch. When targeting blocks on the side, this center will be shifted so it only goes down one block, the rest will go up, allowing easy tunnels.",
@@ -207,6 +214,7 @@
   "dragonmagicandrelics:components/alternativerecall": "Alternative Recall",
   "dragonmagicandrelics:components/alternativerecall.desc.delay": "A delay in seconds before applying this component.",
   "dragonmagicandrelics:components/alternativerecall.desc.range": "The maximum distance that can be recalled. Each point raises the cap by 1.000 blocks.",
+  "dragonmagicandrelics:components/alternativerecall.no_player": "No Player targeted!",
 
   "itemGroup.dragonmagicandrelicstab": "Dragon Magic",
 

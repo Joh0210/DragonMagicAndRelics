@@ -11,8 +11,10 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.ItemInit;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagicProvider;
+import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -40,6 +42,7 @@ public class ComponentMark extends SpellEffect {
                 ItemInit.PLAYER_CHARM.get().SetPlayerTarget(playerTarget, markingRune);
             }
             else {
+                source.getPlayer().sendMessage(new TranslatableComponent("dragonmagicandrelics:components/alternativerecall.no_player"), Util.NIL_UUID);
                 return ComponentApplicationResult.FAIL;
             }
         }

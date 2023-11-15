@@ -23,7 +23,7 @@ import net.minecraft.world.entity.MobSpawnType;
  */
 public class ComponentMoonrise extends SpellEffect {
     public ComponentMoonrise(final ResourceLocation registryName, final ResourceLocation guiIcon) {
-        super(registryName, guiIcon, new AttributeValuePair[0]);
+        super(registryName, guiIcon);
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {

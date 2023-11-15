@@ -27,7 +27,7 @@ import net.minecraft.world.phys.Vec3;
  */
 public class ComponentAlternativeRecall extends SpellEffect {
     public ComponentAlternativeRecall(ResourceLocation registryName, ResourceLocation guiIcon) {
-        super(registryName, guiIcon, new AttributeValuePair[]{new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 50.0F)});
+        super(registryName, guiIcon, new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 25.0F));
     }
 
     public int requiredXPForRote() {
