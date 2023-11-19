@@ -6,13 +6,7 @@ import com.mna.api.entities.IFactionEnemy;
 import com.mna.api.events.ComponentApplyingEvent;
 import com.mna.api.faction.IFaction;
 import com.mna.api.items.ChargeableItem;
-import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.SpellPartTags;
-import com.mna.api.spells.targeting.SpellContext;
-import com.mna.api.spells.targeting.SpellSource;
-import com.mna.api.spells.targeting.SpellTarget;
-import com.mna.api.timing.DelayedEventQueue;
-import com.mna.api.timing.TimedDelayedSpellEffect;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.config.GeneralModConfig;
@@ -21,8 +15,6 @@ import com.mna.entities.sorcery.EntityDecoy;
 import com.mna.entities.utility.PresentItem;
 import com.mna.factions.Factions;
 import com.mna.interop.CuriosInterop;
-import com.mna.spells.SpellCaster;
-import com.mna.spells.crafting.SpellRecipe;
 import com.mna.tools.InventoryUtilities;
 import com.mna.tools.ProjectileHelper;
 import com.mna.tools.SummonUtils;
@@ -34,14 +26,14 @@ import de.joh.dragonmagicandrelics.commands.Commands;
 import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.BraceletOfFriendship;
+import de.joh.dragonmagicandrelics.item.items.FactionAmulet;
+import de.joh.dragonmagicandrelics.item.items.GlassCannonBelt;
 import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.ProjectileReflectionHelper;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
@@ -57,13 +49,11 @@ import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.wrapper.InvWrapper;
-import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.apache.commons.lang3.mutable.MutableFloat;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
-import javax.annotation.Nullable;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -79,21 +69,22 @@ public class DamageEventHandler {
      * Casts a spell on the player or the source when the wearer of the Dragon Mage Armor takes damage.
      * @see ArmorUpgradeInit
      * @see Commands
-     * @see de.joh.dragonmagicandrelics.item.items.FactionAmulet
+     * @see FactionAmulet
+     * @see GlassCannonBelt
      */
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        Entity source = event.getSource().getEntity();
-        LivingEntity living = event.getEntityLiving();
+        Entity sourceEntity = event.getSource().getEntity();
+        LivingEntity targetEntity = event.getEntityLiving();
 
-        if(living instanceof Player player){
+        if(targetEntity instanceof Player player){
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 
             //Spell
             if(!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmor dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
-                DragonMageArmor.applySpell(chest, false, player, source);
-                if(source != null && source != player){
-                    DragonMageArmor.applySpell(chest, true, player, source);
+                DragonMageArmor.applySpell(chest, false, player, sourceEntity);
+                if(sourceEntity != null && sourceEntity != player){
+                    DragonMageArmor.applySpell(chest, true, player, sourceEntity);
                 }
             }
 
@@ -102,22 +93,30 @@ public class DamageEventHandler {
         }
 
         AtomicReference<IFaction> faction = new AtomicReference<>(null);
-        if(living instanceof Player player){
+        if(targetEntity instanceof Player player){
             player.getCapability(ManaAndArtificeMod.getProgressionCapability()).ifPresent((p)-> faction.set(p.getAlliedFaction()));
         }
 
-        if((living instanceof IFactionEnemy || faction.get() != null) && source instanceof LivingEntity && ((LivingEntity)source).hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get())){
-            ((LivingEntity)source).removeEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get());
-            ((LivingEntity)source).addEffect(new MobEffectInstance((de.joh.dragonmagicandrelics.effects.EffectInit.BROKEN_PEACE_EFFECT.get()), 12000));
-            if(source instanceof Player){
-                source.getLevel().playSound(null, source.getX(), source.getY(), source.getZ(), SoundEvents.RAID_HORN, SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
+        if((targetEntity instanceof IFactionEnemy || faction.get() != null) && sourceEntity instanceof LivingEntity && ((LivingEntity)sourceEntity).hasEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get())){
+            ((LivingEntity)sourceEntity).removeEffect(de.joh.dragonmagicandrelics.effects.EffectInit.PEACE_EFFECT.get());
+            ((LivingEntity)sourceEntity).addEffect(new MobEffectInstance((de.joh.dragonmagicandrelics.effects.EffectInit.BROKEN_PEACE_EFFECT.get()), 12000));
+            if(sourceEntity instanceof Player){
+                sourceEntity.getLevel().playSound(null, sourceEntity.getX(), sourceEntity.getY(), sourceEntity.getZ(), SoundEvents.RAID_HORN, SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
             }
 
         }
 
         //Damage Boost
-        if (source instanceof Player player){
+        if (sourceEntity instanceof Player player){
             event.setAmount(event.getAmount() * (1.0f + ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.DAMAGE_BOOST)*0.25f));
+        }
+
+        //Glass Cannon
+        if (sourceEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios((LivingEntity) sourceEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
+            event.setAmount(event.getAmount()*2);
+        }
+        if (targetEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
+            event.setAmount(event.getAmount()*2);
         }
     }
 

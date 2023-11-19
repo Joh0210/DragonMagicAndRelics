@@ -27,7 +27,7 @@ configurations {
 }
 
 group = 'de.joh'
-version = '1.18.2-2.1.28'
+version = '1.18.2-2.1.32'
 
 java {
     archivesBaseName = 'dragonmagicandrelics'
@@ -145,8 +145,8 @@ dependencies {
 
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
 
-    compileOnly fg.deobf("blank:mna-2.0.0.30:api")
-    runtimeOnly fg.deobf("blank:mna:2.0.0.30")
+    compileOnly fg.deobf("blank:mna-2.0.0.31:api")
+    runtimeOnly fg.deobf("blank:mna:2.0.0.31")
 }
 
 jar {

@@ -22,6 +22,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 ### New Items
 - Amulet of Dragon Power
 - Angel Ring (Fey only)
+- Belt of the Minotaur
 - Bracelet of Friendship
 - Brimstone Chalk
 - Dragon Core

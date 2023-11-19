@@ -1601,7 +1601,7 @@
         "value": "",
         "json": [
           {
-            "text": "With this amulet I make peace with the other factions. I don't have to worry about enemies running around or even raids.\\n\\nBut the peace is fragile. An attack from my side declares war!",
+            "text": "With this amulet I make peace with the other factions. I don't have to worry about enemies running around or even raids.\n\nBut the peace is fragile. An attack from my side declares war!",
             "color": ""
           }
         ]
@@ -1611,6 +1611,32 @@
       {
         "type": "eldrin_altar",
         "location":"dragonmagicandrelics:eldrin_altar/faction_amulet"
+      }
+    ]
+  },
+  "Belt of the Minotaur": {
+    "index": "0",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Belt of the Minotaur"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "A Major Attack, but at what cost?!\n\nWith this belt I deal double damage but also suffer double damage!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location":"dragonmagicandrelics:eldrin_altar/glass_cannon_belt"
       }
     ]
   },

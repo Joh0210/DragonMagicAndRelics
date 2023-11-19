@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dragonmagicandrelics:glass_cannon_belt",
+  "tier": 4,
+  "items": [
+    "mna:belt_buckle",
+    "mna:ritual_focus_greater",
+    "minecraft:glass",
+    "minecraft:ghast_tear",
+    "minecraft:glass",
+    "minecraft:netherite_sword",
+    "minecraft:glass",
+    "minecraft:ghast_tear",
+    "minecraft:glass"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "FIRE",
+      "amount": 400
+    }
+  ]
+}
