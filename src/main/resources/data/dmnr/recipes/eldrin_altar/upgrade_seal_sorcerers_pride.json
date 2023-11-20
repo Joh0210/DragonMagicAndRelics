@@ -1,0 +1,42 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_sorcerers_pride",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_light_blue",
+    "mna:greater_mote_air",
+    "mna:greater_mote_water",
+    "mna:greater_mote_arcane",
+    "dmnr:dragon_core",
+    "mna:greater_mote_earth",
+    "mna:greater_mote_fire",
+    "mna:greater_mote_ender",
+    "dmnr:dragon_core"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WATER",
+      "amount": 700
+    },
+    {
+      "affinity": "FIRE",
+      "amount": 700
+    },
+    {
+      "affinity": "EARTH",
+      "amount": 700
+    },
+    {
+      "affinity": "WIND",
+      "amount": 700
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 700
+    },
+    {
+      "affinity": "ENDER",
+      "amount": 700
+    }
+  ]
+}

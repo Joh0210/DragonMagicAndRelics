@@ -1,8 +1,8 @@
 {
 	"replace": false,
 	"values": [
-		"dragonmagicandrelics:faction_amulet",
-		"dragonmagicandrelics:amulet_of_dragon_power",
-		"dragonmagicandrelics:curse_protection_amulet"
+		"dmnr:faction_amulet",
+		"dmnr:amulet_of_dragon_power",
+		"dmnr:curse_protection_amulet"
 	]
 }

@@ -1,0 +1,42 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_regeneration",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_red",
+    "minecraft:ghast_tear",
+    "minecraft:ghast_tear",
+    "minecraft:glistering_melon_slice",
+    "minecraft:glistering_melon_slice",
+    "minecraft:golden_apple",
+    "minecraft:golden_apple",
+    "dmnr:dragon_core",
+    "dmnr:dragon_core"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WATER",
+      "amount": 1200
+    },
+    {
+      "affinity": "FIRE",
+      "amount": 1200
+    },
+    {
+      "affinity": "EARTH",
+      "amount": 1200
+    },
+    {
+      "affinity": "WIND",
+      "amount": 1200
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 1200
+    },
+    {
+      "affinity": "ENDER",
+      "amount": 1200
+    }
+  ]
+}

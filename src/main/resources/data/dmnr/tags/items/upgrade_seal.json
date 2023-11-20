@@ -1,0 +1,36 @@
+{
+  "replace": false,
+  "values": [
+    "dmnr:upgrade_seal_dolphins_grace",
+    "dmnr:upgrade_seal_health_boost",
+    "dmnr:upgrade_seal_jump",
+    "dmnr:upgrade_seal_night_vision",
+    "dmnr:upgrade_seal_fly",
+
+    "dmnr:upgrade_seal_mana_boost",
+    "dmnr:upgrade_seal_mana_regen",
+    "dmnr:upgrade_seal_movement_speed",
+    "dmnr:upgrade_seal_water_breathing",
+    "dmnr:upgrade_seal_reach_distance",
+
+    "dmnr:upgrade_seal_damage_boost",
+    "dmnr:upgrade_seal_elytra",
+    "dmnr:upgrade_seal_angel_flight",
+    "dmnr:upgrade_seal_minor_fire_resistance",
+    "dmnr:upgrade_seal_major_fire_resistance",
+
+    "dmnr:upgrade_seal_kinetic_resistance",
+    "dmnr:upgrade_seal_projectile_reflection",
+    "dmnr:upgrade_seal_damage_resistance",
+    "dmnr:upgrade_seal_meteor_jump",
+    "dmnr:upgrade_seal_saturation",
+
+    "dmnr:upgrade_seal_explosion_resistance",
+    "dmnr:upgrade_seal_mist_form",
+    "dmnr:upgrade_seal_regeneration",
+    "dmnr:upgrade_seal_burning_frenzy",
+    "dmnr:upgrade_seal_major_mana_boost",
+
+    "dmnr:upgrade_seal_sorcerers_pride"
+  ]
+}

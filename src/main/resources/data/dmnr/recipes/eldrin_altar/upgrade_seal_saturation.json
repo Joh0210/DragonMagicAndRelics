@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_saturation",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_yellow",
+    "dmnr:mana_cake",
+    "dmnr:mana_cake",
+    "dmnr:mana_cake",
+    "dmnr:mana_cake",
+    "minecraft:nether_star",
+    "minecraft:nether_star",
+    "minecraft:nether_star",
+    "dmnr:dragon_core"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "EARTH",
+      "amount": 1200
+    }
+  ]
+}

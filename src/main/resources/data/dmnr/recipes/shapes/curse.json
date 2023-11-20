@@ -1,0 +1,21 @@
+{
+	"type": "mna:shape",
+	"output": "dmnr:shapes/atmark",
+	"tier": 5,
+	"items":
+	[
+		"mna:player_charm",
+		"mna:runic_silk",
+		"minecraft:nether_star",
+		"mna:rune_ender",
+		"mna:mote_ender"
+	],
+	"patterns":
+	[
+		"mna:manaweave_patterns/infinity",
+		"mna:manaweave_patterns/split_triangle",
+		"mna:manaweave_patterns/hourglass",
+		"mna:manaweave_patterns/inverted_split_triangle",
+		"mna:manaweave_patterns/infinity"
+	]
+}

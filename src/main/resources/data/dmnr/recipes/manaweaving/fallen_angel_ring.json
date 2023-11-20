@@ -1,0 +1,26 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 5,
+  "output": "dmnr:fallen_angel_ring",
+  "requiredFaction": "mna:undead",
+  "quantity": 1,
+  "items": [
+    "dmnr:dragon_core",
+    "minecraft:netherite_ingot",
+    "minecraft:elytra",
+    "minecraft:netherite_ingot",
+    "mna:mundane_ring",
+    "mna:greater_mote_ender",
+    "minecraft:netherite_ingot",
+    "mna:witherbone",
+    "minecraft:netherite_ingot"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/star",
+    "mna:manaweave_patterns/infinity",
+    "mna:manaweave_patterns/square",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/hourglass",
+    "mna:manaweave_patterns/hourglass"
+  ]
+}

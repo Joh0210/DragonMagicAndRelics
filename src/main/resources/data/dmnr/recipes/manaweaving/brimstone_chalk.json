@@ -1,0 +1,15 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 4,
+  "output": "dmnr:brimstone_chalk",
+  "quantity": 1,
+  "items": [
+    "mna:brimstone_charm",
+    "mna:wizard_chalk"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/triangle"
+  ]
+}

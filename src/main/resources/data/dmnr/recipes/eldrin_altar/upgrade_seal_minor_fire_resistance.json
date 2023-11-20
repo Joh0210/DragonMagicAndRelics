@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_minor_fire_resistance",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_orange",
+    "minecraft:soul_campfire",
+    "minecraft:fire_charge",
+    "mna:living_flame",
+    "mna:greater_mote_fire",
+    "mna:rune_fire",
+    "mna:rune_fire",
+    "mna:brimstone_boat",
+    "minecraft:nether_star"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "FIRE",
+      "amount": 1200
+    }
+  ]
+}

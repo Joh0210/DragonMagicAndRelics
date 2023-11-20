@@ -5,8 +5,8 @@
 
 A minecraft mod to expand your magic to compete with gods!
 <br>This mod is an extension for the magic mod [Mana and Artifice](https://www.curseforge.com/minecraft/mc-mods/mana-and-artifice) for version 1.18.2.
-The amazing armor [model](/src/main/resources/assets/dragonmagicandrelics/geo/dragon_mage_armor.geo.json)
-and [texture](/src/main/resources/assets/dragonmagicandrelics/textures/models/armor/infernal_dragon_mage_armor_texture.png)
+The amazing armor [model](/src/main/resources/assets/dmnr/geo/dragon_mage_armor.geo.json)
+and [texture](/src/main/resources/assets/dmnr/textures/models/armor/infernal_dragon_mage_armor_texture.png)
 of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/jsementj/). And thanks to Mithion for helping creating the mod. Also thanks to Ceddi and Nico for helping with testing and balancing.
 <br>The full credits can be viewed [here](/CREDITS.md). 
 
@@ -91,8 +91,8 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Ultimate Armor
 
 ### Commands
-- ```/dragonmagicandrelics addUpgrade <armor upgrade name> <level>```: Adds the selected upgrade to your Dragon Mage Armor at the selected level.
-- ```/dragonmagicandrelics changeDragonMageArmor <council/demons/fey/undead> <target>```: Exchange the Current Dragon Mage Armor to a different set. (Inherits enchantments, upgrades and spells from previous armor).
+- ```/dmnr addUpgrade <armor upgrade name> <level>```: Adds the selected upgrade to your Dragon Mage Armor at the selected level.
+- ```/dmnr changeDragonMageArmor <council/demons/fey/undead> <target>```: Exchange the Current Dragon Mage Armor to a different set. (Inherits enchantments, upgrades and spells from previous armor).
 
 ## Feedback
 I appreciate any kind of constructive feedback. If you find errors in the mod, it is of course good to let me know. But you can also tell me about recipe adjustments or new elements that should be added. 

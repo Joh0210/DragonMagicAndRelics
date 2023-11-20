@@ -1,0 +1,87 @@
+{
+  "type": "mna:ritual",
+  "tier": 4,
+  "pattern":
+  [
+    [13,-1, 4, 0, 5,-1,15],
+    [-1, 0, 0, 0, 0, 0,-1],
+    [ 3, 0, 0,-1, 0, 0, 6],
+    [ 0, 0,-1, 1,-1, 0, 0],
+    [10, 0, 0,-1, 0, 0, 7],
+    [-1, 0, 0, 0, 0, 0,-1],
+    [16,-1, 9, 0, 8,-1,12]
+  ],
+  "displayPattern":
+  [
+    [13,-1, 4, 0, 5,-1,15],
+    [-1, 0, 0, 0, 0, 0,-1],
+    [ 3, 0, 0,-1, 0, 0, 6],
+    [ 0, 0,-1, 1,-1, 0, 0],
+    [10, 0, 0,-1, 0, 0, 7],
+    [-1, 0, 0, 0, 0, 0,-1],
+    [16,-1, 9, 0, 8,-1,12]
+  ],
+  "reagents":
+  [
+    "F C C G",
+    "       ",
+    "C     C",
+    "   A   ",
+    "C     C",
+    "       ",
+    "I C C H"
+  ],
+  "keys":
+  {
+    "A":
+    {
+      "item": "dmnr:mna_artifact",
+      "optional": false,
+      "consume": true
+    },
+    "C":
+    {
+      "item": "mna:chimerite_gem",
+      "optional": false,
+      "consume": true
+    },
+    "F":
+    {
+      "item": "mna:greater_mote_air",
+      "optional": false,
+      "consume": true
+    },
+    "G":
+    {
+      "item": "mna:greater_mote_water",
+      "optional": false,
+      "consume": true
+    },
+    "H":
+    {
+      "item": "mna:greater_mote_earth",
+      "optional": false,
+      "consume": true
+    },
+    "I":
+    {
+      "item": "mna:greater_mote_fire",
+      "optional": false,
+      "consume": true
+    }
+  },
+  "manaweave":
+  [
+    "mna:manaweave_patterns/knot",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/circle"
+  ],
+  "parameters":
+  {
+    "innerColor": "0xffffff",
+    "outerColor": "0xb29146",
+    "displayIndexes": false,
+    "connectBeam": true,
+    "beamColor": "0xb29146"
+  }
+}

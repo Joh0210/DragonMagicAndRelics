@@ -1,0 +1,20 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 3,
+  "output": "dmnr:mana_cake",
+  "quantity": 1,
+  "items": [
+    "minecraft:cake",
+    "minecraft:cookie",
+    "minecraft:sugar",
+    "minecraft:pumpkin_pie",
+    "mna:ma_flowers",
+    "mna:vinteum_dust"
+
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/triangle"
+  ]
+}

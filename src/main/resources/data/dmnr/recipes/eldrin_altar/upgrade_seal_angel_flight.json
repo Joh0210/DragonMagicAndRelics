@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_angel_flight",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_white",
+    "dmnr:angel_ring",
+    "mna:greater_mote_air",
+    "mna:rune_air",
+    "dmnr:dragon_core",
+    "minecraft:nether_star",
+    "minecraft:nether_star",
+    "minecraft:firework_rocket",
+    "minecraft:phantom_membrane"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WIND",
+      "amount": 800
+    }
+  ]
+}

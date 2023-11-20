@@ -1,0 +1,24 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 5,
+  "output": "dmnr:ring_of_ruling",
+  "quantity": 1,
+  "items": [
+    "mna:mundane_ring",
+    "dmnr:dragon_core",
+    "dmnr:dragon_core",
+    "minecraft:netherite_block",
+    "minecraft:smooth_quartz",
+    "minecraft:ghast_tear",
+    "minecraft:netherite_ingot",
+    "mna:greater_mote_ender",
+    "mna:greater_mote_air"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/infinity",
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/hourglass",
+    "mna:manaweave_patterns/inverted_split_triangle",
+    "mna:manaweave_patterns/infinity"
+  ]
+}

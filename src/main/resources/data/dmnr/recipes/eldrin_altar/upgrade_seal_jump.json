@@ -1,0 +1,20 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_jump",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_lime",
+    "mna:pilgrim_staff",
+    "minecraft:rabbit_foot",
+    "minecraft:rabbit_foot",
+    "minecraft:rabbit_hide",
+    "minecraft:feather",
+    "mna:mote_air"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WIND",
+      "amount": 300
+    }
+  ]
+}

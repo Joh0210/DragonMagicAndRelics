@@ -1,0 +1,19 @@
+{
+	"type": "mna:shape",
+	"output": "dmnr:shapes/atmark",
+	"tier": 3,
+	"items":
+	[
+		"mna:book_marks",
+		"mna:rune_marking",
+		"mna:rune_ender",
+		"mna:mote_ender"
+	],
+	"patterns":
+	[
+		"mna:manaweave_patterns/knot",
+		"mna:manaweave_patterns/knot2",
+		"mna:manaweave_patterns/knot3",
+		"mna:manaweave_patterns/knot4"
+	]
+}

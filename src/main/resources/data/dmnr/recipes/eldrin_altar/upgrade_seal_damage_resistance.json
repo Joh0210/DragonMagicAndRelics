@@ -1,0 +1,34 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_damage_resistance",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_gray",
+    "minecraft:wither_rose",
+    "minecraft:diamond_chestplate",
+    "minecraft:netherite_chestplate",
+    "minecraft:netherite_block",
+    "minecraft:nether_star",
+    "mna:rune_defense",
+    "dmnr:dragon_core",
+    "dmnr:dragon_core"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "EARTH",
+      "amount": 1200
+    },
+    {
+      "affinity": "WIND",
+      "amount": 1200
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 1200
+    },
+    {
+      "affinity": "ENDER",
+      "amount": 1200
+    }
+  ]
+}

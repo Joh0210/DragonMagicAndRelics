@@ -1,9 +1,9 @@
 {
 	"replace": false,
 	"values": [
-		"dragonmagicandrelics:angel_ring",
-		"dragonmagicandrelics:fallen_angel_ring",
-		"dragonmagicandrelics:ring_of_power",
-		"dragonmagicandrelics:ring_of_ruling"
+		"dmnr:angel_ring",
+		"dmnr:fallen_angel_ring",
+		"dmnr:ring_of_power",
+		"dmnr:ring_of_ruling"
 	]
 }

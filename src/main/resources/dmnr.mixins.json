@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "de.joh.dmnr.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "dmnr.refmap.json",
+  "plugin": "de.joh.dmnr.mixins.MixinPlugin",
+  "mixins": [
+    "LivingEntityFireWalkerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

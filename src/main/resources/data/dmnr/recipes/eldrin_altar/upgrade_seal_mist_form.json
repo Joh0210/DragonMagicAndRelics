@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_mist_form",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_gray",
+    "mna:bone_armor_chest",
+    "mna:greater_mote_ender",
+    "minecraft:totem_of_undying",
+    "dmnr:dragon_core",
+    "dmnr:dragon_core",
+    "minecraft:ghast_tear",
+    "minecraft:dragon_breath",
+    "mna:witherbone"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "ENDER",
+      "amount": 1200
+    }
+  ]
+}

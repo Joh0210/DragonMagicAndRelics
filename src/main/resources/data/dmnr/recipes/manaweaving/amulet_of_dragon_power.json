@@ -1,0 +1,24 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 5,
+  "output": "dmnr:amulet_of_dragon_power",
+  "quantity": 1,
+  "items": [
+    "mna:mundane_amulet",
+    "minecraft:gold_block",
+    "minecraft:nether_star",
+    "minecraft:ghast_tear",
+    "minecraft:netherite_ingot",
+    "dmnr:dragon_core",
+    "dmnr:dragon_core",
+    "mna:living_flame",
+    "mna:living_flame"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/infinity",
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/hourglass",
+    "mna:manaweave_patterns/inverted_split_triangle",
+    "mna:manaweave_patterns/infinity"
+  ]
+}

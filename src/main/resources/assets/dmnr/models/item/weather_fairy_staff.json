@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "dmnr:item/weather_fairy_staff"
+  }
+}

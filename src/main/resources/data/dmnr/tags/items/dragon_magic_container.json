@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "dmnr:abyssal_dragon_mage_chestplate",
+    "dmnr:arch_dragon_mage_chestplate",
+    "dmnr:infernal_dragon_mage_chestplate",
+    "dmnr:wild_dragon_mage_chestplate",
+    "dmnr:amulet_of_dragon_power",
+    "dmnr:ring_of_power",
+    "dmnr:ring_of_ruling"
+  ]
+}

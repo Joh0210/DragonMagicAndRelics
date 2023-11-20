@@ -1,0 +1,26 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_reach_distance",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_orange",
+    "minecraft:sticky_piston",
+    "minecraft:sticky_piston",
+    "minecraft:crossbow",
+    "minecraft:snowball",
+    "minecraft:ghast_tear",
+    "minecraft:ender_pearl",
+    "minecraft:ender_pearl",
+    "dmnr:dragon_core"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "EARTH",
+      "amount": 1200
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 600
+    }
+  ]
+}
