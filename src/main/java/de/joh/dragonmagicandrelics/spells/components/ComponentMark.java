@@ -11,6 +11,7 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.ItemInit;
 import de.joh.dragonmagicandrelics.capabilities.dragonmagic.PlayerDragonMagicProvider;
+import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -22,7 +23,7 @@ import net.minecraft.world.level.Level;
 
 /**
  * This spell writes the target's location in the Rune of Marking the caster is holding.
- * <br>If it hits a player, and the caster has a player Charm in ints offhand, it will select this player
+ * <br>If it hits a player, and the caster has a player Charm in ints offhand, it will select this player (can be deactivated through the config)
  * @author Joh0210
  */
 public class ComponentMark extends SpellEffect {
@@ -37,12 +38,14 @@ public class ComponentMark extends SpellEffect {
 
         ItemStack markingRune = source.getCaster().getMainHandItem().getItem() != ItemInit.RUNE_MARKING.get() && source.getCaster().getMainHandItem().getItem() != ItemInit.BOOK_MARKS.get() ? source.getCaster().getOffhandItem() : source.getCaster().getMainHandItem();
 
-        if (markingRune.getItem() == ItemInit.PLAYER_CHARM.get()) {
+        if (CommonConfigs.MARK_SUPPORT_PLAYERCHARM.get() && markingRune.getItem() == ItemInit.PLAYER_CHARM.get()) {
             if (target.getLivingEntity() instanceof Player playerTarget) {
                 ItemInit.PLAYER_CHARM.get().SetPlayerTarget(playerTarget, markingRune);
             }
             else {
-                source.getPlayer().sendMessage(new TranslatableComponent("dragonmagicandrelics:components/alternativerecall.no_player"), Util.NIL_UUID);
+                if (source.getPlayer() != null) {
+                    source.getPlayer().sendMessage(new TranslatableComponent("dragonmagicandrelics:components/alternativerecall.no_player"), Util.NIL_UUID);
+                }
                 return ComponentApplicationResult.FAIL;
             }
         }

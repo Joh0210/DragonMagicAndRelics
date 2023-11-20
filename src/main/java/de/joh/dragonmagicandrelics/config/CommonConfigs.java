@@ -19,6 +19,12 @@ public class CommonConfigs {
     public static final ForgeConfigSpec.ConfigValue<Boolean> CAN_CONJURE_FLUID_IGNORE_VAPORIZE;
 
     /**
+     * Can the Mark Component use PlayerCharms?
+     * @see de.joh.dragonmagicandrelics.spells.components.ComponentMark
+     */
+    public static final ForgeConfigSpec.ConfigValue<Boolean> MARK_SUPPORT_PLAYERCHARM;
+
+    /**
      * fly upgrade:
      * This times level = speed when flying. (0.5 is default creative)
      */
@@ -94,6 +100,7 @@ public class CommonConfigs {
 
         CAN_CONJURE_FLUID_IGNORE_VAPORIZE = BUILDER.comment("If true: Allow Conjure Water (etc.) to place water in the Nether (etc.) when magnitude has been increased.")
                 .define("Can conjure fluid ignore vaporize?", true);
+        MARK_SUPPORT_PLAYERCHARM = BUILDER.define("If true: The Mark Component supports PlayerCharms", true);
         BUILDER.pop();
 
 
