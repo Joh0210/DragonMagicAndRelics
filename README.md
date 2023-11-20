@@ -20,6 +20,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 <br>Another way to maximize the potential of the Dragon Mage Armor is to fuse it with your spells!
 
 ### New Items
+- Amulet of Curse Protection
 - Amulet of Dragon Power
 - Angel Ring (Fey only)
 - Belt of the Minotaur
@@ -62,6 +63,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Reach Distance
 - Regeneration
 - Saturation
+- Sorcerers Pride
 - Swim Speed
 - Water Breathing
 
@@ -79,6 +81,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Conjure Lava
 - ~~Conjure Storm~~
 - Conjure Water
+- Curse (Shape)
 - Force Damage
 - Mark
 - Nightfall

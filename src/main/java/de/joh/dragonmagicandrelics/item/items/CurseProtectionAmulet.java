@@ -12,7 +12,8 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 
 /**
- * Protects the wearer of Negativ Potion Effects (which do not last longer then 5 min) and of the {@link ShapeCurse Curse Shape}
+ * Protects the wearer of Negativ Potion Effects (which do not last longer then 5 min and can be removed with milk) and of the {@link ShapeCurse Curse Shape}
+ * <br> todo: cool down for the Negativ Potion thing?
  * @see CommonEventHandler
  * @author Joh0210
  */
