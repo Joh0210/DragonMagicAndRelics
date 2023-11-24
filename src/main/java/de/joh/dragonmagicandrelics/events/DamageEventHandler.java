@@ -27,7 +27,6 @@ import de.joh.dragonmagicandrelics.config.CommonConfigs;
 import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.item.items.BraceletOfFriendship;
 import de.joh.dragonmagicandrelics.item.items.FactionAmulet;
-import de.joh.dragonmagicandrelics.item.items.GlassCannonBelt;
 import de.joh.dragonmagicandrelics.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dragonmagicandrelics.utils.ProjectileReflectionHelper;
 import net.minecraft.core.BlockPos;
@@ -65,12 +64,13 @@ import java.util.concurrent.atomic.AtomicReference;
 public class DamageEventHandler {
 
     /**
-     * Processing of the damage boost and damaga resistance upgrades.
+     * Processing of the damage boost and damage resistance upgrades.
      * Casts a spell on the player or the source when the wearer of the Dragon Mage Armor takes damage.
+     * <br> - Glass Cannon Belt
+     * <br> - Sturdy Belt
      * @see ArmorUpgradeInit
      * @see Commands
      * @see FactionAmulet
-     * @see GlassCannonBelt
      */
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -117,6 +117,14 @@ public class DamageEventHandler {
         }
         if (targetEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
             event.setAmount(event.getAmount()*2);
+        }
+
+        // Sturdy
+        if (sourceEntity instanceof LivingEntity && event.getAmount() >= 1 && !CuriosApi.getCuriosHelper().findCurios((LivingEntity) sourceEntity, ItemInit.STURDY_BELT.get()).isEmpty()){
+            event.setAmount(Math.max(1, event.getAmount()*0.5f));
+        }
+        if (targetEntity instanceof LivingEntity && event.getAmount() >= 1 && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.STURDY_BELT.get()).isEmpty()){
+            event.setAmount(Math.max(1, event.getAmount()*0.5f));
         }
     }
 

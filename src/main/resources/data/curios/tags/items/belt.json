@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dragonmagicandrelics:glass_cannon_belt"
+    "dragonmagicandrelics:glass_cannon_belt",
+    "dragonmagicandrelics:sturdy_belt"
   ]
 }
