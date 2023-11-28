@@ -113,10 +113,10 @@ public class DamageEventHandler {
 
         //Glass Cannon
         if (sourceEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios((LivingEntity) sourceEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
-            event.setAmount(event.getAmount()*2);
+            event.setAmount(event.getAmount() * Math.max(CommonConfigs.MINOTAUR_BELT_MULTIPLICATION.get(), 1));
         }
         if (targetEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
-            event.setAmount(event.getAmount()*2);
+            event.setAmount(event.getAmount() * Math.max(CommonConfigs.MINOTAUR_BELT_MULTIPLICATION.get(), 1));
         }
 
         // Sturdy
@@ -341,7 +341,7 @@ public class DamageEventHandler {
                     }
 
                     player.level.playSound(null, spe.getX(), spe.getY(), spe.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
-                    TeleportHelper.teleportEntity(spe,spe.getRespawnDimension(), new Vec3((double)bedPos.getX() + 0.5, (double)bedPos.getY(), (double)bedPos.getZ() + 0.5));
+                    TeleportHelper.teleportEntity(spe,spe.getRespawnDimension(), new Vec3((double)bedPos.getX() + 0.5, bedPos.getY(), (double)bedPos.getZ() + 0.5));
                     player.level.playSound(null, bedPos.getX(), bedPos.getY(), bedPos.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
                     player.level.broadcastEntityEvent(spe, (byte)46);
                     return true;
