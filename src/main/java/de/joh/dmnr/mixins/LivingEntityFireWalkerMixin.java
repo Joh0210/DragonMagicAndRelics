@@ -59,6 +59,8 @@ public class LivingEntityFireWalkerMixin {
             cancellable = true
     )
     public void dmnr$jumpInLiquid(TagKey<Fluid> fluid, CallbackInfo ci) {
+        //todo: fix -> Cannot Jump in Lava
+
         if (fluid == FluidTags.LAVA) {
             LivingEntity self = (LivingEntity) (Object) this;
             if (self instanceof Player && (

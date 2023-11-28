@@ -32,7 +32,7 @@ public class ClientEvents {
         }
 
         @SubscribeEvent
-        public static void onMouseScroll(InputEvent.MouseScrollEvent event){
+        public static void onMouseScroll(InputEvent.MouseScrollingEvent event){
             if (getPlayer() != null
                     && getPlayer().getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof WeatherFairyStaff staff
                     && getPlayer().isShiftKeyDown())
@@ -50,7 +50,7 @@ public class ClientEvents {
          * @see de.joh.dmnr.armorupgrades.ArmorUpgradeInit
          */
         @SubscribeEvent
-        public static void onKeyRegister(InputEvent.KeyInputEvent event){
+        public static void onKeyRegister(InputEvent.Key event){
             if(KeybindInit.TOGGLE_NIGHT_VISION_KEY.consumeClick()){
                 ModMessages.sendToServer(new ToggleNightVisionC2SPacket());
             }
@@ -65,7 +65,8 @@ public class ClientEvents {
          */
         @SubscribeEvent
         public static void renderCape(RenderCapeEvent event) {
-            if (event.getEntity() instanceof Player player){
+            Player player = event.getEntity();
+            if (player != null){
                 ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
                 if (
                         (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmor && chest.hasTag() && player.hasEffect(EffectInit.ELYTRA.get()))

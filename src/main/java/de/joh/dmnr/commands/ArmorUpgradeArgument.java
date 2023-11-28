@@ -9,7 +9,7 @@ import com.mojang.brigadier.suggestion.Suggestions;
 import com.mojang.brigadier.suggestion.SuggestionsBuilder;
 import de.joh.dmnr.Registries;
 import net.minecraft.commands.SharedSuggestionProvider;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.ArrayList;
@@ -22,9 +22,13 @@ import java.util.concurrent.CompletableFuture;
  */
 public class ArmorUpgradeArgument implements ArgumentType<ResourceLocation> {
     private static final Collection<String> EXAMPLES = new ArrayList<>();
-    public static final DynamicCommandExceptionType PART_BAD_ID = new DynamicCommandExceptionType((p_208696_0_) -> new TranslatableComponent("argument.item.id.invalid", p_208696_0_));
+    public static final DynamicCommandExceptionType PART_BAD_ID = new DynamicCommandExceptionType((p_208696_0_) -> Component.translatable("argument.item.id.invalid", p_208696_0_));
 
     public ArmorUpgradeArgument() {
+    }
+
+    public static ArmorUpgradeArgument armorUpgrade() {
+        return new ArmorUpgradeArgument();
     }
 
     public ResourceLocation parse(StringReader reader) throws CommandSyntaxException {
@@ -40,8 +44,7 @@ public class ArmorUpgradeArgument implements ArgumentType<ResourceLocation> {
     }
 
     private Collection<String> populateAndGetExamples() {
-        if (EXAMPLES.size() == 0) {
-            //EXAMPLES.add("\"dncapi:none\"");
+        if (EXAMPLES.isEmpty()) {
             Registries.ARMOR_UPGRADE.get().getKeys().forEach((r) -> EXAMPLES.add("\"" + r.toString() + "\""));
         }
 
@@ -50,10 +53,6 @@ public class ArmorUpgradeArgument implements ArgumentType<ResourceLocation> {
 
     public <S> CompletableFuture<Suggestions> listSuggestions(CommandContext<S> context, SuggestionsBuilder builder) {
         return SharedSuggestionProvider.suggest(new ArrayList<>(this.populateAndGetExamples()), builder);
-    }
-
-    public static <S> ResourceLocation getArmorUpgrade(CommandContext<S> context, String name) {
-        return context.getArgument(name, ResourceLocation.class);
     }
 
     public Collection<String> getExamples() {

@@ -119,10 +119,10 @@ public class DragonUpgradeEvent extends PlayerEvent {
             feetNew.getTag().merge(nbtData);
         }
 
-        this.getPlayer().setItemSlot(EquipmentSlot.HEAD, headNew);
-        this.getPlayer().setItemSlot(EquipmentSlot.CHEST, chestNew);
-        this.getPlayer().setItemSlot(EquipmentSlot.LEGS, legsNew);
-        this.getPlayer().setItemSlot(EquipmentSlot.FEET, feetNew);
+        this.getEntity().setItemSlot(EquipmentSlot.HEAD, headNew);
+        this.getEntity().setItemSlot(EquipmentSlot.CHEST, chestNew);
+        this.getEntity().setItemSlot(EquipmentSlot.LEGS, legsNew);
+        this.getEntity().setItemSlot(EquipmentSlot.FEET, feetNew);
 
         if(addBaseUpgrades){
             this.initialUpgrades.forEach(this::addUpgrade);
@@ -140,7 +140,7 @@ public class DragonUpgradeEvent extends PlayerEvent {
     }
 
     private void addUpgrade(ArmorUpgrade upgrade, int level){
-        ItemStack itemStack = this.getPlayer().getItemBySlot(EquipmentSlot.CHEST);
+        ItemStack itemStack = this.getEntity().getItemBySlot(EquipmentSlot.CHEST);
         ((DragonMageArmor)itemStack.getItem()).addDragonMagicToItem(itemStack, upgrade, level, true);
     }
 

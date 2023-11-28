@@ -7,17 +7,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
 
 public class RiftEmitterModel extends AnimatedGeoModel<RiftEmitterEntity> {
         @Override
-        public ResourceLocation getModelLocation(RiftEmitterEntity object) {
+        public ResourceLocation getModelResource(RiftEmitterEntity object) {
                 return new ResourceLocation(DragonMagicAndRelics.MOD_ID, "geo/rift_emitter.geo.json");
         }
 
         @Override
-        public ResourceLocation getTextureLocation(RiftEmitterEntity object) {
+        public ResourceLocation getTextureResource(RiftEmitterEntity object) {
                 return new ResourceLocation(DragonMagicAndRelics.MOD_ID, "textures/block/rift_emitter.png");
         }
 
         @Override
-        public ResourceLocation getAnimationFileLocation(RiftEmitterEntity animatable) {
+        public ResourceLocation getAnimationResource(RiftEmitterEntity animatable) {
                 return new ResourceLocation(DragonMagicAndRelics.MOD_ID, "animations/rift_emitter.animation.json");
         }
 }

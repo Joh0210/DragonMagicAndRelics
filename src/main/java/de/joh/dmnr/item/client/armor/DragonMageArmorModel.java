@@ -12,17 +12,17 @@ import software.bernie.geckolib3.model.AnimatedGeoModel;
  */
 public class DragonMageArmorModel extends AnimatedGeoModel<DragonMageArmor> {
     @Override
-    public ResourceLocation getModelLocation(DragonMageArmor object) {
+    public ResourceLocation getModelResource(DragonMageArmor object) {
         return RLoc.create("geo/dragon_mage_armor.geo.json");
     }
 
     @Override
-    public ResourceLocation getTextureLocation(DragonMageArmor object) {
+    public ResourceLocation getTextureResource(DragonMageArmor object) {
         return object.getTextureLocation();
     }
 
     @Override
-    public ResourceLocation getAnimationFileLocation(DragonMageArmor animatable) {
+    public ResourceLocation getAnimationResource(DragonMageArmor animatable) {
         return RLoc.create("animations/armor_animation.json");
     }
 }

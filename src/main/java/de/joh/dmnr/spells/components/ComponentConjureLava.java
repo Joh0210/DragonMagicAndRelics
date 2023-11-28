@@ -16,8 +16,8 @@ import javax.annotation.Nullable;
  */
 public class ComponentConjureLava extends IComponentConjureFluid {
 
-    public ComponentConjureLava(final ResourceLocation registryName, final ResourceLocation guiIcon) {
-        super(registryName, guiIcon, Fluids.LAVA);
+    public ComponentConjureLava(final ResourceLocation guiIcon) {
+        super(guiIcon, Fluids.LAVA);
     }
 
     @Override

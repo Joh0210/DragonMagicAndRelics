@@ -27,7 +27,7 @@ public class Registries {
     @SubscribeEvent
     public static void RegisterRegistries(NewRegistryEvent event) {
         RegistryBuilder<ArmorUpgrade> armorUpgrade = new RegistryBuilder<>();
-        armorUpgrade.setName(RLoc.create("armorupgrade")).setType(ArmorUpgrade.class).set(key -> ArmorUpgrade.INSTANCE).set((key, isNetwork) -> ArmorUpgrade.INSTANCE).disableSaving().allowModification();
+        armorUpgrade.setName(RLoc.create("armorupgrade")).set(key -> ArmorUpgrade.INSTANCE).set((key, isNetwork) -> ArmorUpgrade.INSTANCE).disableSaving().allowModification();
         ARMOR_UPGRADE = event.create(armorUpgrade);
     }
 }

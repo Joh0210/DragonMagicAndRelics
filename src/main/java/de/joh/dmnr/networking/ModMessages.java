@@ -37,31 +37,31 @@ public class ModMessages {
         net.messageBuilder(ToggleNightVisionC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(ToggleNightVisionC2SPacket::new)
                 .encoder((ToggleNightVisionC2SPacket::toBytes))
-                .consumer(ToggleNightVisionC2SPacket::handle)
+                .consumerMainThread(ToggleNightVisionC2SPacket::handle)
                 .add();
 
         net.messageBuilder(ToggleFlightC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(ToggleFlightC2SPacket::new)
                 .encoder((ToggleFlightC2SPacket::toBytes))
-                .consumer(ToggleFlightC2SPacket::handle)
+                .consumerMainThread(ToggleFlightC2SPacket::handle)
                 .add();
 
         net.messageBuilder(ToggleMajorFireResS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(ToggleMajorFireResS2CPacket::new)
                 .encoder(ToggleMajorFireResS2CPacket::toBytes)
-                .consumer(ToggleMajorFireResS2CPacket::handle)
+                .consumerMainThread(ToggleMajorFireResS2CPacket::handle)
                 .add();
 
         net.messageBuilder(ToggleBurningFrenzyS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(ToggleBurningFrenzyS2CPacket::new)
                 .encoder(ToggleBurningFrenzyS2CPacket::toBytes)
-                .consumer(ToggleBurningFrenzyS2CPacket::handle)
+                .consumerMainThread(ToggleBurningFrenzyS2CPacket::handle)
                 .add();
 
         net.messageBuilder(IncrementWeatherC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(IncrementWeatherC2SPacket::new)
                 .encoder((IncrementWeatherC2SPacket::toBytes))
-                .consumer(IncrementWeatherC2SPacket::handle)
+                .consumerMainThread(IncrementWeatherC2SPacket::handle)
                 .add();
     }
 

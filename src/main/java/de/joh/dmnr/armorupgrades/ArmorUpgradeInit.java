@@ -1,14 +1,15 @@
 package de.joh.dmnr.armorupgrades;
 
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.Registries;
 import de.joh.dmnr.armorupgrades.init.*;
 import de.joh.dmnr.armorupgrades.types.ArmorUpgrade;
 import de.joh.dmnr.events.CommonEventHandler;
 import de.joh.dmnr.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dmnr.utils.RLoc;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.RegisterEvent;
 
 /**
  * An initialization of all upgrades for the Dragon Mage Armor.
@@ -94,43 +95,44 @@ public class ArmorUpgradeInit {
      * @see CommonEventHandler
      */
     public static ArmorUpgrade SORCERERS_PRIDE;
-    
+
     @SubscribeEvent
-    public static void registerArmorUpgrades(final RegistryEvent.Register<ArmorUpgrade> event) {
-        event.getRegistry().register(ArmorUpgradeInit.FLY);
-        event.getRegistry().register(ArmorUpgradeInit.SATURATION);
-        event.getRegistry().register(ArmorUpgradeInit.MOVEMENT_SPEED);
-        event.getRegistry().register(ArmorUpgradeInit.WATER_BREATHING);
+    public static void register(RegisterEvent event) {
+        event.register(Registries.ARMOR_UPGRADE.get().getRegistryKey(), (helper) -> {
+            helper.register(ArmorUpgradeInit.FLY.getRegistryName(), ArmorUpgradeInit.FLY);
+            helper.register(ArmorUpgradeInit.SATURATION.getRegistryName(), ArmorUpgradeInit.SATURATION);
+            helper.register(ArmorUpgradeInit.MOVEMENT_SPEED.getRegistryName(), ArmorUpgradeInit.MOVEMENT_SPEED);
+            helper.register(ArmorUpgradeInit.WATER_BREATHING.getRegistryName(), ArmorUpgradeInit.WATER_BREATHING);
+            helper.register(ArmorUpgradeInit.METEOR_JUMP.getRegistryName(), ArmorUpgradeInit.METEOR_JUMP);
+            helper.register(ArmorUpgradeInit.SORCERERS_PRIDE.getRegistryName(), ArmorUpgradeInit.SORCERERS_PRIDE);
+            helper.register(ArmorUpgradeInit.BURNING_FRENZY.getRegistryName(), ArmorUpgradeInit.BURNING_FRENZY);
 
-        event.getRegistry().register(ArmorUpgradeInit.METEOR_JUMP);
-        event.getRegistry().register(ArmorUpgradeInit.DOLPHINS_GRACE);
-        event.getRegistry().register(ArmorUpgradeInit.REGENERATION);
-        event.getRegistry().register(ArmorUpgradeInit.MANA_BOOST);
-        event.getRegistry().register(ArmorUpgradeInit.MAJOR_MANA_BOOST);
 
-        event.getRegistry().register(ArmorUpgradeInit.MANA_REGEN);
-        event.getRegistry().register(ArmorUpgradeInit.HEALTH_BOOST);
-        event.getRegistry().register(ArmorUpgradeInit.DAMAGE_RESISTANCE);
-        event.getRegistry().register(ArmorUpgradeInit.DAMAGE_BOOST);
-        event.getRegistry().register(ArmorUpgradeInit.REACH_DISTANCE);
+            helper.register(ArmorUpgradeInit.DOLPHINS_GRACE.getRegistryName(), ArmorUpgradeInit.DOLPHINS_GRACE);
+            helper.register(ArmorUpgradeInit.REGENERATION.getRegistryName(), ArmorUpgradeInit.REGENERATION);
+            helper.register(ArmorUpgradeInit.MANA_BOOST.getRegistryName(), ArmorUpgradeInit.MANA_BOOST);
+            helper.register(ArmorUpgradeInit.MAJOR_MANA_BOOST.getRegistryName(), ArmorUpgradeInit.MAJOR_MANA_BOOST);
 
-        event.getRegistry().register(ArmorUpgradeInit.MINOR_FIRE_RESISTANCE);
-        event.getRegistry().register(ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE);
-        event.getRegistry().register(ArmorUpgradeInit.KINETIC_RESISTANCE);
-        event.getRegistry().register(ArmorUpgradeInit.EXPLOSION_RESISTANCE);
-        event.getRegistry().register(ArmorUpgradeInit.PROJECTILE_REFLECTION);
+            helper.register(ArmorUpgradeInit.MANA_REGEN.getRegistryName(), ArmorUpgradeInit.MANA_REGEN);
+            helper.register(ArmorUpgradeInit.HEALTH_BOOST.getRegistryName(), ArmorUpgradeInit.HEALTH_BOOST);
+            helper.register(ArmorUpgradeInit.DAMAGE_RESISTANCE.getRegistryName(), ArmorUpgradeInit.DAMAGE_RESISTANCE);
+            helper.register(ArmorUpgradeInit.DAMAGE_BOOST.getRegistryName(), ArmorUpgradeInit.DAMAGE_BOOST);
+            helper.register(ArmorUpgradeInit.REACH_DISTANCE.getRegistryName(), ArmorUpgradeInit.REACH_DISTANCE);
 
-        event.getRegistry().register(ArmorUpgradeInit.MIST_FORM);
-        event.getRegistry().register(ArmorUpgradeInit.JUMP);
-        event.getRegistry().register(ArmorUpgradeInit.ELYTRA);
-        event.getRegistry().register(ArmorUpgradeInit.ANGEL_FLIGHT);
-        event.getRegistry().register(ArmorUpgradeInit.NIGHT_VISION);
+            helper.register(ArmorUpgradeInit.MINOR_FIRE_RESISTANCE.getRegistryName(), ArmorUpgradeInit.MINOR_FIRE_RESISTANCE);
+            helper.register(ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE.getRegistryName(), ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE);
+            helper.register(ArmorUpgradeInit.KINETIC_RESISTANCE.getRegistryName(), ArmorUpgradeInit.KINETIC_RESISTANCE);
+            helper.register(ArmorUpgradeInit.EXPLOSION_RESISTANCE.getRegistryName(), ArmorUpgradeInit.EXPLOSION_RESISTANCE);
+            helper.register(ArmorUpgradeInit.PROJECTILE_REFLECTION.getRegistryName(), ArmorUpgradeInit.PROJECTILE_REFLECTION);
 
-        event.getRegistry().register(ArmorUpgradeInit.BURNING_FRENZY);
-        event.getRegistry().register(ArmorUpgradeInit.SORCERERS_PRIDE);
+            helper.register(ArmorUpgradeInit.MIST_FORM.getRegistryName(), ArmorUpgradeInit.MIST_FORM);
+            helper.register(ArmorUpgradeInit.JUMP.getRegistryName(), ArmorUpgradeInit.JUMP);
+            helper.register(ArmorUpgradeInit.ELYTRA.getRegistryName(), ArmorUpgradeInit.ELYTRA);
+            helper.register(ArmorUpgradeInit.ANGEL_FLIGHT.getRegistryName(), ArmorUpgradeInit.ANGEL_FLIGHT);
+            helper.register(ArmorUpgradeInit.NIGHT_VISION.getRegistryName(), ArmorUpgradeInit.NIGHT_VISION);
+        });
     }
 
-    //todo: revise upgrade costs and recipes
     static {
         ArmorUpgradeInit.REACH_DISTANCE = new ArmorUpgradeReachDistance(RLoc.create("armorupgrade/reach_distance"), 8);
         ArmorUpgradeInit.FLY = new ArmorUpgradeFly(RLoc.create("armorupgrade/fly"), 7);

@@ -7,7 +7,6 @@ import com.mna.tools.TeleportHelper;
 import de.joh.dmnr.capabilities.secondchance.PlayerSecondChance;
 import de.joh.dmnr.capabilities.secondchance.PlayerSecondChanceProvider;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -63,7 +62,7 @@ public class PhoenixRitual extends RitualEffect {
 
         context.getCaster().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> isValid.set(secondChance.isValid()));
 
-        return isValid.get() ? null : new TranslatableComponent("dmnr.ritual.output.secondchanceritual.missing.nbt.error");
+        return isValid.get() ? null : Component.translatable("dmnr.ritual.output.secondchanceritual.missing.nbt.error");
     }
 
     @Override

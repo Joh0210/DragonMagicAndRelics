@@ -8,7 +8,6 @@ import de.joh.dmnr.events.additional.HasMaxFactionEvent;
 import de.joh.dmnr.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LightningBolt;
@@ -70,13 +69,13 @@ public class DragonMageArmorRitual extends RitualEffect {
         MinecraftForge.EVENT_BUS.post(event);
 
         if (!event.hasMaxFactionArmor()){
-            return new TranslatableComponent("dmnr.ritual.output.dragonmagearmorritual.wrong.armor.error");
+            return Component.translatable("dmnr.ritual.output.dragonmagearmorritual.wrong.armor.error");
         }
         final boolean[] isLevel75 = {false};
 
         player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> isLevel75[0] = 75 <= m.getMagicLevel());
 
-        return isLevel75[0] ? null : new TranslatableComponent("dmnr.ritual.output.dragonmagearmorritual.to.low.level.error");
+        return isLevel75[0] ? null : Component.translatable("dmnr.ritual.output.dragonmagearmorritual.to.low.level.error");
     }
 
     @Override

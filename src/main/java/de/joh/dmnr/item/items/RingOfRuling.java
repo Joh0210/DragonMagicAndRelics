@@ -9,7 +9,6 @@ import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
 import de.joh.dmnr.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -17,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class RingOfRuling extends DragonMageCurios{
 
     @Override
     public void addDragonMagic(ItemStack itemStack, Player player, String sourceExtension){
-        if(itemStack.hasTag() && itemStack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
+        if(itemStack.getTag() != null && itemStack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
             CompoundTag nbt = itemStack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
             player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
                 for(String upgradeKey : nbt.getAllKeys()){
@@ -50,9 +50,9 @@ public class RingOfRuling extends DragonMageCurios{
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
-        tooltip.add(new TranslatableComponent("tooltip.dmnr.ring_of_ruling.tooltip.one"));
-        tooltip.add(new TranslatableComponent("tooltip.dmnr.ring_of_ruling.tooltip.two"));
+    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        tooltip.add(Component.translatable("tooltip.dmnr.ring_of_ruling.tooltip.one"));
+        tooltip.add(Component.translatable("tooltip.dmnr.ring_of_ruling.tooltip.two"));
         super.appendHoverText(stack, world, tooltip, flag);
     }
 }

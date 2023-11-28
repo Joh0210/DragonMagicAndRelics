@@ -11,10 +11,9 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.ItemInit;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -26,8 +25,8 @@ import net.minecraft.world.level.Level;
  * @author Joh0210
  */
 public class ComponentMark extends SpellEffect {
-    public ComponentMark(final ResourceLocation registryName, final ResourceLocation guiIcon) {
-        super(registryName, guiIcon);
+    public ComponentMark(final ResourceLocation guiIcon) {
+        super(guiIcon);
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
@@ -42,7 +41,9 @@ public class ComponentMark extends SpellEffect {
                 ItemInit.PLAYER_CHARM.get().SetPlayerTarget(playerTarget, markingRune);
             }
             else {
-                source.getPlayer().sendMessage(new TranslatableComponent("dmnr:components/alternativerecall.no_player"), Util.NIL_UUID);
+                if(source.getPlayer() != null){
+                    source.getPlayer().displayClientMessage(Component.translatable("dmnr:components/alternativerecall.no_player"), true);
+                }
                 return ComponentApplicationResult.FAIL;
             }
         }

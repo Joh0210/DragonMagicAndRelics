@@ -14,9 +14,8 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.factions.Factions;
 import com.mna.tools.TeleportHelper;
 import de.joh.dmnr.utils.MarkSave;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 
@@ -26,8 +25,8 @@ import net.minecraft.world.phys.Vec3;
  * @author Joh0210
  */
 public class ComponentAlternativeRecall extends SpellEffect {
-    public ComponentAlternativeRecall(ResourceLocation registryName, ResourceLocation guiIcon) {
-        super(registryName, guiIcon, new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 25.0F));
+    public ComponentAlternativeRecall(ResourceLocation guiIcon) {
+        super(guiIcon, new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 25.0F));
     }
 
     public int requiredXPForRote() {
@@ -35,10 +34,11 @@ public class ComponentAlternativeRecall extends SpellEffect {
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
-        if (source.hasCasterReference() && target.isEntity() && target.getEntity().isAlive() && target.getEntity().canChangeDimensions()) {
-            MarkSave markSave = MarkSave.getMark(source.getPlayer(), source.getCaster().getCommandSenderWorld());
-            if (markSave != null) {
+        if (target.getEntity() != null && target.getEntity().isAlive() && source.getPlayer() != null && target.getEntity().canChangeDimensions()) {
+            MarkSave markSave = MarkSave.getMark(source.getPlayer(), source.getPlayer().getCommandSenderWorld());
+            if (markSave != null && markSave.getPosition() != null) {
                 BlockPos pos = markSave.getPosition();
+
                 double dist = target.getEntity().blockPosition().distSqr(pos);
                 double maxDist = modificationData.getValue(Attribute.RANGE) * 1000.0F;
                 if (!(dist > maxDist * maxDist)) {
@@ -51,12 +51,12 @@ public class ComponentAlternativeRecall extends SpellEffect {
                     return ComponentApplicationResult.FAIL;
                 }
 
-                if (source.isPlayerCaster()) {
-                    source.getPlayer().sendMessage(new TranslatableComponent("mna:components/recall.too_far"), Util.NIL_UUID);
+                if (source.getPlayer() != null) {
+                    source.getPlayer().displayClientMessage(Component.translatable("mna:components/recall.too_far"), true);
                 }
             } else {
-                if (source.isPlayerCaster()) {
-                    source.getPlayer().sendMessage(new TranslatableComponent("dmnr.shapes.atmark.nomark.error"), Util.NIL_UUID);
+                if (source.getPlayer() != null) {
+                    source.getPlayer().displayClientMessage(Component.translatable("dmnr.shapes.atmark.nomark.error"),true);
                 }
             }
         }

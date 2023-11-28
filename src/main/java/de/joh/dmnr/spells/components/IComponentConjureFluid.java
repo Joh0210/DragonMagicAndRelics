@@ -35,8 +35,8 @@ public abstract class IComponentConjureFluid extends SpellEffect {
      */
     private final FluidStack fluidStack;
 
-    public IComponentConjureFluid(final ResourceLocation registryName, final ResourceLocation guiIcon, Fluid fluid, AttributeValuePair... attributeValuePairs) {
-        super(registryName, guiIcon, attributeValuePairs);
+    public IComponentConjureFluid(final ResourceLocation guiIcon, Fluid fluid, AttributeValuePair... attributeValuePairs) {
+        super(guiIcon, attributeValuePairs);
         this.fluidStack = new FluidStack(fluid, 1000);
     }
 
@@ -138,10 +138,10 @@ public abstract class IComponentConjureFluid extends SpellEffect {
      */
     public boolean tryPlaceFluid(Player player, Level world, BlockPos blockPos, IModifiedSpellPart<SpellEffect> modificationData, boolean ignoreVaporize) {
         FluidStack resource = this.fluidStack;
-        BlockState state = this.fluidStack.getFluid().getAttributes().getBlock(world, blockPos, this.fluidStack.getFluid().defaultFluidState());
+        BlockState state = this.fluidStack.getFluid().getFluidType().getBlockForFluidState(world, blockPos, this.fluidStack.getFluid().defaultFluidState());
         BlockWrapper wrapper = new BlockWrapper(state, world, blockPos);
-        if (world.dimensionType().ultraWarm() && resource.getFluid().getAttributes().doesVaporize(world, blockPos, resource) && !(ignoreVaporize && CommonConfigs.CAN_CONJURE_FLUID_IGNORE_VAPORIZE.get())) {
-            resource.getFluid().getAttributes().vaporize(player, world, blockPos, resource);
+        if (world.dimensionType().ultraWarm() && resource.getFluid().getFluidType().isVaporizedOnPlacement(world, blockPos, resource) && !(ignoreVaporize && CommonConfigs.CAN_CONJURE_FLUID_IGNORE_VAPORIZE.get())) {
+            resource.getFluid().getFluidType().onVaporize(player, world, blockPos, resource);
             return true;
         } else {
             return wrapper.fill(this.fluidStack, IFluidHandler.FluidAction.EXECUTE) > 0;

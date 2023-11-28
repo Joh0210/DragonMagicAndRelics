@@ -32,8 +32,8 @@ import java.util.List;
  */
 public class ComponentUltimateArmor extends PotionEffectComponent {
 
-    public ComponentUltimateArmor(final ResourceLocation registryName, final ResourceLocation guiIcon) {
-        super(registryName, guiIcon, EffectInit.ULTIMATE_ARMOR, new AttributeValuePair(Attribute.DURATION, 30.0F, 30.0F, 600.0F, 30.0F, 10.0F));
+    public ComponentUltimateArmor(final ResourceLocation guiIcon) {
+        super(guiIcon, EffectInit.ULTIMATE_ARMOR, new AttributeValuePair(Attribute.DURATION, 30.0F, 30.0F, 600.0F, 30.0F, 10.0F));
     }
 
     @Override

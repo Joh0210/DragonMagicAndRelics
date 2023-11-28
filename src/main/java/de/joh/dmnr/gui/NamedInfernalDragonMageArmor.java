@@ -2,7 +2,6 @@ package de.joh.dmnr.gui;
 
 import com.mna.inventory.ItemInventoryBase;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -25,6 +24,6 @@ public class NamedInfernalDragonMageArmor implements MenuProvider {
     }
 
     public @NotNull Component getDisplayName() {
-        return new TextComponent("");
+        return Component.literal("");
     }
 }

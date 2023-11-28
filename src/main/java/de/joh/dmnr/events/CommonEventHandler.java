@@ -33,10 +33,10 @@ import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.living.PotionEvent;
+import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -57,7 +57,7 @@ public class CommonEventHandler {
      */
     @SubscribeEvent
     public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
-        if(event.getEntityLiving() instanceof Player player && !player.getLevel().isClientSide()){
+        if(event.getEntity() instanceof Player player && !player.getLevel().isClientSide()){
             if (player.isSprinting() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1) {
                 float boost = ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP)/10.0f) + ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)/4.0f);
                 player.push((float)(player.getDeltaMovement().x * boost * 1.5F), boost * 2, (float)(player.getDeltaMovement().z * boost * 1.5F));
@@ -71,7 +71,8 @@ public class CommonEventHandler {
      */
     @SubscribeEvent
     public static void onLivingEquipmentChange(LivingEquipmentChangeEvent event){
-        if(event.getEntity() instanceof LivingEntity entity && event.getSlot().getType() == EquipmentSlot.Type.ARMOR){
+        LivingEntity entity = event.getEntity();
+        if(entity != null && event.getSlot().getType() == EquipmentSlot.Type.ARMOR){
             Item fromItem = event.getFrom().getItem();
             Item toItem = event.getTo().getItem();
 
@@ -136,7 +137,7 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
         if(event.isWasDeath()) {
-            event.getPlayer().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> secondChance.setSecondChance(event.getOriginal()));
+            event.getEntity().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> secondChance.setSecondChance(event.getOriginal()));
         }
     }
 
@@ -161,8 +162,8 @@ public class CommonEventHandler {
     }
 
     @SubscribeEvent
-    public static void onPlayerJoinWorld(EntityJoinWorldEvent event) {
-        if(!event.getWorld().isClientSide()) {
+    public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
+        if(!event.getLevel().isClientSide()) {
             if(event.getEntity() instanceof ServerPlayer player) {
                 ModMessages.sendToPlayer(new ToggleMajorFireResS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE)) >= 1), player);
                 ModMessages.sendToPlayer(new ToggleBurningFrenzyS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)) >= 1), player);
@@ -174,14 +175,14 @@ public class CommonEventHandler {
      * Processing of {@link CurseProtectionAmulet}
      */
     @SubscribeEvent
-    public static void onPotionAdded(PotionEvent.PotionApplicableEvent event){
-        if(event.getPotionEffect().getDuration() < 6000
-                && event.getPotionEffect().getDuration() > 0
-                && event.getPotionEffect().getEffect().getCategory() == MobEffectCategory.HARMFUL
-                && event.getPotionEffect().getEffect().getCurativeItems().stream().anyMatch(s -> s.getItem() == Items.MILK_BUCKET)
+    public static void onPotionAdded(MobEffectEvent.Applicable event){
+        if(event.getEffectInstance().getDuration() < 6000
+                && event.getEffectInstance().getDuration() > 0
+                && event.getEffectInstance().getEffect().getCategory() == MobEffectCategory.HARMFUL
+                && event.getEffectInstance().getEffect().getCurativeItems().stream().anyMatch(s -> s.getItem() == Items.MILK_BUCKET)
         ){
-            int amount = (int) Math.min(event.getPotionEffect().getDuration() * (event.getPotionEffect().getAmplifier() +1) / 20.0f, 150.0f);
-            if(((CurseProtectionAmulet) ItemInit.CURSE_PROTECTION_AMULET.get()).isEquippedAndHasMana(event.getEntityLiving(), amount, true)){
+            int amount = (int) Math.min(event.getEffectInstance().getDuration() * (event.getEffectInstance().getAmplifier() +1) / 20.0f, 150.0f);
+            if(((CurseProtectionAmulet) ItemInit.CURSE_PROTECTION_AMULET.get()).isEquippedAndHasMana(event.getEntity(), amount, true)){
                 event.setResult(Event.Result.DENY);
             }
         }

@@ -10,6 +10,8 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
+
 import javax.annotation.Nullable;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
@@ -73,11 +75,7 @@ public class MarkSave {
      * @return Returns the Mark to use. The mark in hand has the highest priority. Then the Dragon Magic Mark.
      */
     @Nullable
-    public static MarkSave getMark(Player source, Level world){
-        if(source == null){ //Wasn't executed by a player?
-            return null;
-        }
-
+    public static MarkSave getMark(@NotNull Player source,@NotNull Level world){
         ItemStack markingRune = source.getMainHandItem().getItem() != ItemInit.RUNE_MARKING.get() && source.getMainHandItem().getItem() != ItemInit.BOOK_MARKS.get() ? source.getOffhandItem() : source.getMainHandItem();
 
         if (markingRune.getItem() instanceof IPositionalItem) {

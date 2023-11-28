@@ -43,8 +43,8 @@ import java.util.List;
  * @author Joh0210
  */
 public class ComponentForceDamage extends SpellEffect implements IDamageComponent {
-    public ComponentForceDamage(ResourceLocation registryName, ResourceLocation icon) {
-        super(registryName, icon, new AttributeValuePair(Attribute.DAMAGE, 5.0F, 1.0F, 20.0F, 0.5F, 3.0F), new AttributeValuePair(Attribute.LESSER_MAGNITUDE, 1.0F, 1.0F, 3.0F, 1.0F, 5.0F), new AttributeValuePair(Attribute.MAGNITUDE, 0.0F, 0.0F, 6.0F, 1.0F, 6.0F));
+    public ComponentForceDamage(ResourceLocation icon) {
+        super(icon, new AttributeValuePair(Attribute.DAMAGE, 5.0F, 1.0F, 20.0F, 0.5F, 3.0F), new AttributeValuePair(Attribute.LESSER_MAGNITUDE, 1.0F, 1.0F, 3.0F, 1.0F, 5.0F), new AttributeValuePair(Attribute.MAGNITUDE, 0.0F, 0.0F, 6.0F, 1.0F, 6.0F));
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {

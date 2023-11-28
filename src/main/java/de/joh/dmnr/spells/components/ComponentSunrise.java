@@ -21,8 +21,8 @@ import net.minecraft.world.entity.MobSpawnType;
  * @author Joh0210
  */
 public class ComponentSunrise extends SpellEffect {
-    public ComponentSunrise(final ResourceLocation registryName, final ResourceLocation guiIcon) {
-        super(registryName, guiIcon);
+    public ComponentSunrise(final ResourceLocation guiIcon) {
+        super(guiIcon);
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
@@ -33,7 +33,7 @@ public class ComponentSunrise extends SpellEffect {
             BlockPos blockPos = (target.isBlock()) ? (new BlockPos(target.getBlock().getX(), (target.getBlock().getY() + 3), target.getBlock().getZ())) : (new BlockPos(target.getEntity().getOnPos().getX(), (target.getEntity().getOnPos().getY() + 3), target.getEntity().getOnPos().getZ()));
 
             Entity auroraBall = EntityInit.STARBALL_ENTITY.get().spawn((ServerLevel)context.getWorld(), null, null, blockPos, MobSpawnType.TRIGGERED, true, false);
-            if (auroraBall != null && auroraBall instanceof TimeChangeBall) {
+            if (auroraBall instanceof TimeChangeBall) {
                 ((TimeChangeBall) auroraBall).setTimeChangeType(TimeChangeBall.TIME_CHANGE_DAY);
                 return ComponentApplicationResult.SUCCESS;
             }

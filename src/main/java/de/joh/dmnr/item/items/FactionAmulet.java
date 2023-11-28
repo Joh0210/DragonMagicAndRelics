@@ -2,14 +2,12 @@ package de.joh.dmnr.item.items;
 
 import com.mna.Registries;
 import com.mna.api.ManaAndArtificeMod;
-import com.mna.api.faction.IFaction;
 import com.mna.api.items.ChargeableItem;
 import com.mna.capabilities.playerdata.progression.PlayerProgression;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.extensions.IForgeItem;
-import net.minecraftforge.registries.IForgeRegistry;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 /**
@@ -27,15 +25,11 @@ public class FactionAmulet extends ChargeableItem implements IForgeItem, ICurioI
 
     @Override
     protected boolean tickEffect(ItemStack stack, Player player, Level world, int slot, float mana, boolean selected) {
-        player.getCapability(ManaAndArtificeMod.getProgressionCapability()).ifPresent((p)->{
-            ((IForgeRegistry) Registries.Factions.get()).getValues().stream().anyMatch((faction) -> {
-                if(p.getRaidChance(((IFaction)faction).getRegistryName()) >= 0.5*PlayerProgression.RAID_IRE && this.isEquippedAndHasMana(player,1.0F, true)){
-                    p.setRaidChance(((IFaction)faction).getRegistryName(), 0);
-                }
-
-                return false;
-            });
-        });
+        player.getCapability(ManaAndArtificeMod.getProgressionCapability()).ifPresent((p)-> Registries.Factions.get().getValues().forEach((faction) -> {
+            if(p.getRaidChance(faction) >= 0.5*PlayerProgression.RAID_IRE && this.isEquippedAndHasMana(player,1.0F, true)){
+                p.setRaidChance(faction, 0);
+            }
+        }));
 
         return false;
     }

@@ -1,5 +1,6 @@
 package de.joh.dmnr.item.items;
 
+import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
 import com.mna.api.items.TieredItem;
 import com.mna.factions.Factions;
@@ -23,17 +24,17 @@ import javax.annotation.Nullable;
  * @author Joh0210
  */
 public class AngelRing extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific {
-    private final ResourceLocation faction;
+    private final IFaction faction;
     private final int level;
 
-    public AngelRing(Properties itemProperties, ResourceLocation faction) {
+    public AngelRing(Properties itemProperties, IFaction faction) {
         super(itemProperties);
         this.faction = faction;
-        this.level = (faction == Factions.UNDEAD.getRegistryName()) ? 0 : 1;
+        this.level = (faction == Factions.UNDEAD) ? 0 : 1;
     }
 
-    public static ResourceLocation getWingTextureLocation(ResourceLocation faction){
-        if(faction == Factions.FEY.getRegistryName()) {
+    public static ResourceLocation getWingTextureLocation(IFaction faction){
+        if(faction == Factions.FEY) {
             return RLoc.create("textures/models/angel_ring_wing.png");
         }
         else {
@@ -42,13 +43,13 @@ public class AngelRing extends TieredItem implements IForgeItem, ICurioItem, IFa
     }
 
     @Override
-    public ResourceLocation getFaction() {
+    public IFaction getFaction() {
         return faction;
     }
 
     @Override
     public boolean makesPiglinsNeutral(SlotContext slotContext, ItemStack stack){
-        return faction == Factions.FEY.getRegistryName();
+        return faction == Factions.FEY;
     }
 
     @Override

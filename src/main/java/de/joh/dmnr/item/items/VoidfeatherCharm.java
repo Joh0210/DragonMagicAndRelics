@@ -29,18 +29,17 @@ public class VoidfeatherCharm extends TieredItem {
         return InventoryUtilities.removeItemFromInventory(new ItemStack(this), true, true, new InvWrapper(player.getInventory()));
     }
 
+    @Override
     public boolean canApplyAtEnchantingTable(ItemStack stack, Enchantment enchantment) {
         return false;
     }
 
-    public int getItemEnchantability(ItemStack stack) {
-        return 0;
-    }
-
+    @Override
     public boolean isEnchantable(@NotNull ItemStack itemStack) {
         return false;
     }
 
+    @Override
     public boolean isBookEnchantable(ItemStack stack, ItemStack book) {
         return false;
     }

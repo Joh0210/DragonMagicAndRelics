@@ -21,8 +21,8 @@ import net.minecraft.sounds.SoundEvents;
  * @author Joh0210
  */
 public class ComponentConjureStorm extends SpellEffect {
-    public ComponentConjureStorm(final ResourceLocation registryName, final ResourceLocation guiIcon) {
-        super(registryName, guiIcon, new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 2.0F, 1.0F, 50.0F));
+    public ComponentConjureStorm(final ResourceLocation guiIcon) {
+        super(guiIcon, new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 2.0F, 1.0F, 50.0F));
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {

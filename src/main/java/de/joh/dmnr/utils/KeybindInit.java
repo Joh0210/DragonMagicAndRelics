@@ -1,10 +1,8 @@
 package de.joh.dmnr.utils;
 
-import de.joh.dmnr.DragonMagicAndRelics;
 import net.minecraft.client.KeyMapping;
-import net.minecraftforge.client.ClientRegistry;
+import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.lwjgl.glfw.GLFW;
 
 /**
@@ -20,9 +18,8 @@ public class KeybindInit {
     public static final KeyMapping TOGGLE_FLIGHT_KEY = new KeyMapping("dmnr.key.toggleflight", GLFW.GLFW_KEY_Y, "key.categories.mna");
 
     @SubscribeEvent
-    public static void init(FMLClientSetupEvent event) {
-        ClientRegistry.registerKeyBinding(TOGGLE_NIGHT_VISION_KEY);
-        ClientRegistry.registerKeyBinding(TOGGLE_FLIGHT_KEY);
-        DragonMagicAndRelics.LOGGER.info("DM&R -> Keybindings Registered");
+    public static void init(RegisterKeyMappingsEvent event) {
+        event.register(TOGGLE_NIGHT_VISION_KEY);
+        event.register(TOGGLE_FLIGHT_KEY);
     }
 }

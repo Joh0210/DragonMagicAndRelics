@@ -10,9 +10,9 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.FogType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.RenderBlockOverlayEvent;
+import net.minecraftforge.client.event.RenderBlockScreenEffectEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerRenderHandler {
-    private static float fogAmount = 0.0F;
+    private static final float FOG_AMOUNT = 0.0F;
     private static boolean addedDragonWingLayer = false;
 
     @SubscribeEvent
@@ -35,7 +35,7 @@ public class PlayerRenderHandler {
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public static void onRenderOverlay(RenderBlockOverlayEvent event) {
+    public static void onRenderOverlay(RenderBlockScreenEffectEvent event) {
         if (event.getBlockState().getBlock() == Blocks.FIRE) {
             if (ClientPlayerDragonMagic.hasMajorFireResistance()) {
                 event.setCanceled(true);
@@ -45,7 +45,7 @@ public class PlayerRenderHandler {
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
-    public static void onFogRenderEvent(EntityViewRenderEvent.RenderFogEvent event) {
+    public static void onFogRenderEvent(ViewportEvent.RenderFog event) {
         if (event.getCamera().getFluidInCamera() == FogType.LAVA) {
             if (ClientPlayerDragonMagic.hasMajorFireResistance()) {
                 event.setNearPlaneDistance(-8.0F);
@@ -54,8 +54,8 @@ public class PlayerRenderHandler {
             }
         }
 
-        if (fogAmount > 0.0F) {
-            float f1 = Mth.lerp(Math.min(1.0F, fogAmount), event.getFarPlaneDistance(), 5.0F);
+        if (FOG_AMOUNT > 0.0F) {
+            float f1 = Mth.lerp(Math.min(1.0F, FOG_AMOUNT), event.getFarPlaneDistance(), 5.0F);
             float f2 = 0.0F;
             float f3 = f1 * 0.8F;
             RenderSystem.setShaderFogStart(f2);

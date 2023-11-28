@@ -16,7 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
  */
 public class BlockEntitieInit {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
-            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, DragonMagicAndRelics.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, DragonMagicAndRelics.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<RiftEmitterEntity>> RIFT_EMITTER_ENTITY =
             BLOCK_ENTITIES.register("rift_emitter_entity", () ->

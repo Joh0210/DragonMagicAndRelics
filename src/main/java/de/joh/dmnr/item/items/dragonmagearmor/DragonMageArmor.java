@@ -23,8 +23,7 @@ import de.joh.dmnr.item.util.IDragonMagicContainer;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -192,29 +191,29 @@ public abstract class DragonMageArmor extends GeoArmorItem implements IItemWithG
         }
 
         if(Screen.hasShiftDown()){
-            if(stack.hasTag()){
+            if(stack.getTag() != null){
                 if(stack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
                     CompoundTag nbt = stack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
-                    if(nbt.getAllKeys().size() > 0){
-                        tooltip.add(new TranslatableComponent("tooltip.dmnr.armor.tooltip.upgrade.base"));
+                    if(!nbt.getAllKeys().isEmpty()){
+                        tooltip.add(Component.translatable("tooltip.dmnr.armor.tooltip.upgrade.base"));
                         for(String key : nbt.getAllKeys()){
                             if(nbt.getInt(key) > 0){
-                                TranslatableComponent component = new TranslatableComponent(key);
-                                tooltip.add(new TextComponent(component.getString() + ": " + nbt.getInt(key)));
+                                MutableComponent component = Component.translatable(key);
+                                tooltip.add(Component.literal(component.getString() + ": " + nbt.getInt(key)));
                             }
                         }
-                        tooltip.add(new TextComponent("  "));
+                        tooltip.add(Component.literal("  "));
                     }
                 }
             }
 
-            TranslatableComponent component = new TranslatableComponent("tooltip.dmnr.dm_container.tooltip.remaining.dmpoints");
-            tooltip.add(new TextComponent(component.getString() + (getMaxDragonMagic(stack) - getSpentDragonPoints(stack))));
-            tooltip.add(new TextComponent("  "));
+            MutableComponent component = Component.translatable("tooltip.dmnr.dm_container.tooltip.remaining.dmpoints");
+            tooltip.add(Component.literal(component.getString() + (getMaxDragonMagic(stack) - getSpentDragonPoints(stack))));
+            tooltip.add(Component.literal("  "));
             super.appendHoverText(stack, world, tooltip, flag);
         }
         else{
-            tooltip.add(new TranslatableComponent("tooltip.dmnr.armor.tooltip"));
+            tooltip.add(Component.translatable("tooltip.dmnr.armor.tooltip"));
         }
     }
 

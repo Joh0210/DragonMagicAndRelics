@@ -75,7 +75,7 @@ public class DamageEventHandler {
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
         Entity sourceEntity = event.getSource().getEntity();
-        LivingEntity targetEntity = event.getEntityLiving();
+        LivingEntity targetEntity = event.getEntity();
 
         if(targetEntity instanceof Player player){
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
@@ -145,7 +145,7 @@ public class DamageEventHandler {
      */
     @SubscribeEvent
     public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
-        if(event.getEntityLiving() instanceof IFactionEnemy){
+        if(event.getEntity() instanceof IFactionEnemy){
             if(event.getNewTarget() == null){
                 return;
             }
@@ -167,7 +167,7 @@ public class DamageEventHandler {
      */
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
-        if(event.getEntityLiving() instanceof Player player){
+        if(event.getEntity() instanceof Player player){
             if (checkAndConsumeVoidfeatherCharm(event, player)) {
                 return;
             }
@@ -252,7 +252,7 @@ public class DamageEventHandler {
      */
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
-        if(event.getEntityLiving() instanceof Player player){
+        if(event.getEntity() instanceof Player player){
             if (!player.level.isClientSide) {
 
                 //Protection from falling through jumpboost
@@ -280,7 +280,7 @@ public class DamageEventHandler {
         }
 
         //Receiving Souls through Mana Reagen for Undeads
-        LivingEntity living = event.getEntityLiving();
+        LivingEntity living = event.getEntity();
         Entity source = event.getSource().getEntity();
         if (source instanceof LivingEntity && source != event.getEntity() && source instanceof Player sourcePlayer) {
             sourcePlayer.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
@@ -392,9 +392,9 @@ public class DamageEventHandler {
      */
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event){
-        if(event.getEntityLiving().getType() == EntityType.ENDER_DRAGON){
-            Level world = event.getEntityLiving().getLevel();
-            PresentItem item = new PresentItem(world, event.getEntityLiving().getX(), event.getEntityLiving().getY(), event.getEntityLiving().getZ(), new ItemStack(ItemInit.DRAGON_CORE.get()));
+        if(event.getEntity().getType() == EntityType.ENDER_DRAGON){
+            Level world = event.getEntity().getLevel();
+            PresentItem item = new PresentItem(world, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), new ItemStack(ItemInit.DRAGON_CORE.get()));
             world.addFreshEntity(item);
         }
     }

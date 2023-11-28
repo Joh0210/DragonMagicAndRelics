@@ -1,74 +1,104 @@
 buildscript {
     repositories {
-        // These repositories are only for Gradle plugins, put any other repositories in the repository block further below
         maven { url = 'https://maven.minecraftforge.net' }
-        mavenCentral()
+        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         maven { url = 'https://maven.parchmentmc.org' }
+        maven { url 'https://maven.blamejared.com' }
+        mavenCentral()
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
         classpath 'org.parchmentmc:librarian:1.+'
+        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+
     }
 }
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
 plugins {
-    id 'maven-publish'
     id 'eclipse'
+    id 'idea'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
+apply plugin: 'org.spongepowered.mixin'
 
-apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
+configurations {
+    shade // <- Create a 'shade' configuration
+    implementation.extendsFrom(shade) // <- Add the shade configuration to implementation
+}
 
 // Modify these variables in gradle.properties
 group = "${groupbase}.${modid}"
 version = "${minecraft_version}-${mod_version}"
 
 java {
-    archivesBaseName = modid
+    archivesBaseName = 'dragonmagicandrelics'
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-println("Building ${group} version ${project.version}")
+configurations {
+    library
+}
+
+mixin {
+    add sourceSets.main, "dmnr.refmap.json"
+
+    config "dmnr.mixins.json"
+}
 
 minecraft {
-    // Mappings (official or parchment) is a matter of preference. Parchment does map some method parameters though
-    // while keeping Class-/Method-/Fieldnames same as official.
-    // mappings channel: "official", version: "${minecraft_version}"
-    // https://ldtteam.jfrog.io/ui/native/parchmentmc-public/org/parchmentmc/data/parchment-1.18.2/
-
-    mappings channel: 'parchment', version: "${parchment_version}-${minecraft_version}"
-
-    // Uncomment if you intend to use an access transformer
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
+    mappings channel: 'parchment', version: '2022.11.27-1.19.2'
     runs {
         client {
             workingDirectory project.file('run')
+
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
-            args '--debug', '--stacktrace', '--scan'
-            property 'forge.logging.markers', "${forge_logging_markers}"
-            property 'forge.logging.console.level', "${forge_logging_console_level}"
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            property 'forge.enabledGameTestNamespaces', 'dmnr'
 
             mods {
-                examplemod {
+                dmnr {
                     source sourceSets.main
                 }
             }
         }
 
         server {
-            workingDirectory project.file('server')
+            workingDirectory project.file('run')
+
             property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            args '--debug', '--stacktrace', '--scan'
-            property 'forge.logging.markers', "${forge_logging_markers}"
-            property 'forge.logging.console.level', "${forge_logging_console_level}"
+            property 'mixin.env.refMapRemappingFile', "${buildDir}/createSrgToMcp/output.srg"
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            property 'forge.enabledGameTestNamespaces', 'dmnr'
 
             mods {
-                examplemod {
+                dmnr {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        gameTestServer {
+            workingDirectory project.file('run')
+
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            property 'forge.enabledGameTestNamespaces', 'dmnr'
+
+            mods {
+                dmnr {
                     source sourceSets.main
                 }
             }
@@ -76,16 +106,15 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            property 'mixin.env.remapRefMap', 'true'
-            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
-            property 'forge.logging.markers', "${forge_logging_markers}"
-            property 'forge.logging.console.level', "${forge_logging_console_level}"
 
-            args '--mod', modid, '--all', '--output', file('src/generated/resources/'), '--existing',
-                    file('src/main/resources/')
+            property 'forge.logging.markers', 'REGISTRIES'
+
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'dmnr', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
-                examplemod {
+                dmnr {
                     source sourceSets.main
                 }
             }
@@ -93,21 +122,24 @@ minecraft {
     }
 }
 
-// Include resources generated by data generators.
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
-    maven { url 'https://maven.manaandartifice.com/releases/1.19.2/' }
+    flatDir {
+        dirs 'libs'
+    }
+    // maven { url 'https://maven.manaandartifice.com/releases/1.19.2/' }
     maven { url 'https://maven.theillusivec4.top/' }
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-    mavenLocal()
 }
 
 dependencies {
-    // Specify the version of Minecraft to use, If this is any group other then 'net.minecraft' it is assumed
-    // that the dep is a ForgeGradle 'patcher' dependency. And it's patches will be applied.
-    // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
+    // shade fg.deobf("com.github.LlamaLad7:MixinExtras:0.0.12")
+    // library fg.deobf("com.github.LlamaLad7:MixinExtras:0.0.12")
+    // annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
 
     // Required dependencies; curios and Geckolib
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${minecraft_version}-${curios_version}")
@@ -119,23 +151,24 @@ dependencies {
 
     // M&A and its API
     // compileOnly "com.mithion:mna:${mna_version}:api" //api, compilation only
-    implementation fg.deobf("com.mithion:mna-forge-1.19.2:${mna_version}") //mod itself, deobf for runtime
+    implementation fg.deobf("com.mithion:mna-forge-1.19.2:${mna_version}:all") //mod itself, deobf for runtime
 }
 
-// Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([
-                'Specification-Title'     : modid,
-                'Specification-Vendor'    : author,
-                'Specification-Version'   : '1',
-                'Implementation-Title'    : project.name,
-                'Implementation-Version'  : project.version,
-                'Implementation-Vendor'   : author,
-                'Implementation-Timestamp': new Date().format('yyyy-MM-dd\'T\'HH:mm:ssZ'),
+                "Specification-Title"     : "dragonmagicandrelics",
+                "Specification-Vendor"    : "Joh0210",
+                "Specification-Version"   : "1",
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : project.jar.archiveVersion,
+                "Implementation-Vendor"   : "Joh0210",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }
 }
+
+jar.finalizedBy('reobfJar')
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'

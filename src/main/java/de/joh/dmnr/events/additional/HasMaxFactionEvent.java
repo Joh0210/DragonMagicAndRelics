@@ -1,6 +1,5 @@
 package de.joh.dmnr.events.additional;
 
-import com.mna.Registries;
 import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
 import com.mna.items.armor.*;
@@ -25,7 +24,7 @@ public class HasMaxFactionEvent extends PlayerEvent {
         ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
         hasMaxFactionArmor = (chest.getItem() instanceof BoneArmorItem || chest.getItem() instanceof CouncilArmorItem || chest.getItem() instanceof DemonArmorItem || chest.getItem() instanceof FeyArmorItem) && ((ISetItem) chest.getItem()).isSetEquipped(player);
         if(chest.getItem() instanceof IFactionSpecific){
-            targetFaction = Registries.Factions.get().getValue(((IFactionSpecific)chest.getItem()).getFaction());
+            targetFaction = ((IFactionSpecific)chest.getItem()).getFaction();
         }
     }
 

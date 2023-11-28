@@ -7,8 +7,7 @@ import de.joh.dmnr.armorupgrades.types.ArmorUpgrade;
 import de.joh.dmnr.item.items.dragonmagearmor.DragonMageArmor;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -57,26 +56,29 @@ public class UpgradeSeal extends Item {
         if(Screen.hasShiftDown()) {
             ArmorUpgrade armorUpgrade = getArmorUpgrade();
             if (armorUpgrade != null) {
-                tooltip.add(new TranslatableComponent(armorUpgrade.getRegistryName().toString() + ".description"));
-                TranslatableComponent component0 = new TranslatableComponent("tooltip.dmnr.upgradeseal.max_level");
-                tooltip.add(new TextComponent(component0.getString() + " " + armorUpgrade.maxUpgradeLevel));
-                TranslatableComponent component1 = new TranslatableComponent("tooltip.dmnr.upgradeseal");
-                tooltip.add(new TextComponent(component1.getString() + " " + armorUpgrade.upgradeCost));
-                if (armorUpgrade.hasStrongerAlternative()) {
-                    tooltip.add(new TextComponent("  "));
-                    TranslatableComponent component2 = new TranslatableComponent("tooltip.dmnr.upgradeseal.stronger_version");
-                    TranslatableComponent component3 = new TranslatableComponent(String.valueOf(armorUpgrade.getStrongerAlternative().getRegistryName()));
-                    tooltip.add(new TextComponent(component2.getString() + " " + component3.getString()));
+                tooltip.add(Component.translatable(armorUpgrade.getRegistryName().toString() + ".description"));
+
+                MutableComponent component0 = Component.translatable("tooltip.dmnr.upgradeseal.max_level");
+                tooltip.add(Component.literal(component0.getString() + " " + armorUpgrade.maxUpgradeLevel));
+
+                MutableComponent component1 = Component.translatable("tooltip.dmnr.upgradeseal");
+                tooltip.add(Component.literal(component1.getString() + " " + armorUpgrade.upgradeCost));
+
+                if (armorUpgrade.getStrongerAlternative() != null) {
+                    tooltip.add(Component.literal("  "));
+                    MutableComponent component2 = Component.translatable("tooltip.dmnr.upgradeseal.stronger_version");
+                    MutableComponent component3 = Component.translatable(String.valueOf(armorUpgrade.getStrongerAlternative().getRegistryName()));
+                    tooltip.add(Component.literal(component2.getString() + " " + component3.getString()));
                 }
 
                 if (!armorUpgrade.supportsOnExtraLevel) {
-                    tooltip.add(new TextComponent("  "));
-                    tooltip.add(new TranslatableComponent("tooltip.dmnr.upgradeseal.not_supports_extra_level"));
+                    tooltip.add(Component.literal("  "));
+                    tooltip.add(Component.translatable("tooltip.dmnr.upgradeseal.not_supports_extra_level"));
                 }
             }
         }
         else{
-            tooltip.add(new TranslatableComponent("tooltip.dmnr.armor.tooltip"));
+            tooltip.add(Component.translatable("tooltip.dmnr.armor.tooltip"));
         }
     }
 

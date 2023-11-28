@@ -1,6 +1,5 @@
 package de.joh.dmnr.mixins;
 
-import com.mna.shadowed.llamalad7.mixinextras.MixinExtrasBootstrap;
 import org.objectweb.asm.tree.ClassNode;
 import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
@@ -13,7 +12,6 @@ public class MixinPlugin implements IMixinConfigPlugin {
     }
 
     public void onLoad(String mixinPackage) {
-        MixinExtrasBootstrap.init();
     }
 
     public String getRefMapperConfig() {

@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class ShapeTrueTouch extends ShapeRaytrace {
-    public ShapeTrueTouch(ResourceLocation registryName, ResourceLocation icon) {
-        super(registryName, icon, new AttributeValuePair(Attribute.RANGE, 3.0F, 3.0F, 16.0F, 1.0F, 1.0F), new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F));
+    public ShapeTrueTouch(ResourceLocation icon) {
+        super(icon, new AttributeValuePair(Attribute.RANGE, 3.0F, 3.0F, 16.0F, 1.0F, 1.0F), new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F));
     }
 
     public List<SpellTarget> Target(SpellSource source, Level world, IModifiedSpellPart<Shape> modificationData, ISpellDefinition recipe) {

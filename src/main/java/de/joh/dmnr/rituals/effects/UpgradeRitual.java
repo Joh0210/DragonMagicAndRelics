@@ -8,7 +8,6 @@ import de.joh.dmnr.item.items.UpgradeSeal;
 import de.joh.dmnr.item.util.IDragonMagicContainer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -42,12 +41,12 @@ public class UpgradeRitual extends RitualEffect {
             if(upgradeSealList.get(0).getItem() instanceof UpgradeSeal upgradeSeal && dMContainerList.get(0).getItem() instanceof IDragonMagicContainer dMContainer){
                 int currentLevel = dMContainer.getUpgradeLevel(dMContainerList.get(0), upgradeSeal.getArmorUpgrade());
                 if(upgradeSeal.getArmorUpgrade().maxUpgradeLevel <= currentLevel){
-                    errorOccurred(new TranslatableComponent("dmnr.ritual.output.upgrade.ritual.already_at_max.error"), context);
+                    errorOccurred(Component.translatable("dmnr.ritual.output.upgrade.ritual.already_at_max.error"), context);
                     return false;
                 }
 
                 if(!dMContainer.addDragonMagicToItem(dMContainerList.get(0), upgradeSeal.getArmorUpgrade(), currentLevel + 1, false)){
-                    errorOccurred(new TranslatableComponent("dmnr.ritual.output.upgrade.ritual.unexpected.error"), context);
+                    errorOccurred(Component.translatable("dmnr.ritual.output.upgrade.ritual.unexpected.error"), context);
                     return false;
                 }
 
@@ -57,7 +56,7 @@ public class UpgradeRitual extends RitualEffect {
                 return true;
             }
         }
-        errorOccurred(new TranslatableComponent("dmnr.ritual.output.upgrade.ritual.wrong.ritual.arrangement.error"), context);
+        errorOccurred(Component.translatable("dmnr.ritual.output.upgrade.ritual.wrong.ritual.arrangement.error"), context);
         return false;
     }
 

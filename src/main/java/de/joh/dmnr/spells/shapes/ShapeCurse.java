@@ -10,8 +10,7 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.items.ItemInit;
 import com.mna.items.ritual.ItemPlayerCharm;
 import de.joh.dmnr.item.items.CurseProtectionAmulet;
-import net.minecraft.Util;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -27,8 +26,8 @@ import java.util.List;
  * @author Joh0210
  */
 public class ShapeCurse extends Shape {
-    public ShapeCurse(ResourceLocation registryName, ResourceLocation guiIcon, AttributeValuePair... attributeValuePairs) {
-        super(registryName, guiIcon, new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 10.0F, 1.0F, 10.0F));
+    public ShapeCurse(ResourceLocation guiIcon) {
+        super(guiIcon, new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 10.0F, 1.0F, 10.0F));
     }
 
     @Override
@@ -49,17 +48,17 @@ public class ShapeCurse extends Shape {
                             playerCharm.shrink(1);
                             return List.of(new SpellTarget(target));
                         } else if (source.getPlayer() != null && !level.isClientSide()) {
-                            source.getPlayer().sendMessage(new TranslatableComponent("dmnr.shapes.curse.protection.error"), Util.NIL_UUID);
+                            source.getPlayer().displayClientMessage(Component.translatable("dmnr.shapes.curse.protection.error"), true);
                         }
                     } else if (source.getPlayer() != null && !level.isClientSide()) {
-                        source.getPlayer().sendMessage(new TranslatableComponent("dmnr.shapes.curse.too_far.error"), Util.NIL_UUID);
+                        source.getPlayer().displayClientMessage(Component.translatable("dmnr.shapes.curse.too_far.error"), true);
                     }
                 } else if (source.getPlayer() != null && !level.isClientSide()) {
-                    source.getPlayer().sendMessage(new TranslatableComponent("dmnr.shapes.curse.no_target.error"), Util.NIL_UUID);
+                    source.getPlayer().displayClientMessage(Component.translatable("dmnr.shapes.curse.no_target.error"), true);
                 }
             }
             else if (source.getPlayer() != null && !level.isClientSide()) {
-                source.getPlayer().sendMessage(new TranslatableComponent("dmnr.shapes.curse.no_charm.error"), Util.NIL_UUID);
+                source.getPlayer().displayClientMessage(Component.translatable("dmnr.shapes.curse.no_charm.error"), true);
             }
         }
 

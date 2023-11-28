@@ -20,8 +20,8 @@ import net.minecraft.world.entity.player.Player;
  * @author Joh0210
  */
 public class ComponentSaturate extends SpellEffect {
-    public ComponentSaturate(ResourceLocation registryName, ResourceLocation guiIcon) {
-        super(registryName, guiIcon, new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 5.0F, 1.0F, 10F));
+    public ComponentSaturate(ResourceLocation guiIcon) {
+        super(guiIcon, new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 5.0F, 1.0F, 10F));
     }
 
     public int requiredXPForRote() {

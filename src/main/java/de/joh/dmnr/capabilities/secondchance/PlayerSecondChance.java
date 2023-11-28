@@ -19,12 +19,6 @@ public class PlayerSecondChance {
     private ResourceKey<Level> dimension;
     private boolean isValid = false;
 
-    public void copyFrom(PlayerSecondChance source) {
-        this.position = source.getPosition();
-        this.dimension = source.getDimension();
-        this.isValid = true;
-    }
-
     public void setSecondChance(Player player) {
         setSecondChance(player.blockPosition(), player.level.dimension());
     }
@@ -53,7 +47,7 @@ public class PlayerSecondChance {
             nbt.putInt("x", this.position.getX());
             nbt.putInt("y", this.position.getY());
             nbt.putInt("z", this.position.getZ());
-            nbt.putString("dimension_key_type", this.dimension.getRegistryName().toString());
+            nbt.putString("dimension_key_type", this.dimension.registry().toString());
             nbt.putString("dimension_key_value", this.dimension.location().toString());
             compound.put("second_chance_data", nbt);
         }

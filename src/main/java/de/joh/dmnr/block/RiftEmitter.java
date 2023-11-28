@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import java.util.Collections;
 import java.util.List;
@@ -35,10 +36,10 @@ public class RiftEmitter extends BaseEntityBlock {
      * Interaction with the block to open the rift
      */
     @Override
-    public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+    public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         super.use(blockstate, world, pos, player, hand, hit);
         if (!player.level.isClientSide) {
-            NetworkHooks.openGui((ServerPlayer)player, new NamedRift());
+            NetworkHooks.openScreen((ServerPlayer)player, new NamedRift());
         }
 
         return InteractionResult.SUCCESS;
@@ -48,7 +49,7 @@ public class RiftEmitter extends BaseEntityBlock {
      * Makes the block drop the appropriate item.
      */
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
         return Collections.singletonList(new ItemStack(ItemInit.RIFT_EMITTER_ITEM.get()));
     }
 
@@ -57,7 +58,7 @@ public class RiftEmitter extends BaseEntityBlock {
      */
     @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return BlockEntitieInit.RIFT_EMITTER_ENTITY.get().create(pPos, pState);
     }
 
@@ -65,7 +66,7 @@ public class RiftEmitter extends BaseEntityBlock {
      * Instead of the block, a BlockEntity is created that uses the GeckoLib model.
      */
     @Override
-    public RenderShape getRenderShape(BlockState pState) {
+    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
         return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 }

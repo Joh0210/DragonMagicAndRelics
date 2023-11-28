@@ -5,8 +5,6 @@ import de.joh.dmnr.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dmnr.utils.RLoc;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.registries.ForgeRegistryEntry;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -16,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
  * @see ArmorUpgradeInit
  * @author Joh0210
  */
-public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
+public class ArmorUpgrade {
     public static ArmorUpgrade INSTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/none"), 0, false, false, 0);
 
     public final int upgradeCost;
@@ -32,34 +30,27 @@ public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
      * Can you upgrade the armor an infinite number of times with this upgrade?
      */
     public final boolean isInfStackable;
+    private final ResourceLocation registryName;
 
     /**
      * @param registryName ID under which the upgrade can be recognized.
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      * @param isInfStackable Can you upgrade the armor an infinite number of times with this upgrade?
      */
-    public ArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost){
-        this.setRegistryName(registryName);
+    public ArmorUpgrade(ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost){
+        this.registryName = registryName;
         this.maxUpgradeLevel = maxUpgradeLevel;
         this.isInfStackable = isInfStackable;
         this.upgradeCost = upgradeCost;
         this.supportsOnExtraLevel = supportsOnExtraLevel;
     }
 
-    public ArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost){
-        this.setRegistryName(registryName);
+    public ArmorUpgrade(ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost){
+        this.registryName = registryName;
         this.maxUpgradeLevel = maxUpgradeLevel;
         this.isInfStackable = isInfStackable;
         this.upgradeCost = upgradeCost;
         this.supportsOnExtraLevel = isInfStackable;
-    }
-
-    /**
-     * @param level Level to check
-     * @return Is the input level valid for this upgrade.
-     */
-    public boolean isLevelCorreckt(int level){
-        return (0 <= level && level <= maxUpgradeLevel);
     }
 
     /**
@@ -72,7 +63,7 @@ public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
     /**
      * Is there another version of this upgrade that is significantly stronger.
      */
-    public boolean hasStrongerAlternative() {
+    public final boolean hasStrongerAlternative() {
         return getStrongerAlternative() != null;
     }
 
@@ -82,6 +73,10 @@ public class ArmorUpgrade extends ForgeRegistryEntry<ArmorUpgrade> {
     }
 
     public String getSourceID(int level) {
-        return getRegistryName().toString() + "_" + level;
+        return registryName.toString() + "_" + level;
+    }
+
+    public ResourceLocation getRegistryName() {
+        return registryName;
     }
 }

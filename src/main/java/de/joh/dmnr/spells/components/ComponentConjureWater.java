@@ -27,8 +27,8 @@ import javax.annotation.Nullable;
  */
 public class ComponentConjureWater extends IComponentConjureFluid {
 
-    public ComponentConjureWater(final ResourceLocation registryName, final ResourceLocation guiIcon) {
-        super(registryName, guiIcon, Fluids.WATER, new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 2.0F, 1.0F, 225.0F));
+    public ComponentConjureWater(final ResourceLocation guiIcon) {
+        super(guiIcon, Fluids.WATER, new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 2.0F, 1.0F, 225.0F));
     }
 
     @Override
@@ -38,11 +38,6 @@ public class ComponentConjureWater extends IComponentConjureFluid {
 
     public Affinity getAffinity() {
         return Affinity.WATER;
-    }
-
-    @Override
-    public SpellPartTags getUseTag() {
-        return SpellPartTags.UTILITY;
     }
 
     public float initialComplexity() {
@@ -62,6 +57,10 @@ public class ComponentConjureWater extends IComponentConjureFluid {
     @Override
     @Nullable
     public BlockState getCauldronBlockState(){
+        if(getCauldronType() == null){
+            return super.getCauldronBlockState();
+        }
+
         return getCauldronType().defaultBlockState().setValue(BlockStateProperties.LEVEL_CAULDRON, 3);
     }
 

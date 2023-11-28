@@ -4,6 +4,7 @@ import com.mna.api.guidebook.RegisterGuidebooksEvent;
 import com.mojang.logging.LogUtils;
 import de.joh.dmnr.block.BlockInit;
 import de.joh.dmnr.block.entity.BlockEntitieInit;
+import de.joh.dmnr.commands.CommandSerializerInit;
 import de.joh.dmnr.config.CommonConfigs;
 import de.joh.dmnr.effects.EffectInit;
 import de.joh.dmnr.item.ItemInit;
@@ -42,6 +43,7 @@ public class DragonMagicAndRelics {
         BlockInit.register(eventBus);
         EffectInit.register(eventBus);
         BlockEntitieInit.register(eventBus);
+        CommandSerializerInit.register(eventBus);
 
         eventBus.addListener(this::setup);
 

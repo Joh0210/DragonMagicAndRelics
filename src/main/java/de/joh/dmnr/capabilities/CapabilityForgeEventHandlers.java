@@ -26,14 +26,12 @@ public class CapabilityForgeEventHandlers {
 
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         Player original = event.getOriginal();
         original.reviveCaps();
-        player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((magic) -> {
-            original.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((oldMagic) -> {
-                magic.copyFrom(oldMagic, player);
-            });
-        });
+        player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(
+                (magic) -> original.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(
+                        (oldMagic) -> magic.copyFrom(oldMagic, player)));
         event.getOriginal().invalidateCaps();
     }
 

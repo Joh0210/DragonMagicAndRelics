@@ -4,8 +4,7 @@ import de.joh.dmnr.CreativeModeTab;
 import de.joh.dmnr.DragonMagicAndRelics;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -48,7 +47,7 @@ public class WeatherFairyStaff extends SwordItem {
             } else {
                 stack.getTag().merge(nbtData);
             }
-            player.displayClientMessage(new TextComponent(new TranslatableComponent("dmnr.feedback.selected.weather").getString() + getSelectedWeatherText(stack).getString()), true);
+            player.displayClientMessage(Component.literal(Component.translatable("dmnr.feedback.selected.weather").getString() + getSelectedWeatherText(stack).getString()), true);
         }
     }
 
@@ -60,11 +59,11 @@ public class WeatherFairyStaff extends SwordItem {
         return iterator % 3;
     }
 
-    public TranslatableComponent getSelectedWeatherText(ItemStack stack){
+    public MutableComponent getSelectedWeatherText(ItemStack stack){
         return switch (adjustWildMagicIterator(stack.getTag() != null ? stack.getTag().getInt(DragonMagicAndRelics.MOD_ID + "_weather_iterator") : 0)){
-            case 1 -> new TranslatableComponent("dmnr.feedback.selected.weather.rain");
-            case 2 -> new TranslatableComponent("dmnr.feedback.selected.weather.storm");
-            default -> new TranslatableComponent("dmnr.feedback.selected.weather.sunshine");
+            case 1 -> Component.translatable("dmnr.feedback.selected.weather.rain");
+            case 2 -> Component.translatable("dmnr.feedback.selected.weather.storm");
+            default -> Component.translatable("dmnr.feedback.selected.weather.sunshine");
         };
     }
 
@@ -74,9 +73,9 @@ public class WeatherFairyStaff extends SwordItem {
 
         if (!world.isClientSide()) {
             if(user.getLevel().getBiome(user.blockPosition()).value().getPrecipitation() == Biome.Precipitation.NONE){
-                user.displayClientMessage(new TranslatableComponent("dmnr.feedback.weather.not_changable"), true);
+                user.displayClientMessage(Component.translatable("dmnr.feedback.weather.not_changable"), true);
             } else {
-                user.displayClientMessage(new TextComponent(new TranslatableComponent("dmnr.feedback.selected.weather").getString() + getSelectedWeatherText(user.getItemInHand(hand)).getString()), true);
+                user.displayClientMessage(Component.literal(Component.translatable("dmnr.feedback.selected.weather").getString() + getSelectedWeatherText(user.getItemInHand(hand)).getString()), true);
                 switch (adjustWildMagicIterator(user.getItemInHand(hand).getTag() != null ? user.getItemInHand(hand).getTag().getInt(DragonMagicAndRelics.MOD_ID + "_weather_iterator") : 0)) {
                     case 1 -> ((ServerLevel) user.getLevel()).setWeatherParameters(0, 6000, true, false);
                     case 2 -> ((ServerLevel) user.getLevel()).setWeatherParameters(0, 6000, true, true);
@@ -91,10 +90,10 @@ public class WeatherFairyStaff extends SwordItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(new TranslatableComponent("dmnr.feedback.selected.weather"));
+        tooltip.add(Component.translatable("dmnr.feedback.selected.weather"));
         tooltip.add(getSelectedWeatherText((stack)));
-        tooltip.add(new TextComponent(""));
-        tooltip.add(new TranslatableComponent("tooltip.dmnr.weatherferystaff.how_to_change"));
+        tooltip.add(Component.literal(""));
+        tooltip.add(Component.translatable("tooltip.dmnr.weatherferystaff.how_to_change"));
     }
 
     @Override

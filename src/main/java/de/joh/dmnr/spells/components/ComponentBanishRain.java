@@ -19,8 +19,8 @@ import net.minecraft.sounds.SoundEvents;
  * @author Joh0210
  */
 public class ComponentBanishRain extends SpellEffect {
-    public ComponentBanishRain(final ResourceLocation registryName, final ResourceLocation guiIcon) {
-        super(registryName, guiIcon);
+    public ComponentBanishRain(final ResourceLocation guiIcon) {
+        super(guiIcon);
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {

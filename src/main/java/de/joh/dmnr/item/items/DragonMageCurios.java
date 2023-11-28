@@ -6,13 +6,13 @@ import de.joh.dmnr.item.util.IDragonMagicContainer;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -63,35 +63,35 @@ public class DragonMageCurios extends Item implements ICurioItem, IDragonMagicCo
      */
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         if(Screen.hasShiftDown()){
-            if(stack.hasTag()){
+            if(stack.getTag() != null){
                 if(stack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
                     CompoundTag nbt = stack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
-                    if(nbt.getAllKeys().size() > 0){
-                        tooltip.add(new TranslatableComponent("tooltip.dmnr.armor.tooltip.upgrade.base"));
+                    if(!nbt.getAllKeys().isEmpty()){
+                        tooltip.add(Component.translatable("tooltip.dmnr.armor.tooltip.upgrade.base"));
                         for(String key : nbt.getAllKeys()){
                             if(nbt.getInt(key) > 0){
-                                TranslatableComponent component = new TranslatableComponent(key);
-                                tooltip.add(new TextComponent(component.getString() + ": " + nbt.getInt(key)));
+                                MutableComponent component = Component.translatable(key);
+                                tooltip.add(Component.literal(component.getString() + ": " + nbt.getInt(key)));
                             }
                         }
-                        tooltip.add(new TextComponent("  "));
+                        tooltip.add(Component.literal("  "));
                     }
                 }
             }
 
-            TranslatableComponent component = new TranslatableComponent("tooltip.dmnr.dm_container.tooltip.remaining.dmpoints");
-            tooltip.add(new TextComponent(component.getString() + (getMaxDragonMagic(stack) - getSpentDragonPoints(stack))));
+            MutableComponent component = Component.translatable("tooltip.dmnr.dm_container.tooltip.remaining.dmpoints");
+            tooltip.add(Component.literal(component.getString() + (getMaxDragonMagic(stack) - getSpentDragonPoints(stack))));
         }
         else{
-            tooltip.add(new TranslatableComponent("tooltip.dmnr.armor.tooltip"));
+            tooltip.add(Component.translatable("tooltip.dmnr.armor.tooltip"));
         }
     }
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public boolean isFoil(ItemStack itemStack){
+    public boolean isFoil(@NotNull ItemStack itemStack){
         return true;
     }
 }

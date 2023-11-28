@@ -8,10 +8,9 @@ import com.mna.api.spells.parts.Shape;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
 import de.joh.dmnr.utils.MarkSave;
-import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
@@ -25,16 +24,16 @@ import java.util.List;
  * @author Joh0210
  */
 public class ShapeAtMark extends Shape {
-    public ShapeAtMark(ResourceLocation registryName, ResourceLocation guiIcon) {
-        super(registryName, guiIcon, new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F), new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 50.0F));
+    public ShapeAtMark(ResourceLocation guiIcon) {
+        super(guiIcon, new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F), new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 50.0F));
     }
 
     @Override
     public List<SpellTarget> Target(SpellSource source, Level world, IModifiedSpellPart<Shape> modificationData, ISpellDefinition iSpellDefinition) {
-        if(!world.isClientSide()){
+        if(!world.isClientSide() && source.getPlayer() != null){
             MarkSave mark = MarkSave.getMark(source.getPlayer(), world);
-            if (mark != null) {
-                double dist = source.getCaster().blockPosition().distSqr(mark.getPosition());
+            if (mark != null && mark.getPosition() != null) {
+                double dist = source.getPlayer().blockPosition().distSqr(mark.getPosition());
                 double maxDist = modificationData.getValue(Attribute.RANGE) * 500.0F;
                 if (!(dist > maxDist * maxDist)) {
                     //block-targets in the area
@@ -57,11 +56,11 @@ public class ShapeAtMark extends Shape {
 
                     return targets;
                 } else {
-                    source.getPlayer().sendMessage(new TranslatableComponent("mna:components/recall.too_far"), Util.NIL_UUID);
+                    source.getPlayer().displayClientMessage(Component.translatable("mna:components/recall.too_far"), true);
                 }
             } else {
                 if (source.isPlayerCaster()) {
-                    source.getPlayer().sendMessage(new TranslatableComponent("dmnr.shapes.atmark.nomark.error"), Util.NIL_UUID);
+                    source.getPlayer().displayClientMessage(Component.translatable("dmnr.shapes.atmark.nomark.error"), true);
                 }
             }
         }
