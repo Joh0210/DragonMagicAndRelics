@@ -926,7 +926,7 @@
         "value": "",
         "json": [
           {
-            "text": "This shape allows me to curse other players from a distance, even if I can't see them.\n\nIf I hold a player charm in my hand and it is within range (Range Mod * 20), the charm will be destroyed, but the spell will hit him.",
+            "text": "This shape allows me to curse other players from a distance, even if I can't see them.\n\nIf I hold a player charm in my hand and it is within range (Range Mod * 20), the charm will be destroyed, but the spell will hit the player.",
             "color": ""
           }
         ]
@@ -936,7 +936,7 @@
         "value": "",
         "json": [
           {
-            "text": "However, to escape the curse, you can protect yourself with an Amulet of Curse Protection.",
+            "text": "However, to escape the curse, I can protect myself with an Amulet of Curse Protection.",
             "color": ""
           }
         ]
@@ -1310,7 +1310,7 @@
         "value": "",
         "json": [
           {
-            "text": "When I hit a Player with the spell and have an Player Charm in my Offhand, the charm will be bound to the player.",
+            "text": "When I hit a Player with the spell and have an Player Charm in my Offhand, the charm will be bound to the player. (Can be deactivated via Config)",
             "color": ""
           }
         ]
@@ -1611,6 +1611,32 @@
       {
         "type": "eldrin_altar",
         "location":"dmnr:eldrin_altar/faction_amulet"
+      }
+    ]
+  },
+  "Belt of the Centaur": {
+    "index": "0",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Belt of the Centaur"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Small damage, but at what cost?!\n\nWith this belt I take half the damage, but I also deal only half the damage!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/sturdy_belt"
       }
     ]
   },

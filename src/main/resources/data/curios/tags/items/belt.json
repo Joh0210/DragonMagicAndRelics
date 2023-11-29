@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dmnr:glass_cannon_belt"
+    "dmnr:glass_cannon_belt",
+    "dmnr:sturdy_belt"
   ]
 }

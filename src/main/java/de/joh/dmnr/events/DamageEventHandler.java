@@ -1,7 +1,6 @@
 package de.joh.dmnr.events;
 
 import com.mna.api.ManaAndArtificeMod;
-import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.entities.IFactionEnemy;
 import com.mna.api.events.ComponentApplyingEvent;
 import com.mna.api.faction.IFaction;
@@ -27,10 +26,10 @@ import de.joh.dmnr.config.CommonConfigs;
 import de.joh.dmnr.item.ItemInit;
 import de.joh.dmnr.item.items.BraceletOfFriendship;
 import de.joh.dmnr.item.items.FactionAmulet;
-import de.joh.dmnr.item.items.GlassCannonBelt;
 import de.joh.dmnr.item.items.dragonmagearmor.DragonMageArmor;
 import de.joh.dmnr.utils.ProjectileReflectionHelper;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -54,6 +53,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -65,12 +65,13 @@ import java.util.concurrent.atomic.AtomicReference;
 public class DamageEventHandler {
 
     /**
-     * Processing of the damage boost and damaga resistance upgrades.
+     * Processing of the damage boost and damage resistance upgrades.
      * Casts a spell on the player or the source when the wearer of the Dragon Mage Armor takes damage.
+     * <br> - Glass Cannon Belt
+     * <br> - Sturdy Belt
      * @see ArmorUpgradeInit
      * @see Commands
      * @see FactionAmulet
-     * @see GlassCannonBelt
      */
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -113,10 +114,18 @@ public class DamageEventHandler {
 
         //Glass Cannon
         if (sourceEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios((LivingEntity) sourceEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
-            event.setAmount(event.getAmount()*2);
+            event.setAmount(event.getAmount() * Math.max(CommonConfigs.MINOTAUR_BELT_MULTIPLICATION.get(), 1));
         }
         if (targetEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
-            event.setAmount(event.getAmount()*2);
+            event.setAmount(event.getAmount() * Math.max(CommonConfigs.MINOTAUR_BELT_MULTIPLICATION.get(), 1));
+        }
+
+        // Sturdy
+        if (sourceEntity instanceof LivingEntity && event.getAmount() >= 1 && !CuriosApi.getCuriosHelper().findCurios((LivingEntity) sourceEntity, ItemInit.STURDY_BELT.get()).isEmpty()){
+            event.setAmount(Math.max(1, event.getAmount()*0.5f));
+        }
+        if (targetEntity instanceof LivingEntity && event.getAmount() >= 1 && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.STURDY_BELT.get()).isEmpty()){
+            event.setAmount(Math.max(1, event.getAmount()*0.5f));
         }
     }
 
@@ -178,13 +187,18 @@ public class DamageEventHandler {
                     event.setCanceled(true);
                     return;
                 } else if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MINOR_FIRE_RESISTANCE) >= 1) {
-                    IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-                    if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get()/5.0f)) {
-                        magic.getCastingResource().consume(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get()/5.0f);
-                        event.setCanceled(true);
-                        if(player.isOnFire()){
-                            player.clearFire();
+                    AtomicBoolean doReturn = new AtomicBoolean(false);
+                    player.getCapability(PlayerMagicProvider.MAGIC).ifPresent(magic -> {
+                        if (magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get()/5.0f)) {
+                            magic.getCastingResource().consume(player, CommonConfigs.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get()/5.0f);
+                            event.setCanceled(true);
+                            if(player.isOnFire()){
+                                player.clearFire();
+                            }
+                            doReturn.set(true);
                         }
+                    });
+                    if(doReturn.get()){
                         return;
                     }
                 }
@@ -226,7 +240,7 @@ public class DamageEventHandler {
             }
 
             //Protection from kinetic energy
-            if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && (CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.ANGEL_RING.get(), player).isPresent() || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.FALLEN_ANGEL_RING.get(), player).isPresent()            )){
+            if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && (CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.ANGEL_RING.get()).isPresent() || CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.FALLEN_ANGEL_RING.get()).isPresent()            )){
                 event.setCanceled(true);
                 return;
             }
@@ -316,27 +330,34 @@ public class DamageEventHandler {
 
             if (event.getSource() == DamageSource.OUT_OF_WORLD && player.getHealth() - event.getAmount() <= 10) {
                 boolean consumed_charm = false;
-                if (CuriosInterop.IsItemInCurioSlot(ItemInit.VOIDFEATHER_CHARM.get(), player, SlotTypePreset.CHARM)) {
-                    consumed_charm = true;
-                    CuriosInterop.DamageCurioInSlot(ItemInit.VOIDFEATHER_CHARM.get(), player, SlotTypePreset.CHARM, 999);
-                } else if (InventoryUtilities.removeItemFromInventory(new ItemStack(ItemInit.VOIDFEATHER_CHARM.get()), true, true, new InvWrapper(player.getInventory()))) {
-                    consumed_charm = true;
+                BlockPos bedPos = spe.getRespawnPosition();
+                if (bedPos == null && player.level.getServer() != null) {
+                    ServerLevel level = player.level.getServer().getLevel(player.level.dimension());
+                    if(level != null){
+                        //todo log else: no valid dimension
+                        bedPos = level.getSharedSpawnPos();
+                    }
                 }
 
-                if (consumed_charm) {
-                    event.setCanceled(true);
-                    player.resetFallDistance();
-                    BlockPos bedPos = spe.getRespawnPosition();
-
-                    if (bedPos == null) {
-                        bedPos = player.level.getServer().getLevel(player.level.dimension()).getSharedSpawnPos();
+                if(bedPos != null){
+                    //todo: log else: no bed found
+                    if (CuriosInterop.IsItemInCurioSlot(ItemInit.VOIDFEATHER_CHARM.get(), player, SlotTypePreset.CHARM)) {
+                        consumed_charm = true;
+                        CuriosInterop.DamageCurioInSlot(ItemInit.VOIDFEATHER_CHARM.get(), player, SlotTypePreset.CHARM, 999);
+                    } else if (InventoryUtilities.removeItemFromInventory(new ItemStack(ItemInit.VOIDFEATHER_CHARM.get()), true, true, new InvWrapper(player.getInventory()))) {
+                        consumed_charm = true;
                     }
 
-                    player.level.playSound(null, spe.getX(), spe.getY(), spe.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
-                    TeleportHelper.teleportEntity(spe,spe.getRespawnDimension(), new Vec3((double)bedPos.getX() + 0.5, (double)bedPos.getY(), (double)bedPos.getZ() + 0.5));
-                    player.level.playSound(null, bedPos.getX(), bedPos.getY(), bedPos.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
-                    player.level.broadcastEntityEvent(spe, (byte)46);
-                    return true;
+                    if (consumed_charm) {
+                        event.setCanceled(true);
+                        player.resetFallDistance();
+
+                        player.level.playSound(null, spe.getX(), spe.getY(), spe.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+                        TeleportHelper.teleportEntity(spe,spe.getRespawnDimension(), new Vec3((double)bedPos.getX() + 0.5, bedPos.getY(), (double)bedPos.getZ() + 0.5));
+                        player.level.playSound(null, bedPos.getX(), bedPos.getY(), bedPos.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+                        player.level.broadcastEntityEvent(spe, (byte)46);
+                        return true;
+                    }
                 }
             }
         }

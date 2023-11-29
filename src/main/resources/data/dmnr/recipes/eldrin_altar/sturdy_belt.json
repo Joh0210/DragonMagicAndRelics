@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:sturdy_belt",
+  "tier": 4,
+  "items": [
+    "mna:belt_buckle",
+    "minecraft:obsidian",
+    "minecraft:wool",
+    "minecraft:netherite_ingot",
+    "minecraft:wool",
+    "minecraft:shield",
+    "minecraft:wool",
+    "minecraft:netherite_ingot",
+    "minecraft:wool"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "EARTH",
+      "amount": 400
+    }
+  ]
+}

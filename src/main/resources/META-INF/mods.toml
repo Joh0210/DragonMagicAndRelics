@@ -36,11 +36,11 @@ A mod to expand your magic to compete with gods!
    side="BOTH"
 
 [[dependencies.dmnr]]
-    modId="caelus"
-    mandatory=true
-    versionRange="[1.19.2,)"
-    ordering="NONE"
-    side="BOTH"
+   modId="caelus"
+   mandatory=true
+   versionRange="[1.19.2,)"
+   ordering="NONE"
+   side="BOTH"
 
 [[dependencies.dmnr]]
    modId="geckolib3"

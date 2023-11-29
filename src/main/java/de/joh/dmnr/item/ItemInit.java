@@ -4,6 +4,7 @@ import com.mna.factions.Factions;
 import de.joh.dmnr.CreativeModeTab;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.block.BlockInit;
+import de.joh.dmnr.events.DamageEventHandler;
 import de.joh.dmnr.item.items.*;
 import de.joh.dmnr.item.items.dragonmagearmor.*;
 import de.joh.dmnr.utils.RLoc;
@@ -58,7 +59,19 @@ public class ItemInit {
     public static final RegistryObject<Item> ANGEL_RING = ITEMS.register("angel_ring", ()->new AngelRing(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).tab(CreativeModeTab.CreativeModeTab), Factions.FEY));
     public static final RegistryObject<Item> FALLEN_ANGEL_RING = ITEMS.register("fallen_angel_ring", ()->new AngelRing(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).tab(CreativeModeTab.CreativeModeTab), Factions.UNDEAD));
     public static final RegistryObject<Item> VOIDFEATHER_CHARM = ITEMS.register("voidfeather_charm", () -> new VoidfeatherCharm((new Item.Properties()).setNoRepair().stacksTo(1).durability(1).tab(CreativeModeTab.CreativeModeTab)));
-    public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", GlassCannonBelt::new);
+
+    /**
+     * The user deals twice the amount of damage, but also takes twice the amount of damage
+     * @see DamageEventHandler
+     */
+    public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", () -> new BaseTieredItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(CreativeModeTab.CreativeModeTab)));
+    /**
+     * The user deals twice the amount of damage, but also takes twice the amount of damage
+     * @see DamageEventHandler
+     */
+    public static final RegistryObject<Item> STURDY_BELT = ITEMS.register("sturdy_belt", () -> new BaseTieredItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(CreativeModeTab.CreativeModeTab)));
+    public static final RegistryObject<Item> CURSE_PROTECTION_AMULET = ITEMS.register("curse_protection_amulet", CurseProtectionAmulet::new);
+
 
     //Other
     public static final RegistryObject<Item> MUTANDIS = ITEMS.register("mutandis", () -> new Mutandis(false, (new Item.Properties()).tab(CreativeModeTab.CreativeModeTab)));
@@ -67,7 +80,6 @@ public class ItemInit {
     public static final RegistryObject<Item> RIFT_EMITTER_ITEM = ITEMS.register("rift_emitter", () -> new RiftEmitterItem(BlockInit.RIFT_EMITTER.get(), new Item.Properties().stacksTo(1).tab(CreativeModeTab.CreativeModeTab)));
     public static final RegistryObject<Item> BRIMSTONE_CHALK = ITEMS.register("brimstone_chalk", BrimstoneChalk::new);
     public static final RegistryObject<Item> WEATHER_FAIRY_STAFF = ITEMS.register("weather_fairy_staff", WeatherFairyStaff::new);
-    public static final RegistryObject<Item> CURSE_PROTECTION_AMULET = ITEMS.register("curse_protection_amulet", CurseProtectionAmulet::new);
 
 
 

@@ -11,6 +11,7 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.ItemInit;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
+import de.joh.dmnr.config.CommonConfigs;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -21,7 +22,7 @@ import net.minecraft.world.level.Level;
 
 /**
  * This spell writes the target's location in the Rune of Marking the caster is holding.
- * <br>If it hits a player, and the caster has a player Charm in ints offhand, it will select this player
+ * <br>If it hits a player, and the caster has a player Charm in ints offhand, it will select this player (can be deactivated through the config)
  * @author Joh0210
  */
 public class ComponentMark extends SpellEffect {
@@ -36,12 +37,12 @@ public class ComponentMark extends SpellEffect {
 
         ItemStack markingRune = source.getCaster().getMainHandItem().getItem() != ItemInit.RUNE_MARKING.get() && source.getCaster().getMainHandItem().getItem() != ItemInit.BOOK_MARKS.get() ? source.getCaster().getOffhandItem() : source.getCaster().getMainHandItem();
 
-        if (markingRune.getItem() == ItemInit.PLAYER_CHARM.get()) {
+        if (CommonConfigs.MARK_SUPPORT_PLAYERCHARM.get() && markingRune.getItem() == ItemInit.PLAYER_CHARM.get()) {
             if (target.getLivingEntity() instanceof Player playerTarget) {
                 ItemInit.PLAYER_CHARM.get().SetPlayerTarget(playerTarget, markingRune);
             }
             else {
-                if(source.getPlayer() != null){
+                if (source.getPlayer() != null) {
                     source.getPlayer().displayClientMessage(Component.translatable("dmnr:components/alternativerecall.no_player"), true);
                 }
                 return ComponentApplicationResult.FAIL;

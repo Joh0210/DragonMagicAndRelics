@@ -19,6 +19,18 @@ public class CommonConfigs {
     public static final ForgeConfigSpec.ConfigValue<Boolean> CAN_CONJURE_FLUID_IGNORE_VAPORIZE;
 
     /**
+     * Can the Mark Component use PlayerCharms?
+     * @see de.joh.dmnr.spells.components.ComponentMark
+     */
+    public static final ForgeConfigSpec.ConfigValue<Boolean> MARK_SUPPORT_PLAYERCHARM;
+
+    /**
+     * Belt of the Minotaur Multiplication Factor
+     * @see de.joh.dmnr.events.DamageEventHandler
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> MINOTAUR_BELT_MULTIPLICATION;
+
+    /**
      * fly upgrade:
      * This times level = speed when flying. (0.5 is default creative)
      */
@@ -94,6 +106,8 @@ public class CommonConfigs {
 
         CAN_CONJURE_FLUID_IGNORE_VAPORIZE = BUILDER.comment("If true: Allow Conjure Water (etc.) to place water in the Nether (etc.) when magnitude has been increased.")
                 .define("Can conjure fluid ignore vaporize?", true);
+        MARK_SUPPORT_PLAYERCHARM = BUILDER.define("If true: The Mark Component supports PlayerCharms", true);
+        MINOTAUR_BELT_MULTIPLICATION = BUILDER.define("By what factor is the damage increased with the Minotaur Belt?", 2);
         BUILDER.pop();
 
 

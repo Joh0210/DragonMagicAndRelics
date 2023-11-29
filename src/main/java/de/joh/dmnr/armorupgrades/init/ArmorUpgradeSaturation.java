@@ -26,7 +26,7 @@ public class ArmorUpgradeSaturation extends ArmorUpgradeOnTick {
     public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
         if(level > 0){
             // Only if the wearer is actually hungry
-            if (player.getFoodData().getFoodLevel()  < 20 && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.SATURATION_MANA_PER_NUTRITION.get())) {
+            if (player.canEat(false) && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfigs.SATURATION_MANA_PER_NUTRITION.get())) {
                 player.getFoodData().eat(1, 1);
                 magic.getCastingResource().consume(player, CommonConfigs.SATURATION_MANA_PER_NUTRITION.get());
             }
