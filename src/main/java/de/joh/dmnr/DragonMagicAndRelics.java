@@ -2,15 +2,15 @@ package de.joh.dmnr;
 
 import com.mna.api.guidebook.RegisterGuidebooksEvent;
 import com.mojang.logging.LogUtils;
-import de.joh.dmnr.block.BlockInit;
-import de.joh.dmnr.block.entity.BlockEntitieInit;
-import de.joh.dmnr.commands.CommandSerializerInit;
-import de.joh.dmnr.config.CommonConfigs;
-import de.joh.dmnr.effects.EffectInit;
-import de.joh.dmnr.item.ItemInit;
+import de.joh.dmnr.common.init.BlockInit;
+import de.joh.dmnr.common.init.BlockEntitieInit;
+import de.joh.dmnr.common.init.CommandSerializerInit;
+import de.joh.dmnr.common.util.CommonConfig;
+import de.joh.dmnr.common.init.EffectInit;
+import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.networking.ModMessages;
-import de.joh.dmnr.utils.KeybindInit;
-import de.joh.dmnr.utils.RLoc;
+import de.joh.dmnr.common.init.KeybindInit;
+import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
@@ -49,7 +49,7 @@ public class DragonMagicAndRelics {
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.register(KeybindInit.class));
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfigs.SPEC, MOD_ID+"-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC, MOD_ID+"-common.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
     }

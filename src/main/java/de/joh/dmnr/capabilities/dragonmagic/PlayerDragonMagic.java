@@ -1,10 +1,13 @@
 package de.joh.dmnr.capabilities.dragonmagic;
 
-import de.joh.dmnr.Registries;
-import de.joh.dmnr.armorupgrades.types.ArmorUpgrade;
-import de.joh.dmnr.armorupgrades.types.ArmorUpgradeOnTick;
-import de.joh.dmnr.armorupgrades.types.IArmorUpgradeOnEquipped;
-import de.joh.dmnr.utils.MarkSave;
+import de.joh.dmnr.common.util.Registries;
+import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
+import de.joh.dmnr.api.armorupgrade.OnTickArmorUpgrade;
+import de.joh.dmnr.api.armorupgrade.IOnEquippedArmorUpgrade;
+import de.joh.dmnr.common.spell.component.AlternativeRecallComponent;
+import de.joh.dmnr.common.spell.component.MarkComponent;
+import de.joh.dmnr.common.spell.shape.AtMarkShape;
+import de.joh.dmnr.api.util.MarkSave;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -24,17 +27,17 @@ import java.util.Map;
  * This class contains the permanent data that is stored on a player for the magic components of this mod.
  * Each function here is called on a player-specific basis, since every player owns an instance of this class.
  * Currently includes: Player specific save for the Rune of Marking
- * @see de.joh.dmnr.spells.components.ComponentMark
- * @see de.joh.dmnr.spells.components.ComponentAlternativeRecall
- * @see de.joh.dmnr.spells.shapes.ShapeAtMark
+ * @see MarkComponent
+ * @see AlternativeRecallComponent
+ * @see AtMarkShape
  * @author Joh0210
  */
 public class PlayerDragonMagic {
     protected HashMap<String, Pair<ArmorUpgrade, Integer>> onEventUpgrade = new HashMap<>();
-    protected HashMap<String, Pair<ArmorUpgradeOnTick, Integer>> onTickUpgrade = new HashMap<>();
+    protected HashMap<String, Pair<OnTickArmorUpgrade, Integer>> onTickUpgrade = new HashMap<>();
 
     protected HashMap<String, Pair<ArmorUpgrade, Integer>> onEventPermaUpgrade = new HashMap<>();
-    protected HashMap<String, Pair<ArmorUpgradeOnTick, Integer>> onTickPermaUpgrade = new HashMap<>();
+    protected HashMap<String, Pair<OnTickArmorUpgrade, Integer>> onTickPermaUpgrade = new HashMap<>();
     /**
      * List of dimensions with corresponding mark, for ComponentMark, ComponentAlternativeRecall, ...
      */
@@ -67,7 +70,7 @@ public class PlayerDragonMagic {
         for(Map.Entry<String, Pair<ArmorUpgrade, Integer>> entry : onEventUpgrade.entrySet()) {
             addUpgrade(entry.getKey(), entry.getValue().getA(), entry.getValue().getB(), player);
         }
-        for(Map.Entry<String,  Pair<ArmorUpgradeOnTick, Integer>> entry : onTickUpgrade.entrySet()) {
+        for(Map.Entry<String,  Pair<OnTickArmorUpgrade, Integer>> entry : onTickUpgrade.entrySet()) {
             addUpgrade(entry.getKey(), entry.getValue().getA(), entry.getValue().getB(), player);
         }
     }
@@ -85,7 +88,7 @@ public class PlayerDragonMagic {
             nbt.putInt("upgrade_int_" + upgradeSize, entry.getValue().getB());
             upgradeSize++;
         }
-        for(Map.Entry<String, Pair<ArmorUpgradeOnTick, Integer>> entry : onTickUpgrade.entrySet()) {
+        for(Map.Entry<String, Pair<OnTickArmorUpgrade, Integer>> entry : onTickUpgrade.entrySet()) {
             nbt.putString("upgrade_source_" + upgradeSize, entry.getKey());
             nbt.putString("upgrade_value_" + upgradeSize, entry.getValue().getA().getRegistryName().toString());
             nbt.putInt("upgrade_int_" + upgradeSize, entry.getValue().getB());
@@ -100,7 +103,7 @@ public class PlayerDragonMagic {
             nbt.putInt("perma_upgrade_int_" + upgradePermaSize, entry.getValue().getB());
             upgradePermaSize++;
         }
-        for(Map.Entry<String, Pair<ArmorUpgradeOnTick, Integer>> entry : onTickPermaUpgrade.entrySet()) {
+        for(Map.Entry<String, Pair<OnTickArmorUpgrade, Integer>> entry : onTickPermaUpgrade.entrySet()) {
             nbt.putString("perma_upgrade_source_" + upgradePermaSize, entry.getKey());
             nbt.putString("perma_upgrade_value_" + upgradePermaSize, entry.getValue().getA().getRegistryName().toString());
             nbt.putInt("perma_upgrade_int_" + upgradePermaSize, entry.getValue().getB());
@@ -161,7 +164,7 @@ public class PlayerDragonMagic {
     }
 
     public void removeUpgrade(String source, Player player){
-        Pair<ArmorUpgradeOnTick, Integer> armorUpgrade0 = onTickUpgrade.remove(source);
+        Pair<OnTickArmorUpgrade, Integer> armorUpgrade0 = onTickUpgrade.remove(source);
         if(armorUpgrade0 != null){
             armorUpgrade0.getA().onRemove(player);
         }
@@ -169,7 +172,7 @@ public class PlayerDragonMagic {
         if(armorUpgrade2 != null){
             armorUpgrade2.getA().onRemove(player);
         }
-        Pair<ArmorUpgradeOnTick, Integer> armorUpgrade3 = onTickPermaUpgrade.remove(source);
+        Pair<OnTickArmorUpgrade, Integer> armorUpgrade3 = onTickPermaUpgrade.remove(source);
         if(armorUpgrade3 != null){
             armorUpgrade3.getA().onRemove(player);
         }
@@ -181,15 +184,15 @@ public class PlayerDragonMagic {
 
     private void addUpgrade(String source, @Nullable ArmorUpgrade armorUpgrade, int level, boolean isPermaUpgrade){
         if(!isPermaUpgrade){
-            if(armorUpgrade instanceof ArmorUpgradeOnTick){
-                onTickUpgrade.put(source, new Pair<>((ArmorUpgradeOnTick)armorUpgrade, level));
+            if(armorUpgrade instanceof OnTickArmorUpgrade){
+                onTickUpgrade.put(source, new Pair<>((OnTickArmorUpgrade)armorUpgrade, level));
             }
             else if (armorUpgrade != null){
                 onEventUpgrade.put(source, new Pair<>(armorUpgrade, level));
             }
         } else {
-            if(armorUpgrade instanceof ArmorUpgradeOnTick){
-                onTickPermaUpgrade.put(source, new Pair<>((ArmorUpgradeOnTick)armorUpgrade, level));
+            if(armorUpgrade instanceof OnTickArmorUpgrade){
+                onTickPermaUpgrade.put(source, new Pair<>((OnTickArmorUpgrade)armorUpgrade, level));
             }
             else if (armorUpgrade != null){
                 onEventPermaUpgrade.put(source, new Pair<>(armorUpgrade, level));
@@ -197,36 +200,36 @@ public class PlayerDragonMagic {
         }
     }
 
-    public ArrayList<Pair<IArmorUpgradeOnEquipped, Integer>> getAllOnEquipPermaUpgrade(){
-        ArrayList<Pair<IArmorUpgradeOnEquipped, Integer>> ret = new ArrayList<>();
+    public ArrayList<Pair<IOnEquippedArmorUpgrade, Integer>> getAllOnEquipPermaUpgrade(){
+        ArrayList<Pair<IOnEquippedArmorUpgrade, Integer>> ret = new ArrayList<>();
 
         for (Pair<ArmorUpgrade, Integer> pair : this.onEventPermaUpgrade.values()) {
-            if(pair.getA() instanceof IArmorUpgradeOnEquipped){
-                ret.add(new Pair<>((IArmorUpgradeOnEquipped) pair.getA(), pair.getB()));
+            if(pair.getA() instanceof IOnEquippedArmorUpgrade){
+                ret.add(new Pair<>((IOnEquippedArmorUpgrade) pair.getA(), pair.getB()));
             }
         }
 
-        for (Pair<ArmorUpgradeOnTick, Integer> pair : this.onTickPermaUpgrade.values()) {
-            if(pair.getA() instanceof IArmorUpgradeOnEquipped){
-                ret.add(new Pair<>((IArmorUpgradeOnEquipped) pair.getA(), pair.getB()));
+        for (Pair<OnTickArmorUpgrade, Integer> pair : this.onTickPermaUpgrade.values()) {
+            if(pair.getA() instanceof IOnEquippedArmorUpgrade){
+                ret.add(new Pair<>((IOnEquippedArmorUpgrade) pair.getA(), pair.getB()));
             }
         }
 
         return ret;
     }
 
-    public ArrayList<Pair<IArmorUpgradeOnEquipped, Integer>> getAllOnEquipUpgrade(){
-        ArrayList<Pair<IArmorUpgradeOnEquipped, Integer>> ret = new ArrayList<>();
+    public ArrayList<Pair<IOnEquippedArmorUpgrade, Integer>> getAllOnEquipUpgrade(){
+        ArrayList<Pair<IOnEquippedArmorUpgrade, Integer>> ret = new ArrayList<>();
 
         for (Pair<ArmorUpgrade, Integer> pair : this.onEventUpgrade.values()) {
-            if(pair.getA() instanceof IArmorUpgradeOnEquipped){
-                ret.add(new Pair<>((IArmorUpgradeOnEquipped) pair.getA(), pair.getB()));
+            if(pair.getA() instanceof IOnEquippedArmorUpgrade){
+                ret.add(new Pair<>((IOnEquippedArmorUpgrade) pair.getA(), pair.getB()));
             }
         }
 
-        for (Pair<ArmorUpgradeOnTick, Integer> pair : this.onTickUpgrade.values()) {
-            if(pair.getA() instanceof IArmorUpgradeOnEquipped){
-                ret.add(new Pair<>((IArmorUpgradeOnEquipped) pair.getA(), pair.getB()));
+        for (Pair<OnTickArmorUpgrade, Integer> pair : this.onTickUpgrade.values()) {
+            if(pair.getA() instanceof IOnEquippedArmorUpgrade){
+                ret.add(new Pair<>((IOnEquippedArmorUpgrade) pair.getA(), pair.getB()));
             }
         }
 

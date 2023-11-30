@@ -1,5 +1,7 @@
 package de.joh.dmnr.capabilities.secondchance;
 
+import de.joh.dmnr.common.event.CommonEventHandler;
+import de.joh.dmnr.common.ritual.PhoenixRitual;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;
@@ -14,8 +16,8 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Generate, load and save the NBT data from the player for PlayerSecondChance
  * @see PlayerSecondChance
- * @see de.joh.dmnr.rituals.effects.PhoenixRitual
- * @see de.joh.dmnr.events.CommonEventHandler
+ * @see PhoenixRitual
+ * @see CommonEventHandler
  * @author Joh0210
  */
 public class PlayerSecondChanceProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {

@@ -1,5 +1,8 @@
 package de.joh.dmnr.capabilities.dragonmagic;
 
+import de.joh.dmnr.common.spell.component.AlternativeRecallComponent;
+import de.joh.dmnr.common.spell.component.MarkComponent;
+import de.joh.dmnr.common.spell.shape.AtMarkShape;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;
@@ -14,9 +17,9 @@ import org.jetbrains.annotations.Nullable;
 /**
  * Generate, load and save the NBT data from the player for PlayerDragonMagic
  * @see PlayerDragonMagic
- * @see de.joh.dmnr.spells.components.ComponentMark
- * @see de.joh.dmnr.spells.components.ComponentAlternativeRecall
- * @see de.joh.dmnr.spells.shapes.ShapeAtMark
+ * @see MarkComponent
+ * @see AlternativeRecallComponent
+ * @see AtMarkShape
  * @author Joh0210
  */
 public class PlayerDragonMagicProvider implements ICapabilityProvider, INBTSerializable<CompoundTag> {

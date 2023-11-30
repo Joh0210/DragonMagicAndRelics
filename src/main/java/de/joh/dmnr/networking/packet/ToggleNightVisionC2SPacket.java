@@ -1,7 +1,9 @@
 package de.joh.dmnr.networking.packet;
 
-import de.joh.dmnr.armorupgrades.ArmorUpgradeInit;
+import de.joh.dmnr.client.event.ClientEventHandler;
+import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
+import de.joh.dmnr.common.init.KeybindInit;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -12,8 +14,8 @@ import java.util.function.Supplier;
 
 /**
  * This class is the package that is sent to the server when the TOGGLE_NIGHT_VISION_KEY is pressed.
- * @see de.joh.dmnr.utils.KeybindInit
- * @see de.joh.dmnr.events.ClientEvents
+ * @see KeybindInit
+ * @see ClientEventHandler
  * @author Joh0210
  */
 public class ToggleNightVisionC2SPacket {

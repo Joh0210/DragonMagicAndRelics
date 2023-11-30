@@ -1,7 +1,7 @@
 package de.joh.dmnr.networking;
 
 import de.joh.dmnr.networking.packet.*;
-import de.joh.dmnr.utils.RLoc;
+import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;

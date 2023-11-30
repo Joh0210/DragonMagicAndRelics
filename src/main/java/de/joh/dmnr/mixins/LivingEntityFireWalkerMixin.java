@@ -1,6 +1,6 @@
 package de.joh.dmnr.mixins;
 
-import de.joh.dmnr.armorupgrades.ArmorUpgradeInit;
+import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.capabilities.client.ClientPlayerDragonMagic;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import net.minecraft.tags.FluidTags;

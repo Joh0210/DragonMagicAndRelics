@@ -1,5 +1,7 @@
 package de.joh.dmnr.capabilities.secondchance;
 
+import de.joh.dmnr.common.event.CommonEventHandler;
+import de.joh.dmnr.common.ritual.PhoenixRitual;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
@@ -10,8 +12,8 @@ import net.minecraft.world.level.Level;
 
 /**
  * Saves the player's position upon death for the Phoenix ritual.
- * @see de.joh.dmnr.rituals.effects.PhoenixRitual
- * @see de.joh.dmnr.events.CommonEventHandler
+ * @see PhoenixRitual
+ * @see CommonEventHandler
  * @author Joh0210
  */
 public class PlayerSecondChance {

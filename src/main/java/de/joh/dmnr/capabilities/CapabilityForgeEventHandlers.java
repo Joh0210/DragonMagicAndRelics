@@ -3,7 +3,7 @@ package de.joh.dmnr.capabilities;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagic;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
-import de.joh.dmnr.utils.RLoc;
+import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;

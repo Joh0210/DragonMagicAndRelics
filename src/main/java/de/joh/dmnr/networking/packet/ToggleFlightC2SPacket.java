@@ -1,7 +1,9 @@
 package de.joh.dmnr.networking.packet;
 
 import com.mna.ManaAndArtifice;
-import de.joh.dmnr.effects.EffectInit;
+import de.joh.dmnr.client.event.ClientEventHandler;
+import de.joh.dmnr.common.init.EffectInit;
+import de.joh.dmnr.common.init.KeybindInit;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,8 +13,8 @@ import java.util.function.Supplier;
 
 /**
  * This class is the package that is sent to the server when the DISABLE_FLIGHT_KEY is pressed.
- * @see de.joh.dmnr.utils.KeybindInit
- * @see de.joh.dmnr.events.ClientEvents
+ * @see KeybindInit
+ * @see ClientEventHandler
  * @see EffectInit
  * @author Joh0210
  */
