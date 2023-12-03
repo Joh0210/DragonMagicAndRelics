@@ -10,8 +10,6 @@ import de.joh.dragonmagicandrelics.item.ItemInit;
 import de.joh.dragonmagicandrelics.networking.ModMessages;
 import de.joh.dragonmagicandrelics.utils.KeybindInit;
 import de.joh.dragonmagicandrelics.utils.RLoc;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -50,10 +48,6 @@ public class DragonMagicAndRelics {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfigs.SPEC, MOD_ID+"-common.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    public final Player getClientPlayer() {
-        return Minecraft.getInstance().player;
     }
 
     private void setup(final FMLCommonSetupEvent event){
