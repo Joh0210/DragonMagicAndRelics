@@ -29,18 +29,14 @@ import top.theillusivec4.curios.api.CuriosApi;
 public class ClientEventHandler {
     @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents{
-        private static Player getPlayer() {
-            return DragonMagicAndRelics.instance.getClientPlayer();
-        }
-
         @SubscribeEvent
-        public static void onMouseScroll(InputEvent.MouseScrollingEvent event){
-            if (getPlayer() != null
-                    && getPlayer().getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof WeatherFairyStaffItem staff
-                    && getPlayer().isShiftKeyDown())
+        public static void onMouseScroll(InputEvent.MouseScrollEvent event){
+            if (Minecraft.getInstance().player != null
+                    && Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof WeatherFairyStaff staff
+                    && Minecraft.getInstance().player.isShiftKeyDown())
             {
                 ModMessages.sendToServer(new IncrementWeatherC2SPacket(event.getScrollDelta() < 0));
-                staff.incrementIterator(getPlayer().getItemBySlot(EquipmentSlot.MAINHAND), event.getScrollDelta() < 0, getPlayer());
+                staff.incrementIterator(Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.MAINHAND), event.getScrollDelta() < 0, Minecraft.getInstance().player);
                 event.setCanceled(true);
             }
         }

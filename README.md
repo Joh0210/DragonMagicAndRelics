@@ -23,6 +23,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Amulet of Curse Protection
 - Amulet of Dragon Power
 - Angel Ring (Fey only)
+- Belt of the Centaur
 - Belt of the Minotaur
 - Bracelet of Friendship
 - Brimstone Chalk

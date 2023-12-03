@@ -1,4 +1,4 @@
-package de.joh.dmnr;
+package de.joh.dragonmagicandrelics;
 
 import com.mna.api.guidebook.RegisterGuidebooksEvent;
 import com.mojang.logging.LogUtils;
@@ -52,10 +52,6 @@ public class DragonMagicAndRelics {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC, MOD_ID+"-common.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
-    }
-
-    public final Player getClientPlayer() {
-        return Minecraft.getInstance().player;
     }
 
     private void setup(final FMLCommonSetupEvent event){
