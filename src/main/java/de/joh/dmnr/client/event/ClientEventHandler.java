@@ -12,6 +12,7 @@ import de.joh.dmnr.networking.packet.IncrementWeatherC2SPacket;
 import de.joh.dmnr.networking.packet.ToggleFlightC2SPacket;
 import de.joh.dmnr.networking.packet.ToggleNightVisionC2SPacket;
 import de.joh.dmnr.common.init.KeybindInit;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -30,9 +31,9 @@ public class ClientEventHandler {
     @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents{
         @SubscribeEvent
-        public static void onMouseScroll(InputEvent.MouseScrollEvent event){
+        public static void onMouseScroll(InputEvent.MouseScrollingEvent event){
             if (Minecraft.getInstance().player != null
-                    && Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof WeatherFairyStaff staff
+                    && Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof WeatherFairyStaffItem staff
                     && Minecraft.getInstance().player.isShiftKeyDown())
             {
                 ModMessages.sendToServer(new IncrementWeatherC2SPacket(event.getScrollDelta() < 0));
@@ -68,8 +69,8 @@ public class ClientEventHandler {
                 ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
                 if (
                         (!chest.isEmpty() && chest.getItem() instanceof DragonMageArmorItem && chest.hasTag() && player.hasEffect(EffectInit.ELYTRA.get()))
-                        || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.ANGEL_RING.get(), player).isPresent()
-                        || CuriosApi.getCuriosHelper().findEquippedCurio(ItemInit.FALLEN_ANGEL_RING.get(), player).isPresent()
+                        || CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.ANGEL_RING.get()).isPresent()
+                        || CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.FALLEN_ANGEL_RING.get()).isPresent()
                 ) {
                     event.setCanceled(true);
                 }

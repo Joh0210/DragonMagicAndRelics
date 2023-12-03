@@ -1,18 +1,11 @@
-package de.joh.dragonmagicandrelics;
+package de.joh.dmnr;
 
 import com.mna.api.guidebook.RegisterGuidebooksEvent;
 import com.mojang.logging.LogUtils;
-import de.joh.dmnr.common.init.BlockInit;
-import de.joh.dmnr.common.init.BlockEntitieInit;
-import de.joh.dmnr.common.init.CommandSerializerInit;
+import de.joh.dmnr.common.init.*;
 import de.joh.dmnr.common.util.CommonConfig;
-import de.joh.dmnr.common.init.EffectInit;
-import de.joh.dmnr.common.init.ItemInit;
-import de.joh.dmnr.networking.ModMessages;
-import de.joh.dmnr.common.init.KeybindInit;
 import de.joh.dmnr.common.util.RLoc;
-import net.minecraft.client.Minecraft;
-import net.minecraft.world.entity.player.Player;
+import de.joh.dmnr.networking.ModMessages;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
