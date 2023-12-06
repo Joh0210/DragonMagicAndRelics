@@ -47,7 +47,7 @@
   "item.dragonmagicandrelics.upgrade_seal_night_vision": "Upgrade Glyph Night Vision",
   "item.dragonmagicandrelics.upgrade_seal_dolphins_grace": "Upgrade Glyph Swim Speed",
   "item.dragonmagicandrelics.upgrade_seal_regeneration": "Upgrade Glyph Regeneration",
-  "item.dragonmagicandrelics.upgrade_seal_mana_boost": "Upgrade Glyph Mana Boost",
+  "item.dragonmagicandrelics.upgrade_seal_mana_boost": "Upgrade Glyph Minor Mana Boost",
   "item.dragonmagicandrelics.upgrade_seal_major_mana_boost": "Upgrade Glyph Major Mana Boost",
   "item.dragonmagicandrelics.upgrade_seal_mana_regen": "Upgrade Glyph Mana Regeneration",
   "item.dragonmagicandrelics.upgrade_seal_health_boost": "Upgrade Glyph Health Boost",
@@ -86,6 +86,7 @@
 
   "dragonmagicandrelics.commands.output.callApplyUpgrade.upgradedoesnotexist.error": " The upgrade does not exist.",
   "dragonmagicandrelics.commands.output.callApplyUpgrade.no.armor.equipped.error": " The item in your main-hand cannot contain Dragon Magic",
+  "dragonmagicandrelics.commands.output.callApplyUpgrade.fail.not_enough_space": "The container does not have enough space to install the upgrade!",
   "dragonmagicandrelics.commands.output.callApplyUpgrade.success.one": " You have upgraded ",
   "dragonmagicandrelics.commands.output.callApplyUpgrade.success.two": "  to level ",
 
@@ -168,7 +169,7 @@
   "dragonmagicandrelics:armorupgrade/saturation.description": "Automatically refills the wearer's hunger",
   "dragonmagicandrelics:armorupgrade/dolphins_grace": "§3Swim Speed§r",
   "dragonmagicandrelics:armorupgrade/dolphins_grace.description": "Allows the player to swim significantly faster.",
-  "dragonmagicandrelics:armorupgrade/mana_boost": "§bMana Boost§r",
+  "dragonmagicandrelics:armorupgrade/mana_boost": "§bMinor Mana Boost§r",
   "dragonmagicandrelics:armorupgrade/mana_boost.description": "Increases the user's maximum mana storage.",
   "dragonmagicandrelics:armorupgrade/major_mana_boost": "§bMajor Mana Boost§r",
   "dragonmagicandrelics:armorupgrade/major_mana_boost.description": "Increases the user's maximum mana storage.",
@@ -231,7 +232,7 @@
   "dragonmagicandrelics:rituals/dispelling_ritual": "Ritual of Dispelling",
   "dragonmagicandrelics:rituals/phoenix_ritual": "Ritual of the Phoenix",
   "dragonmagicandrelics:rituals/betrayal_ritual": "Ritual of Betrayal",
-  "dragonmagicandrelics:rituals/artefact_trade": "Ritual of Artifact Trade",
+  "dragonmagicandrelics:rituals/artefact_trade": "Ritual of Relict Trade",
 
   "dragonmagicandrelics.key.togglenightvision": "DM&R: Toggle Night Vision",
   "dragonmagicandrelics.key.toggleflight": "DM&R: Toggle Flight",

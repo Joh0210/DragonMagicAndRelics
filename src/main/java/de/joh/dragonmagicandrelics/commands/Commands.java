@@ -2,7 +2,6 @@ package de.joh.dragonmagicandrelics.commands;
 
 import com.mna.api.faction.IFaction;
 import com.mna.factions.Factions;
-import com.mna.spells.crafting.SpellRecipe;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
@@ -17,11 +16,9 @@ import de.joh.dragonmagicandrelics.item.util.IDragonMagicContainer;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.commands.arguments.ResourceLocationArgument;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -106,11 +103,15 @@ public class Commands {
                         level = Math.min(level, armorUpgrade.supportsOnExtraLevel ? armorUpgrade.maxUpgradeLevel + 1 : armorUpgrade.maxUpgradeLevel);
                     }
 
-                    ((IDragonMagicContainer) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level, BoolArgumentType.getBool(command, "force"));
-                    TranslatableComponent component_one = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.one");
-                    TranslatableComponent component_two = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.two");
+                    if(((IDragonMagicContainer) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level, BoolArgumentType.getBool(command, "force"))){
+                        TranslatableComponent component_one = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.one");
+                        TranslatableComponent component_two = new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.success.two");
 
-                    command.getSource().sendSuccess(new TextComponent(component_one.getString() + armorUpgrade.getRegistryName().toString() + component_two.getString() + level), true);
+                        command.getSource().sendSuccess(new TextComponent(component_one.getString() + armorUpgrade.getRegistryName().toString() + component_two.getString() + level), true);
+                    } else {
+                        command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.fail.not_enough_space"), true);
+                    }
+
                 } else {
                     command.getSource().sendSuccess(new TranslatableComponent("dragonmagicandrelics.commands.output.callApplyUpgrade.no.armor.equipped.error"), true);
                 }

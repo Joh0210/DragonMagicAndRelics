@@ -22,11 +22,11 @@ import de.joh.dragonmagicandrelics.networking.packet.ToggleMajorFireResS2CPacket
 import de.joh.dragonmagicandrelics.utils.RLoc;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -46,8 +46,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.server.command.ConfigCommand;
 import top.theillusivec4.caelus.api.CaelusApi;
 
-import java.util.Random;
-
 /**
  * These event handlers take care of processing events which are on the server and client. (No damage events)
  * Functions marked with @SubscribeEvent are called by the forge event bus handler.
@@ -61,9 +59,10 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
         if(event.getEntityLiving() instanceof Player player && !player.getLevel().isClientSide()){
-            if (player.isSprinting() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1) {
-                float boost = ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP)/10.0f) + ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)/4.0f);
-                player.push((float)(player.getDeltaMovement().x * boost * 1.5F), boost * 2, (float)(player.getDeltaMovement().z * boost * 1.5F));
+            int level = ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP);
+            if (player.isSprinting() && level >= 1) {
+                float multiplier = (float)player.getAttributeValue(Attributes.MOVEMENT_SPEED) * 4.0F * level;
+                player.push(player.getDeltaMovement().x * multiplier, 0.325 * level, player.getDeltaMovement().z * multiplier);
                 player.hurtMarked = true;
             }
         }
