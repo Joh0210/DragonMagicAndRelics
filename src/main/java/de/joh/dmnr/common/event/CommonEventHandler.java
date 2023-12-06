@@ -30,6 +30,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -62,9 +63,10 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
         if(event.getEntity() instanceof Player player && !player.getLevel().isClientSide()){
-            if (player.isSprinting() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1) {
-                float boost = ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP)/10.0f) + ((float)ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)/4.0f);
-                player.push((float)(player.getDeltaMovement().x * boost * 1.5F), boost * 2, (float)(player.getDeltaMovement().z * boost * 1.5F));
+            int level = ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP);
+            if (player.isSprinting() && level >= 1) {
+                float multiplier = (float)player.getAttributeValue(Attributes.MOVEMENT_SPEED) * 4.0F * level;
+                player.push(player.getDeltaMovement().x * multiplier, 0.325 * level, player.getDeltaMovement().z * multiplier);
                 player.hurtMarked = true;
             }
         }

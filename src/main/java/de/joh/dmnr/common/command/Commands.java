@@ -105,11 +105,14 @@ public class Commands {
                         level = Math.min(level, armorUpgrade.supportsOnExtraLevel ? armorUpgrade.maxUpgradeLevel + 1 : armorUpgrade.maxUpgradeLevel);
                     }
 
-                    ((IDragonMagicContainerItem) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level, BoolArgumentType.getBool(command, "force"));
-                    MutableComponent component_one = Component.translatable("dmnr.commands.output.callApplyUpgrade.success.one");
-                    MutableComponent component_two = Component.translatable("dmnr.commands.output.callApplyUpgrade.success.two");
+                    if(((IDragonMagicContainerItem) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level, BoolArgumentType.getBool(command, "force"))){
+                        MutableComponent component_one = Component.translatable("dmnr.commands.output.callApplyUpgrade.success.one");
+                        MutableComponent component_two = Component.translatable("dmnr.commands.output.callApplyUpgrade.success.two");
 
-                    command.getSource().sendSuccess(Component.literal(component_one.getString() + armorUpgrade.getRegistryName().toString() + component_two.getString() + level), true);
+                        command.getSource().sendSuccess(Component.literal(component_one.getString() + armorUpgrade.getRegistryName().toString() + component_two.getString() + level), true);
+                    } else {
+                        command.getSource().sendSuccess(Component.translatable("dmnr.commands.output.callApplyUpgrade.fail.not_enough_space"), true);
+                    }
                 } else {
                     command.getSource().sendSuccess(Component.translatable("dmnr.commands.output.callApplyUpgrade.no.armor.equipped.error"), true);
                 }

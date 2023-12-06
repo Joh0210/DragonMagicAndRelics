@@ -33,7 +33,7 @@ group = "${groupbase}.${modid}"
 version = "${minecraft_version}-${mod_version}"
 
 java {
-    archivesBaseName = 'dragonmagicandrelics'
+    archivesBaseName = 'dmnr'
     toolchain.languageVersion = JavaLanguageVersion.of(17)
 }
 
@@ -157,7 +157,7 @@ dependencies {
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "dragonmagicandrelics",
+                "Specification-Title"     : "dmnr",
                 "Specification-Vendor"    : "Joh0210",
                 "Specification-Version"   : "1",
                 "Implementation-Title"    : project.name,

@@ -55,7 +55,7 @@
         "value": "",
         "json": [
           {
-            "text": "Walk on Lava, Run faster, jump higher and climb mountains without lifting your knee.",
+            "text": "Walk on Lava (temporarily deactivated), Run faster, jump higher and climb mountains without lifting your knee.",
             "color": ""
           }
         ]
@@ -346,7 +346,7 @@
     "sections": [
       {
         "type": "title",
-        "value": "Upgrade Glyph Minor Mana Boost"
+        "value": "Upgrade Glyph Mana Boost"
       },
       {
         "type": "text",
@@ -1282,7 +1282,7 @@
     ],
     "related_recipes": [
       {
-        "type": "crafting",
+        "type": "spell_part",
         "location":"dmnr:components/ultimatearmor"
       }
     ]
@@ -2109,20 +2109,20 @@
       }
     ]
   },
-  "Ritual of Artefact Trade": {
+  "Ritual of Relict Trade": {
     "index": 0,
     "category": "rituals",
     "sections": [
       {
         "type": "title",
-        "value": "Ritual of Artefact Trade"
+        "value": "Ritual of Relict Trade"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "Even if I'm lucky enough to find one of the untold artifacts, it might not be the one I want.",
+            "text": "Even if I'm lucky enough to find one of the untold relicts, it might not be the one I want.",
             "color": ""
           }
         ]
@@ -2132,7 +2132,7 @@
         "value": "",
         "json": [
           {
-            "text": "With this ritual I can trade it with another artifact.",
+            "text": "With this ritual I can trade it with another relict.",
             "color": ""
           }
         ]

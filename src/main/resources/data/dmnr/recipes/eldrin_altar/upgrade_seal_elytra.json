@@ -1,6 +1,6 @@
 {
   "type": "mna:eldrin-altar",
-  "output": "dmnr:upgrade_seal_elytra_i",
+  "output": "dmnr:upgrade_seal_elytra",
   "tier": 5,
   "items": [
     "mna:stone_rune_white",

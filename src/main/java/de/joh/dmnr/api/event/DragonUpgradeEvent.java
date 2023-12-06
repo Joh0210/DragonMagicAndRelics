@@ -197,6 +197,7 @@ public class DragonUpgradeEvent extends PlayerEvent {
             ret.put(ArmorUpgradeInit.BURNING_FRENZY, 1);
             ret.put(ArmorUpgradeInit.METEOR_JUMP, 1);
             ret.put(ArmorUpgradeInit.DAMAGE_BOOST, 2);
+            ret.put(ArmorUpgradeInit.JUMP, 2);
             ret.put(ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE, 1);
         }
         return ret;

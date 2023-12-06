@@ -21,7 +21,6 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * A combined and stronger version of Speed and Jump.
- * @see JumpArmorUpgrade
  * @see SpeedArmorUpgrade
  * @author Joh0210
  */
@@ -45,7 +44,7 @@ public class BurningFrenzyArmorUpgrade extends OnTickArmorUpgrade implements IOn
 
     @Override
     public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
-        if (player.isSprinting() && magic.getCastingResource().hasEnoughAbsolute(player, 0.25F)) {
+        if (player.isSprinting() && magic.getCastingResource().hasEnoughAbsolute(player, 0.07F)) {
             if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed_1)) {
                 player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed_1);
                 player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).addTransientModifier(stepMod1);
@@ -58,7 +57,7 @@ public class BurningFrenzyArmorUpgrade extends OnTickArmorUpgrade implements IOn
                 player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 0.8F);
             }
 
-            magic.getCastingResource().consume(player, 0.25F);
+            magic.getCastingResource().consume(player, 0.07F);
         }
         else  {
             player.getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(runSpeed_1);

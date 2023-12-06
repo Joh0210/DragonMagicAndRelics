@@ -1,12 +1,7 @@
 package de.joh.dmnr.mixins;
 
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
-import de.joh.dmnr.capabilities.client.ClientPlayerDragonMagic;
-import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,14 +21,14 @@ public class LivingEntityFireWalkerMixin {
             cancellable = true
     )
     public void dmnr$canStandOnFluid(FluidState state, CallbackInfoReturnable<Boolean> cir) {
-        LivingEntity self = (LivingEntity) (Object) this;
-        if (state.getTags().anyMatch((t) -> t == FluidTags.LAVA) && self instanceof Player && (
-                            (!self.getLevel().isClientSide() && ArmorUpgradeHelper.getUpgradeLevel((Player) self, ArmorUpgradeInit.BURNING_FRENZY) >= 1)
-                            ||
-                            (self.getLevel().isClientSide() && ClientPlayerDragonMagic.hasBurningFrenzy())
-                    )) {
-            cir.setReturnValue(!self.isCrouching());
-        }
+//        LivingEntity self = (LivingEntity) (Object) this;
+//        if (state.getTags().anyMatch((t) -> t == FluidTags.LAVA) && self instanceof Player && (
+//                            (!self.getLevel().isClientSide() && ArmorUpgradeHelper.getUpgradeLevel((Player) self, ArmorUpgradeInit.BURNING_FRENZY) >= 1)
+//                            ||
+//                            (self.getLevel().isClientSide() && ClientPlayerDragonMagic.hasBurningFrenzy())
+//                    )) {
+//            cir.setReturnValue(!self.isCrouching());
+//        }
     }
 
     @Inject(
@@ -42,14 +37,14 @@ public class LivingEntityFireWalkerMixin {
             cancellable = true
     )
     public void dmnr$isAffectedByFluids(CallbackInfoReturnable<Boolean> cir) {
-        LivingEntity self = (LivingEntity) (Object) this;
-        if (self.isInLava() && self instanceof Player && (
-                            (!self.getLevel().isClientSide() && ArmorUpgradeHelper.getUpgradeLevel((Player) self, ArmorUpgradeInit.BURNING_FRENZY) >= 1)
-                            ||
-                            (self.getLevel().isClientSide() && ClientPlayerDragonMagic.hasBurningFrenzy())
-                    )) {
-            cir.setReturnValue(!self.isInLava());
-        }
+//        LivingEntity self = (LivingEntity) (Object) this;
+//        if (self.isInLava() && self instanceof Player && (
+//                            (!self.getLevel().isClientSide() && ArmorUpgradeHelper.getUpgradeLevel((Player) self, ArmorUpgradeInit.BURNING_FRENZY) >= 1)
+//                            ||
+//                            (self.getLevel().isClientSide() && ClientPlayerDragonMagic.hasBurningFrenzy())
+//                    )) {
+//            cir.setReturnValue(!self.isInLava());
+//        }
 
     }
 
@@ -61,16 +56,16 @@ public class LivingEntityFireWalkerMixin {
     public void dmnr$jumpInLiquid(TagKey<Fluid> fluid, CallbackInfo ci) {
         //todo: fix -> Cannot Jump in Lava
 
-        if (fluid == FluidTags.LAVA) {
-            LivingEntity self = (LivingEntity) (Object) this;
-            if (self instanceof Player && (
-                            (!self.getLevel().isClientSide() && ArmorUpgradeHelper.getUpgradeLevel((Player) self, ArmorUpgradeInit.BURNING_FRENZY) >= 1)
-                            ||
-                            (self.getLevel().isClientSide() && ClientPlayerDragonMagic.hasBurningFrenzy())
-                    )) {
-                ((Player)self).jumpFromGround();
-                ci.cancel();
-            }
-        }
+//        if (fluid == FluidTags.LAVA) {
+//            LivingEntity self = (LivingEntity) (Object) this;
+//            if (self instanceof Player && (
+//                            (!self.getLevel().isClientSide() && ArmorUpgradeHelper.getUpgradeLevel((Player) self, ArmorUpgradeInit.BURNING_FRENZY) >= 1)
+//                            ||
+//                            (self.getLevel().isClientSide() && ClientPlayerDragonMagic.hasBurningFrenzy())
+//                    )) {
+//                ((Player)self).jumpFromGround();
+//                ci.cancel();
+//            }
+//        }
     }
 }

@@ -55,8 +55,8 @@ public class SpellInit {
             helper.register(RLoc.create("components/conjurelava"), SpellInit.CONJURE_LAVA);
             helper.register(RLoc.create("components/saturate"), SpellInit.SATURATE);
             helper.register(RLoc.create("components/mark"), SpellInit.MARK);
-            helper.register(RLoc.create("components/forcedamage"), SpellInit.ALTERNATIVERECALL);
-            helper.register(RLoc.create("components/alternativerecall"), SpellInit.FORCE_DAMAGE);
+            helper.register(RLoc.create("components/forcedamage"), SpellInit.FORCE_DAMAGE);
+            helper.register(RLoc.create("components/alternativerecall"), SpellInit.ALTERNATIVERECALL);
         });
     }
 

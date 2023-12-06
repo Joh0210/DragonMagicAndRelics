@@ -6,9 +6,9 @@ import com.mna.api.particles.ParticleInit;
 import com.mna.api.sound.SFX;
 import com.mna.config.GeneralModConfig;
 import com.mna.entities.utility.MAExplosion;
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.armorupgrade.OnTickArmorUpgrade;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
+import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -74,8 +74,7 @@ public class MeteorJumpArmorUpgrade extends OnTickArmorUpgrade {
             player.getPersistentData().remove("dmnr_meteor_jumping");
             player.setSprinting(false);
             if (!player.level.isClientSide) {
-                MAExplosion.make(player, (ServerLevel)player.level, player.getX(), player.getY(), player.getZ(), CommonConfig.METEOR_JUMP_IMPACT.get() * level, CommonConfig.METEOR_JUMP_IMPACT.get() * 4 * level, true, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
-
+                MAExplosion.make(player, (ServerLevel)player.level, player.getX(), player.getY(), player.getZ(), CommonConfig.METEOR_JUMP_IMPACT.get() * level / 2.0f, CommonConfig.METEOR_JUMP_IMPACT.get() * 3 * level, true, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
             }
         }
     }

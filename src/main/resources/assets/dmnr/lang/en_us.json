@@ -47,7 +47,7 @@
   "item.dmnr.upgrade_seal_night_vision": "Upgrade Glyph Night Vision",
   "item.dmnr.upgrade_seal_dolphins_grace": "Upgrade Glyph Swim Speed",
   "item.dmnr.upgrade_seal_regeneration": "Upgrade Glyph Regeneration",
-  "item.dmnr.upgrade_seal_mana_boost": "Upgrade Glyph Mana Boost",
+  "item.dmnr.upgrade_seal_mana_boost": "Upgrade Glyph Minor Mana Boost",
   "item.dmnr.upgrade_seal_major_mana_boost": "Upgrade Glyph Major Mana Boost",
   "item.dmnr.upgrade_seal_mana_regen": "Upgrade Glyph Mana Regeneration",
   "item.dmnr.upgrade_seal_health_boost": "Upgrade Glyph Health Boost",
@@ -86,7 +86,8 @@
 
   "dmnr.commands.output.callApplyUpgrade.upgradedoesnotexist.error": " The upgrade does not exist.",
   "dmnr.commands.output.callApplyUpgrade.no.armor.equipped.error": " The item in your main-hand cannot contain Dragon Magic",
-  "dmnr.commands.output.callApplyUpgrade.success.one": " You have upgraded ",
+  "dmnr.commands.output.callApplyUpgrade.fail.not_enough_space": "The container does not have enough space to install the upgrade!",
+  "dmnr.commands.output.callApplyUpgrade.success.one": "You have upgraded ",
   "dmnr.commands.output.callApplyUpgrade.success.two": "  to level ",
 
   "dmnr.components.conjurefluid.occupied.error": "The block is already occupied.",
@@ -168,7 +169,7 @@
   "dmnr:armorupgrade/saturation.description": "Automatically refills the wearer's hunger",
   "dmnr:armorupgrade/dolphins_grace": "§3Swim Speed§r",
   "dmnr:armorupgrade/dolphins_grace.description": "Allows the player to swim significantly faster.",
-  "dmnr:armorupgrade/mana_boost": "§bMana Boost§r",
+  "dmnr:armorupgrade/mana_boost": "§bMinor Mana Boost§r",
   "dmnr:armorupgrade/mana_boost.description": "Increases the user's maximum mana storage.",
   "dmnr:armorupgrade/major_mana_boost": "§bMajor Mana Boost§r",
   "dmnr:armorupgrade/major_mana_boost.description": "Increases the user's maximum mana storage.",
@@ -231,7 +232,7 @@
   "dmnr:rituals/dispelling_ritual": "Ritual of Dispelling",
   "dmnr:rituals/phoenix_ritual": "Ritual of the Phoenix",
   "dmnr:rituals/betrayal_ritual": "Ritual of Betrayal",
-  "dmnr:rituals/artefact_trade": "Ritual of Artifact Trade",
+  "dmnr:rituals/artefact_trade": "Ritual of Relict Trade",
 
   "dmnr.key.togglenightvision": "DM&R: Toggle Night Vision",
   "dmnr.key.toggleflight": "DM&R: Toggle Flight",

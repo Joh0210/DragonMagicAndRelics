@@ -1,15 +1,13 @@
 package de.joh.dmnr.capabilities.dragonmagic;
 
 
-import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import de.joh.dmnr.common.util.Registries;
 import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
-import de.joh.dmnr.api.armorupgrade.OnTickArmorUpgrade;
 import de.joh.dmnr.api.armorupgrade.IOnEquippedArmorUpgrade;
-import de.joh.dmnr.common.init.EffectInit;
-import de.joh.dmnr.common.util.CapabilityException;
+import de.joh.dmnr.api.armorupgrade.OnTickArmorUpgrade;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.init.EffectInit;
+import de.joh.dmnr.common.util.Registries;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -79,39 +77,40 @@ public class ArmorUpgradeHelper {
     public static void applyOnTickUpgrade(Player player){
         ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
         HashMap<OnTickArmorUpgrade, Integer> toApply = new HashMap<>();
-        IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElseThrow(CapabilityException::mna_magic);
-        if(!chest.isEmpty() && chest.getItem() instanceof DragonMageArmorItem dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
-            if(player.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
-                for(ArmorUpgrade armorUpgrade : Registries.ARMOR_UPGRADE.get().getValues()){
-                    if(armorUpgrade instanceof OnTickArmorUpgrade && !armorUpgrade.hasStrongerAlternative()){
-                        ((OnTickArmorUpgrade)armorUpgrade).onTick(player.level, player, armorUpgrade.maxUpgradeLevel, magic);
+        player.getCapability(PlayerMagicProvider.MAGIC).ifPresent(magic -> {
+            if(!chest.isEmpty() && chest.getItem() instanceof DragonMageArmorItem dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
+                if(player.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
+                    for(ArmorUpgrade armorUpgrade : Registries.ARMOR_UPGRADE.get().getValues()){
+                        if(armorUpgrade instanceof OnTickArmorUpgrade && !armorUpgrade.hasStrongerAlternative()){
+                            ((OnTickArmorUpgrade)armorUpgrade).onTick(player.level, player, armorUpgrade.maxUpgradeLevel, magic);
+                        }
                     }
+                    return;
                 }
-                return;
+
+                player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
+                    for(Pair<OnTickArmorUpgrade, Integer> pair : playerCapability.onTickUpgrade.values()){
+                        if(pair.getB() > 0){
+                            toApply.put(pair.getA(),  Math.max(pair.getB(), toApply.getOrDefault(pair.getA(), 0)));
+                        }
+                    }
+                });
             }
 
             player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-                for(Pair<OnTickArmorUpgrade, Integer> pair : playerCapability.onTickUpgrade.values()){
+                for(Pair<OnTickArmorUpgrade, Integer> pair : playerCapability.onTickPermaUpgrade.values()){
                     if(pair.getB() > 0){
                         toApply.put(pair.getA(),  Math.max(pair.getB(), toApply.getOrDefault(pair.getA(), 0)));
                     }
                 }
             });
-        }
 
-        player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-            for(Pair<OnTickArmorUpgrade, Integer> pair : playerCapability.onTickPermaUpgrade.values()){
-                if(pair.getB() > 0){
-                    toApply.put(pair.getA(),  Math.max(pair.getB(), toApply.getOrDefault(pair.getA(), 0)));
+            for(Map.Entry<OnTickArmorUpgrade, Integer> entry : toApply.entrySet()){
+                if(entry.getKey().getStrongerAlternative() == null || getUpgradeLevel(player, entry.getKey().getStrongerAlternative()) == 0){
+                    entry.getKey().onTick(player.level, player, entry.getValue(), magic);
                 }
             }
         });
-
-        for(Map.Entry<OnTickArmorUpgrade, Integer> entry : toApply.entrySet()){
-            if(entry.getKey().getStrongerAlternative() == null || getUpgradeLevel(player, entry.getKey().getStrongerAlternative()) == 0){
-                entry.getKey().onTick(player.level, player, entry.getValue(), magic);
-            }
-        }
     }
 
     public static void deactivateAll(Player player){
