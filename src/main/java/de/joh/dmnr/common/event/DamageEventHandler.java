@@ -54,6 +54,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.SlotTypePreset;
 
+import javax.annotation.Nullable;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -137,16 +138,44 @@ public class DamageEventHandler {
     @SubscribeEvent
     public static void onComponentApplying(ComponentApplyingEvent event){
         if(event.getSource().getCaster() instanceof Player player && event.getTarget().isLivingEntity() && event.getComponent().getUseTag() == SpellPartTags.HARMFUL){
-            for(SlotResult curios : CuriosApi.getCuriosHelper().findCurios(player, ItemInit.BRACELET_OF_FRIENDSHIP.get())){
-                if(curios.stack().getItem() instanceof BraceletOfFriendshipItem){
-                    for(Player friend : ((BraceletOfFriendshipItem)curios.stack().getItem()).getPlayerTargets(curios.stack(), player.getLevel())){
-                        if(friend == event.getTarget().getEntity()){
+            if(player != event.getTarget().getEntity()) {
+                for (SlotResult curios : CuriosApi.getCuriosHelper().findCurios(player, ItemInit.BRACELET_OF_FRIENDSHIP.get())) {
+                    if (curios.stack().getItem() instanceof BraceletOfFriendshipItem) {
+                        Player referenceTarget = playerOrOwner(event.getTarget().getEntity());
+                        if(referenceTarget == player){
                             event.setCanceled(true);
                             return;
+                        }
+                        else if(referenceTarget != null){
+                            for (Player friend : ((BraceletOfFriendshipItem) curios.stack().getItem()).getPlayerTargets(curios.stack(), player.getLevel())) {
+                                if (friend == referenceTarget) {
+                                    event.setCanceled(true);
+                                    return;
+                                }
+                            }
                         }
                     }
                 }
             }
+        }
+    }
+
+    /**
+     * @return Player itself or PlayerOwner of an Animal
+     * <br>-If it is a player, it will be returned.
+     * <br>-If it is a {@link OwnableEntity}, the owner is returned if it is a player. If the owner is a {@link OwnableEntity}, the owner will continue to be searched until it is a player or else null is returned.
+     * <br>-In all other cases null is returned.
+     */
+    @Nullable
+    private static Player playerOrOwner(Entity target){
+        while(target instanceof OwnableEntity){
+            target = ((OwnableEntity)target).getOwner();
+        }
+
+        if(target instanceof Player){
+            return  (Player) target;
+        } else{
+            return null;
         }
     }
 
@@ -177,11 +206,11 @@ public class DamageEventHandler {
      */
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
+        DamageSource source = event.getSource();
         if(event.getEntity() instanceof Player player){
             if (checkAndConsumeVoidfeatherCharm(event, player)) {
                 return;
             }
-            DamageSource source = event.getSource();
             if (!player.level.isClientSide) {
                 //protection against fire
                 if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE) >= 1) {
@@ -245,14 +274,23 @@ public class DamageEventHandler {
                 event.setCanceled(true);
                 return;
             }
+        }
 
-            if(source.getEntity() instanceof Player sourceEntity){
-                for(SlotResult curios : CuriosApi.getCuriosHelper().findCurios(sourceEntity, ItemInit.BRACELET_OF_FRIENDSHIP.get())){
-                    if(curios.stack().getItem() instanceof BraceletOfFriendshipItem){
-                        for(Player friend : ((BraceletOfFriendshipItem)curios.stack().getItem()).getPlayerTargets(curios.stack(), player.getLevel())){
-                            if(friend  == player){
-                                event.setCanceled(true);
-                                return;
+        if(source.getEntity() instanceof Player sourceEntity){
+            if(sourceEntity != event.getEntity()) {
+                for (SlotResult curios : CuriosApi.getCuriosHelper().findCurios(sourceEntity, ItemInit.BRACELET_OF_FRIENDSHIP.get())) {
+                    if (curios.stack().getItem() instanceof BraceletOfFriendshipItem) {
+                        Player referenceTarget = playerOrOwner(event.getEntity());
+                        if(referenceTarget == sourceEntity){
+                            event.setCanceled(true);
+                            return;
+                        }
+                        else if(referenceTarget != null){
+                            for (Player friend : ((BraceletOfFriendshipItem) curios.stack().getItem()).getPlayerTargets(curios.stack(), sourceEntity.getLevel())) {
+                                if (friend == referenceTarget) {
+                                    event.setCanceled(true);
+                                    return;
+                                }
                             }
                         }
                     }
