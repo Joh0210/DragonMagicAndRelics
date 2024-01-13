@@ -118,7 +118,7 @@ public class DamageEventHandler {
         if (sourceEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios((LivingEntity) sourceEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
             event.setAmount(event.getAmount() * Math.max(CommonConfig.MINOTAUR_BELT_MULTIPLICATION.get(), 1));
         }
-        if (targetEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
+        if (targetEntity != null && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
             event.setAmount(event.getAmount() * Math.max(CommonConfig.MINOTAUR_BELT_MULTIPLICATION.get(), 1));
         }
 
@@ -126,7 +126,7 @@ public class DamageEventHandler {
         if (sourceEntity instanceof LivingEntity && event.getAmount() >= 1 && !CuriosApi.getCuriosHelper().findCurios((LivingEntity) sourceEntity, ItemInit.STURDY_BELT.get()).isEmpty()){
             event.setAmount(Math.max(1, event.getAmount()*0.5f));
         }
-        if (targetEntity instanceof LivingEntity && event.getAmount() >= 1 && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.STURDY_BELT.get()).isEmpty()){
+        if (targetEntity != null && event.getAmount() >= 1 && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.STURDY_BELT.get()).isEmpty()){
             event.setAmount(Math.max(1, event.getAmount()*0.5f));
         }
     }
@@ -270,7 +270,7 @@ public class DamageEventHandler {
             }
 
             //Protection from kinetic energy
-            if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && (CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.ANGEL_RING.get()).isPresent() || CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.FALLEN_ANGEL_RING.get()).isPresent()            )){
+            if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.ANGEL_RING.get()).isPresent()){
                 event.setCanceled(true);
                 return;
             }

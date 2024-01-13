@@ -23,46 +23,31 @@ import javax.annotation.Nullable;
  * The version for the undead does not consume any mana.
  * @author Joh0210
  */
-public class AngelRingItem extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific {
+public class FallenAngelRingItem extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific {
 
-    public AngelRingItem(Properties itemProperties) {
+    public FallenAngelRingItem(Properties itemProperties) {
         super(itemProperties);
     }
 
     public static ResourceLocation getWingTextureLocation(){
-        return RLoc.create("textures/models/angel_ring_wing.png");
+        return RLoc.create("textures/models/fallen_angel_ring_wing.png");
     }
 
     @Override
     public IFaction getFaction() {
-        return  Factions.FEY;
+        return Factions.UNDEAD;
     }
 
     @Override
-    public boolean makesPiglinsNeutral(SlotContext slotContext, ItemStack stack){
-        return true;
+    public void onEquip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        slotContext.entity().getPersistentData().putBoolean("bone_armor_set_bonus", true);
+        onEquip(slotContext.identifier(), slotContext.index(), slotContext.entity(), stack);
     }
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player && player.hasEffect(EffectInit.ELYTRA.get())){
-            player.removeEffect(EffectInit.ELYTRA.get());
-        }
+        slotContext.entity().getPersistentData().putBoolean("bone_armor_set_bonus", false);
         onUnequip(slotContext.identifier(), slotContext.index(), slotContext.entity(), stack);
-    }
-
-    @Override
-    public void curioTick(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player){
-            int level = 1;
-            if(!player.hasEffect(EffectInit.ELYTRA.get()) || player.getEffect(EffectInit.ELYTRA.get()).getAmplifier() < (level)){
-                player.addEffect(new MobEffectInstance(EffectInit.ELYTRA.get(), 100000, level, false, false, true));
-            }
-            else{
-                player.getEffect(EffectInit.ELYTRA.get()).update(new MobEffectInstance(EffectInit.ELYTRA.get(), 100000, level, false, false, true));
-            }
-        }
-        curioTick(slotContext.identifier(), slotContext.index(), slotContext.entity(), stack);
     }
 
     @Override

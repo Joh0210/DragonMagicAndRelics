@@ -5,7 +5,7 @@
   "requiredFaction": "mna:undead",
   "quantity": 1,
   "items": [
-    "dmnr:dragon_core",
+    "minecraft:nether_star",
     "minecraft:netherite_ingot",
     "minecraft:elytra",
     "minecraft:netherite_ingot",

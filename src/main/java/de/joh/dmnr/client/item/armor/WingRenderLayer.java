@@ -1,13 +1,13 @@
 package de.joh.dmnr.client.item.armor;
 
-import com.mna.factions.Factions;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.common.armorupgrade.FlyArmorUpgrade;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.AngelRingItem;
-import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.item.FallenAngelRingItem;
 import net.minecraft.client.model.ElytraModel;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -52,7 +52,7 @@ public class WingRenderLayer<T extends LivingEntity, M extends EntityModel<T>> e
             matrixStackIn.translate(0.0D, 0.0D, 0.125D);
             this.getParentModel().copyPropertiesTo(this.modelElytra);
             this.modelElytra.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(AngelRingItem.getWingTextureLocation(Factions.FEY)), false, false);
+            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(AngelRingItem.getWingTextureLocation()), false, false);
             this.modelElytra.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             matrixStackIn.popPose();
         }
@@ -61,7 +61,7 @@ public class WingRenderLayer<T extends LivingEntity, M extends EntityModel<T>> e
             matrixStackIn.translate(0.0D, 0.0D, 0.125D);
             this.getParentModel().copyPropertiesTo(this.modelElytra);
             this.modelElytra.setupAnim(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
-            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(AngelRingItem.getWingTextureLocation(Factions.UNDEAD)), false, false);
+            VertexConsumer ivertexbuilder = ItemRenderer.getFoilBuffer(bufferIn, this.modelElytra.renderType(FallenAngelRingItem.getWingTextureLocation()), false, false);
             this.modelElytra.renderToBuffer(matrixStackIn, ivertexbuilder, packedLightIn, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);
             matrixStackIn.popPose();
         }

@@ -67,11 +67,6 @@ public class ArmorUpgradeInit {
      */
     public static ArmorUpgrade PROJECTILE_REFLECTION;
 
-    /**
-     * This upgrade lets you enter Mist Form when you are about to die.
-     * Increasing the maximum level has no effect without further adjustments.
-     * @see DamageEventHandler
-     */
     public static ArmorUpgrade MIST_FORM;
 
     public static ArmorUpgrade JUMP;
@@ -156,7 +151,7 @@ public class ArmorUpgradeInit {
         ArmorUpgradeInit.KINETIC_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/kinetic_resistance"), 1, false, 4);
         ArmorUpgradeInit.EXPLOSION_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/explosion_resistance"), 1, false, 4);
         ArmorUpgradeInit.PROJECTILE_REFLECTION = new ArmorUpgrade(RLoc.create("armorupgrade/projectile_reflection"), 3, true, 2);
-        ArmorUpgradeInit.MIST_FORM = new ArmorUpgrade(RLoc.create("armorupgrade/mist_form"), 1, false, 8);
+        ArmorUpgradeInit.MIST_FORM = new MistFormArmorUpgrade(RLoc.create("armorupgrade/mist_form"), 1, false, 8);
         ArmorUpgradeInit.ELYTRA = new ElytraArmorUpgrade(RLoc.create("armorupgrade/elytra"), 1, true, 5);
         ArmorUpgradeInit.ANGEL_FLIGHT = new ElytraArmorUpgrade(RLoc.create("armorupgrade/angel_flight"), 2, false, 5);
         ArmorUpgradeInit.NIGHT_VISION = new NightVisionArmorUpgrade(RLoc.create("armorupgrade/night_vision"), 2);

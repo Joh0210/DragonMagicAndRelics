@@ -179,7 +179,7 @@ public class DragonUpgradeEvent extends PlayerEvent {
         HashMap<ArmorUpgrade, Integer> ret = new HashMap<>();
         if(targetFaction == Factions.UNDEAD){
             ret.put(ArmorUpgradeInit.MIST_FORM, 1);
-            ret.put(ArmorUpgradeInit.DAMAGE_BOOST, 2);
+            ret.put(ArmorUpgradeInit.MANA_REGEN, 2);
             ret.put(ArmorUpgradeInit.DAMAGE_RESISTANCE, 1);
         }
         else if(targetFaction == Factions.COUNCIL){
