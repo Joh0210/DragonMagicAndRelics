@@ -40,6 +40,7 @@ public abstract class PotionEffectArmorUpgrade extends OnEquippedArmorUpgrade { 
         this(registryName, maxUpgradeLevel, 1, isInfStackable, true, upgradeCost);
     }
 
+    @NotNull
     public abstract MobEffect getMobEffect();
 
     /**

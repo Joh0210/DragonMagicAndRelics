@@ -64,6 +64,7 @@
   "item.dmnr.upgrade_seal_damage_resistance": "Upgrade Glyph Damage Resistance",
   "item.dmnr.upgrade_seal_damage_boost": "Upgrade Glyph Damage Boost",
   "item.dmnr.upgrade_seal_sorcerers_pride": "Upgrade Glyph Sorcerers Pride",
+  "item.dmnr.upgrade_seal_insight": "Upgrade Glyph Insight",
 
   "block.dmnr.rift_emitter": "Rift Emitter",
 
@@ -176,6 +177,8 @@
   "dmnr:armorupgrade/major_mana_boost.description": "Increases the user's maximum mana storage.",
   "dmnr:armorupgrade/sorcerers_pride": "§bSorcerers Pride§r",
   "dmnr:armorupgrade/sorcerers_pride.description": "Increases castet Spells Attributes:\n- Magnitude +0.5\n- Damage +3\n- Duration: +30%",
+  "dmnr:armorupgrade/insight": "§dInsight§r",
+  "dmnr:armorupgrade/insight.description": "Makes you see damage and healing numbers.",
   "dmnr:armorupgrade/mana_regen": "§bMana Regeneration§r",
   "dmnr:armorupgrade/mana_regen.description": "Increases the rate at which the user's mana regenerates.",
 

@@ -1,8 +1,9 @@
 package de.joh.dmnr.common.armorupgrade;
 
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
 import de.joh.dmnr.api.armorupgrade.PotionEffectArmorUpgrade;
+import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
+import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.EffectInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -11,6 +12,11 @@ import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * Gives the Player the ELYTRA Effect at Tier level +1 (-> Creative Flight + Boosted Elytra Flight)
+ * @see ElytraMobEffect
+ * @author Joh0210
+ */
 public class ElytraArmorUpgrade extends PotionEffectArmorUpgrade {
     private final boolean hasStrongerAlternative;
     public ElytraArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean hasStrongerAlternative, int upgradeCost) {
@@ -23,6 +29,7 @@ public class ElytraArmorUpgrade extends PotionEffectArmorUpgrade {
         return hasStrongerAlternative ? ArmorUpgradeInit.ANGEL_FLIGHT : null;
     }
 
+    @NotNull
     @Override
     public MobEffect getMobEffect() {
         return EffectInit.ELYTRA.get();

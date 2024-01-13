@@ -1,0 +1,18 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:upgrade_seal_insight",
+  "tier": 5,
+  "items": [
+    "mna:stone_rune_magenta",
+    "minecraft:spyglass",
+    "minecraft:spider_eye",
+    "minecraft:spyglass",
+    "minecraft:spider_eye"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "ARCANE",
+      "amount": 150
+    }
+  ]
+}

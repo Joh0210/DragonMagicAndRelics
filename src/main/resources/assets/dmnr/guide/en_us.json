@@ -518,6 +518,42 @@
       }
     ]
   },
+  "Upgrade Glyph Insight": {
+    "index": "1",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Upgrade Glyph Insight"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Makes you see damage and healing numbers.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Dragon Magic Points per level: 1",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_insight"
+      }
+    ]
+  },
   "Upgrade Glyph Jump Boost": {
     "index": "1",
     "category": "eldrin_altar",

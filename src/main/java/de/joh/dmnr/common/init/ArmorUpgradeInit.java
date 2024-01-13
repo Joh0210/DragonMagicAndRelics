@@ -93,6 +93,8 @@ public class ArmorUpgradeInit {
      */
     public static ArmorUpgrade SORCERERS_PRIDE;
 
+    public static ArmorUpgrade INSIGHT;
+
     @SubscribeEvent
     public static void register(RegisterEvent event) {
         event.register(Registries.ARMOR_UPGRADE.get().getRegistryKey(), (helper) -> {
@@ -127,6 +129,7 @@ public class ArmorUpgradeInit {
             helper.register(ArmorUpgradeInit.ELYTRA.getRegistryName(), ArmorUpgradeInit.ELYTRA);
             helper.register(ArmorUpgradeInit.ANGEL_FLIGHT.getRegistryName(), ArmorUpgradeInit.ANGEL_FLIGHT);
             helper.register(ArmorUpgradeInit.NIGHT_VISION.getRegistryName(), ArmorUpgradeInit.NIGHT_VISION);
+            helper.register(ArmorUpgradeInit.INSIGHT.getRegistryName(), ArmorUpgradeInit.INSIGHT);
         });
     }
 
@@ -157,5 +160,6 @@ public class ArmorUpgradeInit {
         ArmorUpgradeInit.NIGHT_VISION = new NightVisionArmorUpgrade(RLoc.create("armorupgrade/night_vision"), 2);
         ArmorUpgradeInit.BURNING_FRENZY = new BurningFrenzyArmorUpgrade(RLoc.create("armorupgrade/burning_frenzy"), 6);
         ArmorUpgradeInit.SORCERERS_PRIDE = new ArmorUpgrade(RLoc.create("armorupgrade/sorcerers_pride"), 3, true, 5);
+        ArmorUpgradeInit.INSIGHT = new InsightArmorUpgrade(RLoc.create("armorupgrade/insight"), 1);
     }
 }
