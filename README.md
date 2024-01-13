@@ -36,7 +36,8 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Purified Mutandis (Fey only)
 - Ring of Power
 - Ring of Ruling
-- Staff of the Weather Fairy
+- Staff of the Weather Fairy (Relict)
+- The Clickers Cookie (Relict)
 - Voidfeather Charm
 
 ### New Blocks

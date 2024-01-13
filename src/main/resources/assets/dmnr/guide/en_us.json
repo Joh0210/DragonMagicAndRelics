@@ -1729,7 +1729,7 @@
         "value": "",
         "json": [
           {
-            "text": "My glyphs aren't the only way I have to maximize my armor's potential. I can also fortify my armor with spells, which activate as soon as I take damage (Sneak and right click to open the menu). One spell hits me, the other targets the person who attacked me.",
+            "text": "My glyphs aren't the only way I have to maximize my armor's potential. I can also fortify my armor with spells, which activate as soon as I take damage.\n\nContainer Gui Open Modifier-Key (Default: Control) and right click to open the menu\n\n. One spell hits me, the other targets the person who attacked me.",
             "color": ""
           }
         ]

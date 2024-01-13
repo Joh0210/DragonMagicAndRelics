@@ -24,6 +24,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 
+/**
+ * Allows the user to Change the Weather
+ * <br>Is a Relict
+ * @author Joh0210
+ */
 public class WeatherFairyStaffItem extends SwordItem {
     public WeatherFairyStaffItem() {
         super(Tiers.IRON, 3, -3.1F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).tab(CreativeModeTab.CreativeModeTab).setNoRepair());
