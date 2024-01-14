@@ -53,6 +53,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Fire Resistance (Minor & Major)
 - Fly
 - Health Boost
+- Insight
 - Jump
 - Kinetic Resistance
 - Mana Boost (Minor & Major)
@@ -84,6 +85,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - ~~Conjure Storm~~
 - Conjure Water
 - Curse (Shape)
+- Friends (Shape)
 - Force Damage
 - Mark
 - Nightfall

@@ -1005,6 +1005,46 @@
       }
     ]
   },
+  "Shape: Friends": {
+    "index": "1",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Shape: Friends"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "With this shape I can target all my friends within the defined radius with my magic.\n\nThe animal companions are not forgotten either!",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I need a Bracelet of Friendship to use this spell!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location":"dmnr:shapes/friends"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/bracelet_of_friendship"
+      }
+    ]
+  },
   "Shape: At Mark": {
     "index": "1",
     "category": "sorcery",

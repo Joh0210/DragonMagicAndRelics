@@ -98,6 +98,7 @@
   "dmnr.shapes.curse.no_target.error": "The selected Player does not exist.",
   "dmnr.shapes.curse.too_far.error": "The selected Player is to far away.",
   "dmnr.shapes.curse.protection.error": "The selected Player protects itself against your Magic.",
+  "dmnr.shapes.friends.no_bracelet_of_friendship.error": "I need a Bracelet of Friendship to use this spell",
 
   "dmnr.ritual.output.upgrade.ritual.already_at_max.error": "The upgrade is already at maximum strength.",
   "dmnr.ritual.output.upgrade.ritual.unexpected.error": "You don't have enough Dragon Magic Points left.",
@@ -182,6 +183,8 @@
   "dmnr:armorupgrade/mana_regen": "§bMana Regeneration§r",
   "dmnr:armorupgrade/mana_regen.description": "Increases the rate at which the user's mana regenerates.",
 
+  "dmnr:shapes/friends": "Friends",
+  "dmnr:shapes/friends.desc.range": "The Radius in which my friends will be affected",
   "dmnr:shapes/atmark": "At Mark",
   "dmnr:shapes/atmark.desc.radius": "The radius of the mark's impact.",
   "dmnr:shapes/atmark.desc.range": "The maximum distance that the spell can be casted. Each point raises the cap by 500 blocks.",

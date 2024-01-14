@@ -67,7 +67,7 @@ public class CurseShape extends Shape {
 
     @Override
     public float initialComplexity() {
-        return 10;
+        return 20;
     }
 
     @Override

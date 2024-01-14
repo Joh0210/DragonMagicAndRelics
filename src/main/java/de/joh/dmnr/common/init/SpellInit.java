@@ -8,6 +8,7 @@ import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.spell.component.*;
 import de.joh.dmnr.common.spell.shape.AtMarkShape;
 import de.joh.dmnr.common.spell.shape.CurseShape;
+import de.joh.dmnr.common.spell.shape.FriendsShape;
 import de.joh.dmnr.common.spell.shape.TrueTouchShape;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -24,6 +25,7 @@ public class SpellInit {
     public static Shape ATMARK;
     public static Shape TRUE_TOUCH;
     public static Shape CURSE;
+    public static Shape FRIENDS;
 
     public static SpellEffect ALTERNATIVERECALL;
     public static SpellEffect FORCE_DAMAGE;
@@ -43,6 +45,7 @@ public class SpellInit {
             helper.register(RLoc.create("shapes/atmark"), SpellInit.ATMARK);
             helper.register(RLoc.create("shapes/true_touch"), SpellInit.TRUE_TOUCH);
             helper.register(RLoc.create("shapes/curse"), SpellInit.CURSE);
+            helper.register(RLoc.create("shapes/friends"), SpellInit.FRIENDS);
         });
 
         event.register(Registries.SpellEffect.get().getRegistryKey(), (helper) -> {
@@ -64,6 +67,7 @@ public class SpellInit {
         SpellInit.ATMARK = new AtMarkShape(RLoc.create("textures/spell/shape/atmark.png"));
         SpellInit.TRUE_TOUCH = new TrueTouchShape(RLoc.create("textures/spell/shape/true_touch.png"));
         SpellInit.CURSE = new CurseShape(RLoc.create("textures/spell/shape/curse.png"));
+        SpellInit.FRIENDS = new FriendsShape(RLoc.create("textures/spell/shape/friends.png"));
 
         SpellInit.SUNRISE = new SunriseComponent(RLoc.create("textures/spell/component/sunrise.png"));
         SpellInit.MOONRISE = new MoonriseComponent(RLoc.create("textures/spell/component/moonrise.png"));

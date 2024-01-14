@@ -167,7 +167,7 @@ public class DamageEventHandler {
      * <br>-In all other cases null is returned.
      */
     @Nullable
-    private static Player playerOrOwner(Entity target){
+    public static Player playerOrOwner(Entity target){
         while(target instanceof OwnableEntity){
             target = ((OwnableEntity)target).getOwner();
         }
