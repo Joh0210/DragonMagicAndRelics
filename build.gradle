@@ -1,32 +1,20 @@
 buildscript {
     repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
         maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
         maven { url = 'https://maven.parchmentmc.org' }
-        maven { url 'https://maven.blamejared.com' }
         mavenCentral()
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
         classpath 'org.parchmentmc:librarian:1.+'
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
-
     }
 }
 
 plugins {
-    id 'eclipse'
-    id 'idea'
-    id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
-apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'org.parchmentmc.librarian.forgegradle'
-apply plugin: 'org.spongepowered.mixin'
-
-configurations {
-    shade // <- Create a 'shade' configuration
-    implementation.extendsFrom(shade) // <- Add the shade configuration to implementation
-}
 
 // Modify these variables in gradle.properties
 group = "${groupbase}.${modid}"
@@ -48,7 +36,7 @@ mixin {
 }
 
 minecraft {
-    mappings channel: 'parchment', version: '2022.11.27-1.19.2'
+    mappings channel: 'parchment', version: '2023.09.03-1.20.1'
     runs {
         client {
             workingDirectory project.file('run')
@@ -142,16 +130,16 @@ dependencies {
     // annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
 
     // Required dependencies; curios and Geckolib
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${minecraft_version}-${curios_version}")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${minecraft_version}-${curios_version}:api")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
+    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
     runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
     compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
 
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.19:3.1.40')
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.2.2')
 
     // M&A and its API
     // compileOnly "com.mithion:mna:${mna_version}:api" //api, compilation only
-    implementation fg.deobf("com.mithion:mna-forge-1.19.2:${mna_version}:all") //mod itself, deobf for runtime
+    implementation fg.deobf("com.mithion:mna-forge-1.20.1:${mna_version}:all") //mod itself, deobf for runtime
 }
 
 jar {
