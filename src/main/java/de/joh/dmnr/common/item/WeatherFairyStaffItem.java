@@ -1,6 +1,5 @@
 package de.joh.dmnr.common.item;
 
-import de.joh.dmnr.api.util.CreativeModeTab;
 import de.joh.dmnr.DragonMagicAndRelics;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;

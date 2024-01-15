@@ -1,12 +1,11 @@
 package de.joh.dmnr.common.item;
 
-import de.joh.dmnr.api.util.CreativeModeTab;
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.common.util.Registries;
 import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
+import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
-import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.util.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

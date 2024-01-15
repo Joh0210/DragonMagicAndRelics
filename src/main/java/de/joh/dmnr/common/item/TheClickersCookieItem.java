@@ -1,6 +1,5 @@
 package de.joh.dmnr.common.item;
 
-import de.joh.dmnr.api.util.CreativeModeTab;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;

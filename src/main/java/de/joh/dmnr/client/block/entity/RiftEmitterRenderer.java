@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.Nullable;
-import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
+import software.bernie.geckolib.renderer.GeoBlockRenderer;
 
 /**
  * GeckoLib Geo Renderer for the Rift Emitter
@@ -16,15 +16,7 @@ import software.bernie.geckolib3.renderers.geo.GeoBlockRenderer;
  * @author Joh0210
  */
 public class RiftEmitterRenderer extends GeoBlockRenderer<RiftEmitterBlockEntity> {
-    public RiftEmitterRenderer(BlockEntityRendererProvider.Context rendererDispatcherIn) {
-        super(rendererDispatcherIn, new RiftEmitterModel());
+    public RiftEmitterRenderer(BlockEntityRendererProvider.Context context) {
+        super(new RiftEmitterModel());
     }
-
-    @Override
-    public RenderType getRenderType(RiftEmitterBlockEntity animatable, float partialTicks, PoseStack stack,
-                                    @Nullable MultiBufferSource renderTypeBuffer, @Nullable VertexConsumer vertexBuilder,
-                                    int packedLightIn, ResourceLocation textureLocation) {
-        return RenderType.entityTranslucent(getTextureLocation(animatable));
-    }
-
 }

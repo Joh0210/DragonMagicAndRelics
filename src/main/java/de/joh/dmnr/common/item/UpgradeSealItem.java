@@ -1,11 +1,10 @@
 package de.joh.dmnr.common.item;
 
-import de.joh.dmnr.api.util.CreativeModeTab;
-import de.joh.dmnr.common.util.Registries;
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.ritual.UpgradeRitual;
+import de.joh.dmnr.common.util.Registries;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;

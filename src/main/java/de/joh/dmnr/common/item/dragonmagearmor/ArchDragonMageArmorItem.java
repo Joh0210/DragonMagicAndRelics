@@ -21,13 +21,13 @@ import net.minecraft.world.item.*;
  * @author Joh0210
  */
 public class ArchDragonMageArmorItem extends DragonMageArmorItem {
-    public ArchDragonMageArmorItem(EquipmentSlot pSlot) {
-        super(pSlot, RLoc.create(DragonMagicAndRelics.MOD_ID + "_arch_armor_set_bonus"));
+    public ArchDragonMageArmorItem(ArmorItem.Type type) {
+        super(type, RLoc.create(DragonMagicAndRelics.MOD_ID + "_arch_armor_set_bonus"));
     }
 
     @Override
     public MenuProvider getProvider(ItemStack itemStack) {
-        return this.slot == EquipmentSlot.CHEST ? new NamedArchDragonMageArmor(itemStack) : null;
+        return this.getType() == Type.CHESTPLATE ? new NamedArchDragonMageArmor(itemStack) : null;
     }
 
     @Override

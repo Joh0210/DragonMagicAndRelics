@@ -46,14 +46,6 @@ public class RiftEmitterBlock extends BaseEntityBlock {
     }
 
     /**
-     * Makes the block drop the appropriate item.
-     */
-    @Override
-    public @NotNull List<ItemStack> getDrops(@NotNull BlockState state, LootContext.@NotNull Builder builder) {
-        return Collections.singletonList(new ItemStack(ItemInit.RIFT_EMITTER_ITEM.get()));
-    }
-
-    /**
      * Instead of the block, a BlockEntity is created that uses the GeckoLib model.
      */
     @Nullable

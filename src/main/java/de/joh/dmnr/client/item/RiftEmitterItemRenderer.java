@@ -1,7 +1,7 @@
 package de.joh.dmnr.client.item;
 
 import de.joh.dmnr.common.item.RiftEmitterItem;
-import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
+import software.bernie.geckolib.renderer.GeoItemRenderer;
 
 /**
  * GeckoLib renderer for RiftEmitterItem.

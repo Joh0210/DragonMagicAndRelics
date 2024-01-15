@@ -9,6 +9,7 @@ import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 
 /**
@@ -21,13 +22,13 @@ import net.minecraft.world.item.ItemStack;
  * @author Joh0210
  */
 public class AbyssalDragonMageArmorItem extends DragonMageArmorItem {
-    public AbyssalDragonMageArmorItem(EquipmentSlot pSlot) {
-        super(pSlot, RLoc.create(DragonMagicAndRelics.MOD_ID + "_abyssal_armor_set_bonus"));
+    public AbyssalDragonMageArmorItem(ArmorItem.Type type) {
+        super(type, RLoc.create(DragonMagicAndRelics.MOD_ID + "_abyssal_armor_set_bonus"));
     }
 
     @Override
     public MenuProvider getProvider(ItemStack itemStack) {
-        return this.slot == EquipmentSlot.CHEST ? new NamedAbyssalDragonMageArmor(itemStack) : null;
+        return this.getType() == Type.CHESTPLATE ? new NamedAbyssalDragonMageArmor(itemStack) : null;
     }
 
     @Override

@@ -3,14 +3,14 @@ package de.joh.dmnr.client.item;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.item.RiftEmitterItem;
 import net.minecraft.resources.ResourceLocation;
-import software.bernie.geckolib3.model.AnimatedGeoModel;
+import software.bernie.geckolib.model.GeoModel;
 
 /**
  * GeckoLib model for the RiftEmitterItem.
  * <br> This code is generic.
  * @author Joh021
  */
-public class RiftEmitterItemModel extends AnimatedGeoModel<RiftEmitterItem> {
+public class RiftEmitterItemModel extends GeoModel<RiftEmitterItem> {
         @Override
         public ResourceLocation getModelResource(RiftEmitterItem object) {
                 return new ResourceLocation(DragonMagicAndRelics.MOD_ID, "geo/rift_emitter.geo.json");

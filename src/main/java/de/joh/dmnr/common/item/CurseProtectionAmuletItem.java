@@ -2,7 +2,6 @@ package de.joh.dmnr.common.item;
 
 import com.mna.api.items.ChargeableItem;
 import com.mna.items.artifice.curio.IPreEnchantedItem;
-import de.joh.dmnr.api.util.CreativeModeTab;
 import de.joh.dmnr.common.event.CommonEventHandler;
 import de.joh.dmnr.common.spell.shape.CurseShape;
 import net.minecraft.world.entity.player.Player;

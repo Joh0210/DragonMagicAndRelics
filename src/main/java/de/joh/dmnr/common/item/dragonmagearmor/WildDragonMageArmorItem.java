@@ -9,6 +9,7 @@ import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 
 /**
@@ -21,13 +22,13 @@ import net.minecraft.world.item.ItemStack;
  * @author Joh0210
  */
 public class WildDragonMageArmorItem extends DragonMageArmorItem {
-    public WildDragonMageArmorItem(EquipmentSlot pSlot) {
-        super(pSlot, RLoc.create(DragonMagicAndRelics.MOD_ID + "_wild_armor_set_bonus"));
+    public WildDragonMageArmorItem(ArmorItem.Type type) {
+        super(type, RLoc.create(DragonMagicAndRelics.MOD_ID + "_wild_armor_set_bonus"));
     }
 
     @Override
     public MenuProvider getProvider(ItemStack itemStack) {
-        return this.slot == EquipmentSlot.CHEST ? new NamedWildDragonMageArmor(itemStack) : null;
+        return this.getType() == Type.CHESTPLATE ? new NamedWildDragonMageArmor(itemStack) : null;
     }
 
     @Override

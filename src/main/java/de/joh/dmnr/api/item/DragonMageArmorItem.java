@@ -13,14 +13,15 @@ import com.mna.items.armor.ISetItem;
 import com.mna.items.base.IItemWithGui;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
-import de.joh.dmnr.api.util.CreativeModeTab;
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
+import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
-import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
@@ -36,19 +37,15 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.extensions.IForgeItem;
 import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib3.core.IAnimatable;
-import software.bernie.geckolib3.core.PlayState;
-import software.bernie.geckolib3.core.builder.AnimationBuilder;
-import software.bernie.geckolib3.core.builder.ILoopType;
-import software.bernie.geckolib3.core.controller.AnimationController;
-import software.bernie.geckolib3.core.event.predicate.AnimationEvent;
-import software.bernie.geckolib3.core.manager.AnimationData;
-import software.bernie.geckolib3.core.manager.AnimationFactory;
-import software.bernie.geckolib3.item.GeoArmorItem;
-import software.bernie.geckolib3.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.GeoItem;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.*;
+import software.bernie.geckolib.core.object.PlayState;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -63,17 +60,14 @@ import java.util.function.Consumer;
  * @see DamageEventHandler
  * @author Joh0210
  */
-public abstract class DragonMageArmorItem extends GeoArmorItem implements IItemWithGui<DragonMageArmorItem>, IAnimatable, IForgeItem, ISetItem, IDragonMagicContainerItem {
-    private final AnimationFactory factory =  GeckoLibUtil.createFactory(this);
+public abstract class DragonMageArmorItem extends ArmorItem implements IItemWithGui<DragonMageArmorItem>, IForgeItem, ISetItem, IDragonMagicContainerItem, GeoItem {
+    private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+
     private final ResourceLocation dragonMageArmorSetBonus;
 
-    public DragonMageArmorItem(EquipmentSlot pSlot, ResourceLocation dragonMageArmorSetBonus, net.minecraft.world.item.CreativeModeTab tab) {
-        super(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, pSlot, new Item.Properties().tab(tab).rarity(Rarity.EPIC).fireResistant());
+    public DragonMageArmorItem(ArmorItem.Type type, ResourceLocation dragonMageArmorSetBonus) {
+        super(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, type, new Item.Properties().rarity(Rarity.EPIC).fireResistant());
         this.dragonMageArmorSetBonus = dragonMageArmorSetBonus;
-    }
-
-    public DragonMageArmorItem(EquipmentSlot pSlot, ResourceLocation dragonMageArmorSetBonus) {
-        this(pSlot, dragonMageArmorSetBonus, CreativeModeTab.CreativeModeTab);
     }
 
     public abstract ResourceLocation getWingTextureLocation();
@@ -86,11 +80,11 @@ public abstract class DragonMageArmorItem extends GeoArmorItem implements IItemW
      * @param other Source of damage (only as entity).
      */
     public static void applySpell(ItemStack stack, boolean isOther, Player self, @Nullable Entity other) {
-        if(stack.getItem() instanceof DragonMageArmorItem && ((DragonMageArmorItem)stack.getItem()).slot == EquipmentSlot.CHEST){
+        if(stack.getItem() instanceof DragonMageArmorItem && ((DragonMageArmorItem)stack.getItem()).type == Type.CHESTPLATE){
             ItemInventoryBase inv = new ItemInventoryBase(stack);
             ItemStack slot = inv.getStackInSlot(isOther ? 1 : 0);
             if (slot.getItem() != ItemInit.ENCHANTED_VELLUM.get() && (!isOther || other != null)) {
-                if (!slot.isEmpty() && SpellRecipe.stackContainsSpell(slot) && !self.level.isClientSide) {
+                if (!slot.isEmpty() && SpellRecipe.stackContainsSpell(slot) && !self.level().isClientSide) {
                     SpellRecipe recipe = SpellRecipe.fromNBT(slot.getTag());
                     if (recipe.isValid()) {
                         MutableBoolean consumed = new MutableBoolean(false);
@@ -103,12 +97,12 @@ public abstract class DragonMageArmorItem extends GeoArmorItem implements IItemW
                         });
                         if (consumed.getValue()) {
                             SpellSource source = new SpellSource(self, InteractionHand.MAIN_HAND);
-                            SpellContext context = new SpellContext(self.level, recipe);
+                            SpellContext context = new SpellContext(self.level(), recipe);
                             recipe.iterateComponents((c) -> {
                                 int delay = (int)(c.getValue(com.mna.api.spells.attributes.Attribute.DELAY) * 20.0F);
                                 boolean appliedComponent = false;
                                 if (delay > 0) {
-                                    DelayedEventQueue.pushEvent(self.level, new TimedDelayedSpellEffect(c.getPart().getRegistryName().toString(), delay, source, new SpellTarget(isOther ? other : self), c, context));
+                                    DelayedEventQueue.pushEvent(self.level(), new TimedDelayedSpellEffect(c.getPart().getRegistryName().toString(), delay, source, new SpellTarget(isOther ? other : self), c, context));
                                     appliedComponent = true;
                                 } else if (c.getPart().ApplyEffect(source, new SpellTarget(isOther ? other : self), c, context) == ComponentApplicationResult.SUCCESS) {
                                     appliedComponent = true;
@@ -132,7 +126,7 @@ public abstract class DragonMageArmorItem extends GeoArmorItem implements IItemW
 
     @Override
     public int getMaxDragonMagic(ItemStack itemStack) {
-        return slot == EquipmentSlot.CHEST ? 64 : 0;
+        return type == Type.CHESTPLATE ? 64 : 0;
     }
 
 
@@ -170,7 +164,7 @@ public abstract class DragonMageArmorItem extends GeoArmorItem implements IItemW
 
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, @NotNull Player player, @NotNull InteractionHand hand) {
-        if (!world.isClientSide && this.slot == EquipmentSlot.CHEST) {
+        if (!world.isClientSide && this.type == Type.CHESTPLATE) {
             ItemStack held = player.getItemInHand(hand);
             if (this.openGuiIfModifierPressed(held, player, world)) {
                 return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
@@ -186,7 +180,7 @@ public abstract class DragonMageArmorItem extends GeoArmorItem implements IItemW
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        if(this.slot != EquipmentSlot.CHEST){
+        if(this.type != Type.CHESTPLATE){
             return;
         }
 
@@ -235,21 +229,6 @@ public abstract class DragonMageArmorItem extends GeoArmorItem implements IItemW
         return 4;
     }
 
-    @Override
-    public void registerControllers(AnimationData data) {
-        data.addAnimationController(new AnimationController<>(this, "controller", 20, this::predicate));
-    }
-
-    private <P extends IAnimatable> PlayState predicate(AnimationEvent<P> event) {
-        event.getController().setAnimation(new AnimationBuilder().addAnimation("idle", ILoopType.EDefaultLoopTypes.LOOP));
-        return PlayState.CONTINUE;
-    }
-
-    @Override
-    public AnimationFactory getFactory() {
-        return this.factory;
-    }
-
     public boolean wouldSetBeEquipped(LivingEntity living, Item item) {
         if (living == null) {
             return false;
@@ -269,7 +248,7 @@ public abstract class DragonMageArmorItem extends GeoArmorItem implements IItemW
 
             if(item instanceof DragonMageArmorItem){
                 boolean isValidSlot = false;
-                EquipmentSlot slot = ((ArmorItem)item).getSlot();
+                EquipmentSlot slot = ((ArmorItem)item).getType().getSlot();
                 for(EquipmentSlot es : getValidSetSlots()){
                     isValidSlot = isValidSlot || slot == es;
                 }
@@ -283,6 +262,38 @@ public abstract class DragonMageArmorItem extends GeoArmorItem implements IItemW
 
             return count >= this.itemsForSetBonus();
         }
+    }
+
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(new IClientItemExtensions() {
+            private DragonMageArmorRenderer renderer;
+
+            @Override
+            public @NotNull HumanoidModel<?> getHumanoidArmorModel(LivingEntity livingEntity, ItemStack itemStack,
+                                                                   EquipmentSlot equipmentSlot, HumanoidModel<?> original) {
+                if (this.renderer == null)
+                    this.renderer = new DragonMageArmorRenderer();
+
+                this.renderer.prepForRender(livingEntity, itemStack, equipmentSlot, original);
+                return this.renderer;
+            }
+        });
+    }
+
+    private PlayState predicate(AnimationState animationState) {
+        animationState.getController().setAnimation(RawAnimation.begin().then("idle", Animation.LoopType.LOOP));
+        return PlayState.CONTINUE;
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllerRegistrar) {
+        controllerRegistrar.add(new AnimationController(this, "controller", 0, this::predicate));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 
     @Override

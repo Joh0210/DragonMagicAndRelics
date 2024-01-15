@@ -3,7 +3,6 @@ package de.joh.dmnr.common.item;
 import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.items.ITieredItem;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import de.joh.dmnr.api.util.CreativeModeTab;
 import de.joh.dmnr.common.init.ItemInit;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
