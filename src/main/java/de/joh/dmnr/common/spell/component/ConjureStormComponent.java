@@ -26,7 +26,7 @@ public class ConjureStormComponent extends SpellEffect {
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
-        ((ServerLevel)context.getWorld()).setWeatherParameters(0, 6000, true, 1.5F <= (modificationData.getValue(Attribute.MAGNITUDE)));
+        ((ServerLevel)context.getLevel()).setWeatherParameters(0, 6000, true, 1.5F <= (modificationData.getValue(Attribute.MAGNITUDE)));
 
         return ComponentApplicationResult.SUCCESS;
     }

@@ -85,12 +85,12 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - ~~Conjure Storm~~
 - Conjure Water
 - Curse (Shape)
-- Friends (Shape)
 - Force Damage
 - Mark
 - Nightfall
 - Saturate (Fey only)
 - Sunrise
+- Target Ally (Shape)
 - True Touch (Shape)
 - Ultimate Armor
 

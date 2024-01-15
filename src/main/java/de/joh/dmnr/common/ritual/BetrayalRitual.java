@@ -33,9 +33,9 @@ public class BetrayalRitual extends RitualEffect {
 
         caster.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> m.setMagicLevel(caster,29));
 
-        LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(context.getWorld());
+        LightningBolt lightningboltentity = EntityType.LIGHTNING_BOLT.create(context.getLevel());
         lightningboltentity.setPos((double)pos.getX() + 0.5D, pos.getY(), (double)pos.getZ() + 0.5D);
-        context.getWorld().addFreshEntity(lightningboltentity);
+        context.getLevel().addFreshEntity(lightningboltentity);
 
         return true;
     }

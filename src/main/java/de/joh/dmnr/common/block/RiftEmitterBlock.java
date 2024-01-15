@@ -38,7 +38,7 @@ public class RiftEmitterBlock extends BaseEntityBlock {
     @Override
     public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
         super.use(blockstate, world, pos, player, hand, hit);
-        if (!player.level.isClientSide) {
+        if (!player.level().isClientSide) {
             NetworkHooks.openScreen((ServerPlayer)player, new NamedRift());
         }
 

@@ -13,11 +13,14 @@ import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
 
 /**
  * If the wielder shifts during a sprint jump, it lands like a metor on the ground and creates an explosion
@@ -37,9 +40,9 @@ public class MeteorJumpArmorUpgrade extends OnTickArmorUpgrade {
 
     @Override
     public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
-        if (level > 0 && !player.isOnGround() && player.getDeltaMovement().y < 0.0D && !player.isFallFlying() && player.isCrouching() && magic.getCastingResource().hasEnough(player, CommonConfig.METEOR_JUMP_MANA_COST.get()) && !player.getPersistentData().contains("dmnr_meteor_jumping") && player.isSprinting()) {
+        if (level > 0 && !player.onGround() && player.getDeltaMovement().y < 0.0D && !player.isFallFlying() && player.isCrouching() && magic.getCastingResource().hasEnough(player, CommonConfig.METEOR_JUMP_MANA_COST.get()) && !player.getPersistentData().contains("dmnr_meteor_jumping") && player.isSprinting()) {
             int heightAboveGround = 0;
-            for(BlockPos pos = player.blockPosition(); player.level.isEmptyBlock(pos) && heightAboveGround < reqHeight; ++heightAboveGround) {
+            for(BlockPos pos = player.blockPosition(); player.level().isEmptyBlock(pos) && heightAboveGround < reqHeight; ++heightAboveGround) {
                 pos = pos.below();
             }
 
@@ -51,14 +54,14 @@ public class MeteorJumpArmorUpgrade extends OnTickArmorUpgrade {
         }
 
         if (player.getPersistentData().contains("dmnr_meteor_jumping")) {
-            if (player.isOnGround()) {
+            if (player.onGround()) {
                 handlePlayerMeteorJumpImpact(player);
             }
 
             player.push(0.0D, -0.05D, 0.0D);
-            if (player.level.isClientSide) {
+            if (player.level().isClientSide) {
                 for(int i = 0; i < 25; ++i) {
-                    player.level.addParticle(new MAParticleType(ParticleInit.FLAME.get()), player.getX() - 0.5D + Math.random() * 0.5D, player.getY() + Math.random(), player.getZ() - 0.5D + Math.random() * 0.5D, 0.0D, 0.0D, 0.0D);
+                    player.level().addParticle(new MAParticleType(ParticleInit.FLAME.get()), player.getX() - 0.5D + Math.random() * 0.5D, player.getY() + Math.random(), player.getZ() - 0.5D + Math.random() * 0.5D, 0.0D, 0.0D, 0.0D);
                 }
             }
         }
@@ -73,8 +76,8 @@ public class MeteorJumpArmorUpgrade extends OnTickArmorUpgrade {
 
             player.getPersistentData().remove("dmnr_meteor_jumping");
             player.setSprinting(false);
-            if (!player.level.isClientSide) {
-                MAExplosion.make(player, (ServerLevel)player.level, player.getX(), player.getY(), player.getZ(), CommonConfig.METEOR_JUMP_IMPACT.get() * level / 2.0f, CommonConfig.METEOR_JUMP_IMPACT.get() * 3 * level, true, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.BREAK : Explosion.BlockInteraction.NONE);
+            if (!player.level().isClientSide) {
+                MAExplosion.make(player, (ServerLevel)player.level(), player.getX(), player.getY(), player.getZ(), CommonConfig.METEOR_JUMP_IMPACT.get() * level / 2.0f, CommonConfig.METEOR_JUMP_IMPACT.get() * 3 * level, true, GeneralModConfig.MA_METEOR_JUMP.get() && ((ServerLevel)player.level()).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP, player.damageSources().explosion(player, null));
             }
         }
     }

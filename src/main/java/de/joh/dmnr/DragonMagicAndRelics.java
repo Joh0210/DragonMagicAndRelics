@@ -32,6 +32,7 @@ public class DragonMagicAndRelics {
         instance = this;
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        CreativeModeTabInit.register(eventBus);
         ItemInit.register(eventBus);
         BlockInit.register(eventBus);
         EffectInit.register(eventBus);

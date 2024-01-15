@@ -32,7 +32,7 @@ public class DragonMageArmorRitual extends RitualEffect {
     @Override
     protected boolean applyRitualEffect(IRitualContext context) {
         Player player = context.getCaster();
-        Level world = context.getWorld();
+        Level world = context.getLevel();
         BlockPos pos = context.getCenter();
 
         HasMaxFactionEvent factionEvent = new HasMaxFactionEvent(player);

@@ -11,6 +11,7 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.entities.EntityInit;
 import com.mna.entities.rituals.TimeChangeBall;
 import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
@@ -26,13 +27,13 @@ public class SunriseComponent extends SpellEffect {
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
-        if (!context.getWorld().isNight()) {
+        if (!context.getLevel().isNight()) {
             return ComponentApplicationResult.FAIL;
         } else {
 
             BlockPos blockPos = (target.isBlock()) ? (new BlockPos(target.getBlock().getX(), (target.getBlock().getY() + 3), target.getBlock().getZ())) : (new BlockPos(target.getEntity().getOnPos().getX(), (target.getEntity().getOnPos().getY() + 3), target.getEntity().getOnPos().getZ()));
 
-            Entity auroraBall = EntityInit.STARBALL_ENTITY.get().spawn((ServerLevel)context.getWorld(), null, null, blockPos, MobSpawnType.TRIGGERED, true, false);
+            Entity auroraBall = EntityInit.STARBALL_ENTITY.get().spawn((ServerLevel)context.getLevel(), (CompoundTag) null, null, blockPos, MobSpawnType.TRIGGERED, true, false);
             if (auroraBall instanceof TimeChangeBall) {
                 ((TimeChangeBall) auroraBall).setTimeChangeType(TimeChangeBall.TIME_CHANGE_DAY);
                 return ComponentApplicationResult.SUCCESS;

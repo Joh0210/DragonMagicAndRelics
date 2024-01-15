@@ -183,7 +183,7 @@
   "dmnr:armorupgrade/mana_regen": "§bMana Regeneration§r",
   "dmnr:armorupgrade/mana_regen.description": "Increases the rate at which the user's mana regenerates.",
 
-  "dmnr:shapes/friends": "Friends",
+  "dmnr:shapes/friends": "Target Ally",
   "dmnr:shapes/friends.desc.range": "The Radius in which my friends will be affected",
   "dmnr:shapes/atmark": "At Mark",
   "dmnr:shapes/atmark.desc.radius": "The radius of the mark's impact.",

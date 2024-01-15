@@ -34,6 +34,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
@@ -84,7 +85,7 @@ public class DamageEventHandler {
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 
             //Spell
-            if(!chest.isEmpty() && !player.level.isClientSide && chest.getItem() instanceof DragonMageArmorItem dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
+            if(!chest.isEmpty() && !player.level().isClientSide && chest.getItem() instanceof DragonMageArmorItem dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
                 DragonMageArmorItem.applySpell(chest, false, player, sourceEntity);
                 if(sourceEntity != null && sourceEntity != player){
                     DragonMageArmorItem.applySpell(chest, true, player, sourceEntity);
@@ -104,7 +105,7 @@ public class DamageEventHandler {
             ((LivingEntity)sourceEntity).removeEffect(de.joh.dmnr.common.init.EffectInit.PEACE_EFFECT.get());
             ((LivingEntity)sourceEntity).addEffect(new MobEffectInstance((de.joh.dmnr.common.init.EffectInit.BROKEN_PEACE_EFFECT.get()), 12000));
             if(sourceEntity instanceof Player){
-                sourceEntity.getLevel().playSound(null, sourceEntity.getX(), sourceEntity.getY(), sourceEntity.getZ(), SoundEvents.RAID_HORN, SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
+                sourceEntity.level().playSound(null, sourceEntity.getX(), sourceEntity.getY(), sourceEntity.getZ(), SoundEvents.RAID_HORN, SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
             }
 
         }
@@ -211,7 +212,7 @@ public class DamageEventHandler {
             if (checkAndConsumeVoidfeatherCharm(event, player)) {
                 return;
             }
-            if (!player.level.isClientSide) {
+            if (!player.level().isClientSide) {
                 //protection against fire
                 if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE) >= 1) {
                     event.setCanceled(true);
@@ -234,13 +235,13 @@ public class DamageEventHandler {
                 }
 
                 //protection against explosions
-                if (source.isExplosion() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.EXPLOSION_RESISTANCE) == 1) {
+                if (source.is(DamageTypeTags.IS_EXPLOSION) && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.EXPLOSION_RESISTANCE) == 1) {
                     event.setCanceled(true);
                     return;
                 }
 
                 //Protection from falling through jumpboost
-                if(source.isFall()){
+                if(source.is(DamageTypeTags.IS_FALL)){
                     if(ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1){
                         if((event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) * 3) <= 0){
                             event.setCanceled(true);
@@ -256,7 +257,7 @@ public class DamageEventHandler {
                 }
 
                 //Protection from kinetic energy
-                if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.KINETIC_RESISTANCE) == 1){
+                if((source.is(DamageTypeTags.IS_FALL) || source == DamageSource.FLY_INTO_WALL) && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.KINETIC_RESISTANCE) == 1){
                     event.setCanceled(true);
                     return;
                 }
@@ -270,7 +271,7 @@ public class DamageEventHandler {
             }
 
             //Protection from kinetic energy
-            if((source.isFall() || source == DamageSource.FLY_INTO_WALL) && CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.ANGEL_RING.get()).isPresent()){
+            if((source.is(DamageTypeTags.IS_FALL) || source == DamageSource.FLY_INTO_WALL) && CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.ANGEL_RING.get()).isPresent()){
                 event.setCanceled(true);
                 return;
             }
@@ -306,10 +307,10 @@ public class DamageEventHandler {
     @SubscribeEvent
     public static void onLivingDamage(LivingDamageEvent event) {
         if(event.getEntity() instanceof Player player){
-            if (!player.level.isClientSide) {
+            if (!player.level().isClientSide) {
 
                 //Protection from falling through jumpboost
-                if(event.getSource().isFall()){
+                if(event.getSource().is(DamageTypeTags.IS_FALL)){
                     if(ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) >= 1){
                         int amount = (int)event.getAmount() - ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP) * 3;
                         if(amount > 0){
@@ -324,7 +325,7 @@ public class DamageEventHandler {
                     }
                 }
 
-                if (ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MIST_FORM) >= 1 && !event.getSource().isBypassInvul() && player.getHealth() > 1.0F && event.getAmount() > player.getHealth()) {
+                if (ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MIST_FORM) >= 1 && !event.getSource().is(DamageTypeTags.BYPASSES_INVULNERABILITY) && player.getHealth() > 1.0F && event.getAmount() > player.getHealth()) {
                     player.addEffect(new MobEffectInstance(EffectInit.MIST_FORM.get(), 200, 0, true, true));
                     player.setHealth(1.0F);
                     event.setCanceled(true);
@@ -338,7 +339,7 @@ public class DamageEventHandler {
         if (source instanceof LivingEntity && source != event.getEntity() && source instanceof Player sourcePlayer) {
             sourcePlayer.getCapability(PlayerProgressionProvider.PROGRESSION).ifPresent((p) -> {
                 if (p.getAlliedFaction() == Factions.UNDEAD) {
-                    if (!sourcePlayer.level.isClientSide) {
+                    if (!sourcePlayer.level().isClientSide) {
                         int manaRegenLevel = ArmorUpgradeHelper.getUpgradeLevel(sourcePlayer, ArmorUpgradeInit.MANA_REGEN);
                         if (manaRegenLevel > 0) {
                             float souls = getSoulsRestored(sourcePlayer, living);
@@ -364,14 +365,14 @@ public class DamageEventHandler {
      * @return Was the charm used and destroyed?
      */
     private static boolean checkAndConsumeVoidfeatherCharm(LivingAttackEvent event, Player player) {
-        if (!player.isCreative() && !player.isSpectator() && !player.level.isClientSide) {
+        if (!player.isCreative() && !player.isSpectator() && !player.level().isClientSide) {
             ServerPlayer spe = (ServerPlayer)player;
 
             if (event.getSource() == DamageSource.OUT_OF_WORLD && player.getHealth() - event.getAmount() <= 10) {
                 boolean consumed_charm = false;
                 BlockPos bedPos = spe.getRespawnPosition();
-                if (bedPos == null && player.level.getServer() != null) {
-                    ServerLevel level = player.level.getServer().getLevel(player.level.dimension());
+                if (bedPos == null && player.level().getServer() != null) {
+                    ServerLevel level = player.level().getServer().getLevel(player.level().dimension());
                     if(level != null){
                         //todo log else: no valid dimension
                         bedPos = level.getSharedSpawnPos();
@@ -391,10 +392,10 @@ public class DamageEventHandler {
                         event.setCanceled(true);
                         player.resetFallDistance();
 
-                        player.level.playSound(null, spe.getX(), spe.getY(), spe.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+                        player.level().playSound(null, spe.getX(), spe.getY(), spe.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
                         TeleportHelper.teleportEntity(spe,spe.getRespawnDimension(), new Vec3((double)bedPos.getX() + 0.5, bedPos.getY(), (double)bedPos.getZ() + 0.5));
-                        player.level.playSound(null, bedPos.getX(), bedPos.getY(), bedPos.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
-                        player.level.broadcastEntityEvent(spe, (byte)46);
+                        player.level().playSound(null, bedPos.getX(), bedPos.getY(), bedPos.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+                        player.level().broadcastEntityEvent(spe, (byte)46);
                         return true;
                     }
                 }
@@ -453,7 +454,7 @@ public class DamageEventHandler {
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event){
         if(event.getEntity().getType() == EntityType.ENDER_DRAGON){
-            Level world = event.getEntity().getLevel();
+            Level world = event.getEntity().level();
             PresentItem item = new PresentItem(world, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), new ItemStack(ItemInit.DRAGON_CORE.get()));
             world.addFreshEntity(item);
         }

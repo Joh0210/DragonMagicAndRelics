@@ -27,7 +27,7 @@ public class PlayerSecondChanceProvider implements ICapabilityProvider, INBTSeri
     private PlayerSecondChance secondChance = null;
     private final LazyOptional<PlayerSecondChance> optional = LazyOptional.of(this::createPlayerSecondChance);
 
-    private PlayerSecondChance createPlayerSecondChance() {
+    private @NotNull PlayerSecondChance createPlayerSecondChance() {
         if(this.secondChance == null){
             this.secondChance = new PlayerSecondChance();
         }

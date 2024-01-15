@@ -39,11 +39,7 @@ public class UpgradeSealItem extends Item {
      * @param armorUpgrade ID of the armor upgrade that can be installed with this UpgradeSeal
      */
     public UpgradeSealItem(ResourceLocation armorUpgrade) {
-        this(armorUpgrade, CreativeModeTab.ArmorUpgradeModeTab);
-    }
-
-    public UpgradeSealItem(ResourceLocation armorUpgrade, net.minecraft.world.item.CreativeModeTab tab) {
-        super(new Item.Properties().tab(tab).stacksTo(1).rarity(Rarity.RARE)); //.rarity(rarity));
+        super(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)); //.rarity(rarity));
         this.armorUpgradeRL = armorUpgrade;
     }
 

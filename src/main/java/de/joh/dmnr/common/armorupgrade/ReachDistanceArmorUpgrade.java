@@ -30,7 +30,7 @@ public class ReachDistanceArmorUpgrade extends OnEquippedArmorUpgrade {
 
     @Override
     public void onEquip(Player player, int level) {
-        AttributeInstance reach = player.getAttribute(ForgeMod.REACH_DISTANCE.get());
+        AttributeInstance reach = player.getAttribute(ForgeMod.BLOCK_REACH.get());
 
         if (!reach.hasModifier(reachBoost1) && level >= 1) {
             reach.addTransientModifier(reachBoost1);
@@ -48,7 +48,7 @@ public class ReachDistanceArmorUpgrade extends OnEquippedArmorUpgrade {
             }
         }
 
-        AttributeInstance attackRange = player.getAttribute(ForgeMod.ATTACK_RANGE.get());
+        AttributeInstance attackRange = player.getAttribute(ForgeMod.ENTITY_REACH.get());
 
         if (!attackRange.hasModifier(attackRangBoost1) && level >= 1) {
             attackRange.addTransientModifier(attackRangBoost1);
@@ -69,8 +69,8 @@ public class ReachDistanceArmorUpgrade extends OnEquippedArmorUpgrade {
 
     @Override
     public void onRemove(Player player) {
-        AttributeInstance reach = player.getAttribute(ForgeMod.REACH_DISTANCE.get());
-        AttributeInstance attackRange = player.getAttribute(ForgeMod.ATTACK_RANGE.get());
+        AttributeInstance reach = player.getAttribute(ForgeMod.BLOCK_REACH.get());
+        AttributeInstance attackRange = player.getAttribute(ForgeMod.ENTITY_REACH.get());
 
         reach.removeModifier(reachBoost1);
         reach.removeModifier(reachBoost2);

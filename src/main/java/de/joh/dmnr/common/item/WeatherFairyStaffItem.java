@@ -31,11 +31,11 @@ import java.util.function.Consumer;
  */
 public class WeatherFairyStaffItem extends SwordItem {
     public WeatherFairyStaffItem() {
-        super(Tiers.IRON, 3, -3.1F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).tab(CreativeModeTab.CreativeModeTab).setNoRepair());
+        super(Tiers.IRON, 3, -3.1F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).setNoRepair());
     }
 
     public void incrementIterator(ItemStack stack, boolean inverted, Player player){
-        if(!player.level.isClientSide()){
+        if(!player.level().isClientSide()){
             AtomicInteger wildMagicIterator = new AtomicInteger(0);
             AtomicBoolean isInverted = new AtomicBoolean(inverted);
             if(stack.getTag() != null && stack.getTag().contains(DragonMagicAndRelics.MOD_ID + "_weather_iterator")){
@@ -77,14 +77,14 @@ public class WeatherFairyStaffItem extends SwordItem {
         InteractionResultHolder<ItemStack> ar = super.use(world, user, hand);
 
         if (!world.isClientSide()) {
-            if(user.getLevel().getBiome(user.blockPosition()).value().getPrecipitation() == Biome.Precipitation.NONE){
+            if(world.getBiome(user.blockPosition()).value().getPrecipitationAt(user.blockPosition()) == Biome.Precipitation.NONE){
                 user.displayClientMessage(Component.translatable("dmnr.feedback.weather.not_changable"), true);
             } else {
                 user.displayClientMessage(Component.literal(Component.translatable("dmnr.feedback.selected.weather").getString() + getSelectedWeatherText(user.getItemInHand(hand)).getString()), true);
                 switch (adjustWildMagicIterator(user.getItemInHand(hand).getTag() != null ? user.getItemInHand(hand).getTag().getInt(DragonMagicAndRelics.MOD_ID + "_weather_iterator") : 0)) {
-                    case 1 -> ((ServerLevel) user.getLevel()).setWeatherParameters(0, 6000, true, false);
-                    case 2 -> ((ServerLevel) user.getLevel()).setWeatherParameters(0, 6000, true, true);
-                    default -> ((ServerLevel) user.getLevel()).setWeatherParameters(30000, 0, false, false);
+                    case 1 -> ((ServerLevel) world).setWeatherParameters(0, 6000, true, false);
+                    case 2 -> ((ServerLevel) world).setWeatherParameters(0, 6000, true, true);
+                    default -> ((ServerLevel) world).setWeatherParameters(30000, 0, false, false);
                 }
             }
         }
@@ -114,10 +114,10 @@ public class WeatherFairyStaffItem extends SwordItem {
 
     @Override
     public boolean hurtEnemy(@NotNull ItemStack stack, @NotNull LivingEntity target, @NotNull LivingEntity attacker) {
-        LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(attacker.level);
+        LightningBolt lightningbolt = EntityType.LIGHTNING_BOLT.create(attacker.level());
         if(lightningbolt != null){
             lightningbolt.setPos(target.position());
-            attacker.level.addFreshEntity(lightningbolt);
+            attacker.level().addFreshEntity(lightningbolt);
         }
 
         return super.hurtEnemy(stack, target, attacker);

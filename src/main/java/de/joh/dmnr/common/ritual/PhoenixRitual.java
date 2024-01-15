@@ -37,7 +37,7 @@ public class PhoenixRitual extends RitualEffect {
 
         caster.getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> {
             ResourceKey<Level> dimension = secondChance.getDimension();
-            if(!caster.getLevel().dimension().location().toString().equals(dimension.location().toString())){
+            if(!caster.level().dimension().location().toString().equals(dimension.location().toString())){
                 Vec3 targetPosition = new Vec3(secondChance.getPosition().getX()+0.5,secondChance.getPosition().getY(),secondChance.getPosition().getZ()+0.5);
                 TeleportHelper.teleportEntity(caster, dimension, targetPosition);
             } else {

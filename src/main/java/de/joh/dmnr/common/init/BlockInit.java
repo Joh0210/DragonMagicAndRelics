@@ -6,8 +6,8 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -25,7 +25,7 @@ public class BlockInit {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, DragonMagicAndRelics.MOD_ID);
 
     public static final RegistryObject<Block> RIFT_EMITTER = registerBlockWithoutBlockItem("rift_emitter",
-            () -> new RiftEmitterBlock(BlockBehaviour.Properties.of(Material.STONE).strength(12.5F, 600.0F).requiresCorrectToolForDrops().noOcclusion()));
+            () -> new RiftEmitterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).strength(12.5F, 600.0F).requiresCorrectToolForDrops().noOcclusion()));
 
 
     /**
@@ -46,8 +46,7 @@ public class BlockInit {
     }
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
-        return ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(),
-                new Item.Properties().tab(tab)));
+        return ItemInit.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus) {

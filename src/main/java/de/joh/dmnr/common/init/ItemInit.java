@@ -23,7 +23,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DragonMagicAndRelics.MOD_ID);
 
-    public static final RegistryObject<Item> DRAGON_CORE = ITEMS.register("dragon_core", ()->new DragonCoreItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC).tab(CreativeModeTab.CreativeModeTab)));
+    public static final RegistryObject<Item> DRAGON_CORE = ITEMS.register("dragon_core", ()->new DragonCoreItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC)));
 
     //DragonMageArmor
     public static final RegistryObject<Item> ABYSSAL_DRAGON_MAGE_HELMET = ITEMS.register("abyssal_dragon_mage_helmet", () -> new AbyssalDragonMageArmorItem(EquipmentSlot.HEAD));
@@ -47,35 +47,35 @@ public class ItemInit {
     public static final RegistryObject<Item> WILD_DRAGON_MAGE_BOOTS = ITEMS.register("wild_dragon_mage_boots", () -> new WildDragonMageArmorItem(EquipmentSlot.FEET));
 
     //Curios
-    //public static final RegistryObject<Item> DRAGON_MAGE_TEST_CURIOS = ITEMS.register("dragon_mage_test_curios", () -> new DragonMageCurios(16, "dm_test_curios", new Item.Properties().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.RARE).fireResistant()));
-    public static final RegistryObject<Item> AMULET_OF_DRAGON_POWER = ITEMS.register("amulet_of_dragon_power", () -> new DragonMageCuriosItem(32, "amulet_of_dragon_power", new Item.Properties().stacksTo(1).tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC).fireResistant()));
+    //public static final RegistryObject<Item> DRAGON_MAGE_TEST_CURIOS = ITEMS.register("dragon_mage_test_curios", () -> new DragonMageCurios(16, "dm_test_curios", new Item.Properties().rarity(Rarity.RARE).fireResistant()));
+    public static final RegistryObject<Item> AMULET_OF_DRAGON_POWER = ITEMS.register("amulet_of_dragon_power", () -> new DragonMageCuriosItem(32, "amulet_of_dragon_power", new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
     public static final RegistryObject<Item> RING_OF_POWER = ITEMS.register("ring_of_power", RingOfPowerItem::new);
     public static final RegistryObject<Item> RING_OF_RULING = ITEMS.register("ring_of_ruling", RingOfRulingItem::new);
 
-    public static final RegistryObject<Item> BRACELET_OF_FRIENDSHIP = ITEMS.register("bracelet_of_friendship", () -> new BraceletOfFriendshipItem(new Item.Properties().tab(CreativeModeTab.CreativeModeTab).stacksTo(1)));
-    public static final RegistryObject<Item> FACTION_AMULET = ITEMS.register("faction_amulet", ()->new FactionAmuletItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).tab(CreativeModeTab.CreativeModeTab)));
-    public static final RegistryObject<Item> ANGEL_RING = ITEMS.register("angel_ring", ()->new AngelRingItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).tab(CreativeModeTab.CreativeModeTab)));
-    public static final RegistryObject<Item> FALLEN_ANGEL_RING = ITEMS.register("fallen_angel_ring", ()->new FallenAngelRingItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE).tab(CreativeModeTab.CreativeModeTab)));
-    public static final RegistryObject<Item> VOIDFEATHER_CHARM = ITEMS.register("voidfeather_charm", () -> new VoidfeatherCharmItem((new Item.Properties()).setNoRepair().stacksTo(1).durability(1).tab(CreativeModeTab.CreativeModeTab)));
+    public static final RegistryObject<Item> BRACELET_OF_FRIENDSHIP = ITEMS.register("bracelet_of_friendship", () -> new BraceletOfFriendshipItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> FACTION_AMULET = ITEMS.register("faction_amulet", ()->new FactionAmuletItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> ANGEL_RING = ITEMS.register("angel_ring", ()->new AngelRingItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> FALLEN_ANGEL_RING = ITEMS.register("fallen_angel_ring", ()->new FallenAngelRingItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> VOIDFEATHER_CHARM = ITEMS.register("voidfeather_charm", () -> new VoidfeatherCharmItem((new Item.Properties()).setNoRepair().stacksTo(1).durability(1)));
 
     /**
      * The user deals twice the amount of damage, but also takes twice the amount of damage
      * @see DamageEventHandler
      */
-    public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", () -> new BaseTieredItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(CreativeModeTab.CreativeModeTab)));
+    public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", () -> new BaseTieredItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     /**
      * The user deals twice the amount of damage, but also takes twice the amount of damage
      * @see DamageEventHandler
      */
-    public static final RegistryObject<Item> STURDY_BELT = ITEMS.register("sturdy_belt", () -> new BaseTieredItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON).tab(CreativeModeTab.CreativeModeTab)));
+    public static final RegistryObject<Item> STURDY_BELT = ITEMS.register("sturdy_belt", () -> new BaseTieredItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> CURSE_PROTECTION_AMULET = ITEMS.register("curse_protection_amulet", CurseProtectionAmuletItem::new);
 
 
     //Other
-    public static final RegistryObject<Item> MUTANDIS = ITEMS.register("mutandis", () -> new MutandisItem(false, (new Item.Properties()).tab(CreativeModeTab.CreativeModeTab)));
-    public static final RegistryObject<Item> PURIFIED_MUTANDIS = ITEMS.register("purified_mutandis", () -> new MutandisItem(true, (new Item.Properties()).tab(CreativeModeTab.CreativeModeTab)));
+    public static final RegistryObject<Item> MUTANDIS = ITEMS.register("mutandis", () -> new MutandisItem(false, (new Item.Properties())));
+    public static final RegistryObject<Item> PURIFIED_MUTANDIS = ITEMS.register("purified_mutandis", () -> new MutandisItem(true, (new Item.Properties())));
     public static final RegistryObject<Item> MANA_CAKE = ITEMS.register("mana_cake", ManaCakeItem::new);
-    public static final RegistryObject<Item> RIFT_EMITTER_ITEM = ITEMS.register("rift_emitter", () -> new RiftEmitterItem(BlockInit.RIFT_EMITTER.get(), new Item.Properties().stacksTo(1).tab(CreativeModeTab.CreativeModeTab)));
+    public static final RegistryObject<Item> RIFT_EMITTER_ITEM = ITEMS.register("rift_emitter", () -> new RiftEmitterItem(BlockInit.RIFT_EMITTER.get(), new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BRIMSTONE_CHALK = ITEMS.register("brimstone_chalk", BrimstoneChalkItem::new);
     public static final RegistryObject<Item> WEATHER_FAIRY_STAFF = ITEMS.register("weather_fairy_staff", WeatherFairyStaffItem::new);
     public static final RegistryObject<Item> THE_CLICKERS_COOKIE = ITEMS.register("the_clickers_cookie", TheClickersCookieItem::new);

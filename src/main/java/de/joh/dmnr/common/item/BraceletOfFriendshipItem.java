@@ -14,6 +14,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -43,7 +44,7 @@ public class BraceletOfFriendshipItem extends ItemBagBase implements ICurioItem 
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player player, @NotNull InteractionHand hand) {
         if (!world.isClientSide) {
             ItemStack held = player.getItemInHand(hand);
             if (this.openGuiIfModifierPressed(held, player, world)) {

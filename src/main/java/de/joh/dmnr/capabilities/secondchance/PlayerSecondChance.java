@@ -3,7 +3,7 @@ package de.joh.dmnr.capabilities.secondchance;
 import de.joh.dmnr.common.event.CommonEventHandler;
 import de.joh.dmnr.common.ritual.PhoenixRitual;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -22,7 +22,7 @@ public class PlayerSecondChance {
     private boolean isValid = false;
 
     public void setSecondChance(Player player) {
-        setSecondChance(player.blockPosition(), player.level.dimension());
+        setSecondChance(player.blockPosition(), player.level().dimension());
     }
 
     public void setSecondChance(BlockPos position, ResourceKey<Level> dimension){
@@ -60,7 +60,7 @@ public class PlayerSecondChance {
             CompoundTag nbt = compound.getCompound("second_chance_data");
             if (nbt.contains("x") && nbt.contains("y") && nbt.contains("z") && nbt.contains("dimension_key_type") && nbt.contains("dimension_key_value")) {
                 this.position = new BlockPos(nbt.getInt("x"), nbt.getInt("y"), nbt.getInt("z"));
-                this.dimension = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(nbt.getString("dimension_key_value")));
+                this.dimension = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(nbt.getString("dimension_key_value")));
                 this.isValid = true;
             }
         }

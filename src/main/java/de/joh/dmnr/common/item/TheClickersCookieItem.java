@@ -24,7 +24,7 @@ import java.util.Random;
  */
 public class TheClickersCookieItem extends Item {
     public TheClickersCookieItem() {
-        super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).tab(CreativeModeTab.CreativeModeTab));
+        super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC));
     }
 
     @Override
@@ -38,7 +38,7 @@ public class TheClickersCookieItem extends Item {
             int x = random.nextInt(5) - 2;
             int y = random.nextInt(5) - 2;
             int z = random.nextInt(4) - 1;
-            if (!world.isEmptyBlock(new BlockPos(user.getX()+x, user.getY()+y, user.getZ()+z))) {
+            if (!world.isEmptyBlock(new BlockPos((int) user.getX()+x, (int) user.getY()+y,  (int)user.getZ()+z))) {
                 ItemEntity item = new ItemEntity(world, user.getX()+x, user.getY()+y, user.getZ()+z, new ItemStack(Items.COOKIE));
                 world.addFreshEntity(item);
                 return ar;  // Only Spawn 1
@@ -49,7 +49,7 @@ public class TheClickersCookieItem extends Item {
         for (int xOffset = -2; xOffset <= 2; xOffset++) {
             for (int yOffset = -2; yOffset <= 2; yOffset++) {
                 for (int zOffset = -1; zOffset <= 2; zOffset++) {
-                    if (world.isEmptyBlock(new BlockPos(user.getX()+xOffset, user.getY()+yOffset, user.getZ()+zOffset))) {
+                    if (world.isEmptyBlock(new BlockPos((int) user.getX()+xOffset,  (int)user.getY()+yOffset, (int) user.getZ()+zOffset))) {
                         ItemEntity item = new ItemEntity(world, user.getX()+xOffset, user.getY()+yOffset, user.getZ()+zOffset, new ItemStack(Items.COOKIE));
                         world.addFreshEntity(item);
                         return ar;  // Only Spawn 1

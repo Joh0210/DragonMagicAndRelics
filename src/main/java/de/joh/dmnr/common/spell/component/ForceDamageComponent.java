@@ -1,6 +1,7 @@
 package de.joh.dmnr.common.spell.component;
 
 import com.mna.api.affinity.Affinity;
+import com.mna.api.entities.DamageHelper;
 import com.mna.api.sound.SFX;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.SpellPartTags;
@@ -22,7 +23,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.CombatRules;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.EntityDamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
@@ -66,7 +67,7 @@ public class ForceDamageComponent extends SpellEffect implements IDamageComponen
             float reduction = 1 - CombatRules.getDamageAfterAbsorb(damage, (float)entity.getArmorValue(), (float)entity.getAttributeValue(Attributes.ARMOR_TOUGHNESS))/damage;
             damage = damage * (1 - reduction + reduction * modificationData.getValue(Attribute.MAGNITUDE)/3); //+15% to Iron; +45% to Dia
             //injure
-            target.getEntity().hurt(createSourcedDamageType(source.getCaster()), damage);
+            target.getEntity().hurt(DamageHelper.createSourcedType(DamageTypes.FLY_INTO_WALL, context.getLevel().registryAccess(), source.getCaster()), damage);
 
             //recoil
             if(entity != source.getCaster()){
@@ -135,15 +136,6 @@ public class ForceDamageComponent extends SpellEffect implements IDamageComponen
         return List.of(Affinity.EARTH);
     }
 
-    private static DamageSource createSourcedDamageType(LivingEntity source) {
-        EntityDamageSource copy_source = new EntityDamageSource(DamageSource.FLY_INTO_WALL.getMsgId(), source);
-
-        copy_source.bypassArmor();
-        copy_source.bypassMagic();
-
-        return copy_source;
-    }
-
     public static void flingTarget(LivingEntity target, Vec3 direction, float strength, float kbResistFactor) {
         float max_velocity = 2.0F;
 
@@ -185,7 +177,7 @@ public class ForceDamageComponent extends SpellEffect implements IDamageComponen
                         target.hasImpulse = true;
                         Vec3 vec3 = target.getDeltaMovement();
                         Vec3 vec31 = (new Vec3(direction.x, 0.0, direction.z)).normalize().scale(strength);
-                        target.setDeltaMovement(vec3.x / 2.0 - vec31.x, target.isOnGround() ? Math.min(0.4, vec3.y / 2.0 + (double)strength) : vec3.y, vec3.z / 2.0 - vec31.z);
+                        target.setDeltaMovement(vec3.x / 2.0 - vec31.x, target.onGround() ? Math.min(0.4, vec3.y / 2.0 + (double)strength) : vec3.y, vec3.z / 2.0 - vec31.z);
                     }
                 }
 
@@ -202,7 +194,7 @@ public class ForceDamageComponent extends SpellEffect implements IDamageComponen
 
     private static void setFlags(LivingEntity le, float strength) {
         le.getPersistentData().putFloat("mna:flung", strength);
-        le.getPersistentData().putLong("mna:fling_time", le.level.getGameTime());
+        le.getPersistentData().putLong("mna:fling_time", le.level().getGameTime());
         le.hasImpulse = true;
     }
 }

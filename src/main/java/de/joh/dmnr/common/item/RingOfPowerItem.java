@@ -23,7 +23,7 @@ import java.util.List;
 
 public class RingOfPowerItem extends DragonMageCuriosItem {
     public RingOfPowerItem() {
-        super(16, "ring_of_power", new Item.Properties().tab(CreativeModeTab.CreativeModeTab).stacksTo(1).rarity(Rarity.EPIC).fireResistant());
+        super(16, "ring_of_power", new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
     }
 
     @Override

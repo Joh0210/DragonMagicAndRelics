@@ -62,7 +62,7 @@ public class CommonEventHandler {
      */
     @SubscribeEvent
     public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
-        if(event.getEntity() instanceof Player player && !player.getLevel().isClientSide()){
+        if(event.getEntity() instanceof Player player && !player.level().isClientSide()){
             int level = ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP);
             if (player.isSprinting() && level >= 1) {
                 float multiplier = (float)player.getAttributeValue(Attributes.MOVEMENT_SPEED) * 4.0F * level;

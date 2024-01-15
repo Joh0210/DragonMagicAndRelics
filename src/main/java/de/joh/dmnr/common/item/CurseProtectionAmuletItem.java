@@ -19,7 +19,7 @@ import net.minecraft.world.level.Level;
  */
 public class CurseProtectionAmuletItem extends ChargeableItem implements IPreEnchantedItem<CurseProtectionAmuletItem> {
     public CurseProtectionAmuletItem() {
-        super((new Item.Properties()).setNoRepair().tab(CreativeModeTab.CreativeModeTab).rarity(Rarity.EPIC), 2000.0F);
+        super((new Item.Properties()).setNoRepair().rarity(Rarity.EPIC), 2000.0F);
     }
 
     protected boolean tickEffect(ItemStack stack, Player player, Level world, int slot, float mana, boolean selected) {

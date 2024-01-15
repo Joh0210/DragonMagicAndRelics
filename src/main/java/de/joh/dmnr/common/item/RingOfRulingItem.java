@@ -22,7 +22,7 @@ import java.util.List;
 
 public class RingOfRulingItem extends DragonMageCuriosItem {
     public RingOfRulingItem() {
-        super(16, "ring_of_ruling", new Properties().tab(CreativeModeTab.CreativeModeTab).stacksTo(1).rarity(Rarity.EPIC).fireResistant());
+        super(16, "ring_of_ruling", new Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
     }
 
     @Override

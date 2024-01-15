@@ -1005,20 +1005,20 @@
       }
     ]
   },
-  "Shape: Friends": {
+  "Shape: Target Ally": {
     "index": "1",
     "category": "sorcery",
     "sections": [
       {
         "type": "title",
-        "value": "Shape: Friends"
+        "value": "Shape: Target Ally"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "With this shape I can target all my friends within the defined radius with my magic.\n\nThe animal companions are not forgotten either!",
+            "text": "With this shape I can target all my allies within the defined radius with my magic.\n\nThe animal companions are not forgotten either!",
             "color": ""
           }
         ]

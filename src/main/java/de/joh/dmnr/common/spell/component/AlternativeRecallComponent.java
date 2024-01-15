@@ -44,7 +44,7 @@ public class AlternativeRecallComponent extends SpellEffect {
                 if (!(dist > maxDist * maxDist)) {
                     int magnitude = (int)modificationData.getValue(Attribute.RANGE);
                     if (this.magnitudeHealthCheck(source, target, magnitude, 20)) {
-                        TeleportHelper.teleportEntity(target.getEntity(), context.getWorld().dimension(), new Vec3((double)pos.getX() + 0.5, pos.getY() + 1, (double)pos.getZ() + 0.5));
+                        TeleportHelper.teleportEntity(target.getEntity(), context.getLevel().dimension(), new Vec3((double)pos.getX() + 0.5, pos.getY() + 1, (double)pos.getZ() + 0.5));
                         return ComponentApplicationResult.SUCCESS;
                     }
 

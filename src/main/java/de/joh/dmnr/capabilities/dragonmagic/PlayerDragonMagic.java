@@ -145,7 +145,7 @@ public class PlayerDragonMagic {
             if(nbt.contains("mark_map_size")){
                 for(int i = 0; i< nbt.getInt("mark_map_size"); i++){
                     markMap.put(
-                            ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(nbt.getString("mark_map_dimension_" + i))),
+                            ResourceKey.create(net.minecraft.core.registries.Registries.DIMENSION, new ResourceLocation(nbt.getString("mark_map_dimension_" + i))),
                             new MarkSave(nbt.getCompound("mark_map_mark_save_" + i))
                     );
                 }

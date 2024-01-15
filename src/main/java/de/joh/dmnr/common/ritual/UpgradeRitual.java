@@ -32,7 +32,7 @@ public class UpgradeRitual extends RitualEffect {
 
     @Override
     protected boolean applyRitualEffect(IRitualContext context) {
-        Level world = context.getWorld();
+        Level world = context.getLevel();
         BlockPos pos = context.getCenter();
 
         List<ItemStack> upgradeSealList = context.getCollectedReagents((r) -> r.getItem() instanceof UpgradeSealItem);
@@ -74,7 +74,7 @@ public class UpgradeRitual extends RitualEffect {
     private void errorOccurred(Component text, IRitualContext context){
         List<ItemStack> reagents = context.getCollectedReagents();
         Player caster = context.getCaster();
-        Level world = context.getWorld();
+        Level world = context.getLevel();
 
         caster.displayClientMessage(text, false);
         for(ItemStack itemStack : reagents){

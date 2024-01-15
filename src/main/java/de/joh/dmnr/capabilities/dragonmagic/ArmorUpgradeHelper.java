@@ -82,7 +82,7 @@ public class ArmorUpgradeHelper {
                 if(player.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
                     for(ArmorUpgrade armorUpgrade : Registries.ARMOR_UPGRADE.get().getValues()){
                         if(armorUpgrade instanceof OnTickArmorUpgrade && !armorUpgrade.hasStrongerAlternative()){
-                            ((OnTickArmorUpgrade)armorUpgrade).onTick(player.level, player, armorUpgrade.maxUpgradeLevel, magic);
+                            ((OnTickArmorUpgrade)armorUpgrade).onTick(player.level(), player, armorUpgrade.maxUpgradeLevel, magic);
                         }
                     }
                     return;
@@ -107,7 +107,7 @@ public class ArmorUpgradeHelper {
 
             for(Map.Entry<OnTickArmorUpgrade, Integer> entry : toApply.entrySet()){
                 if(entry.getKey().getStrongerAlternative() == null || getUpgradeLevel(player, entry.getKey().getStrongerAlternative()) == 0){
-                    entry.getKey().onTick(player.level, player, entry.getValue(), magic);
+                    entry.getKey().onTick(player.level(), player, entry.getValue(), magic);
                 }
             }
         });

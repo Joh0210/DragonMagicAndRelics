@@ -92,10 +92,10 @@ public class ElytraMobEffect extends MobEffect {
                             player.setDeltaMovement(pos);
                         }
 
-                        if (player.level.isClientSide) {
+                        if (player.level().isClientSide) {
                             pos = player.position().add(look.scale(3.0D));
                             for (int i = 0; i < 5; ++i) {
-                                player.level.addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
+                                player.level().addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
                             }
                         }
                     } else {
@@ -111,7 +111,7 @@ public class ElytraMobEffect extends MobEffect {
         super.removeAttributeModifiers(living, attributemods, p_111187_3_);
         if (living instanceof ServerPlayer) {
             ManaAndArtifice.instance.proxy.setFlightEnabled((ServerPlayer)living, false);
-        } else if (living instanceof Player && living.level.isClientSide) {
+        } else if (living instanceof Player && living.level().isClientSide) {
             ManaAndArtifice.instance.proxy.setFlySpeed((Player)living, 0.05F);
         }
     }

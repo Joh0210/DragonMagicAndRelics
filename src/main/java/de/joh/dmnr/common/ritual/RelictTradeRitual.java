@@ -17,7 +17,7 @@ public class RelictTradeRitual extends RitualEffect {
 
     @Override
     protected boolean applyRitualEffect(IRitualContext context) {
-        Level world = context.getWorld();
+        Level world = context.getLevel();
         BlockPos pos = context.getCenter();
 
         PresentItem item = new PresentItem(world, (double)pos.getX() + 0.5D, pos.getY() + 1 , (double)pos.getZ() + 0.5D, new ItemStack(ModTags.getRandomItem(ModTags.Items.MNA_ARTIFACT)));

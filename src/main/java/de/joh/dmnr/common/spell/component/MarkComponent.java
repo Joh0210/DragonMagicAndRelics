@@ -51,14 +51,14 @@ public class MarkComponent extends SpellEffect {
         else if (markingRune.getItem() != ItemInit.RUNE_MARKING.get() && markingRune.getItem() != ItemInit.BOOK_MARKS.get()) {
             //Player specific mark
             if (source.getPlayer() != null) {
-                source.getPlayer().getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> magic.mark(target.getBlock(), target.getBlockFace(null), context.getWorld()));
+                source.getPlayer().getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> magic.mark(target.getBlock(), target.getBlockFace(null), context.getLevel()));
             }
             else {
                 return ComponentApplicationResult.FAIL;
             }
         }
         else{
-            setPos(markingRune, target.getBlock(), target.getBlockFace(null), context.getWorld());
+            setPos(markingRune, target.getBlock(), target.getBlockFace(null), context.getLevel());
         }
 
         return ComponentApplicationResult.SUCCESS;
