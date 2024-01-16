@@ -19,7 +19,7 @@ public abstract class PotionEffectArmorUpgrade extends OnEquippedArmorUpgrade { 
     /**
      * Time you want the effect to last. Will be reseted every tick.
      */
-    public static final int EFFECT_DURATION = 100000;
+    public static final int EFFECT_DURATION = -1;
     private final int factor;
 
     /**

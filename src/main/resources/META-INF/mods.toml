@@ -17,41 +17,41 @@ A mod to expand your magic to compete with gods!
 [[dependencies.dmnr]]
    modId="forge"
    mandatory=true
-   versionRange="[43.2.23,)"
+   versionRange="[47.2,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.dmnr]]
    modId="mna"
    mandatory=true
-   versionRange="[2.1.0.3,)"
+   versionRange="[3.0.0.4,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.dmnr]]
    modId="curios"
    mandatory=true
-   versionRange="[1.19.2,)"
+   versionRange="[5.4.7,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.dmnr]]
    modId="caelus"
    mandatory=true
-   versionRange="[1.19.2,)"
+   versionRange="[3.1.0,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.dmnr]]
-   modId="geckolib3"
+   modId="geckolib"
    mandatory=true
-   versionRange="[forge-3.1.40,)"
+   versionRange="[4.2.2,)"
    ordering="NONE"
    side="BOTH"
 
 [[dependencies.dmnr]]
    modId="minecraft"
    mandatory=true
-   versionRange="[1.19.2]"
+   versionRange="[1.20.1]"
    ordering="NONE"
    side="BOTH"

@@ -69,7 +69,7 @@ public interface IDragonMagicContainerItem {
 
             spentPoints += armorUpgrade.upgradeCost * level;
 
-            if(spentPoints < getMaxDragonMagic(itemStack) || force){
+            if(spentPoints <= getMaxDragonMagic(itemStack) || force){
                 CompoundTag mainNBT = new CompoundTag();
                 nbt.putInt(armorUpgrade.getRegistryName().toString(), level);
                 mainNBT.putInt(DragonMagicAndRelics.MOD_ID + "spent_dp", spentPoints);

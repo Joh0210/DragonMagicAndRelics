@@ -1,7 +1,7 @@
 {
   "Upgrade Glyph Night Vision": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -44,7 +44,7 @@
   },
   "Upgrade Glyph Burning Frenzy": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -80,7 +80,7 @@
   },
   "Upgrade Glyph Fly": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -126,7 +126,7 @@
   },
   "Upgrade Glyph Saturation": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -162,7 +162,7 @@
   },
   "Upgrade Glyph Movement Speed": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -198,7 +198,7 @@
   },
   "Upgrade Glyph Water Breathing": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -234,7 +234,7 @@
   },
   "Upgrade Glyph Swim Speed": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -270,7 +270,7 @@
   },
   "Upgrade Glyph Mist Form": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -322,7 +322,7 @@
   },
   "Upgrade Glyph Regeneration": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -358,7 +358,7 @@
   },
   "Upgrade Glyph Mana Boost": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -408,7 +408,7 @@
   },
   "Upgrade Glyph Mana Regeneration": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -448,7 +448,7 @@
   },
   "Upgrade Glyph Health Boost": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -484,7 +484,7 @@
   },
   "Upgrade Glyph Sorcerers Pride": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -520,7 +520,7 @@
   },
   "Upgrade Glyph Insight": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -556,7 +556,7 @@
   },
   "Upgrade Glyph Jump Boost": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -592,7 +592,7 @@
   },
   "Upgrade Glyph Explosion Resistance": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -628,7 +628,7 @@
   },
   "Upgrade Glyph Kinetic Resistance": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -664,7 +664,7 @@
   },
   "Upgrade Glyph Meteor Jump": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -700,7 +700,7 @@
   },
   "Upgrade Glyph Projectile Reflection": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -736,7 +736,7 @@
   },
   "Upgrade Glyph Fire Resistance": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -786,7 +786,7 @@
   },
   "Upgrade Glyph Elytra": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -822,7 +822,7 @@
   },
   "Upgrade Glyph Angel Flight": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -858,7 +858,7 @@
   },
   "Upgrade Glyph Reach Distance": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -894,7 +894,7 @@
   },
   "Upgrade Glyph Damage Resistance": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",
@@ -930,7 +930,7 @@
   },
   "Upgrade Glyph Damage Boost": {
     "index": "1",
-    "category": "eldrin_altar",
+    "category": "dmnr_armorupgrades",
     "sections": [
       {
         "type": "title",

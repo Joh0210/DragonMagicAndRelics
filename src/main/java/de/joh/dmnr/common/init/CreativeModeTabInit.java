@@ -16,7 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class CreativeModeTabInit {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, DragonMagicAndRelics.MOD_ID);
 
-    public static final RegistryObject<CreativeModeTab> DMNR_TAB = CREATIVE_MODE_TABS.register("dmnr",
+    public static final RegistryObject<CreativeModeTab> DMNR_TAB = CREATIVE_MODE_TABS.register("dmnr_1_dmnr",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_HELMET.get()))
                     .title(Component.translatable("itemGroup.dmnr"))
                     .noScrollBar()
@@ -67,8 +67,8 @@ public class CreativeModeTabInit {
                     })
                     .build());
 
-    public static final RegistryObject<CreativeModeTab> ARMOR_UPGRADE_TAB = CREATIVE_MODE_TABS.register("dmnr",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.UPGRADE_SEAL_FLY.get()))
+    public static final RegistryObject<CreativeModeTab> ARMOR_UPGRADE_TAB = CREATIVE_MODE_TABS.register("dmnr_2_armorupgrades",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.UPGRADE_SEAL_ANGEL_FLIGHT.get()))
                     .title(Component.translatable("itemGroup.armorupgrades"))
                     .noScrollBar()
                     .displayItems((pParameters, pOutput) -> {

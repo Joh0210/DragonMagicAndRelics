@@ -19,15 +19,15 @@ import com.mna.tools.ProjectileHelper;
 import com.mna.tools.SummonUtils;
 import com.mna.tools.TeleportHelper;
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
+import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.common.command.Commands;
-import de.joh.dmnr.common.item.AngelRingItem;
-import de.joh.dmnr.common.util.CommonConfig;
+import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.ItemInit;
+import de.joh.dmnr.common.item.AngelRingItem;
 import de.joh.dmnr.common.item.BraceletOfFriendshipItem;
 import de.joh.dmnr.common.item.FactionAmuletItem;
-import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.util.CommonConfig;
 import de.joh.dmnr.common.util.ProjectileReflectionHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -36,6 +36,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.AbstractGolem;
@@ -105,7 +106,7 @@ public class DamageEventHandler {
             ((LivingEntity)sourceEntity).removeEffect(de.joh.dmnr.common.init.EffectInit.PEACE_EFFECT.get());
             ((LivingEntity)sourceEntity).addEffect(new MobEffectInstance((de.joh.dmnr.common.init.EffectInit.BROKEN_PEACE_EFFECT.get()), 12000));
             if(sourceEntity instanceof Player){
-                sourceEntity.level().playSound(null, sourceEntity.getX(), sourceEntity.getY(), sourceEntity.getZ(), SoundEvents.RAID_HORN, SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
+                sourceEntity.level().playSound(null, sourceEntity.getX(), sourceEntity.getY(), sourceEntity.getZ(), SoundEvents.RAID_HORN.get(), SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
             }
 
         }
@@ -148,7 +149,7 @@ public class DamageEventHandler {
                             return;
                         }
                         else if(referenceTarget != null){
-                            for (Player friend : ((BraceletOfFriendshipItem) curios.stack().getItem()).getPlayerTargets(curios.stack(), player.getLevel())) {
+                            for (Player friend : ((BraceletOfFriendshipItem) curios.stack().getItem()).getPlayerTargets(curios.stack(), player.level())) {
                                 if (friend == referenceTarget) {
                                     event.setCanceled(true);
                                     return;
@@ -214,10 +215,10 @@ public class DamageEventHandler {
             }
             if (!player.level().isClientSide) {
                 //protection against fire
-                if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE) >= 1) {
+                if (source.is(DamageTypeTags.IS_FIRE) && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE) >= 1) {
                     event.setCanceled(true);
                     return;
-                } else if (source.isFire() && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MINOR_FIRE_RESISTANCE) >= 1) {
+                } else if (source.is(DamageTypeTags.IS_FIRE) && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MINOR_FIRE_RESISTANCE) >= 1) {
                     AtomicBoolean doReturn = new AtomicBoolean(false);
                     player.getCapability(PlayerMagicProvider.MAGIC).ifPresent(magic -> {
                         if (magic.getCastingResource().hasEnoughAbsolute(player, CommonConfig.FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE.get()/5.0f)) {
@@ -257,7 +258,7 @@ public class DamageEventHandler {
                 }
 
                 //Protection from kinetic energy
-                if((source.is(DamageTypeTags.IS_FALL) || source == DamageSource.FLY_INTO_WALL) && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.KINETIC_RESISTANCE) == 1){
+                if((source.is(DamageTypeTags.IS_FALL) || source.is(DamageTypes.FLY_INTO_WALL)) && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.KINETIC_RESISTANCE) == 1){
                     event.setCanceled(true);
                     return;
                 }
@@ -271,7 +272,7 @@ public class DamageEventHandler {
             }
 
             //Protection from kinetic energy
-            if((source.is(DamageTypeTags.IS_FALL) || source == DamageSource.FLY_INTO_WALL) && CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.ANGEL_RING.get()).isPresent()){
+            if((source.is(DamageTypeTags.IS_FALL) || source.is(DamageTypes.FLY_INTO_WALL)) && CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.ANGEL_RING.get()).isPresent()){
                 event.setCanceled(true);
                 return;
             }
@@ -287,7 +288,7 @@ public class DamageEventHandler {
                             return;
                         }
                         else if(referenceTarget != null){
-                            for (Player friend : ((BraceletOfFriendshipItem) curios.stack().getItem()).getPlayerTargets(curios.stack(), sourceEntity.getLevel())) {
+                            for (Player friend : ((BraceletOfFriendshipItem) curios.stack().getItem()).getPlayerTargets(curios.stack(), sourceEntity.level())) {
                                 if (friend == referenceTarget) {
                                     event.setCanceled(true);
                                     return;
@@ -368,7 +369,7 @@ public class DamageEventHandler {
         if (!player.isCreative() && !player.isSpectator() && !player.level().isClientSide) {
             ServerPlayer spe = (ServerPlayer)player;
 
-            if (event.getSource() == DamageSource.OUT_OF_WORLD && player.getHealth() - event.getAmount() <= 10) {
+            if (event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD) && player.getHealth() - event.getAmount() <= 10) {
                 boolean consumed_charm = false;
                 BlockPos bedPos = spe.getRespawnPosition();
                 if (bedPos == null && player.level().getServer() != null) {

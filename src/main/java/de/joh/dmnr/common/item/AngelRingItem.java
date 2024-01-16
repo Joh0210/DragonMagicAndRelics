@@ -56,10 +56,10 @@ public class AngelRingItem extends TieredItem implements IForgeItem, ICurioItem,
         if (slotContext.entity() instanceof Player player){
             int level = 1;
             if(!player.hasEffect(EffectInit.ELYTRA.get()) || player.getEffect(EffectInit.ELYTRA.get()).getAmplifier() < (level)){
-                player.addEffect(new MobEffectInstance(EffectInit.ELYTRA.get(), 100000, level, false, false, true));
+                player.addEffect(new MobEffectInstance(EffectInit.ELYTRA.get(), -1, level, false, false, true));
             }
             else{
-                player.getEffect(EffectInit.ELYTRA.get()).update(new MobEffectInstance(EffectInit.ELYTRA.get(), 100000, level, false, false, true));
+                player.getEffect(EffectInit.ELYTRA.get()).update(new MobEffectInstance(EffectInit.ELYTRA.get(), -1, level, false, false, true));
             }
         }
         curioTick(slotContext.identifier(), slotContext.index(), slotContext.entity(), stack);

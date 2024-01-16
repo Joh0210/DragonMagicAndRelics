@@ -2,6 +2,7 @@ package de.joh.dmnr;
 
 import com.mna.api.guidebook.RegisterGuidebooksEvent;
 import com.mojang.logging.LogUtils;
+import de.joh.dmnr.client.init.ContainerInit;
 import de.joh.dmnr.common.init.*;
 import de.joh.dmnr.common.util.CommonConfig;
 import de.joh.dmnr.common.util.RLoc;
@@ -42,6 +43,9 @@ public class DragonMagicAndRelics {
         BlockEntitieInit.register(eventBus);
         CommandSerializerInit.register(eventBus);
 
+        // Only on Client?
+        ContainerInit.register(eventBus);
+
         eventBus.addListener(this::setup);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.register(KeybindInit.class));
@@ -63,5 +67,6 @@ public class DragonMagicAndRelics {
     @SubscribeEvent
     public void onRegisterGuidebooks(final RegisterGuidebooksEvent event) {
         event.getRegistry().addGuidebookPath(RLoc.create("guide"));
+        event.getRegistry().registerGuidebookCategory("dmnr_armorupgrades", RLoc.create("upgrade_seal_angel_flight"));
     }
 }

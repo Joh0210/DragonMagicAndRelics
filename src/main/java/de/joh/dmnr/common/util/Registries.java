@@ -1,7 +1,9 @@
 package de.joh.dmnr.common.util;
 
+import com.mna.api.spells.parts.Shape;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -27,7 +29,10 @@ public class Registries {
     @SubscribeEvent
     public static void RegisterRegistries(NewRegistryEvent event) {
         RegistryBuilder<ArmorUpgrade> armorUpgrade = new RegistryBuilder<>();
-        armorUpgrade.setName(RLoc.create("armorupgrade")).set(key -> ArmorUpgrade.INSTANCE).set((key, isNetwork) -> ArmorUpgrade.INSTANCE).disableSaving().allowModification();
+        armorUpgrade.setName(RLoc.create("armorupgrade"))
+                .set((key, isNetwork) -> ArmorUpgrade.INSTANCE)
+                .disableSaving()
+                .allowModification();
         ARMOR_UPGRADE = event.create(armorUpgrade);
     }
 }

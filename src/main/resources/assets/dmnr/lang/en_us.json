@@ -2,6 +2,8 @@
   "itemGroup.dmnr": "Dragon Magic And Relics",
   "itemGroup.armorupgrades": "DM&R Armor Upgrades",
 
+  "mechanic.mna:dmnr_armorupgrades": "Upgrade Glyphs",
+
   "item.dmnr.modifier_book": "Modifier Book",
   "item.dmnr.mana_cake": "Mana Cake",
   "item.dmnr.weather_fairy_staff": "Staff of the Weather Fairy",

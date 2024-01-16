@@ -7,6 +7,7 @@ import com.mna.inventory.ItemInventoryBase;
 import de.joh.dmnr.client.init.ContainerInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.api.util.PlayerCharmFilter;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickType;
@@ -17,12 +18,12 @@ import net.minecraftforge.items.IItemHandler;
 import javax.annotation.Nonnull;
 
 public class ContainerBraceletOfFriendship extends HeldContainerBase {
-    public ContainerBraceletOfFriendship(int i, Inventory playerInventory) {
+    public ContainerBraceletOfFriendship(int i, Inventory playerInventory, FriendlyByteBuf buffer) {
         this(i, playerInventory, new ItemInventoryBase(new ItemStack(ItemInit.BRACELET_OF_FRIENDSHIP.get(), 6), 6));
     }
 
     public ContainerBraceletOfFriendship(int i, Inventory playerInv, ItemInventoryBase basebag) {
-        super(ContainerInit.BRACELET_OF_FRIENDSHIP, i, playerInv, basebag);
+        super(ContainerInit.BRACELET_OF_FRIENDSHIP.get(), i, playerInv, basebag);
     }
 
     protected void initializeSlots(Inventory playerInv) {

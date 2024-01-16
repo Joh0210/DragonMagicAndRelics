@@ -26,6 +26,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Initialization of the commands. Each function is either a node for command creation or final execution of the command.
  * Registration through CommonEventHandler
@@ -76,7 +78,7 @@ public class Commands {
                     event.performUpgradeFromDMArmor();
                 }
             } else {
-                command.getSource().sendSuccess(Component.translatable("dmnr.commands.output.changeDragonMageArmorTarget.no.valid.armor.error"), true);
+                command.getSource().sendSuccess(() -> Component.translatable("dmnr.commands.output.changeDragonMageArmorTarget.no.valid.armor.error"), true);
             }
             return 1;
         }));
@@ -91,30 +93,31 @@ public class Commands {
             ServerPlayer player = command.getSource().getPlayerOrException();
 
             if(!Registries.ARMOR_UPGRADE.get().containsKey(ResourceLocationArgument.getId(command, "armor_upgrade"))){
-                command.getSource().sendSuccess((Component.translatable("dmnr.commands.output.callApplyUpgrade.upgradedoesnotexist.error")), true);
+                command.getSource().sendSuccess(() -> Component.translatable("dmnr.commands.output.callApplyUpgrade.upgradedoesnotexist.error"), true);
             } else {
                 ItemStack item = player.getItemBySlot(EquipmentSlot.MAINHAND);
                 if(item.getItem() instanceof IDragonMagicContainerItem){
                     ArmorUpgrade armorUpgrade = Registries.ARMOR_UPGRADE.get().getValue(ResourceLocationArgument.getId(command, "armor_upgrade"));
 
-                    int level = IntegerArgumentType.getInteger(command, "level");
+
+                    AtomicInteger level = new AtomicInteger(IntegerArgumentType.getInteger(command, "level"));
 
                     if(!BoolArgumentType.getBool(command, "force")) {
-                        level = Math.min(level, armorUpgrade.maxUpgradeLevel);
+                        level.set(Math.min(level.get(), armorUpgrade.maxUpgradeLevel));
                     } else if(!armorUpgrade.isInfStackable){
-                        level = Math.min(level, armorUpgrade.supportsOnExtraLevel ? armorUpgrade.maxUpgradeLevel + 1 : armorUpgrade.maxUpgradeLevel);
+                        level.set(Math.min(level.get(), armorUpgrade.supportsOnExtraLevel ? armorUpgrade.maxUpgradeLevel + 1 : armorUpgrade.maxUpgradeLevel));
                     }
 
-                    if(((IDragonMagicContainerItem) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level, BoolArgumentType.getBool(command, "force"))){
+                    if(((IDragonMagicContainerItem) item.getItem()).addDragonMagicToItem(item, armorUpgrade, level.get(), BoolArgumentType.getBool(command, "force"))){
                         MutableComponent component_one = Component.translatable("dmnr.commands.output.callApplyUpgrade.success.one");
                         MutableComponent component_two = Component.translatable("dmnr.commands.output.callApplyUpgrade.success.two");
 
-                        command.getSource().sendSuccess(Component.literal(component_one.getString() + armorUpgrade.getRegistryName().toString() + component_two.getString() + level), true);
+                        command.getSource().sendSuccess(() -> Component.literal(component_one.getString() + armorUpgrade.getRegistryName().toString() + component_two.getString() + level), true);
                     } else {
-                        command.getSource().sendSuccess(Component.translatable("dmnr.commands.output.callApplyUpgrade.fail.not_enough_space"), true);
+                        command.getSource().sendSuccess(() -> Component.translatable("dmnr.commands.output.callApplyUpgrade.fail.not_enough_space"), true);
                     }
                 } else {
-                    command.getSource().sendSuccess(Component.translatable("dmnr.commands.output.callApplyUpgrade.no.armor.equipped.error"), true);
+                    command.getSource().sendSuccess(() -> Component.translatable("dmnr.commands.output.callApplyUpgrade.no.armor.equipped.error"), true);
                 }
             }
             return 1;
