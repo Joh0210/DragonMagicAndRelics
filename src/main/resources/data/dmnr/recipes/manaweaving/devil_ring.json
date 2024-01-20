@@ -1,0 +1,24 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 5,
+  "output": "dmnr:devil_ring",
+  "quantity": 1,
+  "requiredFaction": "mna:demons",
+  "items": [
+    "minecraft:nether_star",
+    "minecraft:netherite_ingot",
+    "mna:hellfire_trident",
+    "minecraft:netherite_ingot",
+    "mna:mundane_ring",
+    "mna:greater_mote_fire",
+    "minecraft:netherite_ingot",
+    "mna:living_flame",
+    "minecraft:netherite_ingot"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/infinity",
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/star",
+    "mna:manaweave_patterns/infinity"
+  ]
+}

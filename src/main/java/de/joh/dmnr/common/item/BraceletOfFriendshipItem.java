@@ -1,5 +1,6 @@
 package de.joh.dmnr.common.item;
 
+import com.mna.api.items.ITieredItem;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.ItemInit;
 import com.mna.items.base.ItemBagBase;
@@ -20,7 +21,19 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.ArrayList;
 
-public class BraceletOfFriendshipItem extends ItemBagBase implements ICurioItem {
+public class BraceletOfFriendshipItem extends ItemBagBase implements ICurioItem, ITieredItem<BraceletOfFriendshipItem> {
+
+    private int _tier = -1;
+
+    @Override
+    public void setCachedTier(int tier) {
+        this._tier = tier;
+    }
+
+    @Override
+    public int getCachedtier() {
+        return this._tier;
+    }
 
     public BraceletOfFriendshipItem(Properties pProperties) {
         super(pProperties);

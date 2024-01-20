@@ -1,5 +1,6 @@
 package de.joh.dmnr.common.item;
 
+import com.mna.api.items.ITieredItem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
@@ -28,9 +29,21 @@ import java.util.List;
  * @see DamageEventHandler
  * @author Joh0210
  */
-public class DragonMageCuriosItem extends Item implements ICurioItem, IDragonMagicContainerItem {
+public class DragonMageCuriosItem extends Item implements ITieredItem<DragonMageCuriosItem>, ICurioItem, IDragonMagicContainerItem {
     private final int maxDragonMagic;
     private final String dmSource;
+
+    private int _tier = -1;
+
+    @Override
+    public void setCachedTier(int tier) {
+        this._tier = tier;
+    }
+
+    @Override
+    public int getCachedtier() {
+        return this._tier;
+    }
 
     public DragonMageCuriosItem(int maxDragonMagic, String dmSource, Properties pProperties) {
         super(pProperties);

@@ -1541,6 +1541,45 @@
       }
     ]
   },
+  "Devil Ring": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Devil Ring"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The power of the archdevils in my hands, more flexible than ever!\n\nIf my spell is of the "
+          },
+          {
+            "text": "realm of fire then it will be transformed into pure hellfire",
+            "color": "dark_purple"
+          },
+          {
+            "text": ". All aspects of the spell will be increased. Be warned, hellfire is a force of destruction, and you may end up losing control of the power if you aren't careful.\n\nAny fires the spell creates will also be hellfire, which spread more quickly and deal more damage to those inside them.\n\nThis staff can only be crafted by those who have allied themselves to the "
+          },
+          {
+            "text": "Demons of the Nether",
+            "color": "dark_red"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/devil_ring"
+      }
+    ]
+  },
 
   "Fallen Angel Ring": {
     "index": "1",

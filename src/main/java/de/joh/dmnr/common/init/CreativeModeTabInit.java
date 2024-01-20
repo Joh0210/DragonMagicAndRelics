@@ -50,6 +50,7 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.BRACELET_OF_FRIENDSHIP.get());
                         pOutput.accept(ItemInit.FACTION_AMULET.get());
                         pOutput.accept(ItemInit.ANGEL_RING.get());
+                        pOutput.accept(ItemInit.DEVIL_RING.get());
                         pOutput.accept(ItemInit.FALLEN_ANGEL_RING.get());
                         pOutput.accept(ItemInit.VOIDFEATHER_CHARM.get());
 

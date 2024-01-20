@@ -1,10 +1,10 @@
 modLoader="javafml"
-loaderVersion="[40,)"
+loaderVersion="[47,)"
 license="All Rights Reserved"
 
 [[mods]]
 modId="dmnr"
-version="${file.jarVersion}"
+version="3.1.3"
 displayName="Dragon Magic and Relics"
 credits="Thanks to jsementj for the amazing armor model and texture! Thanks to Mithion for helping creating some code elements of this mod! Also thanks to Ceddi and Nico for helping with testing and balancing."
 authors="Joh0210"
@@ -17,7 +17,7 @@ A mod to expand your magic to compete with gods!
 [[dependencies.dmnr]]
    modId="forge"
    mandatory=true
-   versionRange="[47.2,)"
+   versionRange="[47.1,)"
    ordering="NONE"
    side="BOTH"
 

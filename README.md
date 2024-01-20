@@ -27,6 +27,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Belt of the Minotaur
 - Bracelet of Friendship
 - Brimstone Chalk
+- Devil Ring (Demon only)
 - Dragon Core
 - **Dragon Mage Armor with Upgrade Glyphs**
 - Faction Amulet
