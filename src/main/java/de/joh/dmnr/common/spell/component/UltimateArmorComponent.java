@@ -75,7 +75,7 @@ public class UltimateArmorComponent extends PotionEffectComponent {
     }
 
     @Override
-    public List<SpellReagent> getRequiredReagents(@Nullable Player caster, @Nullable InteractionHand hand) {
-        return List.of(new SpellReagent(new ItemStack(Items.NETHER_STAR), false, true, true));
+    protected List<SpellReagent> getPotionReagents(Player caster, @Nullable InteractionHand hand) {
+        return List.of(new SpellReagent(this, new ItemStack(Items.NETHER_STAR), false, true, true));
     }
 }

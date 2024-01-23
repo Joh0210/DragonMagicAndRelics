@@ -41,7 +41,7 @@ public class DragonMageCuriosItem extends Item implements ITieredItem<DragonMage
     }
 
     @Override
-    public int getCachedtier() {
+    public int getCachedTier() {
         return this._tier;
     }
 

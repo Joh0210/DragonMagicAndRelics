@@ -21,7 +21,7 @@ public class BaseTieredItem extends Item implements ITieredItem<BaseTieredItem> 
     }
 
     @Override
-    public int getCachedtier() {
+    public int getCachedTier() {
         return this._tier;
     }
 }

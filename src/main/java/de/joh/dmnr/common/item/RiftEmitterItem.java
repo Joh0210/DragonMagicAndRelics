@@ -76,7 +76,7 @@ public class RiftEmitterItem extends BlockItem implements GeoItem, ITieredItem<R
     }
 
     @Override
-    public int getCachedtier() {
+    public int getCachedTier() {
         return this._tier;
     }
 }

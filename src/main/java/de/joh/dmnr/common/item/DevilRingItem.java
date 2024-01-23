@@ -28,7 +28,7 @@ public class DevilRingItem extends TieredItem implements IForgeItem, ICurioItem,
     }
 
     @Override
-    public int getCachedtier() {
+    public int getCachedTier() {
         return this._tier;
     }
 

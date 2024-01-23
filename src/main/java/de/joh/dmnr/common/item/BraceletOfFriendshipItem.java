@@ -31,7 +31,7 @@ public class BraceletOfFriendshipItem extends ItemBagBase implements ICurioItem,
     }
 
     @Override
-    public int getCachedtier() {
+    public int getCachedTier() {
         return this._tier;
     }
 

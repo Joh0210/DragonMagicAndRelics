@@ -80,6 +80,9 @@
   "effect.dmnr.broken_peace": "Broken Peace",
   "effect.dmnr.elytra": "Angel Fly",
 
+  "death.attack.dmnr_force": "%s was crushed by sheer force",
+  "death.attack.dmnr_force.player": "%s was crushed by the sheer force of %s",
+
   "dmnr.commands.output.writeSpellToArmor.no.armor.equipped.error": "You must be wearing full set of Dragon Mage Armor for the command to work.",
   "dmnr.commands.output.writeSpellToArmor.no.valid.spell.error": "You have no valid spell in your main hand.",
   "dmnr.commands.output.changeDragonMageArmorTarget.no.valid.armor.error": "This command requires the target to wear full Dragon Mage Armor",

@@ -67,7 +67,7 @@ public class ManaCakeItem extends Item implements ITieredItem<ManaCakeItem> {
     }
 
     @Override
-    public int getCachedtier() {
+    public int getCachedTier() {
         return this._tier;
     }
 

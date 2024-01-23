@@ -17,13 +17,15 @@ import com.mna.config.GeneralModConfig;
 import com.mna.effects.EffectInit;
 import com.mna.interop.CuriosInterop;
 import com.mna.items.ItemInit;
+import de.joh.dmnr.common.util.RLoc;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.protocol.game.ClientboundSetEntityMotionPacket;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.CombatRules;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
@@ -67,7 +69,7 @@ public class ForceDamageComponent extends SpellEffect implements IDamageComponen
             float reduction = 1 - CombatRules.getDamageAfterAbsorb(damage, (float)entity.getArmorValue(), (float)entity.getAttributeValue(Attributes.ARMOR_TOUGHNESS))/damage;
             damage = damage * (1 - reduction + reduction * modificationData.getValue(Attribute.MAGNITUDE)/3); //+15% to Iron; +45% to Dia
             //injure
-            target.getEntity().hurt(DamageHelper.createSourcedType(DamageTypes.FLY_INTO_WALL, context.getLevel().registryAccess(), source.getCaster()), damage);
+            target.getEntity().hurt(DamageHelper.createSourcedType(getForceDamage(), context.getLevel().registryAccess(), source.getCaster()), damage);
 
             //recoil
             if(entity != source.getCaster()){
@@ -196,6 +198,10 @@ public class ForceDamageComponent extends SpellEffect implements IDamageComponen
         le.getPersistentData().putFloat("mna:flung", strength);
         le.getPersistentData().putLong("mna:fling_time", le.level().getGameTime());
         le.hasImpulse = true;
+    }
+
+    public static ResourceKey<DamageType> getForceDamage(){
+        return ResourceKey.create(Registries.DAMAGE_TYPE, RLoc.create("spell_force"));
     }
 }
 
