@@ -13,7 +13,7 @@ import com.mna.api.spells.parts.SpellEffect;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
-import com.mna.config.GeneralModConfig;
+import com.mna.config.GeneralConfig;
 import com.mna.effects.EffectInit;
 import com.mna.interop.CuriosInterop;
 import com.mna.items.ItemInit;
@@ -53,7 +53,7 @@ public class ForceDamageComponent extends SpellEffect implements IDamageComponen
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
         if (target.isEntity() && target.getEntity() instanceof LivingEntity entity) {
             //determination of the damage
-            float damage = modificationData.getValue(Attribute.DAMAGE) * GeneralModConfig.getDamageMultiplier();
+            float damage = modificationData.getValue(Attribute.DAMAGE) * GeneralConfig.getDamageMultiplier();
 
 
 //            //Uses Armor + Prot.

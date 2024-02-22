@@ -8,7 +8,7 @@ import com.mna.api.items.ChargeableItem;
 import com.mna.api.spells.SpellPartTags;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
-import com.mna.config.GeneralModConfig;
+import com.mna.config.GeneralConfig;
 import com.mna.effects.EffectInit;
 import com.mna.entities.sorcery.EntityDecoy;
 import com.mna.entities.utility.PresentItem;
@@ -419,19 +419,19 @@ public class DamageEventHandler {
             } else {
                 MutableFloat restoreAmount = new MutableFloat(1.0F);
                 if (target instanceof Player) {
-                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_PLAYER.get());
+                    restoreAmount.setValue(GeneralConfig.SoulsForPlayerKill);
                 } else if (target instanceof Villager) {
-                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_VILLAGER.get());
+                    restoreAmount.setValue(GeneralConfig.SoulsForVillagerKill);
                 } else if (target instanceof IFactionEnemy) {
-                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_FACTION.get());
+                    restoreAmount.setValue(GeneralConfig.SoulsForFactionMobKill);
                 } else if (((LivingEntity)target).isInvertedHealAndHarm()) {
-                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_UNDEAD.get());
+                    restoreAmount.setValue(GeneralConfig.SoulsForUndeadKill);
                 } else if (target instanceof Animal) {
-                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_ANIMAL.get());
+                    restoreAmount.setValue(GeneralConfig.SoulsForAnimalKill);
                 } else if (target instanceof AbstractGolem) {
                     restoreAmount.setValue(0.0F);
                 } else if (target instanceof Mob) {
-                    restoreAmount.setValue(GeneralModConfig.MA_SOULS_MOB.get());
+                    restoreAmount.setValue(GeneralConfig.SoulsForMobKill);
                 }
 
                 if (((LivingEntity)target).hasEffect(EffectInit.SOUL_VULNERABILITY.get())) {

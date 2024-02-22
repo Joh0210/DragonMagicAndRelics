@@ -56,7 +56,7 @@ public class CommonEventHandler {
             int level = ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.JUMP);
             if (player.isSprinting() && level >= 1) {
                 float multiplier = (float)player.getAttributeValue(Attributes.MOVEMENT_SPEED) * 4.0F * level;
-                player.push(player.getDeltaMovement().x * multiplier, 0.325 * level, player.getDeltaMovement().z * multiplier);
+                player.push(player.getDeltaMovement().x * multiplier, 0.325F * level, player.getDeltaMovement().z * multiplier);
                 player.hurtMarked = true;
             }
         }
