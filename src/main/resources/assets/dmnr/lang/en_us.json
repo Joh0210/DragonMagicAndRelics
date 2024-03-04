@@ -36,6 +36,7 @@
   "item.dmnr.mutandis" : "Mutandis",
   "item.dmnr.the_clickers_cookie": "The Clickers Cookie",
   "item.dmnr.purified_mutandis": "Purified Mutandis",
+  "item.dmnr.ring_of_spell_storing": "Ring of Spell Storing",
   "item.dmnr.angel_ring": "Angel Ring",
   "item.dmnr.fallen_angel_ring": "Fallen Angel Ring",
   "item.dmnr.devil_ring": "Devil Ring",
@@ -248,6 +249,7 @@
   "dmnr:rituals/artefact_trade": "Ritual of Relict Trade",
 
   "dmnr.key.togglenightvision": "DM&R: Toggle Night Vision",
+  "dmnr.key.use_spell_storing_ring": "DM&R: Use Ring of Spell Storing",
   "dmnr.key.toggleflight": "DM&R: Toggle Flight",
   "dmnr.key.output.disabledfly.true": "The Dragon Mage Armor fly has been activated",
   "dmnr.key.output.disabledfly.false": "The Dragon Mage Armor fly has been disabled"

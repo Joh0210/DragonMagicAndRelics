@@ -1,10 +1,10 @@
 package de.joh.dmnr.common.armorupgrade;
 
 import com.mna.api.capabilities.IPlayerMagic;
+import com.mna.api.config.GeneralConfigValues;
 import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.api.sound.SFX;
-import com.mna.config.GeneralConfig;
 import com.mna.entities.utility.MAExplosion;
 import de.joh.dmnr.api.armorupgrade.OnTickArmorUpgrade;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
@@ -13,14 +13,11 @@ import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-
-import javax.annotation.Nullable;
 
 /**
  * If the wielder shifts during a sprint jump, it lands like a metor on the ground and creates an explosion
@@ -77,7 +74,7 @@ public class MeteorJumpArmorUpgrade extends OnTickArmorUpgrade {
             player.getPersistentData().remove("dmnr_meteor_jumping");
             player.setSprinting(false);
             if (!player.level().isClientSide) {
-                MAExplosion.make(player, (ServerLevel)player.level(), player.getX(), player.getY(), player.getZ(), CommonConfig.METEOR_JUMP_IMPACT.get() * level / 2.0f, CommonConfig.METEOR_JUMP_IMPACT.get() * 3 * level, true, GeneralConfig.MeteorJumpEnabled && ((ServerLevel)player.level()).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP, player.damageSources().explosion(player, null));
+                MAExplosion.make(player, (ServerLevel)player.level(), player.getX(), player.getY(), player.getZ(), CommonConfig.METEOR_JUMP_IMPACT.get() * level / 2.0f, CommonConfig.METEOR_JUMP_IMPACT.get() * 3 * level, true, GeneralConfigValues.MeteorJumpEnabled && ((ServerLevel)player.level()).getServer().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) ? Explosion.BlockInteraction.DESTROY : Explosion.BlockInteraction.KEEP, player.damageSources().explosion(player, null));
             }
         }
     }

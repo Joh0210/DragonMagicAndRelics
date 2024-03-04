@@ -1,0 +1,20 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 3,
+  "output": "dmnr:ring_of_spell_storing",
+  "quantity": 1,
+  "items": [
+    "mna:mundane_ring",
+    "mna:manaweaver_wand_advanced",
+    "mna:mana_crystal",
+    "mna:chimerite_gem"
+  ],
+  "patterns": [
+    "mna:circle",
+    "mna:square",
+    "mna:diamond",
+    "mna:slash",
+    "mna:square",
+    "mna:backslash"
+  ]
+}

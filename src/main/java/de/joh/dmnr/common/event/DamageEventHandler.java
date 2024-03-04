@@ -1,6 +1,7 @@
 package de.joh.dmnr.common.event;
 
 import com.mna.api.ManaAndArtificeMod;
+import com.mna.api.config.GeneralConfigValues;
 import com.mna.api.entities.IFactionEnemy;
 import com.mna.api.events.ComponentApplyingEvent;
 import com.mna.api.faction.IFaction;
@@ -8,7 +9,6 @@ import com.mna.api.items.ChargeableItem;
 import com.mna.api.spells.SpellPartTags;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
-import com.mna.config.GeneralConfig;
 import com.mna.effects.EffectInit;
 import com.mna.entities.sorcery.EntityDecoy;
 import com.mna.entities.utility.PresentItem;
@@ -419,19 +419,19 @@ public class DamageEventHandler {
             } else {
                 MutableFloat restoreAmount = new MutableFloat(1.0F);
                 if (target instanceof Player) {
-                    restoreAmount.setValue(GeneralConfig.SoulsForPlayerKill);
+                    restoreAmount.setValue(GeneralConfigValues.SoulsForPlayerKill);
                 } else if (target instanceof Villager) {
-                    restoreAmount.setValue(GeneralConfig.SoulsForVillagerKill);
+                    restoreAmount.setValue(GeneralConfigValues.SoulsForVillagerKill);
                 } else if (target instanceof IFactionEnemy) {
-                    restoreAmount.setValue(GeneralConfig.SoulsForFactionMobKill);
+                    restoreAmount.setValue(GeneralConfigValues.SoulsForFactionMobKill);
                 } else if (((LivingEntity)target).isInvertedHealAndHarm()) {
-                    restoreAmount.setValue(GeneralConfig.SoulsForUndeadKill);
+                    restoreAmount.setValue(GeneralConfigValues.SoulsForUndeadKill);
                 } else if (target instanceof Animal) {
-                    restoreAmount.setValue(GeneralConfig.SoulsForAnimalKill);
+                    restoreAmount.setValue(GeneralConfigValues.SoulsForAnimalKill);
                 } else if (target instanceof AbstractGolem) {
                     restoreAmount.setValue(0.0F);
                 } else if (target instanceof Mob) {
-                    restoreAmount.setValue(GeneralConfig.SoulsForMobKill);
+                    restoreAmount.setValue(GeneralConfigValues.SoulsForMobKill);
                 }
 
                 if (((LivingEntity)target).hasEffect(EffectInit.SOUL_VULNERABILITY.get())) {

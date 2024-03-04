@@ -12,6 +12,7 @@ import de.joh.dmnr.networking.packet.IncrementWeatherC2SPacket;
 import de.joh.dmnr.networking.packet.ToggleFlightC2SPacket;
 import de.joh.dmnr.networking.packet.ToggleNightVisionC2SPacket;
 import de.joh.dmnr.common.init.KeybindInit;
+import de.joh.dmnr.networking.packet.UseRingOfSpellStoringC2SPacket;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -52,6 +53,9 @@ public class ClientEventHandler {
         public static void onKeyRegister(InputEvent.Key event){
             if(KeybindInit.TOGGLE_NIGHT_VISION_KEY.consumeClick()){
                 ModMessages.sendToServer(new ToggleNightVisionC2SPacket());
+            }
+            if(KeybindInit.USE_SPELL.consumeClick()){
+                ModMessages.sendToServer(new UseRingOfSpellStoringC2SPacket());
             }
             else if(KeybindInit.TOGGLE_FLIGHT_KEY.consumeClick()){
                 ModMessages.sendToServer(new ToggleFlightC2SPacket());

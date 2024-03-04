@@ -40,6 +40,12 @@ public class ModMessages {
                 .consumerMainThread(ToggleNightVisionC2SPacket::handle)
                 .add();
 
+        net.messageBuilder(UseRingOfSpellStoringC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(UseRingOfSpellStoringC2SPacket::new)
+                .encoder((UseRingOfSpellStoringC2SPacket::toBytes))
+                .consumerMainThread(UseRingOfSpellStoringC2SPacket::handle)
+                .add();
+
         net.messageBuilder(ToggleFlightC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(ToggleFlightC2SPacket::new)
                 .encoder((ToggleFlightC2SPacket::toBytes))

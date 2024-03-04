@@ -1515,6 +1515,41 @@
       }
     ]
   },
+  "Ring of Spell Storing": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ring of Spell Storing"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I can fuse this ring with a spell to use it using a keyboard shortcut",
+            "color": ""
+          },
+          {
+            "text": "(default R - \"DM&R: Use Ring of Spell Storing\")",
+            "italic": true
+          },
+          {
+            "text": ".\n\nTo open the rings inventar, press the gui key (default control), and right click with it",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/ring_of_spell_storing"
+      }
+    ]
+  },
+
   "Angel Ring": {
     "index": "1",
     "category": "artifice",

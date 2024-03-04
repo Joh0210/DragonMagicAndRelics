@@ -23,6 +23,7 @@ public class GuiInit {
         MenuScreens.register(ContainerInit.ARCH_DRAGON_MAGE_CHESTPLATE.get(), GuiDragonMageArmor<ContainerArchDragonMageArmor>::new);
         MenuScreens.register(ContainerInit.INFERNAL_DRAGON_MAGE_CHESTPLATE.get(), GuiDragonMageArmor<ContainerInfernalDragonMageArmor>::new);
         MenuScreens.register(ContainerInit.WILD_DRAGON_MAGE_CHESTPLATE.get(), GuiDragonMageArmor<ContainerWildDragonMageArmor>::new);
+        MenuScreens.register(ContainerInit.RING_OF_SPELL_STORING.get(), GuiRingOfSpellStoringItem<ContainerRingOfSpellStoringItem>::new);
         //HUDOverlayRenderer.instance = new HUDOverlayRenderer();
     }
 }
