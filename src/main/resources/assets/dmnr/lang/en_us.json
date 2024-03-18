@@ -36,7 +36,8 @@
   "item.dmnr.mutandis" : "Mutandis",
   "item.dmnr.the_clickers_cookie": "The Clickers Cookie",
   "item.dmnr.purified_mutandis": "Purified Mutandis",
-  "item.dmnr.ring_of_spell_storing": "Ring of Spell Storing",
+  "item.dmnr.ring_of_spell_storing": "Bracelet of Spell Storing: Normal",
+  "item.dmnr.ring_of_spell_storing_cooldown": "Bracelet of Spell Storing: Cooldown",
   "item.dmnr.angel_ring": "Angel Ring",
   "item.dmnr.fallen_angel_ring": "Fallen Angel Ring",
   "item.dmnr.devil_ring": "Devil Ring",
@@ -79,6 +80,7 @@
   "effect.dmnr.fly_disabled": "Disabled DM&R Fly",
   "effect.dmnr.peace": "Peace",
   "effect.dmnr.broken_peace": "Broken Peace",
+  "effect.dmnr.spell_storing_cooldown": "Spell Storing Cooldown",
   "effect.dmnr.elytra": "Angel Fly",
 
   "death.attack.dmnr_force": "%s was crushed by sheer force",
@@ -99,6 +101,8 @@
   "dmnr.commands.output.callApplyUpgrade.success.one": "You have upgraded ",
   "dmnr.commands.output.callApplyUpgrade.success.two": "  to level ",
 
+  "dmnr.ring_of_spell_storing.no_ring.error": "You need a §eBracelet of Spell Storing§r to use this key.",
+  "dmnr.ring_of_spell_storing.no_channeled.error": "This item does not support channeled spells. Only instant spells can be used.",
   "dmnr.components.conjurefluid.occupied.error": "The block is already occupied.",
   "dmnr.shapes.atmark.nomark.error": "I need a Rune of Marking in my other hand or need to set a player mark with a Mark-Spell to use this spell.",
   "dmnr.shapes.curse.no_charm.error": "I need a Player Charm in my other hand to use this spell.",
@@ -249,7 +253,7 @@
   "dmnr:rituals/artefact_trade": "Ritual of Relict Trade",
 
   "dmnr.key.togglenightvision": "DM&R: Toggle Night Vision",
-  "dmnr.key.use_spell_storing_ring": "DM&R: Use Ring of Spell Storing",
+  "dmnr.key.use_spell_storing_ring": "DM&R: Use Bracelet of Spell Storing",
   "dmnr.key.toggleflight": "DM&R: Toggle Flight",
   "dmnr.key.output.disabledfly.true": "The Dragon Mage Armor fly has been activated",
   "dmnr.key.output.disabledfly.false": "The Dragon Mage Armor fly has been disabled"

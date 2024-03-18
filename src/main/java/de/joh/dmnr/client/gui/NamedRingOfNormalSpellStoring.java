@@ -11,16 +11,16 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class NamedRingOfSpellStoringItem implements MenuProvider {
+public class NamedRingOfNormalSpellStoring implements MenuProvider {
     private final ItemStack stack;
 
-    public NamedRingOfSpellStoringItem(ItemStack stack) {
+    public NamedRingOfNormalSpellStoring(ItemStack stack) {
         this.stack = stack;
     }
 
     @Nullable
     public AbstractContainerMenu createMenu(int i, @NotNull Inventory inventory, @NotNull Player player) {
-        return new ContainerRingOfSpellStoringItem(i, inventory, new ItemInventoryBase(this.stack, 1));
+        return new ContainerRingOfNormalSpellStoring(i, inventory, new ItemInventoryBase(this.stack, 1));
     }
 
     public @NotNull Component getDisplayName() {

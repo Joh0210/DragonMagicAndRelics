@@ -1515,28 +1515,48 @@
       }
     ]
   },
-  "Ring of Spell Storing": {
+  "Bracelet of Spell Storing": {
     "index": "1",
     "category": "artifice",
     "sections": [
       {
         "type": "title",
-        "value": "Ring of Spell Storing"
+        "value": "Bracelet of Spell Storing"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "I can fuse this ring with a spell to use it using a keyboard shortcut",
+            "text": "I can fuse this bracelet with a spell to use it using a keyboard shortcut",
             "color": ""
           },
           {
-            "text": "(default R - \"DM&R: Use Ring of Spell Storing\")",
+            "text": "(default R - \"DM&R: Use Bracelet of Spell Storing\")",
             "italic": true
           },
           {
-            "text": ".\n\nTo open the rings inventar, press the gui key (default control), and right click with it",
+            "text": ".\n\nTo open the bracelets inventar, press the gui key (default control), and right click with it.\n\nThere are 2 types of this bracelet:\n- ",
+            "color": ""
+          },
+          {
+            "text": "Normal: ",
+            "bold": true
+          },
+          {
+            "text": "This bracelet requires mana like any other spell and provides a short cooldown.\n- ",
+            "color": ""
+          },
+          {
+            "text": "Cooldown: ",
+            "bold": true
+          },
+          {
+            "text": "This version requires no mana, but has a significantly higher cooldown. The cooldown does not affect the normal spells.",
+            "color": ""
+          },
+          {
+            "text": "\n\nThis item does not support channeled spells!",
             "color": ""
           }
         ]
@@ -1546,6 +1566,10 @@
       {
         "type": "manaweaving_altar",
         "location":"dmnr:manaweaving/ring_of_spell_storing"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/ring_of_spell_storing_cooldown"
       }
     ]
   },

@@ -8,6 +8,7 @@ import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.api.spell.component.ConjureFluidComponent;
 import de.joh.dmnr.common.spell.component.MarkComponent;
 import net.minecraftforge.common.ForgeConfigSpec;
+import de.joh.dmnr.common.item.spellstoring.RingOfCooldownSpellStoringItem;
 /**
  * This file creates the entire Common Configs of this mod.
  * @author Joh0210
@@ -34,10 +35,17 @@ public class CommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> MINOTAUR_BELT_MULTIPLICATION;
 
     /**
+     * Belt of the Minotaur Multiplication Factor
+     * @see RingOfCooldownSpellStoringItem
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> SPELL_STORING_COOLDOWN_FACTOR;
+
+    /**
      * fly upgrade:
      * This times level = speed when flying. (0.5 is default creative)
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> FLY_SPEED_PER_LEVEL;
+
     /**
      * fly upgrade:
      * Defines whether it is possible to additionally sprint while flying with the Dragon Mage armor
@@ -111,6 +119,7 @@ public class CommonConfig {
                 .define("Can conjure fluid ignore vaporize?", true);
         MARK_SUPPORT_PLAYERCHARM = BUILDER.define("If true: The Mark Component supports PlayerCharms", true);
         MINOTAUR_BELT_MULTIPLICATION = BUILDER.define("By what factor is the damage increased with the Minotaur Belt?", 2);
+        SPELL_STORING_COOLDOWN_FACTOR = BUILDER.define("This number indicates the factor by which the cooldown is increased when casting the spell via the Bracelet of Spell Storing - Cooldown:", 10);
         BUILDER.pop();
 
 

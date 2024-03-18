@@ -26,6 +26,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Belt of the Centaur
 - Belt of the Minotaur
 - Bracelet of Friendship
+- Bracelet of Spell Storing
 - Brimstone Chalk
 - Devil Ring (Demon only)
 - Dragon Core
@@ -37,7 +38,6 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Purified Mutandis (Fey only)
 - Ring of Power
 - Ring of Ruling
-- Ring of Spell Storing
 - Staff of the Weather Fairy (Relict)
 - The Clickers Cookie (Relict)
 - Voidfeather Charm

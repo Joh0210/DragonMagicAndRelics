@@ -19,16 +19,12 @@ import net.minecraftforge.items.IItemHandler;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ContainerRingOfSpellStoringItem extends HeldContainerBase {
-    public ContainerRingOfSpellStoringItem(int i, Inventory playerInventory, FriendlyByteBuf buffer) {
-        this(i, playerInventory, new ItemInventoryBase(new ItemStack(ItemInit.RING_OF_SPELL_STORING.get(), 1), 2));
-    }
-
-    public ContainerRingOfSpellStoringItem(int i, Inventory playerInv, ItemInventoryBase basebag) {
+public abstract class ContainerRingOfSpellStoring extends HeldContainerBase {
+    public ContainerRingOfSpellStoring(int i, Inventory playerInv, ItemInventoryBase basebag) {
         this(ContainerInit.RING_OF_SPELL_STORING.get(), i, playerInv, basebag);
     }
 
-    public ContainerRingOfSpellStoringItem(@Nullable MenuType<?> type, int i, Inventory playerInv, ItemInventoryBase basebag) {
+    public ContainerRingOfSpellStoring(@Nullable MenuType<?> type, int i, Inventory playerInv, ItemInventoryBase basebag) {
         super(type, i, playerInv, basebag);
     }
 

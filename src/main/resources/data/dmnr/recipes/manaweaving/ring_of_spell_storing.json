@@ -4,7 +4,7 @@
   "output": "dmnr:ring_of_spell_storing",
   "quantity": 1,
   "items": [
-    "mna:mundane_ring",
+    "mna:mundane_bracelet",
     "mna:manaweaver_wand_advanced",
     "mna:mana_crystal",
     "mna:chimerite_gem"

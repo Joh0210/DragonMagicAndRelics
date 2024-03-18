@@ -1,6 +1,6 @@
 package de.joh.dmnr.networking.packet;
 
-import de.joh.dmnr.common.item.RingOfSpellStoringItem;
+import de.joh.dmnr.common.item.spellstoring.RingOfSpellStoringItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;

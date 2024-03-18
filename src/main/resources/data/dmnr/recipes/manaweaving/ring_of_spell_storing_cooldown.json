@@ -1,0 +1,18 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 3,
+  "output": "dmnr:ring_of_spell_storing_cooldown",
+  "quantity": 1,
+  "items": [
+    "dmnr:ring_of_spell_storing",
+    "minecraft:clock",
+    "minecraft:clock",
+    "minecraft:clock",
+    "minecraft:clock"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/diamond"
+  ]
+}

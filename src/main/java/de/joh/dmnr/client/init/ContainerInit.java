@@ -31,7 +31,10 @@ public class ContainerInit {
     public static final RegistryObject<MenuType<ContainerInfernalDragonMageArmor>> INFERNAL_DRAGON_MAGE_CHESTPLATE;
 
     static final String RING_OF_SPELL_STORING_ID = "ring_of_spell_storing";
-    public static final RegistryObject<MenuType<ContainerRingOfSpellStoringItem>> RING_OF_SPELL_STORING;
+    public static final RegistryObject<MenuType<ContainerRingOfNormalSpellStoring>> RING_OF_SPELL_STORING;
+
+    static final String RING_OF_SPELL_STORING_COOLDOWN_ID = "ring_of_spell_storing_cooldown";
+    public static final RegistryObject<MenuType<ContainerRingOfCooldownSpellStoring>> RING_OF_SPELL_STORING_COOLDOWN;
 
     static final String WILD_DRAGON_MAGE_CHESTPLATE_ID = "wild_dragon_mage_chestplate";
     public static final RegistryObject<MenuType<ContainerWildDragonMageArmor>> WILD_DRAGON_MAGE_CHESTPLATE;
@@ -57,7 +60,10 @@ public class ContainerInit {
                 () -> IForgeMenuType.create(ContainerInfernalDragonMageArmor::new));
 
         RING_OF_SPELL_STORING = CONTAINERS.register(RING_OF_SPELL_STORING_ID,
-                () -> IForgeMenuType.create(ContainerRingOfSpellStoringItem::new));
+                () -> IForgeMenuType.create(ContainerRingOfNormalSpellStoring::new));
+
+        RING_OF_SPELL_STORING_COOLDOWN = CONTAINERS.register(RING_OF_SPELL_STORING_COOLDOWN_ID,
+                () -> IForgeMenuType.create(ContainerRingOfCooldownSpellStoring::new));
 
         WILD_DRAGON_MAGE_CHESTPLATE = CONTAINERS.register(WILD_DRAGON_MAGE_CHESTPLATE_ID,
                 () -> IForgeMenuType.create(ContainerWildDragonMageArmor::new));
