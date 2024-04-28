@@ -1,0 +1,2262 @@
+{
+  "Upgrade Glyph Night Vision": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：夜视"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "\"夜色黑暗而充满恐惧。\"\n\n不，对我来说不是。有了这个升级，我可以通过按下“DM&R：切换夜视”按钮（默认为“o”）来激活我的夜视。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：2"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_night_vision"
+      }
+    ]
+  },
+  "Upgrade Glyph Burning Frenzy": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：燃烧狂暴"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "在岩浆上行走（暂时停用），奔跑更快，跳得更高，攀登山峰无需抬起膝盖。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：6"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_burning_frenzy"
+      }
+    ]
+  },
+  "Upgrade Glyph Fly": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：飞行"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "将这一雕符放入神龙巫师盔甲可以为我增加飞行的能力。每个额外的等级都可以提升飞行的速度。只不过为了克服重力，我需要消耗一点魔力。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "该效果可以通过“DM&R：切换飞行”按键（或“禁用DM&R飞行”效果）来禁用。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：7"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_fly"
+      }
+    ]
+  },
+  "Upgrade Glyph Saturation": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：饱和"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "有了这个雕符，我不再需要摄入食物。魔力就是我的营养糊糊。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：8"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_saturation"
+      }
+    ]
+  },
+  "Upgrade Glyph Movement Speed": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：速度"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这一雕符可以让我走得更快。我正常移动的速度将不会改变，但是冲刺速度将会变得极快。只不过为了克服阻力，我需要消耗一点魔力。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：4"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_movement_speed"
+      }
+    ]
+  },
+  "Upgrade Glyph Water Breathing": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：水下呼吸"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这一雕符可以为我创造出可以呼吸的空气。水下呼吸I需要消耗一些魔力，而水下呼吸II将没有任何消耗。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：2"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_water_breathing"
+      }
+    ]
+  },
+  "Upgrade Glyph Swim Speed": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：游泳速度"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这个雕符让我感觉如鱼得水。每升一级都会极大地提高我在水中的速度。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：2"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_dolphins_grace"
+      }
+    ]
+  },
+  "Upgrade Glyph Mist Form": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：雾形态"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这项升级将在接近死亡时使你化为雾形态。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "如果使用者是"
+          },
+          {
+            "text": "不死亡灵",
+            "color": "gray"
+          },
+          {
+            "text": "，雾化形态将会在施法时可以切换，并增加飞行速度！"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：8",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_mist_form"
+      }
+    ]
+  },
+  "Upgrade Glyph Regeneration": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：再生"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "永久被动生命再生。是梦吗？不！是雕符！"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：10",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_regeneration"
+      }
+    ]
+  },
+  "Upgrade Glyph Mana Boost": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：魔力增幅"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我的魔力快用完了。无论如何，我会多拿一些！每个主要雕符我获得额外250点魔力。（每个次要雕符获得100点）"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "次级：每次升级所需龙之魔法点数：4"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "主要：每次升级所需龙之魔法点数：5"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_mana_boost"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_major_mana_boost"
+      }
+    ]
+  },
+  "Upgrade Glyph Mana Regeneration": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：魔力再生"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "好吧，更多的魔力也还是不够用。那只能用这个雕符了。每升一级都将提升魔力再生速度。\n\n作为"
+          },
+          {
+            "text": "不死亡灵派系",
+            "color": "gray"
+          },
+          {
+            "text": "的一员，魔法再生使我只要伤害他人就能获得灵魂。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：5",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_mana_regen_undead"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_mana_regen"
+      }
+    ]
+  },
+  "Upgrade Glyph Health Boost": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：生命提升"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我都穿上了神龙巫师盔甲但我还在担心死亡？那没办法了，只能增加更多生命了。每一升级将为我提升2颗心的生命上限。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：2",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_health_boost"
+      }
+    ]
+  },
+  "Upgrade Glyph Sorcerers Pride": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：术士之傲"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "增加施放的法术属性：\n- 强度 +0.5\n- 伤害 +3\n- 持续时间：+30%"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：5",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_sorcerers_pride"
+      }
+    ]
+  },
+  "Upgrade Glyph Insight": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：洞察"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "让你能够看见伤害和治疗数字。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：1",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_insight"
+      }
+    ]
+  },
+  "Upgrade Glyph Jump Boost": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：跳跃提升"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这一雕符将增加冲刺时的跳跃高度。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：2",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_jump"
+      }
+    ]
+  },
+  "Upgrade Glyph Explosion Resistance": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：爆炸保护"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "嘣，你死了。TNT真是个可爱又迷人的反派角色。有了这个雕符，我可以不用再在乎爆炸的伤害了！小声：但是周围的环境不这么觉得......\n\n管他呢！YES！TNT！"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：4",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_explosion_resistance"
+      }
+    ]
+  },
+  "Upgrade Glyph Kinetic Resistance": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：动能保护"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "使用鞘翅你可以飞得很快……并且可以很快地撞向墙壁。所以我不再担心这个了，我开发了这个升级雕符。它保护我免受鞘翅的动能伤害和坠落伤害。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：4",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_kinetic_resistance"
+      }
+    ]
+  },
+  "Upgrade Glyph Meteor Jump": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：流星之跃"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "使用这个雕符，在冲刺，跳跃后进行潜行时会像流星一样直冲地面并造成爆炸。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：3",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_meteor_jump"
+      }
+    ]
+  },
+  "Upgrade Glyph Projectile Reflection": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：弹射物反射"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "你为什么用箭打自己？你为什么用箭打自己？你为什么用箭打自己？\n\n是的，是我的错。我有一个雕符。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：2",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_projectile_reflection"
+      }
+    ]
+  },
+  "Upgrade Glyph Fire Resistance": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：火焰保护"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "地狱的火焰你干嘛，哎呦...有了这个雕符，火焰将会烧掉我的魔力而不是生命。等级II的雕符将会进一步免除魔力的消耗。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "次级：每次升级所需龙之魔法点数：4"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "主要：每次升级所需龙之魔法点数：2"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_minor_fire_resistance"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_major_fire_resistance"
+      }
+    ]
+  },
+  "Upgrade Glyph Elytra": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：鞘翅"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "鞘翅，来自末地的美丽道具。我想把它装饰在我的护甲上。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：5",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_elytra"
+      }
+    ]
+  },
+  "Upgrade Glyph Angel Flight": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：天使飞行"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我一直知道我高于其他人......这就是我能够飞在他们上面的原因。无论是静悄悄地、缓慢地飞行，还是以令人叹为观止的速度。 （当我潜行时，鞘翅加速停止）"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：5",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_angel_flight"
+      }
+    ]
+  },
+  "Upgrade Glyph Reach Distance": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：延伸距离"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "增加佩戴者的交互范围。",
+            "color": "black"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：8",
+            "color": "white"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_reach_distance"
+      }
+    ]
+  },
+  "Upgrade Glyph Damage Resistance": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：伤害抵抗"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "总是受伤很是烦人，得想想办法解决这个问题。每级将会增加20%的伤害减免。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：8",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_damage_resistance"
+      }
+    ]
+  },
+  "Upgrade Glyph Damage Boost": {
+    "index": "1",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级雕符：伤害增强"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "魔法是挺强力的了，但是伤害多高算高啊。多点伤害又不会少块肉，至少少的不是我的肉。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "每次升级所需龙之魔法点数：7",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/upgrade_seal_damage_boost"
+      }
+    ]
+  },
+  "Shape: Curse": {
+    "index": "1",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "形状：诅咒"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这种形状使我能够从远处诅咒其他玩家，即使我看不见他们。",
+            "color": "black"
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "如果我手持一个玩家符咒，并且它在范围内（范围模组 * 20），符咒将被销毁，但法术会命中玩家。",
+            "color": "black"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "然而，为了摆脱诅咒，我可以用诅咒保护护身符保护自己。",
+            "color": "black"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:shapes/curse"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/curse_protection_amulet"
+      }
+    ]
+  },
+  "Shape: Target Ally": {
+    "index": "1",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "形状：目标盟友"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "通过这种形状，我可以以魔法作用于定义半径内的所有盟友。\n\n动物伙伴也不会被忽视！"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我需要一个友情手镯来使用这个法术！"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这是我在测试我与那个人关系的强度后发现的魔法。因此，现在我称之为“友情魔法”。兄弟我没事……真的……",
+            "italic": true
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:shapes/friends"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/bracelet_of_friendship"
+      }
+    ]
+  },
+  "Shape: At Mark": {
+    "index": "1",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "形状：在标记处"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这一形状将在施法者放置的标记处释放魔法。要使用这个魔法, 需要在副手持有一个标记雕符。施法距离上限为500格，但是可以通过增强来提升。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "如果在副手并未持有标记雕符时释放这一形状的法术, 这一法术将被释放在用标记魔法标记的位置。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:shapes/atmark"
+      }
+    ]
+  },
+  "Shape: True Touch": {
+    "index": "1",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "形状：真实之触"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "对一些对手来说，最好是成双成对站在一起。\n\n这种形状使我能够用我的魔法增强我的盟友和我自己。当我潜行时，法术会以我为目标。否则，它会以我击打的人（或方块）为目标。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:shapes/true_touch"
+      }
+    ]
+  },
+  "Component: Nightfall": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "黄昏"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我已经掌控了时间。我可以用这个魔法来把时间从白天调整到晚上。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/moonrise"
+      }
+    ]
+  },
+  "Component: Saturate": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "饱腹"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这个仙女之庭独有的法术补充了我一小部分的饥饿感。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/saturate"
+      }
+    ]
+  },
+  "Component: Sunrise": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "日升"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我已经掌控了时间。我可以用这个魔法来把时间从晚上调整到白天。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/sunrise"
+      }
+    ]
+  },
+  "Component: Alternative Recall": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "替代召回"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我可以将我的奥术魔力集中在手中的标记雕符上以将魔法的目标转移到标记的位置。每一级增强可以增加1000格的施法距离。如果标记存在于另一维度，那么施法目标可能会遇到一些麻烦，这种情况，回归仪式可能会是更好的选择。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "如果在没有持有标记雕符时使用这一魔法，那么自身将被传送至标记魔法所标记的位置。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/alternativerecall"
+      }
+    ]
+  },
+  "Component: Force Damage": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "原力伤害"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "如果我的敌人穿着盔甲，我会让他们的盔甲压垮他们！"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这个法术对敌人造成物理伤害，其中一部分可以被盔甲吸收。此外，对手会被稍微击退一点，这可能会造成额外的冲击伤害。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "通过增加强度，盔甲吸收的因素会逐渐减少。在最大强度下，他们受到的伤害甚至比不穿盔甲时还要多。\n\n较小的强度增加了咒语施加的后坐力。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/forcedamage"
+      }
+    ]
+  },
+  "Component: Conjure Water": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "召唤水"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "可以生成水。水是生命之源，我能生成水，我也是生命之源。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我相信只要我足够努力，我甚至可以在地狱生成水。\n\n[ 可以在config中调整（努力的其实是config）]"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/conjurewater"
+      }
+    ]
+  },
+  "Conjure Lava": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "召唤岩浆"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我可以用我的力量召唤少量的地狱之湖。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/conjurelava"
+      }
+    ]
+  },
+  "Component: Ultimate Armor": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "终极盔甲"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "也许我还没实力一直穿着无敌的神龙巫师盔甲。但是如果只是一小会的话，我可以在我的盔甲中注入绝无仅有的力量。\n\n使用这一魔法需要消耗一个下界之星。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/ultimatearmor"
+      }
+    ]
+  },
+  "Component: Mark": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "标记"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "使用这一魔法将会改写我手中的标记雕符，魔法的使用地点将会被标记进雕符中。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "当我用法术击中一个玩家并在我的副手中持有一个玩家符咒时，符咒将绑定到玩家身上。（可以通过配置文件禁用）"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "如果在手中并未持有标记雕符时使用这一魔法，那么魔法的使用地点将会被我记在心里以供其他相关魔法使用。每个维度中我都可以记住一个地点。\n\n相关魔法：替代召回，形状：在标记处。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/mark"
+      }
+    ]
+  },
+  "Brimstone Chalk": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "硫磺粉笔"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "如果我有太多的硫磺符咒，而我破碎的粉笔困扰着我，我可能会试试坚不可摧的硫磺粉笔。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/brimstone_chalk"
+      }
+    ]
+  },
+  "Voidfeather Charm": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "虚空之羽符咒"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "如果我掉入无尽的虚空，这个符咒会让我回到床上。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/voidfeather_charm"
+      }
+    ]
+  },
+  "Rift Emitter": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "裂隙发射器"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我找到了一种方法，让小维度的裂痕保持更长的开放时间。有了这个装置，我现在可以以固定的方式打开裂隙存储了。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/rift_emitter"
+      }
+    ]
+  },
+  "Bracelet of Spell Storing": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "储咒手镯"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我可以将这个手镯与一个咒语融合，以便使用键盘快捷键（"
+          },
+          {
+            "text": "默认为 R - \"DM&R：使用储咒手镯\"",
+            "italic": true
+          },
+          {
+            "text": ") 使用它。\n要打开手镯的库存，按下界面键（默认为Control键），然后右键单击它。\n\n这个手镯有两种类型：\n\n- "
+          },
+          {
+            "text": "普通",
+            "bold": true
+          },
+          {
+            "text": "：这个手镯像其他咒语一样需要魔力，而且有一个短暂的冷却时间。\n\n- "
+          },
+          {
+            "text": "冷却",
+            "bold": true
+          },
+          {
+            "text": "：这个版本不需要魔力，但有一个显著更长的冷却时间。冷却时间不影响普通法术。\n\n这个物品不支持持续施法法术！"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/ring_of_spell_storing"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/ring_of_spell_storing_cooldown"
+      }
+    ]
+  },
+  "Angel Ring": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "天使之戒"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "诸神已经俯视我够久了!是时候让我站出来和他们作对了！\n\n有了这个护身符，我可以像她的天使一样在空中飞翔，而不必脱下我的盔甲。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/angel_ring"
+      }
+    ]
+  },
+  "Devil Ring": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "恶魔之戒"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "掌握着大魔鬼的力量，比以往任何时候都更加灵活！\n\n如果我的法术"
+          },
+          {
+            "text": "属于火焰领域，那么它将被转化为纯粹的地狱之火",
+            "color": "dark_purple"
+          },
+          {
+            "text": "。法术的所有方面都会增强。请注意，地狱之火是一种毁灭性的力量，如果不小心的话，你可能会失去对力量的控制。\n\n法术创建的任何火焰也将是地狱之火，它们传播更快，并对其中的生物造成更多伤害。\n\n这个法杖只能由那些已经与"
+          },
+          {
+            "text": "下界恶魔",
+            "color": "gold"
+          },
+          {
+            "text": "结盟的人制作。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/devil_ring"
+      }
+    ]
+  },
+  "Fallen Angel Ring": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "堕天使之戒"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "上帝长时间俯视着我！现在是我崛起并大闹天宫的时候了！\n\n如果使用者是"
+          },
+          {
+            "text": "不死亡灵",
+            "color": "gray"
+          },
+          {
+            "text": "，则雾化形态将在施放时可切换，并增加飞行速度！"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/fallen_angel_ring"
+      }
+    ]
+  },
+  "Mana Cake": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "魔力蛋糕"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我烤了一个非常甜的蛋糕。我用温特姆粉末替代了其中一部分面粉，现在这个蛋糕看起来充满了魔力的光辉。\n\n吃下这个蛋糕会消耗一部分魔力并提升魔力再生。但是如果我没有足够的魔力，那么我可能会吃掉整个蛋糕！"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/mana_cake"
+      }
+    ]
+  },
+  "Bracelet of Friendship": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "友情手镯"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "佩戴这个手镯会保护我的盟友，如果他们最终成为附带伤害的话。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "在手镯中使用一个"
+          },
+          {
+            "text": "玩家符咒",
+            "color": "dark_blue"
+          },
+          {
+            "text": "，我将一个玩家标记为我的盟友。\n\n我的动物以及我的盟友的动物也将受到保护。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "mna:manaweaving/rituals/player_charm"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/bracelet_of_friendship"
+      }
+    ]
+  },
+  "Mutandis": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "嬗变粉"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "一种神秘的粉末，会导致植物的细胞突变。这使得植物能够相互转化。\n\n凋零玫瑰是一种已死的植物，不能被这种粉末创造或突变。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "仙女还可以进一步提炼这种粉末，使其只产生魔法花。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/mutandis"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/purified_mutandis"
+      }
+    ]
+  },
+  "Dragon Core": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "龙之核心"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "终末的核心，龙的本源，一个拥有无穷力量的道具！\n\n这一道具可以在击败终末的巨物-末影龙时获得。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": []
+  },
+  "Faction Amulet": {
+    "index": "0",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "派系护符"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "有了这个护身符，我与其他派系和平共处。我不必担心敌人四处奔跑，甚至袭击。\n\n但和平是脆弱的。一次来自我方的攻击就宣告了战争！"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/faction_amulet"
+      }
+    ]
+  },
+  "Belt of the Centaur": {
+    "index": "0",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "牛头人腰带"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "减小承受伤害，但代价是什么呢？\n\n有了这条腰带，我承受一半的伤害，但也只造成一半的伤害！"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/sturdy_belt"
+      }
+    ]
+  },
+  "Belt of the Minotaur": {
+    "index": "0",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "人马腰带"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "一次重大攻击，但代价是什么呢？\n\n有了这条腰带，我造成双倍伤害，但也承受双倍伤害！"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/glass_cannon_belt"
+      }
+    ]
+  },
+  "Dragon Mage Armor": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "神龙巫师盔甲"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我的魔力使我成为了所向披靡的存在。我轻轻的一句话便可让群山为之震颤，我随意的举动可以让敌人为之下跪。但我仍觉得不够。既然我自己已经可以媲美，为什么我仍然要屈尊于神？"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "通过"
+          },
+          {
+            "text": "神龙巫师盔甲仪式",
+            "color": "dark_blue"
+          },
+          {
+            "text": "，我可以将我的盔甲升级为一件不可摧毁的神龙巫师盔甲。这已经提供了相当高水平的保护，但我仍然可以进一步改进它。通过"
+          },
+          {
+            "text": "升级雕符",
+            "color": "dark_blue"
+          },
+          {
+            "text": "，我可以为盔甲增加一些额外的能力。我所需要做的就是通过"
+          },
+          {
+            "text": "升级仪式",
+            "color": "dark_blue"
+          },
+          {
+            "text": "将雕符融合到我的盔甲上。\n\n然而，我可以向我的盔甲中添加的龙之魔法的数量受到限制，最多为64点。所有安装的雕符组合不能超过盔甲的龙之魔法点数。但是，我也可以将我的龙之魔法注入其他容器中。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "除了我的雕符之外，我最大化盔甲潜力的另一种方法是用法术强化我的盔甲，一旦我受到伤害就会激活。\n\n打开GUI界面的修改键（默认为Control），然后右键单击打开菜单。\n\n一个法术作用于我，另一个则针对攻击我的人。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "虽然我必须穿上全套盔甲才能使用它们的效果，但所有雕符似乎都只安装在胸甲上。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/abyssal_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/arch_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/infernal_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/wild_dragon_mage_chestplate"
+      },
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/dragon_mage_ritual"
+      }
+    ]
+  },
+  "Amulet of Curse Protection": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "诅咒保护护身符"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "魔法曾在许多地方控制了我，但我不再为它的利益而屈服！"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "如果一个负面效果要加诸于我，水晶的魔力会抵消这个障碍并保护我免受其影响。然而，护身符无法保护我免受持续时间过长的效果。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "除了负面效果外，它还可以保护我免受通过形状："
+          },
+          {
+            "text": "诅咒",
+            "color": "dark_blue"
+          },
+          {
+            "text": "施放的咒语的影响。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/curse_protection_amulet"
+      },
+      {
+        "type": "spell_part",
+        "location": "dmnr:shapes/curse"
+      }
+    ]
+  },
+  "Amulet of Dragon Power": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "龙力护符"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "另一个可以将我的龙之魔法注入其中的容器，有32个插槽。与龙之魔法盔甲类似，我可以将"
+          },
+          {
+            "text": "雕符",
+            "color": "dark_blue"
+          },
+          {
+            "text": "与护身符融合，但我仍然必须穿着完整的神龙巫师盔甲。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/amulet_of_dragon_power"
+      },
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/upgrade_ritual"
+      }
+    ]
+  },
+  "Ring of Power": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "权力之戒"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "另一个可以将我的龙之魔法注入其中的容器，有16个插槽。与龙之魔法铠甲类似，我可以将"
+          },
+          {
+            "text": "雕符",
+            "color": "dark_blue"
+          },
+          {
+            "text": "与护身符融合，但我仍然必须穿着完整的"
+          },
+          {
+            "text": "神龙巫师盔甲",
+            "color": "dark_blue"
+          },
+          {
+            "text": "。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "此外，该戒指的每次升级都会增强一个单位。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/ring_of_power"
+      },
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/upgrade_ritual"
+      }
+    ]
+  },
+  "Ring of Ruling": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "统御之戒"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "另一个可以将我的龙之魔法注入其中的容器，有16个插槽。我也可以将"
+          },
+          {
+            "text": "雕符",
+            "color": "dark_blue"
+          },
+          {
+            "text": "与护身符融合。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "然而，为了获得这些效果，我不必穿神龙巫师盔甲。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/ring_of_ruling"
+      },
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/upgrade_ritual"
+      }
+    ]
+  },
+  "Ritual of the Dragon Mage Armor": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "神龙巫师盔甲仪式"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我必须穿着整套的阵营护甲来进行这一仪式。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "然后这一仪式会将龙的力量附着在我的护甲上从而将其转化为神龙巫师盔甲。附魔将会被保留。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "看起来只有当我的魔法之力达到顶峰时才可以进行这一仪式。（等级达到75）"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/dragon_mage_ritual"
+      }
+    ]
+  },
+  "Ritual of Upgrade": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "升级仪式"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "神龙巫师盔甲的力量并非来源于制成它时所用的金属或是其他素材，而是来源于刻印进盔甲的雕符。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这一仪式可以将升级雕符添加进神龙巫师盔甲。不同的升级雕符所具有不同的特殊能力将被添加到护甲上。查阅升级雕符篇章以获取详细信息。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "需要注意的是，每个升级雕符都具有不同的等级和等阶。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "此外，雕符也有一个成本，即提高等级所需的龙之魔法量。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/upgrade_ritual"
+      }
+    ]
+  },
+  "Ritual of the Phoenix": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "凤凰仪式"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我很强，但还不算无敌。也许我需要为自己不知何时的败北做一些准备，从而浴火重生，反杀那些将我杀死的人！"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "这一仪式可以将我传送回上一次的死亡位置。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/phoenix_ritual"
+      }
+    ]
+  },
+  "Ritual of Relict Trade": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "遗物交易仪式"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "即使我足够幸运找到其中一件未知的遗物，也可能不是我想要的那一件。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "通过这个仪式，我可以用另一个遗物来交换它。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/artefact_trade"
+      }
+    ]
+  },
+  "Ritual of Betrayal": {
+    "index": 0,
+    "category": "rituals",
+    "sections": [
+      {
+        "type": "title",
+        "value": "背叛仪式"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "我的阵营带来了我今天的成就，但是，说不定我有着更多的潜力呢？我是不是其实可以获得更多成就，其实是我的阵营拖了我的后退呢？也许我该离开现在的阵营，抛弃所有的累赘，然后重新审视一下自己的器量。"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "警告：进行这一仪式将会使你离开你的阵营，同时所有在你加入阵营之后所获得的一切都将消失。"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/betrayal_ritual"
+      }
+    ]
+  },
+  "version": "3.1.8"
+}
