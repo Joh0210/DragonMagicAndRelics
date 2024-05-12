@@ -107,6 +107,12 @@ repositories {
     // maven { url 'https://maven.manaandartifice.com/releases/1.19.2/' }
     maven { url 'https://maven.theillusivec4.top/' }
     maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
+    maven {
+        url "https://cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 dependencies {
@@ -125,8 +131,9 @@ dependencies {
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.2.2')
 
     // M&A and its API
+    implementation fg.deobf("curse.maven:mna-406360:${mna_version}")
     // compileOnly "com.mithion:mna:${mna_version}:api" //api, compilation only
-    implementation fg.deobf("com.mithion:mna-forge-1.20.1:${mna_version}:all") //mod itself, deobf for runtime
+//    implementation fg.deobf("com.mithion:mna-forge-1.20.1:${mna_version}:all") //mod itself, deobf for runtime
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

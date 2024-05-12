@@ -2,6 +2,7 @@ package de.joh.dmnr.api.util;
 
 import com.mna.api.items.IPositionalItem;
 import com.mna.items.ItemInit;
+import com.mna.items.ritual.ItemPlayerCharm;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagic;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
 import net.minecraft.core.BlockPos;
@@ -38,7 +39,6 @@ public class MarkSave {
     /**
      * Saving the position by passed NBT data.
      * Format must correspond to saveNBT()!
-     * @param nbt
      */
     public MarkSave(CompoundTag nbt) {
         if (nbt.contains("x") && nbt.contains("y") && nbt.contains("z") && nbt.contains("direction")) {
@@ -76,13 +76,27 @@ public class MarkSave {
      */
     @Nullable
     public static MarkSave getMark(@NotNull Player source,@NotNull Level world){
-        ItemStack markingRune = source.getMainHandItem().getItem() != ItemInit.RUNE_MARKING.get() && source.getMainHandItem().getItem() != ItemInit.BOOK_MARKS.get() ? source.getOffhandItem() : source.getMainHandItem();
+        return getMark(source, world, false);
+    }
 
+    @Nullable
+    public static MarkSave getMark(@NotNull Player source,@NotNull Level world, boolean allowPlayerCharm){
+        // Rune of Marking:
+        ItemStack markingRune = source.getMainHandItem().getItem() != ItemInit.RUNE_MARKING.get() && source.getMainHandItem().getItem() != ItemInit.BOOK_MARKS.get() ? source.getOffhandItem() : source.getMainHandItem();
         if (markingRune.getItem() instanceof IPositionalItem) {
             return new MarkSave(((IPositionalItem)markingRune.getItem()).getLocation(markingRune), ((IPositionalItem)markingRune.getItem()).getFace(markingRune));
         }
 
-        AtomicReference<MarkSave> playerMark = new AtomicReference<>();
+        // Player Charm:
+        ItemStack playerCharm = source.getMainHandItem().getItem() != ItemInit.PLAYER_CHARM.get() ? source.getOffhandItem() : source.getMainHandItem();
+        if(allowPlayerCharm && playerCharm.getItem() instanceof ItemPlayerCharm) {
+            Player target = (((ItemPlayerCharm) playerCharm.getItem()).GetPlayerTarget(playerCharm, world));
+            if(target != null){
+                return new MarkSave(target.blockPosition().above(-1), Direction.UP);
+            }
+        }
+
+            AtomicReference<MarkSave> playerMark = new AtomicReference<>();
         AtomicBoolean isNotNull = new AtomicBoolean(false);
         source.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> {
             if(magic.hasValidMark(world)){

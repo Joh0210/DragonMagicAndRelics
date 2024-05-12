@@ -1220,6 +1220,16 @@
         "value": "",
         "json": [
           {
+            "text": "Instead of a Rune of Marking, I am also able to use a Player Charm.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
             "text": "When I use the Mark Spell and don't have a Rune of Marking in my hand, I teleport to the location I marked by the mark spell.",
             "color": ""
           }

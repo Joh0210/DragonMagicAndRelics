@@ -14,6 +14,7 @@ import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.factions.Factions;
 import com.mna.tools.TeleportHelper;
 import de.joh.dmnr.api.util.MarkSave;
+import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -35,7 +36,7 @@ public class AlternativeRecallComponent extends SpellEffect {
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
         if (target.getEntity() != null && target.getEntity().isAlive() && source.getPlayer() != null && target.getEntity().canChangeDimensions()) {
-            MarkSave markSave = MarkSave.getMark(source.getPlayer(), source.getPlayer().getCommandSenderWorld());
+            MarkSave markSave = MarkSave.getMark(source.getPlayer(), source.getPlayer().getCommandSenderWorld(), CommonConfig.RECALL_SUPPORT_PLAYERCHARM.get());
             if (markSave != null && markSave.getPosition() != null) {
                 BlockPos pos = markSave.getPosition();
 

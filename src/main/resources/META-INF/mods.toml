@@ -4,7 +4,7 @@ license="All Rights Reserved"
 
 [[mods]]
 modId="dmnr"
-version="3.1.8"
+version="3.1.9"
 displayName="Dragon Magic and Relics"
 credits="Thanks to jsementj for the amazing armor model and texture! Thanks to Mithion for helping creating some code elements of this mod! Also thanks to Ceddi and Nico for helping with testing and balancing."
 authors="Joh0210"
@@ -24,7 +24,7 @@ A mod to expand your magic to compete with gods!
 [[dependencies.dmnr]]
    modId="mna"
    mandatory=true
-   versionRange="[3.0.0.10,)"
+   versionRange="[3.0.0.14,)"
    ordering="NONE"
    side="BOTH"
 

@@ -29,6 +29,12 @@ public class CommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> MARK_SUPPORT_PLAYERCHARM;
 
     /**
+     * Can the Alternative Recall Component use PlayerCharms?
+     * @see MarkComponent
+     */
+    public static final ForgeConfigSpec.ConfigValue<Boolean> RECALL_SUPPORT_PLAYERCHARM;
+
+    /**
      * Belt of the Minotaur Multiplication Factor
      * @see DamageEventHandler
      */
@@ -118,6 +124,7 @@ public class CommonConfig {
         CAN_CONJURE_FLUID_IGNORE_VAPORIZE = BUILDER.comment("If true: Allow Conjure Water (etc.) to place water in the Nether (etc.) when magnitude has been increased.")
                 .define("Can conjure fluid ignore vaporize?", true);
         MARK_SUPPORT_PLAYERCHARM = BUILDER.define("If true: The Mark Component supports PlayerCharms", true);
+        RECALL_SUPPORT_PLAYERCHARM = BUILDER.define("If true: The Alternative Recall Component supports PlayerCharms", true);
         MINOTAUR_BELT_MULTIPLICATION = BUILDER.define("By what factor is the damage increased with the Minotaur Belt?", 2);
         SPELL_STORING_COOLDOWN_FACTOR = BUILDER.define("This number indicates the factor by which the cooldown is increased when casting the spell via the Bracelet of Spell Storing - Cooldown:", 10);
         BUILDER.pop();

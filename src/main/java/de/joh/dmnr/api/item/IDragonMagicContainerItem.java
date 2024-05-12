@@ -102,7 +102,7 @@ public interface IDragonMagicContainerItem {
 
             spentPoints += armorUpgrade.upgradeCost * level;
 
-            if(spentPoints < getMaxDragonMagic(itemStack) || force){
+            if(spentPoints <= getMaxDragonMagic(itemStack) || force){
                 itemStack.getTag().remove(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
                 nbt.putInt(armorUpgrade.getRegistryName().toString(), level);
                 itemStack.getTag().putInt(DragonMagicAndRelics.MOD_ID + "spent_dp", spentPoints);

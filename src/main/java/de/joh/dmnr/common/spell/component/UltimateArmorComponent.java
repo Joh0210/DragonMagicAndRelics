@@ -1,6 +1,7 @@
 package de.joh.dmnr.common.spell.component;
 
 import com.mna.api.affinity.Affinity;
+import com.mna.api.faction.IFaction;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.SpellPartTags;
 import com.mna.api.spells.SpellReagent;
@@ -35,6 +36,7 @@ public class UltimateArmorComponent extends PotionEffectComponent {
 
     public UltimateArmorComponent(final ResourceLocation guiIcon) {
         super(guiIcon, EffectInit.ULTIMATE_ARMOR, new AttributeValuePair(Attribute.DURATION, 30.0F, 30.0F, 600.0F, 30.0F, 10.0F));
+        this.addReagent(new ItemStack(Items.NETHER_STAR), false, false, true);
     }
 
     @Override
@@ -72,10 +74,5 @@ public class UltimateArmorComponent extends PotionEffectComponent {
 
     public float initialComplexity() {
         return 50.0F;
-    }
-
-    @Override
-    protected List<SpellReagent> getPotionReagents(Player caster, @Nullable InteractionHand hand) {
-        return List.of(new SpellReagent(this, new ItemStack(Items.NETHER_STAR), false, true, true));
     }
 }
