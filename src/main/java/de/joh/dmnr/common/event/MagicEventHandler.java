@@ -50,7 +50,7 @@ public class MagicEventHandler {
     public static void onSpellCast(SpellCastEvent event){
         Player caster = event.getCaster();
         if(CuriosApi.getCuriosHelper().findFirstCurio(caster, ItemInit.DEVIL_RING.get()).isPresent() &&
-                event.getSpell().getHighestAffinity() == Affinity.FIRE || event.getSpell().getHighestAffinity() == Affinity.LIGHTNING){
+                (event.getSpell().getHighestAffinity() == Affinity.FIRE || event.getSpell().getHighestAffinity() == Affinity.LIGHTNING)){
             event.getSpell().setOverrideAffinity(Affinity.HELLFIRE);
         }
 
