@@ -113,8 +113,7 @@
 
   "dmnr.ritual.output.upgrade.ritual.already_at_max.error": "Улучшение уже обладает максимальной силой.",
   "dmnr.ritual.output.upgrade.ritual.unexpected.error": "Вам не хватает очков Магии Дракона.",
-  "dmnr.ritual.output.upgrade.ritual.to.low.tier.error": "Для установки улучшения необходимо использовать ритуал с уровнем не ниже уровня улучшения.",
-  "dmnr.ritual.output.upgrade.ritual.wrong.ritual.arrangement.error": "Ритуал настроен неправильно.",
+  "dmnr.ritual.output.upgrade.ritual.no_dm_container.error": "Вам необходимо иметь в левой руке Контейнер Магии Дракона.",
   "dmnr.ritual.output.dragonmagearmorritual.wrong.armor.error": "Для проведения этого ритуала вы должны носить полный комплект брони одной из фракций.",
   "dmnr.ritual.output.dragonmagearmorritual.to.low.level.error": "Для выполнения этого ритуала вам необходимо иметь 75 уровень.",
   "dmnr.ritual.output.secondchanceritual.missing.nbt.error":"Мне некуда возвращаться.",

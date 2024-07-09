@@ -112,9 +112,8 @@
   "dmnr.shapes.friends.no_bracelet_of_friendship.error": "I need a Bracelet of Friendship to use this spell",
 
   "dmnr.ritual.output.upgrade.ritual.already_at_max.error": "The upgrade is already at maximum strength.",
-  "dmnr.ritual.output.upgrade.ritual.unexpected.error": "You don't have enough Dragon Magic Points left.",
-  "dmnr.ritual.output.upgrade.ritual.to.low.tier.error": "To install the upgrade, you must use the ritual at least at level.",
-  "dmnr.ritual.output.upgrade.ritual.wrong.ritual.arrangement.error": "The ritual was set up incorrectly.",
+  "dmnr.ritual.output.upgrade.ritual.unexpected.error": "You don't have enough Dragon Magic Points left to install this upgrade.",
+  "dmnr.ritual.output.upgrade.ritual.no_dm_container.error": "You need to have a Dragon Magic Container in your offhand.",
   "dmnr.ritual.output.dragonmagearmorritual.wrong.armor.error": "You must be wearing a full set of faction armor to perform this ritual.",
   "dmnr.ritual.output.dragonmagearmorritual.to.low.level.error": "You must be level 75 in order to perform this ritual.",
   "dmnr.ritual.output.secondchanceritual.missing.nbt.error":"There's no place I could go back to.",

@@ -113,8 +113,7 @@
 
   "dmnr.ritual.output.upgrade.ritual.already_at_max.error": "该升级已经达到最大强度。",
   "dmnr.ritual.output.upgrade.ritual.unexpected.error": "你没有足够的龙之魔法点数了。",
-  "dmnr.ritual.output.upgrade.ritual.to.low.tier.error": "要安装此升级，你必须使用仪式，其等阶至少为",
-  "dmnr.ritual.output.upgrade.ritual.wrong.ritual.arrangement.error": "仪式设置有误。",
+  "dmnr.ritual.output.upgrade.ritual.no_dm_container.error": "你的副手上需要有一个龙魔法容器。",
   "dmnr.ritual.output.dragonmagearmorritual.wrong.armor.error": "你必须装备全套派系盔甲才能执行此仪式。",
   "dmnr.ritual.output.dragonmagearmorritual.to.low.level.error": "你必须达到75级才能执行此仪式。",
   "dmnr.ritual.output.secondchanceritual.missing.nbt.error":"我再也回不去了。",

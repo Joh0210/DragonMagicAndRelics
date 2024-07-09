@@ -2,6 +2,7 @@ package de.joh.dmnr.common.init;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.BaseTieredItem;
+import de.joh.dmnr.api.item.UpgradeSealItem;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.item.dragonmagearmor.AbyssalDragonMageArmorItem;
@@ -10,7 +11,6 @@ import de.joh.dmnr.common.item.dragonmagearmor.InfernalDragonMageArmorItem;
 import de.joh.dmnr.common.item.dragonmagearmor.WildDragonMageArmorItem;
 import de.joh.dmnr.common.item.spellstoring.RingOfCooldownSpellStoringItem;
 import de.joh.dmnr.common.item.spellstoring.RingOfNormalSpellStoringItem;
-import de.joh.dmnr.common.item.spellstoring.RingOfSpellStoringItem;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;

@@ -50,6 +50,7 @@ public class MutandisItem extends TieredItem {
                 if(ModTags.isBlockIn(block, ModTags.Blocks.TALL_FLOWERS)){
                     context.getLevel().setBlockAndUpdate(blockPos.above(), block.defaultBlockState().setValue(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER));
                 }
+                context.getItemInHand().shrink(1);
                 return InteractionResult.SUCCESS;
             } else {
                 return InteractionResult.FAIL;
@@ -58,6 +59,7 @@ public class MutandisItem extends TieredItem {
             if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() != Blocks.WITHER_ROSE && ModTags.isBlockIn(context.getLevel().getBlockState(context.getClickedPos()).getBlock(), ModTags.Blocks.MUTANDIS_PLANTS)) {
                 BoneMealItem.addGrowthParticles(context.getLevel(), context.getClickedPos(), 8);
             }
+            context.getItemInHand().shrink(1);
             return InteractionResult.SUCCESS;
         }
     }

@@ -5,7 +5,7 @@ import com.mna.api.rituals.RitualEffect;
 import com.mna.entities.utility.PresentItem;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
-import de.joh.dmnr.common.item.UpgradeSealItem;
+import de.joh.dmnr.api.item.UpgradeSealItem;
 import de.joh.dmnr.api.item.IDragonMagicContainerItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
