@@ -14,9 +14,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -31,8 +33,8 @@ import org.jetbrains.annotations.NotNull;
 public class MeteorJumpArmorUpgrade extends OnTickArmorUpgrade {
     private static final int reqHeight = 4;
 
-    public MeteorJumpArmorUpgrade(@NotNull ResourceLocation registryName, int upgradeCost) {
-        super(registryName, 1, true, upgradeCost);
+    public MeteorJumpArmorUpgrade(@NotNull ResourceLocation registryName, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
+        super(registryName, 1, upgradeSealItem, true, upgradeCost);
     }
 
     @Override

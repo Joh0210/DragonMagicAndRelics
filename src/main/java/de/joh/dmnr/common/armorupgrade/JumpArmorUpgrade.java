@@ -9,8 +9,10 @@ import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -24,8 +26,8 @@ public class JumpArmorUpgrade extends OnTickArmorUpgrade {
     private static final AttributeModifier stepMod2 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_step_bonus_2", 0.5f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier stepMod3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_step_bonus_3", 0.5f, AttributeModifier.Operation.ADDITION);
 
-    public JumpArmorUpgrade(@NotNull ResourceLocation registryName, int upgradeCost) {
-        super(registryName, 2, false, true, upgradeCost); //false --> onTick would have to be reworked.
+    public JumpArmorUpgrade(@NotNull ResourceLocation registryName, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
+        super(registryName, 2, upgradeSealItem, false, true, upgradeCost); //false --> onTick would have to be reworked.
     }
 
     @Override

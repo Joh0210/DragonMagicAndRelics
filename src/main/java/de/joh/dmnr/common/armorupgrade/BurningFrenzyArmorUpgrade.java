@@ -15,8 +15,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -38,8 +40,8 @@ public class BurningFrenzyArmorUpgrade extends OnTickArmorUpgrade implements IOn
     private static final AttributeModifier stepMod4 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_step_bonus_4", 0.5f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier stepMod5 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_burning_frenzy_step_bonus_5", 0.5f, AttributeModifier.Operation.ADDITION);
 
-    public BurningFrenzyArmorUpgrade(@NotNull ResourceLocation registryName, int upgradeCost) {
-        super(registryName, 1, false, true, upgradeCost);
+    public BurningFrenzyArmorUpgrade(@NotNull ResourceLocation registryName, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
+        super(registryName, 1, upgradeSealItem, false, true, upgradeCost);
     }
 
     @Override

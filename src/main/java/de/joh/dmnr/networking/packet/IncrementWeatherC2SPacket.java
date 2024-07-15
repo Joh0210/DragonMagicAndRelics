@@ -1,6 +1,6 @@
 package de.joh.dmnr.networking.packet;
 
-import de.joh.dmnr.common.item.WeatherFairyStaffItem;
+import de.joh.dmnr.api.item.ScrollableItem;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -30,7 +30,7 @@ public class IncrementWeatherC2SPacket {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(()->{
             ServerPlayer player = context.getSender();
-            if(player != null && player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof WeatherFairyStaffItem staff){
+            if(player != null && player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof ScrollableItem staff){
                 staff.incrementIterator(player.getItemBySlot(EquipmentSlot.MAINHAND), inverted, player);
             }
         });

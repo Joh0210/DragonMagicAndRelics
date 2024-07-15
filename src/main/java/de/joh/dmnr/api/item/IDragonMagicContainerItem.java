@@ -35,7 +35,7 @@ public interface IDragonMagicContainerItem {
             CompoundTag nbt = itemStack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
             for(String upgradeKey : nbt.getAllKeys()){
                 int level = nbt.getInt(upgradeKey);
-                ArmorUpgrade installedArmorUpgrade = Registries.ARMOR_UPGRADE.get().getValue(new ResourceLocation(upgradeKey));
+                ArmorUpgrade installedArmorUpgrade = Registries.ARMOR_UPGRADE.get().getValue(new ResourceLocation(upgradeKey)); // todo -> Optimize
                 if(armorUpgrade.equals(installedArmorUpgrade)){
                     return level;
                 }

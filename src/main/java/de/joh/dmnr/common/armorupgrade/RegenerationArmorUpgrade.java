@@ -4,6 +4,8 @@ import de.joh.dmnr.api.armorupgrade.PotionEffectArmorUpgrade;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -11,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh021
  */
 public class RegenerationArmorUpgrade extends PotionEffectArmorUpgrade {
-    public RegenerationArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, true, upgradeCost);
+    public RegenerationArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, upgradeSealItem, true, upgradeCost);
     }
 
     @NotNull

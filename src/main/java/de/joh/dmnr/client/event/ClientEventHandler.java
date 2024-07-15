@@ -5,7 +5,7 @@ import de.joh.dmnr.client.item.armor.WingRenderLayer;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.init.ItemInit;
-import de.joh.dmnr.common.item.WeatherFairyStaffItem;
+import de.joh.dmnr.api.item.ScrollableItem;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.IncrementWeatherC2SPacket;
@@ -34,7 +34,7 @@ public class ClientEventHandler {
         @SubscribeEvent
         public static void onMouseScroll(InputEvent.MouseScrollingEvent event){
             if (Minecraft.getInstance().player != null
-                    && Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof WeatherFairyStaffItem staff
+                    && Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof ScrollableItem staff
                     && Minecraft.getInstance().player.isShiftKeyDown())
             {
                 ModMessages.sendToServer(new IncrementWeatherC2SPacket(event.getScrollDelta() < 0));

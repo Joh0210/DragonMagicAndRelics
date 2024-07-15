@@ -6,6 +6,8 @@ import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
 import de.joh.dmnr.api.armorupgrade.OnEquippedArmorUpgrade;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -16,8 +18,8 @@ import org.jetbrains.annotations.Nullable;
  * @author Joh0210
  */
 public class ManaBoostArmorUpgrade extends OnEquippedArmorUpgrade {
-    public ManaBoostArmorUpgrade(@NotNull ResourceLocation registryName, boolean isMajor, int upgradeCost) {
-        super(registryName, 4, true, upgradeCost);
+    public ManaBoostArmorUpgrade(@NotNull ResourceLocation registryName, RegistryObject<Item> upgradeSealItem, boolean isMajor, int upgradeCost) {
+        super(registryName, 4, upgradeSealItem, true, upgradeCost);
         this.isMajor = isMajor;
     }
     public static final int MINOR_MANA_PER_MANABOOST = 100;

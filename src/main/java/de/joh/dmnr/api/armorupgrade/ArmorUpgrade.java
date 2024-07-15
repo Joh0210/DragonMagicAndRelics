@@ -2,9 +2,13 @@ package de.joh.dmnr.api.armorupgrade;
 
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -15,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Joh0210
  */
 public class ArmorUpgrade {
-    public static ArmorUpgrade INSTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/none"), 0, false, false, 0);
+    public static ArmorUpgrade INSTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/none"), 0, ItemInit.BLANK_UPGRADE_SEAL, false, false, 0);
 
     public final int upgradeCost;
 
@@ -23,6 +27,8 @@ public class ArmorUpgrade {
      * Maximum upgrade level that can be installed for this type.
      */
     public final int maxUpgradeLevel;
+
+    private final RegistryObject<Item> upgradeSealItem;
 
     public final boolean supportsOnExtraLevel;
 
@@ -37,20 +43,26 @@ public class ArmorUpgrade {
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      * @param isInfStackable Can you upgrade the armor an infinite number of times with this upgrade?
      */
-    public ArmorUpgrade(ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost){
+    public ArmorUpgrade(ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost){
         this.registryName = registryName;
         this.maxUpgradeLevel = maxUpgradeLevel;
         this.isInfStackable = isInfStackable;
         this.upgradeCost = upgradeCost;
         this.supportsOnExtraLevel = supportsOnExtraLevel;
+        this.upgradeSealItem = upgradeSealItem;
     }
 
-    public ArmorUpgrade(ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost){
+    public ArmorUpgrade(ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, boolean isInfStackable, int upgradeCost){
         this.registryName = registryName;
         this.maxUpgradeLevel = maxUpgradeLevel;
         this.isInfStackable = isInfStackable;
         this.upgradeCost = upgradeCost;
         this.supportsOnExtraLevel = isInfStackable;
+        this.upgradeSealItem = upgradeSealItem;
+    }
+
+    public @NotNull Item getSeal(){
+        return upgradeSealItem.get();
     }
 
     /**

@@ -6,6 +6,8 @@ import de.joh.dmnr.common.init.KeybindInit;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -20,8 +22,8 @@ public class NightVisionArmorUpgrade extends ArmorUpgrade {
     /**
      * @param registryName    ID under which the upgrade can be recognized.
      */
-    public NightVisionArmorUpgrade(@NotNull ResourceLocation registryName, int upgradeCost) {
-        super(registryName, 1, false, upgradeCost);
+    public NightVisionArmorUpgrade(@NotNull ResourceLocation registryName, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
+        super(registryName, 1, upgradeSealItem, false, upgradeCost);
     }
 
     @Override

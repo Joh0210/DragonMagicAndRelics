@@ -6,6 +6,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -27,8 +29,8 @@ public abstract class PotionEffectArmorUpgrade extends OnEquippedArmorUpgrade { 
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      * @param factor Optional. Factor by which The Potion Effect should be amplified.
      */
-    public PotionEffectArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int factor, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, isInfStackable, supportsOnExtraLevel, upgradeCost);
+    public PotionEffectArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, int factor, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, upgradeSealItem, isInfStackable, supportsOnExtraLevel, upgradeCost);
         this.factor = factor;
     }
 
@@ -36,8 +38,8 @@ public abstract class PotionEffectArmorUpgrade extends OnEquippedArmorUpgrade { 
      * @param registryName ID under which the upgrade can be recognized.
      * @param maxUpgradeLevel Maximum upgrade level that can be installed for this type.
      */
-    public PotionEffectArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost) {
-        this(registryName, maxUpgradeLevel, 1, isInfStackable, true, upgradeCost);
+    public PotionEffectArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, boolean isInfStackable, int upgradeCost) {
+        this(registryName, maxUpgradeLevel, upgradeSealItem, 1, isInfStackable, true, upgradeCost);
     }
 
     @NotNull

@@ -4,6 +4,8 @@ import de.joh.dmnr.api.armorupgrade.OnEquippedArmorUpgrade;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -14,8 +16,8 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public class MistFormArmorUpgrade extends OnEquippedArmorUpgrade {
-    public MistFormArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, isInfStackable, upgradeCost);
+    public MistFormArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, boolean isInfStackable, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, upgradeSealItem, isInfStackable, upgradeCost);
     }
 
     @Override

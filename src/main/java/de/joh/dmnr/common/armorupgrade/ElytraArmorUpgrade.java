@@ -9,6 +9,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,8 +21,8 @@ import org.jetbrains.annotations.Nullable;
  */
 public class ElytraArmorUpgrade extends PotionEffectArmorUpgrade {
     private final boolean hasStrongerAlternative;
-    public ElytraArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean hasStrongerAlternative, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, !hasStrongerAlternative, upgradeCost);
+    public ElytraArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, boolean hasStrongerAlternative, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, upgradeSealItem, !hasStrongerAlternative, upgradeCost);
         this.hasStrongerAlternative = hasStrongerAlternative;
     }
 

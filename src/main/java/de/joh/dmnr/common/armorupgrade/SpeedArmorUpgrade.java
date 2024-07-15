@@ -11,7 +11,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -29,8 +31,8 @@ public class SpeedArmorUpgrade extends OnTickArmorUpgrade {
     private static final AttributeModifier runSpeed3 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_3", 0.025f, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier runSpeed4 = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_armor_speed_bonus_4", 0.025f, AttributeModifier.Operation.ADDITION);
 
-    public SpeedArmorUpgrade(ResourceLocation upgradeId, int upgradeCost) {
-        super(upgradeId, 3, false, true, upgradeCost);
+    public SpeedArmorUpgrade(ResourceLocation upgradeId, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
+        super(upgradeId, 3, upgradeSealItem, false, true, upgradeCost);
     }
 
     @Override

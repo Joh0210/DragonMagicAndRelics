@@ -5,7 +5,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -24,8 +26,8 @@ public class ReachDistanceArmorUpgrade extends OnEquippedArmorUpgrade {
     private static final AttributeModifier attackRangBoost4 = new AttributeModifier("mma_armor_attack_range_boost_4", 1, AttributeModifier.Operation.ADDITION);
 
 
-    public ReachDistanceArmorUpgrade(@NotNull ResourceLocation registryName, int upgradeCost) {
-        super(registryName, 2, false, true, upgradeCost);
+    public ReachDistanceArmorUpgrade(@NotNull ResourceLocation registryName, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
+        super(registryName, 2, upgradeSealItem, false, true, upgradeCost);
     }
 
     @Override

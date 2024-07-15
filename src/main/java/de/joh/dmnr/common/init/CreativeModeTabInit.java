@@ -75,6 +75,7 @@ public class CreativeModeTabInit {
                     .title(Component.translatable("itemGroup.armorupgrades"))
                     .noScrollBar()
                     .displayItems((pParameters, pOutput) -> {
+                        pOutput.accept(ItemInit.BLANK_UPGRADE_SEAL.get());
                         pOutput.accept(ItemInit.UPGRADE_SEAL_ANGEL_FLIGHT.get());
                         pOutput.accept(ItemInit.UPGRADE_SEAL_BURNING_FRENZY.get());
                         pOutput.accept(ItemInit.UPGRADE_SEAL_DAMAGE_BOOST.get());

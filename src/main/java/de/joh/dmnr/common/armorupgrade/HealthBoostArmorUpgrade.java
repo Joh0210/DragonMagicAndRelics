@@ -6,6 +6,8 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -22,8 +24,8 @@ public class HealthBoostArmorUpgrade extends OnEquippedArmorUpgrade {
     private static final AttributeModifier healthBoost5 = new AttributeModifier("mma_armor_health_boost_5", 4, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier healthBoost6 = new AttributeModifier("mma_armor_health_boost_6", 4, AttributeModifier.Operation.ADDITION);
 
-    public HealthBoostArmorUpgrade(@NotNull ResourceLocation registryName, int upgradeCost) {
-        super(registryName, 5, false, true, upgradeCost);
+    public HealthBoostArmorUpgrade(@NotNull ResourceLocation registryName, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
+        super(registryName, 5, upgradeSealItem, false, true, upgradeCost);
     }
 
     @Override

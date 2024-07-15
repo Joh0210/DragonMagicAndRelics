@@ -7,7 +7,9 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -25,8 +27,8 @@ public class SwimSpeedArmorUpgrade extends OnEquippedArmorUpgrade {
     private static final AttributeModifier swimBoost3 = new AttributeModifier("mma_armor_swim_boost_3", 0.5, AttributeModifier.Operation.ADDITION);
     private static final AttributeModifier swimBoost4 = new AttributeModifier("mma_armor_swim_boost_4", 0.5, AttributeModifier.Operation.ADDITION);
 
-    public SwimSpeedArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, false, true, upgradeCost);
+    public SwimSpeedArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, upgradeSealItem, false, true, upgradeCost);
     }
 
     @Override

@@ -5,7 +5,9 @@ import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -15,12 +17,12 @@ import org.jetbrains.annotations.NotNull;
  * @author Joh0210
  */
 public abstract class OnTickArmorUpgrade extends ArmorUpgrade {
-    public OnTickArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, isInfStackable, supportsOnExtraLevel, upgradeCost);
+    public OnTickArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, boolean isInfStackable, boolean supportsOnExtraLevel, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, upgradeSealItem, isInfStackable, supportsOnExtraLevel, upgradeCost);
     }
 
-    public OnTickArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, boolean isInfStackable, int upgradeCost) {
-        super(registryName, maxUpgradeLevel, isInfStackable, upgradeCost);
+    public OnTickArmorUpgrade(@NotNull ResourceLocation registryName, int maxUpgradeLevel, RegistryObject<Item> upgradeSealItem, boolean isInfStackable, int upgradeCost) {
+        super(registryName, maxUpgradeLevel, upgradeSealItem, isInfStackable, upgradeCost);
     }
 
     /**
