@@ -48,35 +48,37 @@ public class MagicEventHandler {
      */
     @SubscribeEvent
     public static void onSpellCast(SpellCastEvent event){
-        Player caster = event.getCaster();
-        if(CuriosApi.getCuriosHelper().findFirstCurio(caster, ItemInit.DEVIL_RING.get()).isPresent() &&
-                (event.getSpell().getHighestAffinity() == Affinity.FIRE || event.getSpell().getHighestAffinity() == Affinity.LIGHTNING)){
-            event.getSpell().setOverrideAffinity(Affinity.HELLFIRE);
-        }
+        Player caster = event.getSource().getPlayer();
+        if (caster != null){
+            if(CuriosApi.getCuriosHelper().findFirstCurio(caster, ItemInit.DEVIL_RING.get()).isPresent() &&
+                    (event.getSpell().getHighestAffinity() == Affinity.FIRE || event.getSpell().getHighestAffinity() == Affinity.LIGHTNING)){
+                event.getSpell().setOverrideAffinity(Affinity.HELLFIRE);
+            }
 
-        IModifiedSpellPart<Shape> shape = event.getSpell().getShape();
+            IModifiedSpellPart<Shape> shape = event.getSpell().getShape();
 
-        int level = ArmorUpgradeHelper.getUpgradeLevel(caster, ArmorUpgradeInit.SORCERERS_PRIDE);
-        if(level > 0 && shape != null){
-            shape.getContainedAttributes().stream()
-                    .filter(attribute -> attribute == Attribute.MAGNITUDE)
-                    .forEach(attribute -> shape.setValue(attribute, shape.getValue(attribute) + Math.round(level * 0.5f)));
-            shape.getContainedAttributes().stream()
-                    .filter(attribute -> attribute == Attribute.DAMAGE)
-                    .forEach(attribute -> shape.setValue(attribute, shape.getValue(attribute) + level * 3));
-            shape.getContainedAttributes().stream()
-                    .filter(attribute -> attribute == Attribute.DURATION)
-                    .forEach(attribute -> shape.setValue(attribute, shape.getValue(attribute) * (1 + level * 0.3f)));
+            int level = ArmorUpgradeHelper.getUpgradeLevel(caster, ArmorUpgradeInit.SORCERERS_PRIDE);
+            if(level > 0 && shape != null){
+                shape.getContainedAttributes().stream()
+                        .filter(attribute -> attribute == Attribute.MAGNITUDE)
+                        .forEach(attribute -> shape.setValue(attribute, shape.getValue(attribute) + Math.round(level * 0.5f)));
+                shape.getContainedAttributes().stream()
+                        .filter(attribute -> attribute == Attribute.DAMAGE)
+                        .forEach(attribute -> shape.setValue(attribute, shape.getValue(attribute) + level * 3));
+                shape.getContainedAttributes().stream()
+                        .filter(attribute -> attribute == Attribute.DURATION)
+                        .forEach(attribute -> shape.setValue(attribute, shape.getValue(attribute) * (1 + level * 0.3f)));
 
-            event.getSpell().getComponents().forEach(modifiedSpellPart -> modifiedSpellPart.getContainedAttributes().stream()
-                    .filter(attribute -> attribute == Attribute.MAGNITUDE)
-                    .forEach(attribute -> modifiedSpellPart.setValue(attribute, modifiedSpellPart.getValue(attribute) + Math.round(level * 0.5f))));
-            event.getSpell().getComponents().forEach(modifiedSpellPart -> modifiedSpellPart.getContainedAttributes().stream()
-                    .filter(attribute -> attribute == Attribute.DAMAGE)
-                    .forEach(attribute -> modifiedSpellPart.setValue(attribute, modifiedSpellPart.getValue(attribute) + level * 3)));
-            event.getSpell().getComponents().forEach(modifiedSpellPart -> modifiedSpellPart.getContainedAttributes().stream()
-                    .filter(attribute -> attribute == Attribute.DURATION)
-                    .forEach(attribute -> modifiedSpellPart.setValue(attribute, modifiedSpellPart.getValue(attribute) * (1 + level * 0.3f))));
+                event.getSpell().getComponents().forEach(modifiedSpellPart -> modifiedSpellPart.getContainedAttributes().stream()
+                        .filter(attribute -> attribute == Attribute.MAGNITUDE)
+                        .forEach(attribute -> modifiedSpellPart.setValue(attribute, modifiedSpellPart.getValue(attribute) + Math.round(level * 0.5f))));
+                event.getSpell().getComponents().forEach(modifiedSpellPart -> modifiedSpellPart.getContainedAttributes().stream()
+                        .filter(attribute -> attribute == Attribute.DAMAGE)
+                        .forEach(attribute -> modifiedSpellPart.setValue(attribute, modifiedSpellPart.getValue(attribute) + level * 3)));
+                event.getSpell().getComponents().forEach(modifiedSpellPart -> modifiedSpellPart.getContainedAttributes().stream()
+                        .filter(attribute -> attribute == Attribute.DURATION)
+                        .forEach(attribute -> modifiedSpellPart.setValue(attribute, modifiedSpellPart.getValue(attribute) * (1 + level * 0.3f))));
+            }
         }
     }
 }

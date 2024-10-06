@@ -17,7 +17,7 @@ import com.mna.interop.CuriosInterop;
 import com.mna.tools.InventoryUtilities;
 import com.mna.tools.ProjectileHelper;
 import com.mna.tools.SummonUtils;
-import com.mna.tools.TeleportHelper;
+import net.minecraft.server.MinecraftServer;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
@@ -46,7 +46,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -54,11 +53,12 @@ import net.minecraftforge.items.wrapper.InvWrapper;
 import org.apache.commons.lang3.mutable.MutableFloat;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotResult;
-import top.theillusivec4.curios.api.SlotTypePreset;
 
 import javax.annotation.Nullable;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Function;
 
 /**
  * These event handlers take care of processing damage events.
@@ -369,35 +369,59 @@ public class DamageEventHandler {
         if (!player.isCreative() && !player.isSpectator() && !player.level().isClientSide) {
             ServerPlayer spe = (ServerPlayer)player;
 
+
             if (event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD) && player.getHealth() - event.getAmount() <= 10) {
-                boolean consumed_charm = false;
-                BlockPos bedPos = spe.getRespawnPosition();
-                if (bedPos == null && player.level().getServer() != null) {
-                    ServerLevel level = player.level().getServer().getLevel(player.level().dimension());
-                    if(level != null){
-                        //todo log else: no valid dimension
-                        bedPos = level.getSharedSpawnPos();
-                    }
-                }
-
-                if(bedPos != null){
-                    //todo: log else: no bed found
-                    if (CuriosInterop.IsItemInCurioSlot(ItemInit.VOIDFEATHER_CHARM.get(), player, SlotTypePreset.CHARM)) {
-                        consumed_charm = true;
-                        CuriosInterop.DamageCurioInSlot(ItemInit.VOIDFEATHER_CHARM.get(), player, SlotTypePreset.CHARM, 999);
-                    } else if (InventoryUtilities.removeItemFromInventory(new ItemStack(ItemInit.VOIDFEATHER_CHARM.get()), true, true, new InvWrapper(player.getInventory()))) {
-                        consumed_charm = true;
+                MinecraftServer server = player.level().getServer();
+                if (server != null){
+                    boolean consumed_charm = false;
+                    BlockPos bedPos = spe.getRespawnPosition();
+                    if (bedPos == null) {
+                        ServerLevel level = server.getLevel(player.level().dimension());
+                        if(level != null){
+                            bedPos = level.getSharedSpawnPos();
+                        }
                     }
 
-                    if (consumed_charm) {
-                        event.setCanceled(true);
-                        player.resetFallDistance();
+                    if(bedPos != null){
+                        Optional<SlotResult>  result = CuriosInterop.GetSingleItem(player, ItemInit.VOIDFEATHER_CHARM.get());
+                        if (result.isPresent()) {
+                            consumed_charm = true;
+                            result.get().stack().hurtAndBreak(999, spe, (damager) -> CuriosApi.broadcastCurioBreakEvent(result.get().slotContext()));
+                        }
+                        else if (InventoryUtilities.removeItemFromInventory(new ItemStack(ItemInit.VOIDFEATHER_CHARM.get(), 1), true, true, new InvWrapper(player.getInventory()))) {
+                            consumed_charm = true;
+                        }
 
-                        player.level().playSound(null, spe.getX(), spe.getY(), spe.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
-                        TeleportHelper.teleportEntity(spe,spe.getRespawnDimension(), new Vec3((double)bedPos.getX() + 0.5, bedPos.getY(), (double)bedPos.getZ() + 0.5));
-                        player.level().playSound(null, bedPos.getX(), bedPos.getY(), bedPos.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
-                        player.level().broadcastEntityEvent(spe, (byte)46);
-                        return true;
+                        if (consumed_charm) {
+                            event.setCanceled(true);
+                            player.resetFallDistance();
+
+                            player.level().playSound(null, spe.getX(), spe.getY(), spe.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+
+                            final double bed_x = (double)bedPos.getX() + 0.5;
+                            final double bed_y = (double)bedPos.getY() + 0.5;
+                            final double bed_z = (double)bedPos.getZ() + 0.5;
+
+                            ServerLevel homePlane = server.getLevel(spe.getRespawnDimension());
+                            if (homePlane != null && !player.isPassenger() && spe.level().dimension() != spe.getRespawnDimension()) {
+                                spe.changeDimension(homePlane, new net.minecraftforge.common.util.ITeleporter() {
+                                    @Override
+                                    public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destinationWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
+                                        entity = repositionEntity.apply(false);
+                                        entity.setPos(bed_x, bed_y, bed_z);
+                                        entity.level().broadcastEntityEvent(spe, (byte)46);
+                                        return entity;
+                                    }
+                                });
+                            }
+                            // ensures the player is teleported to the correct coordinates
+                            player.teleportTo(bed_x,bed_y,bed_z);
+
+
+                            player.level().playSound(null, bedPos.getX(), bedPos.getY(), bedPos.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+                            player.level().broadcastEntityEvent(spe, (byte)46);
+                            return true;
+                        }
                     }
                 }
             }

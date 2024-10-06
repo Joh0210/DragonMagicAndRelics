@@ -12,6 +12,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import oshi.util.tuples.Pair;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Joh0210
  */
 public class ArmorUpgradeHelper {
-    public static int getUpgradeLevel(Player player, ArmorUpgrade armorUpgrade){
+    public static int getUpgradeLevel(@NotNull Player player, @NotNull ArmorUpgrade armorUpgrade){
         if(armorUpgrade.getStrongerAlternative() != null && getUpgradeLevel(player, armorUpgrade.getStrongerAlternative()) > 0){
             return 0;
         }
