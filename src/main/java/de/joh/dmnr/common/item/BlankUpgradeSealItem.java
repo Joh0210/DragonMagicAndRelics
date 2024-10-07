@@ -8,6 +8,8 @@ import de.joh.dmnr.common.util.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -103,6 +105,7 @@ public class BlankUpgradeSealItem extends Item implements ScrollableItem {
                     }
                 }
             }
+            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
             if(player instanceof Player){
                 ((Player) player).getCooldowns().addCooldown(this, 20);
             }

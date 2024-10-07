@@ -1,4 +1,37 @@
 {
+  "Blank Glyph": {
+    "index": "0",
+    "category": "dmnr_armorupgrades",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Blank Glyph"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This glyph is empty and is able to remove upgrades from the Dragon Mage Armor!",
+            "color": ""
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "Hold a Dragon Magic Container in your offhand (e.g. breastplate of the Dragon Mage armor). Hold the Blank Glyph in your main hand and use SHIFT + MOUSE WHEEL to select the glyph you want to remove. Then insert the glyph as usual and you will extract the selected upgrade. The upgrade will be installed on the empty glyph so that you can install it on another armor if necessary.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/blank_upgrade_seal"
+      }
+    ]
+  },
   "Upgrade Glyph Night Vision": {
     "index": "1",
     "category": "dmnr_armorupgrades",
@@ -1682,6 +1715,7 @@
       }
     ]
   },
+
   "Mana Cake": {
     "index": "1",
     "category": "artifice",
@@ -1948,15 +1982,23 @@
             "text": " "
           },
           {
-            "text": "I can add some more abilities to the armor. All I have to do is fuse the glyph to my armor via the ",
+            "text": "I can add some more abilities to the armor. All I have to do is hold the  ",
             "color": ""
           },
           {
-            "text": "Ritual of Upgrade",
+            "text": "Dragon Mage Armor Chestplate",
             "color": "blue"
           },
           {
-            "text": ".",
+            "text": " (or other Dragon Mage containers) in my ",
+            "color": ""
+          },
+          {
+            "text": "Offhand",
+            "color": "blue"
+          },
+          {
+            "text": " and use the upgrade glyphs of my choice in my Main hand.",
             "color": ""
           },
           {
@@ -2254,62 +2296,6 @@
       {
         "type": "ritual",
         "location":"dmnr:rituals/dragon_mage_ritual"
-      }
-    ]
-  },
-  "Ritual of Upgrade": {
-    "index": 0,
-    "category": "rituals",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Ritual of Upgrade"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The power of my Dragon Mage Armor is not based on the almighty metal of the armor, but on the runes on it.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With this ritual I can add upgrade glyphs to my armor and other Dragon Magic Containers. Each glyph has a special ability that transfers to my armor. I can read about this on the relevant upgrade glyphs page.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Each Glyph has a maximum level at which it can be installed.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "In addition, a glyph also has a cost, which is how much Dragon Magic it takes to increase the installed level by one.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "ritual",
-        "location":"dmnr:rituals/upgrade_ritual"
       }
     ]
   },

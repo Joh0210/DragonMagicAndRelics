@@ -1,0 +1,20 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 5,
+  "output": "dmnr:blank_upgrade_seal",
+  "quantity": 1,
+  "items": [
+    "minecraft:milk_bucket",
+    "mna:stone_rune_black",
+    "mna:stone_rune_gray",
+    "mna:stone_rune_white",
+    "mna:stone_rune_orange",
+    "mna:stone_rune_red",
+    "mna:stone_rune_yellow",
+    "mna:stone_rune_green",
+    "mna:stone_rune_blue"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/hourglass"
+  ]
+}
