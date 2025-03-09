@@ -5,7 +5,7 @@ import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.ItemInit;
 import com.mna.items.base.ItemBagBase;
 import com.mna.items.filters.ItemFilterGroup;
-import com.mna.items.ritual.ItemPlayerCharm;
+import com.mna.items.ritual.PlayerCharm;
 import de.joh.dmnr.client.gui.NamedBraceletOfFriendship;
 import de.joh.dmnr.api.util.PlayerCharmFilter;
 import net.minecraft.world.InteractionHand;
@@ -49,8 +49,8 @@ public class BraceletOfFriendshipItem extends ItemBagBase implements ICurioItem,
         ItemInventoryBase inv = new ItemInventoryBase(stack);
         for(int i = 0; i < 6; i++){
             ItemStack item = inv.getStackInSlot(i);
-            if (item.getItem() == ItemInit.PLAYER_CHARM.get() && ((ItemPlayerCharm)item.getItem()).GetPlayerTarget(item, world) != null) {
-                ret.add(((ItemPlayerCharm)item.getItem()).GetPlayerTarget(item, world));
+            if (item.getItem() == ItemInit.PLAYER_CHARM.get() && ((PlayerCharm)item.getItem()).GetPlayerTarget(item, world) != null) {
+                ret.add(((PlayerCharm)item.getItem()).GetPlayerTarget(item, world));
             }
         }
         return ret.toArray(new Player[0]);

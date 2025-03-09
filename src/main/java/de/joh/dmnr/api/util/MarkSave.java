@@ -2,7 +2,7 @@ package de.joh.dmnr.api.util;
 
 import com.mna.api.items.IPositionalItem;
 import com.mna.items.ItemInit;
-import com.mna.items.ritual.ItemPlayerCharm;
+import com.mna.items.ritual.PlayerCharm;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagic;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
 import net.minecraft.core.BlockPos;
@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * This class is a replacement for the Rune of Marking. Up to one instance of this class is saved per player and per dimension.
  * Furthermore, an instance can serve as a helper to pass marks.
  * @see PlayerDragonMagic
- * @see com.mna.items.runes.MarkBookItem
+ * @see com.mna.items.runes.BookOfMarks
  * @author Joh0210
  */
 public class MarkSave {
@@ -89,8 +89,8 @@ public class MarkSave {
 
         // Player Charm:
         ItemStack playerCharm = source.getMainHandItem().getItem() != ItemInit.PLAYER_CHARM.get() ? source.getOffhandItem() : source.getMainHandItem();
-        if(allowPlayerCharm && playerCharm.getItem() instanceof ItemPlayerCharm) {
-            Player target = (((ItemPlayerCharm) playerCharm.getItem()).GetPlayerTarget(playerCharm, world));
+        if(allowPlayerCharm && playerCharm.getItem() instanceof PlayerCharm) {
+            Player target = (((PlayerCharm) playerCharm.getItem()).GetPlayerTarget(playerCharm, world));
             if(target != null){
                 return new MarkSave(target.blockPosition().above(-1), Direction.UP);
             }

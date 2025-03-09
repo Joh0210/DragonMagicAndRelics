@@ -1,6 +1,6 @@
 package de.joh.dmnr.common.item;
 
-import com.mna.items.ritual.ItemWizardChalk;
+import com.mna.items.ritual.WizardChalk;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -15,7 +15,7 @@ import java.util.function.Consumer;
  * An indestructible chalk.
  * @author Joh210
  */
-public class BrimstoneChalkItem extends ItemWizardChalk implements IForgeItem {
+public class BrimstoneChalkItem extends WizardChalk implements IForgeItem {
 
     public BrimstoneChalkItem() {
         super();

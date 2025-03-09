@@ -8,7 +8,7 @@ import com.mna.api.spells.parts.Shape;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
 import com.mna.items.ItemInit;
-import com.mna.items.ritual.ItemPlayerCharm;
+import com.mna.items.ritual.PlayerCharm;
 import de.joh.dmnr.common.item.CurseProtectionAmuletItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -36,8 +36,8 @@ public class CurseShape extends Shape {
 
         if(caster != null ){
             ItemStack playerCharm = caster.getMainHandItem().getItem() != ItemInit.PLAYER_CHARM.get() ? caster.getOffhandItem() : caster.getMainHandItem();
-            if(playerCharm.getItem() instanceof ItemPlayerCharm){
-                Player target = (((ItemPlayerCharm)playerCharm.getItem()).GetPlayerTarget(playerCharm, level));
+            if(playerCharm.getItem() instanceof PlayerCharm){
+                Player target = (((PlayerCharm)playerCharm.getItem()).GetPlayerTarget(playerCharm, level));
                 if(target != null){
                     double dist = source.getCaster().blockPosition().distSqr(target.blockPosition());
                     double maxDist = modifiedSpellPart.getValue(Attribute.RANGE) * 20.0F;

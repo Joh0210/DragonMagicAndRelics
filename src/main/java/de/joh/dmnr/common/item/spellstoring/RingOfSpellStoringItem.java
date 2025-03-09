@@ -7,7 +7,7 @@ import com.mna.inventory.InventoryRitualKit;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.ItemInit;
 import com.mna.items.base.IItemWithGui;
-import com.mna.items.ritual.ItemPractitionersPouch;
+import com.mna.items.ritual.PractitionersPouch;
 import com.mna.items.ritual.PractitionersPouchPatches;
 import com.mna.items.sorcery.ItemSpell;
 import com.mna.spells.crafting.SpellRecipe;
@@ -122,8 +122,8 @@ public abstract class RingOfSpellStoringItem extends Item implements ITieredItem
 
         for(int i = 0; i < caster.getInventory().getContainerSize(); ++i) {
             ItemStack invStack = caster.getInventory().getItem(i);
-            if (!invStack.isEmpty() && invStack.getItem() instanceof ItemPractitionersPouch) {
-                ItemPractitionersPouch item = (ItemPractitionersPouch)invStack.getItem();
+            if (!invStack.isEmpty() && invStack.getItem() instanceof PractitionersPouch) {
+                PractitionersPouch item = (PractitionersPouch)invStack.getItem();
                 Pair<IItemHandler, Direction> remoteInv = item.resolveRemoteInventory(invStack, caster.level());
                 if (remoteInv.getFirst() != null) {
                     output.add(remoteInv);
