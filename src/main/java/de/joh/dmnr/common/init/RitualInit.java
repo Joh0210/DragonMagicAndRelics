@@ -18,7 +18,6 @@ public class RitualInit {
     public static void registerRitualEffects(RegisterEvent event) {
         event.register(Registries.RitualEffect.get().getRegistryKey(), (helper) -> {
             helper.register(RLoc.create("ritual-dragon_mage_ritual"), new DragonMageArmorRitual(RLoc.create("rituals/dragon_mage_ritual")));
-            helper.register(RLoc.create("ritual-phoenix-ritual"), new PhoenixRitual(RLoc.create("rituals/phoenix_ritual")));
             helper.register(RLoc.create("ritual-betrayal-ritual"), new BetrayalRitual(RLoc.create("rituals/betrayal_ritual")));
             helper.register(RLoc.create("ritual-artefact-trade"), new RelictTradeRitual(RLoc.create("rituals/artefact_trade")));
         });

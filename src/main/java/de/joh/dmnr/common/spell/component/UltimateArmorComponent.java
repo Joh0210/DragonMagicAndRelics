@@ -1,10 +1,8 @@
 package de.joh.dmnr.common.spell.component;
 
 import com.mna.api.affinity.Affinity;
-import com.mna.api.faction.IFaction;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.SpellPartTags;
-import com.mna.api.spells.SpellReagent;
 import com.mna.api.spells.attributes.Attribute;
 import com.mna.api.spells.attributes.AttributeValuePair;
 import com.mna.api.spells.base.IModifiedSpellPart;
@@ -17,15 +15,11 @@ import de.joh.dmnr.common.effects.beneficial.UltimateArmorMobEffect;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 /**
  * This spell adds the UltimateArmor potion effect to the target.
@@ -33,7 +27,6 @@ import java.util.List;
  * @author Joh0210
  */
 public class UltimateArmorComponent extends PotionEffectComponent {
-
     public UltimateArmorComponent(final ResourceLocation guiIcon) {
         super(guiIcon, EffectInit.ULTIMATE_ARMOR, new AttributeValuePair(Attribute.DURATION, 30.0F, 30.0F, 600.0F, 30.0F, 10.0F));
         this.addReagent(new ItemStack(Items.NETHER_STAR), false, false, true);

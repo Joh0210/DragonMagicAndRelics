@@ -5,35 +5,27 @@ import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
-import de.joh.dmnr.capabilities.secondchance.PlayerSecondChance;
-import de.joh.dmnr.capabilities.secondchance.PlayerSecondChanceProvider;
 import de.joh.dmnr.common.armorupgrade.JumpArmorUpgrade;
 import de.joh.dmnr.common.command.Commands;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.EffectInit;
-import de.joh.dmnr.common.ritual.PhoenixRitual;
 import de.joh.dmnr.common.util.CommonConfig;
-import de.joh.dmnr.common.util.RLoc;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleBurningFrenzyS2CPacket;
 import de.joh.dmnr.networking.packet.ToggleMajorFireResS2CPacket;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -122,39 +114,6 @@ public class CommonEventHandler {
     public static void onCommandsRegister(RegisterCommandsEvent event){
         new Commands(event.getDispatcher());
         ConfigCommand.register(event.getDispatcher());
-    }
-
-    /**
-     * Saving the player's position for the Phoenix Ritual when they die
-     * @see PhoenixRitual
-     * @see PlayerSecondChance
-     * @see PlayerSecondChanceProvider
-     */
-    @SubscribeEvent
-    public static void onPlayerCloned(PlayerEvent.Clone event) {
-        if(event.isWasDeath()) {
-            event.getEntity().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).ifPresent(secondChance -> secondChance.setSecondChance(event.getOriginal()));
-        }
-    }
-
-    /**
-     * Adding capabilities to players
-     */
-    @SubscribeEvent
-    public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
-        if(event.getObject() instanceof Player) {
-            if(!event.getObject().getCapability(PlayerSecondChanceProvider.PLAYER_SECOND_CHANCE).isPresent()) {
-                event.addCapability(RLoc.create("properties"), new PlayerSecondChanceProvider());
-            }
-        }
-    }
-
-    /**
-     * Registration of the Capabilities
-     */
-    @SubscribeEvent
-    public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
-        event.register(PlayerSecondChance.class);
     }
 
     @SubscribeEvent

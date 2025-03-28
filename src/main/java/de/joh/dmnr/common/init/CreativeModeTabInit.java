@@ -65,6 +65,7 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.MANA_CAKE.get());
                         pOutput.accept(ItemInit.RIFT_EMITTER_ITEM.get());
                         pOutput.accept(ItemInit.BRIMSTONE_CHALK.get());
+                        pOutput.accept(ItemInit.BRIMSTONE_COAL.get());
                         pOutput.accept(ItemInit.WEATHER_FAIRY_STAFF.get());
                         pOutput.accept(ItemInit.THE_CLICKERS_COOKIE.get());
                     })

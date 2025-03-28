@@ -28,6 +28,7 @@ This armor is an upgrade of the faction armor. It takes over some of the propert
 - Bracelet of Friendship
 - Bracelet of Spell Storing
 - Brimstone Chalk
+- Brimstone Coal
 - Devil Ring (Demon only)
 - Dragon Core
 - **Dragon Mage Armor with Upgrade Glyphs**

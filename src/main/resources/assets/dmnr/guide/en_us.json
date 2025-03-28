@@ -1506,6 +1506,32 @@
       }
     ]
   },
+  "Brimstone Coal": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Brimstone Coal"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Instead of regular coal, couldn't I use the fires of hell? That way, this piece of coal will never stop burning.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/brimstone_coal"
+      }
+    ]
+  },
   "Voidfeather Charm": {
     "index": "1",
     "category": "artifice",
@@ -2296,42 +2322,6 @@
       {
         "type": "ritual",
         "location":"dmnr:rituals/dragon_mage_ritual"
-      }
-    ]
-  },
-  "Ritual of the Phoenix": {
-    "index": 0,
-    "category": "rituals",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Ritual of the Phoenix"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "I may be strong, but I'm not invincible. Perhaps I should prepare myself to be defeated one day, to rise from my ashes, to defeat those who killed me!",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "This ritual returns me to the spot where my former self was murdered.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "ritual",
-        "location":"dmnr:rituals/phoenix_ritual"
       }
     ]
   },

@@ -32,6 +32,7 @@
   "item.dmnr.glass_cannon_belt": "Belt of the Minotaur",
   "item.dmnr.sturdy_belt": "Belt of the Centaur",
   "item.dmnr.brimstone_chalk" : "Brimstone Chalk",
+  "item.dmnr.brimstone_coal": "Brimstone Coal",
   "item.dmnr.voidfeather_charm" : "Voidfeather Charm",
   "item.dmnr.mutandis" : "Mutandis",
   "item.dmnr.the_clickers_cookie": "The Clickers Cookie",
@@ -247,7 +248,6 @@
   "dmnr:rituals/dragon_mage_ritual": "Ritual of the Dragon Mage Armor",
   "dmnr:rituals/fusion_ritual": "Fusion Ritual",
   "dmnr:rituals/dispelling_ritual": "Ritual of Dispelling",
-  "dmnr:rituals/phoenix_ritual": "Ritual of the Phoenix",
   "dmnr:rituals/betrayal_ritual": "Ritual of Betrayal",
   "dmnr:rituals/artefact_trade": "Ritual of Relict Trade",
 
