@@ -13,6 +13,7 @@ import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Explosion;
@@ -47,7 +48,7 @@ public class MeteorJumpArmorUpgrade extends OnTickArmorUpgrade {
 
             if (heightAboveGround >= reqHeight) {
                 player.getPersistentData().putBoolean("dmnr_meteor_jumping", true);
-                player.playSound(SFX.Event.Artifact.METEOR_JUMP, 0.25F, 0.8F);
+                player.level().playSeededSound(null, player.getX(), player.getY(), player.getZ(), SFX.Event.Artifact.METEOR_JUMP, SoundSource.PLAYERS, 0.25F, 0.8F, 0);
                 magic.getCastingResource().consume(player, CommonConfig.METEOR_JUMP_MANA_COST.get());
             }
         }

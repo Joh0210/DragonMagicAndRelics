@@ -105,7 +105,8 @@ public class BlankUpgradeSealItem extends Item implements ScrollableItem {
                     }
                 }
             }
-            player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
+
+            player.level().playSeededSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENCHANTMENT_TABLE_USE, SoundSource.PLAYERS, 1F, 0.9F + (float)Math.random() * 0.2F, 0);
             if(player instanceof Player){
                 ((Player) player).getCooldowns().addCooldown(this, 20);
             }

@@ -866,7 +866,7 @@
         "value": "",
         "json": [
           {
-            "text": "I've always known that I'm above the others... That's how I can fly above them. Either quietly and slowly or at a breathtaking speed. (Elytra acceleration stops when I sneak)",
+            "text": "I've always known that I'm above the others... That's how I can fly above them. Either quietly and slowly or at a breathtaking speed. (Elytra acceleration stops when I sneak). The speed of the fly is influenced by the speed and slowness effect",
             "color": ""
           }
         ]
@@ -1243,7 +1243,7 @@
         "value": "",
         "json": [
           {
-            "text": "I can focus my arcane magic on a Rune of Marking held in my hand to transport the spell's target to its marked location instantly. It can go about 1.000 blocks per magnitude, and might get them into trouble if the marked location is in a different dimension. In those cases, a Ritual of Return would be the better choice.",
+            "text": "I can focus my arcane magic on a Rune of Marking held in my hand to transport the spell's target to its marked location instantly. It can go about 1.000 blocks per range-mod. If I increase the range attribute to the maximum, my range is unlimited. \n\nIf I want to teleport creatures other than myself, my Magnitude must be high enough. I can transport 20 HP per Magnitude.\n\nIf I set the precision to 1, not the target hit by the spell is teleported, but I am teleported to the position/creature I teleported.\n\nI might get them into trouble if the marked location is in a different dimension. In those cases, a Ritual of Return would be the better choice.",
             "color": ""
           }
         ]
@@ -1656,7 +1656,7 @@
         "value": "",
         "json": [
           {
-            "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\n\nWith this amulet I can fly through the air like one of her angels without having to take off my armor.",
+            "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\n\nWith this amulet I can fly through the air like one of her angels without having to take off my armor.\n\nThe speed of it is influenced by the speed and slowness effect.",
             "color": ""
           }
         ]

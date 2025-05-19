@@ -27,8 +27,8 @@ public class MutandisItem extends TieredItem {
 
     @Override
     public @NotNull InteractionResult useOn(UseOnContext context) {
-        if (!context.getLevel().isClientSide()) {
-            if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() != Blocks.WITHER_ROSE && ModTags.isBlockIn(context.getLevel().getBlockState(context.getClickedPos()).getBlock(), ModTags.Blocks.MUTANDIS_PLANTS)) {
+        if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() != Blocks.WITHER_ROSE && ModTags.isBlockIn(context.getLevel().getBlockState(context.getClickedPos()).getBlock(), ModTags.Blocks.MUTANDIS_PLANTS)) {
+            if (!context.getLevel().isClientSide()) {
                 BlockPos blockPos = context.getClickedPos();
                 if(ModTags.isBlockIn(context.getLevel().getBlockState(blockPos).getBlock(), ModTags.Blocks.TALL_FLOWERS)){
                     if (ModTags.isBlockIn(context.getLevel().getBlockState(blockPos.below()).getBlock(), ModTags.Blocks.TALL_FLOWERS)){
@@ -43,24 +43,22 @@ public class MutandisItem extends TieredItem {
                         return InteractionResult.FAIL;
                     }
                 } while (block == Blocks.WITHER_ROSE || (ModTags.isBlockIn(block, ModTags.Blocks.TALL_FLOWERS)
-                                && !(context.getLevel().getBlockState(blockPos.above()).getBlock() == Blocks.AIR
-                                || context.getLevel().getBlockState(blockPos.above()).getBlock() == Blocks.CAVE_AIR)));
+                        && !(context.getLevel().getBlockState(blockPos.above()).getBlock() == Blocks.AIR
+                        || context.getLevel().getBlockState(blockPos.above()).getBlock() == Blocks.CAVE_AIR)));
 
                 context.getLevel().setBlockAndUpdate(blockPos, block.defaultBlockState());
                 if(ModTags.isBlockIn(block, ModTags.Blocks.TALL_FLOWERS)){
                     context.getLevel().setBlockAndUpdate(blockPos.above(), block.defaultBlockState().setValue(BlockStateProperties.DOUBLE_BLOCK_HALF, DoubleBlockHalf.UPPER));
                 }
-                context.getItemInHand().shrink(1);
-                return InteractionResult.SUCCESS;
             } else {
-                return InteractionResult.FAIL;
-            }
-        } else {
-            if (context.getLevel().getBlockState(context.getClickedPos()).getBlock() != Blocks.WITHER_ROSE && ModTags.isBlockIn(context.getLevel().getBlockState(context.getClickedPos()).getBlock(), ModTags.Blocks.MUTANDIS_PLANTS)) {
                 BoneMealItem.addGrowthParticles(context.getLevel(), context.getClickedPos(), 8);
             }
+
             context.getItemInHand().shrink(1);
             return InteractionResult.SUCCESS;
+        }
+        else {
+            return InteractionResult.FAIL;
         }
     }
 

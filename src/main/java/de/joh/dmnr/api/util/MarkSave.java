@@ -8,13 +8,13 @@ import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -75,12 +75,12 @@ public class MarkSave {
      * @return Returns the Mark to use. The mark in hand has the highest priority. Then the Dragon Magic Mark.
      */
     @Nullable
-    public static MarkSave getMark(@NotNull Player source,@NotNull Level world){
+    public static MarkSave getMark(@NotNull LivingEntity source,@NotNull Level world){
         return getMark(source, world, false);
     }
 
     @Nullable
-    public static MarkSave getMark(@NotNull Player source,@NotNull Level world, boolean allowPlayerCharm){
+    public static MarkSave getMark(@NotNull LivingEntity source, @NotNull Level world, boolean allowPlayerCharm){
         // Rune of Marking:
         ItemStack markingRune = source.getMainHandItem().getItem() != ItemInit.RUNE_MARKING.get() && source.getMainHandItem().getItem() != ItemInit.BOOK_MARKS.get() ? source.getOffhandItem() : source.getMainHandItem();
         if (markingRune.getItem() instanceof IPositionalItem) {
@@ -91,19 +91,23 @@ public class MarkSave {
         ItemStack playerCharm = source.getMainHandItem().getItem() != ItemInit.PLAYER_CHARM.get() ? source.getOffhandItem() : source.getMainHandItem();
         if(allowPlayerCharm && playerCharm.getItem() instanceof PlayerCharm) {
             Player target = (((PlayerCharm) playerCharm.getItem()).GetPlayerTarget(playerCharm, world));
-            if(target != null){
+            if(target != null && target.level().dimension() == source.level().dimension()) {
                 return new MarkSave(target.blockPosition().above(-1), Direction.UP);
+            } else {
+                return null;
             }
         }
 
-            AtomicReference<MarkSave> playerMark = new AtomicReference<>();
-        AtomicBoolean isNotNull = new AtomicBoolean(false);
-        source.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> {
-            if(magic.hasValidMark(world)){
-                isNotNull.set(true);
-                playerMark.set(magic.getMark(world));
-            }
-        });
-        return isNotNull.get() ? playerMark.get() : null;
+        // MarkSave:
+        if (source instanceof Player) {
+            AtomicReference<MarkSave> playerMark = new AtomicReference<>(null);
+            source.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(magic -> {
+                if(magic.hasValidMark(world)){
+                    playerMark.set(magic.getMark(world));
+                }
+            });
+            return playerMark.get();
+        }
+        return null;
     }
 }

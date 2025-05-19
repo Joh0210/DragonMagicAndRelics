@@ -7,6 +7,7 @@ import de.joh.dmnr.api.armorupgrade.OnTickArmorUpgrade;
 import de.joh.dmnr.common.event.CommonEventHandler;
 import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -36,7 +37,8 @@ public class JumpArmorUpgrade extends OnTickArmorUpgrade {
             magic.getCastingResource().consume(player, CommonConfig.getSpeedManaCostPerTickPerLevel() * level);
             if (!player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).hasModifier(stepMod1)){
                 if(level >= 1){
-                    player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 0.8F);
+
+                    player.level().playSeededSound(null, player.getX(), player.getY(), player.getZ(), SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, SoundSource.PLAYERS, 1f, 0.8F, 0);
                     player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).addTransientModifier(stepMod1);
 
                     if(!player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).hasModifier(stepMod2) && level >= 2){

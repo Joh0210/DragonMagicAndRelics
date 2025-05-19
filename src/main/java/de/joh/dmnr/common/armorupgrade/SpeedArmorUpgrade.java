@@ -1,7 +1,6 @@
 package de.joh.dmnr.common.armorupgrade;
 
 import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.api.sound.SFX;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
@@ -46,7 +45,6 @@ public class SpeedArmorUpgrade extends OnTickArmorUpgrade {
             magic.getCastingResource().consume(player, CommonConfig.getSpeedManaCostPerTickPerLevel() * level);
             if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed1)){
                 if(level >= 1){
-                    player.playSound(SFX.Event.Artifact.DEMON_ARMOR_SPRINT_START, 1.0F, 0.8F);
                     player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed1);
 
                     if(!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed2) && level >= 2){

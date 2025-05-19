@@ -1,6 +1,11 @@
 package de.joh.dmnr.common.item;
 
+import de.joh.dmnr.networking.ModMessages;
+import de.joh.dmnr.networking.packet.SpawnRngParticleS2CPacket;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -29,32 +34,56 @@ public class TheClickersCookieItem extends Item {
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, @NotNull Player user, @NotNull InteractionHand hand) {
         InteractionResultHolder<ItemStack> ar = super.use(world, user, hand);
-        user.getCooldowns().addCooldown(this, 10);
+        world.playSeededSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 0.2F, 0.4F + (float)Math.random() * 0.7F, 2);
 
-        //Random Pos:
-        for(int i = 0; i < 6; i++){
-            Random random = new Random();
-            int x = random.nextInt(5) - 2;
-            int y = random.nextInt(5) - 2;
-            int z = random.nextInt(4) - 1;
-            if (!world.isEmptyBlock(new BlockPos((int) user.getX()+x, (int) user.getY()+y,  (int)user.getZ()+z))) {
-                ItemEntity item = new ItemEntity(world, user.getX()+x, user.getY()+y, user.getZ()+z, new ItemStack(Items.COOKIE));
+        if(!world.isClientSide() && world.getServer() != null) {
+            if (user.isShiftKeyDown()) {
+                user.getCooldowns().addCooldown(this, 5);
+
+                ItemEntity item = new ItemEntity(world, user.getX(), user.getY(), user.getZ(), new ItemStack(Items.COOKIE));
                 world.addFreshEntity(item);
-                return ar;  // Only Spawn 1
             }
-        }
+            else {
+                user.getCooldowns().addCooldown(this, 2);
+                Random random = new Random();
 
-        // tries to Force:
-        for (int xOffset = -2; xOffset <= 2; xOffset++) {
-            for (int yOffset = -2; yOffset <= 2; yOffset++) {
-                for (int zOffset = -1; zOffset <= 2; zOffset++) {
-                    if (world.isEmptyBlock(new BlockPos((int) user.getX()+xOffset,  (int)user.getY()+yOffset, (int) user.getZ()+zOffset))) {
-                        ItemEntity item = new ItemEntity(world, user.getX()+xOffset, user.getY()+yOffset, user.getZ()+zOffset, new ItemStack(Items.COOKIE));
+
+                //Random Pos:
+                for(int i = 0; i < 6; i++){
+                    int x = random.nextInt(5) - 2;
+                    int y = random.nextInt(4) - 1;
+                    int z = random.nextInt(5) - 2;
+
+                    BlockPos pos = new BlockPos((int) user.getX()+x, (int) user.getY()+y,  (int)user.getZ()+z);
+
+                    if (world.isEmptyBlock(pos)) {
+                        ItemEntity item = new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.COOKIE));
                         world.addFreshEntity(item);
+
+                        for (ServerPlayer player : world.getServer().getPlayerList().getPlayers()) {
+                            if (player.distanceToSqr(pos.getX(), pos.getY(), pos.getZ()) < 16 * 16) {
+                                ModMessages.sendToPlayer(new SpawnRngParticleS2CPacket(pos), player);
+                            }
+                        }
+
                         return ar;  // Only Spawn 1
                     }
                 }
+
+                // tries to Force:
+                for (int xOffset = -2; xOffset <= 2; xOffset++) {
+                    for (int yOffset = -2; yOffset <= 2; yOffset++) {
+                        for (int zOffset = -1; zOffset <= 2; zOffset++) {
+                            if (world.isEmptyBlock(new BlockPos((int) user.getX()+xOffset,  (int)user.getY()+yOffset, (int) user.getZ()+zOffset))) {
+                                ItemEntity item = new ItemEntity(world, user.getX()+xOffset, user.getY()+yOffset, user.getZ()+zOffset, new ItemStack(Items.COOKIE));
+                                world.addFreshEntity(item);
+                                return ar;  // Only Spawn 1
+                            }
+                        }
+                    }
+                }
             }
+
         }
 
         return ar;

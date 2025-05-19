@@ -235,7 +235,9 @@
   "dmnr:components/forcedamage.desc.magnitude": "Decreases the factor that the armor absorbs, to a point that an opponent with stronger armor takes more damage.",
   "dmnr:components/alternativerecall": "Alternative Recall",
   "dmnr:components/alternativerecall.desc.delay": "A delay in seconds before applying this component.",
-  "dmnr:components/alternativerecall.desc.range": "The maximum distance that can be recalled. Each point raises the cap by 1.000 blocks.",
+  "dmnr:components/alternativerecall.desc.range": "The maximum distance that can be recalled. Each point raises the cap by 1.000 blocks. At Max Level, the range is unlimited.",
+  "dmnr:components/alternativerecall.desc.precision": "If 1, the caster teleports to the spell location.",
+  "dmnr:components/alternativerecall.desc.magnitude": "How strong the target of the spell can be. 1 point = 20 HP.",
   "dmnr:components/alternativerecall.no_player": "No Player targeted!",
 
   "itemGroup.dmnrtab": "Dragon Magic",

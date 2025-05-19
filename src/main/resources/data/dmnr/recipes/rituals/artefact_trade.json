@@ -1,6 +1,6 @@
 {
   "type": "mna:ritual",
-  "tier": 4,
+  "tier": 3,
   "pattern":
   [
     [13,-1, 4, 0, 5,-1,15],
@@ -47,34 +47,34 @@
     },
     "F":
     {
-      "item": "mna:greater_mote_air",
+      "item": "mna:mote_air",
       "optional": false,
       "consume": true
     },
     "G":
     {
-      "item": "mna:greater_mote_water",
+      "item": "mna:mote_water",
       "optional": false,
       "consume": true
     },
     "H":
     {
-      "item": "mna:greater_mote_earth",
+      "item": "mna:mote_earth",
       "optional": false,
       "consume": true
     },
     "I":
     {
-      "item": "mna:greater_mote_fire",
+      "item": "mna:mote_fire",
       "optional": false,
       "consume": true
     }
   },
   "manaweave":
   [
-    "mna:manaweave_patterns/knot",
-    "mna:manaweave_patterns/diamond",
-    "mna:manaweave_patterns/circle"
+    "mna:slash",
+    "mna:split_triangle",
+    "mna:backslash"
   ],
   "parameters":
   {

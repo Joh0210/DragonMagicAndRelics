@@ -30,10 +30,10 @@ public class AtMarkShape extends Shape {
 
     @Override
     public List<SpellTarget> Target(SpellSource source, Level world, IModifiedSpellPart<Shape> modificationData, ISpellDefinition iSpellDefinition) {
-        if(!world.isClientSide() && source.getPlayer() != null){
-            MarkSave mark = MarkSave.getMark(source.getPlayer(), world);
+        if(!world.isClientSide() && source.getCaster() != null){
+            MarkSave mark = MarkSave.getMark(source.getCaster(), world);
             if (mark != null && mark.getPosition() != null) {
-                double dist = source.getPlayer().blockPosition().distSqr(mark.getPosition());
+                double dist = source.getCaster().blockPosition().distSqr(mark.getPosition());
                 double maxDist = modificationData.getValue(Attribute.RANGE) * 500.0F;
                 if (!(dist > maxDist * maxDist)) {
                     //block-targets in the area
@@ -55,11 +55,11 @@ public class AtMarkShape extends Shape {
 
 
                     return targets;
-                } else {
+                } else if(source.getPlayer() != null) {
                     source.getPlayer().displayClientMessage(Component.translatable("mna:components/recall.too_far"), true);
                 }
             } else {
-                if (source.isPlayerCaster()) {
+                if (source.getPlayer() != null) {
                     source.getPlayer().displayClientMessage(Component.translatable("dmnr.shapes.atmark.nomark.error"), true);
                 }
             }

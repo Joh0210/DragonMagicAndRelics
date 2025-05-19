@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "distill_only": true,
+        "output_rate": 1.0,
+        "object": {
+          "item": "dmnr:rift_emitter"
+        },
+        "components": [
+          { "item": "magichem:essentia_ender", "count": 13 },
+          { "item": "magichem:admixture_travel", "count": 36 },
+          { "item": "magichem:admixture_vessel", "count": 28 },
+          { "item": "magichem:admixture_alien", "count": 8 }
+        ]
+      }
+    }
+  ]
+}

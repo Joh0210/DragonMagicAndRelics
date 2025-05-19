@@ -20,7 +20,7 @@ public class ManaCakeItem extends Item implements ITieredItem<ManaCakeItem> {
     /**
      * Mana cost to "repair" the cake
      */
-    private static final int MANA_COSTS = 80;
+    private static final int MANA_COSTS = 40;
 
     /**
      * How much nutrition does the cake give?

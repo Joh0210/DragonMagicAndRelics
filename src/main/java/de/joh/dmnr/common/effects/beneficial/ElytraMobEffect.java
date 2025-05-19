@@ -11,6 +11,8 @@ import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.player.Player;
@@ -22,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
  * <br>Level 0: Default elytra fly.
  * <br>Level 1: With speed boost and creative fly, but mana consumption.
  * <br>Level 2: With speed boost, creative fly and no mana consumption.
+ * <br>This effect takes into account the speed or slow effect.
  * @see CommonEventHandler
  * @author Joh0210
  */
@@ -50,10 +53,9 @@ public class ElytraMobEffect extends MobEffect {
                     } else {
                         ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
                         if (!player.isCreative() && !player.isSpectator()) {
-
-                            ManaAndArtifice.instance.proxy.setFlySpeed(player, amplifier * CommonConfig.getFlySpeedPerLevel());
+                            ManaAndArtifice.instance.proxy.setFlySpeed(player, Math.max(amplifier * 1.2f * CommonConfig.getFlySpeedPerLevel(player), 0.05f));
                         } else {
-                            ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
+                            ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05f);
                         }
                     }
                 });
@@ -70,8 +72,21 @@ public class ElytraMobEffect extends MobEffect {
                             magic.getCastingResource().consume(player, CommonConfig.getElytraManaCostPerTick());
 
                             pos = player.getDeltaMovement();
-                            maxLength = 1.75F;
-                            lookScale = 0.06D;
+
+                            int speedboost = 0;
+                            MobEffectInstance speedEffect = player.getEffect(MobEffects.MOVEMENT_SPEED);
+                            if(speedEffect!=null){
+                                speedboost = speedEffect.getAmplifier() + 1;
+                            }
+
+                            MobEffectInstance slowEffect = player.getEffect(MobEffects.MOVEMENT_SLOWDOWN);
+                            if(slowEffect!=null){
+                                speedboost -= slowEffect.getAmplifier() + 1;
+                            }
+
+                            maxLength = Math.max(1.75F * (1.0F + 0.2F * speedboost), 0.5F);
+                            lookScale = Math.max(0.06D * (1.0F + 0.2F * speedboost), 0.02D);
+
                             scaled_look = look.scale(lookScale);
                             pos = pos.add(scaled_look);
                             if (pos.length() > (double) maxLength) {

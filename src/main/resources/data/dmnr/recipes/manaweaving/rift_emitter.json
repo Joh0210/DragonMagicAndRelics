@@ -1,6 +1,6 @@
 {
   "type": "mna:manaweaving-recipe",
-  "tier": 4,
+  "tier": 3,
   "output": "dmnr:rift_emitter",
   "quantity": 1,
   "items": [
@@ -11,7 +11,7 @@
     "minecraft:obsidian",
     "minecraft:obsidian",
     "minecraft:gold_block",
-    "mna:greater_mote_ender",
+    "mna:mote_ender",
     "mna:arcane_ash"
 
   ],

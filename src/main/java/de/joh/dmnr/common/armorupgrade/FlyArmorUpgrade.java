@@ -48,8 +48,8 @@ public class FlyArmorUpgrade extends OnTickArmorUpgrade {
                         Vec3 look = player.getForward().cross(new Vec3(0.0D, 1.0D, 0.0D));
                         float offset = (float)(Math.random() * 0.2D);
                         look = look.scale(offset);
-                        world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() + look.x, player.getY(), player.getZ() + look.z, 0.0D, -0.05000000074505806D, 0.0D);
-                        world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() - look.x, player.getY(), player.getZ() - look.z, 0.0D, -0.05000000074505806D, 0.0D);
+                        world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() + look.x, player.getY(), player.getZ() + look.z, 0.0D, -0.05D, 0.0D);
+                        world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() - look.x, player.getY(), player.getZ() - look.z, 0.0D, -0.05D, 0.0D);
                     } else if (!player.hasEffect(EffectInit.MIST_FORM.get())) { //No mana consumption in mist form
                         m.getCastingResource().consume(player, CommonConfig.getFlyManaCostPerTick());
                     }
@@ -61,7 +61,7 @@ public class FlyArmorUpgrade extends OnTickArmorUpgrade {
                 } else {
                     ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
                     if (!player.isCreative() && !player.isSpectator()) {
-                        ManaAndArtifice.instance.proxy.setFlySpeed(player, level* CommonConfig.getFlySpeedPerLevel());
+                        ManaAndArtifice.instance.proxy.setFlySpeed(player, level* CommonConfig.getFlySpeedPerLevel(player));
                         if (!CommonConfig.FLY_ALLOW_SPRTINTING_WHILE_FLYING.get() && player.getAbilities().flying) {
                             player.setSprinting(false);
                         }

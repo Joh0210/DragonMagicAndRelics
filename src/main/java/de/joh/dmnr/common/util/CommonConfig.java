@@ -7,6 +7,9 @@ import de.joh.dmnr.common.armorupgrade.SpeedArmorUpgrade;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.api.spell.component.ConjureFluidComponent;
 import de.joh.dmnr.common.spell.component.MarkComponent;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ForgeConfigSpec;
 import de.joh.dmnr.common.item.spellstoring.RingOfCooldownSpellStoringItem;
 /**
@@ -33,6 +36,13 @@ public class CommonConfig {
      * @see MarkComponent
      */
     public static final ForgeConfigSpec.ConfigValue<Boolean> RECALL_SUPPORT_PLAYERCHARM;
+
+
+    /**
+     * Is the range of the Alternative Recall Component unlimited when at maximum level?
+     * @see de.joh.dmnr.common.spell.component.AlternativeRecallComponent
+     */
+    public static final ForgeConfigSpec.ConfigValue<Boolean> RECALL_UNLIMITED_RANGE;
 
     /**
      * Belt of the Minotaur Multiplication Factor
@@ -125,6 +135,7 @@ public class CommonConfig {
                 .define("Can conjure fluid ignore vaporize?", true);
         MARK_SUPPORT_PLAYERCHARM = BUILDER.define("If true: The Mark Component supports PlayerCharms", true);
         RECALL_SUPPORT_PLAYERCHARM = BUILDER.define("If true: The Alternative Recall Component supports PlayerCharms", true);
+        RECALL_UNLIMITED_RANGE = BUILDER.define("If true: The range of the Alternative Recall Component is unlimited when the range attribute is at maximum level? ", true);
         MINOTAUR_BELT_MULTIPLICATION = BUILDER.define("By what factor is the damage increased with the Minotaur Belt?", 2);
         SPELL_STORING_COOLDOWN_FACTOR = BUILDER.define("This number indicates the factor by which the cooldown is increased when casting the spell via the Bracelet of Spell Storing - Cooldown:", 10);
         BUILDER.pop();
@@ -136,17 +147,17 @@ public class CommonConfig {
             BUILDER.pop();
 
             BUILDER.push("Elytra upgrade");
-            ELYTRA_MANA_COST_PER_TICK = BUILDER.defineInRange("How much mana is consumed every tick when the wearer flies with the Elytra upgrade (The values are divided by 100):", 75, 0, 500);
+            ELYTRA_MANA_COST_PER_TICK = BUILDER.defineInRange("How much mana is consumed every tick when the wearer flies with the Elytra upgrade (The values are divided by 100):", 20, 0, 500);
             BUILDER.pop();
 
-            BUILDER.push("Elytra upgrade");
-            FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE = BUILDER.defineInRange(" How much mana does the fire resistance upgrade consume for one tick of fire damage?:", 20, 0, 200);
+            BUILDER.push("Fire Resistance upgrade");
+            FIRE_RESISTANCE_MANA_PER_FIRE_DAMAGE = BUILDER.defineInRange("How much mana does the fire resistance upgrade consume for one tick of fire damage?", 20, 0, 200);
             BUILDER.pop();
 
             BUILDER.push("Fly upgrade");
             FLY_SPEED_PER_LEVEL = BUILDER.comment("The airspeed is calculated with this value v. (Airspeed = v * upgrade level / 100). The default Creaktiv flight speed is 0.5").defineInRange("Flight Speed per Level:", 2, 0, 10);
             FLY_ALLOW_SPRTINTING_WHILE_FLYING = BUILDER.define("Can the wearer sprint in the air with the Fly Upgrade?", true);
-            FLY_MANA_COST_PER_TICK = BUILDER.defineInRange("Mana cost per flight tick (The values are divided by 100):", 75, 0, 500);
+            FLY_MANA_COST_PER_TICK = BUILDER.defineInRange("Mana cost per flight tick (The values are divided by 100):", 20, 0, 500);
             BUILDER.pop();
 
             BUILDER.push("Meteor Jump upgrade");
@@ -176,9 +187,15 @@ public class CommonConfig {
         SPEC = BUILDER.build();
     }
 
-    public static float getFlySpeedPerLevel(){
-        return FLY_SPEED_PER_LEVEL.get()/100.0F;
+    public static float getFlySpeedPerLevel(Player player) {
+        AttributeInstance speedAttribute = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        float speed = (speedAttribute != null) ? (float) speedAttribute.getValue() * 10.0f : 1.0f;
+
+        float configMultiplier = FLY_SPEED_PER_LEVEL.get() * 1.5f / 100f;
+
+        return (speed * configMultiplier);
     }
+
     public static float getFlyManaCostPerTick(){
         return FLY_MANA_COST_PER_TICK.get()/100.0F;
     }

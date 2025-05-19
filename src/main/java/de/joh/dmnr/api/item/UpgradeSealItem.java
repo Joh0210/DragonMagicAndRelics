@@ -130,7 +130,7 @@ public class UpgradeSealItem extends Item {
                     return;
                 }
 
-                user.level().playSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
+                user.level().playSeededSound(null, user.getX(), user.getY(), user.getZ(), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1f, 0.9F + (float)Math.random() * 0.2F, 0);
                 if (!(user instanceof Player) || !((Player)user).isCreative()) {
                     user.setItemInHand(user.getUsedItemHand(), ItemStack.EMPTY);
                 }

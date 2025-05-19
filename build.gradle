@@ -4,6 +4,7 @@ plugins {
     id 'maven-publish'
     id 'net.neoforged.gradle' version '[6.0.18,6.2)'
     id 'org.spongepowered.mixin' version '0.7.+'
+    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
 }
 
 version = mod_version
@@ -19,6 +20,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
     mappings channel: mapping_channel, version: mapping_version
+    // mappings channel: mapping_channel, version: mapping_version
 
     // When true, this property will have all Eclipse/IntelliJ IDEA run configurations run the "prepareX" task for the given run configuration before launching the game.
     // In most cases, it is not necessary to enable.
@@ -132,6 +134,8 @@ dependencies {
 
     // M&A and its API
     implementation fg.deobf("curse.maven:mna-406360:${mna_version}")
+    runtimeOnly fg.deobf("curse.maven:magichem-982204:${magichem_version}")
+    runtimeOnly fg.deobf("curse.maven:jei-238222:${jei_version}")
     // compileOnly "com.mithion:mna:${mna_version}:api" //api, compilation only
 //    implementation fg.deobf("com.mithion:mna-forge-1.20.1:${mna_version}:all") //mod itself, deobf for runtime
 }

@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "distill_only": true,
+        "output_rate": 1.0,
+        "object": {
+          "item": "dmnr:bracelet_of_friendship"
+        },
+        "components": [
+          { "item": "magichem:admixture_protection", "count": 36 },
+          { "item": "magichem:admixture_instrument", "count": 2 },
+          { "item": "magichem:essentia_precious", "count": 11 },
+          { "item": "magichem:admixture_thought", "count": 7 },
+          { "item": "magichem:admixture_history", "count": 6 }
+        ]
+      }
+    }
+  ]
+}

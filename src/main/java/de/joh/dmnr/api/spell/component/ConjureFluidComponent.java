@@ -80,10 +80,11 @@ public abstract class ConjureFluidComponent extends SpellEffect {
 
             if (destination == null && destinationSide == null) {
                 BlockPos targetPos = target.getBlock().relative(target.getBlockFace(null));
-                if (world.getBlockState(targetPos).getBlock() != Blocks.AIR && world.getBlockState(targetPos).getBlock() != Blocks.CAVE_AIR){
-                    return ComponentApplicationResult.FAIL;
-                }
-                if (source.getCaster() instanceof Player player && tryPlaceFluid(player, world, targetPos, modificationData, false)) {
+
+                boolean isDestNonSolid = !world.getBlockState(targetPos).isSolid();
+                boolean isEmpty = world.isEmptyBlock(targetPos);
+
+                if ((isDestNonSolid || isEmpty) && source.getCaster() instanceof Player player && tryPlaceFluid(player, world, targetPos, modificationData, false)) {
                     return ComponentApplicationResult.SUCCESS;
                 }
             }
@@ -113,6 +114,7 @@ public abstract class ConjureFluidComponent extends SpellEffect {
         return (getCauldronType() != null) ? getCauldronType().defaultBlockState() : null;
     }
 
+    @Nullable
     private IFluidHandler getFluidHandler(Level world, BlockPos blockPos, @Nullable Direction side) {
         return FluidUtil.getFluidHandler(world, blockPos, side).orElse(null);
     }

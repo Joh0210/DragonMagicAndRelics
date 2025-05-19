@@ -106,7 +106,7 @@ public class DamageEventHandler {
             ((LivingEntity)sourceEntity).removeEffect(de.joh.dmnr.common.init.EffectInit.PEACE_EFFECT.get());
             ((LivingEntity)sourceEntity).addEffect(new MobEffectInstance((de.joh.dmnr.common.init.EffectInit.BROKEN_PEACE_EFFECT.get()), 12000));
             if(sourceEntity instanceof Player){
-                sourceEntity.level().playSound(null, sourceEntity.getX(), sourceEntity.getY(), sourceEntity.getZ(), SoundEvents.RAID_HORN.get(), SoundSource.PLAYERS, 64.0F, 0.9F + (float)Math.random() * 0.2F);
+                sourceEntity.level().playSeededSound(null, sourceEntity.getX(), sourceEntity.getY(), sourceEntity.getZ(), SoundEvents.RAID_HORN.get(), SoundSource.PLAYERS, 1F, 0.9F + (float)Math.random() * 0.2F, 0);
             }
 
         }
@@ -396,7 +396,8 @@ public class DamageEventHandler {
                             event.setCanceled(true);
                             player.resetFallDistance();
 
-                            player.level().playSound(null, spe.getX(), spe.getY(), spe.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+
+                            player.level().playSeededSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1F, 0.9F + (float)Math.random() * 0.2F, 0);
 
                             final double bed_x = (double)bedPos.getX() + 0.5;
                             final double bed_y = (double)bedPos.getY() + 0.5;
@@ -417,8 +418,7 @@ public class DamageEventHandler {
                             // ensures the player is teleported to the correct coordinates
                             player.teleportTo(bed_x,bed_y,bed_z);
 
-
-                            player.level().playSound(null, bedPos.getX(), bedPos.getY(), bedPos.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1.0F, 0.9F + (float)Math.random() * 0.2F);
+                            player.level().playSeededSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1F, 0.9F + (float)Math.random() * 0.2F, 0);
                             player.level().broadcastEntityEvent(spe, (byte)46);
                             return true;
                         }

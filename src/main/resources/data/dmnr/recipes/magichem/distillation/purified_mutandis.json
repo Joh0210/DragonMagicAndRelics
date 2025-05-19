@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "distill_only": true,
+        "output_rate": 0.4,
+        "object": {
+          "item": "dmnr:purified_mutandis"
+        },
+        "components": [
+          { "item": "magichem:admixture_change", "count": 4 },
+          { "item": "magichem:admixture_plant", "count": 2 },
+          { "item": "magichem:essentia_arcane", "count": 1 },
+          { "item": "magichem:admixture_fey", "count": 1 }
+        ]
+      }
+    }
+  ]
+}

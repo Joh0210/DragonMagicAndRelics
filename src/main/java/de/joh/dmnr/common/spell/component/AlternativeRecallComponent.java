@@ -11,14 +11,24 @@ import com.mna.api.spells.parts.SpellEffect;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
+import com.mna.api.timing.DelayedEventQueue;
+import com.mna.api.timing.TimedDelayedEvent;
 import com.mna.factions.Factions;
 import com.mna.tools.TeleportHelper;
 import de.joh.dmnr.api.util.MarkSave;
 import de.joh.dmnr.common.util.CommonConfig;
+import net.minecraft.commands.arguments.EntityAnchorArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityTeleportEvent;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.Nullable;
 
 /**
  * Revision of M&As recall
@@ -27,7 +37,7 @@ import net.minecraft.world.phys.Vec3;
  */
 public class AlternativeRecallComponent extends SpellEffect {
     public AlternativeRecallComponent(ResourceLocation guiIcon) {
-        super(guiIcon, new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 25.0F));
+        super(guiIcon, new AttributeValuePair(Attribute.RANGE, 1.0F, 1.0F, 5.0F, 1.0F, 25.0F), new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1.0F, 5.0F, 1.0F, 10.0F), new AttributeValuePair(Attribute.PRECISION, 0.0F, 0.0F, 1.0F, 10.0F));
     }
 
     public int requiredXPForRote() {
@@ -35,18 +45,71 @@ public class AlternativeRecallComponent extends SpellEffect {
     }
 
     public ComponentApplicationResult ApplyEffect(SpellSource source, SpellTarget target, IModifiedSpellPart<SpellEffect> modificationData, SpellContext context) {
-        if (target.getEntity() != null && target.getEntity().isAlive() && source.getPlayer() != null && target.getEntity().canChangeDimensions()) {
-            MarkSave markSave = MarkSave.getMark(source.getPlayer(), source.getPlayer().getCommandSenderWorld(), CommonConfig.RECALL_SUPPORT_PLAYERCHARM.get());
-            if (markSave != null && markSave.getPosition() != null) {
-                BlockPos pos = markSave.getPosition();
+        Vec3 targetPosition = null;
+        if (modificationData.getValue(Attribute.PRECISION) == 1.0F && target.getLivingEntity() != source.getCaster() && source.getCaster() != null && context.getServerLevel() != null){
+            if (target.getLivingEntity() != null) {
+                float step = 1.5F;
+                Vec3 delta = target.getLivingEntity().getForward().normalize().scale(step);
+                int tries = 0;
 
-                double dist = target.getEntity().blockPosition().distSqr(pos);
-                double maxDist = modificationData.getValue(Attribute.RANGE) * 1000.0F;
-                if (!(dist > maxDist * maxDist)) {
-                    int magnitude = (int)modificationData.getValue(Attribute.RANGE);
-                    if (this.magnitudeHealthCheck(source, target, magnitude, 20)) {
-                        TeleportHelper.teleportEntity(target.getEntity(), context.getLevel().dimension(), new Vec3((double)pos.getX() + 0.5, pos.getY() + 1, (double)pos.getZ() + 0.5));
+                do {
+                    ++tries;
+                    targetPosition = target.getLivingEntity().position().subtract(delta);
+                    if (targetPosition.distanceTo(source.getCaster().position()) < (double)step) {
+                        source.getCaster().sendSystemMessage(Component.translatable("mna:components/blink.failed"));
+                        return ComponentApplicationResult.FAIL;
+                    }
+                } while(tries <= 10 && !TeleportHelper.coordsValidForBlink(context.getServerLevel(), (int)targetPosition.x(), (int)targetPosition.y(), (int)targetPosition.z()));
+
+                if(source.getPlayer() != null) {
+                    Vec3 targetEye = target.getLivingEntity().getEyePosition();
+                    Player looker = source.getPlayer();
+                    DelayedEventQueue.pushEvent(context.getLevel(), new TimedDelayedEvent<>("look", 1, targetEye, (k, v) -> looker.lookAt(EntityAnchorArgument.Anchor.EYES, targetEye)));
+                }
+
+            } else {
+                if (!target.isBlock()) {
+                    return ComponentApplicationResult.FAIL;
+                }
+
+                BlockPos check = target.getBlock().offset(target.getBlockFace(this).getNormal());
+                if (TeleportHelper.coordsValidForBlink(context.getServerLevel(), check.getX(), check.getY(), check.getZ())) {
+                    targetPosition = Vec3.atBottomCenterOf(check);
+                }
+            }
+
+            if (!this.isValidDistance(targetPosition, source.getCaster(), modificationData)) {
+                if (source.getPlayer() != null) {
+                    source.getPlayer().sendSystemMessage(Component.translatable("mna:components/blink.toofar"));
+                }
+                return ComponentApplicationResult.FAIL;
+            }
+
+            if (!context.getServerLevel().isClientSide()) {
+                EntityTeleportEvent tpEvent = new EntityTeleportEvent(source.getCaster(), targetPosition.x, targetPosition.y, targetPosition.z);
+                if (!MinecraftForge.EVENT_BUS.post(tpEvent)) {
+                    source.getCaster().teleportTo(targetPosition.x, targetPosition.y, targetPosition.z);
+                }
+
+                return ComponentApplicationResult.SUCCESS;
+            } else {
+                return ComponentApplicationResult.FAIL;
+            }
+        }
+
+        else if (target.getLivingEntity() != null && source.getCaster() != null && target.getLivingEntity().canChangeDimensions()) {
+            MarkSave markSave = MarkSave.getMark(source.getCaster(), source.getCaster().getCommandSenderWorld(), CommonConfig.RECALL_SUPPORT_PLAYERCHARM.get());
+
+            if (markSave != null && markSave.getPosition() != null) {
+                targetPosition = markSave.getPosition().getCenter();
+                if (this.isValidDistance(targetPosition, target.getLivingEntity(), modificationData)) {
+                    if (target.getLivingEntity() == source.getCaster() || this.magnitudeHealthCheck(source, target, (int)modificationData.getValue(Attribute.MAGNITUDE), 20)) {
+                        TeleportHelper.teleportEntity(target.getLivingEntity(), context.getLevel().dimension(), new Vec3(targetPosition.x, targetPosition.y + 1, targetPosition.z));
                         return ComponentApplicationResult.SUCCESS;
+                    } else {
+                        if (source.getPlayer() != null) {
+                            source.getPlayer().displayClientMessage(Component.translatable("mna:generic.too_powerful"), true);
+                        }
                     }
 
                     return ComponentApplicationResult.FAIL;
@@ -62,13 +125,24 @@ public class AlternativeRecallComponent extends SpellEffect {
             }
         }
 
-
         return ComponentApplicationResult.FAIL;
+    }
+
+    private boolean isValidDistance(@Nullable Vec3 targetPosition, @NotNull LivingEntity caster, @NotNull IModifiedSpellPart<SpellEffect> modificationData){
+        if(targetPosition == null){
+            return false;
+        }
+
+        else if(CommonConfig.RECALL_UNLIMITED_RANGE.get() && modificationData.getValue(Attribute.RANGE) >= modificationData.getMaximumValue(Attribute.RANGE)){
+            return true;
+        }
+
+        return !(targetPosition.distanceTo(caster.position()) > modificationData.getValue(Attribute.RANGE) * 1000.0F);
     }
 
     @Override
     public boolean targetsBlocks() {
-        return false;
+        return true;
     }
 
     public Affinity getAffinity() {
@@ -86,6 +160,6 @@ public class AlternativeRecallComponent extends SpellEffect {
 
     @Override
     public SpellPartTags getUseTag() {
-        return SpellPartTags.FRIENDLY;
+        return SpellPartTags.UTILITY;
     }
 }

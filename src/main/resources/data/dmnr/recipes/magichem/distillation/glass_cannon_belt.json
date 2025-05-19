@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "distill_only": true,
+        "output_rate": 1.0,
+        "object": {
+          "item": "dmnr:glass_cannon_belt"
+        },
+        "components": [
+          { "item": "magichem:admixture_violence", "count": 128 },
+          { "item": "magichem:admixture_change", "count": 12 },
+          { "item": "magichem:admixture_instrument", "count": 2 },
+          { "item": "magichem:essentia_citrinitas", "count": 11 }
+        ]
+      }
+    }
+  ]
+}

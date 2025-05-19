@@ -52,6 +52,12 @@ public class ModMessages {
                 .consumerMainThread(ToggleFlightC2SPacket::handle)
                 .add();
 
+        net.messageBuilder(SpawnRngParticleS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(SpawnRngParticleS2CPacket::new)
+                .encoder(SpawnRngParticleS2CPacket::toBytes)
+                .consumerMainThread(SpawnRngParticleS2CPacket::handle)
+                .add();
+
         net.messageBuilder(ToggleMajorFireResS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(ToggleMajorFireResS2CPacket::new)
                 .encoder(ToggleMajorFireResS2CPacket::toBytes)
