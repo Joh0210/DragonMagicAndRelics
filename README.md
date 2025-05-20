@@ -28,5 +28,5 @@ And thanks to Mithion for helping creating the mod. Also thanks to Ceddi and Nic
 I welcome all feedback! Let me know about bugs, balancing suggestions, or ideas for new content.
 Either create a ticket via the integrated issue tracker or join the [M&A Discord](http://discord.gg/4nJEU4X) and report it there.
 
-If you want to contribute to this mod, follow the [Contribution Guide]((https://github.com/Joh0210/DragonMagicAndRelics/blob/master/CONTRIBUTING.md)).
+If you want to contribute to this mod, follow the [Contribution Guide](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/CONTRIBUTING.md).
 
