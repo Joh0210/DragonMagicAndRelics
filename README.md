@@ -15,9 +15,9 @@ Upgrade your faction armor and infuse it with glyphs and spells. Gain flight, in
 ## Content
 The Codex has all the necessary information about the added elements. (But the content is only displayed when playing in American English (en_us))
 - 20+ Dragon Mage Armor Upgrades
-- 20+ New Items & Blocks
+- 20+ Items & Blocks
 - 10+ Spells & Shapes
-- 3 new Rituals
+- 3 Rituals
 
 ## Credits
 The amazing [armor model](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/src/main/resources/assets/dmnr/geo/dragon_mage_armor.geo.json) and [texture](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/src/main/resources/assets/dmnr/textures/models/armor/infernal_dragon_mage_armor_texture.png) of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/jsementj/).
