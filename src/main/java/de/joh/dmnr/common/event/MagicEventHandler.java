@@ -1,6 +1,7 @@
 package de.joh.dmnr.common.event;
 
 import com.mna.api.affinity.Affinity;
+import com.mna.api.events.ComponentApplyingEvent;
 import com.mna.api.events.SpellCastEvent;
 import com.mna.api.spells.attributes.Attribute;
 import com.mna.api.spells.base.IModifiedSpellPart;
@@ -9,6 +10,7 @@ import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.ItemInit;
+import de.joh.dmnr.common.item.BraceletOfFriendshipItem;
 import de.joh.dmnr.common.item.CurseProtectionAmuletItem;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.player.Player;
@@ -40,6 +42,15 @@ public class MagicEventHandler {
                 event.setResult(Event.Result.DENY);
             }
         }
+    }
+
+    /**
+     * Prevents friends from getting hurt
+     * @see BraceletOfFriendshipItem
+     */
+    @SubscribeEvent
+    public static void onComponentApplying(ComponentApplyingEvent event){
+        BraceletOfFriendshipItem.eventHandleProtectFriends(event);
     }
 
     /**

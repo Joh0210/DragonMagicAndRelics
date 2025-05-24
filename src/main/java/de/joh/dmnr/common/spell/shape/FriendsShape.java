@@ -7,7 +7,6 @@ import com.mna.api.spells.base.ISpellDefinition;
 import com.mna.api.spells.parts.Shape;
 import com.mna.api.spells.targeting.SpellSource;
 import com.mna.api.spells.targeting.SpellTarget;
-import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.BraceletOfFriendshipItem;
 import net.minecraft.network.chat.Component;
@@ -49,7 +48,7 @@ public class FriendsShape extends Shape {
                 ArrayList<SpellTarget> targets = new ArrayList<>();
                 for(SpellTarget target : inArea){
                     for(Player friend: friends){
-                        if(friend == DamageEventHandler.playerOrOwner(target.getEntity())){
+                        if(friend == BraceletOfFriendshipItem.playerOrOwner(target.getEntity())){
                             targets.add(target);
                             break;
                         }

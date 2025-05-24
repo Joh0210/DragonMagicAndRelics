@@ -1,39 +1,23 @@
 package de.joh.dmnr.common.event;
 
-import com.mna.api.ManaAndArtificeMod;
 import com.mna.api.config.GeneralConfigValues;
 import com.mna.api.entities.IFactionEnemy;
-import com.mna.api.events.ComponentApplyingEvent;
-import com.mna.api.faction.IFaction;
-import com.mna.api.items.ChargeableItem;
-import com.mna.api.spells.SpellPartTags;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
 import com.mna.effects.EffectInit;
 import com.mna.entities.sorcery.EntityDecoy;
-import com.mna.entities.utility.PresentItem;
 import com.mna.factions.Factions;
-import com.mna.interop.CuriosInterop;
-import com.mna.tools.InventoryUtilities;
 import com.mna.tools.ProjectileHelper;
 import com.mna.tools.SummonUtils;
-import net.minecraft.server.MinecraftServer;
+import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.common.command.Commands;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.ItemInit;
-import de.joh.dmnr.common.item.AngelRingItem;
-import de.joh.dmnr.common.item.BraceletOfFriendshipItem;
-import de.joh.dmnr.common.item.FactionAmuletItem;
 import de.joh.dmnr.common.util.CommonConfig;
 import de.joh.dmnr.common.util.ProjectileReflectionHelper;
-import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -45,20 +29,13 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.items.wrapper.InvWrapper;
 import org.apache.commons.lang3.mutable.MutableFloat;
 import top.theillusivec4.curios.api.CuriosApi;
-import top.theillusivec4.curios.api.SlotResult;
 
-import javax.annotation.Nullable;
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.function.Function;
 
 /**
  * These event handlers take care of processing damage events.
@@ -75,7 +52,6 @@ public class DamageEventHandler {
      * <br> - Sturdy Belt
      * @see ArmorUpgradeInit
      * @see Commands
-     * @see FactionAmuletItem
      */
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -97,108 +73,24 @@ public class DamageEventHandler {
             event.setAmount(event.getAmount() * (1.0f - (float) ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.DAMAGE_RESISTANCE)* CommonConfig.getDamageResistanceDamageReductionPerLevel()));
         }
 
-        AtomicReference<IFaction> faction = new AtomicReference<>(null);
-        if(targetEntity instanceof Player player){
-            player.getCapability(ManaAndArtificeMod.getProgressionCapability()).ifPresent((p)-> faction.set(p.getAlliedFaction()));
-        }
-
-        if((targetEntity instanceof IFactionEnemy || faction.get() != null) && sourceEntity instanceof LivingEntity && ((LivingEntity)sourceEntity).hasEffect(de.joh.dmnr.common.init.EffectInit.PEACE_EFFECT.get())){
-            ((LivingEntity)sourceEntity).removeEffect(de.joh.dmnr.common.init.EffectInit.PEACE_EFFECT.get());
-            ((LivingEntity)sourceEntity).addEffect(new MobEffectInstance((de.joh.dmnr.common.init.EffectInit.BROKEN_PEACE_EFFECT.get()), 12000));
-            if(sourceEntity instanceof Player){
-                sourceEntity.level().playSeededSound(null, sourceEntity.getX(), sourceEntity.getY(), sourceEntity.getZ(), SoundEvents.RAID_HORN.get(), SoundSource.PLAYERS, 1F, 0.9F + (float)Math.random() * 0.2F, 0);
-            }
-
-        }
-
         //Damage Boost
         if (sourceEntity instanceof Player player){
             event.setAmount(event.getAmount() * (1.0f + ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.DAMAGE_BOOST)*0.25f));
         }
 
-        //Glass Cannon
-        if (sourceEntity instanceof LivingEntity && !CuriosApi.getCuriosHelper().findCurios((LivingEntity) sourceEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
-            event.setAmount(event.getAmount() * Math.max(CommonConfig.MINOTAUR_BELT_MULTIPLICATION.get(), 1));
-        }
-        if (targetEntity != null && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.GLASS_CANNON_BELT.get()).isEmpty()){
-            event.setAmount(event.getAmount() * Math.max(CommonConfig.MINOTAUR_BELT_MULTIPLICATION.get(), 1));
-        }
+        FactionAmuletItem.eventHandleDeclarationOfWar(event);
 
-        // Sturdy
-        if (sourceEntity instanceof LivingEntity && event.getAmount() >= 1 && !CuriosApi.getCuriosHelper().findCurios((LivingEntity) sourceEntity, ItemInit.STURDY_BELT.get()).isEmpty()){
-            event.setAmount(Math.max(1, event.getAmount()*0.5f));
+        if(DamageAdjustmentBelt.eventHandleGlassCannon(event)){
+            return;
         }
-        if (targetEntity != null && event.getAmount() >= 1 && !CuriosApi.getCuriosHelper().findCurios(targetEntity, ItemInit.STURDY_BELT.get()).isEmpty()){
-            event.setAmount(Math.max(1, event.getAmount()*0.5f));
+        if(DamageAdjustmentBelt.eventHandleSturdy(event)){
+            return;
         }
     }
 
-    /**
-     * Prevents friends from getting hurt
-     * @see BraceletOfFriendshipItem
-     */
-    @SubscribeEvent
-    public static void onComponentApplying(ComponentApplyingEvent event){
-        if(event.getSource().getCaster() instanceof Player player && event.getTarget().isLivingEntity() && event.getComponent().getUseTag() == SpellPartTags.HARMFUL){
-            if(player != event.getTarget().getEntity()) {
-                for (SlotResult curios : CuriosApi.getCuriosHelper().findCurios(player, ItemInit.BRACELET_OF_FRIENDSHIP.get())) {
-                    if (curios.stack().getItem() instanceof BraceletOfFriendshipItem) {
-                        Player referenceTarget = playerOrOwner(event.getTarget().getEntity());
-                        if(referenceTarget == player){
-                            event.setCanceled(true);
-                            return;
-                        }
-                        else if(referenceTarget != null){
-                            for (Player friend : ((BraceletOfFriendshipItem) curios.stack().getItem()).getPlayerTargets(curios.stack(), player.level())) {
-                                if (friend == referenceTarget) {
-                                    event.setCanceled(true);
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * @return Player itself or PlayerOwner of an Animal
-     * <br>-If it is a player, it will be returned.
-     * <br>-If it is a {@link OwnableEntity}, the owner is returned if it is a player. If the owner is a {@link OwnableEntity}, the owner will continue to be searched until it is a player or else null is returned.
-     * <br>-In all other cases null is returned.
-     */
-    @Nullable
-    public static Player playerOrOwner(Entity target){
-        while(target instanceof OwnableEntity){
-            target = ((OwnableEntity)target).getOwner();
-        }
-
-        if(target instanceof Player){
-            return  (Player) target;
-        } else{
-            return null;
-        }
-    }
-
-    /**
-     * @see FactionAmuletItem
-     */
     @SubscribeEvent
     public static void onLivingChangeTarget(LivingChangeTargetEvent event) {
-        if(event.getEntity() instanceof IFactionEnemy){
-            if(event.getNewTarget() == null){
-                return;
-            }
-
-            if(event.getNewTarget().hasEffect(de.joh.dmnr.common.init.EffectInit.PEACE_EFFECT.get())){
-                event.setNewTarget(null);
-            } else if(!event.getNewTarget().hasEffect(de.joh.dmnr.common.init.EffectInit.BROKEN_PEACE_EFFECT.get())
-                    && ((ChargeableItem)(ItemInit.FACTION_AMULET.get())).isEquippedAndHasMana(event.getNewTarget(), 50.0F, true)){
-                event.getNewTarget().addEffect(new MobEffectInstance((de.joh.dmnr.common.init.EffectInit.PEACE_EFFECT.get()), 600));
-                event.setNewTarget(null);
-            }
-        }
+        FactionAmuletItem.eventHandlePeaceOffering(event);
     }
 
     /**
@@ -209,10 +101,12 @@ public class DamageEventHandler {
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
         DamageSource source = event.getSource();
+        if (VoidfeatherCharmItem.eventHandleVoidProtection(event)) {
+            return;
+        }
+
         if(event.getEntity() instanceof Player player){
-            if (checkAndConsumeVoidfeatherCharm(event, player)) {
-                return;
-            }
+
             if (!player.level().isClientSide) {
                 //protection against fire
                 if (source.is(DamageTypeTags.IS_FIRE) && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE) >= 1) {
@@ -278,27 +172,7 @@ public class DamageEventHandler {
             }
         }
 
-        if(source.getEntity() instanceof Player sourceEntity){
-            if(sourceEntity != event.getEntity()) {
-                for (SlotResult curios : CuriosApi.getCuriosHelper().findCurios(sourceEntity, ItemInit.BRACELET_OF_FRIENDSHIP.get())) {
-                    if (curios.stack().getItem() instanceof BraceletOfFriendshipItem) {
-                        Player referenceTarget = playerOrOwner(event.getEntity());
-                        if(referenceTarget == sourceEntity){
-                            event.setCanceled(true);
-                            return;
-                        }
-                        else if(referenceTarget != null){
-                            for (Player friend : ((BraceletOfFriendshipItem) curios.stack().getItem()).getPlayerTargets(curios.stack(), sourceEntity.level())) {
-                                if (friend == referenceTarget) {
-                                    event.setCanceled(true);
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        BraceletOfFriendshipItem.eventHandleProtectFriends(event);
     }
 
     /**
@@ -360,75 +234,6 @@ public class DamageEventHandler {
         }
     }
 
-    /**
-     * @param event  LivingAttackEvent event on which the check takes place
-     * @param player Player wearing the charm
-     * @return Was the charm used and destroyed?
-     */
-    private static boolean checkAndConsumeVoidfeatherCharm(LivingAttackEvent event, Player player) {
-        if (!player.isCreative() && !player.isSpectator() && !player.level().isClientSide) {
-            ServerPlayer spe = (ServerPlayer)player;
-
-
-            if (event.getSource().is(DamageTypes.FELL_OUT_OF_WORLD) && player.getHealth() - event.getAmount() <= 10) {
-                MinecraftServer server = player.level().getServer();
-                if (server != null){
-                    boolean consumed_charm = false;
-                    BlockPos bedPos = spe.getRespawnPosition();
-                    if (bedPos == null) {
-                        ServerLevel level = server.getLevel(player.level().dimension());
-                        if(level != null){
-                            bedPos = level.getSharedSpawnPos();
-                        }
-                    }
-
-                    if(bedPos != null){
-                        Optional<SlotResult>  result = CuriosInterop.GetSingleItem(player, ItemInit.VOIDFEATHER_CHARM.get());
-                        if (result.isPresent()) {
-                            consumed_charm = true;
-                            result.get().stack().hurtAndBreak(999, spe, (damager) -> CuriosApi.broadcastCurioBreakEvent(result.get().slotContext()));
-                        }
-                        else if (InventoryUtilities.removeItemFromInventory(new ItemStack(ItemInit.VOIDFEATHER_CHARM.get(), 1), true, true, new InvWrapper(player.getInventory()))) {
-                            consumed_charm = true;
-                        }
-
-                        if (consumed_charm) {
-                            event.setCanceled(true);
-                            player.resetFallDistance();
-
-
-                            player.level().playSeededSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1F, 0.9F + (float)Math.random() * 0.2F, 0);
-
-                            final double bed_x = (double)bedPos.getX() + 0.5;
-                            final double bed_y = (double)bedPos.getY() + 0.5;
-                            final double bed_z = (double)bedPos.getZ() + 0.5;
-
-                            ServerLevel homePlane = server.getLevel(spe.getRespawnDimension());
-                            if (homePlane != null && !player.isPassenger() && spe.level().dimension() != spe.getRespawnDimension()) {
-                                spe.changeDimension(homePlane, new net.minecraftforge.common.util.ITeleporter() {
-                                    @Override
-                                    public Entity placeEntity(Entity entity, ServerLevel currentWorld, ServerLevel destinationWorld, float yaw, Function<Boolean, Entity> repositionEntity) {
-                                        entity = repositionEntity.apply(false);
-                                        entity.setPos(bed_x, bed_y, bed_z);
-                                        entity.level().broadcastEntityEvent(spe, (byte)46);
-                                        return entity;
-                                    }
-                                });
-                            }
-                            // ensures the player is teleported to the correct coordinates
-                            player.teleportTo(bed_x,bed_y,bed_z);
-
-                            player.level().playSeededSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ENDERMAN_TELEPORT, SoundSource.PLAYERS, 1F, 0.9F + (float)Math.random() * 0.2F, 0);
-                            player.level().broadcastEntityEvent(spe, (byte)46);
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
     /** Provides the souls given by a monster to an Undead upon death
      * @param soulRecipient Player attacking the target
      * @param target Target to be checked
@@ -473,15 +278,8 @@ public class DamageEventHandler {
         }
     }
 
-    /**
-     * Drops the Dragon Core when the Ender Dragon dies
-     */
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event){
-        if(event.getEntity().getType() == EntityType.ENDER_DRAGON){
-            Level world = event.getEntity().level();
-            PresentItem item = new PresentItem(world, event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), new ItemStack(ItemInit.DRAGON_CORE.get()));
-            world.addFreshEntity(item);
-        }
+        DragonCoreItem.eventHandleDragonDeath(event);
     }
 }
