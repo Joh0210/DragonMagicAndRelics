@@ -1,27 +1,20 @@
 package de.joh.dmnr.common.event;
 
-import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.common.armorupgrade.JumpArmorUpgrade;
-import de.joh.dmnr.common.command.Commands;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
-import de.joh.dmnr.common.init.EffectInit;
-import de.joh.dmnr.common.util.CommonConfig;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleBurningFrenzyS2CPacket;
 import de.joh.dmnr.networking.packet.ToggleMajorFireResS2CPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
@@ -29,8 +22,6 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.server.command.ConfigCommand;
-import top.theillusivec4.caelus.api.CaelusApi;
 
 /**
  * These event handlers take care of processing events which are on the server and client. (No damage events)
@@ -87,14 +78,7 @@ public class CommonEventHandler {
      */
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onGlideTick(TickEvent.PlayerTickEvent event){
-        IPlayerMagic magic = event.player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-        if(event.player.hasEffect(EffectInit.ELYTRA.get())
-                && (magic != null && magic.getCastingResource().hasEnoughAbsolute(event.player, CommonConfig.getElytraManaCostPerTick()))
-                && !event.player.hasEffect(EffectInit.FLY_DISABLED.get())) {
-            AttributeInstance attributeInstance = event.player.getAttribute(CaelusApi.getInstance().getFlightAttribute());
-            if(attributeInstance != null && !attributeInstance.hasModifier(CaelusApi.getInstance().getElytraModifier()))
-                attributeInstance.addTransientModifier(CaelusApi.getInstance().getElytraModifier());
-        }
+        ElytraMobEffect.eventHandleElytraFly(event);
     }
 
     /**
@@ -104,16 +88,6 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         ArmorUpgradeHelper.applyOnTickUpgrade(event.player);
-    }
-
-    /**
-     * Registration of Commands
-     * @see Commands
-     */
-    @SubscribeEvent
-    public static void onCommandsRegister(RegisterCommandsEvent event){
-        new Commands(event.getDispatcher());
-        ConfigCommand.register(event.getDispatcher());
     }
 
     @SubscribeEvent
