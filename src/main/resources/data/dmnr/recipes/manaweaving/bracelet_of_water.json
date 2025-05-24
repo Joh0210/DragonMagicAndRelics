@@ -1,0 +1,16 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "dmnr:bracelet_of_water",
+  "tier": 2,
+  "items": [
+    "minecraft:fishes",
+    "minecraft:fishes",
+    "minecraft:fishes",
+    "mna:mundane_bracelet",
+    "mna:mote_water"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/inverted_triangle"
+  ]
+}

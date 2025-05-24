@@ -3,6 +3,10 @@
   "values": [
     "dmnr:bracelet_of_friendship",
     "dmnr:ring_of_spell_storing",
-    "dmnr:ring_of_spell_storing_cooldown"
+    "dmnr:ring_of_spell_storing_cooldown",
+
+    "dmnr:bracelet_of_water",
+    "dmnr:bracelet_of_water_greater"
+
   ]
 }

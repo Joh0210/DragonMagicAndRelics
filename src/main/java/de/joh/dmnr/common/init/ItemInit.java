@@ -3,7 +3,6 @@ package de.joh.dmnr.common.init;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.BaseTieredItem;
 import de.joh.dmnr.api.item.UpgradeSealItem;
-import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.item.dragonmagearmor.AbyssalDragonMageArmorItem;
 import de.joh.dmnr.common.item.dragonmagearmor.ArchDragonMageArmorItem;
@@ -65,18 +64,14 @@ public class ItemInit {
     public static final RegistryObject<Item> DEVIL_RING = ITEMS.register("devil_ring", ()->new DevilRingItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> VOIDFEATHER_CHARM = ITEMS.register("voidfeather_charm", () -> new VoidfeatherCharmItem((new Item.Properties()).setNoRepair().stacksTo(1).durability(1)));
 
-    /**
-     * The user deals twice the amount of damage, but also takes twice the amount of damage
-     * @see DamageEventHandler
-     */
     public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", DamageAdjustmentBelt::new);
-    /**
-     * The user deals twice the amount of damage, but also takes twice the amount of damage
-     * @see DamageEventHandler
-     */
     public static final RegistryObject<Item> STURDY_BELT = ITEMS.register("sturdy_belt", () -> new BaseTieredItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> CURSE_PROTECTION_AMULET = ITEMS.register("curse_protection_amulet", CurseProtectionAmuletItem::new);
-
+    public static final RegistryObject<Item> BRACELET_OF_WATER = ITEMS.register("bracelet_of_water", () -> new WaterBraceletItem(new Item.Properties().stacksTo(1), 1));
+    public static final RegistryObject<Item> BRACELET_OF_WATER_GREATER = ITEMS.register("bracelet_of_water_greater", () -> new WaterBraceletItem(new Item.Properties().stacksTo(1), 2));
+    public static final RegistryObject<Item> REACH_RING_MINOR = ITEMS.register("reach_ring_minor", () -> new ReachRingItem(new Item.Properties().stacksTo(1), 1));
+    public static final RegistryObject<Item> REACH_RING = ITEMS.register("reach_ring", () -> new ReachRingItem(new Item.Properties().stacksTo(1), 2));
+    public static final RegistryObject<Item> REACH_RING_GREATER = ITEMS.register("reach_ring_greater", () -> new ReachRingItem(new Item.Properties().stacksTo(1), 3));
 
     //Other
     public static final RegistryObject<Item> MUTANDIS = ITEMS.register("mutandis", () -> new MutandisItem(false, (new Item.Properties())));

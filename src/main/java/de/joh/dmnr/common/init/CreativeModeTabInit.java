@@ -59,6 +59,12 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.GLASS_CANNON_BELT.get());
                         pOutput.accept(ItemInit.STURDY_BELT.get());
                         pOutput.accept(ItemInit.CURSE_PROTECTION_AMULET.get());
+                        pOutput.accept(ItemInit.BRACELET_OF_WATER.get());
+                        pOutput.accept(ItemInit.BRACELET_OF_WATER_GREATER.get());
+                        pOutput.accept(ItemInit.REACH_RING_MINOR.get());
+                        pOutput.accept(ItemInit.REACH_RING.get());
+                        pOutput.accept(ItemInit.REACH_RING_GREATER.get());
+
 
                         pOutput.accept(ItemInit.MUTANDIS.get());
                         pOutput.accept(ItemInit.PURIFIED_MUTANDIS.get());

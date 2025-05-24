@@ -1,0 +1,15 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:reach_ring_greater",
+  "tier": 5,
+  "items": [
+    "dmnr:reach_ring",
+    "dmnr:dragon_core"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "ENDER",
+      "amount": 2500
+    }
+  ]
+}

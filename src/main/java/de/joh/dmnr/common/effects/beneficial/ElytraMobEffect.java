@@ -6,18 +6,18 @@ import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.effects.EffectInit;
-import de.joh.dmnr.common.event.CommonEventHandler;
 import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.event.TickEvent;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.caelus.api.CaelusApi;
 
 /**
  * This effect gives an elytra fly.
@@ -25,7 +25,7 @@ import org.jetbrains.annotations.NotNull;
  * <br>Level 1: With speed boost and creative fly, but mana consumption.
  * <br>Level 2: With speed boost, creative fly and no mana consumption.
  * <br>This effect takes into account the speed or slow effect.
- * @see CommonEventHandler
+ * todo: refactor
  * @author Joh0210
  */
 public class ElytraMobEffect extends MobEffect {
@@ -53,7 +53,7 @@ public class ElytraMobEffect extends MobEffect {
                     } else {
                         ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
                         if (!player.isCreative() && !player.isSpectator()) {
-                            ManaAndArtifice.instance.proxy.setFlySpeed(player, Math.max(amplifier * 1.2f * CommonConfig.getFlySpeedPerLevel(player), 0.05f));
+                            ManaAndArtifice.instance.proxy.setFlySpeed(player, Math.max((amplifier + 1-1) * CommonConfig.getFlySpeedPerLevel(player), 0.05f));
                         } else {
                             ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05f);
                         }
@@ -73,19 +73,11 @@ public class ElytraMobEffect extends MobEffect {
 
                             pos = player.getDeltaMovement();
 
-                            int speedboost = 0;
-                            MobEffectInstance speedEffect = player.getEffect(MobEffects.MOVEMENT_SPEED);
-                            if(speedEffect!=null){
-                                speedboost = speedEffect.getAmplifier() + 1;
-                            }
+                            // effect Level * (Speed_Attribute * ConfigValue) * Config Value adjustment for Elytra-Flight
+                            float speedboost = (amplifier + 1-1) * CommonConfig.getFlySpeedPerLevel(player) * 45;
 
-                            MobEffectInstance slowEffect = player.getEffect(MobEffects.MOVEMENT_SLOWDOWN);
-                            if(slowEffect!=null){
-                                speedboost -= slowEffect.getAmplifier() + 1;
-                            }
-
-                            maxLength = Math.max(1.75F * (1.0F + 0.2F * speedboost), 0.5F);
-                            lookScale = Math.max(0.06D * (1.0F + 0.2F * speedboost), 0.02D);
+                            maxLength = Math.max(1.75F * speedboost, 0.5F);
+                            lookScale = Math.max(0.06D * speedboost, 0.02D);
 
                             scaled_look = look.scale(lookScale);
                             pos = pos.add(scaled_look);
@@ -128,6 +120,20 @@ public class ElytraMobEffect extends MobEffect {
             ManaAndArtifice.instance.proxy.setFlightEnabled((ServerPlayer)living, false);
         } else if (living instanceof Player && living.level().isClientSide) {
             ManaAndArtifice.instance.proxy.setFlySpeed((Player)living, 0.05F);
+        }
+    }
+
+    /**
+     * If the player has the Elytra effect, they can fly through this event like with an Elytra.
+     */
+    public static void eventHandleElytraFly(TickEvent.PlayerTickEvent event){
+        IPlayerMagic magic = event.player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
+        if(event.player.hasEffect(de.joh.dmnr.common.init.EffectInit.ELYTRA.get())
+                && (magic != null && magic.getCastingResource().hasEnoughAbsolute(event.player, CommonConfig.getElytraManaCostPerTick()))
+                && !event.player.hasEffect(de.joh.dmnr.common.init.EffectInit.FLY_DISABLED.get())) {
+            AttributeInstance attributeInstance = event.player.getAttribute(CaelusApi.getInstance().getFlightAttribute());
+            if(attributeInstance != null && !attributeInstance.hasModifier(CaelusApi.getInstance().getElytraModifier()))
+                attributeInstance.addTransientModifier(CaelusApi.getInstance().getElytraModifier());
         }
     }
 }
