@@ -6,9 +6,11 @@ import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.common.armorupgrade.JumpArmorUpgrade;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
+import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleBurningFrenzyS2CPacket;
 import de.joh.dmnr.networking.packet.ToggleMajorFireResS2CPacket;
+import de.joh.dmnr.networking.packet.ToggleWaterBraceletS2CPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -22,6 +24,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import top.theillusivec4.curios.api.CuriosApi;
 
 /**
  * These event handlers take care of processing events which are on the server and client. (No damage events)
@@ -96,6 +99,8 @@ public class CommonEventHandler {
             if(event.getEntity() instanceof ServerPlayer player) {
                 ModMessages.sendToPlayer(new ToggleMajorFireResS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE)) >= 1), player);
                 ModMessages.sendToPlayer(new ToggleBurningFrenzyS2CPacket((ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.BURNING_FRENZY)) >= 1), player);
+
+                ModMessages.sendToPlayer(new ToggleWaterBraceletS2CPacket(!CuriosApi.getCuriosHelper().findCurios(player, ItemInit.BRACELET_OF_WATER.get()).isEmpty() || !CuriosApi.getCuriosHelper().findCurios(player, ItemInit.BRACELET_OF_WATER_GREATER.get()).isEmpty()), player);
             }
         }
     }

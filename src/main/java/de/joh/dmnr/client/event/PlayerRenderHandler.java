@@ -46,12 +46,16 @@ public class PlayerRenderHandler {
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)
     public static void onFogRenderEvent(ViewportEvent.RenderFog event) {
-        if (event.getCamera().getFluidInCamera() == FogType.LAVA) {
-            if (ClientPlayerDragonMagic.hasMajorFireResistance()) {
-                event.setNearPlaneDistance(-8.0F);
-                event.setFarPlaneDistance(192.0F);
-                event.setCanceled(true);
-            }
+        if (event.getCamera().getFluidInCamera() == FogType.LAVA && ClientPlayerDragonMagic.hasMajorFireResistance()) {
+            event.setNearPlaneDistance(-8.0F);
+            event.setFarPlaneDistance(192.0F);
+            event.setCanceled(true);
+        }
+
+        if (event.getCamera().getFluidInCamera() == FogType.WATER && ClientPlayerDragonMagic.hasWaterBracelet()) {
+            event.setNearPlaneDistance(-8.0F);
+            event.setFarPlaneDistance(192.0F);
+            event.setCanceled(true);
         }
 
         if (FOG_AMOUNT > 0.0F) {

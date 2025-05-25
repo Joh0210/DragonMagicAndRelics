@@ -64,6 +64,13 @@ public class ModMessages {
                 .consumerMainThread(ToggleMajorFireResS2CPacket::handle)
                 .add();
 
+
+        net.messageBuilder(ToggleWaterBraceletS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(ToggleWaterBraceletS2CPacket::new)
+                .encoder(ToggleWaterBraceletS2CPacket::toBytes)
+                .consumerMainThread(ToggleWaterBraceletS2CPacket::handle)
+                .add();
+
         net.messageBuilder(ToggleBurningFrenzyS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(ToggleBurningFrenzyS2CPacket::new)
                 .encoder(ToggleBurningFrenzyS2CPacket::toBytes)
