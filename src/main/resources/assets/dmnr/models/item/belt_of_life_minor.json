@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "dmnr:item/belt_of_life_minor"
+  }
+}

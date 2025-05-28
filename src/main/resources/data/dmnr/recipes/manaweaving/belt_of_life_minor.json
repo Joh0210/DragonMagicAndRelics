@@ -1,0 +1,17 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "dmnr:belt_of_life_minor",
+  "tier": 2,
+  "items": [
+    "minecraft:ghast_tear",
+    "mna:infused_silk",
+    "mna:healing_poultice",
+    "minecraft:golden_apple",
+    "mna:stone_rune_red",
+    "mna:belt_buckle"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/square",
+    "mna:manaweave_patterns/diamond"
+  ]
+}

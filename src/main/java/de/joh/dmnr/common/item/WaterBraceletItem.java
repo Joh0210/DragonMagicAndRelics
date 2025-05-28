@@ -8,6 +8,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeMod;
 import top.theillusivec4.curios.api.SlotContext;
@@ -22,8 +23,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 public class WaterBraceletItem extends TieredItem implements ICurioItem {
     private final AttributeModifier swimmingMod;
 
-    public WaterBraceletItem(Properties properties, int level) {
-        super(properties);
+    public WaterBraceletItem(int level) {
+        super(new Item.Properties().stacksTo(1));
         swimmingMod = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_water_bracelet", 1.5F * level, AttributeModifier.Operation.ADDITION);
     }
 

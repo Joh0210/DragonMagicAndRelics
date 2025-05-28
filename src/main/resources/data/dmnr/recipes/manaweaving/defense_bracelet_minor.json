@@ -1,0 +1,21 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 2,
+  "output": "dmnr:defense_bracelet_minor",
+  "quantity": 1,
+  "items": [
+    "mna:mundane_bracelet",
+    "mna:rune_defense",
+    "minecraft:iron_chestplate",
+    "minecraft:shield",
+    "mna:mote_earth"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/diamond"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "distill_only": true,
+        "output_rate": 1.0,
+        "object": {
+          "item": "dmnr:defense_bracelet_greater"
+        },
+        "components": [
+          { "item": "magichem:admixture_protection", "count": 72 },
+          { "item": "magichem:admixture_metal", "count": 32 },
+          { "item": "magichem:essentia_precious", "count": 104 },
+          { "item": "magichem:essentia_albedo", "count": 10 },
+          { "item": "magichem:admixture_instrument", "count": 21 }
+        ]
+      }
+    }
+  ]
+}

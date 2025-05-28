@@ -67,11 +67,18 @@ public class ItemInit {
     public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", DamageAdjustmentBelt::new);
     public static final RegistryObject<Item> STURDY_BELT = ITEMS.register("sturdy_belt", () -> new BaseTieredItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     public static final RegistryObject<Item> CURSE_PROTECTION_AMULET = ITEMS.register("curse_protection_amulet", CurseProtectionAmuletItem::new);
-    public static final RegistryObject<Item> BRACELET_OF_WATER = ITEMS.register("bracelet_of_water", () -> new WaterBraceletItem(new Item.Properties().stacksTo(1), 1));
-    public static final RegistryObject<Item> BRACELET_OF_WATER_GREATER = ITEMS.register("bracelet_of_water_greater", () -> new WaterBraceletItem(new Item.Properties().stacksTo(1), 2));
-    public static final RegistryObject<Item> REACH_RING_MINOR = ITEMS.register("reach_ring_minor", () -> new ReachRingItem(new Item.Properties().stacksTo(1), 1));
-    public static final RegistryObject<Item> REACH_RING = ITEMS.register("reach_ring", () -> new ReachRingItem(new Item.Properties().stacksTo(1), 2));
-    public static final RegistryObject<Item> REACH_RING_GREATER = ITEMS.register("reach_ring_greater", () -> new ReachRingItem(new Item.Properties().stacksTo(1), 3));
+    public static final RegistryObject<Item> BRACELET_OF_WATER = ITEMS.register("bracelet_of_water", () -> new WaterBraceletItem(1));
+    public static final RegistryObject<Item> BRACELET_OF_WATER_GREATER = ITEMS.register("bracelet_of_water_greater", () -> new WaterBraceletItem(2));
+    public static final RegistryObject<Item> REACH_RING_MINOR = ITEMS.register("reach_ring_minor", () -> new ReachRingItem(1));
+    public static final RegistryObject<Item> REACH_RING = ITEMS.register("reach_ring", () -> new ReachRingItem(2));
+    public static final RegistryObject<Item> REACH_RING_GREATER = ITEMS.register("reach_ring_greater", () -> new ReachRingItem(3));
+    public static final RegistryObject<Item> BELT_OF_LIFE_MINOR = ITEMS.register("belt_of_life_minor", () -> new BeltOfLifeItem(1));
+    public static final RegistryObject<Item> BELT_OF_LIFE = ITEMS.register("belt_of_life", () -> new BeltOfLifeItem(2));
+    public static final RegistryObject<Item> BELT_OF_LIFE_GREATER = ITEMS.register("belt_of_life_greater", () -> new BeltOfLifeItem(3));
+    public static final RegistryObject<Item> REGENERATION_AMULET = ITEMS.register("regeneration_amulet", () -> new RegenerationAmuletItem(1));
+    public static final RegistryObject<Item> DEFENSE_BRACELET_MINOR = ITEMS.register("defense_bracelet_minor", () -> new DefenseBraceletItem(5, 1));
+    public static final RegistryObject<Item> DEFENSE_BRACELET = ITEMS.register("defense_bracelet", () -> new DefenseBraceletItem(8, 4));
+    public static final RegistryObject<Item> DEFENSE_BRACELET_GREATER = ITEMS.register("defense_bracelet_greater", () -> new DefenseBraceletItem(14, 8));
 
     //Other
     public static final RegistryObject<Item> MUTANDIS = ITEMS.register("mutandis", () -> new MutandisItem(false, (new Item.Properties())));

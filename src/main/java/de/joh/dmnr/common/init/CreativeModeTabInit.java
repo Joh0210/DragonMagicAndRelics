@@ -19,7 +19,6 @@ public class CreativeModeTabInit {
     public static final RegistryObject<CreativeModeTab> DMNR_TAB = CREATIVE_MODE_TABS.register("dmnr_1_dmnr",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_HELMET.get()))
                     .title(Component.translatable("itemGroup.dmnr"))
-                    .noScrollBar()
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ItemInit.DRAGON_CORE.get());
 
@@ -64,7 +63,13 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.REACH_RING_MINOR.get());
                         pOutput.accept(ItemInit.REACH_RING.get());
                         pOutput.accept(ItemInit.REACH_RING_GREATER.get());
-
+                        pOutput.accept(ItemInit.BELT_OF_LIFE_MINOR.get());
+                        pOutput.accept(ItemInit.BELT_OF_LIFE.get());
+                        pOutput.accept(ItemInit.BELT_OF_LIFE_GREATER.get());
+                        pOutput.accept(ItemInit.REGENERATION_AMULET.get());
+                        pOutput.accept(ItemInit.DEFENSE_BRACELET_MINOR.get());
+                        pOutput.accept(ItemInit.DEFENSE_BRACELET.get());
+                        pOutput.accept(ItemInit.DEFENSE_BRACELET_GREATER.get());
 
                         pOutput.accept(ItemInit.MUTANDIS.get());
                         pOutput.accept(ItemInit.PURIFIED_MUTANDIS.get());

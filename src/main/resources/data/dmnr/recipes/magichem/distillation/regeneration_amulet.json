@@ -1,0 +1,27 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "distill_only": true,
+        "output_rate": 1.0,
+        "object": {
+          "item": "dmnr:regeneration_amulet"
+        },
+        "components": [
+          { "item": "magichem:admixture_healing", "count": 188 },
+          { "item": "magichem:essentia_precious", "count": 109 },
+          { "item": "magichem:admixture_instrument", "count": 13 },
+          { "item": "magichem:essentia_citrinitas", "count": 6 }
+        ]
+      }
+    }
+  ]
+}

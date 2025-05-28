@@ -2,6 +2,9 @@
   "replace": false,
   "values": [
     "dmnr:glass_cannon_belt",
-    "dmnr:sturdy_belt"
+    "dmnr:sturdy_belt",
+    "dmnr:belt_of_life_minor",
+    "dmnr:belt_of_life",
+    "dmnr:belt_of_life_greater"
   ]
 }

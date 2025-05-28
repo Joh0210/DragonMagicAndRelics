@@ -2,11 +2,15 @@
   "replace": false,
   "values": [
     "dmnr:bracelet_of_friendship",
+
     "dmnr:ring_of_spell_storing",
     "dmnr:ring_of_spell_storing_cooldown",
 
     "dmnr:bracelet_of_water",
-    "dmnr:bracelet_of_water_greater"
+    "dmnr:bracelet_of_water_greater",
 
+    "dmnr:defense_bracelet_minor",
+    "dmnr:defense_bracelet",
+    "dmnr:defense_bracelet_greater"
   ]
 }

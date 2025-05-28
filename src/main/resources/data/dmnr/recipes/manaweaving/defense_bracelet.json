@@ -1,0 +1,18 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 4,
+  "output": "dmnr:defense_bracelet",
+  "quantity": 1,
+  "items": [
+    "dmnr:defense_bracelet_minor",
+    "mna:rune_defense",
+    "minecraft:diamond_chestplate",
+    "minecraft:amethyst_shard",
+    "mna:greater_mote_earth"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/bolt",
+    "mna:manaweave_patterns/star",
+    "mna:manaweave_patterns/bolt"
+  ]
+}

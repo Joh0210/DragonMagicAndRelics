@@ -3,6 +3,7 @@
 	"values": [
 		"dmnr:faction_amulet",
 		"dmnr:amulet_of_dragon_power",
-		"dmnr:curse_protection_amulet"
+		"dmnr:curse_protection_amulet",
+		"dmnr:regeneration_amulet"
 	]
 }

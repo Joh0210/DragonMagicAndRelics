@@ -1,0 +1,42 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:regeneration_amulet",
+  "tier": 4,
+  "items": [
+    "mna:mundane_amulet",
+    "minecraft:enchanted_golden_apple",
+    "mna:stone_rune_red",
+    "minecraft:ghast_tear",
+    "mna:stone_rune_red",
+    "minecraft:nether_star",
+    "mna:stone_rune_red",
+    "minecraft:ghast_tear",
+    "mna:stone_rune_red"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WATER",
+      "amount": 1200
+    },
+    {
+      "affinity": "FIRE",
+      "amount": 1200
+    },
+    {
+      "affinity": "EARTH",
+      "amount": 1200
+    },
+    {
+      "affinity": "WIND",
+      "amount": 1200
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 1200
+    },
+    {
+      "affinity": "ENDER",
+      "amount": 1200
+    }
+  ]
+}

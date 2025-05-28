@@ -1669,6 +1669,100 @@
       }
     ]
   },
+  "King of Hearts Amulet": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "King of Hearts Amulet"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This Royal jewelery gives me a permanent regeneration effect.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/regeneration_amulet"
+      }
+    ]
+  },
+  "Queen of Hearts Belt": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Queen of Hearts Belt"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This belt of a long-forgotten queen allows me to carry more hearts with me than a mere mortal should. Each level increases the amount exponentially.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/belt_of_life_minor"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/belt_of_life"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/belt_of_life_greater"
+      }
+    ]
+  },
+  "Bracelet of Defense": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Bracelet of Defense"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Some armors give me a lot of useful effects but hardly any protection. This bracelet compensates for that. This bracelet gives me more armor and toughness.\n\nThe minor version gives +5 (armor)/1 (toughness), normal +8/4, and greater +14/8",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/defense_bracelet_minor"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/defense_bracelet"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/defense_bracelet_greater"
+      }
+    ]
+  },
   "Ring of Reach": {
     "index": "1",
     "category": "artifice",

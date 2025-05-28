@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:defense_bracelet_greater",
+  "tier": 5,
+  "items": [
+    "dmnr:defense_bracelet",
+    "minecraft:obsidian",
+    "mna:rune_defense",
+    "minecraft:obsidian",
+    "minecraft:netherite_chestplate",
+    "minecraft:obsidian",
+    "mna:rune_defense",
+    "minecraft:obsidian",
+    "minecraft:nether_star"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "EARTH",
+      "amount": 2750
+    }
+  ]
+}

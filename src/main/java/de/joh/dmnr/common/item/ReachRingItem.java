@@ -4,6 +4,7 @@ import com.mna.api.items.TieredItem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeMod;
 import top.theillusivec4.curios.api.SlotContext;
@@ -17,8 +18,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 public class ReachRingItem extends TieredItem implements ICurioItem {
     private final AttributeModifier reachMod;
 
-    public ReachRingItem(Properties properties, int level) {
-        super(properties);
+    public ReachRingItem(int level) {
+        super(new Item.Properties().stacksTo(1));
         reachMod = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_reach_ring", level, AttributeModifier.Operation.ADDITION);
     }
 
