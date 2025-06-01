@@ -79,6 +79,7 @@ public class ItemInit {
     public static final RegistryObject<Item> DEFENSE_BRACELET_MINOR = ITEMS.register("defense_bracelet_minor", () -> new DefenseBraceletItem(5, 1));
     public static final RegistryObject<Item> DEFENSE_BRACELET = ITEMS.register("defense_bracelet", () -> new DefenseBraceletItem(8, 4));
     public static final RegistryObject<Item> DEFENSE_BRACELET_GREATER = ITEMS.register("defense_bracelet_greater", () -> new DefenseBraceletItem(14, 8));
+    public static final RegistryObject<Item> HYDRA_CROWN = ITEMS.register("hydra_crown", HydraCrownItem::new);
 
     //Other
     public static final RegistryObject<Item> MUTANDIS = ITEMS.register("mutandis", () -> new MutandisItem(false, (new Item.Properties())));

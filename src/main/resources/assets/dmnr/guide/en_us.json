@@ -1729,6 +1729,36 @@
       }
     ]
   },
+  "Hydra Crown": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Hydra Crown"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Like the model for this crown, I become stronger with it the closer I am to the glimpse of death. \n(Less HP = beneficial effects)\n\nThis Crown can only be crafted by the \"",
+            "color": ""
+          },
+          {
+            "text": "Undead.",
+            "color": "dark_gray"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/hydra_crown"
+      }
+    ]
+  },
   "Bracelet of Defense": {
     "index": "1",
     "category": "artifice",

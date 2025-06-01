@@ -4,7 +4,6 @@ import de.joh.dmnr.DragonMagicAndRelics;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Items;
@@ -41,6 +40,7 @@ public enum ArmorMaterials implements ArmorMaterial {
       return Ingredient.of(Items.NETHERITE_INGOT);
     }),
     */
+    HYDRA_CROWN_MATERIAL("hydra", 9, new int[]{2, 5, 6, 2}, 25, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, 0.0F, () -> Ingredient.of(Items.GOLD_INGOT)),
 
     DRAGON_MAGE_ARMOR_MATERIAL("dragon_mage", 37, new int[]{3, 6, 8, 3}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(Items.NETHERITE_INGOT));
 

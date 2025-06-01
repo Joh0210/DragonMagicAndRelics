@@ -1,0 +1,20 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "dmnr:hydra_crown",
+  "tier": 3,
+  "requiredFaction": "mna:undead",
+  "items": [
+    "minecraft:ghast_tear",
+    "mna:tarma_root",
+    "minecraft:purple_candle",
+    "mna:stone_rune_purple",
+    "minecraft:golden_helmet"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/slash",
+    "mna:manaweave_patterns/knot",
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/knot4",
+    "mna:manaweave_patterns/backslash"
+  ]
+}
