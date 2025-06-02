@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "dmnr:hydra_crown"
+    "dmnr:hydra_crown",
+    "dmnr:night_goggles"
   ]
 }

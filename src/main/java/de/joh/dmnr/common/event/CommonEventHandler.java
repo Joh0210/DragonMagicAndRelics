@@ -7,6 +7,7 @@ import de.joh.dmnr.common.armorupgrade.JumpArmorUpgrade;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.ItemInit;
+import de.joh.dmnr.common.item.NightGogglesItem;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleBurningFrenzyS2CPacket;
 import de.joh.dmnr.networking.packet.ToggleMajorFireResS2CPacket;
@@ -57,6 +58,11 @@ public class CommonEventHandler {
         if(entity != null && event.getSlot().getType() == EquipmentSlot.Type.ARMOR){
             Item fromItem = event.getFrom().getItem();
             Item toItem = event.getTo().getItem();
+
+
+            if(fromItem instanceof NightGogglesItem){
+                ((NightGogglesItem)fromItem).onDiscard(entity);
+            }
 
             if(fromItem instanceof DragonMageArmorItem){
                 ((DragonMageArmorItem)fromItem).onDiscard(event.getFrom(), entity);

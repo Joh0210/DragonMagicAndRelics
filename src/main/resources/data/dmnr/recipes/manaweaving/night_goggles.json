@@ -1,0 +1,19 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 2,
+  "output": "dmnr:night_goggles",
+  "quantity": 1,
+  "items": [
+    "minecraft:amethyst_shard",
+    "mna:ritual_focus_lesser",
+    "minecraft:amethyst_shard",
+    "minecraft:leather",
+    "minecraft:soul_torch",
+    "minecraft:leather"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/circle"
+  ]
+}

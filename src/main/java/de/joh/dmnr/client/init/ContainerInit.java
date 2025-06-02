@@ -20,6 +20,8 @@ public class ContainerInit {
     public static final DeferredRegister<MenuType<?>> CONTAINERS;
     static final String BRACELET_OF_FRIENDSHIP_ID = "bracelet_of_friendship";
     public static final RegistryObject<MenuType<ContainerBraceletOfFriendship>> BRACELET_OF_FRIENDSHIP;
+    static final String POTION_OF_INFINITY_ID = "potion_of_infinity";
+    public static final RegistryObject<MenuType<ContainerPotionOfInfinity>> POTION_OF_INFINITY;
 
     static final String ABYSSAL_DRAGON_MAGE_CHESTPLATE_ID = "abyssal_dragon_mage_chestplate";
     public static final RegistryObject<MenuType<ContainerAbyssalDragonMageArmor>> ABYSSAL_DRAGON_MAGE_CHESTPLATE;
@@ -50,6 +52,8 @@ public class ContainerInit {
         CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, DragonMagicAndRelics.MOD_ID);
         BRACELET_OF_FRIENDSHIP = CONTAINERS.register(BRACELET_OF_FRIENDSHIP_ID,
                 () -> IForgeMenuType.create(ContainerBraceletOfFriendship::new));
+        POTION_OF_INFINITY = CONTAINERS.register(POTION_OF_INFINITY_ID,
+                () -> IForgeMenuType.create(ContainerPotionOfInfinity::new));
         ABYSSAL_DRAGON_MAGE_CHESTPLATE = CONTAINERS.register(ABYSSAL_DRAGON_MAGE_CHESTPLATE_ID,
                 () -> IForgeMenuType.create(ContainerAbyssalDragonMageArmor::new));
 

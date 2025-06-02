@@ -71,6 +71,9 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.DEFENSE_BRACELET.get());
                         pOutput.accept(ItemInit.DEFENSE_BRACELET_GREATER.get());
                         pOutput.accept(ItemInit.HYDRA_CROWN.get());
+                        pOutput.accept(ItemInit.NIGHT_GOGGLES.get());
+                        pOutput.accept(ItemInit.COLLECTORS_AMULET.get());
+                        pOutput.accept(ItemInit.POTION_OF_INFINITY.get());
 
                         pOutput.accept(ItemInit.MUTANDIS.get());
                         pOutput.accept(ItemInit.PURIFIED_MUTANDIS.get());

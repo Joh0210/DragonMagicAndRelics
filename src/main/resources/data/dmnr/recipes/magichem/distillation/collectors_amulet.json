@@ -1,0 +1,26 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "distill_only": true,
+        "output_rate": 1.0,
+        "object": {
+          "item": "dmnr:collectors_amulet"
+        },
+        "components": [
+          { "item": "magichem:admixture_potential", "count": 38 },
+          { "item": "magichem:admixture_sorcery", "count": 28 },
+          { "item": "magichem:essentia_citrinitas", "count": 7 }
+        ]
+      }
+    }
+  ]
+}

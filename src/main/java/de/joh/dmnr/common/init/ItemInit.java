@@ -80,6 +80,11 @@ public class ItemInit {
     public static final RegistryObject<Item> DEFENSE_BRACELET = ITEMS.register("defense_bracelet", () -> new DefenseBraceletItem(8, 4));
     public static final RegistryObject<Item> DEFENSE_BRACELET_GREATER = ITEMS.register("defense_bracelet_greater", () -> new DefenseBraceletItem(14, 8));
     public static final RegistryObject<Item> HYDRA_CROWN = ITEMS.register("hydra_crown", HydraCrownItem::new);
+    public static final RegistryObject<Item> NIGHT_GOGGLES = ITEMS.register("night_goggles", NightGogglesItem::new);
+    public static final RegistryObject<Item> COLLECTORS_AMULET = ITEMS.register("collectors_amulet", () -> new CollectorItem("ring", 3));
+    public static final RegistryObject<Item> POTION_OF_INFINITY = ITEMS.register("potion_of_infinity", PotionOfInfinityItem::new);
+
+
 
     //Other
     public static final RegistryObject<Item> MUTANDIS = ITEMS.register("mutandis", () -> new MutandisItem(false, (new Item.Properties())));

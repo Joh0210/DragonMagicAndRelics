@@ -10,6 +10,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
@@ -40,7 +41,8 @@ public enum ArmorMaterials implements ArmorMaterial {
       return Ingredient.of(Items.NETHERITE_INGOT);
     }),
     */
-    HYDRA_CROWN_MATERIAL("hydra", 9, new int[]{2, 5, 6, 2}, 25, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, 0.0F, () -> Ingredient.of(Items.GOLD_INGOT)),
+    NIGHT_GOGGLES_MATERIAL("night", 9, new int[]{1, 2, 3, 1}, 17, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.LEATHER)),
+    HYDRA_CROWN_MATERIAL("hydra", 9, new int[]{1, 4, 5, 2}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, 0.0F, () -> Ingredient.of(Items.GOLD_INGOT)),
 
     DRAGON_MAGE_ARMOR_MATERIAL("dragon_mage", 37, new int[]{3, 6, 8, 3}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 3.0F, 0.1F, () -> Ingredient.of(Items.NETHERITE_INGOT));
 
@@ -82,12 +84,12 @@ public enum ArmorMaterials implements ArmorMaterial {
     }
 
     @Override
-    public SoundEvent getEquipSound() {
+    public @NotNull SoundEvent getEquipSound() {
         return this.sound;
     }
 
     @Override
-    public Ingredient getRepairIngredient() {
+    public @NotNull Ingredient getRepairIngredient() {
         return this.repairIngredient.get();
     }
 

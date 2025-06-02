@@ -35,7 +35,7 @@ public class RegenerationAmuletItem extends TieredItem implements ICurioItem {
         LivingEntity livingEntity = slotContext.entity();
         MobEffectInstance regen = livingEntity.getEffect(MobEffects.REGENERATION);
         if(regen == null || regen.getAmplifier() > (level-1)) {
-            livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, -1, (level-1)));
+            livingEntity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, -1, (level-1), false, false));
         }
     }
 

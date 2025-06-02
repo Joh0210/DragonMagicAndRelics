@@ -1,0 +1,22 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 3,
+  "output": "dmnr:potion_of_infinity",
+  "quantity": 1,
+  "items": [
+    "minecraft:nether_wart",
+    "minecraft:brewing_stand",
+    "minecraft:nether_wart",
+    "minecraft:ghast_tear",
+    "mna:arcanist_ink",
+    "minecraft:ghast_tear",
+    "mna:mote_water",
+    "minecraft:netherite_ingot",
+    "mna:mote_arcane"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/bolt",
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/bolt"
+  ]
+}
