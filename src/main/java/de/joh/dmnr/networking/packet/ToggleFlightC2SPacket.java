@@ -36,7 +36,7 @@ public class ToggleFlightC2SPacket {
             if(player.hasEffect(EffectInit.FLY_DISABLED.get())){
                 player.removeEffect(EffectInit.FLY_DISABLED.get());
             }else{
-                player.addEffect(new MobEffectInstance(EffectInit.FLY_DISABLED.get(), 100000, 0, false, false, true));
+                player.addEffect(new MobEffectInstance(EffectInit.FLY_DISABLED.get(), -1, 0, false, false, true));
 
                 ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
                 ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);

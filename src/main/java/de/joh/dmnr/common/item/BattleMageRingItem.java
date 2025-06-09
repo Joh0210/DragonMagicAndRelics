@@ -40,6 +40,7 @@ public class BattleMageRingItem extends Item implements IDamageAdjustmentItem, I
     public float adjustAttacking(LivingHurtEvent event, Player attacker, ItemStack damageAdjustmentItem, float amount) {
         AttributeInstance attackAttribute = attacker.getAttribute(Attributes.ATTACK_DAMAGE);
         int attack = (attackAttribute != null) ? (int) Math.round(attackAttribute.getValue()) : 1;
+        attack = Math.max(1, attack);
 
         // shift default value of the attack from 1 to 0;
         return amount * (1.0f + (attack-1.0f)/15.0f);
