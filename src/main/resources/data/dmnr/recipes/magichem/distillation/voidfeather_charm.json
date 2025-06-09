@@ -16,11 +16,11 @@
           "item": "dmnr:voidfeather_charm"
         },
         "components": [
-          { "item": "magichem:admixture_travel", "count": 8 },
+          { "item": "magichem:admixture_protection", "count": 14 },
           { "item": "magichem:admixture_alien", "count": 12 },
+          { "item": "magichem:admixture_travel", "count": 8 },
           { "item": "magichem:admixture_instrument", "count": 3 },
-          { "item": "magichem:essentia_wrought", "count": 4 },
-          { "item": "magichem:admixture_protection", "count": 14 }
+          { "item": "magichem:essentia_wrought", "count": 4 }
         ]
       }
     }

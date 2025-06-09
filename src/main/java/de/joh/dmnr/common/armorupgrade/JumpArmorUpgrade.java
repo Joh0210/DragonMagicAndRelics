@@ -5,7 +5,6 @@ import com.mna.api.sound.SFX;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.armorupgrade.OnTickArmorUpgrade;
 import de.joh.dmnr.common.event.CommonEventHandler;
-import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -33,8 +32,7 @@ public class JumpArmorUpgrade extends OnTickArmorUpgrade {
 
     @Override
     public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
-        if (player.isSprinting() && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfig.getSpeedManaCostPerTickPerLevel() * level)) {
-            magic.getCastingResource().consume(player, CommonConfig.getSpeedManaCostPerTickPerLevel() * level);
+        if (player.isSprinting()) {
             if (!player.getAttribute(ForgeMod.STEP_HEIGHT_ADDITION.get()).hasModifier(stepMod1)){
                 if(level >= 1){
 

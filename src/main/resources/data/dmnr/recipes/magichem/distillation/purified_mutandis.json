@@ -16,9 +16,9 @@
           "item": "dmnr:purified_mutandis"
         },
         "components": [
+          { "item": "magichem:essentia_arcane", "count": 1 },
           { "item": "magichem:admixture_change", "count": 4 },
           { "item": "magichem:admixture_plant", "count": 2 },
-          { "item": "magichem:essentia_arcane", "count": 1 },
           { "item": "magichem:admixture_fey", "count": 1 }
         ]
       }

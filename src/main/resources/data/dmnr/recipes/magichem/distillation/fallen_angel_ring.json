@@ -16,10 +16,10 @@
           "item": "dmnr:fallen_angel_ring"
         },
         "components": [
-          { "item": "magichem:essentia_fleshy", "count": 86 },
           { "item": "magichem:admixture_potential", "count": 14 },
           { "item": "magichem:admixture_exanimate", "count": 38 },
           { "item": "magichem:admixture_instrument", "count": 2 },
+          { "item": "magichem:essentia_fleshy", "count": 86 },
           { "item": "magichem:essentia_rubedo", "count": 12 }
         ]
       }

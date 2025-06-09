@@ -5,8 +5,13 @@
   "quantity": 1,
   "items": [
     "mna:mundane_bracelet",
-    "mna:manaweaver_wand_advanced",
-    "mna:mana_crystal",
+    "mna:mote_arcane",
+    "mna:rune_arcane",
+    "mna:chimerite_gem",
+    "mna:chimerite_gem",
+    "mna:chimerite_gem",
+    "mna:chimerite_gem",
+    "mna:chimerite_gem",
     "mna:chimerite_gem"
   ],
   "patterns": [

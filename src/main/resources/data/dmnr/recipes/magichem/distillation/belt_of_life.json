@@ -16,11 +16,10 @@
           "item": "dmnr:belt_of_life"
         },
         "components": [
-          { "item": "magichem:admixture_protection", "count": 21 },
           { "item": "magichem:admixture_blood", "count": 21 },
           { "item": "magichem:admixture_healing", "count": 21 },
+          { "item": "magichem:admixture_protection", "count": 21 },
           { "item": "magichem:admixture_instrument", "count": 13 },
-          { "item": "magichem:essentia_rubedo", "count": 48 },
           { "item": "magichem:essentia_precious", "count": 99 }
         ]
       }

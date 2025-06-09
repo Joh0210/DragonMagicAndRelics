@@ -18,8 +18,8 @@
         "components": [
           { "item": "magichem:essentia_fire", "count": 48 },
           { "item": "magichem:admixture_permanence", "count": 25 },
+          { "item": "magichem:admixture_sorcery", "count": 11 },
           { "item": "magichem:admixture_instrument", "count": 7 },
-          { "item": "magichem:admixture_wizard", "count": 11 },
           { "item": "magichem:essentia_citrinitas", "count": 2 }
         ]
       }

@@ -1695,6 +1695,72 @@
       }
     ]
   },
+  "Revenge Charms": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Revenge Charms"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Revenge Charms act as a safeguard against attacks, each triggering a unique effect on the attacker.\n- ",
+            "color": ""
+          },
+          {
+            "text": "Fire: ",
+            "bold": true
+          },
+          {
+            "text": "They are cheap to use and set the attacker on fire.\n- ",
+            "color": ""
+          },
+          {
+            "text": "Damage: ",
+            "bold": true
+          },
+          {
+            "text": "Deals 1 magic-damage to the attacker. (3 if upgraded)\n- ",
+            "color": ""
+          },
+          {
+            "text": "Reflect: ",
+            "bold": true
+          },
+          {
+            "text": "Reflects 10% of received damage. (30% if upgraded)",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/revenge_charm_dmg"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/revenge_charm_reflect"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/revenge_charm_fire"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/revenge_charm_dmg_major"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/revenge_charm_reflect_major"
+      }
+    ]
+  },
   "Queen of Hearts Belt": {
     "index": "1",
     "category": "artifice",

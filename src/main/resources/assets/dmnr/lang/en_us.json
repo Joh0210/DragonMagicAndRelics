@@ -7,6 +7,13 @@
   "item.dmnr.modifier_book": "Modifier Book",
   "item.dmnr.mana_cake": "Mana Cake",
   "item.dmnr.weather_fairy_staff": "Staff of the Weather Fairy",
+  "item.dmnr.weather_fairy_staff.lore_1": "This Fairy Staff lets you alter the weather",
+  "item.dmnr.the_clickers_cookie": "The Clickers Cookie",
+  "item.dmnr.the_clickers_cookie.lore_1": "Legend says this golden cookie was baked during the Grandmapocalypse!",
+  "item.dmnr.the_clickers_cookie.lore_2": "It’s almost like it wants to be clicked... just once...",
+  "item.dmnr.battle_mage_ring": "Zerorra's Battle Mage Ring",
+  "item.dmnr.battle_mage_ring.lore_1": "Centuries ago, a magician forged this ring to embody the balance of strength and magic!",
+  "item.dmnr.battle_mage_ring.lore_2": "All magical damage is affected by the User's Strength value. (Tip: Wielding a sword in the main hand boosts Strength)",
   "item.dmnr.dragon_core": "Dragon Core",
   "item.dmnr.abyssal_dragon_mage_helmet": "Abyssal Dragon Mage Helmet",
   "item.dmnr.abyssal_dragon_mage_chestplate": "Abyssal Dragon Mage Chestplate",
@@ -35,7 +42,6 @@
   "item.dmnr.brimstone_coal": "Brimstone Coal",
   "item.dmnr.voidfeather_charm" : "Voidfeather Charm",
   "item.dmnr.mutandis" : "Mutandis",
-  "item.dmnr.the_clickers_cookie": "The Clickers Cookie",
   "item.dmnr.purified_mutandis": "Purified Mutandis",
   "item.dmnr.ring_of_spell_storing": "Bracelet of Spell Storing: Normal",
   "item.dmnr.ring_of_spell_storing_cooldown": "Bracelet of Spell Storing: Cooldown",
@@ -60,6 +66,12 @@
   "item.dmnr.collectors_amulet": "Collectors Amulet",
   "item.dmnr.night_goggles": "Goggles of Night",
   "item.dmnr.potion_of_infinity": "Potion of Infinity",
+
+  "item.dmnr.revenge_charm_fire": "Revenge Charm: Fire",
+  "item.dmnr.revenge_charm_reflect": "Revenge Charm: Reflect",
+  "item.dmnr.revenge_charm_reflect_major": "Revenge Charm: Reflect (Minor)",
+  "item.dmnr.revenge_charm_dmg": "Revenge Charm: Damage",
+  "item.dmnr.revenge_charm_dmg_major": "Revenge Charm: Damage (Minor)",
 
   "item.dmnr.upgrade_seal_explosion_resistance": "Upgrade Glyph Explosion Resistance",
   "item.dmnr.upgrade_seal_meteor_jump": "Upgrade Glyph Meteor Jump",
@@ -103,7 +115,12 @@
   "effect.dmnr.elytra": "Angel Fly",
 
   "death.attack.dmnr_force": "%s was crushed by sheer force",
+  "death.attack.dmnr_force.item": "%s was crushed by sheer force",
   "death.attack.dmnr_force.player": "%s was crushed by the sheer force of %s",
+  "death.attack.dmnr_revenge": "%s was punished for his actions",
+  "death.attack.dmnr_revenge.item": "%s was punished for his actions",
+  "death.attack.dmnr_revenge.player": "%s was punished for his actions by %s",
+
 
   "dmnr.commands.output.writeSpellToArmor.no.armor.equipped.error": "You must be wearing full set of Dragon Mage Armor for the command to work.",
   "dmnr.commands.output.writeSpellToArmor.no.valid.spell.error": "You have no valid spell in your main hand.",

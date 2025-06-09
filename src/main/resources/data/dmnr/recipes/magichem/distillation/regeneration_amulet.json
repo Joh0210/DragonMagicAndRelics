@@ -17,8 +17,8 @@
         },
         "components": [
           { "item": "magichem:admixture_healing", "count": 188 },
-          { "item": "magichem:essentia_precious", "count": 109 },
           { "item": "magichem:admixture_instrument", "count": 13 },
+          { "item": "magichem:essentia_precious", "count": 109 },
           { "item": "magichem:essentia_citrinitas", "count": 6 }
         ]
       }

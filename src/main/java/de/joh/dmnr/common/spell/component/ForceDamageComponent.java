@@ -203,5 +203,9 @@ public class ForceDamageComponent extends SpellEffect implements IDamageComponen
     public static ResourceKey<DamageType> getForceDamage(){
         return ResourceKey.create(Registries.DAMAGE_TYPE, RLoc.create("spell_force"));
     }
+
+    public static ResourceKey<DamageType> getRevengeDamage(){
+        return ResourceKey.create(Registries.DAMAGE_TYPE, RLoc.create("spell_revenge"));
+    }
 }
 

@@ -19,8 +19,8 @@
           { "item": "magichem:admixture_alien", "count": 120 },
           { "item": "magichem:admixture_travel", "count": 120 },
           { "item": "magichem:admixture_instrument", "count": 50 },
-          { "item": "magichem:essentia_rubedo", "count": 48 },
-          { "item": "magichem:essentia_citrinitas", "count": 16 }
+          { "item": "magichem:essentia_citrinitas", "count": 16 },
+          { "item": "magichem:essentia_rubedo", "count": 48 }
         ]
       }
     }

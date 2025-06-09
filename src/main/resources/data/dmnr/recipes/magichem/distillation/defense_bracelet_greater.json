@@ -18,9 +18,9 @@
         "components": [
           { "item": "magichem:admixture_protection", "count": 72 },
           { "item": "magichem:admixture_metal", "count": 32 },
+          { "item": "magichem:admixture_instrument", "count": 21 },
           { "item": "magichem:essentia_precious", "count": 104 },
-          { "item": "magichem:essentia_albedo", "count": 10 },
-          { "item": "magichem:admixture_instrument", "count": 21 }
+          { "item": "magichem:essentia_albedo", "count": 10 }
         ]
       }
     }

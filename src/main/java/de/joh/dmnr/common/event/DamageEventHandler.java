@@ -58,6 +58,8 @@ public class DamageEventHandler {
         Entity sourceEntity = event.getSource().getEntity();
         LivingEntity targetEntity = event.getEntity();
 
+        RevengeCharmItem.handleRevengeCharm(event);
+
         if(targetEntity instanceof Player player){
             ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
 
@@ -80,10 +82,7 @@ public class DamageEventHandler {
 
         FactionAmuletItem.eventHandleDeclarationOfWar(event);
 
-        if(DamageAdjustmentBelt.eventHandleGlassCannon(event)){
-            return;
-        }
-        if(DamageAdjustmentBelt.eventHandleSturdy(event)){
+        if(IDamageAdjustmentItem.eventHandleDamageAdjustment(event)){
             return;
         }
     }

@@ -1,7 +1,6 @@
 package de.joh.dmnr.common.init;
 
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.api.item.BaseTieredItem;
 import de.joh.dmnr.api.item.UpgradeSealItem;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.item.dragonmagearmor.AbyssalDragonMageArmorItem;
@@ -64,8 +63,8 @@ public class ItemInit {
     public static final RegistryObject<Item> DEVIL_RING = ITEMS.register("devil_ring", ()->new DevilRingItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> VOIDFEATHER_CHARM = ITEMS.register("voidfeather_charm", () -> new VoidfeatherCharmItem((new Item.Properties()).setNoRepair().stacksTo(1).durability(1)));
 
-    public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", DamageAdjustmentBelt::new);
-    public static final RegistryObject<Item> STURDY_BELT = ITEMS.register("sturdy_belt", () -> new BaseTieredItem(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+    public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", () -> new DamageAdjustmentBelt(2.0f));
+    public static final RegistryObject<Item> STURDY_BELT = ITEMS.register("sturdy_belt", () -> new DamageAdjustmentBelt(0.5f));
     public static final RegistryObject<Item> CURSE_PROTECTION_AMULET = ITEMS.register("curse_protection_amulet", CurseProtectionAmuletItem::new);
     public static final RegistryObject<Item> BRACELET_OF_WATER = ITEMS.register("bracelet_of_water", () -> new WaterBraceletItem(1));
     public static final RegistryObject<Item> BRACELET_OF_WATER_GREATER = ITEMS.register("bracelet_of_water_greater", () -> new WaterBraceletItem(2));
@@ -84,6 +83,11 @@ public class ItemInit {
     public static final RegistryObject<Item> COLLECTORS_AMULET = ITEMS.register("collectors_amulet", () -> new CollectorItem("ring", 3));
     public static final RegistryObject<Item> POTION_OF_INFINITY = ITEMS.register("potion_of_infinity", PotionOfInfinityItem::new);
 
+    public static final RegistryObject<Item> REVENGE_CHARM_FIRE = ITEMS.register("revenge_charm_fire", () -> new FireRevengeCharmItem(1));
+    public static final RegistryObject<Item> REVENGE_CHARM_REFLECT = ITEMS.register("revenge_charm_reflect", () -> new ForceRevengeCharmItem(1));
+    public static final RegistryObject<Item> REVENGE_CHARM_REFLECT_MAJOR = ITEMS.register("revenge_charm_reflect_major", () -> new ForceRevengeCharmItem(2));
+    public static final RegistryObject<Item> REVENGE_CHARM_DMG = ITEMS.register("revenge_charm_dmg", () -> new DmgRevengeCharmItem(1));
+    public static final RegistryObject<Item> REVENGE_CHARM_DMG_MAJOR = ITEMS.register("revenge_charm_dmg_major", () -> new DmgRevengeCharmItem(2));
 
 
     //Other
@@ -93,8 +97,10 @@ public class ItemInit {
     public static final RegistryObject<Item> RIFT_EMITTER_ITEM = ITEMS.register("rift_emitter", () -> new RiftEmitterItem(BlockInit.RIFT_EMITTER.get(), new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> BRIMSTONE_CHALK = ITEMS.register("brimstone_chalk", BrimstoneChalkItem::new);
     public static final RegistryObject<Item> BRIMSTONE_COAL = ITEMS.register("brimstone_coal", BrimstoneCoalItem::new);
+    public static final RegistryObject<Item> BATTLE_MAGE_RING = ITEMS.register("battle_mage_ring", BattleMageRingItem::new);
     public static final RegistryObject<Item> WEATHER_FAIRY_STAFF = ITEMS.register("weather_fairy_staff", WeatherFairyStaffItem::new);
     public static final RegistryObject<Item> THE_CLICKERS_COOKIE = ITEMS.register("the_clickers_cookie", TheClickersCookieItem::new);
+
 
 
     //ARMOR UPGRADES:

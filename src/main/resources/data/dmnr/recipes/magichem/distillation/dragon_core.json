@@ -16,11 +16,11 @@
           "item": "dmnr:dragon_core"
         },
         "components": [
-          { "item": "magichem:essentia_precious", "count": 111 },
-          { "item": "magichem:essentia_rubedo", "count": 64 },
           { "item": "magichem:admixture_sorcery", "count":  64},
           { "item": "magichem:essentia_citrinitas", "count": 16 },
-          { "item": "magichem:admixture_legend", "count": 4 }
+          { "item": "magichem:admixture_legend", "count": 4 },
+          { "item": "magichem:essentia_precious", "count": 111 },
+          { "item": "magichem:essentia_rubedo", "count": 64 }
         ]
       }
     }

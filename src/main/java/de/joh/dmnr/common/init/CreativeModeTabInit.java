@@ -46,6 +46,11 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.RING_OF_POWER.get());
                         pOutput.accept(ItemInit.RING_OF_RULING.get());
 
+
+                        pOutput.accept(ItemInit.BATTLE_MAGE_RING.get());
+                        pOutput.accept(ItemInit.WEATHER_FAIRY_STAFF.get());
+                        pOutput.accept(ItemInit.THE_CLICKERS_COOKIE.get());
+
                         pOutput.accept(ItemInit.BRACELET_OF_FRIENDSHIP.get());
                         pOutput.accept(ItemInit.FACTION_AMULET.get());
                         pOutput.accept(ItemInit.RING_OF_SPELL_STORING.get());
@@ -75,14 +80,18 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.COLLECTORS_AMULET.get());
                         pOutput.accept(ItemInit.POTION_OF_INFINITY.get());
 
+                        pOutput.accept(ItemInit.REVENGE_CHARM_FIRE.get());
+                        pOutput.accept(ItemInit.REVENGE_CHARM_REFLECT.get());
+                        pOutput.accept(ItemInit.REVENGE_CHARM_REFLECT_MAJOR.get());
+                        pOutput.accept(ItemInit.REVENGE_CHARM_DMG.get());
+                        pOutput.accept(ItemInit.REVENGE_CHARM_DMG_MAJOR.get());
+
                         pOutput.accept(ItemInit.MUTANDIS.get());
                         pOutput.accept(ItemInit.PURIFIED_MUTANDIS.get());
                         pOutput.accept(ItemInit.MANA_CAKE.get());
                         pOutput.accept(ItemInit.RIFT_EMITTER_ITEM.get());
                         pOutput.accept(ItemInit.BRIMSTONE_CHALK.get());
                         pOutput.accept(ItemInit.BRIMSTONE_COAL.get());
-                        pOutput.accept(ItemInit.WEATHER_FAIRY_STAFF.get());
-                        pOutput.accept(ItemInit.THE_CLICKERS_COOKIE.get());
                     })
                     .build());
 

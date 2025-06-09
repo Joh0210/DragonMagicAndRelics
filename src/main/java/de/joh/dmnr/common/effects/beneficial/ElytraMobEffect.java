@@ -1,11 +1,8 @@
 package de.joh.dmnr.common.effects.beneficial;
 
 import com.mna.ManaAndArtifice;
-import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.api.particles.MAParticleType;
 import com.mna.api.particles.ParticleInit;
-import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import com.mna.effects.EffectInit;
 import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffect;
@@ -41,72 +38,52 @@ public class ElytraMobEffect extends MobEffect {
     public void applyEffectTick(@NotNull LivingEntity livingEntity, int amplifier) {
         if(livingEntity instanceof Player player) {
             if (!player.hasEffect(de.joh.dmnr.common.init.EffectInit.FLY_DISABLED.get()) && amplifier>= 1) {
-                player.getCapability(PlayerMagicProvider.MAGIC).ifPresent((m) -> {
-                    if (player.getAbilities().flying && !player.hasEffect(EffectInit.LEVITATION.get())) {
-                        if (!player.hasEffect(EffectInit.MIST_FORM.get())) { //No mana consumption in mist form
-                            m.getCastingResource().consume(player, CommonConfig.getFlyManaCostPerTick());
-                        }
-                    }
+                ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
+                if (!player.isCreative() && !player.isSpectator()) {
+                    ManaAndArtifice.instance.proxy.setFlySpeed(player, Math.max((amplifier + 1-1) * CommonConfig.getFlySpeedPerLevel(player), 0.05f));
+                } else {
+                    ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05f);
+                }
 
-                    if (!m.getCastingResource().hasEnoughAbsolute(player, CommonConfig.getFlyManaCostPerTick())) {
-                        ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
-                    } else {
-                        ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
-                        if (!player.isCreative() && !player.isSpectator()) {
-                            ManaAndArtifice.instance.proxy.setFlySpeed(player, Math.max((amplifier + 1-1) * CommonConfig.getFlySpeedPerLevel(player), 0.05f));
-                        } else {
-                            ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05f);
-                        }
-                    }
-                });
 
                 if (player.isFallFlying()) {
-                    IPlayerMagic magic = player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
-                    if (magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfig.getElytraManaCostPerTick())) {
-                        Vec3 look = player.getLookAngle();
-                        Vec3 pos;
-                        float maxLength;
-                        double lookScale;
-                        Vec3 scaled_look;
-                        if (!player.isShiftKeyDown()) {
-                            magic.getCastingResource().consume(player, CommonConfig.getElytraManaCostPerTick());
+                    Vec3 look = player.getLookAngle();
+                    Vec3 pos;
+                    float maxLength;
+                    double lookScale;
+                    Vec3 scaled_look;
+                    if (!player.isShiftKeyDown()) {
+                        pos = player.getDeltaMovement();
 
-                            pos = player.getDeltaMovement();
+                        // effect Level * (Speed_Attribute * ConfigValue) * Config Value adjustment for Elytra-Flight
+                        float speedboost = (amplifier + 1-1) * CommonConfig.getFlySpeedPerLevel(player) * 45;
 
-                            // effect Level * (Speed_Attribute * ConfigValue) * Config Value adjustment for Elytra-Flight
-                            float speedboost = (amplifier + 1-1) * CommonConfig.getFlySpeedPerLevel(player) * 45;
+                        maxLength = Math.max(1.75F * speedboost, 0.5F);
+                        lookScale = Math.max(0.06D * speedboost, 0.02D);
 
-                            maxLength = Math.max(1.75F * speedboost, 0.5F);
-                            lookScale = Math.max(0.06D * speedboost, 0.02D);
-
-                            scaled_look = look.scale(lookScale);
-                            pos = pos.add(scaled_look);
-                            if (pos.length() > (double) maxLength) {
-                                pos = pos.scale((double) maxLength / pos.length());
-                            }
-                            player.setDeltaMovement(pos);
-                        } else {
-                            magic.getCastingResource().consume(player, CommonConfig.getElytraManaCostPerTick() / 2.0f);
-
-                            pos = player.getDeltaMovement();
-                            maxLength = 0.1F;
-                            lookScale = -0.01D;
-                            scaled_look = look.scale(lookScale);
-                            pos = pos.add(scaled_look);
-                            if (pos.length() < (double) maxLength) {
-                                pos = pos.scale((double) maxLength / pos.length());
-                            }
-                            player.setDeltaMovement(pos);
+                        scaled_look = look.scale(lookScale);
+                        pos = pos.add(scaled_look);
+                        if (pos.length() > (double) maxLength) {
+                            pos = pos.scale((double) maxLength / pos.length());
                         }
-
-                        if (player.level().isClientSide) {
-                            pos = player.position().add(look.scale(3.0D));
-                            for (int i = 0; i < 5; ++i) {
-                                player.level().addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
-                            }
-                        }
+                        player.setDeltaMovement(pos);
                     } else {
-                        player.stopFallFlying();
+                        pos = player.getDeltaMovement();
+                        maxLength = 0.1F;
+                        lookScale = -0.01D;
+                        scaled_look = look.scale(lookScale);
+                        pos = pos.add(scaled_look);
+                        if (pos.length() < (double) maxLength) {
+                            pos = pos.scale((double) maxLength / pos.length());
+                        }
+                        player.setDeltaMovement(pos);
+                    }
+
+                    if (player.level().isClientSide) {
+                        pos = player.position().add(look.scale(3.0D));
+                        for (int i = 0; i < 5; ++i) {
+                            player.level().addParticle((new MAParticleType(ParticleInit.AIR_VELOCITY.get())).setScale(0.2F).setColor(10, 10, 10), pos.x - 0.5D + Math.random(), pos.y - 0.5D + Math.random(), pos.z - 0.5D + Math.random(), -look.x, -look.y, -look.z);
+                        }
                     }
                 }
             }
@@ -127,9 +104,7 @@ public class ElytraMobEffect extends MobEffect {
      * If the player has the Elytra effect, they can fly through this event like with an Elytra.
      */
     public static void eventHandleElytraFly(TickEvent.PlayerTickEvent event){
-        IPlayerMagic magic = event.player.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
         if(event.player.hasEffect(de.joh.dmnr.common.init.EffectInit.ELYTRA.get())
-                && (magic != null && magic.getCastingResource().hasEnoughAbsolute(event.player, CommonConfig.getElytraManaCostPerTick()))
                 && !event.player.hasEffect(de.joh.dmnr.common.init.EffectInit.FLY_DISABLED.get())) {
             AttributeInstance attributeInstance = event.player.getAttribute(CaelusApi.getInstance().getFlightAttribute());
             if(attributeInstance != null && !attributeInstance.hasModifier(CaelusApi.getInstance().getElytraModifier()))

@@ -1,0 +1,15 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "dmnr:revenge_charm_dmg",
+  "tier": 3,
+  "items": [
+    "mna:charm_pattern",
+    "mna:mana_crystal_fragment",
+    "minecraft:diamond_sword",
+    "mna:mote_earth"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/bolt",
+    "mna:manaweave_patterns/diamond"
+  ]
+}

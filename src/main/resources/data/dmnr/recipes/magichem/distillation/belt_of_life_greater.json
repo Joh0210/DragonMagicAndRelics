@@ -16,9 +16,9 @@
           "item": "dmnr:belt_of_life_greater"
         },
         "components": [
-          { "item": "magichem:admixture_protection", "count": 64 },
           { "item": "magichem:admixture_blood", "count": 64 },
           { "item": "magichem:admixture_healing", "count": 64 },
+          { "item": "magichem:admixture_protection", "count": 64 },
           { "item": "magichem:admixture_instrument", "count": 13 },
           { "item": "magichem:essentia_citrinitas", "count": 6 }
         ]

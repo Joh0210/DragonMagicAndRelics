@@ -1,6 +1,8 @@
 package de.joh.dmnr.common.item;
 
+import com.mna.api.items.IRelic;
 import de.joh.dmnr.api.item.ScrollableItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerLevel;
@@ -25,7 +27,7 @@ import java.util.function.Consumer;
  * <br>Is a Relict
  * @author Joh0210
  */
-public class WeatherFairyStaffItem extends SwordItem implements ScrollableItem {
+public class WeatherFairyStaffItem extends SwordItem implements ScrollableItem, IRelic {
     public WeatherFairyStaffItem() {
         super(Tiers.IRON, 3, -3.1F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).setNoRepair());
     }
@@ -74,6 +76,7 @@ public class WeatherFairyStaffItem extends SwordItem implements ScrollableItem {
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         tooltip.add(Component.translatable("dmnr.feedback.selected.weather"));
+        tooltip.add(Component.translatable("item.dmnr.weather_fairy_staff.lore_1").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         tooltip.add(getSelectedWeatherText((stack)));
         tooltip.add(Component.literal(""));
         tooltip.add(Component.translatable("tooltip.dmnr.weatherferystaff.how_to_change"));

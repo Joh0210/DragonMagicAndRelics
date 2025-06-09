@@ -50,24 +50,18 @@ public class FlyArmorUpgrade extends OnTickArmorUpgrade {
                         look = look.scale(offset);
                         world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() + look.x, player.getY(), player.getZ() + look.z, 0.0D, -0.05D, 0.0D);
                         world.addParticle(new MAParticleType(ParticleInit.ARCANE.get()), player.getX() - look.x, player.getY(), player.getZ() - look.z, 0.0D, -0.05D, 0.0D);
-                    } else if (!player.hasEffect(EffectInit.MIST_FORM.get())) { //No mana consumption in mist form
-                        m.getCastingResource().consume(player, CommonConfig.getFlyManaCostPerTick());
                     }
                 }
 
                 //Actual flying
-                if (!m.getCastingResource().hasEnoughAbsolute(player, CommonConfig.getFlyManaCostPerTick())) {
-                    ManaAndArtifice.instance.proxy.setFlightEnabled(player, false);
-                } else {
-                    ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
-                    if (!player.isCreative() && !player.isSpectator()) {
-                        ManaAndArtifice.instance.proxy.setFlySpeed(player, level* CommonConfig.getFlySpeedPerLevel(player));
-                        if (!CommonConfig.FLY_ALLOW_SPRTINTING_WHILE_FLYING.get() && player.getAbilities().flying) {
-                            player.setSprinting(false);
-                        }
-                    } else {
-                        ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
+                ManaAndArtifice.instance.proxy.setFlightEnabled(player, true);
+                if (!player.isCreative() && !player.isSpectator()) {
+                    ManaAndArtifice.instance.proxy.setFlySpeed(player, level* CommonConfig.getFlySpeedPerLevel(player));
+                    if (!CommonConfig.FLY_ALLOW_SPRTINTING_WHILE_FLYING.get() && player.getAbilities().flying) {
+                        player.setSprinting(false);
                     }
+                } else {
+                    ManaAndArtifice.instance.proxy.setFlySpeed(player, 0.05F);
                 }
             });
         }

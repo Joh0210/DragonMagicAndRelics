@@ -16,11 +16,10 @@
           "item": "dmnr:the_clickers_cookie"
         },
         "components": [
-
           { "item": "magichem:admixture_delight", "count": 119 },
-          { "item": "magichem:essentia_nourishing", "count": 184 },
           { "item": "magichem:admixture_alien", "count": 45 },
           { "item": "magichem:admixture_legend", "count": 6 },
+          { "item": "magichem:essentia_nourishing", "count": 184 },
           { "item": "magichem:essentia_citrinitas", "count": 16 }
         ]
       }

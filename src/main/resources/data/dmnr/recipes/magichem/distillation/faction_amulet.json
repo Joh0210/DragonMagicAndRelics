@@ -17,10 +17,10 @@
         },
         "components": [
           { "item": "magichem:admixture_protection", "count": 38 },
-          { "item": "magichem:admixture_wizard", "count": 16 },
-          { "item": "magichem:admixture_fey", "count": 16 },
           { "item": "magichem:admixture_demon", "count": 16 },
-          { "item": "magichem:admixture_exanimate", "count": 16 }
+          { "item": "magichem:admixture_exanimate", "count": 16 },
+          { "item": "magichem:admixture_fey", "count": 16 },
+          { "item": "magichem:admixture_wizard", "count": 16 }
         ]
       }
     }

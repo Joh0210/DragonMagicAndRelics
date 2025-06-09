@@ -41,8 +41,7 @@ public class SpeedArmorUpgrade extends OnTickArmorUpgrade {
 
     @Override
     public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
-        if (player.isSprinting() && magic != null && magic.getCastingResource().hasEnoughAbsolute(player, CommonConfig.getSpeedManaCostPerTickPerLevel() * level)) {
-            magic.getCastingResource().consume(player, CommonConfig.getSpeedManaCostPerTickPerLevel() * level);
+        if (player.isSprinting()) {
             if (!player.getAttribute(Attributes.MOVEMENT_SPEED).hasModifier(runSpeed1)){
                 if(level >= 1){
                     player.getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(runSpeed1);

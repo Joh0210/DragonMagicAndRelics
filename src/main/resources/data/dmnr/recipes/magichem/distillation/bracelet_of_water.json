@@ -16,8 +16,8 @@
           "item": "dmnr:bracelet_of_water"
         },
         "components": [
-          { "item": "magichem:admixture_travel", "count": 42 },
           { "item": "magichem:essentia_water", "count": 27 },
+          { "item": "magichem:admixture_travel", "count": 42 },
           { "item": "magichem:admixture_instrument", "count": 2 },
           { "item": "magichem:essentia_albedo", "count": 5 }
         ]

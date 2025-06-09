@@ -16,10 +16,10 @@
           "item": "dmnr:hydra_crown"
         },
         "components": [
-          { "item": "magichem:admixture_violence", "count": 15 },
-          { "item": "magichem:admixture_witchcraft", "count": 11 },
           { "item": "magichem:admixture_exanimate", "count": 16 },
+          { "item": "magichem:admixture_violence", "count": 15 },
           { "item": "magichem:admixture_blood", "count": 14 },
+          { "item": "magichem:admixture_witchcraft", "count": 11 },
           { "item": "magichem:admixture_instrument", "count": 4 }
         ]
       }

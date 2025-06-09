@@ -40,7 +40,7 @@ public class MeteorJumpArmorUpgrade extends OnTickArmorUpgrade {
 
     @Override
     public void onTick(Level world, Player player, int level, IPlayerMagic magic) {
-        if (level > 0 && !player.onGround() && player.getDeltaMovement().y < 0.0D && !player.isFallFlying() && player.isCrouching() && magic.getCastingResource().hasEnough(player, CommonConfig.METEOR_JUMP_MANA_COST.get()) && !player.getPersistentData().contains("dmnr_meteor_jumping") && player.isSprinting()) {
+        if (level > 0 && !player.onGround() && player.getDeltaMovement().y < 0.0D && !player.isFallFlying() && player.isCrouching() && !player.getPersistentData().contains("dmnr_meteor_jumping") && player.isSprinting()) {
             int heightAboveGround = 0;
             for(BlockPos pos = player.blockPosition(); player.level().isEmptyBlock(pos) && heightAboveGround < reqHeight; ++heightAboveGround) {
                 pos = pos.below();
@@ -49,7 +49,6 @@ public class MeteorJumpArmorUpgrade extends OnTickArmorUpgrade {
             if (heightAboveGround >= reqHeight) {
                 player.getPersistentData().putBoolean("dmnr_meteor_jumping", true);
                 player.level().playSeededSound(null, player.getX(), player.getY(), player.getZ(), SFX.Event.Artifact.METEOR_JUMP, SoundSource.PLAYERS, 0.25F, 0.8F, 0);
-                magic.getCastingResource().consume(player, CommonConfig.METEOR_JUMP_MANA_COST.get());
             }
         }
 

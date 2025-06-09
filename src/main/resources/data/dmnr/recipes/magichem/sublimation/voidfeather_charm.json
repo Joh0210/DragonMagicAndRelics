@@ -26,8 +26,8 @@
               { "item": "mna:purified_vinteum_dust" }
             ],
             "materia": [
-              { "item": "magichem:admixture_alien", "count": 5 },
               { "item": "magichem:admixture_travel", "count": 20 },
+              { "item": "magichem:admixture_alien", "count": 5 },
               { "item": "magichem:admixture_instrument", "count": 2 }
             ]
           }
