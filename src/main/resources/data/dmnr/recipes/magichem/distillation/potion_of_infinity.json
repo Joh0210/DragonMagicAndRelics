@@ -10,7 +10,9 @@
       ],
       "recipe": {
         "type": "magichem:distillation_fabrication",
-        "distill_only": true,
+        "wisdom": 6,
+        "categories": 1,
+        "batch_size": 1,
         "output_rate": 1.0,
         "object": {
           "item": "dmnr:potion_of_infinity"

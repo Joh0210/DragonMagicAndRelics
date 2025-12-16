@@ -64,7 +64,7 @@ public class FactionAmuletItem extends ChargeableItem implements IForgeItem, ICu
                 event.setNewTarget(null);
             } else if(!event.getNewTarget().hasEffect(EffectInit.BROKEN_PEACE_EFFECT.get())
                     && ((ChargeableItem)(ItemInit.FACTION_AMULET.get())).isEquippedAndHasMana(event.getNewTarget(), 50.0F, true)){
-                event.getNewTarget().addEffect(new MobEffectInstance((EffectInit.PEACE_EFFECT.get()), 600));
+                event.getNewTarget().addEffect(new MobEffectInstance((EffectInit.PEACE_EFFECT.get()), 600, 0, false, false, true));
                 event.setNewTarget(null);
             }
         }

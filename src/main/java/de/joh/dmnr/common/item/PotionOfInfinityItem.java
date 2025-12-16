@@ -7,6 +7,7 @@ import com.mna.items.filters.ItemFilterGroup;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.util.PotionFilter;
 import de.joh.dmnr.client.gui.NamedPotionOfInfinity;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -19,7 +20,11 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * Provides a way to infinitely drink a potion
@@ -31,6 +36,12 @@ public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<Pot
     public PotionOfInfinityItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON)
                 .food((new FoodProperties.Builder()).nutrition(1).saturationMod(1).alwaysEat().build()));
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        tooltip.add(Component.translatable("item.dmnr.potion_of_infinity.description"));
     }
 
     @Override
@@ -52,6 +63,8 @@ public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<Pot
             }
         }
         if (entity instanceof Player) ((Player) entity).getCooldowns().addCooldown(this, 1200);
+
+        itemstack.grow(1);
         return itemstack;
     }
 

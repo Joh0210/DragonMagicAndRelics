@@ -38,6 +38,7 @@ public class SpellInit {
     public static SpellEffect CONJURE_LAVA;
     public static SpellEffect SATURATE;
     public static SpellEffect MARK;
+    public static SpellEffect HELLFIRE;
 
     @SubscribeEvent
     public static void register(RegisterEvent event) {
@@ -60,6 +61,7 @@ public class SpellInit {
             helper.register(RLoc.create("components/mark"), SpellInit.MARK);
             helper.register(RLoc.create("components/forcedamage"), SpellInit.FORCE_DAMAGE);
             helper.register(RLoc.create("components/alternativerecall"), SpellInit.ALTERNATIVERECALL);
+            helper.register(RLoc.create("components/hellfire"), SpellInit.HELLFIRE);
         });
     }
 
@@ -80,5 +82,6 @@ public class SpellInit {
         SpellInit.MARK = new MarkComponent(RLoc.create("textures/spell/component/mark.png"));
         SpellInit.FORCE_DAMAGE = new ForceDamageComponent(RLoc.create("textures/spell/component/forcedamage.png"));
         SpellInit.ALTERNATIVERECALL = new AlternativeRecallComponent(RLoc.create("textures/spell/component/alternativerecall.png"));
+        SpellInit.HELLFIRE = new HellfireComponent(RLoc.create("textures/spell/component/hellfire.png"));
     }
 }

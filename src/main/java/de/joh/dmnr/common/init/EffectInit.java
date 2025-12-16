@@ -5,6 +5,7 @@ import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.effects.beneficial.UltimateArmorMobEffect;
 import de.joh.dmnr.common.effects.beneficial.PeaceMobEffect;
 import de.joh.dmnr.common.effects.harmful.BrokenPeaceMobEffect;
+import de.joh.dmnr.common.effects.harmful.HellfireMobEffect;
 import de.joh.dmnr.common.effects.harmful.SpellStoringCooldownMobEffect;
 import de.joh.dmnr.common.effects.neutral.FlyDisabledMobEffect;
 import net.minecraft.world.effect.MobEffect;
@@ -33,6 +34,7 @@ public class EffectInit {
 
     //harmful
     public static final RegistryObject<MobEffect> BROKEN_PEACE_EFFECT = EFFECTS.register("broken_peace", BrokenPeaceMobEffect::new);
+    public static final RegistryObject<MobEffect> HELLFIRE_EFFECT = EFFECTS.register("hellfire", HellfireMobEffect::new);
     public static final RegistryObject<MobEffect> SPELL_STORING_COOLDOWN = EFFECTS.register("spell_storing_cooldown", SpellStoringCooldownMobEffect::new);
 
     public static void register(IEventBus eventBus){

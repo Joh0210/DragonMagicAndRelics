@@ -8,6 +8,7 @@ import com.mna.api.spells.parts.Shape;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
+import de.joh.dmnr.common.item.AmuletOfHellfire;
 import de.joh.dmnr.common.item.BraceletOfFriendshipItem;
 import de.joh.dmnr.common.item.CurseProtectionAmuletItem;
 import de.joh.dmnr.common.item.DevilRingItem;
@@ -33,10 +34,12 @@ public class MagicEventHandler {
     /**
      * Prevents friends from getting hurt
      * @see BraceletOfFriendshipItem
+     * @see AmuletOfHellfire
      */
     @SubscribeEvent
     public static void onComponentApplying(ComponentApplyingEvent event){
         BraceletOfFriendshipItem.eventHandleProtectFriends(event);
+        AmuletOfHellfire.eventHandleHellfire(event);
     }
 
     /**

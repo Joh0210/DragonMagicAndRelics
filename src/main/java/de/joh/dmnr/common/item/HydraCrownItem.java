@@ -6,6 +6,7 @@ import com.mna.api.items.ITieredItem;
 import com.mna.factions.Factions;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -14,9 +15,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
+
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Consumer;
@@ -36,12 +43,13 @@ public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownI
                     30, 1,
                     50, 0
             )),
-            EffectInit.ULTIMATE_ARMOR.get(), new TreeMap<>(Map.of(
-                    10, 3,
-                    20, 2,
-                    35, 1,
-                    50, 0
-            )),
+// todo:
+//            EffectInit.ULTIMATE_ARMOR.get(), new TreeMap<>(Map.of(
+//                    10, 3,
+//                    20, 2,
+//                    35, 1,
+//                    50, 0
+//            )),
             MobEffects.MOVEMENT_SPEED, new TreeMap<>(Map.of(
                     20, 2,
                     30, 2,
@@ -110,6 +118,12 @@ public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownI
     @Override
     public int getCachedTier() {
         return tier;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        tooltip.add(Component.translatable("item.dmnr.hydra_crown.description"));
     }
 
     /**

@@ -2,6 +2,7 @@
 	"replace": false,
 	"values": [
 		"dmnr:spell_force",
-		"dmnr:spell_revenge"
+		"dmnr:spell_revenge",
+		"dmnr:spell_hellfire"
 	]
 }

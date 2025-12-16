@@ -35,7 +35,7 @@
   {
     "A":
     {
-      "item": "dmnr:mna_artifact",
+      "item": "mna:relics",
       "optional": false,
       "consume": true
     },

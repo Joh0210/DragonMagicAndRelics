@@ -1,6 +1,7 @@
 package de.joh.dmnr.common.event;
 
 import com.mna.api.config.GeneralConfigValues;
+import com.mna.api.entities.DamageHelper;
 import com.mna.api.entities.IFactionEnemy;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.capabilities.playerdata.progression.PlayerProgressionProvider;
@@ -9,6 +10,7 @@ import com.mna.entities.sorcery.EntityDecoy;
 import com.mna.factions.Factions;
 import com.mna.tools.ProjectileHelper;
 import com.mna.tools.SummonUtils;
+import de.joh.dmnr.common.effects.harmful.HellfireMobEffect;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
@@ -30,6 +32,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.commons.lang3.mutable.MutableFloat;
@@ -44,6 +47,14 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DamageEventHandler {
+
+    /**
+     * Processing of damage shifts
+     * @see HellfireMobEffect
+     */
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onLivingHurtFast(LivingHurtEvent event) {
+    }
 
     /**
      * Processing of the damage boost and damage resistance upgrades.
@@ -99,6 +110,7 @@ public class DamageEventHandler {
      */
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
+        HellfireMobEffect.handleHellfire(event);
         DamageSource source = event.getSource();
         if (VoidfeatherCharmItem.eventHandleVoidProtection(event)) {
             return;

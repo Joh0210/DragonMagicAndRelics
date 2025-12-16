@@ -1,0 +1,32 @@
+{
+  "parent": "mna:tier_2/advance_tier_3",
+  "display": {
+    "icon": {
+      "item": "dmnr:bracelet_of_friendship"
+    },
+    "title": {
+      "translate": "dmnr:tier_3/craft_bracelet_of_friendship.title"
+    },
+    "description": {
+      "translate": "dmnr:tier_3/craft_bracelet_of_friendship.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "dmnr:bracelet_of_friendship"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

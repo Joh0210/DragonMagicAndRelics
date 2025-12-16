@@ -10,7 +10,10 @@
       ],
       "recipe": {
         "type": "magichem:distillation_fabrication",
-        "distill_only": false,
+
+        "wisdom": 6,
+        "categories": 48,
+        "batch_size": 1,
         "output_rate": 1.0,
         "object": {
           "item": "dmnr:dragon_core"

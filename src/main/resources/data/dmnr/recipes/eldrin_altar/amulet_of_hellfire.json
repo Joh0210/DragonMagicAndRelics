@@ -1,0 +1,27 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:amulet_of_hellfire",
+  "tier": 5,
+  "requiredFaction": "mna:demons",
+  "items": [
+    "mna:emberglow_bracelet",
+    "minecraft:netherite_ingot",
+    "minecraft:nether_star",
+    "minecraft:netherite_ingot",
+    "mna:greater_mote_fire",
+    "minecraft:netherite_ingot",
+    "mna:living_flame",
+    "minecraft:netherite_ingot",
+    "mna:rune_fire"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "FIRE",
+      "amount": 800
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 400
+    }
+  ]
+}
