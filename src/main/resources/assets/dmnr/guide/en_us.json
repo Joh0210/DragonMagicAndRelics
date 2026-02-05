@@ -2526,8 +2526,11 @@
         "value": "",
         "json": [
           {
-            "text": "Instead of a Rune of Marking, I am also able to use a Player Charm.",
-            "color": ""
+            "text": "Instead of a Rune of Marking, I am also able to use a "
+          },
+          {
+            "text": "Player Charm.",
+            "bold": true
           }
         ]
       },
@@ -2536,8 +2539,36 @@
         "value": "",
         "json": [
           {
-            "text": "When I use the Mark Spell and don't have a Rune of Marking in my hand, I teleport to the location I marked by the mark spell.",
+            "text": "When I use the Mark Spell and don't have a Rune of Marking in my hand, I teleport to the location I marked by the ",
             "color": ""
+          },
+          {
+            "text": "Mark Spell.",
+            "bold": true
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Last but not least, If the Magnitude and Range of the spell is set to 5, I can use a ",
+            "color": ""
+          },
+          {
+            "text": "World Charm",
+            "bold": true
+          },
+          {
+            "text": "to teleport to the Mark (set by the "
+          },
+          {
+            "text": "Mark Spell",
+            "bold": true
+          },
+          {
+            "text": ") in that dimension!"
           }
         ]
       }

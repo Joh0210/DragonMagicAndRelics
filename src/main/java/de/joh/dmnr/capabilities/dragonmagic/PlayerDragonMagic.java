@@ -10,7 +10,6 @@ import de.joh.dmnr.common.spell.shape.AtMarkShape;
 import de.joh.dmnr.api.util.MarkSave;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -56,6 +55,9 @@ public class PlayerDragonMagic {
     public boolean hasValidMark(Level world){
         return (markMap.get(world.dimension()) != null);
     }
+    public boolean hasValidMark(ResourceKey<Level> world){
+        return (markMap.get(world) != null);
+    }
 
     /**
      * @return Mark of this dimension from the player
@@ -63,6 +65,10 @@ public class PlayerDragonMagic {
     @Nullable
     public MarkSave getMark(Level world){
         return markMap.get(world.dimension());
+    }
+    @Nullable
+    public MarkSave getMark(ResourceKey<Level> world){
+        return markMap.get(world);
     }
 
     public void copyFrom(PlayerDragonMagic source, Player player) {

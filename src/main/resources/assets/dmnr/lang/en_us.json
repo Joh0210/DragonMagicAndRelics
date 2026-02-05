@@ -172,6 +172,8 @@
   "dmnr.ring_of_spell_storing.no_channeled.error": "This item does not support channeled spells. Only instant spells can be used.",
   "dmnr.components.conjurefluid.occupied.error": "The block is already occupied.",
   "dmnr.shapes.atmark.nomark.error": "I need a Rune of Marking in my other hand or need to set a player mark with a Mark-Spell to use this spell.",
+  "dmnr.shapes.atmark.noworld.error": "I didn't specify a word for this charm.",
+  "dmnr.shapes.atmark.toweak.error": "I'm not strong for dimensional travels. I need Magnitude 5 and Range 5.",
   "dmnr.shapes.curse.no_charm.error": "I need a Player Charm in my other hand to use this spell.",
   "dmnr.shapes.curse.no_target.error": "The selected Player does not exist.",
   "dmnr.shapes.curse.too_far.error": "The selected Player is to far away.",
