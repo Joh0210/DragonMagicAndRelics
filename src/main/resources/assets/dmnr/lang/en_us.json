@@ -269,6 +269,7 @@
   "dmnr:shapes/curse.desc.range": "Times 20 = The maximum distance that the target can be.",
   "dmnr:shapes/true_touch": "True Touch",
   "dmnr:shapes/true_touch.desc.range": "How far the touch reaches.",
+  "dmnr:shapes/true_touch.desc.precision": "Reverses the polarity of touch/self when crouching.",
   "dmnr:shapes/true_touch.desc.radius": "Applies a radius to the touch. When targeting blocks on the side, this center will be shifted so it only goes down one block, the rest will go up, allowing easy tunnels.",
 
   "dmnr:components/sunrise": "Sunrise",

@@ -18,11 +18,17 @@ import java.util.stream.Collectors;
 
 public class TrueTouchShape extends ShapeRaytrace {
     public TrueTouchShape(ResourceLocation icon) {
-        super(icon, new AttributeValuePair(Attribute.RANGE, 3.0F, 3.0F, 16.0F, 1.0F, 1.0F), new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F));
+        super(icon, new AttributeValuePair(Attribute.RANGE, 3.0F, 3.0F, 16.0F, 1.0F, 1.0F), new AttributeValuePair(Attribute.RADIUS, 0.0F, 0.0F, 3.0F, 1.0F), new AttributeValuePair(Attribute.PRECISION, 0.0F, 0.0F, 1.0F, 1.0F));
     }
 
     public List<SpellTarget> Target(SpellSource source, Level world, IModifiedSpellPart<Shape> modificationData, ISpellDefinition recipe) {
-        if (source.getCaster() != null && source.getCaster().isShiftKeyDown()){
+        boolean targetSelf = source.getCaster() != null && source.getCaster().isShiftKeyDown();
+
+        if (modificationData.getValue(Attribute.PRECISION) > 0.5){
+            targetSelf = !targetSelf;
+        }
+
+        if (source.getCaster() != null && targetSelf){
             return List.of(new SpellTarget(source.getCaster()));
         }
 

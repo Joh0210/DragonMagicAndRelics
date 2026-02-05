@@ -2376,7 +2376,7 @@
         "value": "",
         "json": [
           {
-            "text": "Against some opponents it is better to stand in pairs.\n\nThis shape allows me to boost my allies and myself with my magic alike. When I'm sneaking, the spell targets me. Otherwise, it'll target the person (or block) I'm hitting.",
+            "text": "Against some opponents it is better to stand in pairs.\n\nThis shape allows me to boost my allies and myself with my magic alike. When I'm sneaking, the spell targets me. Otherwise, it'll target the person (or block) I'm hitting.\n\nPrecision set to 1 reverses the polarity of touch/self.",
             "color": ""
           }
         ]
