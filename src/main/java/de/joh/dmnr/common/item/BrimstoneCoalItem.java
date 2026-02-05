@@ -1,6 +1,7 @@
 package de.joh.dmnr.common.item;
 
 import com.mna.api.items.TieredItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -47,6 +48,8 @@ public class BrimstoneCoalItem extends TieredItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("item.dmnr.brimstone_coal.description"));
+        tooltip.add(Component.translatable("item.dmnr.brimstone_coal.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("  "));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

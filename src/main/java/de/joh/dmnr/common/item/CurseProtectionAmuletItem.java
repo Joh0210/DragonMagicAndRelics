@@ -4,15 +4,19 @@ import com.mna.api.items.ChargeableItem;
 import com.mna.items.artifice.curio.IPreEnchantedItem;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.spell.shape.CurseShape;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.Event;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 /**
  * Protects the wearer of Negativ Potion Effects (which do not last longer then 5 min and can be removed with milk) and of the {@link CurseShape Curse Shape}
@@ -25,6 +29,14 @@ public class CurseProtectionAmuletItem extends ChargeableItem implements IPreEnc
 
     protected boolean tickEffect(ItemStack stack, Player player, Level world, int slot, float mana, boolean selected) {
         return false;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        tooltip.add(Component.translatable("tooltip.dmnr.curse_protection_amulet").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("  "));
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
     protected boolean tickCurio() {

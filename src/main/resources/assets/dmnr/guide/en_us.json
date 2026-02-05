@@ -184,7 +184,1058 @@
       }
     ]
   },
-
+  "Rift Emitter": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Rift Emitter"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This contraption allows me to anchor the Rift in place, keeping it open and stable.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/rift_emitter"
+      }
+    ]
+  },
+  "Bracelet of Spell Storing": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Bracelet of Spell Storing"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I can fuse this bracelet with a spell to use it using a keyboard shortcut",
+            "color": ""
+          },
+          {
+            "text": "(default R - \"DM&R: Use Bracelet of Spell Storing\")",
+            "italic": true
+          },
+          {
+            "text": ".\n\nTo open the bracelets inventar, press the gui key (default control), and right click with it.\n\nThere are 2 types of this bracelet:\n- ",
+            "color": ""
+          },
+          {
+            "text": "Normal: ",
+            "bold": true
+          },
+          {
+            "text": "This bracelet requires mana like any other spell and provides a short cooldown.\n- ",
+            "color": ""
+          },
+          {
+            "text": "Cooldown: ",
+            "bold": true
+          },
+          {
+            "text": "This version requires no mana, but has a significantly higher cooldown. The cooldown does not affect the normal spells.",
+            "color": ""
+          },
+          {
+            "text": "\n\nThis item does not support channeled spells!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/ring_of_spell_storing"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/ring_of_spell_storing_cooldown"
+      }
+    ]
+  },
+  "Angel Ring": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Angel Ring"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The gods have looked down on me long enough. It is time for me to rise up and challenge them.",
+            "color": "",
+            "italic": true
+          },
+          {
+            "text": "With this ring, I can fly through the air like one of their angels, without having to remove my armor.",
+            "color": ""
+          },
+          {
+            "text": "The flight speed is affected by the Speed and Slowness effects.",
+            "color": ""
+          },
+          {
+            "text": "It can only be crafted by those that have aligned themselves with the "
+          },
+          {
+            "text": "Faerie Courts",
+            "color": "dark_green"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/angel_ring"
+      }
+    ]
+  },
+  "King of Hearts Amulet": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "King of Hearts Amulet"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This royal jewelry grants me a permanent regeneration effect.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/regeneration_amulet"
+      }
+    ]
+  },
+  "Queen of Hearts Belt": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Queen of Hearts Belt"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This belt, once worn by a long-forgotten queen, allows me to carry more hearts than a mere mortal should.",
+            "color": ""
+          },
+          {
+            "text": "Each level increases the amount exponentially.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/belt_of_life_minor"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/belt_of_life"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/belt_of_life_greater"
+      }
+    ]
+  },
+  "Revenge Charms": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Revenge Charms"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Revenge Charms act as a safeguard against attacks, each triggering a unique effect on the attacker.\n- ",
+            "color": ""
+          },
+          {
+            "text": "Fire: ",
+            "bold": true
+          },
+          {
+            "text": "They are cheap to use and set the attacker on fire.\n- ",
+            "color": ""
+          },
+          {
+            "text": "Damage: ",
+            "bold": true
+          },
+          {
+            "text": "Deals 1 magic-damage to the attacker. (3 if upgraded)\n- ",
+            "color": ""
+          },
+          {
+            "text": "Reflect: ",
+            "bold": true
+          },
+          {
+            "text": "Reflects 10% of received damage. (30% if upgraded)",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/revenge_charm_dmg"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/revenge_charm_reflect"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/revenge_charm_fire"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/revenge_charm_dmg_major"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/revenge_charm_reflect_major"
+      }
+    ]
+  },
+  "Amulet of Hellfire": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Amulet of Hellfire"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This amulet strengthens every Hellfire spell I cast. Each Hellfire spell envelops the target in the Hellfire effect for 20 seconds. This amplifies all fire damage and ignores resistances!",
+            "color": ""
+          },
+          {
+            "text": "This amulet can only be crafted by those who have allied themselves to the "
+          },
+          {
+            "text": "Demons of the Nether",
+            "color": "dark_red"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/amulet_of_hellfire"
+      }
+    ]
+  },
+  "Collectors Amulet": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Collectors Amulet"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "With this amulet I can hang 3 additional rings around my neck.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/collectors_amulet"
+      }
+    ]
+  },
+  "Goggles of Night": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Goggles of Night"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Like my regular glasses, I can see better with those glasses. Even at night. (The glasses also prevent nausea and Blindness.)\n\nI might get a little dizzy when take them off.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/night_goggles"
+      }
+    ]
+  },
+  "Bracelet of Defense": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Bracelet of Defense"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Some armors give me a lot of useful effects but hardly any protection. This bracelet compensates for that. This bracelet gives me more armor and toughness.\n\nThe minor version gives +5 (armor)/1 (toughness), normal +8/4, and greater +14/8",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/defense_bracelet_minor"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/defense_bracelet"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/defense_bracelet_greater"
+      }
+    ]
+  },
+  "Ring of Reach": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ring of Reach"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This ring increases my integration range. Each level increases the range by 1.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/reach_ring_minor"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/reach_ring"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/reach_ring_greater"
+      }
+    ]
+  },
+  "Bracelet of Water": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Bracelet of Water"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This bracelet allows me to breathe underwater and move a little faster. Stronger versions of the bracelet could make me even more agile.\n\nThe underwater vision is also increased.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/bracelet_of_water"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/bracelet_of_water_greater"
+      }
+    ]
+  },
+  "Devil Ring": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Devil Ring"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The power of the archdevils in my hands, more flexible than ever!\n\nIf my spell is of the "
+          },
+          {
+            "text": "realm of fire then it will be transformed into pure hellfire",
+            "color": "dark_purple"
+          },
+          {
+            "text": ". All aspects of the spell will be increased. Be warned, hellfire is a force of destruction, and you may end up losing control of the power if you aren't careful.\n\nAny fires the spell creates will also be hellfire, which spread more quickly and deal more damage to those inside them.\n\nThis staff can only be crafted by those who have allied themselves to the "
+          },
+          {
+            "text": "Demons of the Nether",
+            "color": "dark_red"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/devil_ring"
+      }
+    ]
+  },
+  "Fallen Angel Ring": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Fallen Angel Ring"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\n\nIf the user is an "
+          },
+          {
+            "text": "Undead",
+            "color": "dark_gray"
+          },
+          {
+            "text": " Mist Form will be toggleable when cast as a spell and increasing its flight speed!"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/fallen_angel_ring"
+      }
+    ]
+  },
+  "Mana Cake": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Mana Cake"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "I baked a very sweet cake. I replaced some of the sugar with Vinteum Dust and now the cake seems to be infused with magical threads.",
+            "color": ""
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "If I eat the cake, it uses a portion of my mana and regenerates. But I have to be careful! If I don't have enough mana, I'll probably eat the whole cake!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/mana_cake"
+      }
+    ]
+  },
+  "Bracelet of Friendship": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Bracelet of Friendship"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Wearing this bracelet will spare my allies if it would end up as collateral damage. "
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Using a "
+          },
+          {
+            "text": "player charm",
+            "color": "blue"
+          },
+          {
+            "text": " in the bracelet, I mark a player as my ally.\n\nMy animals and the animals of my allies will also be spared."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "mna:manaweaving/rituals/player_charm"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/bracelet_of_friendship"
+      }
+    ]
+  },
+  "Mutandis": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Mutandis"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "A mysterious powder that causes the cells of the plants to mutate. This allows plants to transform into one another.\n\nThe Wither Rose is a dead plant and cannot be created or mutated by the powder.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The Fey can also refine the powder even further, so it only produces Magical Flowers.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/mutandis"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/purified_mutandis"
+      }
+    ]
+  },
+  "Dragon Core": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Dragon Core"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The Core of the End, The Essence of the Dragon, an Item of Immeasurable Power!",
+            "color": ""
+          },
+          {
+            "text": "\n\n"
+          },
+          {
+            "text": "This item can be obtained by slaying the Titan of the End. The ender dragon!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": []
+  },
+  "Faction Amulet": {
+    "index": "0",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Faction Amulet"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "With this amulet I make peace with the other factions. I don't have to worry about enemies running around or even raids.\n\nBut the peace is fragile. An attack from my side declares war!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/faction_amulet"
+      }
+    ]
+  },
+  "Belt of the Centaur": {
+    "index": "0",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Belt of the Centaur"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Small damage, but at what cost?!\n\nWith this belt I take half the damage, but I also deal only half the damage!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/sturdy_belt"
+      }
+    ]
+  },
+  "Belt of the Minotaur": {
+    "index": "0",
+    "category": "eldrin_altar",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Belt of the Minotaur"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "A Major Attack, but at what cost?!\n\nWith this belt I deal double damage but also suffer double damage!",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/glass_cannon_belt"
+      }
+    ]
+  },
+  "Dragon Mage Armor": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Dragon Mage Armor"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "My magic has made me the powerful being that I am. My words make mountains collapse and my movements bring my opponents to their knees. But I don't have enough. Why should I still bow to the gods when I can be one myself?",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "With the ",
+            "color": ""
+          },
+          {
+            "text": "Ritual of the Dragon Mage Armor",
+            "color": "blue"
+          },
+          {
+            "text": " I can upgrade my armor to a indestructible Dragon Mage Armor. This already offers a fairly high level of protection, but I can still improve it. With ",
+            "color": ""
+          },
+          {
+            "text": "Upgrade Glyphs",
+            "color": "blue"
+          },
+          {
+            "text": " "
+          },
+          {
+            "text": "I can add some more abilities to the armor. All I have to do is hold the  ",
+            "color": ""
+          },
+          {
+            "text": "Dragon Mage Armor Chestplate",
+            "color": "blue"
+          },
+          {
+            "text": " (or other Dragon Mage containers) in my ",
+            "color": ""
+          },
+          {
+            "text": "Offhand",
+            "color": "blue"
+          },
+          {
+            "text": " and use the upgrade glyphs of my choice in my Main hand.",
+            "color": ""
+          },
+          {
+            "text": "\n\nHowever, the amount of Dragon Magic that I can add to my armor is limited to 64. All installed glyphs combined cannot exceed the amount of Dragon Magic Points of the armor. However, there are also other containers I can channel my dragon magic into."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "My glyphs aren't the only way I have to maximize my armor's potential. I can also fortify my armor with spells, which activate as soon as I take damage.\n\nContainer Gui Open Modifier-Key (Default: Control) and right click to open the menu\n\n. One spell hits me, the other targets the person who attacked me.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "While I have to put on full armor to use their effects, all runes seem to be installed only on the chestplate.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/abyssal_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/arch_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/infernal_dragon_mage_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/wild_dragon_mage_chestplate"
+      },
+      {
+        "type": "ritual",
+        "location":"dmnr:rituals/dragon_mage_ritual"
+      }
+    ]
+  },
+  "Amulet of Curse Protection": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Amulet of Curse Protection"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Magic has controlled me in many places, but I will no longer bow to it for its sake!"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "If a negative effect were to burden me, the crystal's mana would offset the obstacle and protect me from it. However, the amulet cannot protect me from effects that last too long."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "In addition to negative effects, it also protects me from spells cast via the "
+          },
+          {
+            "text": "Curse",
+            "color": "dark_blue"
+          },
+          {
+            "text": " Shape."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/curse_protection_amulet"
+      },
+      {
+        "type": "spell_part",
+        "location":"dmnr:shapes/curse"
+      }
+    ]
+  },
+  "Amulet of Dragon Power": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Amulet of the Dragon"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Another container to channel my dragon magic into with 32 slots. Correspondingly, like the Dragon Magic Armor, I can merge ",
+            "color": ""
+          },
+          {
+            "text": "glyphs ",
+            "color": "blue"
+          },
+          {
+            "text": "with the amulet, but I still have to wear the full ",
+            "color": ""
+          },
+          {
+            "text": "Dragon Mage Armor",
+            "color": "blue"
+          },
+          {
+            "text": ".",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/amulet_of_dragon_power"
+      },
+      {
+        "type": "ritual",
+        "location":"dmnr:rituals/upgrade_ritual"
+      }
+    ]
+  },
+  "Ring of Power": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ring of Power"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Another container to channel my dragon magic into with 16 slots. Correspondingly, like the Dragon Magic Armor, I can merge ",
+            "color": ""
+          },
+          {
+            "text": "glyphs ",
+            "color": "blue"
+          },
+          {
+            "text": "with the amulet, but I still have to wear the full ",
+            "color": ""
+          },
+          {
+            "text": "Dragon Mage Armor",
+            "color": "blue"
+          },
+          {
+            "text": ".",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Additionally, each upgrade of this ring is enhanced by one unit."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/ring_of_power"
+      },
+      {
+        "type": "ritual",
+        "location":"dmnr:rituals/upgrade_ritual"
+      }
+    ]
+  },
+  "Ring of Ruling": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ring of Ruling"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Another container to channel my dragon magic into with 16 slots.",
+            "color": ""
+          },
+          {
+            "text": "glyphs ",
+            "color": "blue"
+          },
+          {
+            "text": "with the amulet.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "However, in order to obtain the effects, I don't have to wear Dragon Mage Armor."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/ring_of_ruling"
+      },
+      {
+        "type": "ritual",
+        "location":"dmnr:rituals/upgrade_ritual"
+      }
+    ]
+  },
 
   "Blank Glyph": {
     "index": "0",
@@ -1698,1041 +2749,6 @@
       {
         "type": "spell_part",
         "location":"dmnr:components/mark"
-      }
-    ]
-  },
-
-
-  "Rift Emitter": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Rift Emitter"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "I found a way to keep the small dimensional rift open longer. With this contraption I can now keep the Rift open in a stationary manner.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/rift_emitter"
-      }
-    ]
-  },
-  "Bracelet of Spell Storing": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Bracelet of Spell Storing"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "I can fuse this bracelet with a spell to use it using a keyboard shortcut",
-            "color": ""
-          },
-          {
-            "text": "(default R - \"DM&R: Use Bracelet of Spell Storing\")",
-            "italic": true
-          },
-          {
-            "text": ".\n\nTo open the bracelets inventar, press the gui key (default control), and right click with it.\n\nThere are 2 types of this bracelet:\n- ",
-            "color": ""
-          },
-          {
-            "text": "Normal: ",
-            "bold": true
-          },
-          {
-            "text": "This bracelet requires mana like any other spell and provides a short cooldown.\n- ",
-            "color": ""
-          },
-          {
-            "text": "Cooldown: ",
-            "bold": true
-          },
-          {
-            "text": "This version requires no mana, but has a significantly higher cooldown. The cooldown does not affect the normal spells.",
-            "color": ""
-          },
-          {
-            "text": "\n\nThis item does not support channeled spells!",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/ring_of_spell_storing"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/ring_of_spell_storing_cooldown"
-      }
-    ]
-  },
-
-  "Angel Ring": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Angel Ring"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\n\nWith this amulet I can fly through the air like one of her angels without having to take off my armor.\n\nThe speed of it is influenced by the speed and slowness effect.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/angel_ring"
-      }
-    ]
-  },
-  "King of Hearts Amulet": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "King of Hearts Amulet"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "This Royal jewelery gives me a permanent regeneration effect.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/regeneration_amulet"
-      }
-    ]
-  },
-  "Revenge Charms": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Revenge Charms"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Revenge Charms act as a safeguard against attacks, each triggering a unique effect on the attacker.\n- ",
-            "color": ""
-          },
-          {
-            "text": "Fire: ",
-            "bold": true
-          },
-          {
-            "text": "They are cheap to use and set the attacker on fire.\n- ",
-            "color": ""
-          },
-          {
-            "text": "Damage: ",
-            "bold": true
-          },
-          {
-            "text": "Deals 1 magic-damage to the attacker. (3 if upgraded)\n- ",
-            "color": ""
-          },
-          {
-            "text": "Reflect: ",
-            "bold": true
-          },
-          {
-            "text": "Reflects 10% of received damage. (30% if upgraded)",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/revenge_charm_dmg"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/revenge_charm_reflect"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/revenge_charm_fire"
-      },
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/revenge_charm_dmg_major"
-      },
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/revenge_charm_reflect_major"
-      }
-    ]
-  },
-  "Queen of Hearts Belt": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Queen of Hearts Belt"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "This belt of a long-forgotten queen allows me to carry more hearts with me than a mere mortal should. Each level increases the amount exponentially.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/belt_of_life_minor"
-      },
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/belt_of_life"
-      },
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/belt_of_life_greater"
-      }
-    ]
-  },
-  "Amulet of Hellfire": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Amulet of Hellfire"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "This amulet strengthens every Hellfire spell I cast. Each Hellfire spell envelops the target in the Hellfire effect for 20 seconds. This amplifies all fire damage and ignores resistances!",
-            "color": ""
-          },
-          {
-            "text": "This amulet can only be crafted by those who have allied themselves to the "
-          },
-          {
-            "text": "Demons of the Nether",
-            "color": "dark_red"
-          },
-          {
-            "text": "."
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/amulet_of_hellfire"
-      }
-    ]
-  },
-
-  "Collectors Amulet": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Collectors Amulet"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With this amulet I can hang 3 additional rings around my neck.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/collectors_amulet"
-      }
-    ]
-  },
-  "Goggles of Night": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Goggles of Night"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Like my regular glasses, I can see better with those glasses. Even at night. (The glasses also prevent nausea and Blindness.)\n\nI might get a little dizzy when take them off.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/night_goggles"
-      }
-    ]
-  },
-  "Bracelet of Defense": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Bracelet of Defense"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Some armors give me a lot of useful effects but hardly any protection. This bracelet compensates for that. This bracelet gives me more armor and toughness.\n\nThe minor version gives +5 (armor)/1 (toughness), normal +8/4, and greater +14/8",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/defense_bracelet_minor"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/defense_bracelet"
-      },
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/defense_bracelet_greater"
-      }
-    ]
-  },
-  "Ring of Reach": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Ring of Reach"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "This ring increases my integration range. Each level increases the range by 1.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/reach_ring_minor"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/reach_ring"
-      },
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/reach_ring_greater"
-      }
-    ]
-  },
-  "Bracelet of Water": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Bracelet of Water"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "This bracelet allows me to breathe underwater and move a little faster. Stronger versions of the bracelet could make me even more agile.\n\nThe underwater vision is also increased.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/bracelet_of_water"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/bracelet_of_water_greater"
-      }
-    ]
-  },
-  "Devil Ring": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Devil Ring"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The power of the archdevils in my hands, more flexible than ever!\n\nIf my spell is of the "
-          },
-          {
-            "text": "realm of fire then it will be transformed into pure hellfire",
-            "color": "dark_purple"
-          },
-          {
-            "text": ". All aspects of the spell will be increased. Be warned, hellfire is a force of destruction, and you may end up losing control of the power if you aren't careful.\n\nAny fires the spell creates will also be hellfire, which spread more quickly and deal more damage to those inside them.\n\nThis staff can only be crafted by those who have allied themselves to the "
-          },
-          {
-            "text": "Demons of the Nether",
-            "color": "dark_red"
-          },
-          {
-            "text": "."
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/devil_ring"
-      }
-    ]
-  },
-
-  "Fallen Angel Ring": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Fallen Angel Ring"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The gods have looked down on me long enough! It's time for me to rise up and mess with them!\n\nIf the user is an "
-          },
-          {
-            "text": "Undead",
-            "color": "dark_gray"
-          },
-          {
-            "text": " Mist Form will be toggleable when cast as a spell and increasing its flight speed!"
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/fallen_angel_ring"
-      }
-    ]
-  },
-
-  "Mana Cake": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Mana Cake"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "I baked a very sweet cake. I replaced some of the sugar with Vinteum Dust and now the cake seems to be infused with magical threads.",
-            "color": ""
-          },
-          {
-            "text": "\n\n"
-          },
-          {
-            "text": "If I eat the cake, it uses a portion of my mana and regenerates. But I have to be careful! If I don't have enough mana, I'll probably eat the whole cake!",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/mana_cake"
-      }
-    ]
-  },
-  "Bracelet of Friendship": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Bracelet of Friendship"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Wearing this bracelet will spare my allies if it would end up as collateral damage. "
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Using a "
-          },
-          {
-            "text": "player charm",
-            "color": "blue"
-          },
-          {
-            "text": " in the bracelet, I mark a player as my ally.\n\nMy animals and the animals of my allies will also be spared."
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location": "mna:manaweaving/rituals/player_charm"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/bracelet_of_friendship"
-      }
-    ]
-  },
-  "Mutandis": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Mutandis"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "A mysterious powder that causes the cells of the plants to mutate. This allows plants to transform into one another.\n\nThe Wither Rose is a dead plant and cannot be created or mutated by the powder.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The Fey can also refine the powder even further, so it only produces Magical Flowers.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/mutandis"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/purified_mutandis"
-      }
-    ]
-  },
-  "Dragon Core": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Dragon Core"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The Core of the End, The Essence of the Dragon, an Item of Immeasurable Power!",
-            "color": ""
-          },
-          {
-            "text": "\n\n"
-          },
-          {
-            "text": "This item can be obtained by slaying the Titan of the End. The ender dragon!",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": []
-  },
-  "Faction Amulet": {
-    "index": "0",
-    "category": "eldrin_altar",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Faction Amulet"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With this amulet I make peace with the other factions. I don't have to worry about enemies running around or even raids.\n\nBut the peace is fragile. An attack from my side declares war!",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/faction_amulet"
-      }
-    ]
-  },
-  "Belt of the Centaur": {
-    "index": "0",
-    "category": "eldrin_altar",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Belt of the Centaur"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Small damage, but at what cost?!\n\nWith this belt I take half the damage, but I also deal only half the damage!",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/sturdy_belt"
-      }
-    ]
-  },
-  "Belt of the Minotaur": {
-    "index": "0",
-    "category": "eldrin_altar",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Belt of the Minotaur"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "A Major Attack, but at what cost?!\n\nWith this belt I deal double damage but also suffer double damage!",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "eldrin_altar",
-        "location":"dmnr:eldrin_altar/glass_cannon_belt"
-      }
-    ]
-  },
-  "Dragon Mage Armor": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Dragon Mage Armor"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "My magic has made me the powerful being that I am. My words make mountains collapse and my movements bring my opponents to their knees. But I don't have enough. Why should I still bow to the gods when I can be one myself?",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "With the ",
-            "color": ""
-          },
-          {
-            "text": "Ritual of the Dragon Mage Armor",
-            "color": "blue"
-          },
-          {
-            "text": " I can upgrade my armor to a indestructible Dragon Mage Armor. This already offers a fairly high level of protection, but I can still improve it. With ",
-            "color": ""
-          },
-          {
-            "text": "Upgrade Glyphs",
-            "color": "blue"
-          },
-          {
-            "text": " "
-          },
-          {
-            "text": "I can add some more abilities to the armor. All I have to do is hold the  ",
-            "color": ""
-          },
-          {
-            "text": "Dragon Mage Armor Chestplate",
-            "color": "blue"
-          },
-          {
-            "text": " (or other Dragon Mage containers) in my ",
-            "color": ""
-          },
-          {
-            "text": "Offhand",
-            "color": "blue"
-          },
-          {
-            "text": " and use the upgrade glyphs of my choice in my Main hand.",
-            "color": ""
-          },
-          {
-            "text": "\n\nHowever, the amount of Dragon Magic that I can add to my armor is limited to 64. All installed glyphs combined cannot exceed the amount of Dragon Magic Points of the armor. However, there are also other containers I can channel my dragon magic into."
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "My glyphs aren't the only way I have to maximize my armor's potential. I can also fortify my armor with spells, which activate as soon as I take damage.\n\nContainer Gui Open Modifier-Key (Default: Control) and right click to open the menu\n\n. One spell hits me, the other targets the person who attacked me.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "While I have to put on full armor to use their effects, all runes seem to be installed only on the chestplate.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/abyssal_dragon_mage_chestplate"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/arch_dragon_mage_chestplate"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/infernal_dragon_mage_chestplate"
-      },
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/wild_dragon_mage_chestplate"
-      },
-      {
-        "type": "ritual",
-        "location":"dmnr:rituals/dragon_mage_ritual"
-      }
-    ]
-  },
-  "Amulet of Curse Protection": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Amulet of Curse Protection"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Magic has controlled me in many places, but I will no longer bow to it for its sake!"
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "If a negative effect were to burden me, the crystal's mana would offset the obstacle and protect me from it. However, the amulet cannot protect me from effects that last too long."
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "In addition to negative effects, it also protects me from spells cast via the "
-          },
-          {
-            "text": "Curse",
-            "color": "dark_blue"
-          },
-          {
-            "text": " Shape."
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/curse_protection_amulet"
-      },
-      {
-        "type": "spell_part",
-        "location":"dmnr:shapes/curse"
-      }
-    ]
-  },
-  "Amulet of Dragon Power": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Amulet of the Dragon"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Another container to channel my dragon magic into with 32 slots. Correspondingly, like the Dragon Magic Armor, I can merge ",
-            "color": ""
-          },
-          {
-            "text": "glyphs ",
-            "color": "blue"
-          },
-          {
-            "text": "with the amulet, but I still have to wear the full ",
-            "color": ""
-          },
-          {
-            "text": "Dragon Mage Armor",
-            "color": "blue"
-          },
-          {
-            "text": ".",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/amulet_of_dragon_power"
-      },
-      {
-        "type": "ritual",
-        "location":"dmnr:rituals/upgrade_ritual"
-      }
-    ]
-  },
-  "Ring of Power": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Ring of Power"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Another container to channel my dragon magic into with 16 slots. Correspondingly, like the Dragon Magic Armor, I can merge ",
-            "color": ""
-          },
-          {
-            "text": "glyphs ",
-            "color": "blue"
-          },
-          {
-            "text": "with the amulet, but I still have to wear the full ",
-            "color": ""
-          },
-          {
-            "text": "Dragon Mage Armor",
-            "color": "blue"
-          },
-          {
-            "text": ".",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Additionally, each upgrade of this ring is enhanced by one unit."
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/ring_of_power"
-      },
-      {
-        "type": "ritual",
-        "location":"dmnr:rituals/upgrade_ritual"
-      }
-    ]
-  },
-  "Ring of Ruling": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Ring of Ruling"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Another container to channel my dragon magic into with 16 slots.",
-            "color": ""
-          },
-          {
-            "text": "glyphs ",
-            "color": "blue"
-          },
-          {
-            "text": "with the amulet.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "However, in order to obtain the effects, I don't have to wear Dragon Mage Armor."
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/ring_of_ruling"
-      },
-      {
-        "type": "ritual",
-        "location":"dmnr:rituals/upgrade_ritual"
       }
     ]
   },

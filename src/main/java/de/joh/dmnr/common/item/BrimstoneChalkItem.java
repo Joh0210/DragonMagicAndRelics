@@ -1,6 +1,7 @@
 package de.joh.dmnr.common.item;
 
 import com.mna.items.ritual.WizardChalk;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
@@ -35,6 +36,7 @@ public class BrimstoneChalkItem extends WizardChalk implements IForgeItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("item.dmnr.brimstone_chalk.description"));
+        tooltip.add(Component.translatable("item.dmnr.brimstone_chalk.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 }

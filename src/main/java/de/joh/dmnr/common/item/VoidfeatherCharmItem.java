@@ -4,6 +4,7 @@ import com.mna.api.items.TieredItem;
 import com.mna.interop.CuriosInterop;
 import com.mna.tools.InventoryUtilities;
 import de.joh.dmnr.common.init.ItemInit;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.MinecraftServer;
@@ -73,7 +74,9 @@ public class VoidfeatherCharmItem extends TieredItem {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("item.dmnr.voidfeather_charm.description"));
+        tooltip.add(Component.translatable("item.dmnr.voidfeather_charm.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("  "));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 
     /**

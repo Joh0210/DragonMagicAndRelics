@@ -4,8 +4,8 @@ import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
 import com.mna.api.items.ITieredItem;
 import com.mna.factions.Factions;
-import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -123,7 +123,8 @@ public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownI
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("item.dmnr.hydra_crown.description"));
+        tooltip.add(Component.translatable("item.dmnr.hydra_crown.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 
     /**

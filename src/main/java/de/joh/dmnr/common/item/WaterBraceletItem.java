@@ -4,15 +4,24 @@ import com.mna.api.items.TieredItem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleWaterBraceletS2CPacket;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ForgeMod;
+import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
+
+import java.util.List;
 
 /**
  * Allows the user to breath underwater and increases their swimming_speed.
@@ -26,6 +35,14 @@ public class WaterBraceletItem extends TieredItem implements ICurioItem {
     public WaterBraceletItem(int level) {
         super(new Item.Properties().stacksTo(1));
         swimmingMod = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_water_bracelet", 1.5F * level, AttributeModifier.Operation.ADDITION);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+        tooltip.add(Component.translatable("tooltip.dmnr.bracelet_of_water").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("  "));
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 
     @Override

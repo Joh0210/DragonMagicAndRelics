@@ -7,6 +7,7 @@ import com.mna.items.filters.ItemFilterGroup;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.util.PotionFilter;
 import de.joh.dmnr.client.gui.NamedPotionOfInfinity;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
@@ -41,7 +42,9 @@ public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<Pot
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("item.dmnr.potion_of_infinity.description"));
+        tooltip.add(Component.translatable("item.dmnr.potion_of_infinity.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("  "));
+        super.appendHoverText(stack, world, tooltip, flag);
     }
 
     @Override
