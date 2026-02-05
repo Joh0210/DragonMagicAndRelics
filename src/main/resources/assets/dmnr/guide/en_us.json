@@ -398,7 +398,7 @@
             "bold": true
           },
           {
-            "text": "They are cheap to use and set the attacker on fire.\n- ",
+            "text": "They are cheap to use and set the attacker on fire (Hellfire if Upgraded, which significantly increases fire damage and ignores resistance).\n- ",
             "color": ""
           },
           {
@@ -440,6 +440,10 @@
       {
         "type": "eldrin_altar",
         "location":"dmnr:eldrin_altar/revenge_charm_reflect_major"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/revenge_charm_fire_major"
       }
     ]
   },

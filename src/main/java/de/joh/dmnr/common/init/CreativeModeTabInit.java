@@ -82,6 +82,7 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.POTION_OF_INFINITY.get());
 
                         pOutput.accept(ItemInit.REVENGE_CHARM_FIRE.get());
+                        pOutput.accept(ItemInit.REVENGE_CHARM_FIRE_MAJOR.get());
                         pOutput.accept(ItemInit.REVENGE_CHARM_REFLECT.get());
                         pOutput.accept(ItemInit.REVENGE_CHARM_REFLECT_MAJOR.get());
                         pOutput.accept(ItemInit.REVENGE_CHARM_DMG.get());

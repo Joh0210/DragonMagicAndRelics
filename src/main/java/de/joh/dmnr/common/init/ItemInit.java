@@ -85,6 +85,7 @@ public class ItemInit {
     public static final RegistryObject<Item> POTION_OF_INFINITY = ITEMS.register("potion_of_infinity", PotionOfInfinityItem::new);
 
     public static final RegistryObject<Item> REVENGE_CHARM_FIRE = ITEMS.register("revenge_charm_fire", () -> new FireRevengeCharmItem(1));
+    public static final RegistryObject<Item> REVENGE_CHARM_FIRE_MAJOR = ITEMS.register("revenge_charm_fire_major", () -> new FireRevengeCharmItem(2));
     public static final RegistryObject<Item> REVENGE_CHARM_REFLECT = ITEMS.register("revenge_charm_reflect", () -> new ForceRevengeCharmItem(1));
     public static final RegistryObject<Item> REVENGE_CHARM_REFLECT_MAJOR = ITEMS.register("revenge_charm_reflect_major", () -> new ForceRevengeCharmItem(2));
     public static final RegistryObject<Item> REVENGE_CHARM_DMG = ITEMS.register("revenge_charm_dmg", () -> new DmgRevengeCharmItem(1));
