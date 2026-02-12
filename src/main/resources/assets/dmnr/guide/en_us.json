@@ -313,6 +313,47 @@
       }
     ]
   },
+  "Disappearing Tiara": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Disappearing Tiara"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "*Burglar Music starts playing\n\n",
+            "color": "",
+            "italic": true
+          },
+          {
+            "text": "As easy to say, as to do: Shift -> Invisibility\n\n",
+            "color": ""
+          },
+          {
+            "text": "It can only be crafted by those that have aligned themselves with the "
+          },
+          {
+            "text": "Faerie Courts",
+            "color": "dark_green"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/disappearing_tiara"
+      }
+    ]
+  },
   "King of Hearts Amulet": {
     "index": "1",
     "category": "artifice",

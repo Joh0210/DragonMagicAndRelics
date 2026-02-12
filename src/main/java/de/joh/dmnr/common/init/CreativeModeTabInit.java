@@ -79,6 +79,7 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.HYDRA_CROWN.get());
                         pOutput.accept(ItemInit.NIGHT_GOGGLES.get());
                         pOutput.accept(ItemInit.COLLECTORS_AMULET.get());
+                        pOutput.accept(ItemInit.DISAPPEARING_TIARA.get());
                         pOutput.accept(ItemInit.POTION_OF_INFINITY.get());
 
                         pOutput.accept(ItemInit.REVENGE_CHARM_FIRE.get());

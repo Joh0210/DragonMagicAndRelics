@@ -46,6 +46,8 @@
   "tooltip.dmnr.sturdy_belt": "Halves all incoming and outgoing damage.",
   "item.dmnr.brimstone_chalk" : "Brimstone Chalk",
   "item.dmnr.brimstone_chalk.description" : "Unbreakable Chalk",
+  "item.dmnr.disappearing_tiara" : "Disappearing Tiara",
+  "item.dmnr.disappearing_tiara.description" : "Let's see, if you can see... when I sneak.",
   "item.dmnr.brimstone_coal": "Brimstone Coal",
   "item.dmnr.brimstone_coal.description" : "Endless fuel that is not consumed (Not guaranteed to be compatible with every mod)",
   "item.dmnr.voidfeather_charm" : "Voidfeather Charm",

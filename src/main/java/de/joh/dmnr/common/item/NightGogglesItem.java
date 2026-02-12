@@ -31,7 +31,7 @@ import java.util.function.Consumer;
  * @author Joh0210
  */
 
-public class NightGogglesItem extends ArmorItem implements ITieredItem<HydraCrownItem>, IFactionSpecific, ICurioItem {
+public class NightGogglesItem extends ArmorItem implements ITieredItem<NightGogglesItem>, IFactionSpecific, ICurioItem {
     private int tier = -1;
 
     public NightGogglesItem() {
@@ -76,11 +76,6 @@ public class NightGogglesItem extends ArmorItem implements ITieredItem<HydraCrow
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         ICurioItem.super.curioTick(slotContext, stack);
         this.tick(slotContext.entity());
-    }
-
-    @Override
-    public IFaction getFaction() {
-        return  Factions.UNDEAD;
     }
 
     @Override

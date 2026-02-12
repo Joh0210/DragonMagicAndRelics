@@ -1,0 +1,22 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "dmnr:disappearing_tiara",
+  "tier": 3,
+  "requiredFaction": "mna:fey",
+  "items": [
+    "minecraft:ghast_tear",
+    "minecraft:iron_helmet",
+    "minecraft:carrot",
+    "minecraft:spider_eye",
+    "forge:glass",
+    "forge:glass",
+    "mna:mote_arcane",
+    "mna:mote_air"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/knot",
+    "mna:manaweave_patterns/knot2",
+    "mna:manaweave_patterns/knot3",
+    "mna:manaweave_patterns/knot4"
+  ]
+}

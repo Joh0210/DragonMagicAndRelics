@@ -7,6 +7,7 @@ import de.joh.dmnr.common.armorupgrade.JumpArmorUpgrade;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.ItemInit;
+import de.joh.dmnr.common.item.DisappearingTiaraItem;
 import de.joh.dmnr.common.item.NightGogglesItem;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleBurningFrenzyS2CPacket;
@@ -62,6 +63,10 @@ public class CommonEventHandler {
 
             if(fromItem instanceof NightGogglesItem){
                 ((NightGogglesItem)fromItem).onDiscard(entity);
+            }
+
+            if(fromItem instanceof DisappearingTiaraItem){
+                ((DisappearingTiaraItem)fromItem).onDiscard(entity);
             }
 
             if(fromItem instanceof DragonMageArmorItem){

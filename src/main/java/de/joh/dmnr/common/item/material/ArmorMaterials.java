@@ -42,6 +42,7 @@ public enum ArmorMaterials implements ArmorMaterial {
     }),
     */
     NIGHT_GOGGLES_MATERIAL("night", 9, new int[]{1, 2, 3, 1}, 17, SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.LEATHER)),
+    DISAPPEARING_TIARA_MATERIAL("tiara", 9, new int[]{2, 2, 3, 1}, 19, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
     HYDRA_CROWN_MATERIAL("hydra", 9, new int[]{1, 4, 5, 2}, 20, SoundEvents.ARMOR_EQUIP_GOLD, 1.0F, 0.0F, () -> Ingredient.of(Items.GOLD_INGOT)),
 
     DRAGON_MAGE_ARMOR_MATERIAL("dragon_mage", 37, new int[]{5, 7, 9, 5}, 20, SoundEvents.ARMOR_EQUIP_NETHERITE, 4.0F, 0.1F, () -> Ingredient.of(Items.NETHERITE_INGOT));

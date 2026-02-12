@@ -82,6 +82,7 @@ public class ItemInit {
     public static final RegistryObject<Item> AMULET_OF_HELLFIRE = ITEMS.register("amulet_of_hellfire", AmuletOfHellfire::new);
     public static final RegistryObject<Item> NIGHT_GOGGLES = ITEMS.register("night_goggles", NightGogglesItem::new);
     public static final RegistryObject<Item> COLLECTORS_AMULET = ITEMS.register("collectors_amulet", () -> new CollectorItem("ring", 3));
+    public static final RegistryObject<Item> DISAPPEARING_TIARA = ITEMS.register("disappearing_tiara", DisappearingTiaraItem::new);
     public static final RegistryObject<Item> POTION_OF_INFINITY = ITEMS.register("potion_of_infinity", PotionOfInfinityItem::new);
 
     public static final RegistryObject<Item> REVENGE_CHARM_FIRE = ITEMS.register("revenge_charm_fire", () -> new FireRevengeCharmItem(1));
