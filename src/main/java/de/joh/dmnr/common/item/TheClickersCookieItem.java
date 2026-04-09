@@ -99,8 +99,7 @@ public class TheClickersCookieItem extends Item implements IRelic {
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        tooltip.add(Component.translatable("item.dmnr.the_clickers_cookie.lore_1").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
-        tooltip.add(Component.translatable("item.dmnr.the_clickers_cookie.lore_2").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("item.dmnr.the_clickers_cookie.lore").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("  "));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }

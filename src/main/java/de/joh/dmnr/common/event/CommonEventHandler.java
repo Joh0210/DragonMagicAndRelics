@@ -8,6 +8,7 @@ import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.DisappearingTiaraItem;
+import de.joh.dmnr.common.item.KeyOfHomestead;
 import de.joh.dmnr.common.item.NightGogglesItem;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleBurningFrenzyS2CPacket;
@@ -19,10 +20,12 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -114,5 +117,10 @@ public class CommonEventHandler {
                 ModMessages.sendToPlayer(new ToggleWaterBraceletS2CPacket(!CuriosApi.getCuriosHelper().findCurios(player, ItemInit.BRACELET_OF_WATER.get()).isEmpty() || !CuriosApi.getCuriosHelper().findCurios(player, ItemInit.BRACELET_OF_WATER_GREATER.get()).isEmpty()), player);
             }
         }
+    }
+
+    @SubscribeEvent
+    public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
+        KeyOfHomestead.onPlayerLeftClick(event);
     }
 }

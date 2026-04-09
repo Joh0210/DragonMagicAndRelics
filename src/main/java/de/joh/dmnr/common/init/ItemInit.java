@@ -103,6 +103,7 @@ public class ItemInit {
     public static final RegistryObject<Item> BATTLE_MAGE_RING = ITEMS.register("battle_mage_ring", BattleMageRingItem::new);
     public static final RegistryObject<Item> WEATHER_FAIRY_STAFF = ITEMS.register("weather_fairy_staff", WeatherFairyStaffItem::new);
     public static final RegistryObject<Item> THE_CLICKERS_COOKIE = ITEMS.register("the_clickers_cookie", TheClickersCookieItem::new);
+    public static final RegistryObject<Item> KEY_OF_HOMESTEAD = ITEMS.register("key_of_homestead", KeyOfHomestead::new);
 
 
 
