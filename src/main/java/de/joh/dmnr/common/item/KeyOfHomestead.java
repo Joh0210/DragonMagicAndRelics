@@ -6,6 +6,7 @@ import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.init.ItemInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -18,6 +19,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
@@ -53,40 +55,79 @@ public class KeyOfHomestead extends Item implements IRelic {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, @NotNull Player user, @NotNull InteractionHand hand) {
-        InteractionResultHolder<ItemStack> ar = super.use(world, user, hand);
-        ItemStack stack = user.getItemInHand(hand);
+    public int getUseDuration(@NotNull ItemStack stack) {
+        return 90;
+    }
 
+    @Override
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack stack) {
+        return UseAnim.BOW;
+    }
+
+    @Override
+    public @NotNull ItemStack finishUsingItem(@NotNull ItemStack stack, Level world, @NotNull LivingEntity user) {
         if(world.getServer() != null && stack != ItemStack.EMPTY) {
-
-            if(user.isShiftKeyDown()) {
-                if(this.targetsBack(stack)){
-                    user.getCooldowns().addCooldown(this, 30);
-                    this.manuelReset(user, stack);
+            if(!user.isShiftKeyDown()) {
+                if(user instanceof Player player) {
+                    if(this.targetsBack(stack)){
+                        this.tpBack(player, stack);
+                        this.removeBackV3(stack);
+                    }
+                    else {
+                        this.saveBackV3(player, stack);
+                        this.tpHome(player);
+                    }
+                    player.getCooldowns().addCooldown(this, 100);
                 }
-            }
-
-            else {
-                KeyOfHomestead.cancelReset(stack);
-                user.getCooldowns().addCooldown(this, 100);
-                if(this.targetsBack(stack)){
-                    this.tpBack(user, stack);
-                    this.removeBackV3(stack);
-                }
-                else {
-                    this.saveBackV3(user, stack);
-                    this.tpHome(user);
-                }
-
             }
         }
 
+        return super.finishUsingItem(stack, world, user);
+    }
+
+    @Override
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level world, @NotNull Player user, @NotNull InteractionHand hand) {
+        InteractionResultHolder<ItemStack> ar = super.use(world, user, hand);
+        ItemStack stack = user.getItemInHand(hand);
+        if(stack != ItemStack.EMPTY) {
+            if(user.isShiftKeyDown()) {
+                if(this.targetsBack(stack)){
+                    this.manuelReset(user, stack);
+                }
+                user.getCooldowns().addCooldown(this, 30);
+                return ar;
+            }
+            else {
+                KeyOfHomestead.cancelReset(stack);
+            }
+        }
+
+        user.startUsingItem(hand);
         return ar;
     }
 
     @Override
     public boolean isFoil(@NotNull ItemStack pStack) {
         return targetsBack(pStack);
+    }
+
+    @Override
+    public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
+        if(pLevel.isClientSide()) {
+            for(int j = 0; j < 3; j++) {
+                double i = Math.toRadians((pRemainingUseDuration * 4 + j*120)%360);
+                pLevel.addParticle(
+                        ParticleTypes.PORTAL,
+                        pLivingEntity.getX() + Math.cos(i) * 2 ,
+                        pLivingEntity.getY() + 1.1,
+                        pLivingEntity.getZ() + Math.sin(i) * 2,
+                        0,
+                        0.25d,
+                        0);
+            }
+        }
+
+        super.onUseTick(pLevel, pLivingEntity, pStack, pRemainingUseDuration);
     }
 
     private void manuelReset(@NotNull Player user, @NotNull ItemStack stack) {
