@@ -488,6 +488,42 @@
       }
     ]
   },
+  "Brimstone Bracelet": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Brimstone Bracelet"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This direct upgrade of the Emberglow Bracelet protects you from both flames and explosions, and grants you the ability to see clearly within lava.\n\n",
+            "color": ""
+          },
+          {
+            "text": "This bracelet can only be crafted by those who have allied themselves to the "
+          },
+          {
+            "text": "Demons of the Nether",
+            "color": "dark_red"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/fire_resistance_bracelet"
+      }
+    ]
+  },
   "Amulet of Hellfire": {
     "index": "1",
     "category": "artifice",

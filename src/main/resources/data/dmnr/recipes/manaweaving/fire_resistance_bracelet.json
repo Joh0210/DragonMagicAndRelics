@@ -1,0 +1,14 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 4,
+  "output": "dmnr:fire_resistance_bracelet",
+  "quantity": 1,
+  "requiredFaction": "mna:demons",
+  "items": [
+    "mna:brimstone_charm",
+    "mna:emberglow_bracelet"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/bolt"
+  ]
+}

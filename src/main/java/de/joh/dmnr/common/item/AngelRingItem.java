@@ -5,10 +5,14 @@ import com.mna.api.items.IFactionSpecific;
 import com.mna.api.items.TieredItem;
 import com.mna.factions.Factions;
 import de.joh.dmnr.common.init.EffectInit;
+import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -17,7 +21,9 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.extensions.IForgeItem;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -54,6 +60,17 @@ public class AngelRingItem extends TieredItem implements IForgeItem, ICurioItem,
             player.removeEffect(EffectInit.ELYTRA.get());
         }
         onUnequip(slotContext.identifier(), slotContext.index(), slotContext.entity(), stack);
+    }
+
+    public static boolean eventHandleKineticProtection(LivingAttackEvent event) {
+        DamageSource source = event.getSource();
+        if(event.getEntity() instanceof Player player){
+            if((source.is(DamageTypeTags.IS_FALL) || source.is(DamageTypes.FLY_INTO_WALL)) && CuriosApi.getCuriosHelper().findFirstCurio(player, ItemInit.ANGEL_RING.get()).isPresent()){
+                event.setCanceled(true);
+                return true;
+            }
+        }
+        return false;
     }
 
     @OnlyIn(Dist.CLIENT)

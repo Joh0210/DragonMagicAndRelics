@@ -3,7 +3,6 @@ package de.joh.dmnr.common.armorupgrade;
 import com.mna.api.capabilities.IPlayerMagic;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
-import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
 import de.joh.dmnr.api.armorupgrade.OnTickArmorUpgrade;
 import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.RegistryObject;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Makes the wearer of the Dragon Mage Armor significantly faster when sprinting.
@@ -32,11 +30,6 @@ public class SpeedArmorUpgrade extends OnTickArmorUpgrade {
 
     public SpeedArmorUpgrade(ResourceLocation upgradeId, RegistryObject<Item> upgradeSealItem, int upgradeCost) {
         super(upgradeId, 3, upgradeSealItem, false, true, upgradeCost);
-    }
-
-    @Override
-    public @Nullable ArmorUpgrade getStrongerAlternative() {
-        return ArmorUpgradeInit.BURNING_FRENZY;
     }
 
     @Override

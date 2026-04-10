@@ -69,6 +69,7 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.REACH_RING_MINOR.get());
                         pOutput.accept(ItemInit.REACH_RING.get());
                         pOutput.accept(ItemInit.REACH_RING_GREATER.get());
+                        pOutput.accept(ItemInit.FIRE_RESISTANCE_BRACELET.get());
                         pOutput.accept(ItemInit.BELT_OF_LIFE_MINOR.get());
                         pOutput.accept(ItemInit.BELT_OF_LIFE.get());
                         pOutput.accept(ItemInit.BELT_OF_LIFE_GREATER.get());

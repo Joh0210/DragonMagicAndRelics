@@ -3,7 +3,6 @@ package de.joh.dmnr.client.item.armor;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
-import de.joh.dmnr.common.armorupgrade.FlyArmorUpgrade;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.AngelRingItem;
@@ -25,7 +24,6 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 /**
  * This class adds visible wings to the player when wearing the Dragon Mage armor and has the Elytra upgrade installed.
- * @see FlyArmorUpgrade
  * @see DragonMageArmorItem
  */
 public class WingRenderLayer<T extends LivingEntity, M extends EntityModel<T>> extends RenderLayer<T, M> {
