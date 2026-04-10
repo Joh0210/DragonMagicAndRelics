@@ -10,7 +10,6 @@ import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.IncrementWeatherC2SPacket;
 import de.joh.dmnr.networking.packet.ToggleFlightC2SPacket;
-import de.joh.dmnr.networking.packet.ToggleNightVisionC2SPacket;
 import de.joh.dmnr.common.init.KeybindInit;
 import de.joh.dmnr.networking.packet.UseRingOfSpellStoringC2SPacket;
 import net.minecraft.client.Minecraft;
@@ -45,15 +44,11 @@ public class ClientEventHandler {
 
         /**
          * Has the button been pressed that activates Night Vision or DM&R Flight?
-         * @see ToggleNightVisionC2SPacket
          * @see ToggleFlightC2SPacket
          * @see ArmorUpgradeInit
          */
         @SubscribeEvent
         public static void onKeyRegister(InputEvent.Key event){
-            if(KeybindInit.TOGGLE_NIGHT_VISION_KEY.consumeClick()){
-                ModMessages.sendToServer(new ToggleNightVisionC2SPacket());
-            }
             if(KeybindInit.USE_SPELL.consumeClick()){
                 ModMessages.sendToServer(new UseRingOfSpellStoringC2SPacket());
             }

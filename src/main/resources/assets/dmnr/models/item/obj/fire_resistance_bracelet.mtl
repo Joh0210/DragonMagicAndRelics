@@ -1,0 +1,5 @@
+# Blender MTL File: 'curios.blend'
+# Material Count: 1
+
+newmtl MAIN
+map_Kd dmnr:item/fire_resistance_bracelet

@@ -71,6 +71,7 @@ public class ItemInit {
     public static final RegistryObject<Item> REACH_RING_MINOR = ITEMS.register("reach_ring_minor", () -> new ReachRingItem(1));
     public static final RegistryObject<Item> REACH_RING = ITEMS.register("reach_ring", () -> new ReachRingItem(2));
     public static final RegistryObject<Item> REACH_RING_GREATER = ITEMS.register("reach_ring_greater", () -> new ReachRingItem(3));
+    public static final RegistryObject<Item> FIRE_RESISTANCE_BRACELET = ITEMS.register("fire_resistance_bracelet", FireResistanceBraceletItem::new);
     public static final RegistryObject<Item> BELT_OF_LIFE_MINOR = ITEMS.register("belt_of_life_minor", () -> new BeltOfLifeItem(1));
     public static final RegistryObject<Item> BELT_OF_LIFE = ITEMS.register("belt_of_life", () -> new BeltOfLifeItem(2));
     public static final RegistryObject<Item> BELT_OF_LIFE_GREATER = ITEMS.register("belt_of_life_greater", () -> new BeltOfLifeItem(3));

@@ -41,7 +41,6 @@ public class DragonMagicAndRelics {
         BlockInit.register(eventBus);
         EffectInit.register(eventBus);
         BlockEntitieInit.register(eventBus);
-        CommandSerializerInit.register(eventBus);
 
         // Only on Client?
         ContainerInit.register(eventBus);

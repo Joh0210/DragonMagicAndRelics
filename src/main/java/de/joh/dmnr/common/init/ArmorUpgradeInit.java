@@ -23,17 +23,8 @@ import net.minecraftforge.registries.RegisterEvent;
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ArmorUpgradeInit {
-    public static ArmorUpgrade FLY;
     public static ArmorUpgrade SATURATION;
     public static ArmorUpgrade MOVEMENT_SPEED;
-    public static ArmorUpgrade WATER_BREATHING;
-    public static ArmorUpgrade METEOR_JUMP;
-    public static ArmorUpgrade DOLPHINS_GRACE;
-    public static ArmorUpgrade REGENERATION;
-    public static ArmorUpgrade MANA_BOOST;
-    public static ArmorUpgrade MANA_REGEN;
-    public static ArmorUpgrade HEALTH_BOOST;
-    public static ArmorUpgrade REACH_DISTANCE;
     /**
      * This upgrade reduces the damage the wearer receives, regardless of the source. Currently 20% reduction per level.
      * @see DamageEventHandler
@@ -44,14 +35,6 @@ public class ArmorUpgradeInit {
      * @see DamageEventHandler
      */
     public static ArmorUpgrade DAMAGE_BOOST;
-    public static ArmorUpgrade MINOR_FIRE_RESISTANCE;
-    public static ArmorUpgrade MAJOR_FIRE_RESISTANCE;
-    /**
-     * This upgrade protects you from fall- and kinetic damage.
-     * Increasing the maximum level has no effect without further adjustments.
-     * @see DamageEventHandler
-     */
-    public static ArmorUpgrade KINETIC_RESISTANCE;
 
     /**
      * This upgrade protects you from explosion damage.
@@ -67,22 +50,7 @@ public class ArmorUpgradeInit {
      */
     public static ArmorUpgrade PROJECTILE_REFLECTION;
 
-    public static ArmorUpgrade MIST_FORM;
-
     public static ArmorUpgrade JUMP;
-
-    /**
-     * This upgrade allows the wearer to use Elytra Flight. Level 2 gives a permanent boost, but needs mana.
-     * Increasing the maximum level has no effect without further adjustments.
-     * @see DragonMageArmorItem
-     */
-    public static ArmorUpgrade ELYTRA;
-    public static ArmorUpgrade ANGEL_FLIGHT;
-
-    public static ArmorUpgrade NIGHT_VISION;
-
-    public static ArmorUpgrade BURNING_FRENZY;
-    public static ArmorUpgrade MAJOR_MANA_BOOST;
 
     /**
      * Increases castet Spells Attributes:
@@ -98,67 +66,26 @@ public class ArmorUpgradeInit {
     @SubscribeEvent
     public static void register(RegisterEvent event) {
         event.register(Registries.ARMOR_UPGRADE.get().getRegistryKey(), (helper) -> {
-            helper.register(ArmorUpgradeInit.FLY.getRegistryName(), ArmorUpgradeInit.FLY);
             helper.register(ArmorUpgradeInit.SATURATION.getRegistryName(), ArmorUpgradeInit.SATURATION);
             helper.register(ArmorUpgradeInit.MOVEMENT_SPEED.getRegistryName(), ArmorUpgradeInit.MOVEMENT_SPEED);
-            helper.register(ArmorUpgradeInit.WATER_BREATHING.getRegistryName(), ArmorUpgradeInit.WATER_BREATHING);
-            helper.register(ArmorUpgradeInit.METEOR_JUMP.getRegistryName(), ArmorUpgradeInit.METEOR_JUMP);
             helper.register(ArmorUpgradeInit.SORCERERS_PRIDE.getRegistryName(), ArmorUpgradeInit.SORCERERS_PRIDE);
-            helper.register(ArmorUpgradeInit.BURNING_FRENZY.getRegistryName(), ArmorUpgradeInit.BURNING_FRENZY);
-
-
-            helper.register(ArmorUpgradeInit.DOLPHINS_GRACE.getRegistryName(), ArmorUpgradeInit.DOLPHINS_GRACE);
-            helper.register(ArmorUpgradeInit.REGENERATION.getRegistryName(), ArmorUpgradeInit.REGENERATION);
-            helper.register(ArmorUpgradeInit.MANA_BOOST.getRegistryName(), ArmorUpgradeInit.MANA_BOOST);
-            helper.register(ArmorUpgradeInit.MAJOR_MANA_BOOST.getRegistryName(), ArmorUpgradeInit.MAJOR_MANA_BOOST);
-
-            helper.register(ArmorUpgradeInit.MANA_REGEN.getRegistryName(), ArmorUpgradeInit.MANA_REGEN);
-            helper.register(ArmorUpgradeInit.HEALTH_BOOST.getRegistryName(), ArmorUpgradeInit.HEALTH_BOOST);
             helper.register(ArmorUpgradeInit.DAMAGE_RESISTANCE.getRegistryName(), ArmorUpgradeInit.DAMAGE_RESISTANCE);
             helper.register(ArmorUpgradeInit.DAMAGE_BOOST.getRegistryName(), ArmorUpgradeInit.DAMAGE_BOOST);
-            helper.register(ArmorUpgradeInit.REACH_DISTANCE.getRegistryName(), ArmorUpgradeInit.REACH_DISTANCE);
-
-            helper.register(ArmorUpgradeInit.MINOR_FIRE_RESISTANCE.getRegistryName(), ArmorUpgradeInit.MINOR_FIRE_RESISTANCE);
-            helper.register(ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE.getRegistryName(), ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE);
-            helper.register(ArmorUpgradeInit.KINETIC_RESISTANCE.getRegistryName(), ArmorUpgradeInit.KINETIC_RESISTANCE);
             helper.register(ArmorUpgradeInit.EXPLOSION_RESISTANCE.getRegistryName(), ArmorUpgradeInit.EXPLOSION_RESISTANCE);
             helper.register(ArmorUpgradeInit.PROJECTILE_REFLECTION.getRegistryName(), ArmorUpgradeInit.PROJECTILE_REFLECTION);
-
-            helper.register(ArmorUpgradeInit.MIST_FORM.getRegistryName(), ArmorUpgradeInit.MIST_FORM);
             helper.register(ArmorUpgradeInit.JUMP.getRegistryName(), ArmorUpgradeInit.JUMP);
-            helper.register(ArmorUpgradeInit.ELYTRA.getRegistryName(), ArmorUpgradeInit.ELYTRA);
-            helper.register(ArmorUpgradeInit.ANGEL_FLIGHT.getRegistryName(), ArmorUpgradeInit.ANGEL_FLIGHT);
-            helper.register(ArmorUpgradeInit.NIGHT_VISION.getRegistryName(), ArmorUpgradeInit.NIGHT_VISION);
             helper.register(ArmorUpgradeInit.INSIGHT.getRegistryName(), ArmorUpgradeInit.INSIGHT);
         });
     }
 
     static {
-        ArmorUpgradeInit.REACH_DISTANCE = new ReachDistanceArmorUpgrade(RLoc.create("armorupgrade/reach_distance"), ItemInit.UPGRADE_SEAL_REACH_DISTANCE, 8);
-        ArmorUpgradeInit.FLY = new FlyArmorUpgrade(RLoc.create("armorupgrade/fly"), ItemInit.UPGRADE_SEAL_FLY, 7);
         ArmorUpgradeInit.SATURATION = new SaturationArmorUpgrade(RLoc.create("armorupgrade/saturation"), ItemInit.UPGRADE_SEAL_SATURATION, 8);
         ArmorUpgradeInit.MOVEMENT_SPEED = new SpeedArmorUpgrade(RLoc.create("armorupgrade/movement_speed"), ItemInit.UPGRADE_SEAL_MOVEMENT_SPEED, 4);
-        ArmorUpgradeInit.WATER_BREATHING = new WaterBreathingArmorUpgrade(RLoc.create("armorupgrade/water_breathing"), 2, ItemInit.UPGRADE_SEAL_WATER_BREATHING, 2);
         ArmorUpgradeInit.JUMP = new JumpArmorUpgrade(RLoc.create("armorupgrade/jump"), ItemInit.UPGRADE_SEAL_JUMP, 2);
-        ArmorUpgradeInit.METEOR_JUMP = new MeteorJumpArmorUpgrade(RLoc.create("armorupgrade/meteor_jump"), ItemInit.UPGRADE_SEAL_METEOR_JUMP, 3);
-        ArmorUpgradeInit.DOLPHINS_GRACE = new SwimSpeedArmorUpgrade(RLoc.create("armorupgrade/dolphins_grace"), 2, ItemInit.UPGRADE_SEAL_DOLPHINS_GRACE, 2);
-        ArmorUpgradeInit.REGENERATION = new RegenerationArmorUpgrade(RLoc.create("armorupgrade/regeneration"), 1, ItemInit.UPGRADE_SEAL_REGENERATION, 10);
-        ArmorUpgradeInit.MANA_BOOST = new ManaBoostArmorUpgrade(RLoc.create("armorupgrade/mana_boost"), ItemInit.UPGRADE_SEAL_MINOR_MANA_BOOST, false, 4);
-        ArmorUpgradeInit.MAJOR_MANA_BOOST = new ManaBoostArmorUpgrade(RLoc.create("armorupgrade/major_mana_boost"), ItemInit.UPGRADE_SEAL_MAJOR_MANA_BOOST, true, 5);
-        ArmorUpgradeInit.MANA_REGEN = new ManaRegenerationArmorUpgrade(RLoc.create("armorupgrade/mana_regen"), 3, ItemInit.UPGRADE_SEAL_MANA_REGEN, 5);
-        ArmorUpgradeInit.HEALTH_BOOST = new HealthBoostArmorUpgrade(RLoc.create("armorupgrade/health_boost"), ItemInit.UPGRADE_SEAL_HEALTH_BOOST, 2);
         ArmorUpgradeInit.DAMAGE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/damage_resistance"), 3, ItemInit.UPGRADE_SEAL_DAMAGE_RESISTANCE, true, 8);
         ArmorUpgradeInit.DAMAGE_BOOST = new ArmorUpgrade(RLoc.create("armorupgrade/damage_boost"), 4, ItemInit.UPGRADE_SEAL_DAMAGE_BOOST, true, 7);
-        ArmorUpgradeInit.MINOR_FIRE_RESISTANCE = new FireResistanceArmorUpgrade(RLoc.create("armorupgrade/minor_fire_resistance"), ItemInit.UPGRADE_SEAL_MINOR_FIRE_RESISTANCE, true, 4);
-        ArmorUpgradeInit.MAJOR_FIRE_RESISTANCE = new FireResistanceArmorUpgrade(RLoc.create("armorupgrade/major_fire_resistance"), ItemInit.UPGRADE_SEAL_MAJOR_FIRE_RESISTANCE, false, 2);
-        ArmorUpgradeInit.KINETIC_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/kinetic_resistance"), 1, ItemInit.UPGRADE_SEAL_KINETIC_RESISTANCE, false, 4);
         ArmorUpgradeInit.EXPLOSION_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/explosion_resistance"), 1, ItemInit.UPGRADE_SEAL_EXPLOSION_RESISTANCE, false, 4);
         ArmorUpgradeInit.PROJECTILE_REFLECTION = new ArmorUpgrade(RLoc.create("armorupgrade/projectile_reflection"), 3, ItemInit.UPGRADE_SEAL_PROJECTILE_REFLECTION, true, 2);
-        ArmorUpgradeInit.MIST_FORM = new MistFormArmorUpgrade(RLoc.create("armorupgrade/mist_form"), 1, ItemInit.UPGRADE_SEAL_MIST_FORM, false, 8);
-        ArmorUpgradeInit.ELYTRA = new ElytraArmorUpgrade(RLoc.create("armorupgrade/elytra"), 1, ItemInit.UPGRADE_SEAL_ELYTRA, true, 5);
-        ArmorUpgradeInit.ANGEL_FLIGHT = new ElytraArmorUpgrade(RLoc.create("armorupgrade/angel_flight"), 2, ItemInit.UPGRADE_SEAL_ANGEL_FLIGHT, false, 5);
-        ArmorUpgradeInit.NIGHT_VISION = new NightVisionArmorUpgrade(RLoc.create("armorupgrade/night_vision"), ItemInit.UPGRADE_SEAL_NIGHT_VISION, 2);
-        ArmorUpgradeInit.BURNING_FRENZY = new BurningFrenzyArmorUpgrade(RLoc.create("armorupgrade/burning_frenzy"), ItemInit.UPGRADE_SEAL_BURNING_FRENZY, 6);
         ArmorUpgradeInit.SORCERERS_PRIDE = new ArmorUpgrade(RLoc.create("armorupgrade/sorcerers_pride"), 3, ItemInit.UPGRADE_SEAL_SORCERERS_PRIDE, true, 5);
         ArmorUpgradeInit.INSIGHT = new InsightArmorUpgrade(RLoc.create("armorupgrade/insight"), ItemInit.UPGRADE_SEAL_INSIGHT, 1);
     }

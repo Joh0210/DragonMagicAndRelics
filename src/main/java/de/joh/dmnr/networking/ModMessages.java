@@ -34,12 +34,6 @@ public class ModMessages {
 
         INSTANCE = net;
 
-        net.messageBuilder(ToggleNightVisionC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(ToggleNightVisionC2SPacket::new)
-                .encoder((ToggleNightVisionC2SPacket::toBytes))
-                .consumerMainThread(ToggleNightVisionC2SPacket::handle)
-                .add();
-
         net.messageBuilder(UseRingOfSpellStoringC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
                 .decoder(UseRingOfSpellStoringC2SPacket::new)
                 .encoder((UseRingOfSpellStoringC2SPacket::toBytes))
