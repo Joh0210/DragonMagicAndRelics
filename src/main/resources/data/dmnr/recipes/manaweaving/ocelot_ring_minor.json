@@ -1,0 +1,17 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 2,
+  "output": "dmnr:ocelot_ring_minor",
+  "quantity": 1,
+  "items": [
+    "mna:mundane_ring",
+    "mna:stone_rune_green",
+    "minecraft:sugar",
+    "minecraft:jungle_sapling"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/circle"
+  ]
+}

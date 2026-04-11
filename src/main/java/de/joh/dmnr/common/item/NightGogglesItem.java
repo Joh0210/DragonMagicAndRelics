@@ -1,9 +1,7 @@
 package de.joh.dmnr.common.item;
 
-import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
 import com.mna.api.items.ITieredItem;
-import com.mna.factions.Factions;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -33,7 +31,7 @@ import java.util.function.Consumer;
 
 public class NightGogglesItem extends ArmorItem implements ITieredItem<NightGogglesItem>, IFactionSpecific, ICurioItem {
     private int tier = -1;
-
+    // todo Upgrade: mna Insight in Addition to Night Vision
     public NightGogglesItem() {
         super(ArmorMaterials.NIGHT_GOGGLES_MATERIAL, Type.HELMET, new Item.Properties().stacksTo(1));
     }

@@ -354,6 +354,45 @@
       }
     ]
   },
+  "Ocelot Ring": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ocelot Ring"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "No cats were harmed in the making of this ring. Only faux fur was used.\n\n",
+            "color": "",
+            "italic": true
+          },
+          {
+            "text": "Your movement will be greatly accelerated.If you run for longer than 5 seconds, an even more extreme boost will be added. Since you always land on your feet, you take less fall damage. You also get a step assist and a small jump boost.\n\n Each bonus is increased with higher item tiers.",
+            "color": ""
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/ocelot_ring_minor"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location":"dmnr:manaweaving/ocelot_ring"
+      },
+      {
+        "type": "eldrin_altar",
+        "location":"dmnr:eldrin_altar/ocelot_ring_greater"
+      }
+    ]
+  },
   "King of Hearts Amulet": {
     "index": "1",
     "category": "artifice",

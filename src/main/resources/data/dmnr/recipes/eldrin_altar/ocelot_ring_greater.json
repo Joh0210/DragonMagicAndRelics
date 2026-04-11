@@ -1,0 +1,17 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:ocelot_ring_greater",
+  "tier": 5,
+  "items": [
+    "dmnr:ocelot_ring",
+    "minecraft:netherite_ingot",
+    "mna:greater_mote_air",
+    "minecraft:gold_ingot"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "WIND",
+      "amount": 500
+    }
+  ]
+}

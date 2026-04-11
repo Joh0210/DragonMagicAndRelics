@@ -1,0 +1,22 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "tier": 2,
+  "output": "dmnr:ocelot_ring",
+  "quantity": 1,
+  "items": [
+    "dmnr:ocelot_ring_minor",
+    "minecraft:gold_block",
+    "minecraft:rabbit_foot",
+    "minecraft:gold_block",
+    "minecraft:glowstone_dust",
+    "minecraft:gold_block",
+    "mna:mote_air",
+    "minecraft:gold_block",
+    "minecraft:fermented_spider_eye"
+  ],
+  "patterns": [
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/circle"
+  ]
+}

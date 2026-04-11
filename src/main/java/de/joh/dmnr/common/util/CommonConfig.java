@@ -1,8 +1,5 @@
 package de.joh.dmnr.common.util;
 
-import de.joh.dmnr.common.armorupgrade.FlyArmorUpgrade;
-import de.joh.dmnr.common.armorupgrade.MeteorJumpArmorUpgrade;
-import de.joh.dmnr.common.armorupgrade.SaturationArmorUpgrade;
 import de.joh.dmnr.common.armorupgrade.SpeedArmorUpgrade;
 import de.joh.dmnr.api.spell.component.ConjureFluidComponent;
 import de.joh.dmnr.common.spell.component.MarkComponent;
@@ -58,20 +55,17 @@ public class CommonConfig {
     /**
      * fly upgrade:
      * Defines whether it is possible to additionally sprint while flying with the Dragon Mage armor
-     * @see FlyArmorUpgrade
      */
     public static final ForgeConfigSpec.ConfigValue<Boolean> FLY_ALLOW_SPRTINTING_WHILE_FLYING;
 
     /**
      * meteor jump upgrade:
      * Power of the Jump Impact
-     * @see MeteorJumpArmorUpgrade
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> METEOR_JUMP_IMPACT;
 
     /**
      * saturation upgrade:
-     * @see SaturationArmorUpgrade
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> SATURATION_MANA_PER_NUTRITION;
 
