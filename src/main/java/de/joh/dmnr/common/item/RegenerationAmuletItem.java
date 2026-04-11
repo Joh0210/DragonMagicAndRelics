@@ -25,6 +25,7 @@ import java.util.List;
 public class RegenerationAmuletItem extends TieredItem implements ICurioItem {
     private final int level;
 
+    // todo Upgrade: Saturation in Addition to Regen
     public RegenerationAmuletItem(int level) {
         super(new Properties().stacksTo(1).rarity(Rarity.EPIC));
         this.level = level;

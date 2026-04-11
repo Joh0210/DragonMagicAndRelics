@@ -81,6 +81,10 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.HYDRA_CROWN.get());
                         pOutput.accept(ItemInit.NIGHT_GOGGLES.get());
                         pOutput.accept(ItemInit.COLLECTORS_AMULET.get());
+                        pOutput.accept(ItemInit.OCELOT_RING_MINOR.get());
+                        pOutput.accept(ItemInit.OCELOT_RING.get());
+                        pOutput.accept(ItemInit.OCELOT_RING_GREATER.get());
+
                         pOutput.accept(ItemInit.DISAPPEARING_TIARA.get());
                         pOutput.accept(ItemInit.POTION_OF_INFINITY.get());
 

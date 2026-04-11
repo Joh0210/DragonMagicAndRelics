@@ -1,6 +1,5 @@
 package de.joh.dmnr.api.armorupgrade;
 
-import de.joh.dmnr.common.armorupgrade.FlyArmorUpgrade;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import net.minecraft.resources.ResourceLocation;
@@ -10,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Upgrades of this type add a permanent effect to the wearer.
- * @see FlyArmorUpgrade
  *
  * @see DragonMageArmorItem
  * @see ArmorUpgradeInit

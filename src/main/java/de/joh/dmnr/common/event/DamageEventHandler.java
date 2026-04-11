@@ -15,7 +15,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.*;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -26,15 +25,6 @@ import net.minecraftforge.fml.common.Mod;
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DamageEventHandler {
-
-    /**
-     * Processing of damage shifts
-     * @see HellfireMobEffect
-     */
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void onLivingHurtFast(LivingHurtEvent event) {
-    }
-
     /**
      * Processing of the damage boost and damage resistance upgrades.
      * Casts a spell on the player or the source when the wearer of the Dragon Mage Armor takes damage.
@@ -46,7 +36,9 @@ public class DamageEventHandler {
     public static void onLivingHurt(LivingHurtEvent event) {
         Entity sourceEntity = event.getSource().getEntity();
         LivingEntity targetEntity = event.getEntity();
-
+        if (OcelotCurioItem.eventHandleKineticProtection(event)){
+            return;
+        }
         RevengeCharmItem.handleRevengeCharm(event);
 
         if(targetEntity instanceof Player player){
@@ -99,6 +91,10 @@ public class DamageEventHandler {
         }
 
         if (AngelRingItem.eventHandleKineticProtection(event)) {
+            return;
+        }
+
+        if (OcelotCurioItem.eventHandleKineticProtection(event)) {
             return;
         }
 

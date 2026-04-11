@@ -1,76 +1,44 @@
 package de.joh.dmnr.common.item;
 
-import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.common.util.Registries;
-import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
-import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
-import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
-import de.joh.dmnr.api.item.DragonMageArmorItem;
-import net.minecraft.nbt.CompoundTag;
+import com.mna.api.items.TieredItem;
+import de.joh.dmnr.common.init.EffectInit;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class RingOfPowerItem extends DragonMageCuriosItem {
+public class RingOfPowerItem extends TieredItem implements ICurioItem {
     public RingOfPowerItem() {
-        super(16, "ring_of_power", new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
+        super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
     }
 
     @Override
-    public void addDragonMagic(ItemStack itemStack, Player player, String sourceExtension){
-        if(itemStack.getTag() != null && itemStack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
-            CompoundTag nbt = itemStack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
-            player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-                for(String upgradeKey : nbt.getAllKeys()){
-                    int level = nbt.getInt(upgradeKey);
-                    ArmorUpgrade armorUpgrade = Registries.ARMOR_UPGRADE.get().getValue(new ResourceLocation(upgradeKey));
-                    if(armorUpgrade != null){
-                        playerCapability.addUpgrade(sourceExtension + armorUpgrade.getSourceID(level + 1), armorUpgrade, level + 1, player);
-                    }
-                }
-            });
+    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        ICurioItem.super.onUnequip(slotContext, newStack, stack);
 
-            ArmorUpgradeHelper.deactivateAllPerma(player, false);
-            ArmorUpgradeHelper.activateOnEquipPerma(player);
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if(!chest.isEmpty() && chest.getItem() instanceof DragonMageArmorItem dragonMageArmor && dragonMageArmor.isSetEquipped(player)){
-                ArmorUpgradeHelper.deactivateAll(player, false);
-                ArmorUpgradeHelper.activateOnEquip(player);
-            }
-        }
+        slotContext.entity().removeEffect(EffectInit.ULTIMATE_ARMOR.get());
     }
 
     @Override
-    public void removeDragonMagic(ItemStack itemStack, Player player, String sourceExtension){
-        if(itemStack.getTag() != null && itemStack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
-            CompoundTag nbt = itemStack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
-            player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent((playerCapability) -> {
-                for(String upgradeKey : nbt.getAllKeys()){
-                    ArmorUpgrade armorUpgrade = Registries.ARMOR_UPGRADE.get().getValue(new ResourceLocation(upgradeKey));
-                    if(armorUpgrade != null){
-                        playerCapability.removeUpgrade(sourceExtension + armorUpgrade.getSourceID(nbt.getInt(upgradeKey) + 1), player);
-                    }
-                }
-            });
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        ICurioItem.super.curioTick(slotContext, stack);
 
-            ArmorUpgradeHelper.deactivateAllPerma(player, false);
-            ArmorUpgradeHelper.activateOnEquipPerma(player);
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-            if(!chest.isEmpty() && chest.getItem() instanceof DragonMageArmorItem dragonMageArmor && dragonMageArmor.isSetEquipped(player)){
-                ArmorUpgradeHelper.deactivateAll(player, false);
-                ArmorUpgradeHelper.activateOnEquip(player);
-            }
+        LivingEntity livingEntity = slotContext.entity();
+        MobEffectInstance regen = livingEntity.getEffect(EffectInit.ULTIMATE_ARMOR.get());
+        if(regen == null /*|| regen.getAmplifier() > (level-1)*/) {
+            livingEntity.addEffect(new MobEffectInstance(EffectInit.ULTIMATE_ARMOR.get(), -1, 0, false, false));
         }
     }
+
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
