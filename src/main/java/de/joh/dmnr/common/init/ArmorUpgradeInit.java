@@ -34,13 +34,6 @@ public class ArmorUpgradeInit {
     public static ArmorUpgrade DAMAGE_BOOST;
 
     /**
-     * This upgrade reflects projectiles when they try to hit you.
-     * With each upgrade, a projectile can be reflected more before it needs to recharge.
-     * @see DamageEventHandler
-     */
-    public static ArmorUpgrade PROJECTILE_REFLECTION;
-
-    /**
      * Increases castet Spells Attributes:
      * <br> - MAGNITUDE +0.5
      * <br> - DAMAGE    +3
@@ -55,14 +48,12 @@ public class ArmorUpgradeInit {
             helper.register(ArmorUpgradeInit.SORCERERS_PRIDE.getRegistryName(), ArmorUpgradeInit.SORCERERS_PRIDE);
             helper.register(ArmorUpgradeInit.DAMAGE_RESISTANCE.getRegistryName(), ArmorUpgradeInit.DAMAGE_RESISTANCE);
             helper.register(ArmorUpgradeInit.DAMAGE_BOOST.getRegistryName(), ArmorUpgradeInit.DAMAGE_BOOST);
-            helper.register(ArmorUpgradeInit.PROJECTILE_REFLECTION.getRegistryName(), ArmorUpgradeInit.PROJECTILE_REFLECTION);
         });
     }
 
     static {
         ArmorUpgradeInit.DAMAGE_RESISTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/damage_resistance"), 3, ItemInit.UPGRADE_SEAL_DAMAGE_RESISTANCE, true, 8);
         ArmorUpgradeInit.DAMAGE_BOOST = new ArmorUpgrade(RLoc.create("armorupgrade/damage_boost"), 4, ItemInit.UPGRADE_SEAL_DAMAGE_BOOST, true, 7);
-        ArmorUpgradeInit.PROJECTILE_REFLECTION = new ArmorUpgrade(RLoc.create("armorupgrade/projectile_reflection"), 3, ItemInit.UPGRADE_SEAL_PROJECTILE_REFLECTION, true, 2);
         ArmorUpgradeInit.SORCERERS_PRIDE = new ArmorUpgrade(RLoc.create("armorupgrade/sorcerers_pride"), 3, ItemInit.UPGRADE_SEAL_SORCERERS_PRIDE, true, 5);
     }
 }

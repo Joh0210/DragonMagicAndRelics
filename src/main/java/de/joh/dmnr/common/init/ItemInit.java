@@ -63,6 +63,7 @@ public class ItemInit {
     public static final RegistryObject<Item> DEVIL_RING = ITEMS.register("devil_ring", ()->new DevilRingItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> VOIDFEATHER_CHARM = ITEMS.register("voidfeather_charm", () -> new VoidfeatherCharmItem((new Item.Properties()).setNoRepair().stacksTo(1).durability(1)));
 
+    public static final RegistryObject<Item> PROJECTILE_REFLECTION_RING = ITEMS.register("projectile_reflection_ring", ()->new ProjectileReflectionRingItem());
     public static final RegistryObject<Item> OCELOT_RING_MINOR = ITEMS.register("ocelot_ring_minor", () -> new OcelotCurioItem(1));
     public static final RegistryObject<Item> OCELOT_RING = ITEMS.register("ocelot_ring", () -> new OcelotCurioItem(2));
     public static final RegistryObject<Item> OCELOT_RING_GREATER = ITEMS.register("ocelot_ring_greater", () -> new OcelotCurioItem(3));

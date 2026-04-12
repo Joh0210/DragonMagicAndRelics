@@ -79,6 +79,8 @@
   "item.dmnr.ocelot_ring_minor": "Ocelot Ring (Minor)",
   "item.dmnr.ocelot_ring": "Ocelot Ring",
   "item.dmnr.ocelot_ring_greater": "Ocelot Ring (Greater)",
+  "item.dmnr.projectile_reflection_ring": "Ring of Whirlwinds",
+  "item.dmnr.projectile_reflection_ring.description": "Reflects up to three projectiles that would hit the wielder. Recharges over time.",
   "item.dmnr.ocelot_ring.description": "Accelerates your movement speed and adds a fall damage reduction.\n The Boost increases after 5 seconds of running.",
   "item.dmnr.belt_of_life_minor": "Queen of Hearts Belt (Minor)",
   "item.dmnr.belt_of_life": "Queen of Hearts Belt",
