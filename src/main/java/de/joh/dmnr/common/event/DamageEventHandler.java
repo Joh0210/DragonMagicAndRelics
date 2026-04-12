@@ -1,6 +1,5 @@
 package de.joh.dmnr.common.event;
 
-import com.mna.tools.ProjectileHelper;
 import de.joh.dmnr.common.effects.harmful.HellfireMobEffect;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.DragonMagicAndRelics;
@@ -8,11 +7,8 @@ import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.util.CommonConfig;
-import de.joh.dmnr.common.util.ProjectileReflectionHelper;
-import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -81,7 +77,6 @@ public class DamageEventHandler {
     @SubscribeEvent
     public static void onLivingAttack(LivingAttackEvent event) {
         HellfireMobEffect.handleHellfire(event);
-        DamageSource source = event.getSource();
         if (VoidfeatherCharmItem.eventHandleVoidProtection(event)) {
             return;
         }
@@ -98,16 +93,8 @@ public class DamageEventHandler {
             return;
         }
 
-        if(event.getEntity() instanceof Player player){
-            if (!player.level().isClientSide) {
-                //Projectile Reflection
-                if(source.getDirectEntity() instanceof Projectile && ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.PROJECTILE_REFLECTION) > 0 && ProjectileReflectionHelper.consumeReflectCharge(player)){
-                    event.setCanceled(true);
-                    ProjectileHelper.ReflectProjectile(player, (Projectile)source.getDirectEntity(), true, 10.0F);
-                    return;
-                }
-            }
-
+        if (ProjectileReflectionRingItem.tryReflect(event)){
+            return;
         }
 
         BraceletOfFriendshipItem.eventHandleProtectFriends(event);

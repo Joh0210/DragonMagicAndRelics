@@ -1,26 +1,26 @@
 {
   "type": "mna:eldrin-altar",
-  "output": "dmnr:upgrade_seal_projectile_reflection",
-  "tier": 5,
+  "output": "dmnr:projectile_reflection_ring",
+  "tier": 4,
   "items": [
-    "mna:stone_rune_white",
+    "mna:mundane_ring",
     "mna:tarma_root",
     "mna:desert_nova",
     "mna:rune_defense",
     "mna:greater_mote_air",
     "mna:greater_mote_arcane",
-    "mna:council_armor_chest",
-    "dmnr:dragon_core",
+    "minecraft:ghast_tear",
+    "minecraft:netherite_ingot",
     "minecraft:phantom_membrane"
   ],
   "power_requirements": [
     {
       "affinity": "WIND",
-      "amount": 800
+      "amount": 700
     },
     {
       "affinity": "ARCANE",
-      "amount": 800
+      "amount": 700
     }
   ]
 }

@@ -393,6 +393,46 @@
       }
     ]
   },
+  "Ring of Whirlwinds": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Ring of Whirlwinds"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Why are you hitting yourself with the arrow? Why are you hitting yourself with the arrow? Why are you hitting yourself with the arrow?\n\n",
+            "color": "",
+            "italic": true
+          },
+          {
+            "text": "With this ward ring, you can reflect up to three projectiles. The charges regenerate over time.",
+            "color": ""
+          },
+          {
+            "text": "\n\nThis can only be crafted by those allied with the "
+          },
+          {
+            "text": "Council of Wizards",
+            "color": "blue"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [      {
+      "type": "eldrin_altar",
+      "location": "dmnr:eldrin_altar/projectile_reflection_ring"
+    }
+    ]
+  },
   "King of Hearts Amulet": {
     "index": "1",
     "category": "artifice",
