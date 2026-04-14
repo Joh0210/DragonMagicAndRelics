@@ -106,42 +106,6 @@ public class CreativeModeTabInit {
                     })
                     .build());
 
-    public static final RegistryObject<CreativeModeTab> ARMOR_UPGRADE_TAB = CREATIVE_MODE_TABS.register("dmnr_2_armorupgrades",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.UPGRADE_SEAL_ANGEL_FLIGHT.get()))
-                    .title(Component.translatable("itemGroup.armorupgrades"))
-                    .noScrollBar()
-                    .displayItems((pParameters, pOutput) -> {
-                        pOutput.accept(ItemInit.BLANK_UPGRADE_SEAL.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_ANGEL_FLIGHT.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_BURNING_FRENZY.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_DAMAGE_BOOST.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_DAMAGE_RESISTANCE.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_DOLPHINS_GRACE.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_REACH_DISTANCE.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_ELYTRA.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_EXPLOSION_RESISTANCE.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_FLY.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_HEALTH_BOOST.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_JUMP.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_KINETIC_RESISTANCE.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_MANA_REGEN.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_MINOR_FIRE_RESISTANCE.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_MAJOR_FIRE_RESISTANCE.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_MINOR_MANA_BOOST.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_MAJOR_MANA_BOOST.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_METEOR_JUMP.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_MIST_FORM.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_MOVEMENT_SPEED.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_NIGHT_VISION.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_PROJECTILE_REFLECTION.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_REGENERATION.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_SATURATION.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_WATER_BREATHING.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_SORCERERS_PRIDE.get());
-                        pOutput.accept(ItemInit.UPGRADE_SEAL_INSIGHT.get());
-                    })
-                    .build());
-
     public static void register(IEventBus pOutputBus) {
         CREATIVE_MODE_TABS.register(pOutputBus);
     }

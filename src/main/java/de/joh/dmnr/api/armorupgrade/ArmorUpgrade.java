@@ -17,7 +17,7 @@ import org.jetbrains.annotations.Nullable;
  * @author Joh0210
  */
 public class ArmorUpgrade {
-    public static ArmorUpgrade INSTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/none"), 0, ItemInit.BLANK_UPGRADE_SEAL, false, false, 0);
+    public static ArmorUpgrade INSTANCE = new ArmorUpgrade(RLoc.create("armorupgrade/none"), 0, ItemInit.DRAGON_CORE, false, false, 0);
 
     public final int upgradeCost;
 

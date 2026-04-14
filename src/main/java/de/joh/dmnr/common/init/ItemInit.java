@@ -1,7 +1,6 @@
 package de.joh.dmnr.common.init;
 
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.api.item.UpgradeSealItem;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.item.dragonmagearmor.AbyssalDragonMageArmorItem;
 import de.joh.dmnr.common.item.dragonmagearmor.ArchDragonMageArmorItem;
@@ -9,7 +8,6 @@ import de.joh.dmnr.common.item.dragonmagearmor.InfernalDragonMageArmorItem;
 import de.joh.dmnr.common.item.dragonmagearmor.WildDragonMageArmorItem;
 import de.joh.dmnr.common.item.spellstoring.RingOfCooldownSpellStoringItem;
 import de.joh.dmnr.common.item.spellstoring.RingOfNormalSpellStoringItem;
-import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -109,39 +107,6 @@ public class ItemInit {
     public static final RegistryObject<Item> WEATHER_FAIRY_STAFF = ITEMS.register("weather_fairy_staff", WeatherFairyStaffItem::new);
     public static final RegistryObject<Item> THE_CLICKERS_COOKIE = ITEMS.register("the_clickers_cookie", TheClickersCookieItem::new);
     public static final RegistryObject<Item> KEY_OF_HOMESTEAD = ITEMS.register("key_of_homestead", KeyOfHomestead::new);
-
-
-
-    //ARMOR UPGRADES:
-    public static final RegistryObject<Item> UPGRADE_SEAL_ANGEL_FLIGHT = ITEMS.register("upgrade_seal_angel_flight", () -> new UpgradeSealItem(RLoc.create("armorupgrade/angel_flight")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_BURNING_FRENZY = ITEMS.register("upgrade_seal_burning_frenzy", () -> new UpgradeSealItem(RLoc.create("armorupgrade/burning_frenzy")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_DAMAGE_BOOST = ITEMS.register("upgrade_seal_damage_boost", () -> new UpgradeSealItem(RLoc.create("armorupgrade/damage_boost")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_DAMAGE_RESISTANCE = ITEMS.register("upgrade_seal_damage_resistance", () -> new UpgradeSealItem(RLoc.create("armorupgrade/damage_resistance")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_DOLPHINS_GRACE = ITEMS.register("upgrade_seal_dolphins_grace", () -> new UpgradeSealItem(RLoc.create("armorupgrade/dolphins_grace")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_REACH_DISTANCE = ITEMS.register("upgrade_seal_reach_distance", () -> new UpgradeSealItem(RLoc.create("armorupgrade/reach_distance")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_ELYTRA = ITEMS.register("upgrade_seal_elytra", () -> new UpgradeSealItem(RLoc.create("armorupgrade/elytra")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_EXPLOSION_RESISTANCE = ITEMS.register("upgrade_seal_explosion_resistance", () -> new UpgradeSealItem(RLoc.create("armorupgrade/explosion_resistance")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_FLY = ITEMS.register("upgrade_seal_fly", () -> new UpgradeSealItem(RLoc.create("armorupgrade/fly")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_HEALTH_BOOST = ITEMS.register("upgrade_seal_health_boost", () -> new UpgradeSealItem(RLoc.create("armorupgrade/health_boost")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_JUMP = ITEMS.register("upgrade_seal_jump", () -> new UpgradeSealItem(RLoc.create("armorupgrade/jump")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_KINETIC_RESISTANCE = ITEMS.register("upgrade_seal_kinetic_resistance", () -> new UpgradeSealItem(RLoc.create("armorupgrade/kinetic_resistance")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_MANA_REGEN = ITEMS.register("upgrade_seal_mana_regen", () -> new UpgradeSealItem(RLoc.create("armorupgrade/mana_regen")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_MINOR_FIRE_RESISTANCE = ITEMS.register("upgrade_seal_minor_fire_resistance", () -> new UpgradeSealItem(RLoc.create("armorupgrade/minor_fire_resistance")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_MAJOR_FIRE_RESISTANCE = ITEMS.register("upgrade_seal_major_fire_resistance", () -> new UpgradeSealItem(RLoc.create("armorupgrade/major_fire_resistance")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_MINOR_MANA_BOOST = ITEMS.register("upgrade_seal_mana_boost", () -> new UpgradeSealItem(RLoc.create("armorupgrade/mana_boost")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_MAJOR_MANA_BOOST = ITEMS.register("upgrade_seal_major_mana_boost", () -> new UpgradeSealItem(RLoc.create("armorupgrade/major_mana_boost")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_METEOR_JUMP = ITEMS.register("upgrade_seal_meteor_jump", () -> new UpgradeSealItem(RLoc.create("armorupgrade/meteor_jump")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_MIST_FORM = ITEMS.register("upgrade_seal_mist_form", () -> new UpgradeSealItem(RLoc.create("armorupgrade/mist_form")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_MOVEMENT_SPEED = ITEMS.register("upgrade_seal_movement_speed", () -> new UpgradeSealItem(RLoc.create("armorupgrade/movement_speed")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_NIGHT_VISION = ITEMS.register("upgrade_seal_night_vision", () -> new UpgradeSealItem(RLoc.create("armorupgrade/night_vision")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_PROJECTILE_REFLECTION = ITEMS.register("upgrade_seal_projectile_reflection", () -> new UpgradeSealItem(RLoc.create("armorupgrade/projectile_reflection")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_REGENERATION = ITEMS.register("upgrade_seal_regeneration", () -> new UpgradeSealItem(RLoc.create("armorupgrade/regeneration")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_SATURATION = ITEMS.register("upgrade_seal_saturation", () -> new UpgradeSealItem(RLoc.create("armorupgrade/saturation")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_WATER_BREATHING = ITEMS.register("upgrade_seal_water_breathing", () -> new UpgradeSealItem(RLoc.create("armorupgrade/water_breathing")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_SORCERERS_PRIDE = ITEMS.register("upgrade_seal_sorcerers_pride", () -> new UpgradeSealItem(RLoc.create("armorupgrade/sorcerers_pride")));
-    public static final RegistryObject<Item> UPGRADE_SEAL_INSIGHT = ITEMS.register("upgrade_seal_insight", () -> new UpgradeSealItem(RLoc.create("armorupgrade/insight")));
-
-    public static final RegistryObject<Item> BLANK_UPGRADE_SEAL = ITEMS.register("blank_upgrade_seal", BlankUpgradeSealItem::new);
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
