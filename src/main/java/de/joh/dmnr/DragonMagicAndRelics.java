@@ -66,6 +66,6 @@ public class DragonMagicAndRelics {
     @SubscribeEvent
     public void onRegisterGuidebooks(final RegisterGuidebooksEvent event) {
         event.getRegistry().addGuidebookPath(RLoc.create("guide"));
-        event.getRegistry().registerGuidebookCategory("dmnr_armorupgrades", RLoc.create("upgrade_seal_angel_flight"));
+        // event.getRegistry().registerGuidebookCategory("dmnr_armorupgrades", RLoc.create("upgrade_seal_angel_flight"));
     }
 }

@@ -95,9 +95,9 @@ public class ModTags {
 
     public static class Items {
 
-        public static ResourceLocation UPGRADE_SEAL_TIER = RLoc.create("upgrade_seal_tier");
-        public static ResourceLocation DRAGON_MAGIC_CONTAINER = RLoc.create("dragon_magic_container");
-        public static ResourceLocation MNA_ARTIFACT = RLoc.create("mna_artifact");
+//        public static ResourceLocation UPGRADE_SEAL_TIER = RLoc.create("upgrade_seal_tier");
+//        public static ResourceLocation DRAGON_MAGIC_CONTAINER = RLoc.create("dragon_magic_container");
+//        public static ResourceLocation MNA_ARTIFACT = RLoc.create("mna_artifact");
 
         public Items() {
         }
