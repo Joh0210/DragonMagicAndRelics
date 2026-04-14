@@ -3,12 +3,10 @@ package de.joh.dmnr.common.item.dragonmagearmor;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.common.event.DamageEventHandler;
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.client.gui.NamedWildDragonMageArmor;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 
@@ -17,7 +15,6 @@ import net.minecraft.world.item.ItemStack;
  * This armor defaults to netherite armor, which can be enhanced with ugprades.
  * The list of upgrades and their effects can be found in ArmorUpgradeInit.
  * In addition, it can be enhanced with spells that are cast when the wearer takes damage. (see DamageEventHandler)
- * @see ArmorUpgradeInit
  * @see DamageEventHandler
  * @author Joh0210
  */

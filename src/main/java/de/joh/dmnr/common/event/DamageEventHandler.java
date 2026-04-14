@@ -4,9 +4,6 @@ import de.joh.dmnr.common.effects.harmful.HellfireMobEffect;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
-import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
-import de.joh.dmnr.common.util.CommonConfig;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +23,6 @@ public class DamageEventHandler {
      * Casts a spell on the player or the source when the wearer of the Dragon Mage Armor takes damage.
      * <br> - Glass Cannon Belt
      * <br> - Sturdy Belt
-     * @see ArmorUpgradeInit
      */
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -47,14 +43,6 @@ public class DamageEventHandler {
                     DragonMageArmorItem.applySpell(chest, true, player, sourceEntity);
                 }
             }
-
-            //Damage Resistance
-            event.setAmount(event.getAmount() * (1.0f - (float) ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.DAMAGE_RESISTANCE)* CommonConfig.getDamageResistanceDamageReductionPerLevel()));
-        }
-
-        //Damage Boost
-        if (sourceEntity instanceof Player player){
-            event.setAmount(event.getAmount() * (1.0f + ArmorUpgradeHelper.getUpgradeLevel(player, ArmorUpgradeInit.DAMAGE_BOOST)*0.25f));
         }
 
         FactionAmuletItem.eventHandleDeclarationOfWar(event);
@@ -71,7 +59,6 @@ public class DamageEventHandler {
 
     /**
      * Processing of the projectile reflection, fire resistance, explosion resistance and kinetic resistance upgrades resistance through jumpboost.
-     * @see ArmorUpgradeInit
      * @see AngelRingItem
      */
     @SubscribeEvent

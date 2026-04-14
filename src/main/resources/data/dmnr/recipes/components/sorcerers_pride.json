@@ -1,7 +1,7 @@
 {
   "type": "mna:component",
   "tier": 5,
-  "output": "dmnr:components/ultimatearmor",
+  "output": "dmnr:components/sorcerers_pride",
   "items": [
     "mna:greater_mote_ender",
     "mna:ritual_focus_greater",

@@ -1,6 +1,5 @@
 package de.joh.dmnr.api.armorupgrade;
 
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffect;
@@ -13,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Upgrades that add a potion effect to the wearer of Dragon Mage Armor.
  * @see DragonMageArmorItem
- * @see ArmorUpgradeInit
  * @author Joh0210
  */
 public abstract class PotionEffectArmorUpgrade extends OnEquippedArmorUpgrade { //extends IArmorUpgradeOnTick{

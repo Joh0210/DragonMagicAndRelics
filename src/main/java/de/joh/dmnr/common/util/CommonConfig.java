@@ -1,6 +1,5 @@
 package de.joh.dmnr.common.util;
 
-import de.joh.dmnr.common.armorupgrade.SpeedArmorUpgrade;
 import de.joh.dmnr.api.spell.component.ConjureFluidComponent;
 import de.joh.dmnr.common.spell.component.MarkComponent;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
@@ -71,7 +70,6 @@ public class CommonConfig {
 
     /**
      * waterbreathing upgrade:
-     * @see SpeedArmorUpgrade
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> WATERBREATHING_MANA_PRO_OXIGEN_BUBBLE;
 

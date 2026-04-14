@@ -1,6 +1,5 @@
 package de.joh.dmnr.api.armorupgrade;
 
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.util.RLoc;
@@ -15,7 +14,6 @@ import org.jetbrains.annotations.Nullable;
  * This class is the base class for any upgrade that can be installed on the Dragon Mage Armor.
  * Upgrades only work if full armor is worn and the upgrade is installed.
  * @see DragonMageArmorItem
- * @see ArmorUpgradeInit
  * @author Joh0210
  */
 public class ArmorUpgrade {
