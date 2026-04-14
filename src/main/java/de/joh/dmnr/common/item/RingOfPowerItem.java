@@ -25,7 +25,7 @@ public class RingOfPowerItem extends TieredItem implements ICurioItem {
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
 
-        slotContext.entity().removeEffect(EffectInit.ULTIMATE_ARMOR.get());
+        slotContext.entity().removeEffect(EffectInit.SORCERERS_PRIDE.get());
     }
 
     @Override
@@ -33,9 +33,9 @@ public class RingOfPowerItem extends TieredItem implements ICurioItem {
         ICurioItem.super.curioTick(slotContext, stack);
 
         LivingEntity livingEntity = slotContext.entity();
-        MobEffectInstance regen = livingEntity.getEffect(EffectInit.ULTIMATE_ARMOR.get());
+        MobEffectInstance regen = livingEntity.getEffect(EffectInit.SORCERERS_PRIDE.get());
         if(regen == null /*|| regen.getAmplifier() > (level-1)*/) {
-            livingEntity.addEffect(new MobEffectInstance(EffectInit.ULTIMATE_ARMOR.get(), -1, 0, false, false));
+            livingEntity.addEffect(new MobEffectInstance(EffectInit.SORCERERS_PRIDE.get(), -1, 0, false, false));
         }
     }
 

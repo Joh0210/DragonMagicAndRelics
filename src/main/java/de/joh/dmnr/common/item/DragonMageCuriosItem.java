@@ -3,7 +3,6 @@ package de.joh.dmnr.common.item;
 import com.mna.api.items.ITieredItem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.event.DamageEventHandler;
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.api.item.IDragonMagicContainerItem;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.nbt.CompoundTag;
@@ -25,7 +24,6 @@ import java.util.List;
  * This armor defaults to netherite armor, which can be enhanced with ugprades.
  * The list of upgrades and their effects can be found in ArmorUpgradeInit.
  * In addition, it can be enhanced with spells that are cast when the wearer takes damage. (see DamageEventHandler)
- * @see ArmorUpgradeInit
  * @see DamageEventHandler
  * @author Joh0210
  */

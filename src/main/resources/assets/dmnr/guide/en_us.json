@@ -2864,20 +2864,20 @@
       }
     ]
   },
-  "Component: Ultimate Armor": {
+  "Component: Sorcerers Pride": {
     "index": "2",
     "category": "sorcery",
     "sections": [
       {
         "type": "title",
-        "value": "Ultimate Armor"
+        "value": "Sorcerers Pride"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "Maybe I'm not strong enough to wear all the effects on my Dragon Mage Armor all the time. But for a little while, I can channel that sheer-less power into my armor.",
+            "text": "This Effect Boosts the Spells of the user.\nBoosts per Level:\n- MAGNITUDE +0.5\n- DAMAGE +3\n- DURATION: +30%",
             "color": ""
           },
           {
@@ -2893,7 +2893,7 @@
     "related_recipes": [
       {
         "type": "spell_part",
-        "location":"dmnr:components/ultimatearmor"
+        "location":"dmnr:components/sorcerers_pride"
       }
     ]
   },

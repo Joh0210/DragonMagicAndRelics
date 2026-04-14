@@ -33,7 +33,7 @@ public class ArmorUpgradeHelper {
         AtomicInteger level = new AtomicInteger(0);
 
         if(!chest.isEmpty() && chest.getItem() instanceof DragonMageArmorItem dragonMageArmor && dragonMageArmor.isSetEquipped(player)){
-            if(player.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
+            if(player.hasEffect(EffectInit.SORCERERS_PRIDE.get())){
                 return armorUpgrade.maxUpgradeLevel;
             }
 
@@ -80,7 +80,7 @@ public class ArmorUpgradeHelper {
         HashMap<OnTickArmorUpgrade, Integer> toApply = new HashMap<>();
         player.getCapability(PlayerMagicProvider.MAGIC).ifPresent(magic -> {
             if(!chest.isEmpty() && chest.getItem() instanceof DragonMageArmorItem dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
-                if(player.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
+                if(player.hasEffect(EffectInit.SORCERERS_PRIDE.get())){
                     for(ArmorUpgrade armorUpgrade : Registries.ARMOR_UPGRADE.get().getValues()){
                         if(armorUpgrade instanceof OnTickArmorUpgrade && !armorUpgrade.hasStrongerAlternative()){
                             ((OnTickArmorUpgrade)armorUpgrade).onTick(player.level(), player, armorUpgrade.maxUpgradeLevel, magic);

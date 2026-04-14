@@ -2,7 +2,6 @@ package de.joh.dmnr.client.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.client.item.armor.WingRenderLayer;
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.api.item.ScrollableItem;
@@ -45,7 +44,6 @@ public class ClientEventHandler {
         /**
          * Has the button been pressed that activates Night Vision or DM&R Flight?
          * @see ToggleFlightC2SPacket
-         * @see ArmorUpgradeInit
          */
         @SubscribeEvent
         public static void onKeyRegister(InputEvent.Key event){

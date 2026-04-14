@@ -17,7 +17,6 @@ import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
 import net.minecraft.client.gui.screens.Screen;
@@ -56,7 +55,6 @@ import java.util.function.Consumer;
  * This armor defaults to netherite armor, which can be enhanced with ugprades.
  * The list of upgrades and their effects can be found in ArmorUpgradeInit.
  * In addition, it can be enhanced with spells that are cast when the wearer takes damage. (see DamageEventHandler)
- * @see ArmorUpgradeInit
  * @see DamageEventHandler
  * @author Joh0210
  */
@@ -132,7 +130,7 @@ public abstract class DragonMageArmorItem extends ArmorItem implements IItemWith
 
     public void applyDragonMagicSetBonus(LivingEntity living) {
         if(living instanceof Player){
-            if(living.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
+            if(living.hasEffect(EffectInit.SORCERERS_PRIDE.get())){
                 ArmorUpgradeHelper.ultimateArmorStart((Player) living);
             } else {
                 ArmorUpgradeHelper.activateOnEquip((Player) living);
@@ -142,7 +140,7 @@ public abstract class DragonMageArmorItem extends ArmorItem implements IItemWith
 
     public void removeDragonMagicSetBonus(LivingEntity living) {
         if(living instanceof Player){
-            if(living.hasEffect(EffectInit.ULTIMATE_ARMOR.get())){
+            if(living.hasEffect(EffectInit.SORCERERS_PRIDE.get())){
                 ArmorUpgradeHelper.ultimateArmorFin((Player) living);
             } else {
                 ArmorUpgradeHelper.deactivateAll((Player) living);

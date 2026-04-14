@@ -2,7 +2,7 @@ package de.joh.dmnr.common.init;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
-import de.joh.dmnr.common.effects.beneficial.UltimateArmorMobEffect;
+import de.joh.dmnr.common.effects.beneficial.SorcerersPrideMobEffect;
 import de.joh.dmnr.common.effects.beneficial.PeaceMobEffect;
 import de.joh.dmnr.common.effects.harmful.BrokenPeaceMobEffect;
 import de.joh.dmnr.common.effects.harmful.HellfireMobEffect;
@@ -26,7 +26,7 @@ public class EffectInit {
 
     //beneficial
     public static final RegistryObject<MobEffect> ELYTRA = EFFECTS.register("elytra", ElytraMobEffect::new);
-    public static final RegistryObject<MobEffect> ULTIMATE_ARMOR = EFFECTS.register("ultimate_armor", UltimateArmorMobEffect::new);
+    public static final RegistryObject<MobEffect> SORCERERS_PRIDE = EFFECTS.register("sorcerers_pride", SorcerersPrideMobEffect::new);
     public static final RegistryObject<MobEffect> PEACE_EFFECT = EFFECTS.register("peace", PeaceMobEffect::new);
 
     //neutral

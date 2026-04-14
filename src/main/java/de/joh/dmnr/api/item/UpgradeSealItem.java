@@ -2,7 +2,6 @@ package de.joh.dmnr.api.item;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.armorupgrade.ArmorUpgrade;
-import de.joh.dmnr.common.init.ArmorUpgradeInit;
 import de.joh.dmnr.common.util.Registries;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -25,7 +24,6 @@ import java.util.List;
 /**
  * These seals can be used to add an upgrade to the Dragon Mage Armor via <b>right click</b>.
  * @see DragonMageArmorItem
- * @see ArmorUpgradeInit
  * @author Joh0210
  */
 public class UpgradeSealItem extends Item {

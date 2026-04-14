@@ -31,7 +31,7 @@ public class SpellInit {
     public static SpellEffect FORCE_DAMAGE;
     public static SpellEffect SUNRISE;
     public static SpellEffect MOONRISE;
-    public static SpellEffect ULTIMATEARMOR;
+    public static SpellEffect SORCERERS_PRIDE;
     public static SpellEffect BANISH_RAIN;
     public static SpellEffect CONJURE_STORM;
     public static SpellEffect CONJURE_WATER;
@@ -52,7 +52,7 @@ public class SpellInit {
         event.register(Registries.SpellEffect.get().getRegistryKey(), (helper) -> {
             helper.register(RLoc.create("components/sunrise"), SpellInit.SUNRISE);
             helper.register(RLoc.create("components/moonrise"), SpellInit.MOONRISE);
-            helper.register(RLoc.create("components/ultimatearmor"), SpellInit.ULTIMATEARMOR);
+            helper.register(RLoc.create("components/sorcerers_pride"), SpellInit.SORCERERS_PRIDE);
             helper.register(RLoc.create("components/banishrain"), SpellInit.BANISH_RAIN);
             helper.register(RLoc.create("components/conjurestorm"), SpellInit.CONJURE_STORM);
             helper.register(RLoc.create("components/conjurewater"), SpellInit.CONJURE_WATER);
@@ -73,7 +73,7 @@ public class SpellInit {
 
         SpellInit.SUNRISE = new SunriseComponent(RLoc.create("textures/spell/component/sunrise.png"));
         SpellInit.MOONRISE = new MoonriseComponent(RLoc.create("textures/spell/component/moonrise.png"));
-        SpellInit.ULTIMATEARMOR = new UltimateArmorComponent(RLoc.create("textures/spell/component/ultimatearmor.png"));
+        SpellInit.SORCERERS_PRIDE = new SorcerersPrideComponent(RLoc.create("textures/spell/component/sorcerers_pride.png"));
         SpellInit.BANISH_RAIN = new BanishRainComponent(RLoc.create("textures/spell/component/banishrain.png"));
         SpellInit.CONJURE_STORM = new ConjureStormComponent(RLoc.create("textures/spell/component/conjurestorm.png"));
         SpellInit.CONJURE_WATER = new ConjureWaterComponent(RLoc.create("textures/spell/component/conjurewater.png"));
