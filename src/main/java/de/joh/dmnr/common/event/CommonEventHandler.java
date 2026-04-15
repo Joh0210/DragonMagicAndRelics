@@ -2,7 +2,6 @@ package de.joh.dmnr.common.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.item.DragonMageArmorItem;
-import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.DisappearingTiaraItem;
@@ -61,14 +60,6 @@ public class CommonEventHandler {
             if(toItem instanceof DragonMageArmorItem){
                 ((DragonMageArmorItem)toItem).onEquip(event.getTo(), entity);
             }
-
-            //apply/remove Dragon Magic Set
-            if(fromItem instanceof DragonMageArmorItem && ((DragonMageArmorItem)fromItem).wouldSetBeEquipped(entity,fromItem)){
-                ((DragonMageArmorItem)fromItem).removeDragonMagicSetBonus(entity);
-            }
-            if(toItem instanceof DragonMageArmorItem && ((DragonMageArmorItem)toItem).isSetEquipped(entity)){
-                ((DragonMageArmorItem)toItem).applyDragonMagicSetBonus(entity);
-            }
         }
     }
 
@@ -79,15 +70,6 @@ public class CommonEventHandler {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onGlideTick(TickEvent.PlayerTickEvent event){
         ElytraMobEffect.eventHandleElytraFly(event);
-    }
-
-    /**
-     * This event performs each of the player's OnTick Upgrade
-     * @see ElytraMobEffect
-     */
-    @SubscribeEvent
-    public static void onPlayerTick(TickEvent.PlayerTickEvent event){
-        ArmorUpgradeHelper.applyOnTickUpgrade(event.player);
     }
 
     @SubscribeEvent

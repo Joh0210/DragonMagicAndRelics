@@ -13,17 +13,13 @@ import com.mna.items.armor.ISetItem;
 import com.mna.items.base.IItemWithGui;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
-import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.capabilities.dragonmagic.ArmorUpgradeHelper;
 import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -58,7 +54,7 @@ import java.util.function.Consumer;
  * @see DamageEventHandler
  * @author Joh0210
  */
-public abstract class DragonMageArmorItem extends ArmorItem implements IItemWithGui<DragonMageArmorItem>, IForgeItem, ISetItem, IDragonMagicContainerItem, GeoItem {
+public abstract class DragonMageArmorItem extends ArmorItem implements IItemWithGui<DragonMageArmorItem>, IForgeItem, ISetItem, GeoItem {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private final ResourceLocation dragonMageArmorSetBonus;
@@ -122,42 +118,16 @@ public abstract class DragonMageArmorItem extends ArmorItem implements IItemWith
      */
     public abstract ResourceLocation getTextureLocation();
 
-    @Override
-    public int getMaxDragonMagic(ItemStack itemStack) {
-        return type == Type.CHESTPLATE ? 64 : 0;
-    }
-
-
-    public void applyDragonMagicSetBonus(LivingEntity living) {
-        if(living instanceof Player){
-            if(living.hasEffect(EffectInit.SORCERERS_PRIDE.get())){
-                ArmorUpgradeHelper.ultimateArmorStart((Player) living);
-            } else {
-                ArmorUpgradeHelper.activateOnEquip((Player) living);
-            }
-        }
-    }
-
-    public void removeDragonMagicSetBonus(LivingEntity living) {
-        if(living instanceof Player){
-            if(living.hasEffect(EffectInit.SORCERERS_PRIDE.get())){
-                ArmorUpgradeHelper.ultimateArmorFin((Player) living);
-            } else {
-                ArmorUpgradeHelper.deactivateAll((Player) living);
-            }
-        }
-    }
-
     public void onEquip(ItemStack itemStack, LivingEntity entity) {
-        if(entity instanceof Player){
-            this.addDragonMagic(itemStack, (Player) entity, "dm_armor");
-        }
+//        if(entity instanceof Player){
+//            this.addDragonMagic(itemStack, (Player) entity, "dm_armor");
+//        }
     }
 
     public void onDiscard(ItemStack itemStack, LivingEntity entity) {
-        if(entity instanceof Player){
-            this.removeDragonMagic(itemStack, (Player) entity, "dm_armor");
-        }
+//        if(entity instanceof Player){
+//            this.removeDragonMagic(itemStack, (Player) entity, "dm_armor");
+//        }
     }
 
     @Override
@@ -183,24 +153,6 @@ public abstract class DragonMageArmorItem extends ArmorItem implements IItemWith
         }
 
         if(Screen.hasShiftDown()){
-            if(stack.getTag() != null){
-                if(stack.getTag().contains(DragonMagicAndRelics.MOD_ID + "armor_upgrade")){
-                    CompoundTag nbt = stack.getTag().getCompound(DragonMagicAndRelics.MOD_ID + "armor_upgrade");
-                    if(!nbt.getAllKeys().isEmpty()){
-                        tooltip.add(Component.translatable("tooltip.dmnr.armor.tooltip.upgrade.base"));
-                        for(String key : nbt.getAllKeys()){
-                            if(nbt.getInt(key) > 0){
-                                MutableComponent component = Component.translatable(key);
-                                tooltip.add(Component.literal(component.getString() + ": " + nbt.getInt(key)));
-                            }
-                        }
-                        tooltip.add(Component.literal("  "));
-                    }
-                }
-            }
-
-            MutableComponent component = Component.translatable("tooltip.dmnr.dm_container.tooltip.remaining.dmpoints");
-            tooltip.add(Component.literal(component.getString() + (getMaxDragonMagic(stack) - getSpentDragonPoints(stack))));
             tooltip.add(Component.literal("  "));
             super.appendHoverText(stack, world, tooltip, flag);
         }
@@ -225,41 +177,6 @@ public abstract class DragonMageArmorItem extends ArmorItem implements IItemWith
     @Override
     public int itemsForSetBonus() {
         return 4;
-    }
-
-    public boolean wouldSetBeEquipped(LivingEntity living, Item item) {
-        if (living == null) {
-            return false;
-        } else {
-            int count = 0;
-            this.getValidSetSlots();
-
-            for(int i = 0; i < this.getValidSetSlots().length; ++i) {
-                EquipmentSlot slot = this.getValidSetSlots()[i];
-                if (slot != EquipmentSlot.MAINHAND && slot != EquipmentSlot.OFFHAND) {
-                    ItemStack stack = living.getItemBySlot(slot);
-                    if (stack.getItem() instanceof DragonMageArmorItem && ((DragonMageArmorItem)stack.getItem()).getSetIdentifier().equals(this.getSetIdentifier())) {
-                        count++;
-                    }
-                }
-            }
-
-            if(item instanceof DragonMageArmorItem){
-                boolean isValidSlot = false;
-                EquipmentSlot slot = ((ArmorItem)item).getType().getSlot();
-                for(EquipmentSlot es : getValidSetSlots()){
-                    isValidSlot = isValidSlot || slot == es;
-                }
-                if(isValidSlot){
-                    ItemStack stack = living.getItemBySlot(slot);
-                    if (!(stack.getItem() instanceof DragonMageArmorItem && ((DragonMageArmorItem)stack.getItem()).getSetIdentifier().equals(this.getSetIdentifier()))) {
-                        count++;
-                    }
-                }
-            }
-
-            return count >= this.itemsForSetBonus();
-        }
     }
 
     @Override
