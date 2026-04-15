@@ -163,7 +163,6 @@
   "tooltip.dmnr.armor.tooltip": "Press §eSHIFT§r for more Information",
   "tooltip.dmnr.armor.tooltip.spell.other": "Offensive Spell: ",
   "tooltip.dmnr.armor.tooltip.spell.self": "Defensive Spell: ",
-  "tooltip.dmnr.dm_container.tooltip.remaining.dmpoints": "Remaining Dragon Magic Points: ",
   "tooltip.dmnr.weatherferystaff.how_to_change" : "Press §eSHIFT§r and §eSCROLL§r to change",
 
   "dmnr:shapes/friends": "Target Ally",
