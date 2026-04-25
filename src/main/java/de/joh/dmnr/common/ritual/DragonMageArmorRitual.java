@@ -2,7 +2,7 @@ package de.joh.dmnr.common.ritual;
 
 import com.mna.api.rituals.IRitualContext;
 import com.mna.api.rituals.RitualEffect;
-import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;

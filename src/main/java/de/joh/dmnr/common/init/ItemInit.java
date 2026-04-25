@@ -2,10 +2,7 @@ package de.joh.dmnr.common.init;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.item.*;
-import de.joh.dmnr.common.item.dragonmagearmor.AbyssalDragonMageArmorItem;
-import de.joh.dmnr.common.item.dragonmagearmor.ArchDragonMageArmorItem;
-import de.joh.dmnr.common.item.dragonmagearmor.InfernalDragonMageArmorItem;
-import de.joh.dmnr.common.item.dragonmagearmor.WildDragonMageArmorItem;
+import de.joh.dmnr.common.item.dragonmagearmor.*;
 import de.joh.dmnr.common.item.spellstoring.RingOfCooldownSpellStoringItem;
 import de.joh.dmnr.common.item.spellstoring.RingOfNormalSpellStoringItem;
 import net.minecraft.world.item.ArmorItem;
@@ -25,26 +22,10 @@ public class ItemInit {
 
     public static final RegistryObject<Item> DRAGON_CORE = ITEMS.register("dragon_core", ()->new DragonCoreItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC)));
 
-    //DragonMageArmor
-    public static final RegistryObject<Item> ABYSSAL_DRAGON_MAGE_HELMET = ITEMS.register("abyssal_dragon_mage_helmet", () -> new AbyssalDragonMageArmorItem(ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> ABYSSAL_DRAGON_MAGE_CHESTPLATE = ITEMS.register("abyssal_dragon_mage_chestplate", () -> new AbyssalDragonMageArmorItem(ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> ABYSSAL_DRAGON_MAGE_LEGGING = ITEMS.register("abyssal_dragon_mage_leggings", () -> new AbyssalDragonMageArmorItem(ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> ABYSSAL_DRAGON_MAGE_BOOTS = ITEMS.register("abyssal_dragon_mage_boots", () -> new AbyssalDragonMageArmorItem(ArmorItem.Type.BOOTS));
-
-    public static final RegistryObject<Item> ARCH_DRAGON_MAGE_HELMET = ITEMS.register("arch_dragon_mage_helmet", () -> new ArchDragonMageArmorItem(ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> ARCH_DRAGON_MAGE_CHESTPLATE = ITEMS.register("arch_dragon_mage_chestplate", () -> new ArchDragonMageArmorItem(ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> ARCH_DRAGON_MAGE_LEGGING = ITEMS.register("arch_dragon_mage_leggings", () -> new ArchDragonMageArmorItem(ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> ARCH_DRAGON_MAGE_BOOTS = ITEMS.register("arch_dragon_mage_boots", () -> new ArchDragonMageArmorItem(ArmorItem.Type.BOOTS));
-
-    public static final RegistryObject<Item> INFERNAL_DRAGON_MAGE_HELMET = ITEMS.register("infernal_dragon_mage_helmet", () -> new InfernalDragonMageArmorItem(ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> INFERNAL_DRAGON_MAGE_CHESTPLATE = ITEMS.register("infernal_dragon_mage_chestplate", () -> new InfernalDragonMageArmorItem(ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> INFERNAL_DRAGON_MAGE_LEGGING = ITEMS.register("infernal_dragon_mage_leggings", () -> new InfernalDragonMageArmorItem(ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> INFERNAL_DRAGON_MAGE_BOOTS = ITEMS.register("infernal_dragon_mage_boots", () -> new InfernalDragonMageArmorItem(ArmorItem.Type.BOOTS));
-
-    public static final RegistryObject<Item> WILD_DRAGON_MAGE_HELMET = ITEMS.register("wild_dragon_mage_helmet", () -> new WildDragonMageArmorItem(ArmorItem.Type.HELMET));
-    public static final RegistryObject<Item> WILD_DRAGON_MAGE_CHESTPLATE = ITEMS.register("wild_dragon_mage_chestplate", () -> new WildDragonMageArmorItem(ArmorItem.Type.CHESTPLATE));
-    public static final RegistryObject<Item> WILD_DRAGON_MAGE_LEGGING = ITEMS.register("wild_dragon_mage_leggings", () -> new WildDragonMageArmorItem(ArmorItem.Type.LEGGINGS));
-    public static final RegistryObject<Item> WILD_DRAGON_MAGE_BOOTS = ITEMS.register("wild_dragon_mage_boots", () -> new WildDragonMageArmorItem(ArmorItem.Type.BOOTS));
+    public static final RegistryObject<Item> DRAGON_MAGE_HELMET = ITEMS.register("dragon_mage_helmet", () -> new DragonMageArmorItem(ArmorItem.Type.HELMET));
+    public static final RegistryObject<Item> DRAGON_MAGE_CHESTPLATE = ITEMS.register("dragon_mage_chestplate", () -> new DragonMageArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final RegistryObject<Item> DRAGON_MAGE_LEGGING = ITEMS.register("dragon_mage_leggings", () -> new DragonMageArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final RegistryObject<Item> DRAGON_MAGE_BOOTS = ITEMS.register("dragon_mage_boots", () -> new DragonMageArmorItem(ArmorItem.Type.BOOTS));
 
     //Curios
     //public static final RegistryObject<Item> DRAGON_MAGE_TEST_CURIOS = ITEMS.register("dragon_mage_test_curios", () -> new DragonMageCurios(16, "dm_test_curios", new Item.Properties().rarity(Rarity.RARE).fireResistant()));
@@ -62,7 +43,7 @@ public class ItemInit {
     public static final RegistryObject<Item> DEVIL_RING = ITEMS.register("devil_ring", ()->new DevilRingItem(new Item.Properties().stacksTo(1).rarity(Rarity.RARE)));
     public static final RegistryObject<Item> VOIDFEATHER_CHARM = ITEMS.register("voidfeather_charm", () -> new VoidfeatherCharmItem((new Item.Properties()).setNoRepair().stacksTo(1).durability(1)));
 
-    public static final RegistryObject<Item> PROJECTILE_REFLECTION_RING = ITEMS.register("projectile_reflection_ring", ()->new ProjectileReflectionRingItem());
+    public static final RegistryObject<Item> PROJECTILE_REFLECTION_RING = ITEMS.register("projectile_reflection_ring", ProjectileReflectionRingItem::new);
     public static final RegistryObject<Item> OCELOT_RING_MINOR = ITEMS.register("ocelot_ring_minor", () -> new OcelotCurioItem(1));
     public static final RegistryObject<Item> OCELOT_RING = ITEMS.register("ocelot_ring", () -> new OcelotCurioItem(2));
     public static final RegistryObject<Item> OCELOT_RING_GREATER = ITEMS.register("ocelot_ring_greater", () -> new OcelotCurioItem(3));

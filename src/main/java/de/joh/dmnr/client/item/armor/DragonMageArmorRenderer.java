@@ -1,6 +1,6 @@
 package de.joh.dmnr.client.item.armor;
 
-import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 
 /**

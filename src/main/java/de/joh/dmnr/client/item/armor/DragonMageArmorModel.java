@@ -1,6 +1,6 @@
 package de.joh.dmnr.client.item.armor;
 
-import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;

@@ -17,30 +17,15 @@ public class CreativeModeTabInit {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, DragonMagicAndRelics.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> DMNR_TAB = CREATIVE_MODE_TABS.register("dmnr_1_dmnr",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.INFERNAL_DRAGON_MAGE_HELMET.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ItemInit.DRAGON_MAGE_HELMET.get()))
                     .title(Component.translatable("itemGroup.dmnr"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ItemInit.DRAGON_CORE.get());
 
-                        pOutput.accept(ItemInit.ABYSSAL_DRAGON_MAGE_HELMET.get());
-                        pOutput.accept(ItemInit.ABYSSAL_DRAGON_MAGE_CHESTPLATE.get());
-                        pOutput.accept(ItemInit.ABYSSAL_DRAGON_MAGE_LEGGING.get());
-                        pOutput.accept(ItemInit.ABYSSAL_DRAGON_MAGE_BOOTS.get());
-
-                        pOutput.accept(ItemInit.ARCH_DRAGON_MAGE_HELMET.get());
-                        pOutput.accept(ItemInit.ARCH_DRAGON_MAGE_CHESTPLATE.get());
-                        pOutput.accept(ItemInit.ARCH_DRAGON_MAGE_LEGGING.get());
-                        pOutput.accept(ItemInit.ARCH_DRAGON_MAGE_BOOTS.get());
-
-                        pOutput.accept(ItemInit.INFERNAL_DRAGON_MAGE_HELMET.get());
-                        pOutput.accept(ItemInit.INFERNAL_DRAGON_MAGE_CHESTPLATE.get());
-                        pOutput.accept(ItemInit.INFERNAL_DRAGON_MAGE_LEGGING.get());
-                        pOutput.accept(ItemInit.INFERNAL_DRAGON_MAGE_BOOTS.get());
-
-                        pOutput.accept(ItemInit.WILD_DRAGON_MAGE_HELMET.get());
-                        pOutput.accept(ItemInit.WILD_DRAGON_MAGE_CHESTPLATE.get());
-                        pOutput.accept(ItemInit.WILD_DRAGON_MAGE_LEGGING.get());
-                        pOutput.accept(ItemInit.WILD_DRAGON_MAGE_BOOTS.get());
+                        pOutput.accept(ItemInit.DRAGON_MAGE_HELMET.get());
+                        pOutput.accept(ItemInit.DRAGON_MAGE_CHESTPLATE.get());
+                        pOutput.accept(ItemInit.DRAGON_MAGE_LEGGING.get());
+                        pOutput.accept(ItemInit.DRAGON_MAGE_BOOTS.get());
 
                         pOutput.accept(ItemInit.AMULET_OF_DRAGON_POWER.get());
                         pOutput.accept(ItemInit.RING_OF_POWER.get());

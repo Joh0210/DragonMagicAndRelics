@@ -20,10 +20,7 @@ public class GuiInit {
     public static void onClientSetupEvent(FMLClientSetupEvent event) {
         MenuScreens.register(ContainerInit.BRACELET_OF_FRIENDSHIP.get(), GuiBraceletOfFriendship::new);
         MenuScreens.register(ContainerInit.POTION_OF_INFINITY.get(), GuiPotionOfInfinity::new);
-        MenuScreens.register(ContainerInit.ABYSSAL_DRAGON_MAGE_CHESTPLATE.get(), GuiDragonMageArmor<ContainerAbyssalDragonMageArmor>::new);
-        MenuScreens.register(ContainerInit.ARCH_DRAGON_MAGE_CHESTPLATE.get(), GuiDragonMageArmor<ContainerArchDragonMageArmor>::new);
-        MenuScreens.register(ContainerInit.INFERNAL_DRAGON_MAGE_CHESTPLATE.get(), GuiDragonMageArmor<ContainerInfernalDragonMageArmor>::new);
-        MenuScreens.register(ContainerInit.WILD_DRAGON_MAGE_CHESTPLATE.get(), GuiDragonMageArmor<ContainerWildDragonMageArmor>::new);
+        MenuScreens.register(ContainerInit.DRAGON_MAGE_CHESTPLATE.get(), GuiDragonMageArmor<ContainerDragonMageArmor>::new);
         MenuScreens.register(ContainerInit.RING_OF_SPELL_STORING.get(), GuiRingOfSpellStoringItem<ContainerRingOfNormalSpellStoring>::new);
         MenuScreens.register(ContainerInit.RING_OF_SPELL_STORING_COOLDOWN.get(), GuiRingOfSpellStoringItem<ContainerRingOfCooldownSpellStoring>::new);
         //HUDOverlayRenderer.instance = new HUDOverlayRenderer();
