@@ -1261,23 +1261,7 @@
         "value": "",
         "json": [
           {
-            "text": "Another container to channel my dragon magic into with 32 slots. Correspondingly, like the Dragon Magic Armor, I can merge ",
-            "color": ""
-          },
-          {
-            "text": "glyphs ",
-            "color": "blue"
-          },
-          {
-            "text": "with the amulet, but I still have to wear the full ",
-            "color": ""
-          },
-          {
-            "text": "Dragon Mage Armor",
-            "color": "blue"
-          },
-          {
-            "text": ".",
+            "text": "This Effect Boosts the Spells of the user.\nBoosts per Level:\n- MAGNITUDE +0.5\n- DAMAGE +3\n- DURATION: +30%.",
             "color": ""
           }
         ]
@@ -1287,10 +1271,6 @@
       {
         "type": "manaweaving_altar",
         "location":"dmnr:manaweaving/amulet_of_dragon_power"
-      },
-      {
-        "type": "ritual",
-        "location":"dmnr:rituals/upgrade_ritual"
       }
     ]
   },

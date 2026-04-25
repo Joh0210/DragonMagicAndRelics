@@ -1,6 +1,6 @@
 package de.joh.dmnr.common.item;
 
-import com.mna.api.items.TieredItem;
+import de.joh.dmnr.api.item.BaseTieredItem;
 import de.joh.dmnr.common.init.EffectInit;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -17,7 +17,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.List;
 
 // todo: on Attack self spell
-public class RingOfPowerItem extends TieredItem implements ICurioItem {
+public class RingOfPowerItem extends BaseTieredItem implements ICurioItem {
     public RingOfPowerItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
     }

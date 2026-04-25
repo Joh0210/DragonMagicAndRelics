@@ -1,7 +1,7 @@
 package de.joh.dmnr.common.effects.neutral;
 
 import de.joh.dmnr.common.init.EffectInit;
-import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
+import de.joh.dmnr.common.item.DragonMageArmorItem;
 import de.joh.dmnr.common.init.KeybindInit;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;

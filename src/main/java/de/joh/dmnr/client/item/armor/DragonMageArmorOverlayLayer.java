@@ -2,7 +2,7 @@ package de.joh.dmnr.client.item.armor;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
+import de.joh.dmnr.common.item.DragonMageArmorItem;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;

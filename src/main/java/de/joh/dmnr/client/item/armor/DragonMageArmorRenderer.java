@@ -2,7 +2,7 @@ package de.joh.dmnr.client.item.armor;
 
 import software.bernie.geckolib.renderer.GeoArmorRenderer;
 import software.bernie.geckolib.core.object.Color;
-import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
+import de.joh.dmnr.common.item.DragonMageArmorItem;
 import net.minecraft.world.item.ItemStack;
 
 /**

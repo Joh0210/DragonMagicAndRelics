@@ -25,6 +25,7 @@
   "item.dmnr.ring_of_power": "Ring of Power",
   "item.dmnr.ring_of_ruling": "Ring of Ruling",
   "item.dmnr.amulet_of_dragon_power": "Amulet of the Dragon",
+  "item.dmnr.amulet_of_dragon_power.description": "This Effect Boosts my Spell:\n- MAGNITUDE +1\n- DAMAGE +6\n- DURATION: +60%",
   "item.dmnr.amulet_of_hellfire": "Amulet of Hellfire",
   "item.dmnr.amulet_of_hellfire.description": "Your spells mark enemies with Hellfire, an infernal blaze that burns hotter than mortal flame, counts as magic, and ignores all resistance.",
   "item.dmnr.rift_emitter": "Rift Emitter",
