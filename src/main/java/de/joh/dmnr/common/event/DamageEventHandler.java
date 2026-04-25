@@ -3,7 +3,7 @@ package de.joh.dmnr.common.event;
 import de.joh.dmnr.common.effects.harmful.HellfireMobEffect;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "dmnr:item/abyssal_dragon_mage_boots"
+    "layer0": "dmnr:item/dragon_mage_boots"
   }
 }

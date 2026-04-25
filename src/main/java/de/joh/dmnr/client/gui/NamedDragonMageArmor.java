@@ -11,16 +11,16 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class NamedWildDragonMageArmor implements MenuProvider {
+public class NamedDragonMageArmor implements MenuProvider {
     private final ItemStack stack;
 
-    public NamedWildDragonMageArmor(ItemStack stack) {
+    public NamedDragonMageArmor(ItemStack stack) {
         this.stack = stack;
     }
 
     @Nullable
     public AbstractContainerMenu createMenu(int i, @NotNull Inventory inventory, @NotNull Player player) {
-        return new ContainerWildDragonMageArmor(i, inventory, new ItemInventoryBase(this.stack, 2));
+        return new ContainerDragonMageArmor(i, inventory, new ItemInventoryBase(this.stack, 2));
     }
 
     public @NotNull Component getDisplayName() {

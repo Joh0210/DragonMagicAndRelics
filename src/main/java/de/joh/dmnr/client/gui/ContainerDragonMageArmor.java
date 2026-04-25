@@ -5,20 +5,25 @@ import com.mna.gui.containers.slots.BaseSlot;
 import com.mna.gui.containers.slots.ItemFilterSlot;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.filters.ItemFilterGroup;
+import de.joh.dmnr.client.init.ContainerInit;
+import de.joh.dmnr.common.init.ItemInit;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class ContainerDragonMageArmor extends HeldContainerBase {
-    public ContainerDragonMageArmor(@Nullable MenuType<?> type, int i, Inventory playerInv, ItemInventoryBase basebag) {
-        super(type, i, playerInv, basebag);
+    public ContainerDragonMageArmor(int i, Inventory playerInventory, FriendlyByteBuf buffer) {
+        this(i, playerInventory, new ItemInventoryBase(new ItemStack(ItemInit.DRAGON_MAGE_CHESTPLATE.get(), 2), 2));
+    }
+
+    public ContainerDragonMageArmor(int i, Inventory playerInv, ItemInventoryBase basebag) {
+        super(ContainerInit.DRAGON_MAGE_CHESTPLATE.get(), i, playerInv, basebag);
     }
 
     protected void initializeSlots(Inventory playerInv) {

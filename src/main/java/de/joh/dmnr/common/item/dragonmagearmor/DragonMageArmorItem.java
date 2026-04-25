@@ -1,4 +1,4 @@
-package de.joh.dmnr.api.item;
+package de.joh.dmnr.common.item.dragonmagearmor;
 
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.targeting.SpellContext;
@@ -13,10 +13,12 @@ import com.mna.items.armor.ISetItem;
 import com.mna.items.base.IItemWithGui;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
+import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.client.gui.NamedDragonMageArmor;
 import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
-import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
+import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.network.chat.Component;
@@ -24,6 +26,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -54,17 +57,24 @@ import java.util.function.Consumer;
  * @see DamageEventHandler
  * @author Joh0210
  */
-public abstract class DragonMageArmorItem extends ArmorItem implements IItemWithGui<DragonMageArmorItem>, IForgeItem, ISetItem, GeoItem {
+public class DragonMageArmorItem extends ArmorItem implements IItemWithGui<DragonMageArmorItem>, IForgeItem, ISetItem, GeoItem {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
     private final ResourceLocation dragonMageArmorSetBonus;
 
-    public DragonMageArmorItem(ArmorItem.Type type, ResourceLocation dragonMageArmorSetBonus) {
+    public DragonMageArmorItem(ArmorItem.Type type) {
         super(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, type, new Item.Properties().rarity(Rarity.EPIC).fireResistant());
-        this.dragonMageArmorSetBonus = dragonMageArmorSetBonus;
+        this.dragonMageArmorSetBonus = RLoc.create(DragonMagicAndRelics.MOD_ID + "_dragon_armor_set_bonus");
     }
 
-    public abstract ResourceLocation getWingTextureLocation();
+    @Override
+    public MenuProvider getProvider(ItemStack itemStack) {
+        return this.getType() == Type.CHESTPLATE ? new NamedDragonMageArmor(itemStack) : null;
+    }
+
+    public ResourceLocation getWingTextureLocation() {
+        return RLoc.create("textures/models/armor/infernal_dragon_wing.png");
+    }
 
     /**
      * Performs one of the two spells from the Dragon Mage Armor.
@@ -116,7 +126,9 @@ public abstract class DragonMageArmorItem extends ArmorItem implements IItemWith
     /**
      * Depending on the faction, a different texture will be returned.
      */
-    public abstract ResourceLocation getTextureLocation();
+    public ResourceLocation getTextureLocation() {
+        return RLoc.create("textures/models/armor/dragon_mage_armor_texture.png");
+    }
 
     public void onEquip(ItemStack itemStack, LivingEntity entity) {
 //        if(entity instanceof Player){

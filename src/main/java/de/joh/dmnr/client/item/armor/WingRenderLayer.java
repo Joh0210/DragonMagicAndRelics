@@ -2,7 +2,7 @@ package de.joh.dmnr.client.item.armor;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import de.joh.dmnr.api.item.DragonMageArmorItem;
+import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.AngelRingItem;
