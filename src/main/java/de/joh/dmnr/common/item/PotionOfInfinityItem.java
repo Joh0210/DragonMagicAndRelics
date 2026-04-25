@@ -17,7 +17,6 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.level.Level;
@@ -35,8 +34,7 @@ public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<Pot
     private int _tier = -1;
 
     public PotionOfInfinityItem() {
-        super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON)
-                .food((new FoodProperties.Builder()).nutrition(1).saturationMod(1).alwaysEat().build()));
+        super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC));
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -45,6 +43,11 @@ public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<Pot
         tooltip.add(Component.translatable("item.dmnr.potion_of_infinity.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("  "));
         super.appendHoverText(stack, world, tooltip, flag);
+    }
+
+    @Override
+    public int getUseDuration(@NotNull ItemStack stack) {
+        return 32;
     }
 
     @Override
@@ -66,8 +69,6 @@ public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<Pot
             }
         }
         if (entity instanceof Player) ((Player) entity).getCooldowns().addCooldown(this, 1200);
-
-        itemstack.grow(1);
         return itemstack;
     }
 
