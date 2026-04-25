@@ -5,7 +5,7 @@ import de.joh.dmnr.client.item.armor.WingRenderLayer;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.api.item.ScrollableItem;
-import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
+import de.joh.dmnr.common.item.DragonMageArmorItem;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.IncrementWeatherC2SPacket;
 import de.joh.dmnr.networking.packet.ToggleFlightC2SPacket;

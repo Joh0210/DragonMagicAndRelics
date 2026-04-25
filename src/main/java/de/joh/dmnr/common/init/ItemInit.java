@@ -2,7 +2,6 @@ package de.joh.dmnr.common.init;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.item.*;
-import de.joh.dmnr.common.item.dragonmagearmor.*;
 import de.joh.dmnr.common.item.spellstoring.RingOfCooldownSpellStoringItem;
 import de.joh.dmnr.common.item.spellstoring.RingOfNormalSpellStoringItem;
 import net.minecraft.world.item.ArmorItem;
@@ -28,11 +27,8 @@ public class ItemInit {
     public static final RegistryObject<Item> DRAGON_MAGE_BOOTS = ITEMS.register("dragon_mage_boots", () -> new DragonMageArmorItem(ArmorItem.Type.BOOTS));
 
     //Curios
-    //public static final RegistryObject<Item> DRAGON_MAGE_TEST_CURIOS = ITEMS.register("dragon_mage_test_curios", () -> new DragonMageCurios(16, "dm_test_curios", new Item.Properties().rarity(Rarity.RARE).fireResistant()));
-    // todo: on Sorcerers Pride to Amulet of Dragon Power
-    public static final RegistryObject<Item> AMULET_OF_DRAGON_POWER = ITEMS.register("amulet_of_dragon_power", () -> new DragonMageCuriosItem(32, "amulet_of_dragon_power", new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant()));
+    public static final RegistryObject<Item> AMULET_OF_DRAGON_POWER = ITEMS.register("amulet_of_dragon_power", DragonPowerAmuletItem::new);
     public static final RegistryObject<Item> RING_OF_RULING = ITEMS.register("ring_of_ruling", RingOfRulingItem::new);
-
     public static final RegistryObject<Item> RING_OF_POWER = ITEMS.register("ring_of_power", RingOfPowerItem::new);
     public static final RegistryObject<Item> BRACELET_OF_FRIENDSHIP = ITEMS.register("bracelet_of_friendship", () -> new BraceletOfFriendshipItem(new Item.Properties().stacksTo(1)));
     public static final RegistryObject<Item> FACTION_AMULET = ITEMS.register("faction_amulet", ()->new FactionAmuletItem(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));

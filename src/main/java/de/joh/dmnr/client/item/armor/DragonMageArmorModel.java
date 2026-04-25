@@ -1,6 +1,6 @@
 package de.joh.dmnr.client.item.armor;
 
-import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
+import de.joh.dmnr.common.item.DragonMageArmorItem;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
@@ -18,7 +18,7 @@ public class DragonMageArmorModel extends GeoModel<DragonMageArmorItem> {
 
     @Override
     public ResourceLocation getTextureResource(DragonMageArmorItem object) {
-        return object.getTextureLocation();
+        return RLoc.create("textures/models/armor/dragon_mage_armor_texture_base.png");
     }
 
     @Override

@@ -1,7 +1,7 @@
 package de.joh.dmnr.common.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.common.item.dragonmagearmor.DragonMageArmorItem;
+import de.joh.dmnr.common.item.DragonMageArmorItem;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.DisappearingTiaraItem;
