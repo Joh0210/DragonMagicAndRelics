@@ -1,6 +1,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "dmnr:item/dragon_mage_leggings"
+    "layer0": "dmnr:item/dragon_mage_leggings_base",
+    "layer1": "dmnr:item/dragon_mage_leggings_overlay"
   }
 }

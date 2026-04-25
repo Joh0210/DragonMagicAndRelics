@@ -21,6 +21,7 @@ import de.joh.dmnr.common.item.material.ArmorMaterials;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
@@ -57,8 +58,9 @@ import java.util.function.Consumer;
  * @see DamageEventHandler
  * @author Joh0210
  */
-public class DragonMageArmorItem extends ArmorItem implements IItemWithGui<DragonMageArmorItem>, IForgeItem, ISetItem, GeoItem {
+public class DragonMageArmorItem extends ArmorItem implements IItemWithGui<DragonMageArmorItem>, IForgeItem, ISetItem, GeoItem, DyeableLeatherItem {
     private AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
+    private static int DEFAULT_COLOR =0xffb736;
 
     private final ResourceLocation dragonMageArmorSetBonus;
 
@@ -68,12 +70,31 @@ public class DragonMageArmorItem extends ArmorItem implements IItemWithGui<Drago
     }
 
     @Override
+    public int getColor(ItemStack stack) {
+        CompoundTag displayTag = stack.getTagElement("display");
+        return displayTag != null && displayTag.contains("color", 99) ? displayTag.getInt("color") : DEFAULT_COLOR;
+    }
+
+    @Override
+    public void setColor(ItemStack stack, int color) {
+        stack.getOrCreateTagElement("display").putInt("color", color);
+    }
+
+    @Override
+    public void clearColor(ItemStack stack) {
+        CompoundTag displayTag = stack.getTagElement("display");
+        if (displayTag != null && displayTag.contains("color")) {
+            displayTag.remove("color");
+        }
+    }
+
+    @Override
     public MenuProvider getProvider(ItemStack itemStack) {
         return this.getType() == Type.CHESTPLATE ? new NamedDragonMageArmor(itemStack) : null;
     }
 
     public ResourceLocation getWingTextureLocation() {
-        return RLoc.create("textures/models/armor/infernal_dragon_wing.png");
+        return RLoc.create("textures/models/armor/dragon_wing.png");
     }
 
     /**
@@ -123,11 +144,8 @@ public class DragonMageArmorItem extends ArmorItem implements IItemWithGui<Drago
         }
     }
 
-    /**
-     * Depending on the faction, a different texture will be returned.
-     */
     public ResourceLocation getTextureLocation() {
-        return RLoc.create("textures/models/armor/dragon_mage_armor_texture.png");
+        return RLoc.create("textures/models/armor/dragon_mage_armor_texture_base.png");
     }
 
     public void onEquip(ItemStack itemStack, LivingEntity entity) {
