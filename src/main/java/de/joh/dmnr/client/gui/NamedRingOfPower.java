@@ -11,16 +11,16 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class NamedDragonMageArmor implements MenuProvider {
+public class NamedRingOfPower implements MenuProvider {
     private final ItemStack stack;
 
-    public NamedDragonMageArmor(ItemStack stack) {
+    public NamedRingOfPower(ItemStack stack) {
         this.stack = stack;
     }
 
     @Nullable
     public AbstractContainerMenu createMenu(int i, @NotNull Inventory inventory, @NotNull Player player) {
-        return new ContainerDragonMageArmor(i, inventory, new ItemInventoryBase(this.stack, 2));
+        return new ContainerRingOfPower(i, inventory, new ItemInventoryBase(this.stack, 2));
     }
 
     public @NotNull Component getDisplayName() {

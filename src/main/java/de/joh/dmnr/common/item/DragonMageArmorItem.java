@@ -1,20 +1,7 @@
 package de.joh.dmnr.common.item;
 
-import com.mna.api.spells.ComponentApplicationResult;
-import com.mna.api.spells.targeting.SpellContext;
-import com.mna.api.spells.targeting.SpellSource;
-import com.mna.api.spells.targeting.SpellTarget;
-import com.mna.api.timing.DelayedEventQueue;
-import com.mna.api.timing.TimedDelayedSpellEffect;
-import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import com.mna.inventory.ItemInventoryBase;
-import com.mna.items.ItemInit;
 import com.mna.items.armor.ISetItem;
-import com.mna.items.base.IItemWithGui;
-import com.mna.spells.SpellCaster;
-import com.mna.spells.crafting.SpellRecipe;
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.client.gui.NamedDragonMageArmor;
 import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
@@ -22,21 +9,13 @@ import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.extensions.IForgeItem;
-import org.apache.commons.lang3.mutable.MutableBoolean;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -44,7 +23,6 @@ import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInst
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 
-import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
 /**
@@ -55,7 +33,7 @@ import java.util.function.Consumer;
  * @see DamageEventHandler
  * @author Joh0210
  */
-public class DragonMageArmorItem extends ArmorItem implements IItemWithGui<DragonMageArmorItem>, IForgeItem, ISetItem, GeoItem, DyeableLeatherItem {
+public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetItem, GeoItem, DyeableLeatherItem {
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private final static int DEFAULT_COLOR =0xffb736;
 
@@ -85,58 +63,6 @@ public class DragonMageArmorItem extends ArmorItem implements IItemWithGui<Drago
         }
     }
 
-    @Override
-    public MenuProvider getProvider(ItemStack itemStack) {
-        return this.getType() == Type.CHESTPLATE ? new NamedDragonMageArmor(itemStack) : null;
-    }
-
-    /**
-     * Performs one of the two spells from the Dragon Mage Armor.
-     * @param stack Dragon Mage Armor Chestplate with the spells.
-     * @param isOther Should the source be hit? Should the offensive spell be used?
-     * @param self Wearer of armor.
-     * @param other Source of damage (only as entity).
-     */
-    public static void applySpell(ItemStack stack, boolean isOther, Player self, @Nullable Entity other) {
-        if(stack.getItem() instanceof DragonMageArmorItem && ((DragonMageArmorItem)stack.getItem()).type == Type.CHESTPLATE){
-            ItemInventoryBase inv = new ItemInventoryBase(stack);
-            ItemStack slot = inv.getStackInSlot(isOther ? 1 : 0);
-            if (slot.getItem() != ItemInit.ENCHANTED_VELLUM.get() && (!isOther || other != null)) {
-                if (!slot.isEmpty() && SpellRecipe.stackContainsSpell(slot) && !self.level().isClientSide) {
-                    SpellRecipe recipe = SpellRecipe.fromNBT(slot.getTag());
-                    if (recipe.isValid()) {
-                        MutableBoolean consumed = new MutableBoolean(false);
-                        self.getCapability(PlayerMagicProvider.MAGIC).ifPresent((c) -> {
-                            if (c.getCastingResource().hasEnoughAbsolute(self, recipe.getManaCost())) {
-                                c.getCastingResource().consume(self, recipe.getManaCost());
-                                consumed.setTrue();
-                            }
-
-                        });
-                        if (consumed.getValue()) {
-                            SpellSource source = new SpellSource(self, InteractionHand.MAIN_HAND);
-                            SpellContext context = new SpellContext(self.level(), recipe);
-                            recipe.iterateComponents((c) -> {
-                                int delay = (int)(c.getValue(com.mna.api.spells.attributes.Attribute.DELAY) * 20.0F);
-                                boolean appliedComponent = false;
-                                if (delay > 0) {
-                                    DelayedEventQueue.pushEvent(self.level(), new TimedDelayedSpellEffect(c.getPart().getRegistryName().toString(), delay, source, new SpellTarget(isOther ? other : self), c, context));
-                                    appliedComponent = true;
-                                } else if (c.getPart().ApplyEffect(source, new SpellTarget(isOther ? other : self), c, context) == ComponentApplicationResult.SUCCESS) {
-                                    appliedComponent = true;
-                                }
-
-                                if (appliedComponent) {
-                                    SpellCaster.addComponentRoteProgress(self, c.getPart());
-                                }
-                            });
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     public void onEquip(ItemStack itemStack, LivingEntity entity) {
 //        if(entity instanceof Player){
 //            this.addDragonMagic(itemStack, (Player) entity, "dm_armor");
@@ -148,18 +74,18 @@ public class DragonMageArmorItem extends ArmorItem implements IItemWithGui<Drago
 //            this.removeDragonMagic(itemStack, (Player) entity, "dm_armor");
 //        }
     }
-
-    @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level world, @NotNull Player player, @NotNull InteractionHand hand) {
-        if (!world.isClientSide && this.type == Type.CHESTPLATE) {
-            ItemStack held = player.getItemInHand(hand);
-            if (this.openGuiIfModifierPressed(held, player, world)) {
-                return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
-            }
-        }
-
-        return new InteractionResultHolder<>(InteractionResult.PASS, player.getItemInHand(hand));
-    }
+//
+//    @Override
+//    public @NotNull InteractionResultHolder<ItemStack> use(Level world, @NotNull Player player, @NotNull InteractionHand hand) {
+//        if (!world.isClientSide && this.type == Type.CHESTPLATE) {
+//            ItemStack held = player.getItemInHand(hand);
+//            if (this.openGuiIfModifierPressed(held, player, world)) {
+//                return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
+//            }
+//        }
+//
+//        return new InteractionResultHolder<>(InteractionResult.PASS, player.getItemInHand(hand));
+//    }
 
     /**
      * Armor does not break

@@ -17,13 +17,13 @@ import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 
-public class ContainerDragonMageArmor extends HeldContainerBase {
-    public ContainerDragonMageArmor(int i, Inventory playerInventory, FriendlyByteBuf buffer) {
-        this(i, playerInventory, new ItemInventoryBase(new ItemStack(ItemInit.DRAGON_MAGE_CHESTPLATE.get(), 2), 2));
+public class ContainerRingOfPower extends HeldContainerBase {
+    public ContainerRingOfPower(int i, Inventory playerInventory, FriendlyByteBuf buffer) {
+        this(i, playerInventory, new ItemInventoryBase(new ItemStack(ItemInit.RING_OF_POWER.get(), 2), 2));
     }
 
-    public ContainerDragonMageArmor(int i, Inventory playerInv, ItemInventoryBase basebag) {
-        super(ContainerInit.DRAGON_MAGE_CHESTPLATE.get(), i, playerInv, basebag);
+    public ContainerRingOfPower(int i, Inventory playerInv, ItemInventoryBase basebag) {
+        super(ContainerInit.RING_OF_POWER.get(), i, playerInv, basebag);
     }
 
     protected void initializeSlots(Inventory playerInv) {
