@@ -20,7 +20,7 @@ public class NamedRingOfPower implements MenuProvider {
 
     @Nullable
     public AbstractContainerMenu createMenu(int i, @NotNull Inventory inventory, @NotNull Player player) {
-        return new ContainerRingOfPower(i, inventory, new ItemInventoryBase(this.stack, 2));
+        return new ContainerRingOfPower(i, inventory, new ItemInventoryBase(this.stack, 1));
     }
 
     public @NotNull Component getDisplayName() {

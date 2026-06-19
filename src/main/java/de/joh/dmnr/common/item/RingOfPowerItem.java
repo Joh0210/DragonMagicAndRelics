@@ -14,6 +14,7 @@ import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
 import de.joh.dmnr.api.item.BaseTieredItem;
 import de.joh.dmnr.client.gui.NamedRingOfPower;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -55,7 +56,7 @@ public class RingOfPowerItem extends BaseTieredItem implements ICurioItem, IItem
 
     public static void applySpell(ItemStack stack, boolean isOther, Player self, @Nullable Entity other) {
         ItemInventoryBase inv = new ItemInventoryBase(stack);
-        ItemStack slot = inv.getStackInSlot(isOther ? 1 : 0);
+        ItemStack slot = inv.getStackInSlot(0);
         if (slot.getItem() != ItemInit.ENCHANTED_VELLUM.get() && (!isOther || other != null)) {
             if (!slot.isEmpty() && SpellRecipe.stackContainsSpell(slot) && !self.level().isClientSide) {
                 SpellRecipe recipe = SpellRecipe.fromNBT(slot.getTag());
@@ -113,8 +114,8 @@ public class RingOfPowerItem extends BaseTieredItem implements ICurioItem, IItem
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        tooltip.add(Component.translatable("tooltip.dmnr.ring_of_power.tooltip.one"));
-        tooltip.add(Component.translatable("tooltip.dmnr.ring_of_power.tooltip.two"));
+        tooltip.add(Component.translatable("item.dmnr.ring_of_power.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("item.dmnr.ring_of_power.description2").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         super.appendHoverText(stack, world, tooltip, flag);
     }
 }

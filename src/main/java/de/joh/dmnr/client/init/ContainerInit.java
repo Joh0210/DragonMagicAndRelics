@@ -25,6 +25,10 @@ public class ContainerInit {
 
     static final String RING_OF_POWER_ID = "ring_of_power";
     public static final RegistryObject<MenuType<ContainerRingOfPower>> RING_OF_POWER;
+    static final String RING_OF_RULING_ID = "ring_of_ruling";
+    public static final RegistryObject<MenuType<ContainerRingOfRuling>> RING_OF_RULING;
+
+
 
     static final String RING_OF_SPELL_STORING_ID = "ring_of_spell_storing";
     public static final RegistryObject<MenuType<ContainerRingOfNormalSpellStoring>> RING_OF_SPELL_STORING;
@@ -48,6 +52,8 @@ public class ContainerInit {
 
         RING_OF_POWER = CONTAINERS.register(RING_OF_POWER_ID,
                 () -> IForgeMenuType.create(ContainerRingOfPower::new));
+        RING_OF_RULING = CONTAINERS.register(RING_OF_RULING_ID,
+                () -> IForgeMenuType.create(ContainerRingOfRuling::new));
 
         RING_OF_SPELL_STORING = CONTAINERS.register(RING_OF_SPELL_STORING_ID,
                 () -> IForgeMenuType.create(ContainerRingOfNormalSpellStoring::new));

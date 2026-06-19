@@ -33,6 +33,6 @@ public class GuiRingOfPower<T extends AbstractContainerMenu> extends GuiBagBase<
     }
 
     public String name() {
-        return "Bracelet of Friendship";
+        return "Ring Of Power";
     }
 }

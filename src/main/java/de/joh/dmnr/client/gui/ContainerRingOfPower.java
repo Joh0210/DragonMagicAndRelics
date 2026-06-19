@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 
 public class ContainerRingOfPower extends HeldContainerBase {
     public ContainerRingOfPower(int i, Inventory playerInventory, FriendlyByteBuf buffer) {
-        this(i, playerInventory, new ItemInventoryBase(new ItemStack(ItemInit.RING_OF_POWER.get(), 2), 2));
+        this(i, playerInventory, new ItemInventoryBase(new ItemStack(ItemInit.RING_OF_POWER.get(), 1), 1));
     }
 
     public ContainerRingOfPower(int i, Inventory playerInv, ItemInventoryBase basebag) {
@@ -27,9 +27,8 @@ public class ContainerRingOfPower extends HeldContainerBase {
     }
 
     protected void initializeSlots(Inventory playerInv) {
-        this.addSlot(this.slot(this.inventory, 0, 4+24, 100));
-        this.addSlot(this.slot(this.inventory, 1, 104+24, 100));
-        int slotIndex = 2;
+        this.addSlot(this.slot(this.inventory, 0, 104+24, 100));
+        int slotIndex = 1;
 
         int xpos;
         for(xpos = 0; xpos < 3; ++xpos) {
@@ -58,7 +57,7 @@ public class ContainerRingOfPower extends HeldContainerBase {
     }
 
     protected int numRows() {
-        return 2;
+        return 1;
     }
 
     public void clicked(int slotId, int dragType, ClickType clickTypeIn, Player player) {
