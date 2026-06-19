@@ -3,10 +3,6 @@ package de.joh.dmnr.common.event;
 import de.joh.dmnr.common.effects.harmful.HellfireMobEffect;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.common.item.DragonMageArmorItem;
-import net.minecraft.world.entity.*;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,26 +22,14 @@ public class DamageEventHandler {
      */
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
-        Entity sourceEntity = event.getSource().getEntity();
-        LivingEntity targetEntity = event.getEntity();
+        RingOfPowerItem.eventHandleAttack(event);
+        RingOfRulingItem.eventHandleDefense(event);
+        RevengeCharmItem.handleRevengeCharm(event);
+        FactionAmuletItem.eventHandleDeclarationOfWar(event);
+
         if (OcelotCurioItem.eventHandleKineticProtection(event)){
             return;
         }
-        RevengeCharmItem.handleRevengeCharm(event);
-
-        if(targetEntity instanceof Player player){
-            ItemStack chest = player.getItemBySlot(EquipmentSlot.CHEST);
-
-            //Spell
-            if(!chest.isEmpty() && !player.level().isClientSide && chest.getItem() instanceof DragonMageArmorItem dragonMageArmor && dragonMageArmor.isSetEquipped(player)) {
-                DragonMageArmorItem.applySpell(chest, false, player, sourceEntity);
-                if(sourceEntity != null && sourceEntity != player){
-                    DragonMageArmorItem.applySpell(chest, true, player, sourceEntity);
-                }
-            }
-        }
-
-        FactionAmuletItem.eventHandleDeclarationOfWar(event);
 
         if(IDamageAdjustmentItem.eventHandleDamageAdjustment(event)){
             return;
