@@ -9,15 +9,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 
-public class GuiRingOfPower<T extends AbstractContainerMenu> extends GuiBagBase<T>{
-    public GuiRingOfPower(T inventorySlotsIn, Inventory inv, Component comp) {
+public class GuiRingOfRuling<T extends AbstractContainerMenu> extends GuiBagBase<T>{
+    public GuiRingOfRuling(T inventorySlotsIn, Inventory inv, Component comp) {
         super(inv, inventorySlotsIn);
         this.imageWidth = 176;
         this.imageHeight = 209;
     }
 
     public ResourceLocation texture() {
-        return RLoc.create("textures/gui/draconic_spells.png");
+        return RLoc.create("textures/gui/draconic_spells_2.png");
     }
 
     protected void renderBg(GuiGraphics pGuiGraphics, float partialTicks, int mouseX, int mouseY) {
@@ -33,6 +33,6 @@ public class GuiRingOfPower<T extends AbstractContainerMenu> extends GuiBagBase<
     }
 
     public String name() {
-        return "Ring Of Power";
+        return "Ring Of Ruling";
     }
 }

@@ -17,13 +17,13 @@ import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;
 
-public class ContainerRingOfPower extends HeldContainerBase {
-    public ContainerRingOfPower(int i, Inventory playerInventory, FriendlyByteBuf buffer) {
-        this(i, playerInventory, new ItemInventoryBase(new ItemStack(ItemInit.RING_OF_POWER.get(), 1), 1));
+public class ContainerRingOfRuling extends HeldContainerBase {
+    public ContainerRingOfRuling(int i, Inventory playerInventory, FriendlyByteBuf buffer) {
+        this(i, playerInventory, new ItemInventoryBase(new ItemStack(ItemInit.RING_OF_RULING.get(), 1), 1));
     }
 
-    public ContainerRingOfPower(int i, Inventory playerInv, ItemInventoryBase basebag) {
-        super(ContainerInit.RING_OF_POWER.get(), i, playerInv, basebag);
+    public ContainerRingOfRuling(int i, Inventory playerInv, ItemInventoryBase basebag) {
+        super(ContainerInit.RING_OF_RULING.get(), i, playerInv, basebag);
     }
 
     protected void initializeSlots(Inventory playerInv) {

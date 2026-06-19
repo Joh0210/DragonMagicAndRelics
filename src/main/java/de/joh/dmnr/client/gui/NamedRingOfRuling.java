@@ -11,10 +11,10 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 
-public class NamedRingOfPower implements MenuProvider {
+public class NamedRingOfRuling implements MenuProvider {
     private final ItemStack stack;
 
-    public NamedRingOfPower(ItemStack stack) {
+    public NamedRingOfRuling(ItemStack stack) {
         this.stack = stack;
     }
 

@@ -21,6 +21,7 @@ public class GuiInit {
         MenuScreens.register(ContainerInit.BRACELET_OF_FRIENDSHIP.get(), GuiBraceletOfFriendship::new);
         MenuScreens.register(ContainerInit.POTION_OF_INFINITY.get(), GuiPotionOfInfinity::new);
         MenuScreens.register(ContainerInit.RING_OF_POWER.get(), GuiRingOfPower<ContainerRingOfPower>::new);
+        MenuScreens.register(ContainerInit.RING_OF_RULING.get(), GuiRingOfRuling<ContainerRingOfRuling>::new);
         MenuScreens.register(ContainerInit.RING_OF_SPELL_STORING.get(), GuiRingOfSpellStoringItem<ContainerRingOfNormalSpellStoring>::new);
         MenuScreens.register(ContainerInit.RING_OF_SPELL_STORING_COOLDOWN.get(), GuiRingOfSpellStoringItem<ContainerRingOfCooldownSpellStoring>::new);
         //HUDOverlayRenderer.instance = new HUDOverlayRenderer();
