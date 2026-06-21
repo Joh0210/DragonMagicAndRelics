@@ -1,4 +1,98 @@
 {
+  "Rune Armor": {
+    "index": 1,
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Rune Armor"
+      },
+      {
+        "type": "text",
+        "json": [
+          {
+            "text": "Though it inherits gold's weak physical defense, its high magical potential combined with embedded amethysts allows this "
+          },
+          {
+            "text": "Rune Armor",
+            "color": "blue"
+          },
+          {
+            "text": " to channel the magic of supplementary "
+          },
+          {
+            "text": "Curios",
+            "color": "blue"
+          },
+          {
+            "text": ".\n\nThe "
+          },
+          {
+            "text": "Rune Chestplate",
+            "color": "blue"
+          },
+          {
+            "text": " alone grants an extra "
+          },
+          {
+            "text": "Necklace slot",
+            "color": "dark_purple"
+          },
+          {
+            "text": ".\n\nEquipping the full set unlocks a "
+          },
+          {
+            "text": "Set Bonus",
+            "color": "blue"
+          },
+          {
+            "text": ", granting an entirely new, universal "
+          },
+          {
+            "text": "Curio slot",
+            "color": "dark_purple"
+          },
+          {
+            "text": " to harness even more artifacts."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/rune_helmet"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/rune_chestplate"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/rune_legging"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/rune_boots"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "mna:manaweaving/armor/infused_thread"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "mna:manaweaving/intermediate/infused_silk"
+      },
+      {
+        "type": "runescribing",
+        "location": "mna:runescribing/runescribe_arcane"
+      },
+      {
+        "type": "ritual",
+        "location": "mna:rituals/forgotten_lore"
+      }
+    ]
+  },
   "Voidfeather Charm": {
     "index": "1",
     "category": "artifice",

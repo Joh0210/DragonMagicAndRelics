@@ -1,0 +1,16 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "dmnr:rune_boots",
+  "tier": 2,
+  "items": [
+    "minecraft:golden_boots",
+    "mna:infused_thread",
+    "mna:rune_arcane",
+    "minecraft:amethyst_shard"
+  ],
+  "patterns": [
+    "mna:square",
+    "mna:square",
+    "mna:diamond"
+  ]
+}

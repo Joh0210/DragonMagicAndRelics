@@ -1,13 +1,9 @@
 package de.joh.dmnr.common.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.common.item.DragonMageArmorItem;
+import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ItemInit;
-import de.joh.dmnr.common.item.DisappearingTiaraItem;
-import de.joh.dmnr.common.item.KeyOfHomestead;
-import de.joh.dmnr.common.item.NightGogglesItem;
-import de.joh.dmnr.common.item.OcelotCurioItem;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleWaterBraceletS2CPacket;
 import net.minecraft.server.level.ServerPlayer;
@@ -59,6 +55,12 @@ public class CommonEventHandler {
             }
             if(toItem instanceof DragonMageArmorItem){
                 ((DragonMageArmorItem)toItem).onEquip(event.getTo(), entity);
+            }
+            if(fromItem instanceof RuneArmorItem){
+                ((RuneArmorItem)fromItem).onDiscard(event.getFrom(), entity);
+            }
+            if(toItem instanceof RuneArmorItem){
+                ((RuneArmorItem)toItem).onEquip(event.getTo(), entity);
             }
         }
     }

@@ -18,7 +18,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-// todo: on Attack self spell
+
 public class DragonPowerAmuletItem extends BaseTieredItem implements ICurioItem {
     public DragonPowerAmuletItem() {
         super(new Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
