@@ -5,6 +5,11 @@ import com.mna.api.items.IRelic;
 import de.joh.dmnr.common.init.ItemInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -28,6 +33,17 @@ public class JournalOfMysteriesItem extends Item implements IRelic, ICurioItem {
         if (CuriosApi.getCuriosHelper().findFirstCurio(event.getPlayer(), ItemInit.JOURNAL_OF_MYSTERIES.get()).isPresent()) {
             event.setAmount(event.getAmount() * 2.5f);
         }
+    }
+
+    @Override
+    public @NotNull InteractionResultHolder<ItemStack> use(Level level, @NotNull Player player, @NotNull InteractionHand hand) {
+        if (!level.isClientSide()) {
+            MutableComponent text = Component.translatable("item.dmnr.journal_of_mysteries.chat");
+            text.withStyle(style -> style.withFont(new ResourceLocation("minecraft", "alt")));
+            player.sendSystemMessage(text);
+        }
+
+        return InteractionResultHolder.sidedSuccess(player.getItemInHand(hand), level.isClientSide());
     }
 
     @Override
