@@ -1,13 +1,11 @@
 package de.joh.dmnr.common.event;
 
 import com.mna.api.events.ComponentApplyingEvent;
+import com.mna.api.events.RoteProgressGainedEvent;
 import com.mna.api.events.SpellCastEvent;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.effects.beneficial.SorcerersPrideMobEffect;
-import de.joh.dmnr.common.item.AmuletOfHellfire;
-import de.joh.dmnr.common.item.BraceletOfFriendshipItem;
-import de.joh.dmnr.common.item.CurseProtectionAmuletItem;
-import de.joh.dmnr.common.item.DevilRingItem;
+import de.joh.dmnr.common.item.*;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -41,5 +39,10 @@ public class MagicEventHandler {
     public static void onSpellCast(SpellCastEvent event){
         DevilRingItem.eventHandleTurnIntoHellfire(event);
         SorcerersPrideMobEffect.spellBoost(event);
+    }
+
+    @SubscribeEvent
+    public static void onRoteProgressGained(RoteProgressGainedEvent event) {
+        JournalOfMysteriesItem.roteBoost(event);
     }
 }

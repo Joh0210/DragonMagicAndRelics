@@ -41,6 +41,7 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.WEATHER_FAIRY_STAFF.get());
                         pOutput.accept(ItemInit.THE_CLICKERS_COOKIE.get());
                         pOutput.accept(ItemInit.KEY_OF_HOMESTEAD.get());
+                        pOutput.accept(ItemInit.JOURNAL_OF_MYSTERIES.get());
 
                         pOutput.accept(ItemInit.BRACELET_OF_FRIENDSHIP.get());
                         pOutput.accept(ItemInit.FACTION_AMULET.get());
