@@ -1,0 +1,15 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "dmnr:rune_legging",
+  "tier": 2,
+  "items": [
+    "minecraft:golden_leggings",
+    "mna:infused_thread",
+    "mna:rune_arcane",
+    "minecraft:amethyst_shard"
+  ],
+  "patterns": [
+    "mna:inverted_triangle",
+    "mna:diamond"
+  ]
+}

@@ -27,6 +27,11 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.DRAGON_MAGE_LEGGING.get());
                         pOutput.accept(ItemInit.DRAGON_MAGE_BOOTS.get());
 
+                        pOutput.accept(ItemInit.RUNE_HELMET.get());
+                        pOutput.accept(ItemInit.RUNE_CHESTPLATE.get());
+                        pOutput.accept(ItemInit.RUNE_LEGGING.get());
+                        pOutput.accept(ItemInit.RUNE_BOOTS.get());
+
                         pOutput.accept(ItemInit.AMULET_OF_DRAGON_POWER.get());
                         pOutput.accept(ItemInit.RING_OF_POWER.get());
                         pOutput.accept(ItemInit.RING_OF_RULING.get());

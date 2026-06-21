@@ -26,6 +26,12 @@ public class ItemInit {
     public static final RegistryObject<Item> DRAGON_MAGE_LEGGING = ITEMS.register("dragon_mage_leggings", () -> new DragonMageArmorItem(ArmorItem.Type.LEGGINGS));
     public static final RegistryObject<Item> DRAGON_MAGE_BOOTS = ITEMS.register("dragon_mage_boots", () -> new DragonMageArmorItem(ArmorItem.Type.BOOTS));
 
+    public static final RegistryObject<Item> RUNE_HELMET = ITEMS.register("rune_helmet", () -> new RuneArmorItem(ArmorItem.Type.HELMET));
+    public static final RegistryObject<Item> RUNE_CHESTPLATE = ITEMS.register("rune_chestplate", () -> new RuneArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final RegistryObject<Item> RUNE_LEGGING = ITEMS.register("rune_legging", () -> new RuneArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final RegistryObject<Item> RUNE_BOOTS = ITEMS.register("rune_boots", () -> new RuneArmorItem(ArmorItem.Type.BOOTS));
+
+
     //Curios
     public static final RegistryObject<Item> AMULET_OF_DRAGON_POWER = ITEMS.register("amulet_of_dragon_power", DragonPowerAmuletItem::new);
     public static final RegistryObject<Item> RING_OF_RULING = ITEMS.register("ring_of_ruling", RingOfRulingItem::new);

@@ -1,0 +1,20 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "output": "dmnr:rune_chestplate",
+  "tier": 2,
+  "items": [
+    "minecraft:golden_chestplate",
+    "mna:infused_thread",
+    "mna:rune_arcane",
+    "minecraft:amethyst_shard",
+    "minecraft:amethyst_shard",
+    "minecraft:amethyst_shard",
+    "minecraft:amethyst_shard",
+    "minecraft:amethyst_shard",
+    "mna:mote_arcane"
+  ],
+  "patterns": [
+    "mna:square",
+    "mna:diamond"
+  ]
+}
