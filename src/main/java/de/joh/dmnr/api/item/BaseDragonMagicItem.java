@@ -8,10 +8,11 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import com.mna.api.items.TieredItem;
 
 import java.util.List;
 
-public abstract class BaseDragonMagicItem extends BaseTieredItem implements IDragonMagicItem {
+public abstract class BaseDragonMagicItem extends TieredItem implements IDragonMagicItem {
     public BaseDragonMagicItem(Properties pProperties) {
         super(pProperties);
     }

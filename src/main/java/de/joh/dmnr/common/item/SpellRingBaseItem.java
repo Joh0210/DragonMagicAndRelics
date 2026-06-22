@@ -1,5 +1,6 @@
 package de.joh.dmnr.common.item;
 
+import com.mna.api.items.TieredItem;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.targeting.SpellContext;
 import com.mna.api.spells.targeting.SpellSource;
@@ -12,7 +13,6 @@ import com.mna.items.ItemInit;
 import com.mna.items.base.IItemWithGui;
 import com.mna.spells.SpellCaster;
 import com.mna.spells.crafting.SpellRecipe;
-import de.joh.dmnr.api.item.BaseTieredItem;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -28,7 +28,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 
-public abstract class SpellRingBaseItem<T extends SpellRingBaseItem<T>> extends BaseTieredItem implements ICurioItem, IItemWithGui<T> {
+public abstract class SpellRingBaseItem<T extends SpellRingBaseItem<T>> extends TieredItem implements ICurioItem, IItemWithGui<T> {
     public SpellRingBaseItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
     }
