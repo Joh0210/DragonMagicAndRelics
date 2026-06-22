@@ -24,6 +24,7 @@ import java.util.List;
  * Higher Levels will add mor reach.
  * @author Joh0210
  */
+// todo: increase reach
 public class ReachRingItem extends TieredItem implements ICurioItem {
     private final AttributeModifier reachMod;
 

@@ -32,6 +32,7 @@ import java.util.List;
  * This Item Reflects a couple of projectiles every few seconds
  * @author Joh0210
  */
+// todo: drastically reduced cooldown and more charges
 public class ProjectileReflectionRingItem extends TieredItem implements ICurioItem, IFactionSpecific {
     private final static String PROJECTILE_CHARGE_ID = DragonMagicAndRelics.MOD_ID + "ProjectileReflectionRingCharge";
 

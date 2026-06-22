@@ -21,6 +21,7 @@ import java.util.List;
  * based on the item the entity is wearing (e.g., GlassCannonBelt x2 or SturdyBelt x0.5).
  * @author Joh0210
  */
+// todo: increase modifier
 public class DamageAdjustmentBelt extends TieredItem implements IDamageAdjustmentItem {
     private final float modifier;
 
@@ -31,7 +32,7 @@ public class DamageAdjustmentBelt extends TieredItem implements IDamageAdjustmen
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, List<Component> tooltip, @NotNull TooltipFlag flagIn) {
+    public void appendHoverText(@NotNull ItemStack stack, Level worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
         if(this.modifier > 1.0f){
             tooltip.add(Component.translatable("tooltip.dmnr.glass_cannon_belt").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         }

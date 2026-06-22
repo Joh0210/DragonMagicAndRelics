@@ -27,6 +27,7 @@ import java.util.function.Consumer;
  * <br>Is a Relict
  * @author Joh0210
  */
+// todo: allows changing of daytime
 public class WeatherFairyStaffItem extends SwordItem implements ScrollableItem, IRelic {
     public WeatherFairyStaffItem() {
         super(Tiers.IRON, 3, -3.1F, new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC).setNoRepair());

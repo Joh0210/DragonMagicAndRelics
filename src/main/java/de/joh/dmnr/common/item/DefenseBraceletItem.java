@@ -19,6 +19,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
+// todo: increased values
 public class DefenseBraceletItem extends TieredItem implements ICurioItem {
     private final AttributeModifier armorMod;
     private final AttributeModifier toughnessMod;

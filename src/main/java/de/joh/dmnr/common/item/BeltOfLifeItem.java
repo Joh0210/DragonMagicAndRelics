@@ -24,6 +24,7 @@ import java.util.List;
  * Increase is exponential to the level.
  * @author Joh0210
  */
+// todo: Drastically more HP
 public class BeltOfLifeItem extends TieredItem implements ICurioItem {
     private final AttributeModifier healthMod;
 
