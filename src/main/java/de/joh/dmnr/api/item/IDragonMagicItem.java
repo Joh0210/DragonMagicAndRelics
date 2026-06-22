@@ -1,23 +1,40 @@
 package de.joh.dmnr.api.item;
 
 import de.joh.dmnr.capabilities.client.ClientCurioBoost;
+import de.joh.dmnr.capabilities.curioboost.CurioBoostProvider;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public interface IDragonMagicItem {
     String dragonMagicID();
 
+    @OnlyIn(Dist.DEDICATED_SERVER)
+    default boolean hasDragonMagic(Player player){
+        AtomicBoolean ret = new AtomicBoolean(false);
+        player.getCapability(CurioBoostProvider.CURIO_BOOST).ifPresent(magic -> {
+            ret.set(!magic.isBlacklisted(dragonMagicID()) && magic.isEnabled());
+        });
+        return ret.get();
+    }
+
+    //todo: instead of continuous checking, there could be an event that enables an "on DM Equip" that is called once the complete armor es quipped.
+
+    default void onDMEquip(ItemStack itemStack, Player entity) {}
+
+    default void onDMDiscard(ItemStack itemStack, Player entity) {}
 
     @OnlyIn(Dist.CLIENT)
     default boolean hasDragonMagic(){
-
         return ClientCurioBoost.isEnabled();
     }
 
