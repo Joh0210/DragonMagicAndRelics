@@ -28,6 +28,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 
+// todo: drasticly reduced mana consumption
 public abstract class SpellRingBaseItem<T extends SpellRingBaseItem<T>> extends TieredItem implements ICurioItem, IItemWithGui<T> {
     public SpellRingBaseItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());

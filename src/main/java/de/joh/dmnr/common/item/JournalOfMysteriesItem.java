@@ -24,6 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+// todo: modifiere is drasticly increassed
 public class JournalOfMysteriesItem extends Item implements IRelic, ICurioItem {
     public JournalOfMysteriesItem() {
         super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.RARE));

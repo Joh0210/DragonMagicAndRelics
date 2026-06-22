@@ -23,6 +23,7 @@ import java.util.List;
 /**
  * A cake to eat endlessly with mana consumption.
  */
+//todo: proviedes an saturation effect
 public class ManaCakeItem extends Item implements ITieredItem<ManaCakeItem> {
     /**
      * Mana cost to "repair" the cake

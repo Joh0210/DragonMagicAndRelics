@@ -28,6 +28,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 
+// todo: mods trigger earlier
 public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownItem>, IFactionSpecific, ICurioItem {
     private int tier = -1;
 

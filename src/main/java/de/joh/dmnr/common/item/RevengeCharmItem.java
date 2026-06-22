@@ -14,6 +14,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
  * Items of this type will apply an effect on an attacker if the defender has this item
  * @author Joh0210
  */
+// todo: increased level
 public abstract class RevengeCharmItem extends ChargeableItem implements ICurioItem {
     private int tier;
     private final int amount;

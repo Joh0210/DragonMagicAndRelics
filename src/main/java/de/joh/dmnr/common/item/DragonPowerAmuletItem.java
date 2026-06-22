@@ -18,7 +18,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-
+// todo: increased amplifier
 public class DragonPowerAmuletItem extends TieredItem implements ICurioItem {
     public DragonPowerAmuletItem() {
         super(new Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());

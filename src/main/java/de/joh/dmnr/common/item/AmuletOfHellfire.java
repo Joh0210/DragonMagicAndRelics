@@ -26,6 +26,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
+// todo: extended Duration or Magnitude
 public class AmuletOfHellfire extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific {
     public AmuletOfHellfire() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON));

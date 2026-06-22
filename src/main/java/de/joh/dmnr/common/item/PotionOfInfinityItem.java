@@ -31,6 +31,7 @@ import java.util.List;
  * Provides a way to infinitely drink a potion
  * @author Joh0210
  */
+// todo: drasticly reduced cooldown
 public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<PotionOfInfinityItem> {
     private int _tier = -1;
 

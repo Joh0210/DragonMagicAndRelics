@@ -22,6 +22,7 @@ import java.util.List;
  * Protects the wearer of Negativ Potion Effects (which do not last longer then 5 min and can be removed with milk) and of the {@link CurseShape Curse Shape}
  * @author Joh0210
  */
+// todo: allows to block any negative Potion Effect regadles of the duration (mana drain equal to the current maximum duration)
 public class CurseProtectionAmuletItem extends ChargeableItem implements IPreEnchantedItem<CurseProtectionAmuletItem> {
     public CurseProtectionAmuletItem() {
         super((new Item.Properties()).setNoRepair().rarity(Rarity.EPIC), 2000.0F);
