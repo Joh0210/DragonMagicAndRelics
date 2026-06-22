@@ -6,12 +6,19 @@ import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
 import de.joh.dmnr.common.util.RLoc;
+import de.joh.dmnr.networking.ModMessages;
+import de.joh.dmnr.networking.packet.ToggleCurioBoostEnabledS2CPacket;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
@@ -22,7 +29,10 @@ import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache
 import software.bernie.geckolib.core.animatable.instance.SingletonAnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
+import top.theillusivec4.curios.api.CuriosApi;
 
+import java.util.List;
+import java.util.UUID;
 import java.util.function.Consumer;
 
 /**
@@ -37,11 +47,19 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
     private final static int DEFAULT_COLOR =0xffb736;
 
+    private final String curioType = "curio";
+    private final UUID curiosID;
+    private final AttributeModifier curiosMod;
+
     private final ResourceLocation dragonMageArmorSetBonus;
 
     public DragonMageArmorItem(ArmorItem.Type type) {
         super(ArmorMaterials.DRAGON_MAGE_ARMOR_MATERIAL, type, new Item.Properties().rarity(Rarity.EPIC).fireResistant());
-        this.dragonMageArmorSetBonus = RLoc.create(DragonMagicAndRelics.MOD_ID + "_dragon_armor_set_bonus");
+        this.dragonMageArmorSetBonus = RLoc.create("dragon_armor_set_bonus");
+
+        String id = DragonMagicAndRelics.MOD_ID + "_dm_armor" + type.getName();
+        this.curiosID = UUID.nameUUIDFromBytes(id.getBytes());
+        this.curiosMod = new AttributeModifier(curiosID, id, 1, AttributeModifier.Operation.ADDITION);
     }
 
     @Override
@@ -64,28 +82,26 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     }
 
     public void onEquip(ItemStack itemStack, LivingEntity entity) {
-//        if(entity instanceof Player){
-//            this.addDragonMagic(itemStack, (Player) entity, "dm_armor");
-//        }
+        var opt = CuriosApi.getCuriosInventory(entity).resolve()
+                .flatMap(x -> x.getStacksHandler(curioType));
+        opt.ifPresent(
+                iCurioStacksHandler -> iCurioStacksHandler.addTransientModifier(curiosMod));
     }
 
     public void onDiscard(ItemStack itemStack, LivingEntity entity) {
-//        if(entity instanceof Player){
-//            this.removeDragonMagic(itemStack, (Player) entity, "dm_armor");
-//        }
+        var opt = CuriosApi.getCuriosInventory(entity).resolve()
+                .flatMap(x -> x.getStacksHandler(curioType));
+        opt.ifPresent(iCurioStacksHandler -> iCurioStacksHandler.removeModifier(curiosID));
     }
-//
-//    @Override
-//    public @NotNull InteractionResultHolder<ItemStack> use(Level world, @NotNull Player player, @NotNull InteractionHand hand) {
-//        if (!world.isClientSide && this.type == Type.CHESTPLATE) {
-//            ItemStack held = player.getItemInHand(hand);
-//            if (this.openGuiIfModifierPressed(held, player, world)) {
-//                return new InteractionResultHolder<>(InteractionResult.SUCCESS, held);
-//            }
-//        }
-//
-//        return new InteractionResultHolder<>(InteractionResult.PASS, player.getItemInHand(hand));
-//    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
+        tooltip.add(Component.translatable("dmnr:dragon_armor_bonus").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        this.addSetTooltip(tooltip);
+        tooltip.add(Component.literal("  "));
+        super.appendHoverText(stack, worldIn, tooltip, flagIn);
+    }
 
     /**
      * Armor does not break
@@ -120,6 +136,20 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
                 return this.renderer;
             }
         });
+    }
+
+    @Override
+    public void applySetBonus(LivingEntity entity, EquipmentSlot... setSlots) {
+        if(entity instanceof ServerPlayer) {
+            ModMessages.sendToPlayer(new ToggleCurioBoostEnabledS2CPacket(true), (ServerPlayer) entity);
+        }
+    }
+
+    @Override
+    public void removeSetBonus(LivingEntity entity, EquipmentSlot... setSlots) {
+        if(entity instanceof ServerPlayer) {
+            ModMessages.sendToPlayer(new ToggleCurioBoostEnabledS2CPacket(false), (ServerPlayer) entity);
+        }
     }
 
     private PlayState predicate(AnimationState animationState) {

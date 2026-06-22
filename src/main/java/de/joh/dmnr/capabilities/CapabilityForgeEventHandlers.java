@@ -1,6 +1,7 @@
 package de.joh.dmnr.capabilities;
 
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.capabilities.curioboost.CurioBoostProvider;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagic;
 import de.joh.dmnr.capabilities.dragonmagic.PlayerDragonMagicProvider;
 import de.joh.dmnr.common.util.RLoc;
@@ -21,6 +22,7 @@ public class CapabilityForgeEventHandlers {
     public static void attachEntityCapability(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player) {
             event.addCapability(RLoc.create("dragon_magic"), new PlayerDragonMagicProvider());
+            event.addCapability(RLoc.create("curio_boost"), new CurioBoostProvider());
         }
     }
 
@@ -31,6 +33,9 @@ public class CapabilityForgeEventHandlers {
         original.reviveCaps();
         player.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(
                 (magic) -> original.getCapability(PlayerDragonMagicProvider.PLAYER_DRAGON_MAGIC).ifPresent(
+                        (oldMagic) -> magic.copyFrom(oldMagic, player)));
+        player.getCapability(CurioBoostProvider.CURIO_BOOST).ifPresent(
+                (magic) -> original.getCapability(CurioBoostProvider.CURIO_BOOST).ifPresent(
                         (oldMagic) -> magic.copyFrom(oldMagic, player)));
         event.getOriginal().invalidateCaps();
     }

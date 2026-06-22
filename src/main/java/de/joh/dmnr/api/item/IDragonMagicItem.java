@@ -1,11 +1,10 @@
 package de.joh.dmnr.api.item;
 
+import de.joh.dmnr.capabilities.client.ClientCurioBoost;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -18,19 +17,13 @@ public interface IDragonMagicItem {
 
     @OnlyIn(Dist.CLIENT)
     default boolean hasDragonMagic(){
-        var player = Minecraft.getInstance().player;
 
-        if (player != null) {
-            return player.hasEffect(MobEffects.INVISIBILITY);
-        }
-
-        return false;
+        return ClientCurioBoost.isEnabled();
     }
 
     @OnlyIn(Dist.CLIENT)
     default boolean isEnabled(){
-        //todo: test that the ID is not blacklisted
-        return this.hasDragonMagic();
+        return !ClientCurioBoost.isBlacklisted(dragonMagicID());
     }
 
 
