@@ -1,6 +1,6 @@
 package de.joh.dmnr.common.item;
 
-import de.joh.dmnr.api.item.BaseTieredItem;
+import com.mna.api.items.TieredItem;
 import de.joh.dmnr.common.init.EffectInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -19,7 +19,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.List;
 
 
-public class DragonPowerAmuletItem extends BaseTieredItem implements ICurioItem {
+public class DragonPowerAmuletItem extends TieredItem implements ICurioItem {
     public DragonPowerAmuletItem() {
         super(new Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
     }

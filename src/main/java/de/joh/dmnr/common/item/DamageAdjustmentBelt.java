@@ -1,6 +1,6 @@
 package de.joh.dmnr.common.item;
 
-import de.joh.dmnr.api.item.BaseTieredItem;
+import com.mna.api.items.TieredItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
@@ -21,7 +21,7 @@ import java.util.List;
  * based on the item the entity is wearing (e.g., GlassCannonBelt x2 or SturdyBelt x0.5).
  * @author Joh0210
  */
-public class DamageAdjustmentBelt extends BaseTieredItem implements IDamageAdjustmentItem {
+public class DamageAdjustmentBelt extends TieredItem implements IDamageAdjustmentItem {
     private final float modifier;
 
     public DamageAdjustmentBelt(float modifier) {
