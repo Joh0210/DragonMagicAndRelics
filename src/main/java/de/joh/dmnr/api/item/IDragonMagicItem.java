@@ -18,16 +18,18 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public interface IDragonMagicItem {
     String dragonMagicID();
 
-    @OnlyIn(Dist.DEDICATED_SERVER)
     default boolean hasDragonMagic(Player player){
-        AtomicBoolean ret = new AtomicBoolean(false);
-        player.getCapability(CurioBoostProvider.CURIO_BOOST).ifPresent(magic -> {
-            ret.set(!magic.isBlacklisted(dragonMagicID()) && magic.isEnabled());
-        });
-        return ret.get();
+        if(player.level().isClientSide()){
+            return hasDragonMagic() && isEnabled();
+        }
+        else {
+            AtomicBoolean ret = new AtomicBoolean(false);
+            player.getCapability(CurioBoostProvider.CURIO_BOOST).ifPresent(magic -> {
+                ret.set(!magic.isBlacklisted(dragonMagicID()) && magic.isEnabled());
+            });
+            return ret.get();
+        }
     }
-
-    //todo: instead of continuous checking, there could be an event that enables an "on DM Equip" that is called once the complete armor es quipped.
 
     default void onDMEquip(ItemStack itemStack, Player entity) {}
 

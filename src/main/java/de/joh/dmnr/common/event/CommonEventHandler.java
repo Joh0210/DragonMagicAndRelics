@@ -1,6 +1,7 @@
 package de.joh.dmnr.common.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.api.item.IDragonMagicItem;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ItemInit;
@@ -9,6 +10,7 @@ import de.joh.dmnr.networking.packet.ToggleWaterBraceletS2CPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
@@ -19,6 +21,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.event.CurioChangeEvent;
 
 /**
  * These event handlers take care of processing events which are on the server and client. (No damage events)
@@ -41,6 +44,15 @@ public class CommonEventHandler {
             Item fromItem = event.getFrom().getItem();
             Item toItem = event.getTo().getItem();
 
+            if(entity instanceof Player player){
+                if(fromItem instanceof IDragonMagicItem){
+                    ((IDragonMagicItem)fromItem).onDMDiscard(event.getFrom(), player);
+                }
+
+                if(toItem instanceof IDragonMagicItem && ((IDragonMagicItem)toItem).hasDragonMagic(player)){
+                    ((IDragonMagicItem)toItem).onDMEquip(event.getTo(), player);
+                }
+            }
 
             if(fromItem instanceof NightGogglesItem){
                 ((NightGogglesItem)fromItem).onDiscard(entity);
@@ -64,6 +76,26 @@ public class CommonEventHandler {
             }
         }
     }
+
+    @SubscribeEvent
+    public static void onLivingEquipmentChange(CurioChangeEvent event){
+        LivingEntity entity = event.getEntity();
+        if(entity != null){
+            Item fromItem = event.getFrom().getItem();
+            Item toItem = event.getTo().getItem();
+
+            if(entity instanceof Player player){
+                if(fromItem instanceof IDragonMagicItem){
+                    ((IDragonMagicItem)fromItem).onDMDiscard(event.getFrom(), player);
+                }
+
+                if(toItem instanceof IDragonMagicItem && ((IDragonMagicItem)toItem).hasDragonMagic(player)){
+                    ((IDragonMagicItem)toItem).onDMEquip(event.getTo(), player);
+                }
+            }
+        }
+    }
+
 
     /**
      * If the player has the Elytra effect, he can fly through this event like with an Elytra.
