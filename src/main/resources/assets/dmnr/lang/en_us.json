@@ -1,5 +1,7 @@
 {
   "itemGroup.dmnr": "Dragon Magic And Relics",
+  "dmnr.dragonmagic.prefix": "Dragon Magic: ",
+  "dmnr.dragonmagic.disabled": " (Disabled)",
 
   "mechanic.mna:dmnr_armorupgrades": "Upgrade Glyphs",
 
