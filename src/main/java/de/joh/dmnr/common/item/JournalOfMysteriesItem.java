@@ -2,6 +2,7 @@ package de.joh.dmnr.common.item;
 
 import com.mna.api.events.RoteProgressGainedEvent;
 import com.mna.api.items.IRelic;
+import de.joh.dmnr.api.item.IDragonMagicItem;
 import de.joh.dmnr.common.init.ItemInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -24,16 +25,25 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-// todo: modifiere is drasticly increassed
-public class JournalOfMysteriesItem extends Item implements IRelic, ICurioItem {
+public class JournalOfMysteriesItem extends Item implements IRelic, ICurioItem, IDragonMagicItem {
     public JournalOfMysteriesItem() {
         super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.RARE));
     }
 
     public static void roteBoost(RoteProgressGainedEvent event) {
         if (CuriosApi.getCuriosHelper().findFirstCurio(event.getPlayer(), ItemInit.JOURNAL_OF_MYSTERIES.get()).isPresent()) {
-            event.setAmount(event.getAmount() * 2.5f);
+            event.setAmount(event.getAmount() * 2.5f * (ItemInit.JOURNAL_OF_MYSTERIES.get() instanceof IDragonMagicItem dmItem && dmItem.hasDragonMagic(event.getPlayer()) ? 2 : 1));
         }
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.journal_of_mysteries.dragonmagic";
+    }
+
+    @Override
+    public boolean isFoil(@NotNull ItemStack stack) {
+        return (this.isEnabled() && this.hasDragonMagic());
     }
 
     @Override
@@ -53,6 +63,7 @@ public class JournalOfMysteriesItem extends Item implements IRelic, ICurioItem {
         tooltip.add(Component.translatable("item.dmnr.journal_of_mysteries.lore").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.translatable("item.dmnr.journal_of_mysteries.lore_2").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("  "));
+        this.tooltipAddition(tooltip);
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }
 }

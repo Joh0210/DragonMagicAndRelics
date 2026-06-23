@@ -4,6 +4,8 @@ import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
 import com.mna.api.items.ITieredItem;
 import com.mna.factions.Factions;
+import de.joh.dmnr.api.item.IDragonMagicItem;
+import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -20,6 +22,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
@@ -28,8 +31,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.function.Consumer;
 
-// todo: mods trigger earlier
-public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownItem>, IFactionSpecific, ICurioItem {
+public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownItem>, IFactionSpecific, ICurioItem, IDragonMagicItem {
     private int tier = -1;
 
     public HydraCrownItem() {
@@ -38,30 +40,35 @@ public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownI
 
     Map<MobEffect, TreeMap<Integer, Integer>> effects = Map.of(
             MobEffects.REGENERATION, new TreeMap<>(Map.of(
+                    -15, 2,
+                    -1, 1,
                     10, 0
             )),
             MobEffects.DAMAGE_RESISTANCE, new TreeMap<>(Map.of(
                     30, 1,
                     50, 0
             )),
-// todo:
-//            EffectInit.ULTIMATE_ARMOR.get(), new TreeMap<>(Map.of(
-//                    10, 3,
-//                    20, 2,
-//                    35, 1,
-//                    50, 0
-//            )),
+            EffectInit.SORCERERS_PRIDE.get(), new TreeMap<>(Map.of(
+                    0, 3,
+                    10, 2,
+                    20, 1,
+                    35, 0
+            )),
             MobEffects.MOVEMENT_SPEED, new TreeMap<>(Map.of(
-                    20, 2,
+                    0, 4,
+                    20, 3,
                     30, 2,
                     50, 1,
                     70, 0
             )),
             MobEffects.JUMP, new TreeMap<>(Map.of(
+                    0, 2,
                     30, 1,
                     70, 0
             )),
             MobEffects.DAMAGE_BOOST, new TreeMap<>(Map.of(
+                    -10, 6,
+                    0, 5,
                     10, 4,
                     20, 3,
                     30, 2,
@@ -72,18 +79,22 @@ public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownI
 
     public void tick(LivingEntity livingEntity) {
         boolean applied = false;
+        boolean dm = this.hasDragonMagic(livingEntity);
 
-        int hp_percent = (int)(100 * livingEntity.getHealth() / livingEntity.getMaxHealth());
+        int hp_percent = (int)(100 * livingEntity.getHealth() / livingEntity.getMaxHealth()) - (dm ? 20 : 0);
 
         for (Map.Entry<MobEffect, TreeMap<Integer, Integer>> effect : effects.entrySet()) {
             // look for the corresponding hp_percent - Level entry
+            // If Dragon Magic is active, mods trigger 20% earlier (hp_percent + 20)
             Map.Entry<Integer, Integer> thresholdEntry = effect.getValue().ceilingEntry(hp_percent);
             if (thresholdEntry != null) {
                 MobEffectInstance current = livingEntity.getEffect(effect.getKey());
 
+                int amplifier = thresholdEntry.getValue();
+
                 // apply the effect, if the effect is better than the current instance, or if the player does not have the effect
-                if(current == null ||current.getAmplifier() < thresholdEntry.getValue() || (current.getAmplifier() == thresholdEntry.getValue() && current.getDuration() < 40)){
-                    livingEntity.addEffect(new MobEffectInstance(effect.getKey(), 300, thresholdEntry.getValue(), false, false, false));
+                if(current == null ||current.getAmplifier() < amplifier || (current.getAmplifier() == amplifier && current.getDuration() < 40)){
+                    livingEntity.addEffect(new MobEffectInstance(effect.getKey(), 300, amplifier, false, false, false));
                     applied = true;
                 }
             }
@@ -92,6 +103,11 @@ public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownI
         if (applied && livingEntity instanceof Player) {
             this.usedByPlayer((Player) livingEntity);
         }
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.hydra_crown.dragonmagic";
     }
 
     @Override
@@ -123,9 +139,16 @@ public class HydraCrownItem extends ArmorItem implements ITieredItem<HydraCrownI
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         tooltip.add(Component.translatable("item.dmnr.hydra_crown.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.literal("  "));
+        this.tooltipAddition(tooltip);
         super.appendHoverText(stack, world, tooltip, flag);
+    }
+
+    @Override
+    public boolean isFoil(@NotNull ItemStack pStack) {
+        return this.isEnabled() && this.hasDragonMagic();
     }
 
     /**
