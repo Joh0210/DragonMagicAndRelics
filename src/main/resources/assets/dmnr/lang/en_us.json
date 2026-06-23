@@ -7,6 +7,7 @@
 
   "item.dmnr.modifier_book": "Modifier Book",
   "item.dmnr.mana_cake": "Mana Cake",
+  "item.dmnr.mana_cake.dragonmagic": "Provides an small saturation effect",
   "item.dmnr.mana_cake.description": "A cake to eat endlessly with mana consumption.",
   "item.dmnr.weather_fairy_staff": "Staff of the Weather Fairy",
   "item.dmnr.weather_fairy_staff.lore": "Born of winds and skies together,\nthis relic will change the weather.",
@@ -110,12 +111,16 @@
   "item.dmnr.night_goggles.description": "Grants Night Vision and prevents Blindness and Confusion. Removing the glasses causes slight dizziness.",
   "item.dmnr.potion_of_infinity": "Potion of Infinity",
   "item.dmnr.potion_of_infinity.description": "An endless potion — never runs dry.",
+  "item.dmnr.potion_of_infinity.dragonmagic": "Drastically reduced cooldown",
 
   "item.dmnr.revenge_charm_fire": "Revenge Charm: Fire",
+  "item.dmnr.revenge_charm_fire.dragonmagic": "50% increased burn time",
   "item.dmnr.revenge_charm_fire_major": "Revenge Charm: Fire (Major)",
   "item.dmnr.revenge_charm_reflect": "Revenge Charm: Reflect",
+  "item.dmnr.revenge_charm_reflect.dragonmagic": "Increased damage reflection",
   "item.dmnr.revenge_charm_reflect_major": "Revenge Charm: Reflect (Major)",
   "item.dmnr.revenge_charm_dmg": "Revenge Charm: Damage",
+  "item.dmnr.revenge_charm_dmg.dragonmagic": "Disproportionate damage increase",
   "item.dmnr.revenge_charm_dmg_major": "Revenge Charm: Damage (Major)",
 
 

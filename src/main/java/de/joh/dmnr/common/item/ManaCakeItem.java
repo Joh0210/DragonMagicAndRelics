@@ -1,11 +1,13 @@
 package de.joh.dmnr.common.item;
 
 import com.mna.api.capabilities.IPlayerMagic;
-import com.mna.api.items.ITieredItem;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
+import de.joh.dmnr.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.common.init.ItemInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
@@ -23,8 +25,7 @@ import java.util.List;
 /**
  * A cake to eat endlessly with mana consumption.
  */
-//todo: proviedes an saturation effect
-public class ManaCakeItem extends Item implements ITieredItem<ManaCakeItem> {
+public class ManaCakeItem extends BaseDragonMagicItem {
     /**
      * Mana cost to "repair" the cake
      */
@@ -39,12 +40,6 @@ public class ManaCakeItem extends Item implements ITieredItem<ManaCakeItem> {
      * How much saturation does the cake give?
      */
     private static final float SATURATION = 0.4f;
-
-    /**
-     * M&A Item Tier:
-     * Determined by the crafting recipe Tier
-     */
-    private int _tier = -1;
 
     public ManaCakeItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON)
@@ -61,22 +56,16 @@ public class ManaCakeItem extends Item implements ITieredItem<ManaCakeItem> {
         super.finishUsingItem(itemstack, world, entity);
         IPlayerMagic magic = entity.getCapability(PlayerMagicProvider.MAGIC).orElse(null);
 
+        if (this.hasDragonMagic(entity)) {
+            entity.addEffect(new MobEffectInstance(MobEffects.SATURATION, 600, 0, false, false));
+        }
+
         if (itemstack.isEmpty() && entity instanceof Player && magic != null && magic.getCastingResource().hasEnoughAbsolute(entity, MANA_COSTS)) {
             magic.getCastingResource().consume(entity, MANA_COSTS);
             return retval;
         } else {
             return itemstack;
         }
-    }
-
-    @Override
-    public void setCachedTier(int tier) {
-        this._tier = tier;
-    }
-
-    @Override
-    public int getCachedTier() {
-        return this._tier;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -87,4 +76,8 @@ public class ManaCakeItem extends Item implements ITieredItem<ManaCakeItem> {
         super.appendHoverText(stack, world, tooltip, flag);
     }
 
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.mana_cake.dragonmagic";
+    }
 }
