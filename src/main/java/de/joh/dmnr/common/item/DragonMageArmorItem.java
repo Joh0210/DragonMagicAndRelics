@@ -3,6 +3,7 @@ package de.joh.dmnr.common.item;
 import com.mna.items.armor.ISetItem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.event.DragonMagicChangeEvent;
+import de.joh.dmnr.capabilities.curioboost.CurioBoostProvider;
 import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
@@ -146,6 +147,7 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
         if (entity instanceof Player player) {
             if(entity instanceof ServerPlayer) {
                 ModMessages.sendToPlayer(new ToggleCurioBoostEnabledS2CPacket(true), (ServerPlayer) entity);
+                player.getCapability(CurioBoostProvider.CURIO_BOOST).ifPresent(magic -> magic.setEnabled(true));
             }
 
             DragonMagicChangeEvent event = new DragonMagicChangeEvent(player, true);
@@ -158,6 +160,7 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
         if (entity instanceof Player player) {
             if(entity instanceof ServerPlayer) {
                 ModMessages.sendToPlayer(new ToggleCurioBoostEnabledS2CPacket(false), (ServerPlayer) entity);
+                player.getCapability(CurioBoostProvider.CURIO_BOOST).ifPresent(magic -> magic.setEnabled(false));
             }
 
             DragonMagicChangeEvent event = new DragonMagicChangeEvent(player, false);

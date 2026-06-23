@@ -26,6 +26,6 @@ public abstract class BaseDragonMagicItem extends TieredItem implements IDragonM
 
     @Override
     public boolean isFoil(@NotNull ItemStack pStack) {
-        return this.isEnabled();
+        return this.isEnabled() && this.hasDragonMagic();
     }
 }

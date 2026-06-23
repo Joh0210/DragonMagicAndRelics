@@ -49,8 +49,8 @@ public class ItemInit {
     public static final RegistryObject<Item> OCELOT_RING_MINOR = ITEMS.register("ocelot_ring_minor", () -> new OcelotCurioItem(1));
     public static final RegistryObject<Item> OCELOT_RING = ITEMS.register("ocelot_ring", () -> new OcelotCurioItem(2));
     public static final RegistryObject<Item> OCELOT_RING_GREATER = ITEMS.register("ocelot_ring_greater", () -> new OcelotCurioItem(3));
-    public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", () -> new DamageAdjustmentBelt(2.0f));
-    public static final RegistryObject<Item> STURDY_BELT = ITEMS.register("sturdy_belt", () -> new DamageAdjustmentBelt(0.5f));
+    public static final RegistryObject<Item> GLASS_CANNON_BELT = ITEMS.register("glass_cannon_belt", () -> new DamageAdjustmentBelt(true));
+    public static final RegistryObject<Item> STURDY_BELT = ITEMS.register("sturdy_belt", () -> new DamageAdjustmentBelt(false));
     public static final RegistryObject<Item> CURSE_PROTECTION_AMULET = ITEMS.register("curse_protection_amulet", CurseProtectionAmuletItem::new);
     public static final RegistryObject<Item> BRACELET_OF_WATER = ITEMS.register("bracelet_of_water", () -> new WaterBraceletItem(1));
     public static final RegistryObject<Item> BRACELET_OF_WATER_GREATER = ITEMS.register("bracelet_of_water_greater", () -> new WaterBraceletItem(2));

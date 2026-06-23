@@ -6,6 +6,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,17 +19,21 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public interface IDragonMagicItem {
     String dragonMagicID();
 
-    default boolean hasDragonMagic(Player player){
-        if(player.level().isClientSide()){
-            return hasDragonMagic() && isEnabled();
+    default boolean hasDragonMagic(LivingEntity entity){
+        if(entity instanceof Player player){
+            if(player.level().isClientSide()){
+                return hasDragonMagic() && isEnabled();
+            }
+            else {
+                AtomicBoolean ret = new AtomicBoolean(false);
+                player.getCapability(CurioBoostProvider.CURIO_BOOST).ifPresent(magic -> {
+                    ret.set(magic.isEnabled() && !magic.isBlacklisted(dragonMagicID()));
+                });
+                return ret.get();
+            }
         }
-        else {
-            AtomicBoolean ret = new AtomicBoolean(false);
-            player.getCapability(CurioBoostProvider.CURIO_BOOST).ifPresent(magic -> {
-                ret.set(!magic.isBlacklisted(dragonMagicID()) && magic.isEnabled());
-            });
-            return ret.get();
-        }
+
+        return false;
     }
 
     default void onDMEquip(ItemStack itemStack, Player entity) {}
