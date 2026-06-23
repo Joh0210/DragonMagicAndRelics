@@ -4,7 +4,7 @@ import com.mna.api.items.ITieredItem;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.base.ItemBagBase;
 import com.mna.items.filters.ItemFilterGroup;
-import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.api.item.IDragonMagicItem;
 import de.joh.dmnr.api.util.PotionFilter;
 import de.joh.dmnr.client.gui.NamedPotionOfInfinity;
 import net.minecraft.ChatFormatting;
@@ -24,6 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -31,8 +32,7 @@ import java.util.List;
  * Provides a way to infinitely drink a potion
  * @author Joh0210
  */
-// todo: drasticly reduced cooldown
-public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<PotionOfInfinityItem> {
+public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<PotionOfInfinityItem>, IDragonMagicItem {
     private int _tier = -1;
 
     public PotionOfInfinityItem() {
@@ -42,17 +42,21 @@ public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<Pot
 
     @OnlyIn(Dist.CLIENT)
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
         tooltip.add(Component.translatable("item.dmnr.potion_of_infinity.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         tooltip.add(Component.literal("  "));
+        this.tooltipAddition(tooltip);
         super.appendHoverText(stack, world, tooltip, flag);
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.potion_of_infinity.dragonmagic";
     }
 
     @Override
     public @NotNull ItemStack finishUsingItem(@NotNull ItemStack itemstack, @NotNull Level world, @NotNull LivingEntity entity) {
         super.finishUsingItem(itemstack, world, entity);
-
-        DragonMagicAndRelics.LOGGER.warn("Potion of Infinity Ite0");
         if (!world.isClientSide) {
             ItemInventoryBase inv = new ItemInventoryBase(itemstack);
             ItemStack potion = inv.getStackInSlot(0);
@@ -66,7 +70,7 @@ public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<Pot
                 }
             }
         }
-        if (entity instanceof Player) ((Player) entity).getCooldowns().addCooldown(this, 1200);
+        if (entity instanceof Player) ((Player) entity).getCooldowns().addCooldown(this, hasDragonMagic(entity) ? 300 : 1200);
 
         itemstack.grow(1);
         return itemstack;
@@ -115,5 +119,10 @@ public class PotionOfInfinityItem extends ItemBagBase implements ITieredItem<Pot
         return this._tier;
     }
 
+
+    @Override
+    public boolean isFoil(@NotNull ItemStack pStack) {
+        return this.isEnabled() && this.hasDragonMagic();
+    }
 }
 

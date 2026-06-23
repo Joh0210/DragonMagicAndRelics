@@ -17,10 +17,15 @@ public class DmgRevengeCharmItem extends RevengeCharmItem {
 
     @Override
     public void revenge(Player revengeSource, LivingEntity revengeTarget, float damage) {
-        int revengeDamage = (int) Math.pow(3, this.level-1);
+        int revengeDamage = (int) Math.pow(3, this.level) * (this.hasDragonMagic(revengeSource)?2:1);
 
-        if(revengeDamage >= 1.0f){
+        if(revengeDamage >= 0.5f){
             revengeTarget.hurt(DamageHelper.createSourcedType(getRevengeDamage(), revengeSource.level().registryAccess(), revengeSource), revengeDamage);
         }
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.revenge_charm_dmg.dragonmagic";
     }
 }

@@ -19,15 +19,21 @@ public class FireRevengeCharmItem extends RevengeCharmItem implements IFactionSp
 
     @Override
     public void revenge(Player revengeSource, LivingEntity revengeTarget, float damage) {
-        revengeTarget.setSecondsOnFire(10);
+        int time = this.hasDragonMagic(revengeSource) ? 15 : 10;
+        revengeTarget.setSecondsOnFire(time);
         if(this.level > 1){
-            revengeTarget.addEffect(new MobEffectInstance((EffectInit.HELLFIRE_EFFECT.get()), 200, 0, true, true, true));
+            revengeTarget.addEffect(new MobEffectInstance((EffectInit.HELLFIRE_EFFECT.get()), 20*time, 0, true, true, true));
         }
         usedByPlayer(revengeSource);
     }
 
     public IFaction getFaction() {
         return Factions.DEMONS;
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.revenge_charm_fire.dragonmagic";
     }
 
 }

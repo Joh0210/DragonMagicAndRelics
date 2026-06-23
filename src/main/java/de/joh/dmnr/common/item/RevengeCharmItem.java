@@ -1,6 +1,6 @@
 package de.joh.dmnr.common.item;
 
-import com.mna.api.items.ChargeableItem;
+import de.joh.dmnr.api.item.ChargeableDragonMagicItem;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -14,8 +14,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
  * Items of this type will apply an effect on an attacker if the defender has this item
  * @author Joh0210
  */
-// todo: increased level
-public abstract class RevengeCharmItem extends ChargeableItem implements ICurioItem {
+public abstract class RevengeCharmItem extends ChargeableDragonMagicItem implements ICurioItem {
     private int tier;
     private final int amount;
     protected final int level;

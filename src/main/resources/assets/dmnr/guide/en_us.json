@@ -620,7 +620,7 @@
             "bold": true
           },
           {
-            "text": "Deals 1 magic-damage to the attacker. (3 if upgraded)\n- ",
+            "text": "Deals 3 magic-damage to the attacker. (9 if upgraded)\n- ",
             "color": ""
           },
           {
@@ -628,7 +628,7 @@
             "bold": true
           },
           {
-            "text": "Reflects 10% of received damage. (30% if upgraded)",
+            "text": "Reflects 20% of received damage. (60% if upgraded)",
             "color": ""
           }
         ]
