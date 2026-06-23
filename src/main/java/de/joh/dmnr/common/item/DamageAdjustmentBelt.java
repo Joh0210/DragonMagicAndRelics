@@ -1,6 +1,6 @@
 package de.joh.dmnr.common.item;
 
-import com.mna.api.items.TieredItem;
+import de.joh.dmnr.api.item.BaseDragonMagicItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
@@ -21,19 +21,18 @@ import java.util.List;
  * based on the item the entity is wearing (e.g., GlassCannonBelt x2 or SturdyBelt x0.5).
  * @author Joh0210
  */
-// todo: increase modifier
-public class DamageAdjustmentBelt extends TieredItem implements IDamageAdjustmentItem {
-    private final float modifier;
+public class DamageAdjustmentBelt extends BaseDragonMagicItem implements IDamageAdjustmentItem {
+    private final boolean increases;
 
-    public DamageAdjustmentBelt(float modifier) {
+    public DamageAdjustmentBelt(boolean increases) {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
-        this.modifier = modifier;
+        this.increases = increases;
     }
 
     @OnlyIn(Dist.CLIENT)
     @Override
     public void appendHoverText(@NotNull ItemStack stack, Level worldIn, @NotNull List<Component> tooltip, @NotNull TooltipFlag flagIn) {
-        if(this.modifier > 1.0f){
+        if(increases){
             tooltip.add(Component.translatable("tooltip.dmnr.glass_cannon_belt").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         }
         else{
@@ -50,7 +49,7 @@ public class DamageAdjustmentBelt extends TieredItem implements IDamageAdjustmen
 
     @Override
     public float adjustDefending(LivingHurtEvent event, Player defender, ItemStack damageAdjustmentItem, float amount) {
-        return amount * modifier;
+        return increases ? amount * 2 : amount / (hasDragonMagic(defender) ? 3:2);
     }
 
     @Override
@@ -60,6 +59,16 @@ public class DamageAdjustmentBelt extends TieredItem implements IDamageAdjustmen
 
     @Override
     public float adjustAttacking(LivingHurtEvent event, Player attacker, ItemStack damageAdjustmentItem, float amount) {
-        return amount * modifier;
+        return increases ? amount * (hasDragonMagic(attacker) ? 3:2) : amount / 2;
+    }
+
+    @Override
+    public String dragonMagicID() {
+        if(increases){
+            return "item.dmnr.glass_cannon_belt.dragonmagic";
+        }
+        else{
+            return "item.dmnr.sturdy_belt.dragonmagic";
+        }
     }
 }

@@ -4,8 +4,8 @@ import com.mna.api.affinity.Affinity;
 import com.mna.api.events.ComponentApplyingEvent;
 import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
-import com.mna.api.items.TieredItem;
 import com.mna.factions.Factions;
+import de.joh.dmnr.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.init.ItemInit;
 import net.minecraft.ChatFormatting;
@@ -26,8 +26,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-// todo: extended Duration or Magnitude
-public class AmuletOfHellfire extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific {
+public class AmuletOfHellfire extends BaseDragonMagicItem implements IForgeItem, ICurioItem, IFactionSpecific {
     public AmuletOfHellfire() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
     }
@@ -45,9 +44,14 @@ public class AmuletOfHellfire extends TieredItem implements IForgeItem, ICurioIt
         if(caster != null && event.getContext().getSpell().getHighestAffinity() == Affinity.HELLFIRE && CuriosApi.getCuriosHelper().findFirstCurio(caster, ItemInit.AMULET_OF_HELLFIRE.get()).isPresent()){
             LivingEntity entity= event.getTarget().getLivingEntity();
             if(entity != null){
-                entity.addEffect(new MobEffectInstance((EffectInit.HELLFIRE_EFFECT.get()), 400, 0, false, true, true));
+                entity.addEffect(new MobEffectInstance((EffectInit.HELLFIRE_EFFECT.get()), 400 * (((AmuletOfHellfire) ItemInit.AMULET_OF_HELLFIRE.get()).hasDragonMagic(caster) ? 2 : 1), 0, false, true, true));
             }
         }
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.amulet_of_hellfire.dragonmagic";
     }
 
 
