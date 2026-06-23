@@ -1,6 +1,6 @@
 package de.joh.dmnr.common.item;
 
-import com.mna.api.items.TieredItem;
+import de.joh.dmnr.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.common.init.EffectInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -18,8 +18,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-// todo: increased amplifier
-public class DragonPowerAmuletItem extends TieredItem implements ICurioItem {
+public class DragonPowerAmuletItem extends BaseDragonMagicItem implements ICurioItem {
     public DragonPowerAmuletItem() {
         super(new Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
     }
@@ -37,9 +36,17 @@ public class DragonPowerAmuletItem extends TieredItem implements ICurioItem {
 
         LivingEntity livingEntity = slotContext.entity();
         MobEffectInstance regen = livingEntity.getEffect(EffectInit.SORCERERS_PRIDE.get());
-        if(regen == null || regen.getAmplifier() < 1) {
-            livingEntity.addEffect(new MobEffectInstance(EffectInit.SORCERERS_PRIDE.get(), -1, 1, false, false));
+
+        int amplifier = this.hasDragonMagic(livingEntity) ? 2 : 1;
+
+        if(regen == null || regen.getAmplifier() < amplifier) {
+            livingEntity.addEffect(new MobEffectInstance(EffectInit.SORCERERS_PRIDE.get(), -1, amplifier, false, false));
         }
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.dragon_power_amulet.dragonmagic";
     }
 
     @OnlyIn(Dist.CLIENT)
