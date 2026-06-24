@@ -7,6 +7,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import de.joh.dmnr.api.item.BaseDragonMagicItem;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -24,13 +26,14 @@ import java.util.List;
  * Increase is exponential to the level.
  * @author Joh0210
  */
-// todo: Drastically more HP
-public class BeltOfLifeItem extends TieredItem implements ICurioItem {
+public class BeltOfLifeItem extends BaseDragonMagicItem implements ICurioItem {
     private final AttributeModifier healthMod;
+    private final AttributeModifier healthModDM;
 
     public BeltOfLifeItem(int level) {
         super(new Item.Properties().stacksTo(1));
         healthMod = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_health_belt", 5F * Math.pow(2, level-1), AttributeModifier.Operation.ADDITION);
+        healthModDM = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_health_belt_dm", 0.5, AttributeModifier.Operation.MULTIPLY_BASE);
     }
 
     @Override
@@ -57,6 +60,27 @@ public class BeltOfLifeItem extends TieredItem implements ICurioItem {
         if(healthAttribute != null) {
             healthAttribute.removeModifier(healthMod);
         }
+    }
+
+    @Override
+    public void onDMEquip(ItemStack itemStack, Player entity) {
+        AttributeInstance healthAttribute = entity.getAttribute(Attributes.MAX_HEALTH);
+        if(healthAttribute != null && !healthAttribute.hasModifier(healthModDM)) {
+            healthAttribute.addTransientModifier(healthModDM);
+        }
+    }
+
+    @Override
+    public void onDMDiscard(ItemStack itemStack, Player entity) {
+        AttributeInstance healthAttribute = entity.getAttribute(Attributes.MAX_HEALTH);
+        if(healthAttribute != null) {
+            healthAttribute.removeModifier(healthModDM);
+        }
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.belt_of_life.dragonmagic";
     }
 
     @Override
