@@ -1,12 +1,13 @@
 package de.joh.dmnr.common.item;
 
-import com.mna.api.items.TieredItem;
+import de.joh.dmnr.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -19,15 +20,18 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-// todo: increased values
-public class DefenseBraceletItem extends TieredItem implements ICurioItem {
+public class DefenseBraceletItem extends BaseDragonMagicItem implements ICurioItem {
     private final AttributeModifier armorMod;
     private final AttributeModifier toughnessMod;
+    private final AttributeModifier armorModDM;
+    private final AttributeModifier toughnessModDM;
 
     public DefenseBraceletItem(int armor, int toughness) {
         super(new Item.Properties().stacksTo(1));
         armorMod = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_defense_bracelet", armor, AttributeModifier.Operation.ADDITION);
         toughnessMod = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_defense_bracelet", toughness, AttributeModifier.Operation.ADDITION);
+        armorModDM = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_defense_bracelet_dm", 0.25, AttributeModifier.Operation.MULTIPLY_BASE);
+        toughnessModDM = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_defense_bracelet_dm", 0.5, AttributeModifier.Operation.MULTIPLY_BASE);
     }
 
     @Override
@@ -56,6 +60,37 @@ public class DefenseBraceletItem extends TieredItem implements ICurioItem {
         if(toughnessAttribute != null) {
             toughnessAttribute.removeModifier(toughnessMod);
         }
+    }
+
+    @Override
+    public void onDMEquip(ItemStack itemStack, Player entity) {
+        AttributeInstance armorAttribute = entity.getAttribute(Attributes.ARMOR);
+        if(armorAttribute != null && !armorAttribute.hasModifier(armorModDM)) {
+            armorAttribute.addTransientModifier(armorModDM);
+        }
+
+        AttributeInstance toughnessAttribute = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+        if(toughnessAttribute != null && !toughnessAttribute.hasModifier(toughnessModDM)) {
+            toughnessAttribute.addTransientModifier(toughnessModDM);
+        }
+    }
+
+    @Override
+    public void onDMDiscard(ItemStack itemStack, Player entity) {
+        AttributeInstance armorAttribute = entity.getAttribute(Attributes.ARMOR);
+        if(armorAttribute != null) {
+            armorAttribute.removeModifier(armorModDM);
+        }
+
+        AttributeInstance toughnessAttribute = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+        if(toughnessAttribute != null) {
+            toughnessAttribute.removeModifier(toughnessModDM);
+        }
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.defense_bracelet.dragonmagic";
     }
 
 

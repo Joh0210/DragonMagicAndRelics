@@ -34,7 +34,6 @@ import java.util.List;
  * This item allows a player to fly in creative mode or use the Elytra Fly.
  * @author Joh0210
  */
-//todo: Increased Speed
 public class AngelRingItem extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific {
 
     public AngelRingItem(Properties itemProperties) {

@@ -47,7 +47,6 @@ public class OcelotCurioItem extends TieredItem implements ICurioItem {
     private final AttributeModifier upgradeStep2;
     private final int level;
 
-    // todo Upgrade: multiplies the total speed of the player
     public OcelotCurioItem(int level) {
         super(new Properties().stacksTo(1).rarity(level >= 3 ? Rarity.RARE : Rarity.COMMON));
 

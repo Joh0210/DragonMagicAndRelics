@@ -31,7 +31,6 @@ import java.util.function.Consumer;
 
 public class NightGogglesItem extends ArmorItem implements ITieredItem<NightGogglesItem>, IFactionSpecific, ICurioItem {
     private int tier = -1;
-    // todo Upgrade: mna Insight in Addition to Night Vision
     public NightGogglesItem() {
         super(ArmorMaterials.NIGHT_GOGGLES_MATERIAL, Type.HELMET, new Item.Properties().stacksTo(1));
     }

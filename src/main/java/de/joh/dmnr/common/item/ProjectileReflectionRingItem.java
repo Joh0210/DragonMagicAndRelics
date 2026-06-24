@@ -36,7 +36,6 @@ import java.util.List;
 public class ProjectileReflectionRingItem extends TieredItem implements ICurioItem, IFactionSpecific {
     private final static String PROJECTILE_CHARGE_ID = DragonMagicAndRelics.MOD_ID + "ProjectileReflectionRingCharge";
 
-    // todo Upgrade: multiplies the total speed of the player
     public ProjectileReflectionRingItem() {
         super(new Properties().stacksTo(1).rarity(Rarity.RARE));
     }

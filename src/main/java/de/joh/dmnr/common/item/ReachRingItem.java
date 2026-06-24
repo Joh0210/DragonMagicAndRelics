@@ -1,11 +1,12 @@
 package de.joh.dmnr.common.item;
 
-import com.mna.api.items.TieredItem;
+import de.joh.dmnr.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -24,13 +25,14 @@ import java.util.List;
  * Higher Levels will add mor reach.
  * @author Joh0210
  */
-// todo: increase reach
-public class ReachRingItem extends TieredItem implements ICurioItem {
+public class ReachRingItem extends BaseDragonMagicItem implements ICurioItem {
     private final AttributeModifier reachMod;
+    private final AttributeModifier reachModDM;
 
     public ReachRingItem(int level) {
         super(new Item.Properties().stacksTo(1));
         reachMod = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_reach_ring", level, AttributeModifier.Operation.ADDITION);
+        reachModDM = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_reach_ring_dm", 0.5, AttributeModifier.Operation.MULTIPLY_BASE);
     }
 
     @Override
@@ -59,6 +61,37 @@ public class ReachRingItem extends TieredItem implements ICurioItem {
         if(blockReachAttribute != null) {
             blockReachAttribute.removeModifier(reachMod);
         }
+    }
+
+    @Override
+    public void onDMEquip(ItemStack itemStack, Player entity) {
+        AttributeInstance entityReachAttribute = entity.getAttribute(ForgeMod.BLOCK_REACH.get());
+        if(entityReachAttribute != null && !entityReachAttribute.hasModifier(reachModDM)) {
+            entityReachAttribute.addTransientModifier(reachModDM);
+        }
+
+        AttributeInstance blockReachAttribute = entity.getAttribute(ForgeMod.ENTITY_REACH.get());
+        if(blockReachAttribute != null && !blockReachAttribute.hasModifier(reachModDM)) {
+            blockReachAttribute.addTransientModifier(reachModDM);
+        }
+    }
+
+    @Override
+    public void onDMDiscard(ItemStack itemStack, Player entity) {
+        AttributeInstance entityReachAttribute = entity.getAttribute(ForgeMod.BLOCK_REACH.get());
+        if(entityReachAttribute != null) {
+            entityReachAttribute.removeModifier(reachModDM);
+        }
+
+        AttributeInstance blockReachAttribute = entity.getAttribute(ForgeMod.ENTITY_REACH.get());
+        if(blockReachAttribute != null) {
+            blockReachAttribute.removeModifier(reachModDM);
+        }
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.reach_ring.dragonmagic";
     }
 
     @OnlyIn(Dist.CLIENT)

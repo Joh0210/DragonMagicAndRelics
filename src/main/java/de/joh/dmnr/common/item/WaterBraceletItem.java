@@ -29,7 +29,6 @@ import java.util.List;
  * The underwater vision is also increased.
  * @author Joh0210
  */
-// todo: even more boost
 public class WaterBraceletItem extends TieredItem implements ICurioItem {
     private final AttributeModifier swimmingMod;
 
