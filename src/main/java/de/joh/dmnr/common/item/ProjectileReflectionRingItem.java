@@ -2,10 +2,10 @@ package de.joh.dmnr.common.item;
 
 import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
-import com.mna.api.items.TieredItem;
 import com.mna.factions.Factions;
 import com.mna.tools.ProjectileHelper;
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.util.CommonConfig;
@@ -32,8 +32,7 @@ import java.util.List;
  * This Item Reflects a couple of projectiles every few seconds
  * @author Joh0210
  */
-// todo: drastically reduced cooldown and more charges
-public class ProjectileReflectionRingItem extends TieredItem implements ICurioItem, IFactionSpecific {
+public class ProjectileReflectionRingItem extends BaseDragonMagicItem implements ICurioItem, IFactionSpecific {
     private final static String PROJECTILE_CHARGE_ID = DragonMagicAndRelics.MOD_ID + "ProjectileReflectionRingCharge";
 
     public ProjectileReflectionRingItem() {
@@ -81,7 +80,8 @@ public class ProjectileReflectionRingItem extends TieredItem implements ICurioIt
     public static boolean consumeReflectCharge(Player player) {
         int[] reflections = getReflectCharges(player);
 
-        for(int i = 0; i < reflections.length; ++i) {
+        boolean dm = ((ProjectileReflectionRingItem) ItemInit.PROJECTILE_REFLECTION_RING.get()).hasDragonMagic(player);
+        for(int i = 0; i < (dm? reflections.length : Math.min(reflections.length, 3)); ++i) {
             if (reflections[i] <= 0) {
                 reflections[i] = CommonConfig.PROJECTILE_REFLECTION_TICKS_PER_CHARGE.get();
                 updateReflectCharges(player, reflections);
@@ -95,13 +95,13 @@ public class ProjectileReflectionRingItem extends TieredItem implements ICurioIt
     private static int[] getReflectCharges(Player player) {
         int[] reflections;
         if (!player.getPersistentData().contains(PROJECTILE_CHARGE_ID)) {
-            reflections = new int[3];
+            reflections = new int[10];
         } else {
             reflections = player.getPersistentData().getIntArray(PROJECTILE_CHARGE_ID);
         }
 
-        if (reflections.length != 3) {
-            reflections = new int[3];
+        if (reflections.length != 10) {
+            reflections = new int[10];
         }
         return reflections;
     }
@@ -124,5 +124,10 @@ public class ProjectileReflectionRingItem extends TieredItem implements ICurioIt
     
     private static void updateReflectCharges(Player player, int[] reflections) {
         player.getPersistentData().putIntArray(PROJECTILE_CHARGE_ID, reflections);
+    }
+
+    @Override
+    public String dragonMagicID() {
+        return "item.dmnr.projectile_reflection_ring.dragonmagic";
     }
 }
