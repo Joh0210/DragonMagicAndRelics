@@ -36,7 +36,6 @@ import java.util.List;
  * The boost increases after 5 seconds of running
  * @author Joh0210
  */
-// todo: increased values?
 public class OcelotCurioItem extends TieredItem implements ICurioItem {
     private final static String SPRINT_TIME_ID = DragonMagicAndRelics.MOD_ID + "OcelotSprintTime";
     private final AttributeModifier baseSpeed;
