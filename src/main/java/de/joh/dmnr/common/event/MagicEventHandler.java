@@ -1,6 +1,7 @@
 package de.joh.dmnr.common.event;
 
 import com.mna.api.events.ComponentApplyingEvent;
+import com.mna.api.events.MasteryGainedEvent;
 import com.mna.api.events.RoteProgressGainedEvent;
 import com.mna.api.events.SpellCastEvent;
 import de.joh.dmnr.DragonMagicAndRelics;
@@ -50,6 +51,13 @@ public class MagicEventHandler {
     public static void onRoteProgressGained(RoteProgressGainedEvent event) {
         JournalOfMysteriesItem.roteBoost(event);
     }
+
+    @SubscribeEvent
+    public static void onMasteryProgressGained(MasteryGainedEvent event) {
+        JournalOfMysteriesItem.masteryBoost(event);
+    }
+
+
 
     @SubscribeEvent
     public static void onDragonMagicChangeEvent(DragonMagicChangeEvent event) {
