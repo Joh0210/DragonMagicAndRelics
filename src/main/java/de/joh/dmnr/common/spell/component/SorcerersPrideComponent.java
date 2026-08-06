@@ -19,7 +19,12 @@ import net.minecraft.world.item.Items;
 public class SorcerersPrideComponent extends PotionEffectComponent {
     public SorcerersPrideComponent(final ResourceLocation guiIcon) {
         super(guiIcon, EffectInit.SORCERERS_PRIDE, new AttributeValuePair(Attribute.DURATION, 30.0F, 30.0F, 600.0F, 30.0F, 10.0F), new AttributeValuePair(Attribute.MAGNITUDE, 1.0F, 1, 3.0F, 1.0F, 20.0F));
-        this.addReagent(new ItemStack(Items.NETHER_STAR), false, false, true);
+        this.addReagent(new ItemStack(Items.NETHERITE_SCRAP), false, false, true);
+    }
+
+    @Override
+    public boolean isSilverSpell() {
+        return true;
     }
 
     public int requiredXPForRote() {

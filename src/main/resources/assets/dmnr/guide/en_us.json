@@ -1959,16 +1959,10 @@
             "text": "\n\n"
           },
           {
-            "text": "To use the spell, I need a Nether Star.",
+            "text": "To use the spell, I need a Netherite Scrap.",
             "color": ""
           }
         ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "spell_part",
-        "location":"dmnr:components/sorcerers_pride"
       }
     ]
   },

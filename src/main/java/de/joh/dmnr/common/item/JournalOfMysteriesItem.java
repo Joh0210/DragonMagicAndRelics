@@ -1,13 +1,18 @@
 package de.joh.dmnr.common.item;
 
+import com.mna.api.events.MasteryGainedEvent;
 import com.mna.api.events.RoteProgressGainedEvent;
 import com.mna.api.items.IRelic;
+import com.mna.capabilities.playerdata.rote.PlayerRoteSpellsProvider;
 import de.joh.dmnr.api.item.IDragonMagicItem;
 import de.joh.dmnr.common.init.ItemInit;
+import de.joh.dmnr.common.init.SpellInit;
+import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -27,10 +32,16 @@ import java.util.List;
 
 public class JournalOfMysteriesItem extends Item implements IRelic, ICurioItem, IDragonMagicItem {
     public JournalOfMysteriesItem() {
-        super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.RARE));
+        super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.EPIC));
     }
 
     public static void roteBoost(RoteProgressGainedEvent event) {
+        if (CuriosApi.getCuriosHelper().findFirstCurio(event.getPlayer(), ItemInit.JOURNAL_OF_MYSTERIES.get()).isPresent()) {
+            event.setAmount(event.getAmount() * 2.5f * (ItemInit.JOURNAL_OF_MYSTERIES.get() instanceof IDragonMagicItem dmItem && dmItem.hasDragonMagic(event.getPlayer()) ? 2 : 1));
+        }
+    }
+
+    public static void masteryBoost(MasteryGainedEvent event) {
         if (CuriosApi.getCuriosHelper().findFirstCurio(event.getPlayer(), ItemInit.JOURNAL_OF_MYSTERIES.get()).isPresent()) {
             event.setAmount(event.getAmount() * 2.5f * (ItemInit.JOURNAL_OF_MYSTERIES.get() instanceof IDragonMagicItem dmItem && dmItem.hasDragonMagic(event.getPlayer()) ? 2 : 1));
         }
@@ -48,9 +59,20 @@ public class JournalOfMysteriesItem extends Item implements IRelic, ICurioItem, 
 
     @Override
     public @NotNull InteractionResultHolder<ItemStack> use(Level level, @NotNull Player player, @NotNull InteractionHand hand) {
+        if (this.hasDragonMagic(player)) {
+            player.getCapability(PlayerRoteSpellsProvider.ROTE).ifPresent((p) -> {
+                if(!p.isRote(SpellInit.SORCERERS_PRIDE)) {
+                    p.setRoteXP(RLoc.create("components/sorcerers_pride"), SpellInit.SORCERERS_PRIDE.requiredXPForRote()+1);
+                    player.playSound(SoundEvents.ENCHANTMENT_TABLE_USE, 1.0F, 1.0F);
+                }
+            });
+        }
+
         if (!level.isClientSide()) {
             MutableComponent text = Component.translatable("item.dmnr.journal_of_mysteries.chat");
-            text.withStyle(style -> style.withFont(new ResourceLocation("minecraft", "alt")));
+            if (!this.hasDragonMagic(player)) {
+                text.withStyle(style -> style.withFont(new ResourceLocation("minecraft", "alt")));
+            }
             player.sendSystemMessage(text);
         }
 
