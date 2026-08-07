@@ -88,6 +88,12 @@ public class ModMessages {
                 .encoder((IncrementWeatherC2SPacket::toBytes))
                 .consumerMainThread(IncrementWeatherC2SPacket::handle)
                 .add();
+
+        net.messageBuilder(SpawnDragonMageArmorParticleS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
+                .decoder(SpawnDragonMageArmorParticleS2CPacket::new)
+                .encoder(SpawnDragonMageArmorParticleS2CPacket::toBytes)
+                .consumerMainThread(SpawnDragonMageArmorParticleS2CPacket::handle)
+                .add();
     }
 
     public static <MSG> void sendToServer(MSG message){
