@@ -19,7 +19,7 @@ import net.minecraftforge.registries.RegistryObject;
 public class ItemInit {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DragonMagicAndRelics.MOD_ID);
 
-    public static final RegistryObject<Item> DRAGON_TOTEM = ITEMS.register("dragon_totem", ()->new Item(new Item.Properties().fireResistant().rarity(Rarity.EPIC)));
+    public static final RegistryObject<Item> DRAGON_TOTEM = ITEMS.register("dragon_totem", DragonTotemItem::new);
 
     public static final RegistryObject<Item> DRAGON_CORE = ITEMS.register("dragon_core", ()->new DragonCoreItem(new Item.Properties().fireResistant().rarity(Rarity.EPIC)));
 
