@@ -83,7 +83,7 @@ public class DragonTotemItem extends Item {
     public static void eventHandleSorcerersPride(MobEffectEvent.Added event) {
         if (event.getEntity() instanceof Player player) {
             MobEffectInstance prideEffect = event.getEffectInstance();
-            if (prideEffect.getEffect() == EffectInit.SORCERERS_PRIDE.get() && prideEffect.getAmplifier() >= 6) {
+            if (prideEffect.getEffect() == EffectInit.SORCERERS_PRIDE.get() && prideEffect.getAmplifier() >= 4) {
                 ItemStack mainHand = player.getMainHandItem();
                 ItemStack offHand = player.getOffhandItem();
                 boolean totemInMain = mainHand.getItem() == ItemInit.DRAGON_TOTEM.get();
