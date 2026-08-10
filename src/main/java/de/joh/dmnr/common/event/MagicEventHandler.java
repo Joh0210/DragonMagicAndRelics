@@ -22,6 +22,11 @@ import top.theillusivec4.curios.api.CuriosApi;
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MagicEventHandler {
+    @SubscribeEvent
+    public static void onPotionAdded(MobEffectEvent.Added event) {
+        DragonTotemItem.eventHandleSorcerersPride(event);
+    }
+
     /**
      * Processing of {@link CurseProtectionAmuletItem}
      */

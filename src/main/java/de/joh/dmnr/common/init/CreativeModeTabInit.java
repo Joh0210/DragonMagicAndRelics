@@ -21,6 +21,7 @@ public class CreativeModeTabInit {
                     .title(Component.translatable("itemGroup.dmnr"))
                     .displayItems((pParameters, pOutput) -> {
                         pOutput.accept(ItemInit.DRAGON_TOTEM.get());
+                        pOutput.accept(ItemInit.DRAGON_TOTEM_EMPTY.get());
                         pOutput.accept(ItemInit.DRAGON_CORE.get());
 
                         pOutput.accept(ItemInit.DRAGON_MAGE_HELMET.get());
