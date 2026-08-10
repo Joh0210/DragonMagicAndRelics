@@ -73,7 +73,8 @@ public class DamageEventHandler {
 
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event){
-        DragonCoreItem.eventHandleDragonDeath(event);
+//        DragonCoreItem.eventHandleDragonDeath(event);
         DragonTotemItem.eventHandleDragonDeath(event);
+        DragonTotemItem.eventHandlePlayerDeath(event);
     }
 }

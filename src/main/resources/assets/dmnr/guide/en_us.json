@@ -1360,12 +1360,6 @@
           }
         ]
       }
-    ],
-    "related_recipes": [
-      {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/amulet_of_dragon_power"
-      }
     ]
   },
   "Ring of Power": {
