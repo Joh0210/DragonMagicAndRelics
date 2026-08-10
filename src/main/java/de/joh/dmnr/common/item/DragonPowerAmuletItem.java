@@ -30,6 +30,13 @@ public class DragonPowerAmuletItem extends BaseDragonMagicItem implements ICurio
         slotContext.entity().removeEffect(EffectInit.SORCERERS_PRIDE.get());
     }
 
+
+    @Override
+    @OnlyIn(Dist.CLIENT)
+    public boolean isFoil(@NotNull ItemStack pStack) {
+        return false;
+    }
+
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         ICurioItem.super.curioTick(slotContext, stack);

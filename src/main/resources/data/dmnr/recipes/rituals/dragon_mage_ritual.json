@@ -19,42 +19,29 @@
   ],
   "reagents":
   [
-    "  X  ",
-    " B C ",
-    "X A X",
-    " E D ",
-    "  X  "
+    "  B  ",
+    "     ",
+    "X A C",
+    "     ",
+    "  B  "
   ],
   "keys":
   {
     "A":
     {
-      "item": "dmnr:dragon_core",
+      "item": "mna:relics",
       "optional": false,
       "consume": true
     },
-
     "B":
     {
-      "item": "minecraft:netherite_helmet",
+      "item": "minecraft:netherite_block",
       "optional": false,
       "consume": true
     },
     "C":
     {
-      "item": "minecraft:netherite_chestplate",
-      "optional": false,
-      "consume": true
-    },
-    "D":
-    {
-      "item": "minecraft:netherite_leggings",
-      "optional": false,
-      "consume": true
-    },
-    "E":
-    {
-      "item": "minecraft:netherite_boots",
+      "item": "minecraft:elytra",
       "optional": false,
       "consume": true
     },
@@ -73,6 +60,7 @@
     "mna:manaweave_patterns/inverted_split_triangle",
     "mna:manaweave_patterns/infinity"
   ],
+  "createsItem": "dmnr:dragon_totem_empty",
   "parameters":
   {
     "innerColor": "0xffffff",

@@ -1,0 +1,22 @@
+{
+  "type": "mna:eldrin-altar",
+  "output": "dmnr:dragon_totem",
+  "tier": 5,
+  "items": [
+    "dmnr:dragon_totem_empty",
+    "mna:greater_mote_water",
+    "mna:greater_mote_earth",
+    "mna:greater_mote_fire",
+    "mna:greater_mote_air"
+  ],
+  "power_requirements": [
+    {
+      "affinity": "ENDER",
+      "amount": 3000
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 3000
+    }
+  ]
+}

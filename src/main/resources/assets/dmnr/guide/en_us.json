@@ -1178,21 +1178,41 @@
       }
     ]
   },
-  "Dragon Mage Armor": {
+  "Totem of the Dragon": {
     "index": "1",
     "category": "artifice",
     "sections": [
       {
         "type": "title",
-        "value": "Dragon Mage Armor"
+        "value": "Totem of the Dragon"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "My magic has made me the powerful being that I am. My words make mountains collapse and my movements bring my opponents to their knees. But I don't have enough. Why should I still bow to the gods when I can be one myself?",
-            "color": ""
+            "text": "Through the "
+          },
+          {
+            "text": "Ritual of the Dragon",
+            "color": "blue"
+          },
+          {
+            "text": ", I can unite the world's relics with the ancient magic of dragons to forge an "
+          },
+          {
+            "text": "Empty Dragon Totem",
+            "color": "dark_purple"
+          },
+          {
+            "text": ". However, to endure the sheer power of this ritual, my magical skills must be honed—I must have reached at least "
+          },
+          {
+            "text": "Level 75",
+            "color": "gold"
+          },
+          {
+            "text": ".\n\nOnce forged, this empty vessel can be infused with raw magic at the Eldrin Altar."
           }
         ]
       },
@@ -1201,46 +1221,7 @@
         "value": "",
         "json": [
           {
-            "text": "With the ",
-            "color": ""
-          },
-          {
-            "text": "Ritual of the Dragon Mage Armor",
-            "color": "blue"
-          },
-          {
-            "text": " I can upgrade my armor to a indestructible Dragon Mage Armor. This already offers a fairly high level of protection, but I can still improve it. With ",
-            "color": ""
-          },
-          {
-            "text": "Upgrade Glyphs",
-            "color": "blue"
-          },
-          {
-            "text": " "
-          },
-          {
-            "text": "I can add some more abilities to the armor. All I have to do is hold the  ",
-            "color": ""
-          },
-          {
-            "text": "Dragon Mage Armor Chestplate",
-            "color": "blue"
-          },
-          {
-            "text": " (or other Dragon Mage containers) in my ",
-            "color": ""
-          },
-          {
-            "text": "Offhand",
-            "color": "blue"
-          },
-          {
-            "text": " and use the upgrade glyphs of my choice in my Main hand.",
-            "color": ""
-          },
-          {
-            "text": "\n\nHowever, the amount of Dragon Magic that I can add to my armor is limited to 64. All installed glyphs combined cannot exceed the amount of Dragon Magic Points of the armor. However, there are also other containers I can channel my dragon magic into."
+            "text": "This Totem is a relic of peerless power, holding the potential to become anything I could ever dream of—and beyond! By undertaking great trials, the totem will transform into new, legendary forms."
           }
         ]
       },
@@ -1249,42 +1230,135 @@
         "value": "",
         "json": [
           {
-            "text": "My glyphs aren't the only way I have to maximize my armor's potential. I can also fortify my armor with spells, which activate as soon as I take damage.\n\nContainer Gui Open Modifier-Key (Default: Control) and right click to open the menu\n\n. One spell hits me, the other targets the person who attacked me.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "While I have to put on full armor to use their effects, all runes seem to be installed only on the chestplate.",
-            "color": ""
+            "text": "But I must be cautious: its unstable form harbors great danger. Should I perish while carrying it, the totem's elemental magic will violently discharge.",
+            "color": "dark_red"
           }
         ]
       }
     ],
     "related_recipes": [
       {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/abyssal_dragon_mage_chestplate"
+        "type": "ritual",
+        "location": "dmnr:rituals/dragon_mage_ritual"
       },
       {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/arch_dragon_mage_chestplate"
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/dragon_totem"
+      }
+    ]
+  },
+  "Quest: Dragon Mage Armor": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Quest: Dragon Mage Armor"
       },
       {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/infernal_dragon_mage_chestplate"
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The path to true draconic might requires absolute vulnerability. If I manage to slay the "
+          },
+          {
+            "text": "Ender Dragon",
+            "color": "dark_purple"
+          },
+          {
+            "text": " while wearing absolutely "
+          },
+          {
+            "text": "no armor",
+            "color": "dark_red"
+          },
+          {
+            "text": ", all while holding the Totem in my offhand, I will be rewarded with the true "
+          },
+          {
+            "text": "Dragon Mage Armor",
+            "color": "gold"
+          },
+          {
+            "text": "!"
+          }
+        ]
       },
       {
-        "type": "manaweaving_altar",
-        "location":"dmnr:manaweaving/wild_dragon_mage_chestplate"
-      },
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This sacred armor fills my very soul with the magic of the dragon. It allows me to draw out the maximum potential of my artifacts, awakening hidden abilities within certain relics that can only be channeled while wearing this armor."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
       {
         "type": "ritual",
-        "location":"dmnr:rituals/dragon_mage_ritual"
+        "location": "dmnr:rituals/dragon_mage_ritual"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/dragon_totem"
+      }
+    ]
+  },
+  "Quest: Amulet of the Dragon": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Quest: Amulet of the Dragon"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "If I seek absolute magical supremacy, the totem offers another path. If I manage to achieve the "
+          },
+          {
+            "text": "Sorcerer's Pride",
+            "color": "light_purple"
+          },
+          {
+            "text": " effect at level 5 or higher while holding the Totem in my offhand, it will transform into the "
+          },
+          {
+            "text": "Amulet of the Dragon",
+            "color": "gold"
+          },
+          {
+            "text": "."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Wearing this amulet blesses me with permanent Sorcerer's Pride II. My spells will be permanently empowered:\n"
+          },
+          {
+            "text": "- MAGNITUDE +1\n- DAMAGE +6\n- DURATION: +60%",
+            "color": "blue"
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/dragon_mage_ritual"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/dragon_totem"
       }
     ]
   },

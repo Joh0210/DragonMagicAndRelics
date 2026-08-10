@@ -39,12 +39,24 @@ public class SpawnDragonMageArmorParticleS2CPacket {
                 Player player = (Player) world.getEntity(playerId);
                 if (player != null) {
                     Random random = new Random();
-                    for (int i = 0; i < 40; i++) {
-                        double d0 = player.getX() + (random.nextDouble() - 0.5D) * 2.0D;
+                    world.playLocalSound(player.getX(), player.getY(), player.getZ(), SoundEvents.ENDER_DRAGON_GROWL, SoundSource.PLAYERS, 1.0F, 1.0F, false);
+                    for (int i = 0; i < 200; i++) {
+                        double d0 = player.getX() + (random.nextDouble() - 0.5D) * 1.5D;
                         double d1 = player.getY() + random.nextDouble() * 2.0D;
-                        double d2 = player.getZ() + (random.nextDouble() - 0.5D) * 2.0D;
-                        world.addParticle(ParticleTypes.DRAGON_BREATH, d0, d1, d2, 0, 0.1D, 0);
-                        world.addParticle(ParticleTypes.FLAME, d0, d1, d2, 0, 0.1D, 0);
+                        double d2 = player.getZ() + (random.nextDouble() - 0.5D) * 1.5D;
+                        world.addParticle(ParticleTypes.DRAGON_BREATH, d0, d1, d2, (random.nextDouble() - 0.5D) * 0.15D, 0.15D, (random.nextDouble() - 0.5D) * 0.15D);
+                        if (i % 5 == 0) {
+                            world.addParticle(ParticleTypes.EXPLOSION_EMITTER, player.getX() + (random.nextDouble() - 0.5D) * 0.5D, player.getY() + 0.5D + random.nextDouble() * 1.5D, player.getZ() + (random.nextDouble() - 0.5D) * 0.5D, 0, 0, 0);
+                        }
+                        if (i % 2 == 0) {
+                            world.addParticle(ParticleTypes.END_ROD, d0, d1, d2, (random.nextDouble() - 0.5D) * 0.05D, 0.1D, (random.nextDouble() - 0.5D) * 0.05D);
+                        }
+                        if (i % 4 == 0) {
+                            world.addParticle(ParticleTypes.WITCH, d0, d1, d2, (random.nextDouble() - 0.5D) * 0.2D, 0.2D, (random.nextDouble() - 0.5D) * 0.2D);
+                        }
+                        if (i % 10 == 0) {
+                            world.addParticle(ParticleTypes.LARGE_SMOKE, player.getX(), player.getY() + 1.0D, player.getZ(), (random.nextDouble() - 0.5D) * 0.1D, 0.1D, (random.nextDouble() - 0.5D) * 0.1D);
+                        }
                     }
                 }
             }
