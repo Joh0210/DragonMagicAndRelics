@@ -71,24 +71,6 @@ public class ModMessages {
                 .consumerMainThread(ToggleBurningFrenzyS2CPacket::handle)
                 .add();
 
-        net.messageBuilder(ToggleCurioBoostEnabledS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(ToggleCurioBoostEnabledS2CPacket::new)
-                .encoder(ToggleCurioBoostEnabledS2CPacket::toBytes)
-                .consumerMainThread(ToggleCurioBoostEnabledS2CPacket::handle)
-                .add();
-
-        net.messageBuilder(ToggleCurioBoostStringS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
-                .decoder(ToggleCurioBoostStringS2CPacket::new)
-                .encoder(ToggleCurioBoostStringS2CPacket::toBytes)
-                .consumerMainThread(ToggleCurioBoostStringS2CPacket::handle)
-                .add();
-
-        net.messageBuilder(IncrementWeatherC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
-                .decoder(IncrementWeatherC2SPacket::new)
-                .encoder((IncrementWeatherC2SPacket::toBytes))
-                .consumerMainThread(IncrementWeatherC2SPacket::handle)
-                .add();
-
         net.messageBuilder(SpawnDragonMageArmorParticleS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(SpawnDragonMageArmorParticleS2CPacket::new)
                 .encoder(SpawnDragonMageArmorParticleS2CPacket::toBytes)

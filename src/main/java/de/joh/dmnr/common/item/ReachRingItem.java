@@ -1,6 +1,6 @@
 package de.joh.dmnr.common.item;
 
-import de.joh.dmnr.api.item.BaseDragonMagicItem;
+import de.joh.tnl.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;

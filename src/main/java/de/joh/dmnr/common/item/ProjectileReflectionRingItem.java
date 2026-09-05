@@ -5,7 +5,7 @@ import com.mna.api.items.IFactionSpecific;
 import com.mna.factions.Factions;
 import com.mna.tools.ProjectileHelper;
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.api.item.BaseDragonMagicItem;
+import de.joh.tnl.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.util.CommonConfig;

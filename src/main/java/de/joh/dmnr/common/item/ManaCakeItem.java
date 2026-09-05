@@ -2,7 +2,7 @@ package de.joh.dmnr.common.item;
 
 import com.mna.api.capabilities.IPlayerMagic;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
-import de.joh.dmnr.api.item.BaseDragonMagicItem;
+import de.joh.tnl.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.common.init.ItemInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;

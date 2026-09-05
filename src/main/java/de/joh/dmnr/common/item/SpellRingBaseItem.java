@@ -1,6 +1,6 @@
 package de.joh.dmnr.common.item;
 
-import de.joh.dmnr.api.item.IDragonMagicItem;
+import de.joh.tnl.api.item.IDragonMagicItem;
 import com.mna.api.items.TieredItem;
 import com.mna.api.spells.ComponentApplicationResult;
 import com.mna.api.spells.targeting.SpellContext;
