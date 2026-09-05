@@ -132,7 +132,7 @@ dependencies {
 
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.2.2')
 
-    implementation fg.deobf(files('lib/tnl-1.0.jar'))
+    implementation files('lib/tnl-1.0-dev.jar')
 
     // M&A and its API
     implementation fg.deobf("curse.maven:mna-406360:${mna_version}")
