@@ -4,14 +4,11 @@ import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.client.item.armor.WingRenderLayer;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.init.ItemInit;
-import de.joh.dmnr.api.item.ScrollableItem;
 import de.joh.dmnr.common.item.DragonMageArmorItem;
 import de.joh.dmnr.networking.ModMessages;
-import de.joh.dmnr.networking.packet.IncrementWeatherC2SPacket;
 import de.joh.dmnr.networking.packet.ToggleFlightC2SPacket;
 import de.joh.dmnr.common.init.KeybindInit;
 import de.joh.dmnr.networking.packet.UseRingOfSpellStoringC2SPacket;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -29,18 +26,6 @@ import top.theillusivec4.curios.api.CuriosApi;
 public class ClientEventHandler {
     @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, value = Dist.CLIENT)
     public static class ClientForgeEvents{
-        @SubscribeEvent
-        public static void onMouseScroll(InputEvent.MouseScrollingEvent event){
-            if (Minecraft.getInstance().player != null
-                    && Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.MAINHAND).getItem() instanceof ScrollableItem staff
-                    && Minecraft.getInstance().player.isShiftKeyDown())
-            {
-                ModMessages.sendToServer(new IncrementWeatherC2SPacket(event.getScrollDelta() < 0));
-                staff.incrementIterator(Minecraft.getInstance().player.getItemBySlot(EquipmentSlot.MAINHAND), event.getScrollDelta() < 0, Minecraft.getInstance().player);
-                event.setCanceled(true);
-            }
-        }
-
         /**
          * Has the button been pressed that activates Night Vision or DM&R Flight?
          * @see ToggleFlightC2SPacket

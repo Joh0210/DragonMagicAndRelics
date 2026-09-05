@@ -2,14 +2,14 @@ package de.joh.dmnr.common.item;
 
 import com.mna.items.armor.ISetItem;
 import de.joh.dmnr.DragonMagicAndRelics;
-import de.joh.dmnr.api.event.DragonMagicChangeEvent;
-import de.joh.dmnr.capabilities.curioboost.CurioBoostProvider;
+import de.joh.tnl.api.event.DragonMagicChangeEvent;
+import de.joh.tnl.capabilities.CurioBoostProvider;
 import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
 import de.joh.dmnr.common.util.RLoc;
 import de.joh.dmnr.networking.ModMessages;
-import de.joh.dmnr.networking.packet.ToggleCurioBoostEnabledS2CPacket;
+import de.joh.tnl.networking.packet.ToggleCurioBoostEnabledS2CPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.nbt.CompoundTag;

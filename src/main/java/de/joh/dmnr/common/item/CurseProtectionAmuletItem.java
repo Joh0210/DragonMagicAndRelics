@@ -1,7 +1,7 @@
 package de.joh.dmnr.common.item;
 
 import com.mna.items.artifice.curio.IPreEnchantedItem;
-import de.joh.dmnr.api.item.ChargeableDragonMagicItem;
+import de.joh.tnl.api.item.ChargeableDragonMagicItem;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.spell.shape.CurseShape;
 import net.minecraft.ChatFormatting;

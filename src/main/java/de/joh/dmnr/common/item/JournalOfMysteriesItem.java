@@ -4,7 +4,7 @@ import com.mna.api.events.MasteryGainedEvent;
 import com.mna.api.events.RoteProgressGainedEvent;
 import com.mna.api.items.IRelic;
 import com.mna.capabilities.playerdata.rote.PlayerRoteSpellsProvider;
-import de.joh.dmnr.api.item.IDragonMagicItem;
+import de.joh.tnl.api.item.IDragonMagicItem;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.init.SpellInit;
 import de.joh.dmnr.common.util.RLoc;

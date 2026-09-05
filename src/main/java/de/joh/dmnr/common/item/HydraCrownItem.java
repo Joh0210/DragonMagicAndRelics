@@ -4,7 +4,7 @@ import com.mna.api.faction.IFaction;
 import com.mna.api.items.IFactionSpecific;
 import com.mna.api.items.ITieredItem;
 import com.mna.factions.Factions;
-import de.joh.dmnr.api.item.IDragonMagicItem;
+import de.joh.tnl.api.item.IDragonMagicItem;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
 import net.minecraft.ChatFormatting;

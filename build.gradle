@@ -104,7 +104,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     flatDir {
-        dirs 'libs'
+        dirs 'lib'
     }
     // maven { url 'https://maven.manaandartifice.com/releases/1.19.2/' }
     maven { url 'https://maven.theillusivec4.top/' }
@@ -131,6 +131,8 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
 
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.2.2')
+
+    implementation fg.deobf(files('lib/tnl-1.0.jar'))
 
     // M&A and its API
     implementation fg.deobf("curse.maven:mna-406360:${mna_version}")
