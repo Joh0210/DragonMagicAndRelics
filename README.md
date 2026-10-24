@@ -24,6 +24,14 @@ The amazing [armor model](https://github.com/Joh0210/DragonMagicAndRelics/blob/m
 And thanks to Mithion for helping creating the mod. Also thanks to Ceddi and Nico for helping with testing and balancing.
 <br>The full credits can be viewed [here](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/CREDITS.md).
 
+## Use of AI
+This project contains almost no AI-generated content. However, AI tools are occasionally used during development, e.g. for finding bugs, as an alternative to a search engine, or for creating individual code snippets.
+
+Dragon Magic and Relics is purely a fun project of mine, and I enjoy coding, so I write the code myself. I do reserve the right to automate smaller code sections or repetitive code with the help of AI tools. Even then, this code is always reviewed by me.
+
+Texts, artworks and game mechanics are **never** AI-generated. All content comes from me, my friends, or ideas from the community.
+<br>(Spelling and the phrasing of longer texts in the Codex are occasionally double-checked with AI.)
+
 ## Feedback & Contribution
 I welcome all feedback! Let me know about bugs, balancing suggestions, or ideas for new content.
 Either create a ticket via the integrated issue tracker or join the [M&A Discord](http://discord.gg/4nJEU4X) and report it there.
