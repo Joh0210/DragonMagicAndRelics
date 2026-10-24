@@ -139,6 +139,8 @@
 
   "dmnr:tier_3/craft_bracelet_of_friendship.title": "gamerule doFriendlyFire false",
   "dmnr:tier_3/craft_bracelet_of_friendship.description": "Craft an Bracelet of Friendship",
+  "dmnr:tier_5/equip_dragon_mage_armor.title": "Eye to Eye with the Gods",
+  "dmnr:tier_5/equip_dragon_mage_armor.description": "Clad yourself in the dragon's legacy. Mortal limits no longer bind you",
 
   "block.dmnr.rift_emitter": "Rift Emitter",
 

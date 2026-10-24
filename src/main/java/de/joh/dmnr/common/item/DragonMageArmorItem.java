@@ -8,7 +8,7 @@ import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
 import de.joh.dmnr.common.util.RLoc;
-import de.joh.dmnr.networking.ModMessages;
+import de.joh.tnl.networking.ModMessages;
 import de.joh.tnl.networking.packet.ToggleCurioBoostEnabledS2CPacket;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.model.HumanoidModel;
@@ -16,6 +16,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -64,6 +65,16 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
         String id = DragonMagicAndRelics.MOD_ID + "_dm_armor" + type.getName();
         this.curiosID = UUID.nameUUIDFromBytes(id.getBytes());
         this.curiosMod = new AttributeModifier(curiosID, id, 1, AttributeModifier.Operation.ADDITION);
+    }
+
+    /**
+     * The armor is rendered by GeckoLib, but vanilla's armor layer still requests the default
+     * "dragon_mage_layer_N" textures (the item is dyeable, so also the "_overlay" variant), which do not exist.
+     * Point it to the textures that do.
+     */
+    @Override
+    public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
+        return RLoc.create("textures/models/armor/dragon_mage_armor_texture_" + ("overlay".equals(type) ? "overlay" : "base") + ".png").toString();
     }
 
     @Override

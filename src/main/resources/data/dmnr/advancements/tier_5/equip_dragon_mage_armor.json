@@ -1,0 +1,55 @@
+{
+  "parent": "mna:tier_4/advance_tier_5",
+  "display": {
+    "icon": {
+      "item": "dmnr:dragon_mage_helmet"
+    },
+    "title": {
+      "translate": "dmnr:tier_5/equip_dragon_mage_armor.title"
+    },
+    "description": {
+      "translate": "dmnr:tier_5/equip_dragon_mage_armor.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:tick",
+      "conditions": {
+        "player": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "equipment": {
+                "head": {
+                  "items": [
+                    "dmnr:dragon_mage_helmet"
+                  ]
+                },
+                "chest": {
+                  "items": [
+                    "dmnr:dragon_mage_chestplate"
+                  ]
+                },
+                "legs": {
+                  "items": [
+                    "dmnr:dragon_mage_leggings"
+                  ]
+                },
+                "feet": {
+                  "items": [
+                    "dmnr:dragon_mage_boots"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
