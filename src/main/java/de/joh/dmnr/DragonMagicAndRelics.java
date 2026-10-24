@@ -6,6 +6,7 @@ import de.joh.dmnr.client.init.ContainerInit;
 import de.joh.dmnr.common.init.*;
 import de.joh.dmnr.common.util.CommonConfig;
 import de.joh.dmnr.common.util.RLoc;
+import de.joh.dmnr.compat.ModCompat;
 import de.joh.dmnr.networking.ModMessages;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,6 +50,8 @@ public class DragonMagicAndRelics {
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> eventBus.register(KeybindInit.class));
 
+        ModCompat.init(eventBus, MinecraftForge.EVENT_BUS);
+
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC, MOD_ID+"-common.toml");
 
         MinecraftForge.EVENT_BUS.register(this);
@@ -65,7 +68,7 @@ public class DragonMagicAndRelics {
      */
     @SubscribeEvent
     public void onRegisterGuidebooks(final RegisterGuidebooksEvent event) {
-        event.getRegistry().addGuidebookPath(RLoc.create("guide"));
+        event.getRegistry().addGuidebookPath(RLoc.create("guide/base"));
         // event.getRegistry().registerGuidebookCategory("dmnr_armorupgrades", RLoc.create("upgrade_seal_angel_flight"));
     }
 }

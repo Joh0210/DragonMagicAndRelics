@@ -1,0 +1,76 @@
+{
+  "Altar ME Interface": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Altar ME Interface"
+      },
+      {
+        "type": "text",
+        "json": [
+          {
+            "text": "Fetching reagents for the "
+          },
+          {
+            "text": "Altar of Arcana",
+            "color": "blue"
+          },
+          {
+            "text": " from chests is tedious. This block connects the altar to an "
+          },
+          {
+            "text": "ME network",
+            "color": "blue"
+          },
+          {
+            "text": " instead.\n\nPlace it in the network, no further than "
+          },
+          {
+            "text": "8 blocks",
+            "color": "dark_purple"
+          },
+          {
+            "text": " from the altar, and insert a "
+          },
+          {
+            "text": "Rune: Marking",
+            "color": "blue"
+          },
+          {
+            "text": " that was bound to the altar. The screen tells me if the link is wrong."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "json": [
+          {
+            "text": "While the altar waits for reagents, the interface moves them out of the network into its inventory, from where the altar takes them like from a chest. Whatever is not needed any more goes back into the network.\n\nA "
+          },
+          {
+            "text": "Crafting Card",
+            "color": "dark_purple"
+          },
+          {
+            "text": " lets it order missing reagents from the autocrafting, a "
+          },
+          {
+            "text": "Redstone Card",
+            "color": "dark_purple"
+          },
+          {
+            "text": " allows to switch it with a signal."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:ae2/altar_me_interface"
+      }
+    ]
+  }
+}

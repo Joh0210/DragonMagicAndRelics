@@ -1,0 +1,59 @@
+{
+  "$schema": "schema.json",
+  "includes": ["common/common.json", "common/player_inventory.json"],
+  "background": {
+    "texture": "guis/interface.png",
+    "srcRect": [0, 0, 176, 205]
+  },
+  "slots": {
+    "CONFIG": {
+      "left": 8,
+      "top": 53,
+      "grid": "HORIZONTAL"
+    },
+    "STORAGE": {
+      "left": 8,
+      "top": 71,
+      "grid": "HORIZONTAL"
+    }
+  },
+  "text": {
+    "dialog_title": {
+      "text": {
+        "translate": "block.dmnr.altar_me_interface"
+      },
+      "position": {
+        "left": 8,
+        "top": 6
+      }
+    },
+    "link_label": {
+      "text": {
+        "translate": "gui.dmnr.altar_me_interface.rune"
+      },
+      "position": {
+        "left": 8,
+        "top": 20
+      }
+    },
+    "link_status": {
+      "text": {
+        "translate": "gui.dmnr.altar_me_interface.status.no_rune"
+      },
+      "position": {
+        "left": 8,
+        "top": 30
+      },
+      "maxWidth": 160
+    },
+    "stock_label": {
+      "text": {
+        "translate": "gui.dmnr.altar_me_interface.stock"
+      },
+      "position": {
+        "left": 8,
+        "top": 91
+      }
+    }
+  }
+}

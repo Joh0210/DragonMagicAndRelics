@@ -110,6 +110,14 @@ repositories {
         url = 'https://cursemaven.com'
         content { includeGroup 'curse.maven' }
     }
+    maven {
+        name = 'ModMaven'
+        url = 'https://modmaven.dev/'
+        content { includeGroup 'appeng' }
+    }
+    mavenCentral {
+        content { includeGroup 'org.appliedenergistics' }
+    }
 }
 
 // The mod* configurations remap the SRG-named mod jars to the names used in development.
@@ -122,6 +130,14 @@ dependencies {
     modImplementation "top.theillusivec4.caelus:caelus-forge:${caelus_version}"
     modCompileOnly "top.theillusivec4.curios:curios-forge:${curios_version}:api"
     modRuntimeOnly "top.theillusivec4.curios:curios-forge:${curios_version}"
+
+    // Optional mods with code integration (see de.joh.dmnr.compat): compiled against them only,
+    // so they are neither shipped nor required at runtime.
+    // AE2: the full jar instead of the ":api" classifier, because the integration reuses AE2's block entity base
+    // classes and its menu/screen framework (appeng.menu, appeng.client.gui), which are not part of the API.
+    modCompileOnly "appeng:appliedenergistics2-forge:${ae2_version}"
+    modLocalRuntime "appeng:appliedenergistics2-forge:${ae2_version}"
+    modLocalRuntime "org.appliedenergistics:guideme:${guideme_version}"
 
     // Optional mods, development runs only
     modLocalRuntime "curse.maven:magichem-982204:${magichem_version}"
@@ -150,6 +166,7 @@ def generateModMetadata = tasks.register('generateModMetadata', ProcessResources
             caelus_version_range   : caelus_version_range,
             geckolib_version_range : geckolib_version_range,
             magichem_version_range : magichem_version_range,
+            ae2_version_range      : ae2_version_range,
     ]
     inputs.properties replaceProperties
     expand replaceProperties

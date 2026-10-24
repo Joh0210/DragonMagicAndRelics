@@ -1,6 +1,10 @@
 {
 	"replace": false,
 	"values": [
-		"dmnr:rift_emitter"
+		"dmnr:rift_emitter",
+		{
+			"id": "dmnr:altar_me_interface",
+			"required": false
+		}
 	]
 }

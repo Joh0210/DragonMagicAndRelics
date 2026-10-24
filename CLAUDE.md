@@ -11,7 +11,7 @@ Guidance for Claude Code when working in this repository.
 ## Language rule (mandatory)
 
 - **All text created within this repository must be written exclusively in English.** This includes code, identifiers, comments, Javadoc, log messages, config comments, documentation, Markdown files, JSON content and Codex/guide entries.
-- **Only exception: translations.** Localized files for other languages (e.g. `assets/dmnr/lang/zh_cn.json`, `ko_kr.json`, `ru_ru.json`, `assets/dmnr/guide/zh_cn.json`, `ko_kr.json`) are of course written in their respective language.
+- **Only exception: translations.** Localized files for other languages (e.g. `assets/dmnr/lang/zh_cn.json`, `ko_kr.json`, `ru_ru.json`, `assets/dmnr/guide/base/zh_cn.json`, `ko_kr.json`) are of course written in their respective language.
 - This rule applies regardless of the language used in the conversation with Claude.
 
 ## Project context
@@ -20,7 +20,7 @@ Guidance for Claude Code when working in this repository.
 
 
 - Core concept **"Dragon Magic"**: items can have an additional Dragon Magic ability that only becomes active under certain conditions (`hasDragonMagic(...)`). Its foundation lives in the **Tomes And Libs** library (see below).
-- In-game documentation is provided via the M&A Codex/guidebook (`assets/dmnr/guide/*.json`); complete content only exists in `en_us`.
+- In-game documentation is provided via the M&A Codex/guidebook (`assets/dmnr/guide/base/*.json`; entries about optional-mod content live in their own folder, e.g. `guide/ae2`, which is only registered if that mod is installed); complete content only exists in `en_us`.
 
 ### Tech stack
 | Component | Version |
@@ -113,7 +113,7 @@ src/generated/resources/           Datagen output (currently empty, included as 
 - **Registration**: new content is registered in the matching `*Init` class via `DeferredRegister`/`RegistryObject` (`ItemInit.ITEMS.register("snake_case_id", ...)`). Spells and rituals are registered in `SpellInit`/`RitualInit` via `RegisterEvent` on the mod bus; always create `ResourceLocation`s via `RLoc.create(...)`.
 - **Event handlers**: classes annotated with `@Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = ...)` and static `@SubscribeEvent` methods. Keep client code strictly in `client/` or guard it with `@OnlyIn(Dist.CLIENT)`/`Dist.CLIENT`.
 - **Dragon Magic items**: extend `BaseDragonMagicItem` / `ChargeableDragonMagicItem` or implement `IDragonMagicItem` (package `de.joh.tnl.api.item`). `dragonMagicID()` returns the translation key `item.dmnr.<item_id>.dragonmagic`; the effect is implemented via `hasDragonMagic(entity)` or `onDMEquip`/`onDMDiscard`. Details: `.junie/skills/convert-to-dm/SKILL.md` (package names there are outdated, see above).
-- **Translations**: every new key belongs at least in `assets/dmnr/lang/en_us.json`; tooltips use `item.dmnr.<id>.description`. New content should get a Codex entry in `assets/dmnr/guide/en_us.json`.
+- **Translations**: every new key belongs at least in `assets/dmnr/lang/en_us.json`; tooltips use `item.dmnr.<id>.description`. New content should get a Codex entry in `assets/dmnr/guide/base/en_us.json` (or the folder of the optional mod).
 - **Recipes/data**: JSON files are maintained by hand (no active datagen). M&A-specific recipe types live in the respective subfolders of `data/dmnr/recipes`. New curios need an entry in the matching `data/curios/tags/items/*.json`.
 - **Configuration**: balancing values should be `ForgeConfigSpec` entries in `CommonConfig` instead of hardcoded values whenever they should be adjustable for modpacks.
 - **Code style**: English identifiers and comments, Javadoc on classes with `@author Joh0210`, `@NotNull`/`@Nullable` from `org.jetbrains.annotations`. Follow the style of the surrounding class.

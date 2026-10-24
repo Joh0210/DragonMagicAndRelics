@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "dmnr:block/altar_me_interface"
+    }
+  }
+}

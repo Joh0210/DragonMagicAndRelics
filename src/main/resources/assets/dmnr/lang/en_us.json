@@ -143,6 +143,16 @@
   "dmnr:tier_5/equip_dragon_mage_armor.description": "Clad yourself in the dragon's legacy. Mortal limits no longer bind you",
 
   "block.dmnr.rift_emitter": "Rift Emitter",
+  "block.dmnr.altar_me_interface": "Altar ME Interface",
+  "item.dmnr.altar_me_interface.description": "Supplies an Altar of Arcana with the items it needs from the ME network. Insert a Rune of Marking that is bound to the altar, which has to be within 8 blocks.",
+  "gui.dmnr.altar_me_interface.rune": "Rune of Marking",
+  "gui.dmnr.altar_me_interface.stock": "Items for the altar",
+  "gui.dmnr.altar_me_interface.status.linked": "Linked to the Altar of Arcana",
+  "gui.dmnr.altar_me_interface.status.no_rune": "Insert a Rune of Marking bound to an Altar of Arcana",
+  "gui.dmnr.altar_me_interface.status.rune_without_position": "The Rune of Marking is not bound to a block yet",
+  "gui.dmnr.altar_me_interface.status.altar_not_loaded": "The marked block is not loaded",
+  "gui.dmnr.altar_me_interface.status.no_altar": "No Altar of Arcana at the marked position",
+  "gui.dmnr.altar_me_interface.status.out_of_range": "The Altar of Arcana is more than 8 blocks away",
 
   "key.categories.mma": "Modular Magic Armor",
   "key.mma.spellbookopen": "Book Quick Select",
