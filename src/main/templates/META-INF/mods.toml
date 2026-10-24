@@ -1,0 +1,72 @@
+# Template: all placeholders are expanded from gradle.properties by the generateModMetadata task (see build.gradle).
+# Format documentation: https://docs.neoforged.net/docs/1.20.x/gettingstarted/modfiles
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="${mod_issue_tracker_url}"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="${mod_display_url}"
+logoFile="dmnr.png"
+authors="${mod_authors}"
+credits="Thanks to jsementj for the amazing armor model and texture! Thanks to Mithion for helping creating some code elements of this mod! Also thanks to Ceddi and Nico for helping with testing and balancing."
+description='''${mod_description}'''
+
+[[dependencies.${mod_id}]]
+    modId="forge"
+    mandatory=true
+    versionRange="${neo_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="${minecraft_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="mna"
+    mandatory=true
+    versionRange="${mna_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="tnl"
+    mandatory=true
+    versionRange="${tnl_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="curios"
+    mandatory=true
+    versionRange="${curios_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="caelus"
+    mandatory=true
+    versionRange="${caelus_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="geckolib"
+    mandatory=true
+    versionRange="${geckolib_version_range}"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.${mod_id}]]
+    modId="magichem"
+    mandatory=false
+    versionRange="${magichem_version_range}"
+    ordering="NONE"
+    side="BOTH"

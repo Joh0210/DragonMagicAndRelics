@@ -1,0 +1,14 @@
+# Shell scripts must keep LF and batch files CRLF line endings on every platform,
+# independent of core.autocrlf. All other files follow the local Git configuration.
+gradlew text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
+
+# Data generators always write LF.
+src/generated/**/.cache/cache text eol=lf
+src/generated/**/*.json text eol=lf
+
+# Binary files
+*.jar binary
+*.png binary
+*.xcf binary

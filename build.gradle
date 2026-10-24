@@ -1,12 +1,11 @@
 plugins {
-    id 'eclipse'
+    id 'java'
     id 'idea'
-    id 'maven-publish'
-    id 'net.neoforged.gradle' version '[6.0.18,6.2)'
-    id 'org.spongepowered.mixin' version '0.7.+'
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+    // Latest version: https://projects.neoforged.net/neoforged/ModDevGradle
+    id 'net.neoforged.moddev.legacyforge' version '2.0.148'
 }
 
+// All versions and mod metadata live in gradle.properties.
 version = mod_version
 group = mod_group_id
 
@@ -14,190 +13,183 @@ base {
     archivesName = mod_id
 }
 
-// Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
+// Mojang ships Java 17 to end users in 1.20.1, so the mod must target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
-println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
-minecraft {
-    mappings channel: mapping_channel, version: mapping_version
-    // mappings channel: mapping_channel, version: mapping_version
+legacyForge {
+    enable {
+        // NeoForge for 1.20.1 is published as net.neoforged:forge:<minecraft version>-<neoforge version>
+        neoForgeVersion = "${project.minecraft_version}-${project.neo_version}"
+    }
 
-    // When true, this property will have all Eclipse/IntelliJ IDEA run configurations run the "prepareX" task for the given run configuration before launching the game.
-    // In most cases, it is not necessary to enable.
-    // enableEclipsePrepareRuns = true
-    // enableIdeaPrepareRuns = true
+    parchment {
+        minecraftVersion = project.parchment_minecraft_version
+        mappingsVersion = project.parchment_mappings_version
+    }
 
-    // This property allows configuring Gradle's ProcessResources task(s) to run on IDE output locations before launching the game.
-    // It is REQUIRED to be set to true for this template to function.
-    // See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
-    copyIdeResources = true
-
-    // When true, this property will add the folder name of all declared run configurations to generated IDE run configurations.
-    // The folder name can be set on a run configuration using the "folderName" property.
-    // By default, the folder name of a run configuration is the name of the Gradle project containing it.
-    // generateRunFolders = true
-
-    // This property enables access transformers for use in development.
-    // They will be applied to the Minecraft artifact.
-    // The access transformer file can be anywhere in the project.
-    // However, it must be at "META-INF/accesstransformer.cfg" in the final mod jar to be loaded by Forge.
-    // This default location is a best practice to automatically put the file in the right place in the final jar.
-    // See https://docs.neoforged.net/docs/1.20.x/advanced/accesstransformers/ for more information.
-
-    // accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
-
-    // Default run configurations.
-    // These can be tweaked, removed, or duplicated as needed.
     runs {
-        // applies to all the run configs below
-        configureEach {
-            workingDirectory project.file("run/${it.name}")
-
-            // Recommended logging data for a userdev environment
-            // The markers can be added/remove as needed separated by commas.
-            // "SCAN": For mods scan.
-            // "REGISTRIES": For firing of registry events.
-            // "REGISTRYDUMP": For getting the contents of all registries.
-            property 'forge.logging.markers', 'REGISTRIES'
-
-            // Recommended logging level for the console
-            // You can set various levels here.
-            // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                "${mod_id}" {
-                    source sourceSets.main
-                }
-            }
-        }
-
         client {
-            // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', mod_id
+            client()
+            // Comma-separated list of namespaces to load GameTests from. Empty = all namespaces.
+            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 
         server {
-            property 'forge.enabledGameTestNamespaces', mod_id
-            args '--nogui'
+            server()
+            programArgument '--nogui'
+            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 
-        // This run config launches GameTestServer and runs all registered gametests, then exits.
-        // By default, the server will crash when no gametests are provided.
-        // The gametest system is also enabled by default for other run configs under the /test command.
+        // Starts a GameTest server, runs all registered GameTests and exits.
+        // The server crashes if no GameTests are registered.
         gameTestServer {
-            property 'forge.enabledGameTestNamespaces', mod_id
+            type = 'gameTestServer'
+            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
 
         data {
-            // example of overriding the workingDirectory set in configureEach above, uncomment if you want to use it
-            // workingDirectory project.file('run-data')
+            data()
+            programArguments.addAll '--mod', project.mod_id, '--all',
+                    '--output', file('src/generated/resources/').absolutePath,
+                    '--existing', file('src/main/resources/').absolutePath
+        }
 
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        configureEach {
+            // Every run gets its own game directory: run/client, run/server, ...
+            gameDirectory = project.file("run/${it.name}")
+
+            // Logging markers: "SCAN" (mod scanning), "REGISTRIES" (registry events), "REGISTRYDUMP" (registry contents)
+            systemProperty 'forge.logging.markers', 'REGISTRIES'
+            logLevel = org.slf4j.event.Level.DEBUG
+        }
+    }
+
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
         }
     }
 }
 
-// Include resources generated by data generators.
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+// Include resources generated by the data generators.
+sourceSets.main.resources.srcDir 'src/generated/resources'
+
+// Dependencies in "localRuntime" are only added to the development runs and are never
+// declared as dependencies of the mod. "modLocalRuntime" is its remapping counterpart.
+configurations {
+    localRuntime
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+obfuscation {
+    createRemappingConfiguration(configurations.localRuntime)
+}
 
 repositories {
+    // Every repository is restricted to the groups it provides, so Gradle never queries it for anything else.
     flatDir {
+        name = 'Local libraries'
         dirs 'lib'
+        content { includeGroup 'de.joh' }
     }
-    // maven { url 'https://maven.manaandartifice.com/releases/1.19.2/' }
-    maven { url 'https://maven.theillusivec4.top/' }
-    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
     maven {
-        url "https://cursemaven.com"
+        name = 'Illusive Soulworks'
+        url = 'https://maven.theillusivec4.top/'
         content {
-            includeGroup "curse.maven"
+            includeGroup 'top.theillusivec4.curios'
+            includeGroup 'top.theillusivec4.caelus'
         }
     }
+    maven {
+        name = 'GeckoLib'
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content { includeGroup 'software.bernie.geckolib' }
+    }
+    maven {
+        name = 'CurseMaven'
+        url = 'https://cursemaven.com'
+        content { includeGroup 'curse.maven' }
+    }
 }
 
+// The mod* configurations remap the SRG-named mod jars to the names used in development.
+// They are not transitive: every required mod has to be declared explicitly.
 dependencies {
-    minecraft "net.neoforged:forge:${minecraft_version}-${neo_version}"
+    // Required mods
+    modImplementation "curse.maven:mna-406360:${mna_version}"
+    modImplementation "de.joh:tnl:${tnl_version}"
+    modImplementation "software.bernie.geckolib:geckolib-forge-${minecraft_version}:${geckolib_version}"
+    modImplementation "top.theillusivec4.caelus:caelus-forge:${caelus_version}"
+    modCompileOnly "top.theillusivec4.curios:curios-forge:${curios_version}:api"
+    modRuntimeOnly "top.theillusivec4.curios:curios-forge:${curios_version}"
 
-    // shade fg.deobf("com.github.LlamaLad7:MixinExtras:0.0.12")
-    // library fg.deobf("com.github.LlamaLad7:MixinExtras:0.0.12")
-    // annotationProcessor("com.github.LlamaLad7:MixinExtras:0.0.12")
-
-    // Required dependencies; curios and Geckolib
-    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
-    runtimeOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
-    compileOnly fg.deobf("top.theillusivec4.caelus:caelus-forge:${caelus_version}")
-
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.20.1:4.2.2')
-
-    implementation fg.deobf('de.joh:tnl:1.0')
-
-    // M&A and its API
-    implementation fg.deobf("curse.maven:mna-406360:${mna_version}")
-    runtimeOnly fg.deobf("curse.maven:magichem-982204:${magichem_version}")
-    runtimeOnly fg.deobf("curse.maven:jei-238222:${jei_version}")
-    // compileOnly "com.mithion:mna:${mna_version}:api" //api, compilation only
-//    implementation fg.deobf("com.mithion:mna-forge-1.20.1:${mna_version}:all") //mod itself, deobf for runtime
+    // Optional mods, development runs only
+    modLocalRuntime "curse.maven:magichem-982204:${magichem_version}"
+    modLocalRuntime "curse.maven:jei-238222:${jei_version}"
 }
 
-// This block of code expands all declared replace properties in the specified resource targets.
-// A missing property will result in an error. Properties are expanded using ${} Groovy notation.
-// When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
-// See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
-tasks.withType(ProcessResources).configureEach {
-    var replaceProperties = [
-            minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
-            neo_version         : neo_version, neo_version_range: neo_version_range,
-            loader_version_range: loader_version_range,
-            mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors         : mod_authors, mod_description: mod_description, pack_format_number: pack_format_number,
+// Expands the properties below into the files in src/main/templates (mods.toml, pack.mcmeta).
+// Referencing a property that is not listed here fails the build.
+def generateModMetadata = tasks.register('generateModMetadata', ProcessResources) {
+    def replaceProperties = [
+            minecraft_version_range: minecraft_version_range,
+            neo_version_range      : neo_version_range,
+            loader_version_range   : loader_version_range,
+            pack_format_number     : pack_format_number,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_license            : mod_license,
+            mod_description        : mod_description,
+            mod_issue_tracker_url  : mod_issue_tracker_url,
+            mod_display_url        : mod_display_url,
+            mna_version_range      : mna_version_range,
+            tnl_version_range      : tnl_version_range,
+            curios_version_range   : curios_version_range,
+            caelus_version_range   : caelus_version_range,
+            geckolib_version_range : geckolib_version_range,
+            magichem_version_range : magichem_version_range,
     ]
     inputs.properties replaceProperties
+    expand replaceProperties
+    from 'src/main/templates'
+    into layout.buildDirectory.dir('generated/sources/modMetadata')
+}
+// Adds the generated files to the main resources, for Gradle builds and IDE runs alike.
+sourceSets.main.resources.srcDir generateModMetadata
+// Regenerates the files on every IDE project sync.
+legacyForge.ideSyncTask generateModMetadata
 
-    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
-        expand replaceProperties + [project: project]
-    }
+tasks.named('jar', Jar) {
+    manifest.attributes([
+            'Specification-Title'   : mod_id,
+            'Specification-Vendor'  : mod_authors,
+            'Specification-Version' : '1',
+            'Implementation-Title'  : project.name,
+            'Implementation-Version': project.version,
+            'Implementation-Vendor' : mod_authors,
+    ])
 }
 
-// Example for how to get properties into the manifest for reading at runtime.
-tasks.named('jar', Jar).configure {
-    manifest {
-        attributes([
-                'Specification-Title'     : mod_id,
-                'Specification-Vendor'    : mod_authors,
-                'Specification-Version'   : '1', // We are version 1 of ourselves
-                'Implementation-Title'    : project.name,
-                'Implementation-Version'  : project.jar.archiveVersion,
-                'Implementation-Vendor'   : mod_authors,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
-    }
-
-    // This is the preferred method to reobfuscate your jar file
-    finalizedBy 'reobfJar'
-}
-
-// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing:
-// tasks.named('publish').configure {
-//     dependsOn 'reobfJar'
-// }
-
-// Example configuration to allow publishing using the maven-publish plugin
-publishing {
-    publications {
-        register('mavenJava', MavenPublication) {
-            artifact jar
-        }
-    }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/mcmodsrepo"
-        }
-    }
+// Byte-for-byte reproducible jars, which also keeps the Gradle build cache effective.
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
 }
 
 tasks.withType(JavaCompile).configureEach {
-    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('wrapper', Wrapper) {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+// IntelliJ IDEA no longer downloads sources and Javadoc of dependencies on its own.
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
 }

@@ -26,19 +26,26 @@ Guidance for Claude Code when working in this repository.
 | Component | Version |
 |---|---|
 | Minecraft | 1.20.1 |
-| Loader | NeoForge (Forge namespace `net.minecraftforge`) 47.1.65, plugin `net.neoforged.gradle` |
-| Java | 17 (toolchain) |
-| Mappings | Parchment `2023.09.03-1.20.1` |
+| Loader | NeoForge 47.1.65 (the 1.20.1 NeoForge fork: mod ID `forge`, Java packages `net.minecraftforge`) |
+| Build | Gradle 8.14.6 (wrapper), ModDevGradle Legacy `net.neoforged.moddev.legacyforge` |
+| Java | 17 (toolchain, provisioned automatically); Gradle itself runs on Java 17–24 |
+| Mappings | Official Mojang mappings + Parchment `2023.09.03` (1.20.1) |
 | Required dependencies | Mana and Artifice (`mna`), Curios, Caelus, GeckoLib 4.2.2, Tomes And Libs (`tnl`) |
-| Optional | MagiChem (own recipes under `recipes/magichem`), JEI (runtime only) |
+| Optional | MagiChem (own recipes under `recipes/magichem`), JEI (development runs only) |
 
-Dependency versions are defined in `gradle.properties` (`mna_version`, `magichem_version`, `jei_version` are CurseMaven file IDs).
+### Build configuration
 
-### Tomes And Libs (`lib/tnl-1.0-dev.jar`)
+- `gradle.properties` is the **single source of truth** for all versions and mod metadata. `*_version` is the artifact used in development, `*_version_range` the range written into `mods.toml` (`mna_version`, `magichem_version`, `jei_version` are CurseMaven file IDs).
+- `src/main/templates/META-INF/mods.toml` and `src/main/templates/pack.mcmeta` are templates. The `generateModMetadata` task in `build.gradle` expands their `${...}` placeholders; every placeholder must be listed in its `replaceProperties` map. Never put `META-INF/mods.toml` or `pack.mcmeta` into `src/main/resources`.
+- Mod dependencies are declared with the remapping configurations `modImplementation`, `modCompileOnly`, `modRuntimeOnly` and `modLocalRuntime` (development runs only). They are **not transitive**; every required mod has to be listed explicitly. Every repository has a `content { includeGroup ... }` filter.
+- A new required mod needs: version + range in `gradle.properties`, a dependency in `build.gradle`, an entry in the `replaceProperties` map and a `[[dependencies.${mod_id}]]` block in the `mods.toml` template.
+- There is no Mixin setup. If a Mixin ever becomes necessary, it needs the Mixin annotation processor, a `mixin { }` block and the `MixinConfigs` manifest attribute (see the ModDevGradle `LEGACY.md`).
 
-- The author's own library (mod ID `tnl`, package `de.joh.tnl`), included via `flatDir` + `implementation files('lib/tnl-1.0-dev.jar')`.
+### Tomes And Libs (`lib/tnl-<tnl_version>.jar`)
+
+- The author's own library (mod ID `tnl`, package `de.joh.tnl`), a regular (SRG-obfuscated) mod jar that is included via the `flatDir` repository and `modImplementation "de.joh:tnl:${tnl_version}"`, so ModDevGradle remaps it.
 - Contains the extracted Dragon Magic API: `de.joh.tnl.api.item.IDragonMagicItem`, `BaseDragonMagicItem`, `ChargeableDragonMagicItem`, `ScrollableItem`, `de.joh.tnl.api.event.DragonMagicChangeEvent`, as well as the Curio Boost capability (`de.joh.tnl.capabilities.CurioBoostProvider`).
-- The jar is **not version-controlled** because of `.gitignore` (`*.jar`) – it must be present locally, otherwise the build fails.
+- The jar is version-controlled (exception `!lib/*.jar` in `.gitignore`). To update TnL, replace the jar and adjust `tnl_version`/`tnl_version_range`.
 - Note: older references (e.g. `.junie/skills/convert-to-dm/SKILL.md`) still mention `de.joh.dmnr.api.item.*`. These classes no longer exist in DM&R – the correct package is `de.joh.tnl.api.item.*`.
 
 ### Branches
@@ -52,8 +59,8 @@ Dependency versions are defined in `gradle.properties` (`mna_version`, `magichem
 On Windows use `gradlew.bat`, or `./gradlew` in Git Bash. The initial Gradle setup can take 10+ minutes.
 
 ```bash
-./gradlew build             # Compiles and produces the reobfuscated jar in build/libs
-./gradlew runClient         # Starts a dev client (working directory run/client)
+./gradlew build             # Compiles and produces the reobfuscated release jar in build/libs (unobfuscated jar: build/devlibs)
+./gradlew runClient         # Starts a dev client (game directory run/client)
 ./gradlew runServer         # Dedicated dev server (--nogui)
 ./gradlew runData           # Datagen into src/generated/resources
 ./gradlew runGameTestServer # Runs registered GameTests
@@ -62,8 +69,9 @@ On Windows use `gradlew.bat`, or `./gradlew` in Git Bash. The initial Gradle set
 ## Project structure
 
 ```
-build.gradle, gradle.properties   Build configuration, versions, mod metadata
-lib/tnl-1.0-dev.jar                Tomes And Libs (local, not version-controlled)
+build.gradle, settings.gradle     Build logic (ModDevGradle Legacy)
+gradle.properties                  All versions and mod metadata
+lib/tnl-<version>.jar              Tomes And Libs
 icon-files/                        Source icons (not part of the mod)
 run/                               Gradle run directories (local)
 CREDITS.md, CONTRIBUTING.md        Credits for assets/translations, contribution guide
@@ -86,11 +94,9 @@ src/main/java/de/joh/dmnr/
 │   ├── ritual/                    Custom M&A ritual effects
 │   ├── event/                     Forge bus handlers: CommonEventHandler, DamageEventHandler, MagicEventHandler
 │   └── util/                      CommonConfig (dmnr-common.toml), RLoc (ResourceLocation helper)
-├── mixins/                        Mixins (LivingEntityFireWalkerMixin) + MixinPlugin – use with caution
 └── networking/                    ModMessages (SimpleChannel) and packet/ (S2C/C2S packets)
+src/main/templates/                META-INF/mods.toml, pack.mcmeta (expanded from gradle.properties)
 src/main/resources/
-├── META-INF/mods.toml             Mod metadata and dependencies
-├── dmnr.mixins.json               Mixin configuration
 ├── assets/dmnr/                   lang/ (en_us, zh_cn, ko_kr, ru_ru), guide/ (Codex entries), textures/, models/,
 │                                  blockstates/, geo/ + animations/ (GeckoLib)
 └── data/
@@ -111,4 +117,4 @@ src/generated/resources/           Datagen output (currently empty, included as 
 - **Recipes/data**: JSON files are maintained by hand (no active datagen). M&A-specific recipe types live in the respective subfolders of `data/dmnr/recipes`. New curios need an entry in the matching `data/curios/tags/items/*.json`.
 - **Configuration**: balancing values should be `ForgeConfigSpec` entries in `CommonConfig` instead of hardcoded values whenever they should be adjustable for modpacks.
 - **Code style**: English identifiers and comments, Javadoc on classes with `@author Joh0210`, `@NotNull`/`@Nullable` from `org.jetbrains.annotations`. Follow the style of the surrounding class.
-- **Mixins** only when there is no other way via events/APIs – they can easily cause incompatibilities.
+- **Mixins** only when there is no other way via events/APIs – they can easily cause incompatibilities (see "Build configuration" for the required setup).

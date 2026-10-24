@@ -28,7 +28,6 @@ Located in: `src/main/java/de/joh/dmnr`
   - `networking`: Handles communication between client and server using packets.
   - `api`: Exposed API allowing other mods to hook into DM&R features.
   - `capabilities`: Extensions to player data.
-  - `mixins`: Injected modifications to base Minecraft code.<br>**Use with caution** – can easily introduce bugs or incompatibilities.
 
 Subpackages in `common` group game areas. Content is initialized in the corresponding `init` classes.  
 Events are handled in the `event` package, and reusable helper functions are located in `util`.
@@ -37,4 +36,9 @@ Events are handled in the `event` package, and reusable helper functions are loc
 Located in: `src/main/resources`
 - **`assets`**: Client-specific content (textures, translations, guidebook)
 - **`data`**: Server-synced definitions (recipes, loot tables, tags)
-- **`META-INF`**: Mod metadata required by NeoForge
+
+### Build configuration
+- **`gradle.properties`**: All versions (Minecraft, NeoForge, dependencies) and mod metadata. Change versions only here.
+- **`build.gradle`**: Build logic based on [ModDevGradle Legacy](https://github.com/neoforged/ModDevGradle/blob/main/LEGACY.md).
+- **`src/main/templates`**: `META-INF/mods.toml` and `pack.mcmeta`. Their placeholders are filled from `gradle.properties` during the build.
+- **`lib`**: Local mod libraries that are not available from a Maven repository (Tomes And Libs).
