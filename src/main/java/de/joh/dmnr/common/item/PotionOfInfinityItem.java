@@ -4,7 +4,7 @@ import com.mna.api.items.ITieredItem;
 import com.mna.inventory.ItemInventoryBase;
 import com.mna.items.base.ItemBagBase;
 import com.mna.items.filters.ItemFilterGroup;
-import de.joh.dmnr.api.item.IDragonMagicItem;
+import de.joh.tnl.api.item.IDragonMagicItem;
 import de.joh.dmnr.api.util.PotionFilter;
 import de.joh.dmnr.client.gui.NamedPotionOfInfinity;
 import net.minecraft.ChatFormatting;
