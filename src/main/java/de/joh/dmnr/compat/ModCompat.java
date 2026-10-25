@@ -2,6 +2,7 @@ package de.joh.dmnr.compat;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.compat.ae2.AE2Compat;
+import de.joh.dmnr.compat.create.CreateCompat;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModList;
 import org.jetbrains.annotations.NotNull;
@@ -27,7 +28,11 @@ public enum ModCompat {
     /**
      * <a href="https://www.curseforge.com/minecraft/mc-mods/applied-energistics-2">Applied Energistics 2</a>
      */
-    AE2("ae2", () -> AE2Compat::new);
+    AE2("ae2", () -> AE2Compat::new),
+    /**
+     * <a href="https://www.curseforge.com/minecraft/mc-mods/create">Create</a>
+     */
+    CREATE("create", () -> CreateCompat::new);
 
     private final String modId;
     private final Supplier<Supplier<CompatModule>> module;

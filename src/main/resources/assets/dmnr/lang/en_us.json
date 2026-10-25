@@ -153,6 +153,8 @@
   "gui.dmnr.altar_me_interface.status.altar_not_loaded": "The marked block is not loaded",
   "gui.dmnr.altar_me_interface.status.no_altar": "No Altar of Arcana at the marked position",
   "gui.dmnr.altar_me_interface.status.out_of_range": "The Altar of Arcana is more than 8 blocks away",
+  "block.dmnr.spectral_motor": "Spectral Motor",
+  "block.dmnr.spectral_motor.remaining": "Vanishes in %s seconds",
 
   "key.categories.mma": "Modular Magic Armor",
   "key.mma.spellbookopen": "Book Quick Select",
@@ -251,6 +253,12 @@
   "dmnr:components/alternativerecall.desc.precision": "If 1, the caster teleports to the spell location.",
   "dmnr:components/alternativerecall.desc.magnitude": "How strong the target of the spell can be. 1 point = 20 HP.",
   "dmnr:components/alternativerecall.no_player": "No Player targeted!",
+  "dmnr:components/spectral_motor": "Spectral Motor",
+  "dmnr:components/spectral_motor.desc.delay": "A delay in seconds before applying this component.",
+  "dmnr:components/spectral_motor.desc.speed": "The rotation speed of the motor in RPM.",
+  "dmnr:components/spectral_motor.desc.magnitude": "The stress capacity of the motor: 256 SU, doubled with every additional point (up to 16,384 SU).",
+  "dmnr:components/spectral_motor.desc.duration": "How many seconds the motor remains.",
+  "dmnr:components/spectral_motor.desc.precision": "If 1, the motor turns in the opposite direction.",
 
   "itemGroup.dmnrtab": "Dragon Magic",
   "dmnr:dmnr_dragon_armor_set_bonus": "Dragon Magic Set Bonus",

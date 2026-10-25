@@ -1,0 +1,73 @@
+{
+  "Component: Spectral Motor": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Spectral Motor"
+      },
+      {
+        "type": "text",
+        "json": [
+          {
+            "text": "The contraptions of "
+          },
+          {
+            "text": "Create",
+            "color": "blue"
+          },
+          {
+            "text": " hunger for rotational force. With this spell I conjure a temporary "
+          },
+          {
+            "text": "spectral motor",
+            "color": "blue"
+          },
+          {
+            "text": " at the block I aim at: a spinning shaft whose sides grip like a small cogwheel.\n\nIts shaft points into the targeted block, unless a cogwheel or shaft next to it suggests another direction. Once its time has run out, the motor vanishes."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "json": [
+          {
+            "text": "Speed",
+            "color": "dark_purple"
+          },
+          {
+            "text": " raises the rotation from 16 to 256 RPM.\n"
+          },
+          {
+            "text": "Magnitude",
+            "color": "dark_purple"
+          },
+          {
+            "text": " doubles the stress capacity with every point, from 256 to 16,384 SU.\n"
+          },
+          {
+            "text": "Duration",
+            "color": "dark_purple"
+          },
+          {
+            "text": " lets the motor remain longer.\n"
+          },
+          {
+            "text": "Precision",
+            "color": "dark_purple"
+          },
+          {
+            "text": " reverses the direction of rotation.\n\nIf I cast the spell on a motor I conjured before, it takes on the new values and its time starts anew."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/spectral_motor"
+      }
+    ]
+  }
+}

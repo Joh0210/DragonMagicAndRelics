@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		{
+			"id": "dmnr:spectral_motor",
+			"required": false
+		}
+	]
+}

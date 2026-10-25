@@ -1,0 +1,49 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "spectral": "mna:block/material/spectral/conjures",
+    "particle": "mna:block/material/spectral/conjures"
+  },
+  "elements": [
+    {
+      "from": [4.5, 8, 4.5],
+      "to": [11.5, 8, 5.5],
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+      "shade": false,
+      "faces": {
+        "up": {"texture": "#spectral"},
+        "down": {"texture": "#spectral"}
+      }
+    },
+    {
+      "from": [4.5, 8, 10.5],
+      "to": [11.5, 8, 11.5],
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+      "shade": false,
+      "faces": {
+        "up": {"texture": "#spectral"},
+        "down": {"texture": "#spectral"}
+      }
+    },
+    {
+      "from": [4.5, 8, 5.5],
+      "to": [5.5, 8, 10.5],
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+      "shade": false,
+      "faces": {
+        "up": {"texture": "#spectral"},
+        "down": {"texture": "#spectral"}
+      }
+    },
+    {
+      "from": [10.5, 8, 5.5],
+      "to": [11.5, 8, 10.5],
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+      "shade": false,
+      "faces": {
+        "up": {"texture": "#spectral"},
+        "down": {"texture": "#spectral"}
+      }
+    }
+  ]
+}

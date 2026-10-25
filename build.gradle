@@ -115,8 +115,25 @@ repositories {
         url = 'https://modmaven.dev/'
         content { includeGroup 'appeng' }
     }
+    maven {
+        name = 'Create'
+        url = 'https://maven.createmod.net/'
+        content {
+            includeGroup 'com.simibubi.create'
+            includeGroup 'net.createmod.ponder'
+            includeGroup 'dev.engine-room.flywheel'
+        }
+    }
+    maven {
+        name = 'Registrate'
+        url = 'https://maven.ithundxr.dev/mirror/'
+        content { includeGroup 'com.tterrag.registrate' }
+    }
     mavenCentral {
-        content { includeGroup 'org.appliedenergistics' }
+        content {
+            includeGroup 'org.appliedenergistics'
+            includeGroup 'io.github.llamalad7'
+        }
     }
 }
 
@@ -138,6 +155,17 @@ dependencies {
     modCompileOnly "appeng:appliedenergistics2-forge:${ae2_version}"
     modLocalRuntime "appeng:appliedenergistics2-forge:${ae2_version}"
     modLocalRuntime "org.appliedenergistics:guideme:${guideme_version}"
+    // Create: the ":slim" jar does not contain the libraries Create ships with (Ponder, Flywheel, Registrate,
+    // MixinExtras), so they are declared separately. The integration compiles against Catnip (part of Ponder) and the
+    // Flywheel API for its renderer and visual.
+    modCompileOnly "com.simibubi.create:create-${minecraft_version}:${create_version}:slim"
+    modCompileOnly "net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"
+    modCompileOnly "dev.engine-room.flywheel:flywheel-forge-api-${minecraft_version}:${flywheel_version}"
+    modLocalRuntime "com.simibubi.create:create-${minecraft_version}:${create_version}:slim"
+    modLocalRuntime "net.createmod.ponder:Ponder-Forge-${minecraft_version}:${ponder_version}"
+    modLocalRuntime "dev.engine-room.flywheel:flywheel-forge-${minecraft_version}:${flywheel_version}"
+    modLocalRuntime "com.tterrag.registrate:Registrate:${registrate_version}"
+    localRuntime "io.github.llamalad7:mixinextras-forge:${mixinextras_version}"
 
     // Optional mods, development runs only
     modLocalRuntime "curse.maven:magichem-982204:${magichem_version}"
@@ -167,6 +195,7 @@ def generateModMetadata = tasks.register('generateModMetadata', ProcessResources
             geckolib_version_range : geckolib_version_range,
             magichem_version_range : magichem_version_range,
             ae2_version_range      : ae2_version_range,
+            create_version_range   : create_version_range,
     ]
     inputs.properties replaceProperties
     expand replaceProperties

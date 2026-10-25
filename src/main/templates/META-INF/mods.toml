@@ -78,3 +78,11 @@ description='''${mod_description}'''
     versionRange="${ae2_version_range}"
     ordering="AFTER"
     side="BOTH"
+
+# Optional: if Create is installed, its version must be within the range. AFTER makes sure Create is constructed first.
+[[dependencies.${mod_id}]]
+    modId="create"
+    mandatory=false
+    versionRange="${create_version_range}"
+    ordering="AFTER"
+    side="BOTH"

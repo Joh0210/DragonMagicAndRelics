@@ -1,0 +1,18 @@
+{
+  "ambientocclusion": false,
+  "textures": {
+    "spectral": "mna:block/material/spectral/conjures",
+    "particle": "mna:block/material/spectral/conjures"
+  },
+  "elements": [
+    {
+      "from": [7, 8, 7],
+      "to": [9, 8, 9],
+      "shade": false,
+      "faces": {
+        "up": {"texture": "#spectral"},
+        "down": {"texture": "#spectral"}
+      }
+    }
+  ]
+}

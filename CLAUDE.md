@@ -31,7 +31,7 @@ Guidance for Claude Code when working in this repository.
 | Java | 17 (toolchain, provisioned automatically); Gradle itself runs on Java 17–24 |
 | Mappings | Official Mojang mappings + Parchment `2023.09.03` (1.20.1) |
 | Required dependencies | Mana and Artifice (`mna`), Curios, Caelus, GeckoLib 4.2.2, Tomes And Libs (`tnl`) |
-| Optional | MagiChem (own recipes under `recipes/magichem`), JEI (development runs only) |
+| Optional | MagiChem (own recipes under `recipes/magichem`), Applied Energistics 2 and Create (code integrations in `de.joh.dmnr.compat`), JEI (development runs only) |
 
 ### Build configuration
 
