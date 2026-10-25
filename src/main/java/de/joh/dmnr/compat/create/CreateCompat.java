@@ -1,10 +1,12 @@
 package de.joh.dmnr.compat.create;
 
 import com.mna.api.guidebook.RegisterGuidebooksEvent;
+import de.joh.dmnr.common.init.CreativeModeTabInit;
 import de.joh.dmnr.common.util.RLoc;
 import de.joh.dmnr.compat.CompatModule;
 import de.joh.dmnr.compat.create.client.CreateClientCompat;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.DistExecutor;
 import org.jetbrains.annotations.NotNull;
@@ -15,13 +17,15 @@ import org.jetbrains.annotations.NotNull;
  * of this package.
  * <p>
  * Adds the spell component {@link de.joh.dmnr.compat.create.spell.SpectralMotorComponent}, which conjures a temporary
- * {@link de.joh.dmnr.compat.create.block.SpectralMotorBlock}.
+ * {@link de.joh.dmnr.compat.create.block.SpectralMotorBlock}, and the permanent {@link de.joh.dmnr.compat.create.block.EngineBlock}s
+ * (Arcane Engine and Brimstone Engine).
  * @author Joh0210
  */
 public class CreateCompat implements CompatModule {
     @Override
     public void init(@NotNull IEventBus modBus, @NotNull IEventBus forgeBus) {
         CreateInit.register(modBus);
+        modBus.addListener(CreateCompat::onBuildCreativeModeTabContents);
         forgeBus.addListener(CreateCompat::onRegisterGuidebooks);
 
         DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> CreateClientCompat.init(modBus));
@@ -33,5 +37,12 @@ public class CreateCompat implements CompatModule {
      */
     private static void onRegisterGuidebooks(RegisterGuidebooksEvent event) {
         event.getRegistry().addGuidebookPath(RLoc.create("guide/create"));
+    }
+
+    private static void onBuildCreativeModeTabContents(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTabKey().equals(CreativeModeTabInit.DMNR_TAB.getKey())) {
+            event.accept(CreateInit.ARCANE_ENGINE_ITEM);
+            event.accept(CreateInit.BRIMSTONE_ENGINE_ITEM);
+        }
     }
 }

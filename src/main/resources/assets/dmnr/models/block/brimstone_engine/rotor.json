@@ -1,0 +1,10 @@
+{
+  "loader": "forge:composite",
+  "children": {
+    "gear": {"parent": "dmnr:block/brimstone_engine/gear"},
+    "caps": {"parent": "dmnr:block/brimstone_engine/caps"}
+  },
+  "textures": {
+    "particle": "minecraft:block/gilded_blackstone"
+  }
+}

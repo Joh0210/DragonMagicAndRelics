@@ -1,0 +1,12 @@
+{
+  "loader": "forge:obj",
+  "model": "dmnr:models/block/arcane_engine/crystal.obj",
+  "flip_v": true,
+  "shade_quads": false,
+  "automatic_culling": false,
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "crystal": "mna:block/oreblockchimerite",
+    "particle": "mna:block/oreblockchimerite"
+  }
+}

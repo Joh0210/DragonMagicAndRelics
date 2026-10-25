@@ -69,5 +69,82 @@
         "location": "dmnr:components/spectral_motor"
       }
     ]
+  },
+  "Arcane Engine": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Arcane Engine"
+      },
+      {
+        "type": "text",
+        "json": [
+          {
+            "text": "The "
+          },
+          {
+            "text": "Arcane Engine",
+            "color": "blue"
+          },
+          {
+            "text": " is a shaft that never stops turning, whose sides grip like a small cogwheel. It drives the machines of "
+          },
+          {
+            "text": "Create",
+            "color": "blue"
+          },
+          {
+            "text": " with "
+          },
+          {
+            "text": "16 RPM",
+            "color": "gold"
+          },
+          {
+            "text": " and "
+          },
+          {
+            "text": "512 SU",
+            "color": "gold"
+          },
+          {
+            "text": ", as much stress as a Large Water Wheel.\n\nWith brimstone it can be upgraded to the "
+          },
+          {
+            "text": "Brimstone Engine",
+            "color": "blue"
+          },
+          {
+            "text": ": "
+          },
+          {
+            "text": "128 RPM",
+            "color": "gold"
+          },
+          {
+            "text": " and "
+          },
+          {
+            "text": "8192 SU",
+            "color": "gold"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:create/arcane_engine"
+      },
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:create/brimstone_engine"
+      }
+    ]
   }
 }

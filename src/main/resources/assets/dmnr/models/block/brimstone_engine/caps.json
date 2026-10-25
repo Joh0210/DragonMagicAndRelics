@@ -1,0 +1,7 @@
+{
+  "parent": "dmnr:block/arcane_engine/caps",
+  "textures": {
+    "metal": "dmnr:block/brimstone_engine",
+    "particle": "minecraft:block/gilded_blackstone"
+  }
+}

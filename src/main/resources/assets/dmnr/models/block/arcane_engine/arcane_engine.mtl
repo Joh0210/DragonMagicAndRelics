@@ -1,0 +1,6 @@
+# Materials of the OBJ parts of the Arcane Engine. The textures are set by the model files that load them.
+newmtl metal
+map_Kd #metal
+
+newmtl crystal
+map_Kd #crystal

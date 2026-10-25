@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/block",
+  "loader": "forge:composite",
+  "children": {
+    "rotor": {"parent": "dmnr:block/brimstone_engine/rotor"},
+    "crystal": {"parent": "dmnr:block/brimstone_engine/crystal"}
+  },
+  "textures": {
+    "particle": "minecraft:block/gilded_blackstone"
+  }
+}

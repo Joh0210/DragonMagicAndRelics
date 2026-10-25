@@ -1,0 +1,11 @@
+{
+  "loader": "forge:obj",
+  "model": "dmnr:models/block/arcane_engine/caps.obj",
+  "flip_v": true,
+  "automatic_culling": false,
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "metal": "dmnr:block/arcane_engine",
+    "particle": "mna:block/artifice/decoration/transmuted_silver_block"
+  }
+}

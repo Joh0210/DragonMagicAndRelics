@@ -1,0 +1,233 @@
+{
+  "textures": {
+    "metal": "dmnr:block/arcane_engine",
+    "particle": "mna:block/artifice/decoration/transmuted_silver_block"
+  },
+  "render_type": "minecraft:cutout",
+  "elements": [
+    {
+      "name": "ring_north",
+      "from": [5.5, 7, 2],
+      "to": [10.5, 9, 4],
+      "faces": {
+        "north": {"uv": [0, 2, 5, 4], "texture": "#metal"},
+        "east": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "south": {"uv": [0, 4, 5, 6], "texture": "#metal"},
+        "west": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "up": {"uv": [0, 0, 5, 2], "texture": "#metal"},
+        "down": {"uv": [0, 8, 5, 6], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "ring_east",
+      "from": [12, 7, 5.5],
+      "to": [14, 9, 10.5],
+      "faces": {
+        "north": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "east": {"uv": [0, 2, 5, 4], "texture": "#metal"},
+        "south": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "west": {"uv": [0, 4, 5, 6], "texture": "#metal"},
+        "up": {"uv": [0, 0, 5, 2], "rotation": 90, "texture": "#metal"},
+        "down": {"uv": [0, 6, 5, 8], "rotation": 90, "texture": "#metal"}
+      }
+    },
+    {
+      "name": "ring_south",
+      "from": [5.5, 7, 12],
+      "to": [10.5, 9, 14],
+      "faces": {
+        "north": {"uv": [0, 4, 5, 6], "texture": "#metal"},
+        "east": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "south": {"uv": [0, 2, 5, 4], "texture": "#metal"},
+        "west": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "up": {"uv": [0, 2, 5, 0], "texture": "#metal"},
+        "down": {"uv": [0, 6, 5, 8], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "ring_west",
+      "from": [2, 7, 5.5],
+      "to": [4, 9, 10.5],
+      "faces": {
+        "north": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "east": {"uv": [0, 4, 5, 6], "texture": "#metal"},
+        "south": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "west": {"uv": [0, 2, 5, 4], "texture": "#metal"},
+        "up": {"uv": [0, 2, 5, 0], "rotation": 90, "texture": "#metal"},
+        "down": {"uv": [0, 8, 5, 6], "rotation": 90, "texture": "#metal"}
+      }
+    },
+    {
+      "name": "ring_north_cw",
+      "from": [5.5, 7.05, 2],
+      "to": [10.5, 8.95, 4],
+      "forge_data": {"calculate_normals": true},
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+      "faces": {
+        "north": {"uv": [0, 2, 5, 4], "texture": "#metal"},
+        "east": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "south": {"uv": [0, 4, 5, 6], "texture": "#metal"},
+        "west": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "up": {"uv": [0, 0, 5, 2], "texture": "#metal"},
+        "down": {"uv": [0, 8, 5, 6], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "ring_north_ccw",
+      "from": [5.5, 7.05, 2],
+      "to": [10.5, 8.95, 4],
+      "forge_data": {"calculate_normals": true},
+      "rotation": {"angle": -45, "axis": "y", "origin": [8, 8, 8]},
+      "faces": {
+        "north": {"uv": [0, 2, 5, 4], "texture": "#metal"},
+        "east": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "south": {"uv": [0, 4, 5, 6], "texture": "#metal"},
+        "west": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "up": {"uv": [0, 0, 5, 2], "texture": "#metal"},
+        "down": {"uv": [0, 8, 5, 6], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "ring_south_cw",
+      "from": [5.5, 7.05, 12],
+      "to": [10.5, 8.95, 14],
+      "forge_data": {"calculate_normals": true},
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+      "faces": {
+        "north": {"uv": [0, 4, 5, 6], "texture": "#metal"},
+        "east": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "south": {"uv": [0, 2, 5, 4], "texture": "#metal"},
+        "west": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "up": {"uv": [0, 2, 5, 0], "texture": "#metal"},
+        "down": {"uv": [0, 6, 5, 8], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "ring_south_ccw",
+      "from": [5.5, 7.05, 12],
+      "to": [10.5, 8.95, 14],
+      "forge_data": {"calculate_normals": true},
+      "rotation": {"angle": -45, "axis": "y", "origin": [8, 8, 8]},
+      "faces": {
+        "north": {"uv": [0, 4, 5, 6], "texture": "#metal"},
+        "east": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "south": {"uv": [0, 2, 5, 4], "texture": "#metal"},
+        "west": {"uv": [5, 0, 7, 2], "texture": "#metal"},
+        "up": {"uv": [0, 2, 5, 0], "texture": "#metal"},
+        "down": {"uv": [0, 6, 5, 8], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "tooth_north",
+      "from": [6.5, 6.5, -1],
+      "to": [9.5, 9.5, 3],
+      "faces": {
+        "north": {"uv": [8, 4, 11, 7], "texture": "#metal"},
+        "east": {"uv": [0, 8, 4, 11], "texture": "#metal"},
+        "south": {"uv": [11, 4, 14, 7], "texture": "#metal"},
+        "west": {"uv": [4, 8, 0, 11], "texture": "#metal"},
+        "up": {"uv": [8, 0, 11, 4], "texture": "#metal"},
+        "down": {"uv": [11, 4, 14, 0], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "tooth_east",
+      "from": [13, 6.5, 6.5],
+      "to": [17, 9.5, 9.5],
+      "faces": {
+        "north": {"uv": [4, 8, 0, 11], "texture": "#metal"},
+        "east": {"uv": [8, 4, 11, 7], "texture": "#metal"},
+        "south": {"uv": [0, 8, 4, 11], "texture": "#metal"},
+        "west": {"uv": [11, 4, 14, 7], "texture": "#metal"},
+        "up": {"uv": [8, 0, 11, 4], "rotation": 90, "texture": "#metal"},
+        "down": {"uv": [11, 0, 14, 4], "rotation": 90, "texture": "#metal"}
+      }
+    },
+    {
+      "name": "tooth_south",
+      "from": [6.5, 6.5, 13],
+      "to": [9.5, 9.5, 17],
+      "faces": {
+        "north": {"uv": [11, 4, 14, 7], "texture": "#metal"},
+        "east": {"uv": [4, 8, 0, 11], "texture": "#metal"},
+        "south": {"uv": [8, 4, 11, 7], "texture": "#metal"},
+        "west": {"uv": [0, 8, 4, 11], "texture": "#metal"},
+        "up": {"uv": [8, 4, 11, 0], "texture": "#metal"},
+        "down": {"uv": [11, 0, 14, 4], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "tooth_west",
+      "from": [-1, 6.5, 6.5],
+      "to": [3, 9.5, 9.5],
+      "faces": {
+        "north": {"uv": [0, 8, 4, 11], "texture": "#metal"},
+        "east": {"uv": [11, 4, 14, 7], "texture": "#metal"},
+        "south": {"uv": [4, 8, 0, 11], "texture": "#metal"},
+        "west": {"uv": [8, 4, 11, 7], "texture": "#metal"},
+        "up": {"uv": [8, 4, 11, 0], "rotation": 90, "texture": "#metal"},
+        "down": {"uv": [11, 4, 14, 0], "rotation": 90, "texture": "#metal"}
+      }
+    },
+    {
+      "name": "tooth_north_cw",
+      "from": [6.5, 6.5, -1],
+      "to": [9.5, 9.5, 3],
+      "forge_data": {"calculate_normals": true},
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+      "faces": {
+        "north": {"uv": [8, 4, 11, 7], "texture": "#metal"},
+        "east": {"uv": [0, 8, 4, 11], "texture": "#metal"},
+        "south": {"uv": [11, 4, 14, 7], "texture": "#metal"},
+        "west": {"uv": [4, 8, 0, 11], "texture": "#metal"},
+        "up": {"uv": [8, 0, 11, 4], "texture": "#metal"},
+        "down": {"uv": [11, 4, 14, 0], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "tooth_north_ccw",
+      "from": [6.5, 6.5, -1],
+      "to": [9.5, 9.5, 3],
+      "forge_data": {"calculate_normals": true},
+      "rotation": {"angle": -45, "axis": "y", "origin": [8, 8, 8]},
+      "faces": {
+        "north": {"uv": [8, 4, 11, 7], "texture": "#metal"},
+        "east": {"uv": [0, 8, 4, 11], "texture": "#metal"},
+        "south": {"uv": [11, 4, 14, 7], "texture": "#metal"},
+        "west": {"uv": [4, 8, 0, 11], "texture": "#metal"},
+        "up": {"uv": [8, 0, 11, 4], "texture": "#metal"},
+        "down": {"uv": [11, 4, 14, 0], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "tooth_south_cw",
+      "from": [6.5, 6.5, 13],
+      "to": [9.5, 9.5, 17],
+      "forge_data": {"calculate_normals": true},
+      "rotation": {"angle": 45, "axis": "y", "origin": [8, 8, 8]},
+      "faces": {
+        "north": {"uv": [11, 4, 14, 7], "texture": "#metal"},
+        "east": {"uv": [4, 8, 0, 11], "texture": "#metal"},
+        "south": {"uv": [8, 4, 11, 7], "texture": "#metal"},
+        "west": {"uv": [0, 8, 4, 11], "texture": "#metal"},
+        "up": {"uv": [8, 4, 11, 0], "texture": "#metal"},
+        "down": {"uv": [11, 0, 14, 4], "texture": "#metal"}
+      }
+    },
+    {
+      "name": "tooth_south_ccw",
+      "from": [6.5, 6.5, 13],
+      "to": [9.5, 9.5, 17],
+      "forge_data": {"calculate_normals": true},
+      "rotation": {"angle": -45, "axis": "y", "origin": [8, 8, 8]},
+      "faces": {
+        "north": {"uv": [11, 4, 14, 7], "texture": "#metal"},
+        "east": {"uv": [4, 8, 0, 11], "texture": "#metal"},
+        "south": {"uv": [8, 4, 11, 7], "texture": "#metal"},
+        "west": {"uv": [0, 8, 4, 11], "texture": "#metal"},
+        "up": {"uv": [8, 4, 11, 0], "texture": "#metal"},
+        "down": {"uv": [11, 0, 14, 4], "texture": "#metal"}
+      }
+    }
+  ]
+}

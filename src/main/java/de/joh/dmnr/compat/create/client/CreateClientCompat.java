@@ -15,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 public class CreateClientCompat {
     public static void init(@NotNull IEventBus modBus) {
         SpectralMotorModel.init();
+        EngineModel.init();
         modBus.addListener(CreateClientCompat::onRegisterRenderers);
         modBus.addListener(CreateClientCompat::onClientSetup);
     }
@@ -24,12 +25,20 @@ public class CreateClientCompat {
      */
     private static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(CreateInit.SPECTRAL_MOTOR_ENTITY.get(), SpectralMotorRenderer::new);
+        event.registerBlockEntityRenderer(CreateInit.ENGINE_ENTITY.get(), EngineRenderer::new);
     }
 
     private static void onClientSetup(FMLClientSetupEvent event) {
-        event.enqueueWork(() -> SimpleBlockEntityVisualizer.builder(CreateInit.SPECTRAL_MOTOR_ENTITY.get())
-                .factory(SpectralMotorVisual::new)
-                .skipVanillaRender(be -> true)
-                .apply());
+        event.enqueueWork(() -> {
+            SimpleBlockEntityVisualizer.builder(CreateInit.SPECTRAL_MOTOR_ENTITY.get())
+                    .factory(SpectralMotorVisual::new)
+                    .skipVanillaRender(be -> true)
+                    .apply();
+
+            SimpleBlockEntityVisualizer.builder(CreateInit.ENGINE_ENTITY.get())
+                    .factory(EngineVisual::new)
+                    .skipVanillaRender(be -> true)
+                    .apply();
+        });
     }
 }

@@ -1,0 +1,10 @@
+{
+  "loader": "forge:composite",
+  "children": {
+    "gear": {"parent": "dmnr:block/arcane_engine/gear"},
+    "caps": {"parent": "dmnr:block/arcane_engine/caps"}
+  },
+  "textures": {
+    "particle": "mna:block/artifice/decoration/transmuted_silver_block"
+  }
+}

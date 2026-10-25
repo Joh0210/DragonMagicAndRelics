@@ -155,6 +155,11 @@
   "gui.dmnr.altar_me_interface.status.out_of_range": "The Altar of Arcana is more than 8 blocks away",
   "block.dmnr.spectral_motor": "Spectral Motor",
   "block.dmnr.spectral_motor.remaining": "Vanishes in %s seconds",
+  "block.dmnr.arcane_engine": "Arcane Engine",
+  "item.dmnr.arcane_engine.description": "A shaft that never stops turning. Its sides mesh with small cogwheels.",
+  "block.dmnr.brimstone_engine": "Brimstone Engine",
+  "item.dmnr.brimstone_engine.description": "The upgraded Arcane Engine, fed by hellfire. Its sides mesh with small cogwheels.",
+  "block.dmnr.engine.output": "Generates %s RPM with %s SU of stress capacity",
 
   "key.categories.mma": "Modular Magic Armor",
   "key.mma.spellbookopen": "Book Quick Select",

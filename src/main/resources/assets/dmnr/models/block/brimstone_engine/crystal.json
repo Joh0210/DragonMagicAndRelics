@@ -1,0 +1,7 @@
+{
+  "parent": "dmnr:block/arcane_engine/crystal",
+  "textures": {
+    "crystal": "minecraft:block/lava_flow",
+    "particle": "minecraft:block/lava_flow"
+  }
+}
