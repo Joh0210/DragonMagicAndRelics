@@ -37,7 +37,7 @@ Guidance for Claude Code when working in this repository.
 
 - `gradle.properties` is the **single source of truth** for all versions and mod metadata. `*_version` is the artifact used in development, `*_version_range` the range written into `mods.toml` (`mna_version`, `magichem_version`, `jei_version` are CurseMaven file IDs).
 - `src/main/templates/META-INF/mods.toml` and `src/main/templates/pack.mcmeta` are templates. The `generateModMetadata` task in `build.gradle` expands their `${...}` placeholders; every placeholder must be listed in its `replaceProperties` map. Never put `META-INF/mods.toml` or `pack.mcmeta` into `src/main/resources`.
-- Mod dependencies are declared with the remapping configurations `modImplementation`, `modCompileOnly`, `modRuntimeOnly` and `modLocalRuntime` (development runs only). They are **not transitive**; every required mod has to be listed explicitly. Every repository has a `content { includeGroup ... }` filter.
+- Mod dependencies are declared with the remapping configurations `modImplementation`, `modCompileOnly`, `modRuntimeOnly`, `modLocalRuntime` (development runs only) and `modLocalGameRuntime` (development runs except `runData`, for mods whose own data generators break it, currently MagiChem). They are **not transitive**; every required mod has to be listed explicitly. Every repository has a `content { includeGroup ... }` filter.
 - A new required mod needs: version + range in `gradle.properties`, a dependency in `build.gradle`, an entry in the `replaceProperties` map and a `[[dependencies.${mod_id}]]` block in the `mods.toml` template.
 - There is no Mixin setup. If a Mixin ever becomes necessary, it needs the Mixin annotation processor, a `mixin { }` block and the `MixinConfigs` manifest attribute (see the ModDevGradle `LEGACY.md`).
 
@@ -94,27 +94,33 @@ src/main/java/de/joh/dmnr/
 │   ├── ritual/                    Custom M&A ritual effects
 │   ├── event/                     Forge bus handlers: CommonEventHandler, DamageEventHandler, MagicEventHandler
 │   └── util/                      CommonConfig (dmnr-common.toml), RLoc (ResourceLocation helper)
+├── datagen/                       Data generators (GatherDataEvent): blockstates, block models, item models, tags, block loot tables
 └── networking/                    ModMessages (SimpleChannel) and packet/ (S2C/C2S packets)
 src/main/templates/                META-INF/mods.toml, pack.mcmeta (expanded from gradle.properties)
 src/main/resources/
-├── assets/dmnr/                   lang/ (en_us, zh_cn, ko_kr, ru_ru), guide/ (Codex entries), textures/, models/,
-│                                  blockstates/, geo/ + animations/ (GeckoLib)
-└── data/
-    ├── dmnr/                      recipes/ (manaweaving, eldrin_altar, rituals, components, shapes, magichem, progression),
-    │                              advancements/, loot_tables/, damage_type/, tags/
-    ├── curios/tags/items/         Assignment of items to curio slots
-    ├── mna/tags/items/            Extensions of M&A tags (e.g. relics)
-    └── minecraft/tags/            Vanilla tags (mineable, damage_type)
-src/generated/resources/           Datagen output (currently empty, included as a resource directory)
+├── assets/dmnr/                   lang/ (en_us, zh_cn, ko_kr, ru_ru), guide/ (Codex entries), textures/,
+│                                  models/block/<block_id>/ (hand-made parts: element models, OBJ wrappers + .obj,
+│                                  Flywheel partial models), models/item/obj/ (OBJ models), geo/ + animations/ (GeckoLib)
+└── data/dmnr/                     recipes/ (eldrin_altar, rituals, components, shapes, magichem, progression),
+                                   advancements/, damage_type/
+src/generated/resources/           Datagen output (./gradlew runData), committed, never edited by hand:
+├── assets/dmnr/blockstates/       Blockstates (one variant per block)
+├── assets/dmnr/models/block/      Top-level block models <block_id>.json (the subfolders are hand-made, see above)
+├── assets/dmnr/models/item/       Item models
+├── data/dmnr/recipes/             Manaweaving recipes: manaweaving/, ae2/ and create/ (integrations, forge:conditional)
+└── data/                          loot_tables/ (blocks) and all tags: dmnr/, curios/ (curio slots),
+                                   mna/ (e.g. relics), minecraft/ (mineable, damage_type), create/ (non_movable)
 ```
 
 ## Conventions
 
-- **Registration**: new content is registered in the matching `*Init` class via `DeferredRegister`/`RegistryObject` (`ItemInit.ITEMS.register("snake_case_id", ...)`). Spells and rituals are registered in `SpellInit`/`RitualInit` via `RegisterEvent` on the mod bus; always create `ResourceLocation`s via `RLoc.create(...)`.
+- **Registration**: new content is registered in the matching `*Init` class via `DeferredRegister`/`RegistryObject` (`ItemInit.ITEMS.register("snake_case_id", ...)`). Curios are registered with `ItemInit.registerCurio("snake_case_id", CurioSlot.<SLOT>, ...)`, which also assigns them to their Curios slot (see "Data generation"). Spells and rituals are registered in `SpellInit`/`RitualInit` via `RegisterEvent` on the mod bus; always create `ResourceLocation`s via `RLoc.create(...)`.
 - **Event handlers**: classes annotated with `@Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = ...)` and static `@SubscribeEvent` methods. Keep client code strictly in `client/` or guard it with `@OnlyIn(Dist.CLIENT)`/`Dist.CLIENT`.
 - **Dragon Magic items**: extend `BaseDragonMagicItem` / `ChargeableDragonMagicItem` or implement `IDragonMagicItem` (package `de.joh.tnl.api.item`). `dragonMagicID()` returns the translation key `item.dmnr.<item_id>.dragonmagic`; the effect is implemented via `hasDragonMagic(entity)` or `onDMEquip`/`onDMDiscard`. Details: `.junie/skills/convert-to-dm/SKILL.md` (package names there are outdated, see above).
 - **Translations**: every new key belongs at least in `assets/dmnr/lang/en_us.json`; tooltips use `item.dmnr.<id>.description`. New content should get a Codex entry in `assets/dmnr/guide/base/en_us.json` (or the folder of the optional mod).
-- **Recipes/data**: JSON files are maintained by hand (no active datagen). M&A-specific recipe types live in the respective subfolders of `data/dmnr/recipes`. New curios need an entry in the matching `data/curios/tags/items/*.json`.
+- **Data generation**: blockstates, block models (`models/block/<block_id>.json`), item models, tags (incl. curio slots), block loot tables and the manaweaving recipes are generated by the providers in `de.joh.dmnr.datagen` into `src/generated/resources`. Change the provider and run `./gradlew runData` instead of editing these files, and commit the regenerated output. New items get a flat item model with the texture `item/<item_id>` (block items: their block model) automatically; special models are added in the provider. Most tag entries are listed explicitly in the tag providers, except two tags derived from the items: the Curios slot tags (`curios:<slot>`) come from the slot passed to `ItemInit.registerCurio`, and `mna:relics` contains every item that implements `IRelic`. `runData` fails for an `ICurioItem` registered without a slot; curios that do not implement `ICurioItem` (effects handled by events) are not checked, so they must not be forgotten. A new block needs a blockstate and a model in `ModBlockStateProvider` (the blockstate is created automatically, the model must be defined there explicitly) and a loot table in `ModBlockLootProvider`, otherwise `runData` fails. Only the files `models/block/<block_id>.json` are generated; the subfolders of `models/block` (element models, OBJ wrappers, Flywheel partial models that are loaded by path) are maintained by hand in `src/main/resources`. A file must never exist in both `src/main/resources` and `src/generated/resources`. Providers that handle every item or block of the mod take them from `DataGenerators.itemRegisters()`/`blockRegisters()`; a new `DeferredRegister` (e.g. of a new integration) must be added there, otherwise `runData` fails.
+- **Manaweaving recipes** (`mna:manaweaving-recipe`) come from `ModRecipeProvider` and are written with `ManaweavingRecipeBuilder` (shared base `ItemAndPatternRecipeBuilder`, meant to be reused for `components`/`shapes`). IDs: `dmnr:manaweaving/<name>`; recipes of an integration are `dmnr:<mod_id>/<name>`, wrapped in `forge:conditional` with `forge:mod_loaded` (`saveConditional`). Never change a recipe ID: the Codex references the recipes by ID. M&A resolves an entry of `items` as an item if one with that ID exists, otherwise as an item tag, so tags are written without `#`; `items` is matched shapeless, `patterns` in order. Pattern IDs are always the full form `mna:manaweave_patterns/<name>` (constants in `ModRecipeProvider`). `quantity` is always written (M&A default: 1). The builder fails `runData` if the tier is outside 1–5, `items`/`patterns` are empty or too long (9/6), the output or an item is not registered, a tag uses an item ID, or a tag/pattern does not exist according to the `ExistingFileHelper`. Not checked: the faction ID, whether a tag contains items, and the tier of the ingredients.
+- **Recipes/data**: all other JSON files (all other recipe types: `eldrin_altar`, `components`, `shapes`, `rituals`, `progression`, `magichem`; advancements, damage types, Codex, lang) are maintained by hand. M&A-specific recipe types live in the respective subfolders of `data/dmnr/recipes`.
 - **Configuration**: balancing values should be `ForgeConfigSpec` entries in `CommonConfig` instead of hardcoded values whenever they should be adjustable for modpacks.
 - **Code style**: English identifiers and comments, Javadoc on classes with `@author Joh0210`, `@NotNull`/`@Nullable` from `org.jetbrains.annotations`. Follow the style of the surrounding class.
 - **Mixins** only when there is no other way via events/APIs – they can easily cause incompatibilities (see "Build configuration" for the required setup).

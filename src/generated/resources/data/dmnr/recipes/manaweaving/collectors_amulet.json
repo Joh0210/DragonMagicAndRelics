@@ -1,0 +1,18 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "mna:mundane_amulet",
+    "mna:mundane_ring",
+    "mna:mundane_ring",
+    "mna:mundane_ring",
+    "minecraft:nether_star"
+  ],
+  "output": "dmnr:collectors_amulet",
+  "patterns": [
+    "mna:manaweave_patterns/bolt",
+    "mna:manaweave_patterns/inverted_triangle",
+    "mna:manaweave_patterns/diamond"
+  ],
+  "quantity": 1,
+  "tier": 3
+}

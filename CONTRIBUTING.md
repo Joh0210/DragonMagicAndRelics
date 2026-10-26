@@ -33,9 +33,18 @@ Subpackages in `common` group game areas. Content is initialized in the correspo
 Events are handled in the `event` package, and reusable helper functions are located in `util`.
 
 ### Data
-Located in: `src/main/resources`
+Hand-made data is located in: `src/main/resources`
 - **`assets`**: Client-specific content (textures, translations, guidebook)
-- **`data`**: Server-synced definitions (recipes, loot tables, tags)
+- **`data`**: Server-synced definitions (recipes, advancements, damage types)
+
+### Generated data
+Located in: `src/generated/resources`
+
+Blockstates, block models (`models/block/<block_id>.json`), item models, tags (including the Curios slots), block loot tables and the manaweaving recipes are created by the data generators in `src/main/java/de/joh/dmnr/datagen`.
+- Never edit these files by hand. Change the matching provider instead, run the `runData` Gradle task and commit the regenerated files together with your code.
+- A file must never exist in both `src/main/resources` and `src/generated/resources`, the build fails in that case.
+- New items get an item model with their texture `textures/item/<item_id>.png` automatically. Curios are registered with `ItemInit.registerCurio(...)`, which also assigns their Curios slot.
+- `runData` checks the data while generating it (e.g. missing textures, unknown items in recipes, curios without a slot) and fails with a list of the problems.
 
 ### Build configuration
 - **`gradle.properties`**: All versions (Minecraft, NeoForge, dependencies) and mod metadata. Change versions only here.

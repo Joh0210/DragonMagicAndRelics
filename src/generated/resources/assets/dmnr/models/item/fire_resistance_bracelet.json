@@ -1,0 +1,123 @@
+{
+  "parent": "forge:item/default",
+  "children": {
+    "main": {
+      "automatic_culling": true,
+      "emissive_ambient": false,
+      "flip_v": true,
+      "loader": "forge:obj",
+      "model": "dmnr:models/item/obj/fire_resistance_bracelet.obj",
+      "shade_quads": true
+    }
+  },
+  "display": {
+    "firstperson_lefthand": {
+      "rotation": [
+        15,
+        -90,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "translation": [
+        0,
+        8,
+        2.5
+      ]
+    },
+    "firstperson_righthand": {
+      "rotation": [
+        15,
+        -90,
+        0
+      ],
+      "scale": [
+        0.75,
+        0.75,
+        0.75
+      ],
+      "translation": [
+        0,
+        8,
+        2.5
+      ]
+    },
+    "fixed": {
+      "rotation": [
+        -90,
+        180,
+        0
+      ],
+      "scale": [
+        2,
+        2,
+        2
+      ],
+      "translation": [
+        0,
+        0,
+        -20
+      ]
+    },
+    "ground": {
+      "scale": [
+        0.6,
+        0.6,
+        0.6
+      ],
+      "translation": [
+        0,
+        4,
+        0
+      ]
+    },
+    "gui": {
+      "rotation": [
+        30,
+        30,
+        15
+      ],
+      "scale": [
+        2,
+        2,
+        2
+      ],
+      "translation": [
+        -3.5,
+        13,
+        0
+      ]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [
+        90,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        7.5
+      ]
+    },
+    "thirdperson_righthand": {
+      "rotation": [
+        90,
+        180,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        7.5
+      ]
+    }
+  },
+  "item_render_order": [
+    "main"
+  ],
+  "loader": "forge:composite"
+}

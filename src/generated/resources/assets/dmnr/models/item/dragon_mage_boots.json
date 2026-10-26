@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dmnr:item/dragon_mage_boots_base",
+    "layer1": "dmnr:item/dragon_mage_boots_overlay"
+  }
+}

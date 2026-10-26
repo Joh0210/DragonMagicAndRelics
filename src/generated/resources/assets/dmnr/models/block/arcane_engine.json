@@ -1,0 +1,19 @@
+{
+  "parent": "minecraft:block/block",
+  "children": {
+    "crystal": {
+      "parent": "dmnr:block/arcane_engine/crystal"
+    },
+    "rotor": {
+      "parent": "dmnr:block/arcane_engine/rotor"
+    }
+  },
+  "item_render_order": [
+    "rotor",
+    "crystal"
+  ],
+  "loader": "forge:composite",
+  "textures": {
+    "particle": "mna:block/artifice/decoration/transmuted_silver_block"
+  }
+}

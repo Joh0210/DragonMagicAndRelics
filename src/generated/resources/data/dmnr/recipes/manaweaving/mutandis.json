@@ -1,0 +1,18 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "mna:vinteum_dust",
+    "minecraft:egg",
+    "minecraft:nether_wart",
+    "minecraft:bone_meal",
+    "mna:ma_flowers"
+  ],
+  "output": "dmnr:mutandis",
+  "patterns": [
+    "mna:manaweave_patterns/square",
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/square"
+  ],
+  "quantity": 16,
+  "tier": 1
+}

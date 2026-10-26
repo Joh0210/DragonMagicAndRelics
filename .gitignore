@@ -9,6 +9,9 @@ run/
 runs/
 run-data/
 
+# Cache of the data generators (hashes and timestamps of the last run); the generated files themselves are committed
+src/generated/resources/.cache/
+
 # IntelliJ IDEA
 .idea/
 .idea_modules/

@@ -1,0 +1,32 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "ae2"
+        }
+      ],
+      "recipe": {
+        "type": "mna:manaweaving-recipe",
+        "items": [
+          "ae2:interface",
+          "mna:rune_marking",
+          "ae2:engineering_processor",
+          "ae2:fluix_crystal",
+          "mna:purified_vinteum_dust",
+          "mna:chimerite_gem"
+        ],
+        "output": "dmnr:altar_me_interface",
+        "patterns": [
+          "mna:manaweave_patterns/square",
+          "mna:manaweave_patterns/hourglass",
+          "mna:manaweave_patterns/circle"
+        ],
+        "quantity": 1,
+        "tier": 3
+      }
+    }
+  ]
+}

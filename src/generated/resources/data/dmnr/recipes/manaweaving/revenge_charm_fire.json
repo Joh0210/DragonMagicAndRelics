@@ -1,0 +1,17 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "mna:charm_pattern",
+    "mna:mana_crystal_fragment",
+    "minecraft:iron_sword",
+    "minecraft:flint_and_steel"
+  ],
+  "output": "dmnr:revenge_charm_fire",
+  "patterns": [
+    "mna:manaweave_patterns/bolt",
+    "mna:manaweave_patterns/knot"
+  ],
+  "quantity": 1,
+  "requiredFaction": "mna:demons",
+  "tier": 3
+}

@@ -1,0 +1,22 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "mna:brimstone_charm",
+    "minecraft:coal",
+    "minecraft:coal",
+    "minecraft:coal",
+    "minecraft:coal",
+    "minecraft:coal",
+    "minecraft:coal",
+    "minecraft:coal",
+    "minecraft:coal"
+  ],
+  "output": "dmnr:brimstone_coal",
+  "patterns": [
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/diamond"
+  ],
+  "quantity": 1,
+  "tier": 4
+}

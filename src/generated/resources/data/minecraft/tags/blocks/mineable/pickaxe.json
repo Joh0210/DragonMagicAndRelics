@@ -1,0 +1,17 @@
+{
+  "values": [
+    "dmnr:rift_emitter",
+    {
+      "id": "dmnr:altar_me_interface",
+      "required": false
+    },
+    {
+      "id": "dmnr:arcane_engine",
+      "required": false
+    },
+    {
+      "id": "dmnr:brimstone_engine",
+      "required": false
+    }
+  ]
+}

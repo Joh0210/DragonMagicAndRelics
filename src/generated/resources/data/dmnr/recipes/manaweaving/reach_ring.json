@@ -1,0 +1,19 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "minecraft:ender_eye",
+    "minecraft:ender_eye",
+    "mna:resonating_lump",
+    "mna:resonating_lump",
+    "mna:greater_mote_ender",
+    "dmnr:reach_ring_minor"
+  ],
+  "output": "dmnr:reach_ring",
+  "patterns": [
+    "mna:manaweave_patterns/hourglass",
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/inverted_triangle"
+  ],
+  "quantity": 1,
+  "tier": 4
+}

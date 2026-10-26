@@ -1,0 +1,22 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "minecraft:ender_pearl",
+    "minecraft:ender_pearl",
+    "minecraft:ender_chest",
+    "minecraft:obsidian",
+    "minecraft:obsidian",
+    "minecraft:obsidian",
+    "minecraft:gold_block",
+    "mna:mote_ender",
+    "mna:arcane_ash"
+  ],
+  "output": "dmnr:rift_emitter",
+  "patterns": [
+    "mna:manaweave_patterns/square",
+    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/square"
+  ],
+  "quantity": 1,
+  "tier": 3
+}

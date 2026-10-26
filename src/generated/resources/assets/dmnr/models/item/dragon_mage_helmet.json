@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dmnr:item/dragon_mage_helmet_base",
+    "layer1": "dmnr:item/dragon_mage_helmet_overlay"
+  }
+}

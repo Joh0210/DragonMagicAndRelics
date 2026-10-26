@@ -1,0 +1,18 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "minecraft:ender_pearl",
+    "minecraft:emerald",
+    "minecraft:gold_block",
+    "mna:stone_rune_purple",
+    "mna:mundane_ring",
+    "mna:mote_ender"
+  ],
+  "output": "dmnr:reach_ring_minor",
+  "patterns": [
+    "mna:manaweave_patterns/square",
+    "mna:manaweave_patterns/circle"
+  ],
+  "quantity": 1,
+  "tier": 2
+}

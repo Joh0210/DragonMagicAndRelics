@@ -1,9 +1,0 @@
-{
-	"replace": false,
-	"values": [
-		{
-			"id": "dmnr:altar_me_interface",
-			"required": false
-		}
-	]
-}

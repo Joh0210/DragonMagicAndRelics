@@ -1,0 +1,16 @@
+{
+  "values": [
+    {
+      "id": "dmnr:spectral_motor",
+      "required": false
+    },
+    {
+      "id": "dmnr:arcane_engine",
+      "required": false
+    },
+    {
+      "id": "dmnr:brimstone_engine",
+      "required": false
+    }
+  ]
+}

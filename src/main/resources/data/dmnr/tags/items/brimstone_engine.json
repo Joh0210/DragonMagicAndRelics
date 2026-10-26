@@ -1,9 +1,0 @@
-{
-	"replace": false,
-	"values": [
-		{
-			"id": "dmnr:brimstone_engine",
-			"required": false
-		}
-	]
-}

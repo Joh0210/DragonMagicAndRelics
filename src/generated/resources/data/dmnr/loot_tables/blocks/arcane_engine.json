@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:tag",
+          "expand": false,
+          "name": "dmnr:arcane_engine"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "dmnr:blocks/arcane_engine"
+}

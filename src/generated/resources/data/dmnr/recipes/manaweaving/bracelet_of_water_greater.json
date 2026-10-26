@@ -1,0 +1,21 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "minecraft:fire_coral",
+    "minecraft:horn_coral",
+    "minecraft:tube_coral",
+    "minecraft:bubble_coral",
+    "minecraft:brain_coral",
+    "mna:greater_mote_water",
+    "dmnr:bracelet_of_water"
+  ],
+  "output": "dmnr:bracelet_of_water_greater",
+  "patterns": [
+    "mna:manaweave_patterns/knot",
+    "mna:manaweave_patterns/knot2",
+    "mna:manaweave_patterns/knot3",
+    "mna:manaweave_patterns/knot4"
+  ],
+  "quantity": 1,
+  "tier": 4
+}

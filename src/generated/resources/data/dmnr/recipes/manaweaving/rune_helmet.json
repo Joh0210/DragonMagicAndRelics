@@ -1,0 +1,16 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "minecraft:golden_helmet",
+    "mna:infused_thread",
+    "mna:rune_arcane",
+    "minecraft:amethyst_shard"
+  ],
+  "output": "dmnr:rune_helmet",
+  "patterns": [
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/diamond"
+  ],
+  "quantity": 1,
+  "tier": 2
+}
