@@ -1,12 +1,11 @@
 {
   "type": "mna:eldrin-altar",
-  "output": "dmnr:revenge_charm_fire_major",
-  "tier": 5,
   "items": [
-    "dmnr:revenge_charm_dmg",
+    "dmnr:revenge_charm_fire",
     "minecraft:netherite_ingot",
     "minecraft:netherite_ingot"
   ],
+  "output": "dmnr:revenge_charm_fire_major",
   "power_requirements": [
     {
       "affinity": "WATER",
@@ -28,5 +27,7 @@
       "affinity": "ENDER",
       "amount": 1000
     }
-  ]
+  ],
+  "quantity": 1,
+  "tier": 5
 }

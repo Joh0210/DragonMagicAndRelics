@@ -22,14 +22,16 @@ import java.util.function.Consumer;
 
 /**
  * Base of the builders for the recipes of Mana and Artifice that consist of items and manaweaving patterns
- * ({@code com.mna.recipes.ItemAndPatternRecipe}): manaweaving recipes, and later spell components and shapes. They
- * share {@code tier}, {@code requiredFaction}, {@code items} and {@code patterns} and only differ in their output.
+ * ({@code com.mna.recipes.ItemAndPatternRecipe}): manaweaving recipes, Eldrin Altar recipes, and later spell components
+ * and shapes. They share {@code tier}, {@code requiredFaction}, {@code items} and {@code patterns} and only differ in
+ * their output and additional data.
  * <p>
  * The format follows M&A's parser:
  * <ul>
  *     <li>{@code items} is a list of IDs. M&A resolves an ID as an item if it is registered as one and as an item tag
  *     otherwise, so tags are written without {@code #}. The order is kept, although the items are matched shapeless.</li>
- *     <li>{@code patterns} is a list of manaweave pattern IDs. They are matched in order.</li>
+ *     <li>{@code patterns} is a list of manaweave pattern IDs. They are matched in order. Recipes of a crafting station
+ *     without patterns ({@link #maxPatterns()} is 0, e.g. the Eldrin Altar) have no {@code patterns}.</li>
  * </ul>
  * {@link #build} fails the data run with a list of all problems (see {@link #validate}). No recipe advancements are
  * generated.
@@ -125,7 +127,8 @@ public abstract class ItemAndPatternRecipeBuilder<T extends ItemAndPatternRecipe
     protected abstract int maxItems();
 
     /**
-     * @return the maximum number of patterns the crafting station accepts; M&A ignores the remaining ones
+     * @return the maximum number of patterns the crafting station accepts; M&A ignores the remaining ones. 0 if the
+     * crafting station does not use patterns: then the recipe must not have any and {@code patterns} is not written.
      */
     protected abstract int maxPatterns();
 
@@ -138,6 +141,37 @@ public abstract class ItemAndPatternRecipeBuilder<T extends ItemAndPatternRecipe
      * Adds the problems of the output to {@code problems}.
      */
     protected abstract void validateOutput(List<String> problems);
+
+    /**
+     * Writes the fields of the concrete recipe type that follow {@code items} and {@code patterns} into the JSON. Does
+     * nothing by default.
+     */
+    protected void serializeAdditionalData(JsonObject json) {
+    }
+
+    /**
+     * Writes the output and the quantity of a recipe that crafts an item ({@code output}, {@code quantity}).
+     */
+    protected static void serializeItemOutput(JsonObject json, Item output, int quantity) {
+        json.addProperty("output", ForgeRegistries.ITEMS.getKey(output).toString());
+        json.addProperty("quantity", quantity);
+    }
+
+    /**
+     * Adds the problems of the output of a recipe that crafts an item to {@code problems}: the item is not registered,
+     * or the quantity is outside of 1 and its max stack size.
+     */
+    protected static void validateItemOutput(List<String> problems, Item output, int quantity) {
+        ResourceLocation outputId = ForgeRegistries.ITEMS.getKey(output);
+        if (!isRegisteredItem(outputId)) {
+            problems.add("output " + outputId + " is not registered");
+        }
+
+        int maxStackSize = output.getDefaultInstance().getMaxStackSize();
+        if (quantity < 1 || quantity > maxStackSize) {
+            problems.add("quantity " + quantity + " is outside of 1-" + maxStackSize);
+        }
+    }
 
     /**
      * Validates the recipe and creates it.
@@ -172,7 +206,8 @@ public abstract class ItemAndPatternRecipeBuilder<T extends ItemAndPatternRecipe
      * @return the problems, empty if the recipe is valid:
      * <ul>
      *     <li>the tier is outside of {@value MIN_TIER}–{@value MAX_TIER}</li>
-     *     <li>{@code items} or {@code patterns} are empty or longer than the crafting station allows</li>
+     *     <li>{@code items} or {@code patterns} are empty or longer than the crafting station allows, or there are
+     *     patterns although the crafting station does not use any</li>
      *     <li>an item is not registered, or a tag has the ID of an item (M&A would resolve it as that item)</li>
      *     <li>a tag or pattern does not exist according to the {@link ExistingFileHelper}</li>
      *     <li>the output is invalid, see {@link #validateOutput}</li>
@@ -206,7 +241,11 @@ public abstract class ItemAndPatternRecipeBuilder<T extends ItemAndPatternRecipe
             }
         }
 
-        if (patterns.isEmpty()) {
+        if (maxPatterns() == 0) {
+            if (!patterns.isEmpty()) {
+                problems.add("patterns has " + patterns.size() + " entries, but the crafting station does not use patterns");
+            }
+        } else if (patterns.isEmpty()) {
             problems.add("patterns is empty");
         } else if (patterns.size() > maxPatterns()) {
             problems.add("patterns has " + patterns.size() + " entries, the maximum is " + maxPatterns());
@@ -269,9 +308,13 @@ public abstract class ItemAndPatternRecipeBuilder<T extends ItemAndPatternRecipe
             inputs.forEach(input -> items.add(input.id().toString()));
             json.add("items", items);
 
-            JsonArray patternArray = new JsonArray();
-            patterns.forEach(pattern -> patternArray.add(pattern.toString()));
-            json.add("patterns", patternArray);
+            if (maxPatterns() > 0) {
+                JsonArray patternArray = new JsonArray();
+                patterns.forEach(pattern -> patternArray.add(pattern.toString()));
+                json.add("patterns", patternArray);
+            }
+
+            serializeAdditionalData(json);
         }
 
         @Override

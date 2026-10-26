@@ -40,7 +40,7 @@ Hand-made data is located in: `src/main/resources`
 ### Generated data
 Located in: `src/generated/resources`
 
-Blockstates, block models (`models/block/<block_id>.json`), item models, tags (including the Curios slots), block loot tables and the manaweaving recipes are created by the data generators in `src/main/java/de/joh/dmnr/datagen`.
+Blockstates, block models (`models/block/<block_id>.json`), item models, tags (including the Curios slots), block loot tables and the manaweaving and Eldrin Altar recipes are created by the data generators in `src/main/java/de/joh/dmnr/datagen`.
 - Never edit these files by hand. Change the matching provider instead, run the `runData` Gradle task and commit the regenerated files together with your code.
 - A file must never exist in both `src/main/resources` and `src/generated/resources`, the build fails in that case.
 - New items get an item model with their texture `textures/item/<item_id>.png` automatically. Curios are registered with `ItemInit.registerCurio(...)`, which also assigns their Curios slot.

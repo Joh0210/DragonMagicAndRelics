@@ -33,7 +33,7 @@ import java.util.stream.Stream;
  * {@code src/generated/resources} and must not be edited by hand.
  * <p>
  * Generated: blockstates, block models ({@code models/block/<block_id>.json}), item models, tags, block loot tables
- * and the manaweaving recipes ({@link ModRecipeProvider}). Everything else is still maintained by hand in
+ * and the manaweaving and Eldrin Altar recipes ({@link ModRecipeProvider}). Everything else is still maintained by hand in
  * {@code src/main/resources}, including the models in the subfolders of {@code models/block} and all other recipe
  * types.
  * <p>

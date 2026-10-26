@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
@@ -58,20 +57,11 @@ public class ManaweavingRecipeBuilder extends ItemAndPatternRecipeBuilder<Manawe
 
     @Override
     protected void serializeOutput(JsonObject json) {
-        json.addProperty("output", ForgeRegistries.ITEMS.getKey(output).toString());
-        json.addProperty("quantity", quantity);
+        serializeItemOutput(json, output, quantity);
     }
 
     @Override
     protected void validateOutput(List<String> problems) {
-        ResourceLocation outputId = ForgeRegistries.ITEMS.getKey(output);
-        if (!isRegisteredItem(outputId)) {
-            problems.add("output " + outputId + " is not registered");
-        }
-
-        int maxStackSize = output.getDefaultInstance().getMaxStackSize();
-        if (quantity < 1 || quantity > maxStackSize) {
-            problems.add("quantity " + quantity + " is outside of 1-" + maxStackSize);
-        }
+        validateItemOutput(problems, output, quantity);
     }
 }

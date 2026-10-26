@@ -1,10 +1,8 @@
 {
   "type": "mna:eldrin-altar",
-  "output": "dmnr:belt_of_life",
-  "tier": 4,
   "items": [
     "dmnr:belt_of_life_minor",
-    "diamond_block",
+    "minecraft:diamond_block",
     "mna:stone_rune_green",
     "mna:stone_rune_lime",
     "mna:cerublossom",
@@ -13,6 +11,7 @@
     "minecraft:emerald_block",
     "minecraft:redstone_block"
   ],
+  "output": "dmnr:belt_of_life",
   "power_requirements": [
     {
       "affinity": "EARTH",
@@ -22,5 +21,7 @@
       "affinity": "ARCANE",
       "amount": 400
     }
-  ]
+  ],
+  "quantity": 1,
+  "tier": 4
 }

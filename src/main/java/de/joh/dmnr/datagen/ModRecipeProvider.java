@@ -2,6 +2,7 @@ package de.joh.dmnr.datagen;
 
 import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
+import com.mna.api.affinity.Affinity;
 import com.mna.api.faction.FactionIDs;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.util.RLoc;
@@ -24,19 +25,24 @@ import org.jetbrains.annotations.NotNull;
 import java.util.function.Consumer;
 
 import static com.mna.items.ItemInit.*;
+import static de.joh.dmnr.datagen.EldrinAltarRecipeBuilder.eldrinAltar;
 import static de.joh.dmnr.datagen.ManaweavingRecipeBuilder.manaweaving;
 
 /**
- * Generates the manaweaving recipes ({@code data/dmnr/recipes/manaweaving}) and the manaweaving recipes of the
- * integrations ({@code data/dmnr/recipes/<mod_id>}), which are wrapped in a {@code forge:conditional} recipe with a
+ * Generates the manaweaving recipes ({@code data/dmnr/recipes/manaweaving}), the Eldrin Altar recipes
+ * ({@code data/dmnr/recipes/eldrin_altar}) and the manaweaving recipes of the integrations
+ * ({@code data/dmnr/recipes/<mod_id>}), which are wrapped in a {@code forge:conditional} recipe with a
  * {@code forge:mod_loaded} condition.
+ * <p>
+ * The recipes are grouped by the kind of item they craft, so that the upgrade stages of an item are next to each other,
+ * no matter at which crafting station they are crafted.
  * <p>
  * The items of Mana and Artifice are statically imported ({@code com.mna.items.ItemInit}), the items of this mod are
  * referenced through {@link ItemInit}.
  * <p>
  * The recipe IDs must not change: the Codex refers to the recipes by their ID.
- * <br>All other recipe types (Eldrin Altar, components, shapes, rituals, progression, MagiChem) are still maintained by
- * hand in {@code src/main/resources}.
+ * <br>All other recipe types (components, shapes, rituals, progression, MagiChem) are still maintained by hand in
+ * {@code src/main/resources}.
  * @author Joh0210
  */
 public class ModRecipeProvider extends RecipeProvider {
@@ -60,6 +66,10 @@ public class ModRecipeProvider extends RecipeProvider {
     private static final ResourceLocation TRIANGLE = pattern("triangle");
 
     private static final TagKey<Item> MA_FLOWERS = ItemTags.create(new ResourceLocation("mna", "ma_flowers"));
+
+    // The six core affinities, for Eldrin Altar recipes that need power of every affinity
+    private static final Affinity[] ALL_AFFINITIES = {Affinity.WATER, Affinity.FIRE, Affinity.EARTH, Affinity.WIND,
+            Affinity.ARCANE, Affinity.ENDER};
 
     private final ExistingFileHelper existingFileHelper;
 
@@ -120,6 +130,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .items(BRIMSTONE_CHARM.get(), Items.COAL, Items.COAL, Items.COAL, Items.COAL, Items.COAL, Items.COAL,
                         Items.COAL, Items.COAL)
                 .patterns(DIAMOND, DIAMOND, DIAMOND));
+
+        save(writer, "dragon_totem", eldrinAltar(ItemInit.DRAGON_TOTEM.get(), 5)
+                .items(ItemInit.DRAGON_TOTEM_EMPTY.get(), GREATER_MOTE_WATER.get(), GREATER_MOTE_EARTH.get(),
+                        GREATER_MOTE_FIRE.get(), GREATER_MOTE_AIR.get())
+                .power(3000, Affinity.ENDER, Affinity.ARCANE));
     }
 
     private void rings(Consumer<FinishedRecipe> writer) {
@@ -132,6 +147,10 @@ public class ModRecipeProvider extends RecipeProvider {
                         Items.GLOWSTONE_DUST, Items.GOLD_BLOCK, MOTE_AIR.get(), Items.GOLD_BLOCK, Items.FERMENTED_SPIDER_EYE)
                 .patterns(CIRCLE, DIAMOND, CIRCLE));
 
+        save(writer, "ocelot_ring_greater", eldrinAltar(ItemInit.OCELOT_RING_GREATER.get(), 5)
+                .items(ItemInit.OCELOT_RING.get(), Items.NETHERITE_INGOT, GREATER_MOTE_AIR.get(), Items.GOLD_INGOT)
+                .power(500, Affinity.WIND));
+
         save(writer, "reach_ring_minor", manaweaving(ItemInit.REACH_RING_MINOR.get(), 2)
                 .items(Items.ENDER_PEARL, Items.EMERALD, Items.GOLD_BLOCK, STONE_RUNE_PURPLE.get(), MUNDANE_RING.get(),
                         MOTE_ENDER.get())
@@ -141,6 +160,16 @@ public class ModRecipeProvider extends RecipeProvider {
                 .items(Items.ENDER_EYE, Items.ENDER_EYE, RESONATING_LUMP.get(), RESONATING_LUMP.get(),
                         GREATER_MOTE_ENDER.get(), ItemInit.REACH_RING_MINOR.get())
                 .patterns(HOURGLASS, SPLIT_TRIANGLE, INVERTED_TRIANGLE));
+
+        save(writer, "reach_ring_greater", eldrinAltar(ItemInit.REACH_RING_GREATER.get(), 5)
+                .items(ItemInit.REACH_RING.get(), ItemInit.DRAGON_CORE.get())
+                .power(2500, Affinity.ENDER));
+
+        save(writer, "projectile_reflection_ring", eldrinAltar(ItemInit.PROJECTILE_REFLECTION_RING.get(), 4)
+                .items(MUNDANE_RING.get(), com.mna.blocks.BlockInit.TARMA_ROOT.get(),
+                        com.mna.blocks.BlockInit.DESERT_NOVA.get(), RUNE_DEFENSE.get(), GREATER_MOTE_AIR.get(),
+                        GREATER_MOTE_ARCANE.get(), Items.GHAST_TEAR, Items.NETHERITE_INGOT, Items.PHANTOM_MEMBRANE)
+                .power(700, Affinity.WIND, Affinity.ARCANE));
 
         save(writer, "ring_of_spell_storing", manaweaving(ItemInit.RING_OF_SPELL_STORING.get(), 3)
                 .items(MUNDANE_BRACELET.get(), MOTE_ARCANE.get(), RUNE_ARCANE.get(), CHIMERITE_GEM.get(),
@@ -205,6 +234,11 @@ public class ModRecipeProvider extends RecipeProvider {
                         Items.AMETHYST_SHARD, GREATER_MOTE_EARTH.get())
                 .patterns(BOLT, STAR, BOLT));
 
+        save(writer, "defense_bracelet_greater", eldrinAltar(ItemInit.DEFENSE_BRACELET_GREATER.get(), 5)
+                .items(ItemInit.DEFENSE_BRACELET.get(), Items.OBSIDIAN, RUNE_DEFENSE.get(), Items.OBSIDIAN,
+                        Items.NETHERITE_CHESTPLATE, Items.OBSIDIAN, RUNE_DEFENSE.get(), Items.OBSIDIAN, Items.NETHER_STAR)
+                .power(2750, Affinity.EARTH));
+
         save(writer, "fire_resistance_bracelet", manaweaving(ItemInit.FIRE_RESISTANCE_BRACELET.get(), 4)
                 .requiredFaction(FactionIDs.DEMONS)
                 .items(BRIMSTONE_CHARM.get(), EMBERGLOW_BRACELET.get())
@@ -227,10 +261,57 @@ public class ModRecipeProvider extends RecipeProvider {
                         Items.MILK_BUCKET, ItemInit.DRAGON_CORE.get(), Items.TOTEM_OF_UNDYING, LIVING_FLAME.get())
                 .patterns(INVERTED_SPLIT_TRIANGLE, SPLIT_TRIANGLE, INFINITY, HOURGLASS, INFINITY));
 
+        save(writer, "regeneration_amulet", eldrinAltar(ItemInit.REGENERATION_AMULET.get(), 4)
+                .items(MUNDANE_AMULET.get(), Items.ENCHANTED_GOLDEN_APPLE, STONE_RUNE_RED.get(), Items.GHAST_TEAR,
+                        STONE_RUNE_RED.get(), Items.NETHER_STAR, STONE_RUNE_RED.get(), Items.GHAST_TEAR,
+                        STONE_RUNE_RED.get())
+                .power(1200, ALL_AFFINITIES));
+
+        save(writer, "faction_amulet", eldrinAltar(ItemInit.FACTION_AMULET.get(), 5)
+                .items(MUNDANE_AMULET.get(), Items.NETHER_STAR, MARK_OF_THE_COUNCIL.get(), Items.GOLD_BLOCK,
+                        MARK_OF_THE_FEY.get(), Items.GHAST_TEAR, MARK_OF_THE_NETHER.get(), Items.GOLD_BLOCK,
+                        MARK_OF_THE_UNDEAD.get())
+                .power(1000, ALL_AFFINITIES));
+
+        save(writer, "amulet_of_hellfire", eldrinAltar(ItemInit.AMULET_OF_HELLFIRE.get(), 5)
+                .requiredFaction(FactionIDs.DEMONS)
+                .items(EMBERGLOW_BRACELET.get(), Items.NETHERITE_INGOT, Items.NETHER_STAR, Items.NETHERITE_INGOT,
+                        GREATER_MOTE_FIRE.get(), Items.NETHERITE_INGOT, LIVING_FLAME.get(), Items.NETHERITE_INGOT,
+                        RUNE_FIRE.get())
+                .power(800, Affinity.FIRE)
+                .power(400, Affinity.ARCANE));
+
         save(writer, "belt_of_life_minor", manaweaving(ItemInit.BELT_OF_LIFE_MINOR.get(), 2)
                 .items(Items.GHAST_TEAR, INFUSED_SILK.get(), HEALING_POULTICE.get(), Items.GOLDEN_APPLE,
                         STONE_RUNE_RED.get(), BELT_BUCKLE.get())
                 .patterns(SQUARE, DIAMOND));
+
+        save(writer, "belt_of_life", eldrinAltar(ItemInit.BELT_OF_LIFE.get(), 4)
+                .items(ItemInit.BELT_OF_LIFE_MINOR.get(), Items.DIAMOND_BLOCK, STONE_RUNE_GREEN.get(),
+                        STONE_RUNE_LIME.get(), com.mna.blocks.BlockInit.CERUBLOSSOM.get(), VINTEUM_DUST.get(),
+                        VINTEUM_DUST.get(), Items.EMERALD_BLOCK, Items.REDSTONE_BLOCK)
+                .power(400, Affinity.EARTH, Affinity.ARCANE));
+
+        save(writer, "belt_of_life_greater", eldrinAltar(ItemInit.BELT_OF_LIFE_GREATER.get(), 5)
+                .items(ItemInit.BELT_OF_LIFE.get(), STONE_RUNE_RED.get(), Items.NETHERITE_BLOCK, Items.NETHER_STAR)
+                .tag(ItemTags.WOOL)
+                .power(800, ALL_AFFINITIES));
+
+        save(writer, "glass_cannon_belt", eldrinAltar(ItemInit.GLASS_CANNON_BELT.get(), 4)
+                .items(BELT_BUCKLE.get(), RITUAL_FOCUS_GREATER.get(), Items.GLASS, Items.GHAST_TEAR, Items.GLASS,
+                        Items.NETHERITE_SWORD, Items.GLASS, Items.GHAST_TEAR, Items.GLASS)
+                .power(400, Affinity.FIRE));
+
+        save(writer, "sturdy_belt", eldrinAltar(ItemInit.STURDY_BELT.get(), 4)
+                .items(BELT_BUCKLE.get(), Items.OBSIDIAN)
+                .tag(ItemTags.WOOL)
+                .items(Items.NETHERITE_INGOT)
+                .tag(ItemTags.WOOL)
+                .items(Items.SHIELD)
+                .tag(ItemTags.WOOL)
+                .items(Items.NETHERITE_INGOT)
+                .tag(ItemTags.WOOL)
+                .power(400, Affinity.EARTH));
     }
 
     private void charms(Consumer<FinishedRecipe> writer) {
@@ -238,14 +319,26 @@ public class ModRecipeProvider extends RecipeProvider {
                 .items(CHARM_PATTERN.get(), MANA_CRYSTAL_FRAGMENT.get(), Items.DIAMOND_SWORD, MOTE_EARTH.get())
                 .patterns(BOLT, DIAMOND));
 
+        save(writer, "revenge_charm_dmg_major", eldrinAltar(ItemInit.REVENGE_CHARM_DMG_MAJOR.get(), 5)
+                .items(ItemInit.REVENGE_CHARM_DMG.get(), Items.NETHERITE_INGOT, Items.NETHERITE_INGOT)
+                .power(1000, Affinity.WATER, Affinity.FIRE, Affinity.WIND, Affinity.ARCANE, Affinity.ENDER));
+
         save(writer, "revenge_charm_fire", manaweaving(ItemInit.REVENGE_CHARM_FIRE.get(), 3)
                 .requiredFaction(FactionIDs.DEMONS)
                 .items(CHARM_PATTERN.get(), MANA_CRYSTAL_FRAGMENT.get(), Items.IRON_SWORD, Items.FLINT_AND_STEEL)
                 .patterns(BOLT, KNOT));
 
+        save(writer, "revenge_charm_fire_major", eldrinAltar(ItemInit.REVENGE_CHARM_FIRE_MAJOR.get(), 5)
+                .items(ItemInit.REVENGE_CHARM_FIRE.get(), Items.NETHERITE_INGOT, Items.NETHERITE_INGOT)
+                .power(1000, Affinity.WATER, Affinity.FIRE, Affinity.WIND, Affinity.ARCANE, Affinity.ENDER));
+
         save(writer, "revenge_charm_reflect", manaweaving(ItemInit.REVENGE_CHARM_REFLECT.get(), 3)
                 .items(CHARM_PATTERN.get(), MANA_CRYSTAL_FRAGMENT.get(), Items.DIAMOND_SWORD, MOTE_ARCANE.get())
                 .patterns(BOLT, KNOT));
+
+        save(writer, "revenge_charm_reflect_major", eldrinAltar(ItemInit.REVENGE_CHARM_REFLECT_MAJOR.get(), 5)
+                .items(ItemInit.REVENGE_CHARM_REFLECT.get(), Items.NETHERITE_INGOT, Items.NETHERITE_INGOT)
+                .power(1000, Affinity.WATER, Affinity.FIRE, Affinity.WIND, Affinity.ARCANE, Affinity.ENDER));
 
         save(writer, "voidfeather_charm", manaweaving(ItemInit.VOIDFEATHER_CHARM.get(), 2)
                 .items(Items.BLAZE_ROD, Items.ENDER_PEARL, Items.FEATHER, INFUSED_SILK.get(), Items.BLACK_DYE,
@@ -331,6 +424,13 @@ public class ModRecipeProvider extends RecipeProvider {
      */
     private void save(Consumer<FinishedRecipe> writer, String name, ManaweavingRecipeBuilder recipe) {
         recipe.save(writer, RLoc.create("manaweaving/" + name), existingFileHelper);
+    }
+
+    /**
+     * Saves an Eldrin Altar recipe as {@code dmnr:eldrin_altar/<name>}.
+     */
+    private void save(Consumer<FinishedRecipe> writer, String name, EldrinAltarRecipeBuilder recipe) {
+        recipe.save(writer, RLoc.create("eldrin_altar/" + name), existingFileHelper);
     }
 
     /**
