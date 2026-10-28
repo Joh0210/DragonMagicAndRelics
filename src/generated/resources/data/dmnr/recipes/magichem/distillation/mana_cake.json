@@ -15,23 +15,23 @@
         "components": [
           {
             "count": 12,
-            "item": "magichem:admixture_permanence"
-          },
-          {
-            "count": 8,
             "item": "magichem:admixture_delight"
           },
           {
-            "count": 7,
-            "item": "magichem:admixture_sorcery"
+            "count": 10,
+            "item": "magichem:admixture_mana"
+          },
+          {
+            "count": 8,
+            "item": "magichem:admixture_satiety"
           },
           {
             "count": 6,
-            "item": "magichem:admixture_lies"
+            "item": "magichem:admixture_permanence"
           },
           {
-            "count": 11,
-            "item": "magichem:essentia_nourishing"
+            "count": 3,
+            "item": "magichem:admixture_lies"
           }
         ],
         "object": {

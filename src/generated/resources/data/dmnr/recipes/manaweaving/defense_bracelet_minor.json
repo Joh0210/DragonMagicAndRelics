@@ -3,19 +3,16 @@
   "items": [
     "mna:mundane_bracelet",
     "mna:rune_defense",
+    "mna:mote_earth",
     "minecraft:iron_chestplate",
-    "minecraft:shield",
-    "mna:mote_earth"
+    "minecraft:shield"
   ],
   "output": "dmnr:defense_bracelet_minor",
   "patterns": [
+    "mna:manaweave_patterns/square",
     "mna:manaweave_patterns/diamond",
-    "mna:manaweave_patterns/diamond",
-    "mna:manaweave_patterns/diamond",
-    "mna:manaweave_patterns/diamond",
-    "mna:manaweave_patterns/diamond",
-    "mna:manaweave_patterns/diamond"
+    "mna:manaweave_patterns/square"
   ],
   "quantity": 1,
-  "tier": 2
+  "tier": 3
 }

@@ -14,22 +14,22 @@
         "categories": 1,
         "components": [
           {
-            "count": 4,
-            "item": "magichem:admixture_change"
-          },
-          {
             "count": 2,
             "item": "magichem:admixture_plant"
           },
           {
+            "count": 2,
+            "item": "magichem:essentia_nourishing"
+          },
+          {
             "count": 1,
-            "item": "magichem:admixture_odors"
+            "item": "magichem:admixture_change"
           }
         ],
         "object": {
           "item": "dmnr:mutandis"
         },
-        "output_rate": 0.3,
+        "output_rate": 0.15,
         "wisdom": 6
       }
     }

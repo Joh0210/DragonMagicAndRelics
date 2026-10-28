@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 80,
+            "item": "magichem:admixture_sorcery"
+          },
+          {
+            "count": 40,
+            "item": "magichem:admixture_violence"
+          },
+          {
+            "count": 24,
+            "item": "magichem:admixture_monster"
+          },
+          {
+            "count": 10,
+            "item": "magichem:admixture_adornment"
+          },
+          {
+            "count": 16,
+            "item": "magichem:essentia_rubedo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:ring_of_power"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

@@ -3,8 +3,9 @@
   "items": [
     "mna:charm_pattern",
     "mna:mana_crystal_fragment",
+    "mna:mote_earth",
     "minecraft:diamond_sword",
-    "mna:mote_earth"
+    "minecraft:cactus"
   ],
   "output": "dmnr:revenge_charm_dmg",
   "patterns": [

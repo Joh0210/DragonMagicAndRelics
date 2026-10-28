@@ -1,15 +1,13 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
-    "minecraft:ender_pearl",
-    "minecraft:ender_pearl",
     "minecraft:ender_chest",
-    "minecraft:obsidian",
-    "minecraft:obsidian",
-    "minecraft:obsidian",
-    "minecraft:gold_block",
     "mna:mote_ender",
-    "mna:arcane_ash"
+    "mna:rune_ender",
+    "minecraft:ender_pearl",
+    "minecraft:ender_pearl",
+    "minecraft:obsidian",
+    "minecraft:obsidian"
   ],
   "output": "dmnr:rift_emitter",
   "patterns": [

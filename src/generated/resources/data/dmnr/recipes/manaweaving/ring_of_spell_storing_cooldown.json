@@ -4,13 +4,13 @@
     "dmnr:ring_of_spell_storing",
     "minecraft:clock",
     "minecraft:clock",
-    "minecraft:clock",
-    "minecraft:clock"
+    "mna:mana_crystal_fragment",
+    "mna:mana_crystal_fragment"
   ],
   "output": "dmnr:ring_of_spell_storing_cooldown",
   "patterns": [
     "mna:manaweave_patterns/diamond",
-    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/circle",
     "mna:manaweave_patterns/diamond"
   ],
   "quantity": 1,

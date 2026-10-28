@@ -14,24 +14,24 @@
         "categories": 1,
         "components": [
           {
-            "count": 48,
+            "count": 6,
+            "item": "magichem:admixture_sight"
+          },
+          {
+            "count": 4,
             "item": "magichem:admixture_light"
           },
           {
-            "count": 14,
+            "count": 4,
             "item": "magichem:admixture_crystal"
           },
           {
-            "count": 9,
-            "item": "magichem:admixture_color"
+            "count": 2,
+            "item": "magichem:admixture_adornment"
           },
           {
-            "count": 6,
-            "item": "magichem:admixture_instrument"
-          },
-          {
-            "count": 5,
-            "item": "magichem:essentia_albedo"
+            "count": 4,
+            "item": "magichem:essentia_nigredo"
           }
         ],
         "object": {

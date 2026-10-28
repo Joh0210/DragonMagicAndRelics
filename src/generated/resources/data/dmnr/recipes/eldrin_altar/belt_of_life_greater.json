@@ -2,36 +2,40 @@
   "type": "mna:eldrin-altar",
   "items": [
     "dmnr:belt_of_life",
-    "mna:stone_rune_red",
-    "minecraft:netherite_block",
     "minecraft:nether_star",
-    "minecraft:wool"
+    "minecraft:diamond_block",
+    "mna:greater_mote_earth",
+    "mna:greater_mote_earth",
+    "minecraft:golden_apple",
+    "minecraft:golden_apple",
+    "mna:stone_rune_red",
+    "mna:stone_rune_red"
   ],
   "output": "dmnr:belt_of_life_greater",
   "power_requirements": [
     {
       "affinity": "WATER",
-      "amount": 800
+      "amount": 2000
     },
     {
       "affinity": "FIRE",
-      "amount": 800
+      "amount": 2000
     },
     {
       "affinity": "EARTH",
-      "amount": 800
+      "amount": 2000
     },
     {
       "affinity": "WIND",
-      "amount": 800
+      "amount": 2000
     },
     {
       "affinity": "ARCANE",
-      "amount": 800
+      "amount": 2000
     },
     {
       "affinity": "ENDER",
-      "amount": 800
+      "amount": 2000
     }
   ],
   "quantity": 1,

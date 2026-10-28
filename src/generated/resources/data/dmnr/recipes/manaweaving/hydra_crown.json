@@ -1,18 +1,17 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
+    "minecraft:golden_helmet",
     "minecraft:ghast_tear",
-    "mna:tarma_root",
-    "minecraft:purple_candle",
+    "mna:mote_water",
     "mna:stone_rune_purple",
-    "minecraft:golden_helmet"
+    "minecraft:purple_candle",
+    "minecraft:bone"
   ],
   "output": "dmnr:hydra_crown",
   "patterns": [
     "mna:manaweave_patterns/slash",
-    "mna:manaweave_patterns/knot",
     "mna:manaweave_patterns/split_triangle",
-    "mna:manaweave_patterns/knot4",
     "mna:manaweave_patterns/backslash"
   ],
   "quantity": 1,

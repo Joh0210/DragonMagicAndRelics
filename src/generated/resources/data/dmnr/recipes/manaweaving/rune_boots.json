@@ -8,8 +8,7 @@
   ],
   "output": "dmnr:rune_boots",
   "patterns": [
-    "mna:manaweave_patterns/square",
-    "mna:manaweave_patterns/square",
+    "mna:manaweave_patterns/circle",
     "mna:manaweave_patterns/diamond"
   ],
   "quantity": 1,

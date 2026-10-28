@@ -1,18 +1,15 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
-    "minecraft:blaze_rod",
     "minecraft:ender_pearl",
     "minecraft:feather",
-    "mna:infused_silk",
     "minecraft:black_dye",
-    "mna:purified_vinteum_dust"
+    "mna:infused_silk"
   ],
   "output": "dmnr:voidfeather_charm",
   "patterns": [
     "mna:manaweave_patterns/triangle",
-    "mna:manaweave_patterns/square",
-    "mna:manaweave_patterns/triangle"
+    "mna:manaweave_patterns/square"
   ],
   "quantity": 1,
   "tier": 2

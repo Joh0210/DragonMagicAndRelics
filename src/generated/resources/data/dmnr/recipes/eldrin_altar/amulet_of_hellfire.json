@@ -1,25 +1,24 @@
 {
   "type": "mna:eldrin-altar",
   "items": [
-    "mna:emberglow_bracelet",
-    "minecraft:netherite_ingot",
-    "minecraft:nether_star",
-    "minecraft:netherite_ingot",
+    "mna:mundane_amulet",
+    "mna:rune_fire",
     "mna:greater_mote_fire",
-    "minecraft:netherite_ingot",
+    "mna:greater_mote_fire",
     "mna:living_flame",
-    "minecraft:netherite_ingot",
-    "mna:rune_fire"
+    "mna:living_flame",
+    "minecraft:blaze_rod",
+    "minecraft:blaze_rod"
   ],
   "output": "dmnr:amulet_of_hellfire",
   "power_requirements": [
     {
       "affinity": "FIRE",
-      "amount": 800
+      "amount": 3000
     },
     {
       "affinity": "ARCANE",
-      "amount": 400
+      "amount": 1500
     }
   ],
   "quantity": 1,

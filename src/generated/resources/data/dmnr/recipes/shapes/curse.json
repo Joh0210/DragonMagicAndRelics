@@ -5,15 +5,15 @@
     "mna:runic_silk",
     "minecraft:nether_star",
     "mna:rune_ender",
-    "mna:mote_ender"
+    "mna:greater_mote_ender",
+    "minecraft:wither_rose"
   ],
   "output": "dmnr:shapes/curse",
   "patterns": [
     "mna:manaweave_patterns/infinity",
     "mna:manaweave_patterns/split_triangle",
     "mna:manaweave_patterns/hourglass",
-    "mna:manaweave_patterns/inverted_split_triangle",
-    "mna:manaweave_patterns/infinity"
+    "mna:manaweave_patterns/inverted_split_triangle"
   ],
   "tier": 5
 }

@@ -14,16 +14,16 @@
         "categories": 32,
         "components": [
           {
-            "count": 123,
+            "count": 64,
             "item": "magichem:admixture_violence"
           },
           {
-            "count": 58,
+            "count": 64,
             "item": "magichem:admixture_sorcery"
           },
           {
-            "count": 20,
-            "item": "magichem:admixture_instrument"
+            "count": 10,
+            "item": "magichem:admixture_adornment"
           },
           {
             "count": 6,

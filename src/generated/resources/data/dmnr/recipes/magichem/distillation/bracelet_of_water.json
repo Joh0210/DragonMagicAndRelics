@@ -14,20 +14,20 @@
         "categories": 1,
         "components": [
           {
-            "count": 27,
+            "count": 12,
             "item": "magichem:essentia_water"
           },
           {
-            "count": 42,
-            "item": "magichem:admixture_travel"
+            "count": 2,
+            "item": "magichem:admixture_depths"
           },
           {
             "count": 2,
-            "item": "magichem:admixture_instrument"
+            "item": "magichem:admixture_adornment"
           },
           {
-            "count": 5,
-            "item": "magichem:essentia_albedo"
+            "count": 2,
+            "item": "magichem:essentia_nigredo"
           }
         ],
         "object": {

@@ -2,26 +2,25 @@
   "type": "mna:eldrin-altar",
   "items": [
     "mna:mundane_ring",
-    "mna:tarma_root",
-    "mna:desert_nova",
     "mna:rune_defense",
     "mna:greater_mote_air",
+    "mna:greater_mote_air",
     "mna:greater_mote_arcane",
-    "minecraft:ghast_tear",
-    "minecraft:netherite_ingot",
-    "minecraft:phantom_membrane"
+    "minecraft:phantom_membrane",
+    "mna:tarma_root"
   ],
   "output": "dmnr:projectile_reflection_ring",
   "power_requirements": [
     {
       "affinity": "WIND",
-      "amount": 700
+      "amount": 1500
     },
     {
       "affinity": "ARCANE",
-      "amount": 700
+      "amount": 500
     }
   ],
   "quantity": 1,
+  "requiredFaction": "mna:council",
   "tier": 4
 }

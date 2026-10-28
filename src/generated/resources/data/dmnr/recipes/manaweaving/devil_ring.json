@@ -1,15 +1,15 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
-    "minecraft:nether_star",
-    "minecraft:netherite_ingot",
-    "mna:hellfire_trident",
-    "minecraft:netherite_ingot",
     "mna:mundane_ring",
+    "minecraft:nether_star",
+    "mna:hellfire_trident",
     "mna:greater_mote_fire",
-    "minecraft:netherite_ingot",
+    "mna:greater_mote_fire",
     "mna:living_flame",
-    "minecraft:netherite_ingot"
+    "mna:living_flame",
+    "mna:rune_fire",
+    "minecraft:blaze_rod"
   ],
   "output": "dmnr:devil_ring",
   "patterns": [

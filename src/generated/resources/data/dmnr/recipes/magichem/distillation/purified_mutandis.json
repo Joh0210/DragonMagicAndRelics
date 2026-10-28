@@ -14,16 +14,12 @@
         "categories": 1,
         "components": [
           {
-            "count": 1,
-            "item": "magichem:essentia_arcane"
-          },
-          {
-            "count": 4,
-            "item": "magichem:admixture_change"
-          },
-          {
             "count": 2,
             "item": "magichem:admixture_plant"
+          },
+          {
+            "count": 1,
+            "item": "magichem:admixture_change"
           },
           {
             "count": 1,
@@ -33,7 +29,7 @@
         "object": {
           "item": "dmnr:purified_mutandis"
         },
-        "output_rate": 0.4,
+        "output_rate": 0.15,
         "wisdom": 6
       }
     }

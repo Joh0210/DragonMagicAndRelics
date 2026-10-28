@@ -1,11 +1,17 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
+    "mna:emberglow_bracelet",
     "mna:brimstone_charm",
-    "mna:emberglow_bracelet"
+    "minecraft:magma_cream",
+    "minecraft:magma_cream",
+    "minecraft:obsidian",
+    "minecraft:obsidian"
   ],
   "output": "dmnr:fire_resistance_bracelet",
   "patterns": [
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/star",
     "mna:manaweave_patterns/bolt"
   ],
   "quantity": 1,

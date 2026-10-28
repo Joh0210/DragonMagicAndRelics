@@ -65,18 +65,18 @@ public class ModRecipeProvider extends MnaRecipeProvider {
     }
 
     private void materials(Consumer<FinishedRecipe> writer) {
-        save(writer, "mutandis", manaweaving(ItemInit.MUTANDIS.get(), 1)
+        save(writer, "mutandis", manaweaving(ItemInit.MUTANDIS.get(), 2)
                 .quantity(16)
                 .items(VINTEUM_DUST.get(), Items.EGG, Items.NETHER_WART, Items.BONE_MEAL)
                 .tag(MA_FLOWERS)
-                .patterns(SQUARE, TRIANGLE, SQUARE));
+                .patterns(SQUARE, TRIANGLE));
 
         save(writer, "purified_mutandis", manaweaving(ItemInit.PURIFIED_MUTANDIS.get(), 3)
                 .quantity(16)
                 .requiredFaction(FactionIDs.FEY)
                 .items(ItemInit.MUTANDIS.get(), Items.EGG, Items.NETHER_WART, Items.BONE_MEAL)
                 .tag(MA_FLOWERS)
-                .item(PURIFIED_VINTEUM_DUST.get(), 4)
+                .item(PURIFIED_VINTEUM_DUST.get(), 2)
                 .patterns(DIAMOND, SLASH, BACKSLASH));
 
         save(writer, "mana_cake", manaweaving(ItemInit.MANA_CAKE.get(), 3)
@@ -86,13 +86,15 @@ public class ModRecipeProvider extends MnaRecipeProvider {
                 .patterns(TRIANGLE, CIRCLE, TRIANGLE));
 
         save(writer, "potion_of_infinity", manaweaving(ItemInit.POTION_OF_INFINITY.get(), 3)
-                .items(Items.NETHER_WART, Items.BREWING_STAND, Items.NETHER_WART, Items.GHAST_TEAR, ARCANIST_INK.get(),
-                        Items.GHAST_TEAR, MOTE_WATER.get(), Items.NETHERITE_INGOT, MOTE_ARCANE.get())
+                .items(Items.BREWING_STAND, Items.NETHER_WART, Items.GHAST_TEAR, Items.CLOCK, ARCANIST_INK.get(),
+                        MOTE_WATER.get(), MOTE_ARCANE.get())
                 .patterns(BOLT, SPLIT_TRIANGLE, BOLT));
 
         save(writer, "brimstone_chalk", manaweaving(ItemInit.BRIMSTONE_CHALK.get(), 4)
-                .items(BRIMSTONE_CHARM.get(), WIZARD_CHALK.get())
-                .patterns(TRIANGLE, CIRCLE, TRIANGLE));
+                .items(WIZARD_CHALK.get(), BRIMSTONE_CHARM.get())
+                .item(Items.OBSIDIAN, 2)
+                .item(PURIFIED_VINTEUM_DUST.get(), 2)
+                .patterns(TRIANGLE, STAR, TRIANGLE));
 
         save(writer, "brimstone_coal", manaweaving(ItemInit.BRIMSTONE_COAL.get(), 4)
                 .items(BRIMSTONE_CHARM.get())
@@ -101,83 +103,97 @@ public class ModRecipeProvider extends MnaRecipeProvider {
 
         save(writer, "dragon_totem", eldrinAltar(ItemInit.DRAGON_TOTEM.get(), 5)
                 .items(ItemInit.DRAGON_TOTEM_EMPTY.get(), GREATER_MOTE_WATER.get(), GREATER_MOTE_EARTH.get(),
-                        GREATER_MOTE_FIRE.get(), GREATER_MOTE_AIR.get())
-                .power(3000, Affinity.ENDER, Affinity.ARCANE));
+                        GREATER_MOTE_FIRE.get(), GREATER_MOTE_AIR.get(), GREATER_MOTE_ENDER.get(),
+                        GREATER_MOTE_ARCANE.get(), Items.DRAGON_BREATH)
+                .power(2500, ALL_AFFINITIES));
     }
 
     private void rings(Consumer<FinishedRecipe> writer) {
         save(writer, "ocelot_ring_minor", manaweaving(ItemInit.OCELOT_RING_MINOR.get(), 2)
-                .items(MUNDANE_RING.get(), STONE_RUNE_GREEN.get(), Items.SUGAR, Items.JUNGLE_SAPLING)
-                .patterns(CIRCLE, DIAMOND, CIRCLE));
+                .items(MUNDANE_RING.get(), MOTE_AIR.get(), Items.SUGAR, Items.FEATHER)
+                .patterns(CIRCLE, DIAMOND));
 
-        save(writer, "ocelot_ring", manaweaving(ItemInit.OCELOT_RING.get(), 2)
-                .items(ItemInit.OCELOT_RING_MINOR.get(), Items.GOLD_BLOCK, Items.RABBIT_FOOT, Items.GOLD_BLOCK,
-                        Items.GLOWSTONE_DUST, Items.GOLD_BLOCK, MOTE_AIR.get(), Items.GOLD_BLOCK, Items.FERMENTED_SPIDER_EYE)
-                .patterns(CIRCLE, DIAMOND, CIRCLE));
+        save(writer, "ocelot_ring", manaweaving(ItemInit.OCELOT_RING.get(), 3)
+                .items(ItemInit.OCELOT_RING_MINOR.get(), MOTE_AIR.get(), Items.RABBIT_FOOT, Items.GOLD_BLOCK,
+                        Items.PHANTOM_MEMBRANE)
+                .item(PURIFIED_VINTEUM_DUST.get(), 2)
+                .patterns(CIRCLE, BOLT, CIRCLE));
 
         save(writer, "ocelot_ring_greater", eldrinAltar(ItemInit.OCELOT_RING_GREATER.get(), 5)
-                .items(ItemInit.OCELOT_RING.get(), Items.NETHERITE_INGOT, GREATER_MOTE_AIR.get(), Items.GOLD_INGOT)
-                .power(500, Affinity.WIND));
+                .items(ItemInit.OCELOT_RING.get())
+                .item(GREATER_MOTE_AIR.get(), 2)
+                .items(GREATER_MOTE_EARTH.get(), Items.RABBIT_FOOT, Items.PHANTOM_MEMBRANE,
+                        com.mna.blocks.BlockInit.TARMA_ROOT.get())
+                .power(2500, Affinity.WIND)
+                .power(1000, Affinity.EARTH));
 
         save(writer, "reach_ring_minor", manaweaving(ItemInit.REACH_RING_MINOR.get(), 2)
-                .items(Items.ENDER_PEARL, Items.EMERALD, Items.GOLD_BLOCK, STONE_RUNE_PURPLE.get(), MUNDANE_RING.get(),
-                        MOTE_ENDER.get())
+                .items(MUNDANE_RING.get(), MOTE_ENDER.get(), STONE_RUNE_PURPLE.get())
+                .item(Items.ENDER_PEARL, 2)
                 .patterns(SQUARE, CIRCLE));
 
         save(writer, "reach_ring", manaweaving(ItemInit.REACH_RING.get(), 4)
-                .items(Items.ENDER_EYE, Items.ENDER_EYE, RESONATING_LUMP.get(), RESONATING_LUMP.get(),
-                        GREATER_MOTE_ENDER.get(), ItemInit.REACH_RING_MINOR.get())
+                .items(ItemInit.REACH_RING_MINOR.get(), GREATER_MOTE_ENDER.get(), RUNE_ENDER.get())
+                .item(Items.ENDER_EYE, 2)
+                .item(Items.POPPED_CHORUS_FRUIT, 2)
                 .patterns(HOURGLASS, SPLIT_TRIANGLE, INVERTED_TRIANGLE));
 
         save(writer, "reach_ring_greater", eldrinAltar(ItemInit.REACH_RING_GREATER.get(), 5)
-                .items(ItemInit.REACH_RING.get(), ItemInit.DRAGON_CORE.get())
-                .power(2500, Affinity.ENDER));
+                .items(ItemInit.REACH_RING.get(), Items.DRAGON_BREATH, Items.END_CRYSTAL)
+                .item(GREATER_MOTE_ENDER.get(), 2)
+                .item(Items.POPPED_CHORUS_FRUIT, 2)
+                .power(3000, Affinity.ENDER)
+                .power(1000, Affinity.ARCANE));
 
         save(writer, "projectile_reflection_ring", eldrinAltar(ItemInit.PROJECTILE_REFLECTION_RING.get(), 4)
-                .items(MUNDANE_RING.get(), com.mna.blocks.BlockInit.TARMA_ROOT.get(),
-                        com.mna.blocks.BlockInit.DESERT_NOVA.get(), RUNE_DEFENSE.get(), GREATER_MOTE_AIR.get(),
-                        GREATER_MOTE_ARCANE.get(), Items.GHAST_TEAR, Items.NETHERITE_INGOT, Items.PHANTOM_MEMBRANE)
-                .power(700, Affinity.WIND, Affinity.ARCANE));
+                .requiredFaction(FactionIDs.COUNCIL)
+                .items(MUNDANE_RING.get(), RUNE_DEFENSE.get(), GREATER_MOTE_AIR.get(), GREATER_MOTE_AIR.get(),
+                        GREATER_MOTE_ARCANE.get(), Items.PHANTOM_MEMBRANE, com.mna.blocks.BlockInit.TARMA_ROOT.get())
+                .power(1500, Affinity.WIND)
+                .power(500, Affinity.ARCANE));
 
         save(writer, "ring_of_spell_storing", manaweaving(ItemInit.RING_OF_SPELL_STORING.get(), 3)
-                .items(MUNDANE_BRACELET.get(), MOTE_ARCANE.get(), RUNE_ARCANE.get())
-                .item(CHIMERITE_GEM.get(), 6)
-                .patterns(CIRCLE, SQUARE, DIAMOND, SLASH, SQUARE, BACKSLASH));
+                .items(MUNDANE_BRACELET.get(), CRYSTAL_OF_MEMORIES.get(), RUNE_ARCANE.get(), MOTE_ARCANE.get())
+                .item(CHIMERITE_GEM.get(), 2)
+                .patterns(CIRCLE, SPLIT_TRIANGLE, DIAMOND));
 
         save(writer, "ring_of_spell_storing_cooldown", manaweaving(ItemInit.RING_OF_SPELL_STORING_COOLDOWN.get(), 3)
                 .items(ItemInit.RING_OF_SPELL_STORING.get())
-                .item(Items.CLOCK, 4)
-                .patterns(DIAMOND, DIAMOND, DIAMOND));
+                .item(Items.CLOCK, 2)
+                .item(MANA_CRYSTAL_FRAGMENT.get(), 2)
+                .patterns(DIAMOND, CIRCLE, DIAMOND));
 
         save(writer, "angel_ring", manaweaving(ItemInit.ANGEL_RING.get(), 5)
                 .requiredFaction(FactionIDs.FEY)
-                .items(Items.NETHER_STAR, Items.GOLD_BLOCK, Items.ELYTRA, Items.GOLD_BLOCK, MUNDANE_RING.get(),
-                        GREATER_MOTE_AIR.get(), Items.GOLD_BLOCK, SPECTRAL_ELYTRA.get(), Items.GOLD_BLOCK)
+                .items(MUNDANE_RING.get(), Items.NETHER_STAR, SPECTRAL_ELYTRA.get(), GREATER_MOTE_AIR.get(),
+                        GREATER_MOTE_AIR.get(), GREATER_MOTE_ARCANE.get(), Items.GOLD_BLOCK, Items.GOLD_BLOCK,
+                        Items.PHANTOM_MEMBRANE)
                 .patterns(INFINITY, SPLIT_TRIANGLE, HOURGLASS, INVERTED_SPLIT_TRIANGLE, INFINITY));
 
         save(writer, "devil_ring", manaweaving(ItemInit.DEVIL_RING.get(), 5)
                 .requiredFaction(FactionIDs.DEMONS)
-                .items(Items.NETHER_STAR, Items.NETHERITE_INGOT, HELLFIRE_TRIDENT.get(), Items.NETHERITE_INGOT,
-                        MUNDANE_RING.get(), GREATER_MOTE_FIRE.get(), Items.NETHERITE_INGOT, LIVING_FLAME.get(),
-                        Items.NETHERITE_INGOT)
+                .items(MUNDANE_RING.get(), Items.NETHER_STAR, HELLFIRE_TRIDENT.get(), GREATER_MOTE_FIRE.get(),
+                        GREATER_MOTE_FIRE.get(), LIVING_FLAME.get(), LIVING_FLAME.get(), RUNE_FIRE.get(),
+                        Items.BLAZE_ROD)
                 .patterns(INFINITY, SPLIT_TRIANGLE, STAR, INFINITY));
 
         save(writer, "fallen_angel_ring", manaweaving(ItemInit.FALLEN_ANGEL_RING.get(), 5)
                 .requiredFaction(FactionIDs.UNDEAD)
-                .items(Items.NETHER_STAR, Items.NETHERITE_INGOT, Items.ELYTRA, Items.NETHERITE_INGOT, MUNDANE_RING.get(),
-                        GREATER_MOTE_ENDER.get(), Items.NETHERITE_INGOT, WITHERBONE.get(), Items.NETHERITE_INGOT)
+                .items(MUNDANE_RING.get(), Items.NETHER_STAR, GREATER_MOTE_ENDER.get(), GREATER_MOTE_ENDER.get(),
+                        WITHERBONE.get(), WITHERBONE.get(), Items.PHANTOM_MEMBRANE, Items.PHANTOM_MEMBRANE,
+                        Items.WITHER_ROSE)
                 .patterns(STAR, INFINITY, SQUARE, DIAMOND, HOURGLASS, HOURGLASS));
 
         save(writer, "ring_of_power", manaweaving(ItemInit.RING_OF_POWER.get(), 5)
-                .items(MUNDANE_RING.get(), ItemInit.DRAGON_CORE.get(), ItemInit.DRAGON_CORE.get(), Items.NETHERITE_BLOCK,
-                        Items.SMOOTH_QUARTZ, WITHERBONE.get(), Items.BONE, com.mna.blocks.BlockInit.CHIMERITE_BLOCK.get(),
-                        RUNE_DEFENSE.get())
+                .items(MUNDANE_RING.get(), Items.DRAGON_HEAD, Items.END_CRYSTAL, Items.END_CRYSTAL,
+                        com.mna.blocks.BlockInit.CHIMERITE_BLOCK.get(), GREATER_MOTE_ARCANE.get(),
+                        GREATER_MOTE_FIRE.get(), RUNE_ARCANE.get(), Items.GOLD_BLOCK)
                 .patterns(INFINITY, SPLIT_TRIANGLE, HOURGLASS, INVERTED_SPLIT_TRIANGLE, INFINITY));
 
         save(writer, "ring_of_ruling", manaweaving(ItemInit.RING_OF_RULING.get(), 5)
-                .items(MUNDANE_RING.get(), ItemInit.DRAGON_CORE.get(), ItemInit.DRAGON_CORE.get(), Items.NETHERITE_BLOCK,
-                        Items.SMOOTH_QUARTZ, Items.GHAST_TEAR, Items.NETHERITE_INGOT, GREATER_MOTE_ENDER.get(),
-                        GREATER_MOTE_AIR.get())
+                .items(MUNDANE_RING.get(), Items.DRAGON_BREATH, Items.END_CRYSTAL, Items.END_CRYSTAL,
+                        com.mna.blocks.BlockInit.CHIMERITE_BLOCK.get(), GREATER_MOTE_ARCANE.get(),
+                        GREATER_MOTE_EARTH.get(), RUNE_DEFENSE.get(), Items.GOLD_BLOCK)
                 .patterns(INFINITY, SPLIT_TRIANGLE, HOURGLASS, INVERTED_SPLIT_TRIANGLE, INFINITY));
     }
 
@@ -185,69 +201,80 @@ public class ModRecipeProvider extends MnaRecipeProvider {
         save(writer, "bracelet_of_water", manaweaving(ItemInit.BRACELET_OF_WATER.get(), 2)
                 .tag(ItemTags.FISHES)
                 .tag(ItemTags.FISHES)
-                .items(Items.PACKED_ICE, Items.PACKED_ICE, MUNDANE_BRACELET.get(), MOTE_WATER.get())
+                .items(Items.KELP)
                 .patterns(TRIANGLE, INVERTED_TRIANGLE));
 
         save(writer, "bracelet_of_water_greater", manaweaving(ItemInit.BRACELET_OF_WATER_GREATER.get(), 4)
-                .items(Items.FIRE_CORAL, Items.HORN_CORAL, Items.TUBE_CORAL, Items.BUBBLE_CORAL, Items.BRAIN_CORAL,
-                        GREATER_MOTE_WATER.get(), ItemInit.BRACELET_OF_WATER.get())
-                .patterns(KNOT, KNOT2, KNOT3, KNOT4));
+                .items(ItemInit.BRACELET_OF_WATER.get(), GREATER_MOTE_WATER.get(), RUNE_WATER.get())
+                .item(Items.SCUTE, 2)
+                .items(Items.TUBE_CORAL, Items.BRAIN_CORAL, Items.BUBBLE_CORAL)
+                .patterns(KNOT, KNOT2, STAR));
 
-        save(writer, "defense_bracelet_minor", manaweaving(ItemInit.DEFENSE_BRACELET_MINOR.get(), 2)
-                .items(MUNDANE_BRACELET.get(), RUNE_DEFENSE.get(), Items.IRON_CHESTPLATE, Items.SHIELD, MOTE_EARTH.get())
-                .patterns(DIAMOND, DIAMOND, DIAMOND, DIAMOND, DIAMOND, DIAMOND));
+        save(writer, "defense_bracelet_minor", manaweaving(ItemInit.DEFENSE_BRACELET_MINOR.get(), 3)
+                .items(MUNDANE_BRACELET.get(), RUNE_DEFENSE.get(), MOTE_EARTH.get(), Items.IRON_CHESTPLATE, Items.SHIELD)
+                .patterns(SQUARE, DIAMOND, SQUARE));
 
         save(writer, "defense_bracelet", manaweaving(ItemInit.DEFENSE_BRACELET.get(), 4)
-                .items(ItemInit.DEFENSE_BRACELET_MINOR.get(), RUNE_DEFENSE.get(), Items.DIAMOND_CHESTPLATE,
-                        Items.AMETHYST_SHARD, GREATER_MOTE_EARTH.get())
+                .items(ItemInit.DEFENSE_BRACELET_MINOR.get(), GREATER_MOTE_EARTH.get(), RUNE_DEFENSE.get(),
+                        Items.DIAMOND_CHESTPLATE)
+                .item(Items.OBSIDIAN, 2)
                 .patterns(BOLT, STAR, BOLT));
 
         save(writer, "defense_bracelet_greater", eldrinAltar(ItemInit.DEFENSE_BRACELET_GREATER.get(), 5)
-                .items(ItemInit.DEFENSE_BRACELET.get(), Items.OBSIDIAN, RUNE_DEFENSE.get(), Items.OBSIDIAN,
-                        Items.NETHERITE_CHESTPLATE, Items.OBSIDIAN, RUNE_DEFENSE.get(), Items.OBSIDIAN, Items.NETHER_STAR)
-                .power(2750, Affinity.EARTH));
+                .items(ItemInit.DEFENSE_BRACELET.get(), Items.NETHERITE_CHESTPLATE, Items.NETHER_STAR)
+                .item(RUNE_DEFENSE.get(), 2)
+                .item(GREATER_MOTE_EARTH.get(), 2)
+                .item(Items.CRYING_OBSIDIAN, 2)
+                .power(3000, Affinity.EARTH)
+                .power(1000, Affinity.ARCANE));
 
         save(writer, "fire_resistance_bracelet", manaweaving(ItemInit.FIRE_RESISTANCE_BRACELET.get(), 4)
                 .requiredFaction(FactionIDs.DEMONS)
-                .items(BRIMSTONE_CHARM.get(), EMBERGLOW_BRACELET.get())
-                .patterns(BOLT));
+                .items(EMBERGLOW_BRACELET.get(), BRIMSTONE_CHARM.get())
+                .item(Items.MAGMA_CREAM, 2)
+                .item(Items.OBSIDIAN, 2)
+                .patterns(SPLIT_TRIANGLE, STAR, BOLT));
 
         save(writer, "bracelet_of_friendship", manaweaving(ItemInit.BRACELET_OF_FRIENDSHIP.get(), 3)
-                .items(MUNDANE_BRACELET.get(), Items.GOLD_INGOT, Items.GLISTERING_MELON_SLICE, Items.GOLDEN_CARROT,
-                        Items.GOLDEN_APPLE, Items.AMETHYST_SHARD, Items.AMETHYST_SHARD, PLAYER_CHARM.get(),
-                        RUNE_DEFENSE.get())
-                .patterns(TRIANGLE, SLASH, BACKSLASH, TRIANGLE));
+                .items(MUNDANE_BRACELET.get(), PLAYER_CHARM.get(), RUNE_DEFENSE.get(), Items.GOLDEN_APPLE,
+                        Items.GLISTERING_MELON_SLICE, Items.GOLDEN_CARROT, Items.GOLD_INGOT)
+                .patterns(TRIANGLE, SLASH, BACKSLASH));
     }
 
     private void amuletsAndBelts(Consumer<FinishedRecipe> writer) {
         save(writer, "collectors_amulet", manaweaving(ItemInit.COLLECTORS_AMULET.get(), 3)
-                .items(MUNDANE_AMULET.get(), MUNDANE_RING.get(), MUNDANE_RING.get(), MUNDANE_RING.get(), Items.NETHER_STAR)
+                .items(MUNDANE_AMULET.get())
+                .item(MUNDANE_RING.get(), 3)
+                .item(Items.CHAIN, 2)
+                .items(MOTE_ARCANE.get())
+                .items(MOTE_ARCANE.get())
                 .patterns(BOLT, INVERTED_TRIANGLE, DIAMOND));
 
         save(writer, "curse_protection_amulet", manaweaving(ItemInit.CURSE_PROTECTION_AMULET.get(), 5)
-                .items(WITHERGUARD_AMULET.get(), Items.DIAMOND_BLOCK, Items.SOUL_SAND, Items.SOUL_SAND, Items.IRON_INGOT,
-                        Items.MILK_BUCKET, ItemInit.DRAGON_CORE.get(), Items.TOTEM_OF_UNDYING, LIVING_FLAME.get())
+                .items(WITHERGUARD_AMULET.get(), Items.DRAGON_BREATH, Items.MILK_BUCKET, Items.MILK_BUCKET,
+                        GREATER_MOTE_ARCANE.get(), GREATER_MOTE_WATER.get(), RUNE_DEFENSE.get(), Items.GOLDEN_APPLE)
                 .patterns(INVERTED_SPLIT_TRIANGLE, SPLIT_TRIANGLE, INFINITY, HOURGLASS, INFINITY));
 
         save(writer, "regeneration_amulet", eldrinAltar(ItemInit.REGENERATION_AMULET.get(), 4)
-                .items(MUNDANE_AMULET.get(), Items.ENCHANTED_GOLDEN_APPLE, STONE_RUNE_RED.get(), Items.GHAST_TEAR,
-                        STONE_RUNE_RED.get(), Items.NETHER_STAR, STONE_RUNE_RED.get(), Items.GHAST_TEAR,
-                        STONE_RUNE_RED.get())
-                .power(1200, ALL_AFFINITIES));
+                .items(MUNDANE_AMULET.get(), Items.GLISTERING_MELON_SLICE)
+                .item(Items.GOLDEN_APPLE, 2)
+                .item(Items.GHAST_TEAR, 2)
+                .item(STONE_RUNE_RED.get(), 2)
+                .power(400, ALL_AFFINITIES));
 
         save(writer, "faction_amulet", eldrinAltar(ItemInit.FACTION_AMULET.get(), 5)
-                .items(MUNDANE_AMULET.get(), Items.NETHER_STAR, MARK_OF_THE_COUNCIL.get(), Items.GOLD_BLOCK,
-                        MARK_OF_THE_FEY.get(), Items.GHAST_TEAR, MARK_OF_THE_NETHER.get(), Items.GOLD_BLOCK,
-                        MARK_OF_THE_UNDEAD.get())
-                .power(1000, ALL_AFFINITIES));
+                .items(MUNDANE_AMULET.get(), MARK_OF_THE_COUNCIL.get(), MARK_OF_THE_FEY.get(), MARK_OF_THE_NETHER.get(),
+                        MARK_OF_THE_UNDEAD.get(), GREATER_MOTE_ARCANE.get(), Items.GOLD_BLOCK, Items.GOLD_BLOCK)
+                .power(2000, ALL_AFFINITIES));
 
         save(writer, "amulet_of_hellfire", eldrinAltar(ItemInit.AMULET_OF_HELLFIRE.get(), 5)
                 .requiredFaction(FactionIDs.DEMONS)
-                .items(EMBERGLOW_BRACELET.get(), Items.NETHERITE_INGOT, Items.NETHER_STAR, Items.NETHERITE_INGOT,
-                        GREATER_MOTE_FIRE.get(), Items.NETHERITE_INGOT, LIVING_FLAME.get(), Items.NETHERITE_INGOT,
-                        RUNE_FIRE.get())
-                .power(800, Affinity.FIRE)
-                .power(400, Affinity.ARCANE));
+                .items(MUNDANE_AMULET.get(), RUNE_FIRE.get())
+                .item(GREATER_MOTE_FIRE.get(), 2)
+                .item(LIVING_FLAME.get(), 2)
+                .item(Items.BLAZE_ROD, 2)
+                .power(3000, Affinity.FIRE)
+                .power(1500, Affinity.ARCANE));
 
         save(writer, "belt_of_life_minor", manaweaving(ItemInit.BELT_OF_LIFE_MINOR.get(), 2)
                 .items(Items.GHAST_TEAR, INFUSED_SILK.get(), HEALING_POULTICE.get(), Items.GOLDEN_APPLE,
@@ -255,84 +282,95 @@ public class ModRecipeProvider extends MnaRecipeProvider {
                 .patterns(SQUARE, DIAMOND));
 
         save(writer, "belt_of_life", eldrinAltar(ItemInit.BELT_OF_LIFE.get(), 4)
-                .items(ItemInit.BELT_OF_LIFE_MINOR.get(), Items.DIAMOND_BLOCK, STONE_RUNE_GREEN.get(),
-                        STONE_RUNE_LIME.get(), com.mna.blocks.BlockInit.CERUBLOSSOM.get(), VINTEUM_DUST.get(),
-                        VINTEUM_DUST.get(), Items.EMERALD_BLOCK, Items.REDSTONE_BLOCK)
-                .power(400, Affinity.EARTH, Affinity.ARCANE));
+                .items(ItemInit.BELT_OF_LIFE_MINOR.get(), GREATER_MOTE_EARTH.get(), Items.DIAMOND_BLOCK,
+                        Items.EMERALD_BLOCK, STONE_RUNE_RED.get())
+                .item(Items.GOLDEN_APPLE, 2)
+                .power(400, ALL_AFFINITIES));
 
         save(writer, "belt_of_life_greater", eldrinAltar(ItemInit.BELT_OF_LIFE_GREATER.get(), 5)
-                .items(ItemInit.BELT_OF_LIFE.get(), STONE_RUNE_RED.get(), Items.NETHERITE_BLOCK, Items.NETHER_STAR)
-                .tag(ItemTags.WOOL)
-                .power(800, ALL_AFFINITIES));
+                .items(ItemInit.BELT_OF_LIFE.get(), Items.NETHER_STAR, Items.DIAMOND_BLOCK)
+                .item(GREATER_MOTE_EARTH.get(), 2)
+                .item(Items.GOLDEN_APPLE, 2)
+                .item(STONE_RUNE_RED.get(), 2)
+                .power(2000, ALL_AFFINITIES));
 
         save(writer, "glass_cannon_belt", eldrinAltar(ItemInit.GLASS_CANNON_BELT.get(), 4)
-                .items(BELT_BUCKLE.get(), RITUAL_FOCUS_GREATER.get(), Items.GLASS, Items.GHAST_TEAR, Items.GLASS,
-                        Items.NETHERITE_SWORD, Items.GLASS, Items.GHAST_TEAR, Items.GLASS)
-                .power(400, Affinity.FIRE));
+                .items(BELT_BUCKLE.get(), Items.NETHERITE_SWORD, GREATER_MOTE_FIRE.get())
+                .tag(Tags.Items.GLASS)
+                .tag(Tags.Items.GLASS)
+                .item(Items.BLAZE_POWDER, 2)
+                .power(2000, Affinity.FIRE));
 
         save(writer, "sturdy_belt", eldrinAltar(ItemInit.STURDY_BELT.get(), 4)
-                .items(BELT_BUCKLE.get(), Items.OBSIDIAN)
+                .items(BELT_BUCKLE.get(), Items.SHIELD, Items.NETHERITE_INGOT, GREATER_MOTE_EARTH.get())
+                .item(Items.OBSIDIAN, 2)
                 .tag(ItemTags.WOOL)
-                .items(Items.NETHERITE_INGOT)
                 .tag(ItemTags.WOOL)
-                .items(Items.SHIELD)
-                .tag(ItemTags.WOOL)
-                .items(Items.NETHERITE_INGOT)
-                .tag(ItemTags.WOOL)
-                .power(400, Affinity.EARTH));
+                .power(2000, Affinity.EARTH));
     }
 
     private void charms(Consumer<FinishedRecipe> writer) {
         save(writer, "revenge_charm_dmg", manaweaving(ItemInit.REVENGE_CHARM_DMG.get(), 3)
-                .items(CHARM_PATTERN.get(), MANA_CRYSTAL_FRAGMENT.get(), Items.DIAMOND_SWORD, MOTE_EARTH.get())
+                .items(CHARM_PATTERN.get(), MANA_CRYSTAL_FRAGMENT.get(), MOTE_EARTH.get(), Items.DIAMOND_SWORD,
+                        Items.CACTUS)
                 .patterns(BOLT, DIAMOND));
 
         save(writer, "revenge_charm_dmg_major", eldrinAltar(ItemInit.REVENGE_CHARM_DMG_MAJOR.get(), 5)
-                .items(ItemInit.REVENGE_CHARM_DMG.get(), Items.NETHERITE_INGOT, Items.NETHERITE_INGOT)
-                .power(1000, Affinity.WATER, Affinity.FIRE, Affinity.WIND, Affinity.ARCANE, Affinity.ENDER));
+                .items(ItemInit.REVENGE_CHARM_DMG.get(), GREATER_MOTE_EARTH.get(), GREATER_MOTE_EARTH.get(),
+                        GREATER_MOTE_ARCANE.get(), Items.NETHERITE_SWORD)
+                .item(Items.CACTUS, 2)
+                .power(2500, Affinity.EARTH)
+                .power(1000, Affinity.ARCANE));
 
         save(writer, "revenge_charm_fire", manaweaving(ItemInit.REVENGE_CHARM_FIRE.get(), 3)
                 .requiredFaction(FactionIDs.DEMONS)
-                .items(CHARM_PATTERN.get(), MANA_CRYSTAL_FRAGMENT.get(), Items.IRON_SWORD, Items.FLINT_AND_STEEL)
+                .items(CHARM_PATTERN.get(), MANA_CRYSTAL_FRAGMENT.get(), MOTE_FIRE.get(), Items.IRON_SWORD,
+                        Items.FLINT_AND_STEEL, Items.BLAZE_POWDER)
                 .patterns(BOLT, KNOT));
 
         save(writer, "revenge_charm_fire_major", eldrinAltar(ItemInit.REVENGE_CHARM_FIRE_MAJOR.get(), 5)
-                .items(ItemInit.REVENGE_CHARM_FIRE.get(), Items.NETHERITE_INGOT, Items.NETHERITE_INGOT)
-                .power(1000, Affinity.WATER, Affinity.FIRE, Affinity.WIND, Affinity.ARCANE, Affinity.ENDER));
+                .requiredFaction(FactionIDs.DEMONS)
+                .items(ItemInit.REVENGE_CHARM_FIRE.get(), Items.NETHERITE_SWORD, Items.MAGMA_CREAM)
+                .item(GREATER_MOTE_FIRE.get(), 2)
+                .item(LIVING_FLAME.get(), 2)
+                .power(2500, Affinity.FIRE)
+                .power(1000, Affinity.ARCANE));
 
         save(writer, "revenge_charm_reflect", manaweaving(ItemInit.REVENGE_CHARM_REFLECT.get(), 3)
-                .items(CHARM_PATTERN.get(), MANA_CRYSTAL_FRAGMENT.get(), Items.DIAMOND_SWORD, MOTE_ARCANE.get())
+                .items(CHARM_PATTERN.get(), MANA_CRYSTAL_FRAGMENT.get(), MOTE_ARCANE.get(), Items.DIAMOND_SWORD,
+                        Items.SHIELD)
                 .patterns(BOLT, KNOT));
 
         save(writer, "revenge_charm_reflect_major", eldrinAltar(ItemInit.REVENGE_CHARM_REFLECT_MAJOR.get(), 5)
-                .items(ItemInit.REVENGE_CHARM_REFLECT.get(), Items.NETHERITE_INGOT, Items.NETHERITE_INGOT)
-                .power(1000, Affinity.WATER, Affinity.FIRE, Affinity.WIND, Affinity.ARCANE, Affinity.ENDER));
+                .items(ItemInit.REVENGE_CHARM_REFLECT.get(), GREATER_MOTE_ARCANE.get(), GREATER_MOTE_ARCANE.get(),
+                        GREATER_MOTE_AIR.get(), Items.NETHERITE_SWORD, Items.SHIELD, RUNE_DEFENSE.get())
+                .power(3500, Affinity.ARCANE));
 
         save(writer, "voidfeather_charm", manaweaving(ItemInit.VOIDFEATHER_CHARM.get(), 2)
-                .items(Items.BLAZE_ROD, Items.ENDER_PEARL, Items.FEATHER, INFUSED_SILK.get(), Items.BLACK_DYE,
-                        PURIFIED_VINTEUM_DUST.get())
-                .patterns(TRIANGLE, SQUARE, TRIANGLE));
+                .items(Items.ENDER_PEARL, Items.FEATHER, Items.BLACK_DYE,
+                        INFUSED_SILK.get())
+                .patterns(TRIANGLE, SQUARE));
     }
 
     private void headgearAndArmor(Consumer<FinishedRecipe> writer) {
         save(writer, "night_goggles", manaweaving(ItemInit.NIGHT_GOGGLES.get(), 2)
                 .items(Items.AMETHYST_SHARD, RITUAL_FOCUS_LESSER.get(), Items.AMETHYST_SHARD, Items.LEATHER,
-                        Items.SOUL_TORCH, Items.LEATHER)
+                        Items.GOLDEN_CARROT, Items.LEATHER)
                 .patterns(CIRCLE, DIAMOND, CIRCLE));
 
         save(writer, "disappearing_tiara", manaweaving(ItemInit.DISAPPEARING_TIARA.get(), 3)
                 .requiredFaction(FactionIDs.FEY)
-                .items(Items.GHAST_TEAR, Items.IRON_HELMET, Items.CARROT, Items.SPIDER_EYE)
+                .items(Items.IRON_HELMET, Items.FERMENTED_SPIDER_EYE, Items.GOLDEN_CARROT)
                 .tag(Tags.Items.GLASS)
                 .tag(Tags.Items.GLASS)
                 .items(MOTE_ARCANE.get(), MOTE_AIR.get())
-                .patterns(KNOT, KNOT2, KNOT3, KNOT4));
+                .patterns(KNOT, KNOT2, KNOT3));
 
         save(writer, "hydra_crown", manaweaving(ItemInit.HYDRA_CROWN.get(), 3)
                 .requiredFaction(FactionIDs.UNDEAD)
-                .items(Items.GHAST_TEAR, com.mna.blocks.BlockInit.TARMA_ROOT.get(), Items.PURPLE_CANDLE,
-                        STONE_RUNE_PURPLE.get(), Items.GOLDEN_HELMET)
-                .patterns(SLASH, KNOT, SPLIT_TRIANGLE, KNOT4, BACKSLASH));
+                .items(Items.GOLDEN_HELMET, Items.GHAST_TEAR, MOTE_WATER.get(), STONE_RUNE_PURPLE.get(),
+                        Items.PURPLE_CANDLE, Items.BONE)
+                .patterns(SLASH, SPLIT_TRIANGLE, BACKSLASH));
 
         save(writer, "rune_helmet", manaweaving(ItemInit.RUNE_HELMET.get(), 2)
                 .items(Items.GOLDEN_HELMET, INFUSED_THREAD.get(), RUNE_ARCANE.get(), Items.AMETHYST_SHARD)
@@ -340,7 +378,7 @@ public class ModRecipeProvider extends MnaRecipeProvider {
 
         save(writer, "rune_chestplate", manaweaving(ItemInit.RUNE_CHESTPLATE.get(), 2)
                 .items(Items.GOLDEN_CHESTPLATE, INFUSED_THREAD.get(), RUNE_ARCANE.get())
-                .item(Items.AMETHYST_SHARD, 5)
+                .item(Items.AMETHYST_SHARD, 3)
                 .items(MOTE_ARCANE.get())
                 .patterns(SQUARE, DIAMOND));
 
@@ -350,13 +388,14 @@ public class ModRecipeProvider extends MnaRecipeProvider {
 
         save(writer, "rune_boots", manaweaving(ItemInit.RUNE_BOOTS.get(), 2)
                 .items(Items.GOLDEN_BOOTS, INFUSED_THREAD.get(), RUNE_ARCANE.get(), Items.AMETHYST_SHARD)
-                .patterns(SQUARE, SQUARE, DIAMOND));
+                .patterns(CIRCLE, DIAMOND));
     }
 
     private void blocks(Consumer<FinishedRecipe> writer) {
         save(writer, "rift_emitter", manaweaving(ItemInit.RIFT_EMITTER_ITEM.get(), 3)
-                .items(Items.ENDER_PEARL, Items.ENDER_PEARL, Items.ENDER_CHEST, Items.OBSIDIAN, Items.OBSIDIAN,
-                        Items.OBSIDIAN, Items.GOLD_BLOCK, MOTE_ENDER.get(), ARCANE_ASH.get())
+                .items(Items.ENDER_CHEST, MOTE_ENDER.get(), RUNE_ENDER.get())
+                .item(Items.ENDER_PEARL, 2)
+                .item(Items.OBSIDIAN, 2)
                 .patterns(SQUARE, DIAMOND, SQUARE));
     }
 
@@ -367,13 +406,13 @@ public class ModRecipeProvider extends MnaRecipeProvider {
 
         save(writer, component(SpellInit.CONJURE_LAVA, 5)
                 .items(FLUID_JUG_INFINITE_LAVA.get(), GREATER_MOTE_FIRE.get(), STONE_RUNE_RED.get(),
-                        STONE_RUNE_ORANGE.get(), Items.BLAZE_ROD, Items.BLAZE_ROD)
-                .patterns(TRIANGLE, INVERTED_TRIANGLE, DIAMOND, INVERTED_TRIANGLE));
+                        STONE_RUNE_ORANGE.get(), Items.BLAZE_ROD)
+                .patterns(TRIANGLE, STAR, INVERTED_TRIANGLE));
 
         save(writer, component(SpellInit.CONJURE_WATER, 3)
-                .items(FLUID_JUG_INFINITE_WATER.get(), MOTE_WATER.get(), MOTE_WATER.get(), STONE_RUNE_BLUE.get(),
+                .items(FLUID_JUG_INFINITE_WATER.get(), MOTE_WATER.get(), STONE_RUNE_BLUE.get(),
                         STONE_RUNE_LIGHT_BLUE.get(), STONE_RUNE_CYAN.get())
-                .patterns(INVERTED_TRIANGLE, KNOT4, CIRCLE, KNOT, INVERTED_TRIANGLE));
+                .patterns(INVERTED_TRIANGLE, KNOT));
 
         save(writer, component(SpellInit.FORCE_DAMAGE, 3)
                 .items(STONE_RUNE_WHITE.get(), RUNE_DEFENSE.get(), Items.ANVIL, Items.ENDER_PEARL,
@@ -381,7 +420,7 @@ public class ModRecipeProvider extends MnaRecipeProvider {
                 .patterns(TRIANGLE, KNOT, KNOT3, CIRCLE));
 
         save(writer, component(SpellInit.HELLFIRE, 5)
-                .items(LIVING_FLAME.get(), GREATER_MOTE_FIRE.get(), LIVING_FLAME.get())
+                .items(LIVING_FLAME.get(), GREATER_MOTE_FIRE.get(), LIVING_FLAME.get(), RUNE_FIRE.get())
                 .patterns(SLASH, KNOT2, KNOT));
 
         save(writer, component(SpellInit.MARK, 3)
@@ -390,7 +429,7 @@ public class ModRecipeProvider extends MnaRecipeProvider {
 
         save(writer, component(SpellInit.MOONRISE, 5)
                 .items(GREATER_MOTE_ENDER.get(), com.mna.blocks.BlockInit.CERUBLOSSOM.get(), RITUAL_FOCUS_GREATER.get(),
-                        Items.CLOCK, Items.ENDER_PEARL, Items.NETHER_STAR)
+                        Items.CLOCK, Items.ENDER_PEARL)
                 .patterns(STAR, INFINITY, HOURGLASS));
 
         save(writer, component(SpellInit.SATURATE, 4)
@@ -399,13 +438,13 @@ public class ModRecipeProvider extends MnaRecipeProvider {
                 .patterns(CIRCLE, SQUARE, CIRCLE));
 
         save(writer, component(SpellInit.SORCERERS_PRIDE, 5)
-                .items(GREATER_MOTE_ENDER.get(), RITUAL_FOCUS_GREATER.get(), Items.DRAGON_HEAD,
-                        ItemInit.DRAGON_CORE.get(), Items.NETHER_STAR)
+                .items(GREATER_MOTE_ENDER.get(), GREATER_MOTE_ARCANE.get(), RITUAL_FOCUS_GREATER.get(),
+                        Items.DRAGON_HEAD, Items.END_CRYSTAL)
                 .patterns(INFINITY, STAR, HOURGLASS));
 
         save(writer, component(SpellInit.SUNRISE, 5)
                 .items(GREATER_MOTE_ARCANE.get(), com.mna.blocks.BlockInit.DESERT_NOVA.get(), RITUAL_FOCUS_GREATER.get(),
-                        Items.CLOCK, Items.ENDER_PEARL, Items.NETHER_STAR)
+                        Items.CLOCK, Items.ENDER_PEARL)
                 .patterns(STAR, INFINITY, HOURGLASS));
     }
 
@@ -415,8 +454,9 @@ public class ModRecipeProvider extends MnaRecipeProvider {
                 .patterns(KNOT, KNOT2, KNOT3, KNOT4));
 
         save(writer, shape(SpellInit.CURSE, 5)
-                .items(PLAYER_CHARM.get(), RUNIC_SILK.get(), Items.NETHER_STAR, RUNE_ENDER.get(), MOTE_ENDER.get())
-                .patterns(INFINITY, SPLIT_TRIANGLE, HOURGLASS, INVERTED_SPLIT_TRIANGLE, INFINITY));
+                .items(PLAYER_CHARM.get(), RUNIC_SILK.get(), Items.NETHER_STAR, RUNE_ENDER.get(),
+                        GREATER_MOTE_ENDER.get(), Items.WITHER_ROSE)
+                .patterns(INFINITY, SPLIT_TRIANGLE, HOURGLASS, INVERTED_SPLIT_TRIANGLE));
 
         save(writer, shape(SpellInit.FRIENDS, 3)
                 .items(PLAYER_CHARM.get(), Items.GLISTERING_MELON_SLICE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE,
@@ -426,7 +466,7 @@ public class ModRecipeProvider extends MnaRecipeProvider {
         save(writer, shape(SpellInit.TRUE_TOUCH, 2)
                 .items(com.mna.blocks.BlockInit.AUM.get(), Items.ARMOR_STAND, VINTEUM_DUST.get(), INFUSED_SILK.get(),
                         Items.FEATHER, Items.CLAY)
-                .patterns(CIRCLE, TRIANGLE, SQUARE, CIRCLE));
+                .patterns(CIRCLE, SQUARE));
     }
 
     private void ae2(Consumer<FinishedRecipe> writer) {
@@ -463,174 +503,286 @@ public class ModRecipeProvider extends MnaRecipeProvider {
         return new ResourceLocation(CREATE, path);
     }
 
+    /**
+     * Distillation yields follow MagiChem's own yields for the Mana and Artifice curios: far below the materia of the
+     * ingredients, one leading materia for what the item does, {@code adornment} for jewelry, {@code instrument} for
+     * charms and tools, and the alchemy essentia of the recipe tier (2 nigredo, 3 albedo, 4 citrinitas, 5 rubedo).
+     * The total grows with the tier (about 30-40 / 50-90 / 90-140 / 150-250) and with every upgrade stage. Relics
+     * without a recipe yield {@code legend} and citrinitas like the Mana and Artifice relics.
+     */
     private void magichem(Consumer<FinishedRecipe> writer) {
         save(writer, distillation(ItemInit.MUTANDIS.get())
-                .outputRate(0.3f)
-                .admixture("change", 4).admixture("plant", 2).admixture("odors", 1));
+                .outputRate(0.15f)
+                .admixture("plant", 2).essentia("nourishing", 2).admixture("change", 1));
 
         save(writer, distillation(ItemInit.PURIFIED_MUTANDIS.get())
-                .outputRate(0.4f)
-                .essentia("arcane", 1).admixture("change", 4).admixture("plant", 2).admixture("fey", 1));
+                .outputRate(0.15f)
+                .admixture("plant", 2).admixture("change", 1).admixture("fey", 1));
 
         save(writer, distillation(ItemInit.MANA_CAKE.get())
-                .admixture("permanence", 12).admixture("delight", 8).admixture("sorcery", 7).admixture("lies", 6)
-                .essentia("nourishing", 11));
+                .admixture("delight", 12).admixture("mana", 10).admixture("satiety", 8).admixture("permanence", 6)
+                .admixture("lies", 3));
 
         save(writer, distillation(ItemInit.POTION_OF_INFINITY.get())
-                .admixture("witchcraft", 43).admixture("sorcery", 33).admixture("potential", 13)
-                .essentia("citrinitas", 3));
+                .admixture("witchcraft", 24).admixture("vessel", 16).admixture("sorcery", 12)
+                .admixture("permanence", 10).essentia("albedo", 5));
 
         save(writer, distillation(ItemInit.BRIMSTONE_CHALK.get())
-                .essentia("fire", 48).admixture("permanence", 25).admixture("sorcery", 11).admixture("instrument", 7)
-                .essentia("citrinitas", 2));
+                .essentia("fire", 24).admixture("permanence", 16).admixture("wizard", 4).admixture("instrument", 4)
+                .essentia("citrinitas", 4));
 
         save(writer, distillation(ItemInit.BRIMSTONE_COAL.get())
-                .essentia("fire", 128).admixture("energy", 25).admixture("permanence", 25).essentia("citrinitas", 2));
+                .essentia("fire", 64).admixture("energy", 16).admixture("permanence", 16).admixture("hells", 8)
+                .essentia("citrinitas", 6));
 
-        save(writer, distillation(ItemInit.DRAGON_CORE.get())
-                .categories(Category.TROPHY, Category.RARE)
-                .admixture("sorcery", 64).essentia("citrinitas", 16).admixture("legend", 4).essentia("precious", 111)
-                .essentia("rubedo", 64));
+        save(writer, distillation(ItemInit.OCELOT_RING_MINOR.get())
+                .admixture("motion", 12).essentia("air", 8).admixture("creature", 6).admixture("adornment", 3)
+                .essentia("nigredo", 4));
+
+        save(writer, distillation(ItemInit.OCELOT_RING.get())
+                .admixture("motion", 24).essentia("air", 16).admixture("creature", 10).admixture("adornment", 4)
+                .essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.OCELOT_RING_GREATER.get())
+                .admixture("motion", 72).essentia("air", 48).admixture("creature", 24).admixture("adornment", 8)
+                .essentia("rubedo", 10));
 
         save(writer, distillation(ItemInit.REACH_RING_MINOR.get())
-                .admixture("alien", 42).admixture("travel", 27).admixture("instrument", 9).essentia("albedo", 5));
+                .admixture("alien", 16).admixture("travel", 8).admixture("adornment", 3).essentia("wrought", 2)
+                .essentia("nigredo", 4));
 
         save(writer, distillation(ItemInit.REACH_RING.get())
-                .admixture("alien", 120).admixture("travel", 49).admixture("instrument", 19).essentia("citrinitas", 6));
+                .admixture("alien", 48).admixture("travel", 24).admixture("sorcery", 8).admixture("adornment", 5)
+                .essentia("citrinitas", 6));
 
         save(writer, distillation(ItemInit.REACH_RING_GREATER.get())
-                .admixture("alien", 120).admixture("travel", 120).admixture("instrument", 50)
-                .essentia("citrinitas", 16).essentia("rubedo", 48));
+                .admixture("alien", 96).admixture("travel", 48).admixture("sorcery", 16).admixture("adornment", 8)
+                .essentia("rubedo", 10));
+
+        save(writer, distillation(ItemInit.PROJECTILE_REFLECTION_RING.get())
+                .admixture("protection", 32).admixture("wizard", 24).admixture("motion", 24)
+                .admixture("adornment", 5).essentia("citrinitas", 6));
+
+        save(writer, distillation(ItemInit.RING_OF_SPELL_STORING.get())
+                .admixture("memory", 24).admixture("sorcery", 16).admixture("mana", 12).admixture("adornment", 4)
+                .essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.RING_OF_SPELL_STORING_COOLDOWN.get())
+                .admixture("memory", 28).admixture("sorcery", 20).essentia("precious", 20).admixture("adornment", 4)
+                .essentia("albedo", 6));
 
         save(writer, distillation(ItemInit.ANGEL_RING.get())
-                .essentia("air", 86).admixture("flight", 86).admixture("fey", 38).admixture("instrument", 2)
-                .essentia("rubedo", 12));
+                .admixture("flight", 160).admixture("fey", 40).admixture("firmament", 16).admixture("adornment", 10)
+                .essentia("rubedo", 16));
 
         save(writer, distillation(ItemInit.DEVIL_RING.get())
-                .essentia("fire", 243).admixture("demon", 64).admixture("sorcery", 38).admixture("instrument", 2)
-                .essentia("rubedo", 12));
+                .essentia("fire", 120).admixture("demon", 48).admixture("sorcery", 24).admixture("adornment", 10)
+                .essentia("rubedo", 16));
 
         save(writer, distillation(ItemInit.FALLEN_ANGEL_RING.get())
-                .admixture("potential", 14).admixture("exanimate", 38).admixture("instrument", 2)
-                .essentia("fleshy", 86).essentia("rubedo", 12));
+                .admixture("flight", 64).admixture("darkness", 48).admixture("exanimate", 24)
+                .admixture("adornment", 10).essentia("rubedo", 16));
 
-        save(writer, distillation(ItemInit.BATTLE_MAGE_RING.get())
-                .categories(Category.RARE)
-                .admixture("violence", 123).admixture("sorcery", 58).admixture("instrument", 20).admixture("legend", 6)
-                .essentia("citrinitas", 16));
+        save(writer, distillation(ItemInit.RING_OF_POWER.get())
+                .admixture("sorcery", 80).admixture("violence", 40).admixture("monster", 24).admixture("adornment", 10)
+                .essentia("rubedo", 16));
+
+        save(writer, distillation(ItemInit.RING_OF_RULING.get())
+                .admixture("sorcery", 80).admixture("protection", 40).admixture("breath", 16).admixture("adornment", 10)
+                .essentia("rubedo", 16));
 
         save(writer, distillation(ItemInit.BRACELET_OF_WATER.get())
-                .essentia("water", 27).admixture("travel", 42).admixture("instrument", 2).essentia("albedo", 5));
+                .essentia("water", 12).admixture("depths", 2).admixture("adornment", 2).essentia("nigredo", 2));
 
         save(writer, distillation(ItemInit.BRACELET_OF_WATER_GREATER.get())
-                .essentia("water", 120).admixture("travel", 49).admixture("instrument", 4).essentia("citrinitas", 6));
+                .essentia("water", 48).admixture("depths", 32).admixture("motion", 16).admixture("adornment", 5)
+                .essentia("citrinitas", 6));
 
         save(writer, distillation(ItemInit.DEFENSE_BRACELET_MINOR.get())
-                .admixture("metal", 48).admixture("protection", 40).admixture("instrument", 9));
+                .admixture("protection", 32).admixture("metal", 16).admixture("permanence", 8)
+                .admixture("adornment", 4).essentia("albedo", 5));
 
         save(writer, distillation(ItemInit.DEFENSE_BRACELET.get())
-                .essentia("precious", 64).admixture("crystal", 56).admixture("protection", 56)
-                .admixture("instrument", 13).essentia("nigredo", 16));
+                .admixture("protection", 64).admixture("metal", 24).admixture("permanence", 16)
+                .admixture("adornment", 5).essentia("citrinitas", 6));
 
         save(writer, distillation(ItemInit.DEFENSE_BRACELET_GREATER.get())
-                .admixture("protection", 72).admixture("metal", 32).admixture("instrument", 21)
-                .essentia("precious", 104).essentia("albedo", 10));
+                .admixture("protection", 128).admixture("metal", 32).admixture("permanence", 24)
+                .admixture("adornment", 8).essentia("rubedo", 12));
+
+        save(writer, distillation(ItemInit.FIRE_RESISTANCE_BRACELET.get())
+                .admixture("protection", 32).admixture("demon", 24).admixture("hells", 12).admixture("adornment", 5)
+                .essentia("citrinitas", 6));
 
         save(writer, distillation(ItemInit.BRACELET_OF_FRIENDSHIP.get())
-                .admixture("protection", 36).admixture("thought", 7).admixture("history", 6).admixture("instrument", 2)
-                .essentia("precious", 11));
+                .admixture("protection", 24).admixture("domestication", 8).admixture("thought", 8)
+                .admixture("adornment", 4).essentia("albedo", 5));
 
         save(writer, distillation(ItemInit.COLLECTORS_AMULET.get())
-                .admixture("potential", 38).admixture("sorcery", 28).essentia("citrinitas", 7));
+                .admixture("adornment", 24).admixture("vessel", 12).admixture("metal", 12).admixture("sorcery", 8)
+                .essentia("albedo", 5));
 
         save(writer, distillation(ItemInit.CURSE_PROTECTION_AMULET.get())
-                .admixture("protection", 128).admixture("curse", 21).admixture("luck", 21).admixture("witchcraft", 7)
-                .essentia("citrinitas", 12));
+                .admixture("protection", 80).admixture("curse", 24).admixture("healing", 24)
+                .admixture("adornment", 8).essentia("rubedo", 12));
 
         save(writer, distillation(ItemInit.REGENERATION_AMULET.get())
-                .admixture("healing", 188).admixture("instrument", 13).essentia("precious", 109)
+                .admixture("healing", 64).admixture("blood", 16).essentia("precious", 16).admixture("adornment", 5)
                 .essentia("citrinitas", 6));
 
         save(writer, distillation(ItemInit.FACTION_AMULET.get())
-                .admixture("protection", 38).admixture("demon", 16).admixture("exanimate", 16).admixture("fey", 16)
-                .admixture("wizard", 16));
+                .admixture("bargain", 8).admixture("wizard", 8).admixture("fey", 8).admixture("demon", 8)
+                .admixture("exanimate", 8));
 
         save(writer, distillation(ItemInit.AMULET_OF_HELLFIRE.get())
-                .essentia("fire", 243).admixture("demon", 64).admixture("sorcery", 38).admixture("instrument", 2)
+                .essentia("fire", 96).admixture("demon", 40).admixture("destruction", 16).admixture("adornment", 8)
                 .essentia("rubedo", 12));
 
         save(writer, distillation(ItemInit.BELT_OF_LIFE_MINOR.get())
-                .admixture("blood", 9).admixture("healing", 9).admixture("instrument", 9).admixture("protection", 9)
-                .essentia("albedo", 5));
+                .admixture("healing", 12).admixture("blood", 8).admixture("protection", 4).admixture("adornment", 3)
+                .essentia("nigredo", 4));
 
         save(writer, distillation(ItemInit.BELT_OF_LIFE.get())
-                .admixture("blood", 21).admixture("healing", 21).admixture("protection", 21)
-                .admixture("instrument", 13).essentia("precious", 99));
+                .admixture("healing", 40).admixture("blood", 24).admixture("protection", 16).admixture("adornment", 5)
+                .essentia("citrinitas", 6));
 
         save(writer, distillation(ItemInit.BELT_OF_LIFE_GREATER.get())
-                .admixture("blood", 64).admixture("healing", 64).admixture("protection", 64)
-                .admixture("instrument", 13).essentia("citrinitas", 6));
+                .admixture("healing", 96).admixture("blood", 48).admixture("protection", 32).admixture("adornment", 8)
+                .essentia("rubedo", 12));
 
         save(writer, distillation(ItemInit.GLASS_CANNON_BELT.get())
-                .admixture("violence", 128).admixture("change", 12).admixture("instrument", 2)
-                .essentia("citrinitas", 11));
+                .admixture("violence", 48).admixture("destruction", 24).admixture("crystal", 16)
+                .admixture("adornment", 5).essentia("citrinitas", 6));
 
         save(writer, distillation(ItemInit.STURDY_BELT.get())
-                .admixture("protection", 128).admixture("change", 12).admixture("instrument", 2)
-                .essentia("citrinitas", 11));
+                .admixture("protection", 64).admixture("permanence", 24).admixture("stone", 16)
+                .admixture("adornment", 5).essentia("citrinitas", 6));
 
         save(writer, distillation(ItemInit.REVENGE_CHARM_DMG.get())
-                .essentia("earth", 8).admixture("violence", 8).admixture("instrument", 3).essentia("wrought", 5));
-
-        save(writer, distillation(ItemInit.REVENGE_CHARM_DMG_MAJOR.get())
-                .essentia("earth", 16).admixture("violence", 16).admixture("instrument", 8).essentia("albedo", 5));
-
-        save(writer, distillation(ItemInit.REVENGE_CHARM_FIRE.get())
-                .essentia("fire", 8).admixture("violence", 8).admixture("instrument", 3).essentia("wrought", 5));
-
-        save(writer, distillation(ItemInit.REVENGE_CHARM_FIRE_MAJOR.get())
-                .essentia("fire", 16).admixture("violence", 16).admixture("instrument", 8).essentia("albedo", 5));
-
-        save(writer, distillation(ItemInit.REVENGE_CHARM_REFLECT.get())
-                .essentia("arcane", 8).admixture("violence", 8).admixture("instrument", 3).essentia("wrought", 5));
-
-        save(writer, distillation(ItemInit.REVENGE_CHARM_REFLECT_MAJOR.get())
-                .essentia("arcane", 16).admixture("violence", 16).admixture("instrument", 8).essentia("albedo", 5));
-
-        save(writer, distillation(ItemInit.VOIDFEATHER_CHARM.get())
-                .admixture("protection", 14).admixture("alien", 12).admixture("travel", 8).admixture("instrument", 3)
-                .essentia("wrought", 4));
-
-        save(writer, sublimation(ItemInit.VOIDFEATHER_CHARM.get(), 2)
-                .stage(8)
-                .items(ItemInit.VOIDFEATHER_CHARM.get())
-                .item(magichemItem("glass_orb"))
-                .items(Items.FEATHER, PURIFIED_VINTEUM_DUST.get())
-                .admixture("travel", 20).admixture("alien", 5).admixture("instrument", 2));
-
-        save(writer, distillation(ItemInit.NIGHT_GOGGLES.get())
-                .admixture("light", 48).admixture("crystal", 14).admixture("color", 9).admixture("instrument", 6)
+                .admixture("violence", 16).admixture("trap", 8).admixture("protection", 8).admixture("instrument", 2)
                 .essentia("albedo", 5));
 
+        save(writer, distillation(ItemInit.REVENGE_CHARM_DMG_MAJOR.get())
+                .admixture("violence", 48).admixture("trap", 24).admixture("protection", 24)
+                .admixture("instrument", 4).essentia("rubedo", 10));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_FIRE.get())
+                .essentia("fire", 16).admixture("demon", 8).admixture("protection", 8).admixture("instrument", 2)
+                .essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_FIRE_MAJOR.get())
+                .essentia("fire", 48).admixture("demon", 24).admixture("protection", 24).admixture("instrument", 4)
+                .essentia("rubedo", 10));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_REFLECT.get())
+                .essentia("arcane", 16).admixture("violence", 8).admixture("protection", 8)
+                .admixture("instrument", 2).essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_REFLECT_MAJOR.get())
+                .essentia("arcane", 48).admixture("violence", 24).admixture("protection", 24)
+                .admixture("instrument", 4).essentia("rubedo", 10));
+
+        save(writer, distillation(ItemInit.VOIDFEATHER_CHARM.get())
+                .admixture("travel", 12).admixture("alien", 8).admixture("protection", 6).admixture("instrument", 2)
+                .essentia("nigredo", 4));
+
+        // alternative route from the Enderfeather Charm, like MagiChem's Hellfeather Charm
+        save(writer, sublimation(ItemInit.VOIDFEATHER_CHARM.get(), 2)
+                .stage(8)
+                .items(BED_CHARM.get(), Items.FEATHER)
+                .admixture("travel", 13).admixture("alien", 8).admixture("protection", 6));
+
+        save(writer, distillation(ItemInit.NIGHT_GOGGLES.get())
+                .admixture("sight", 6).admixture("light", 4).admixture("crystal", 4).admixture("adornment", 2)
+                .essentia("nigredo", 4));
+
         save(writer, distillation(ItemInit.DISAPPEARING_TIARA.get())
-                .essentia("air", 36).essentia("arcane", 36).admixture("fey", 20).admixture("instrument", 2)
-                .essentia("nigredo", 6));
+                .admixture("lies", 20).admixture("fey", 16).admixture("darkness", 8).admixture("adornment", 4)
+                .essentia("albedo", 5));
 
         save(writer, distillation(ItemInit.HYDRA_CROWN.get())
-                .admixture("exanimate", 16).admixture("violence", 15).admixture("blood", 14)
-                .admixture("witchcraft", 11).admixture("instrument", 4));
+                .admixture("healing", 16).admixture("violence", 12).admixture("exanimate", 8)
+                .admixture("adornment", 6).essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.RUNE_HELMET.get())
+                .essentia("precious", 20).admixture("sorcery", 16).admixture("protection", 12).admixture("adornment", 4)
+                .essentia("nigredo", 4));
+
+        save(writer, distillation(ItemInit.RUNE_CHESTPLATE.get())
+                .essentia("precious", 32).admixture("sorcery", 32).admixture("protection", 24)
+                .admixture("adornment", 10).essentia("nigredo", 4));
+
+        save(writer, distillation(ItemInit.RUNE_LEGGING.get())
+                .essentia("precious", 28).admixture("sorcery", 22).admixture("protection", 16).admixture("adornment", 6)
+                .essentia("nigredo", 4));
+
+        save(writer, distillation(ItemInit.RUNE_BOOTS.get())
+                .essentia("precious", 16).admixture("sorcery", 12).admixture("protection", 9).admixture("adornment", 4)
+                .essentia("nigredo", 4));
+
+        save(writer, distillation(ItemInit.RIFT_EMITTER_ITEM.get())
+                .admixture("vessel", 32).admixture("alien", 24).admixture("travel", 16).admixture("permanence", 8)
+                .essentia("albedo", 5));
+
+        // the Dragon Mage chain consumes a relic, so the item that carries it on yields its legend
+        save(writer, distillation(ItemInit.DRAGON_TOTEM_EMPTY.get())
+                .categories(Category.RARE)
+                .admixture("potential", 16).admixture("monster", 8).admixture("flight", 8).admixture("legend", 6)
+                .essentia("rubedo", 8));
+
+        save(writer, distillation(ItemInit.DRAGON_TOTEM.get())
+                .categories(Category.RARE)
+                .admixture("potential", 32).admixture("realm", 24).admixture("breath", 16).admixture("legend", 6)
+                .essentia("rubedo", 16));
+
+        save(writer, distillation(ItemInit.AMULET_OF_DRAGON_POWER.get())
+                .categories(Category.TROPHY, Category.RARE)
+                .admixture("sorcery", 64).admixture("potential", 32).admixture("adornment", 10).admixture("legend", 6)
+                .essentia("rubedo", 16));
+
+        save(writer, distillation(ItemInit.DRAGON_MAGE_HELMET.get())
+                .categories(Category.TROPHY, Category.RARE)
+                .admixture("protection", 40).admixture("sorcery", 20).essentia("precious", 20)
+                .admixture("potential", 10).essentia("rubedo", 10));
+
+        save(writer, distillation(ItemInit.DRAGON_MAGE_CHESTPLATE.get())
+                .categories(Category.TROPHY, Category.RARE)
+                .admixture("protection", 64).admixture("sorcery", 32).admixture("flight", 32).admixture("potential", 16)
+                .essentia("rubedo", 16));
+
+        save(writer, distillation(ItemInit.DRAGON_MAGE_LEGGING.get())
+                .categories(Category.TROPHY, Category.RARE)
+                .admixture("protection", 56).admixture("sorcery", 28).essentia("precious", 28)
+                .admixture("potential", 14).essentia("rubedo", 14));
+
+        save(writer, distillation(ItemInit.DRAGON_MAGE_BOOTS.get())
+                .categories(Category.TROPHY, Category.RARE)
+                .admixture("protection", 32).admixture("sorcery", 16).essentia("precious", 16).admixture("potential", 8)
+                .essentia("rubedo", 8));
+
+        save(writer, distillation(ItemInit.BATTLE_MAGE_RING.get())
+                .categories(Category.RARE)
+                .admixture("violence", 64).admixture("sorcery", 64).admixture("adornment", 10).admixture("legend", 6)
+                .essentia("citrinitas", 16));
 
         save(writer, distillation(ItemInit.WEATHER_FAIRY_STAFF.get())
                 .categories(Category.RARE)
-                .admixture("storm", 52).admixture("change", 41).admixture("instrument", 20).admixture("legend", 6)
+                .admixture("storm", 64).admixture("change", 24).admixture("fey", 16).admixture("legend", 6)
                 .essentia("citrinitas", 16));
 
         save(writer, distillation(ItemInit.THE_CLICKERS_COOKIE.get())
                 .categories(Category.RARE)
-                .admixture("delight", 119).admixture("alien", 45).admixture("legend", 6).essentia("nourishing", 184)
+                .admixture("delight", 64).essentia("nourishing", 48).admixture("luck", 16).admixture("legend", 6)
                 .essentia("citrinitas", 16));
 
-        save(writer, distillation(ItemInit.RIFT_EMITTER_ITEM.get())
-                .essentia("ender", 13).admixture("travel", 36).admixture("vessel", 28).admixture("alien", 8));
+        save(writer, distillation(ItemInit.KEY_OF_HOMESTEAD.get())
+                .categories(Category.RARE)
+                .admixture("travel", 64).admixture("alien", 32).admixture("instrument", 16).admixture("legend", 6)
+                .essentia("citrinitas", 16));
+
+        save(writer, distillation(ItemInit.JOURNAL_OF_MYSTERIES.get())
+                .categories(Category.RARE)
+                .admixture("memory", 64).admixture("thought", 24).admixture("history", 16).admixture("legend", 6)
+                .essentia("citrinitas", 16));
     }
 }

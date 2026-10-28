@@ -14,16 +14,24 @@
         "categories": 1,
         "components": [
           {
-            "count": 38,
-            "item": "magichem:admixture_potential"
+            "count": 24,
+            "item": "magichem:admixture_adornment"
           },
           {
-            "count": 28,
+            "count": 12,
+            "item": "magichem:admixture_vessel"
+          },
+          {
+            "count": 12,
+            "item": "magichem:admixture_metal"
+          },
+          {
+            "count": 8,
             "item": "magichem:admixture_sorcery"
           },
           {
-            "count": 7,
-            "item": "magichem:essentia_citrinitas"
+            "count": 5,
+            "item": "magichem:essentia_albedo"
           }
         ],
         "object": {

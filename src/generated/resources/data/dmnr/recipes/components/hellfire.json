@@ -3,7 +3,8 @@
   "items": [
     "mna:living_flame",
     "mna:greater_mote_fire",
-    "mna:living_flame"
+    "mna:living_flame",
+    "mna:rune_fire"
   ],
   "output": "dmnr:components/hellfire",
   "patterns": [

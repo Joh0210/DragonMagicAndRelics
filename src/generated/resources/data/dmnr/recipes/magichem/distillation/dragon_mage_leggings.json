@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 48,
+        "components": [
+          {
+            "count": 56,
+            "item": "magichem:admixture_protection"
+          },
+          {
+            "count": 28,
+            "item": "magichem:admixture_sorcery"
+          },
+          {
+            "count": 28,
+            "item": "magichem:essentia_precious"
+          },
+          {
+            "count": 14,
+            "item": "magichem:admixture_potential"
+          },
+          {
+            "count": 14,
+            "item": "magichem:essentia_rubedo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:dragon_mage_leggings"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

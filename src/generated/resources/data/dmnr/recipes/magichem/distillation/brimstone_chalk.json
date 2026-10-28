@@ -14,23 +14,23 @@
         "categories": 1,
         "components": [
           {
-            "count": 48,
+            "count": 24,
             "item": "magichem:essentia_fire"
           },
           {
-            "count": 25,
+            "count": 16,
             "item": "magichem:admixture_permanence"
           },
           {
-            "count": 11,
-            "item": "magichem:admixture_sorcery"
+            "count": 4,
+            "item": "magichem:admixture_wizard"
           },
           {
-            "count": 7,
+            "count": 4,
             "item": "magichem:admixture_instrument"
           },
           {
-            "count": 2,
+            "count": 4,
             "item": "magichem:essentia_citrinitas"
           }
         ],

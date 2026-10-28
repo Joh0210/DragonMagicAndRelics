@@ -2,15 +2,22 @@
   "type": "mna:eldrin-altar",
   "items": [
     "dmnr:ocelot_ring",
-    "minecraft:netherite_ingot",
     "mna:greater_mote_air",
-    "minecraft:gold_ingot"
+    "mna:greater_mote_air",
+    "mna:greater_mote_earth",
+    "minecraft:rabbit_foot",
+    "minecraft:phantom_membrane",
+    "mna:tarma_root"
   ],
   "output": "dmnr:ocelot_ring_greater",
   "power_requirements": [
     {
       "affinity": "WIND",
-      "amount": 500
+      "amount": 2500
+    },
+    {
+      "affinity": "EARTH",
+      "amount": 1000
     }
   ],
   "quantity": 1,

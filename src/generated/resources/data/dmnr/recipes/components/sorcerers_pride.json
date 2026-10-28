@@ -2,10 +2,10 @@
   "type": "mna:component",
   "items": [
     "mna:greater_mote_ender",
+    "mna:greater_mote_arcane",
     "mna:ritual_focus_greater",
     "minecraft:dragon_head",
-    "dmnr:dragon_core",
-    "minecraft:nether_star"
+    "minecraft:end_crystal"
   ],
   "output": "dmnr:components/sorcerers_pride",
   "patterns": [

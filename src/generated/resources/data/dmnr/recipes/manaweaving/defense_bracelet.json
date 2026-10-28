@@ -2,10 +2,11 @@
   "type": "mna:manaweaving-recipe",
   "items": [
     "dmnr:defense_bracelet_minor",
+    "mna:greater_mote_earth",
     "mna:rune_defense",
     "minecraft:diamond_chestplate",
-    "minecraft:amethyst_shard",
-    "mna:greater_mote_earth"
+    "minecraft:obsidian",
+    "minecraft:obsidian"
   ],
   "output": "dmnr:defense_bracelet",
   "patterns": [

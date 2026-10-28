@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 48,
+        "components": [
+          {
+            "count": 64,
+            "item": "magichem:admixture_sorcery"
+          },
+          {
+            "count": 32,
+            "item": "magichem:admixture_potential"
+          },
+          {
+            "count": 10,
+            "item": "magichem:admixture_adornment"
+          },
+          {
+            "count": 6,
+            "item": "magichem:admixture_legend"
+          },
+          {
+            "count": 16,
+            "item": "magichem:essentia_rubedo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:amulet_of_dragon_power"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

@@ -14,23 +14,23 @@
         "categories": 1,
         "components": [
           {
-            "count": 120,
+            "count": 96,
             "item": "magichem:admixture_alien"
           },
           {
-            "count": 120,
+            "count": 48,
             "item": "magichem:admixture_travel"
           },
           {
-            "count": 50,
-            "item": "magichem:admixture_instrument"
-          },
-          {
             "count": 16,
-            "item": "magichem:essentia_citrinitas"
+            "item": "magichem:admixture_sorcery"
           },
           {
-            "count": 48,
+            "count": 8,
+            "item": "magichem:admixture_adornment"
+          },
+          {
+            "count": 10,
             "item": "magichem:essentia_rubedo"
           }
         ],

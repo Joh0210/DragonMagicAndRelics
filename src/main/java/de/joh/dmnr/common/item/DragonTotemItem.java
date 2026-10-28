@@ -26,7 +26,7 @@ public class DragonTotemItem extends Item {
         super(new Item.Properties().fireResistant().rarity(Rarity.EPIC).stacksTo(1));
     }
     /**
-     * Drops the Dragon Core when the Ender Dragon dies
+     * Equips the Dragon Mage Armor when a player without armor kills the Ender Dragon while holding the Dragon Totem
      */
     public static void eventHandleDragonDeath(LivingDeathEvent event){
         if(event.getEntity().getType() == EntityType.ENDER_DRAGON && event.getSource().getEntity() instanceof Player player){

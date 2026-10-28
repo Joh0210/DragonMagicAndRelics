@@ -3,8 +3,10 @@
   "items": [
     "mna:charm_pattern",
     "mna:mana_crystal_fragment",
+    "mna:mote_fire",
     "minecraft:iron_sword",
-    "minecraft:flint_and_steel"
+    "minecraft:flint_and_steel",
+    "minecraft:blaze_powder"
   ],
   "output": "dmnr:revenge_charm_fire",
   "patterns": [

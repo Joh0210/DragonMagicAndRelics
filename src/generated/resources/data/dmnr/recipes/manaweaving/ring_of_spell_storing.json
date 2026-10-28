@@ -2,23 +2,17 @@
   "type": "mna:manaweaving-recipe",
   "items": [
     "mna:mundane_bracelet",
-    "mna:mote_arcane",
+    "mna:crystal_of_memories",
     "mna:rune_arcane",
-    "mna:chimerite_gem",
-    "mna:chimerite_gem",
-    "mna:chimerite_gem",
-    "mna:chimerite_gem",
+    "mna:mote_arcane",
     "mna:chimerite_gem",
     "mna:chimerite_gem"
   ],
   "output": "dmnr:ring_of_spell_storing",
   "patterns": [
     "mna:manaweave_patterns/circle",
-    "mna:manaweave_patterns/square",
-    "mna:manaweave_patterns/diamond",
-    "mna:manaweave_patterns/slash",
-    "mna:manaweave_patterns/square",
-    "mna:manaweave_patterns/backslash"
+    "mna:manaweave_patterns/split_triangle",
+    "mna:manaweave_patterns/diamond"
   ],
   "quantity": 1,
   "tier": 3

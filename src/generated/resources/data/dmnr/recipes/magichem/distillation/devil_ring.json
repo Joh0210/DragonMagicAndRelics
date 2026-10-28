@@ -14,23 +14,23 @@
         "categories": 1,
         "components": [
           {
-            "count": 243,
+            "count": 120,
             "item": "magichem:essentia_fire"
           },
           {
-            "count": 64,
+            "count": 48,
             "item": "magichem:admixture_demon"
           },
           {
-            "count": 38,
+            "count": 24,
             "item": "magichem:admixture_sorcery"
           },
           {
-            "count": 2,
-            "item": "magichem:admixture_instrument"
+            "count": 10,
+            "item": "magichem:admixture_adornment"
           },
           {
-            "count": 12,
+            "count": 16,
             "item": "magichem:essentia_rubedo"
           }
         ],

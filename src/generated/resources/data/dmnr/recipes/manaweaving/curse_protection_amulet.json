@@ -2,14 +2,13 @@
   "type": "mna:manaweaving-recipe",
   "items": [
     "mna:witherguard_amulet",
-    "minecraft:diamond_block",
-    "minecraft:soul_sand",
-    "minecraft:soul_sand",
-    "minecraft:iron_ingot",
+    "minecraft:dragon_breath",
     "minecraft:milk_bucket",
-    "dmnr:dragon_core",
-    "minecraft:totem_of_undying",
-    "mna:living_flame"
+    "minecraft:milk_bucket",
+    "mna:greater_mote_arcane",
+    "mna:greater_mote_water",
+    "mna:rune_defense",
+    "minecraft:golden_apple"
   ],
   "output": "dmnr:curse_protection_amulet",
   "patterns": [

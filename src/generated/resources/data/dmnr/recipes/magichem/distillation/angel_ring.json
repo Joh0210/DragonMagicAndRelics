@@ -14,23 +14,23 @@
         "categories": 1,
         "components": [
           {
-            "count": 86,
-            "item": "magichem:essentia_air"
-          },
-          {
-            "count": 86,
+            "count": 160,
             "item": "magichem:admixture_flight"
           },
           {
-            "count": 38,
+            "count": 40,
             "item": "magichem:admixture_fey"
           },
           {
-            "count": 2,
-            "item": "magichem:admixture_instrument"
+            "count": 16,
+            "item": "magichem:admixture_firmament"
           },
           {
-            "count": 12,
+            "count": 10,
+            "item": "magichem:admixture_adornment"
+          },
+          {
+            "count": 16,
             "item": "magichem:essentia_rubedo"
           }
         ],

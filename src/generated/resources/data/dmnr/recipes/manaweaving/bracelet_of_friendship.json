@@ -2,21 +2,18 @@
   "type": "mna:manaweaving-recipe",
   "items": [
     "mna:mundane_bracelet",
-    "minecraft:gold_ingot",
+    "mna:player_charm",
+    "mna:rune_defense",
+    "minecraft:golden_apple",
     "minecraft:glistering_melon_slice",
     "minecraft:golden_carrot",
-    "minecraft:golden_apple",
-    "minecraft:amethyst_shard",
-    "minecraft:amethyst_shard",
-    "mna:player_charm",
-    "mna:rune_defense"
+    "minecraft:gold_ingot"
   ],
   "output": "dmnr:bracelet_of_friendship",
   "patterns": [
     "mna:manaweave_patterns/triangle",
     "mna:manaweave_patterns/slash",
-    "mna:manaweave_patterns/backslash",
-    "mna:manaweave_patterns/triangle"
+    "mna:manaweave_patterns/backslash"
   ],
   "quantity": 1,
   "tier": 3

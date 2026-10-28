@@ -14,16 +14,16 @@
         "categories": 32,
         "components": [
           {
-            "count": 52,
+            "count": 64,
             "item": "magichem:admixture_storm"
           },
           {
-            "count": 41,
+            "count": 24,
             "item": "magichem:admixture_change"
           },
           {
-            "count": 20,
-            "item": "magichem:admixture_instrument"
+            "count": 16,
+            "item": "magichem:admixture_fey"
           },
           {
             "count": 6,

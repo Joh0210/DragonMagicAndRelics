@@ -2,20 +2,19 @@
   "type": "mna:eldrin-altar",
   "items": [
     "mna:belt_buckle",
+    "minecraft:shield",
+    "minecraft:netherite_ingot",
+    "mna:greater_mote_earth",
+    "minecraft:obsidian",
     "minecraft:obsidian",
     "minecraft:wool",
-    "minecraft:netherite_ingot",
-    "minecraft:wool",
-    "minecraft:shield",
-    "minecraft:wool",
-    "minecraft:netherite_ingot",
     "minecraft:wool"
   ],
   "output": "dmnr:sturdy_belt",
   "power_requirements": [
     {
       "affinity": "EARTH",
-      "amount": 400
+      "amount": 2000
     }
   ],
   "quantity": 1,

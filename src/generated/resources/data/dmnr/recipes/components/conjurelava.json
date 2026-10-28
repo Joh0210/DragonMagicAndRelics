@@ -5,14 +5,12 @@
     "mna:greater_mote_fire",
     "mna:stone_rune_red",
     "mna:stone_rune_orange",
-    "minecraft:blaze_rod",
     "minecraft:blaze_rod"
   ],
   "output": "dmnr:components/conjurelava",
   "patterns": [
     "mna:manaweave_patterns/triangle",
-    "mna:manaweave_patterns/inverted_triangle",
-    "mna:manaweave_patterns/diamond",
+    "mna:manaweave_patterns/star",
     "mna:manaweave_patterns/inverted_triangle"
   ],
   "tier": 5

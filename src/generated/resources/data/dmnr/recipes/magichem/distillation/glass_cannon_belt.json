@@ -14,19 +14,23 @@
         "categories": 1,
         "components": [
           {
-            "count": 128,
+            "count": 48,
             "item": "magichem:admixture_violence"
           },
           {
-            "count": 12,
-            "item": "magichem:admixture_change"
+            "count": 24,
+            "item": "magichem:admixture_destruction"
           },
           {
-            "count": 2,
-            "item": "magichem:admixture_instrument"
+            "count": 16,
+            "item": "magichem:admixture_crystal"
           },
           {
-            "count": 11,
+            "count": 5,
+            "item": "magichem:admixture_adornment"
+          },
+          {
+            "count": 6,
             "item": "magichem:essentia_citrinitas"
           }
         ],

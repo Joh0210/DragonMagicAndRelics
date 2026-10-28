@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 32,
+        "components": [
+          {
+            "count": 64,
+            "item": "magichem:admixture_memory"
+          },
+          {
+            "count": 24,
+            "item": "magichem:admixture_thought"
+          },
+          {
+            "count": 16,
+            "item": "magichem:admixture_history"
+          },
+          {
+            "count": 6,
+            "item": "magichem:admixture_legend"
+          },
+          {
+            "count": 16,
+            "item": "magichem:essentia_citrinitas"
+          }
+        ],
+        "object": {
+          "item": "dmnr:journal_of_mysteries"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

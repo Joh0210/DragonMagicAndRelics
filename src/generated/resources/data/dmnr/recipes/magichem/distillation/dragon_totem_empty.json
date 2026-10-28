@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 32,
+        "components": [
+          {
+            "count": 16,
+            "item": "magichem:admixture_potential"
+          },
+          {
+            "count": 8,
+            "item": "magichem:admixture_monster"
+          },
+          {
+            "count": 8,
+            "item": "magichem:admixture_flight"
+          },
+          {
+            "count": 6,
+            "item": "magichem:admixture_legend"
+          },
+          {
+            "count": 8,
+            "item": "magichem:essentia_rubedo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:dragon_totem_empty"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

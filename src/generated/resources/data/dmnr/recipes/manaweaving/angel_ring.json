@@ -1,15 +1,15 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
-    "minecraft:nether_star",
-    "minecraft:gold_block",
-    "minecraft:elytra",
-    "minecraft:gold_block",
     "mna:mundane_ring",
-    "mna:greater_mote_air",
-    "minecraft:gold_block",
+    "minecraft:nether_star",
     "mna:spectral_elytra",
-    "minecraft:gold_block"
+    "mna:greater_mote_air",
+    "mna:greater_mote_air",
+    "mna:greater_mote_arcane",
+    "minecraft:gold_block",
+    "minecraft:gold_block",
+    "minecraft:phantom_membrane"
   ],
   "output": "dmnr:angel_ring",
   "patterns": [

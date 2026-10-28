@@ -14,20 +14,20 @@
         "categories": 1,
         "components": [
           {
-            "count": 243,
+            "count": 96,
             "item": "magichem:essentia_fire"
           },
           {
-            "count": 64,
+            "count": 40,
             "item": "magichem:admixture_demon"
           },
           {
-            "count": 38,
-            "item": "magichem:admixture_sorcery"
+            "count": 16,
+            "item": "magichem:admixture_destruction"
           },
           {
-            "count": 2,
-            "item": "magichem:admixture_instrument"
+            "count": 8,
+            "item": "magichem:admixture_adornment"
           },
           {
             "count": 12,

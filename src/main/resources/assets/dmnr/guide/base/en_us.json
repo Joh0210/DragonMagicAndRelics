@@ -1072,34 +1072,6 @@
       }
     ]
   },
-  "Dragon Core": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Dragon Core"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The Core of the End, The Essence of the Dragon, an Item of Immeasurable Power!",
-            "color": ""
-          },
-          {
-            "text": "\n\n"
-          },
-          {
-            "text": "This item can be obtained by slaying the Titan of the End. The ender dragon!",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": []
-  },
   "Faction Amulet": {
     "index": "0",
     "category": "eldrin_altar",
@@ -1449,23 +1421,34 @@
         "value": "",
         "json": [
           {
-            "text": "Another container to channel my dragon magic into with 16 slots. Correspondingly, like the Dragon Magic Armor, I can merge ",
+            "text": "Whoever dares to strike me shall feel my wrath in return!",
+            "color": "",
+            "italic": true
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The ",
             "color": ""
           },
           {
-            "text": "glyphs ",
+            "text": "Ring of Power",
             "color": "blue"
           },
           {
-            "text": "with the amulet, but I still have to wear the full ",
+            "text": " holds a single spell. Whenever I take damage from a creature, the stored spell is cast on the ",
             "color": ""
           },
           {
-            "text": "Dragon Mage Armor",
-            "color": "blue"
+            "text": "attacker",
+            "color": "dark_purple"
           },
           {
-            "text": ".",
+            "text": ". The spell costs its usual mana; if I don't have enough, nothing happens.\n\nTo insert the spell, hold the GUI key (default: Left Ctrl) and right-click the ring.",
             "color": ""
           }
         ]
@@ -1475,7 +1458,12 @@
         "value": "",
         "json": [
           {
-            "text": "Additionally, each upgrade of this ring is enhanced by one unit."
+            "text": "Dragon Magic: ",
+            "color": "blue"
+          },
+          {
+            "text": "The mana cost of the stored spell is halved.",
+            "color": ""
           }
         ]
       }
@@ -1484,10 +1472,6 @@
       {
         "type": "manaweaving_altar",
         "location":"dmnr:manaweaving/ring_of_power"
-      },
-      {
-        "type": "ritual",
-        "location":"dmnr:rituals/upgrade_ritual"
       }
     ]
   },
@@ -1504,15 +1488,34 @@
         "value": "",
         "json": [
           {
-            "text": "Another container to channel my dragon magic into with 16 slots.",
+            "text": "A wound is merely a reminder to tend to myself.",
+            "color": "",
+            "italic": true
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The ",
             "color": ""
           },
           {
-            "text": "glyphs ",
+            "text": "Ring of Ruling",
             "color": "blue"
           },
           {
-            "text": "with the amulet.",
+            "text": " holds a single spell. Whenever I take damage, the stored spell is cast on ",
+            "color": ""
+          },
+          {
+            "text": "myself",
+            "color": "dark_purple"
+          },
+          {
+            "text": ", perfect for healing or protective magic. The spell costs its usual mana; if I don't have enough, nothing happens.\n\nTo insert the spell, hold the GUI key (default: Left Ctrl) and right-click the ring.",
             "color": ""
           }
         ]
@@ -1522,7 +1525,12 @@
         "value": "",
         "json": [
           {
-            "text": "However, in order to obtain the effects, I don't have to wear Dragon Mage Armor."
+            "text": "Dragon Magic: ",
+            "color": "blue"
+          },
+          {
+            "text": "The mana cost of the stored spell is halved.",
+            "color": ""
           }
         ]
       }
@@ -1531,10 +1539,6 @@
       {
         "type": "manaweaving_altar",
         "location":"dmnr:manaweaving/ring_of_ruling"
-      },
-      {
-        "type": "ritual",
-        "location":"dmnr:rituals/upgrade_ritual"
       }
     ]
   },

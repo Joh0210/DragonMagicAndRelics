@@ -2,14 +2,14 @@
   "type": "mna:manaweaving-recipe",
   "items": [
     "mna:mundane_ring",
-    "dmnr:dragon_core",
-    "dmnr:dragon_core",
-    "minecraft:netherite_block",
-    "minecraft:smooth_quartz",
-    "minecraft:ghast_tear",
-    "minecraft:netherite_ingot",
-    "mna:greater_mote_ender",
-    "mna:greater_mote_air"
+    "minecraft:dragon_breath",
+    "minecraft:end_crystal",
+    "minecraft:end_crystal",
+    "mna:chimerite_block",
+    "mna:greater_mote_arcane",
+    "mna:greater_mote_earth",
+    "mna:rune_defense",
+    "minecraft:gold_block"
   ],
   "output": "dmnr:ring_of_ruling",
   "patterns": [

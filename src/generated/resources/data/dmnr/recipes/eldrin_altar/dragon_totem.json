@@ -5,17 +5,36 @@
     "mna:greater_mote_water",
     "mna:greater_mote_earth",
     "mna:greater_mote_fire",
-    "mna:greater_mote_air"
+    "mna:greater_mote_air",
+    "mna:greater_mote_ender",
+    "mna:greater_mote_arcane",
+    "minecraft:dragon_breath"
   ],
   "output": "dmnr:dragon_totem",
   "power_requirements": [
     {
-      "affinity": "ENDER",
-      "amount": 3000
+      "affinity": "WATER",
+      "amount": 2500
+    },
+    {
+      "affinity": "FIRE",
+      "amount": 2500
+    },
+    {
+      "affinity": "EARTH",
+      "amount": 2500
+    },
+    {
+      "affinity": "WIND",
+      "amount": 2500
     },
     {
       "affinity": "ARCANE",
-      "amount": 3000
+      "amount": 2500
+    },
+    {
+      "affinity": "ENDER",
+      "amount": 2500
     }
   ],
   "quantity": 1,

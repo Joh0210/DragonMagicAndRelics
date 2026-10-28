@@ -1,12 +1,13 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
-    "minecraft:ender_eye",
-    "minecraft:ender_eye",
-    "mna:resonating_lump",
-    "mna:resonating_lump",
+    "dmnr:reach_ring_minor",
     "mna:greater_mote_ender",
-    "dmnr:reach_ring_minor"
+    "mna:rune_ender",
+    "minecraft:ender_eye",
+    "minecraft:ender_eye",
+    "minecraft:popped_chorus_fruit",
+    "minecraft:popped_chorus_fruit"
   ],
   "output": "dmnr:reach_ring",
   "patterns": [

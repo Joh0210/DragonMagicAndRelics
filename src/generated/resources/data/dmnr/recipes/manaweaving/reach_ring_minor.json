@@ -1,12 +1,11 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
-    "minecraft:ender_pearl",
-    "minecraft:emerald",
-    "minecraft:gold_block",
-    "mna:stone_rune_purple",
     "mna:mundane_ring",
-    "mna:mote_ender"
+    "mna:mote_ender",
+    "mna:stone_rune_purple",
+    "minecraft:ender_pearl",
+    "minecraft:ender_pearl"
   ],
   "output": "dmnr:reach_ring_minor",
   "patterns": [

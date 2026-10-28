@@ -2,13 +2,22 @@
   "type": "mna:eldrin-altar",
   "items": [
     "dmnr:reach_ring",
-    "dmnr:dragon_core"
+    "minecraft:dragon_breath",
+    "minecraft:end_crystal",
+    "mna:greater_mote_ender",
+    "mna:greater_mote_ender",
+    "minecraft:popped_chorus_fruit",
+    "minecraft:popped_chorus_fruit"
   ],
   "output": "dmnr:reach_ring_greater",
   "power_requirements": [
     {
       "affinity": "ENDER",
-      "amount": 2500
+      "amount": 3000
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 1000
     }
   ],
   "quantity": 1,

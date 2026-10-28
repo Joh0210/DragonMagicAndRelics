@@ -2,20 +2,18 @@
   "type": "mna:eldrin-altar",
   "items": [
     "mna:belt_buckle",
-    "mna:ritual_focus_greater",
-    "minecraft:glass",
-    "minecraft:ghast_tear",
-    "minecraft:glass",
     "minecraft:netherite_sword",
-    "minecraft:glass",
-    "minecraft:ghast_tear",
-    "minecraft:glass"
+    "mna:greater_mote_fire",
+    "forge:glass",
+    "forge:glass",
+    "minecraft:blaze_powder",
+    "minecraft:blaze_powder"
   ],
   "output": "dmnr:glass_cannon_belt",
   "power_requirements": [
     {
       "affinity": "FIRE",
-      "amount": 400
+      "amount": 2000
     }
   ],
   "quantity": 1,

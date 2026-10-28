@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 72,
+            "item": "magichem:admixture_motion"
+          },
+          {
+            "count": 48,
+            "item": "magichem:essentia_air"
+          },
+          {
+            "count": 24,
+            "item": "magichem:admixture_creature"
+          },
+          {
+            "count": 8,
+            "item": "magichem:admixture_adornment"
+          },
+          {
+            "count": 10,
+            "item": "magichem:essentia_rubedo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:ocelot_ring_greater"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

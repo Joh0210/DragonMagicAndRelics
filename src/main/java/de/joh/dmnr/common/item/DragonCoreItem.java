@@ -7,7 +7,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Item that drops from the Ender Dragon and is required for crafting
+ * Creative-only item: it has no drop and is not used in any recipe, but stays registered for later use.
  * @author Joh0210
  */
 public class DragonCoreItem extends Item {

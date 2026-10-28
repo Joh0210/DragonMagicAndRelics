@@ -14,20 +14,24 @@
         "categories": 1,
         "components": [
           {
-            "count": 43,
+            "count": 24,
             "item": "magichem:admixture_witchcraft"
           },
           {
-            "count": 33,
+            "count": 16,
+            "item": "magichem:admixture_vessel"
+          },
+          {
+            "count": 12,
             "item": "magichem:admixture_sorcery"
           },
           {
-            "count": 13,
-            "item": "magichem:admixture_potential"
+            "count": 10,
+            "item": "magichem:admixture_permanence"
           },
           {
-            "count": 3,
-            "item": "magichem:essentia_citrinitas"
+            "count": 5,
+            "item": "magichem:essentia_albedo"
           }
         ],
         "object": {

@@ -1,10 +1,9 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
-    "minecraft:ghast_tear",
     "minecraft:iron_helmet",
-    "minecraft:carrot",
-    "minecraft:spider_eye",
+    "minecraft:fermented_spider_eye",
+    "minecraft:golden_carrot",
     "forge:glass",
     "forge:glass",
     "mna:mote_arcane",
@@ -14,8 +13,7 @@
   "patterns": [
     "mna:manaweave_patterns/knot",
     "mna:manaweave_patterns/knot2",
-    "mna:manaweave_patterns/knot3",
-    "mna:manaweave_patterns/knot4"
+    "mna:manaweave_patterns/knot3"
   ],
   "quantity": 1,
   "requiredFaction": "mna:fey",

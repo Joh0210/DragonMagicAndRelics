@@ -2,20 +2,24 @@
   "type": "mna:eldrin-altar",
   "items": [
     "dmnr:defense_bracelet",
-    "minecraft:obsidian",
-    "mna:rune_defense",
-    "minecraft:obsidian",
     "minecraft:netherite_chestplate",
-    "minecraft:obsidian",
+    "minecraft:nether_star",
     "mna:rune_defense",
-    "minecraft:obsidian",
-    "minecraft:nether_star"
+    "mna:rune_defense",
+    "mna:greater_mote_earth",
+    "mna:greater_mote_earth",
+    "minecraft:crying_obsidian",
+    "minecraft:crying_obsidian"
   ],
   "output": "dmnr:defense_bracelet_greater",
   "power_requirements": [
     {
       "affinity": "EARTH",
-      "amount": 2750
+      "amount": 3000
+    },
+    {
+      "affinity": "ARCANE",
+      "amount": 1000
     }
   ],
   "quantity": 1,

@@ -5,7 +5,10 @@
     "mna:mundane_ring",
     "mna:mundane_ring",
     "mna:mundane_ring",
-    "minecraft:nether_star"
+    "minecraft:chain",
+    "minecraft:chain",
+    "mna:mote_arcane",
+    "mna:mote_arcane"
   ],
   "output": "dmnr:collectors_amulet",
   "patterns": [

@@ -1,14 +1,12 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
-    "minecraft:nether_wart",
     "minecraft:brewing_stand",
     "minecraft:nether_wart",
     "minecraft:ghast_tear",
+    "minecraft:clock",
     "mna:arcanist_ink",
-    "minecraft:ghast_tear",
     "mna:mote_water",
-    "minecraft:netherite_ingot",
     "mna:mote_arcane"
   ],
   "output": "dmnr:potion_of_infinity",

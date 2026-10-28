@@ -2,23 +2,37 @@
   "type": "mna:eldrin-altar",
   "items": [
     "dmnr:belt_of_life_minor",
+    "mna:greater_mote_earth",
     "minecraft:diamond_block",
-    "mna:stone_rune_green",
-    "mna:stone_rune_lime",
-    "mna:cerublossom",
-    "mna:vinteum_dust",
-    "mna:vinteum_dust",
     "minecraft:emerald_block",
-    "minecraft:redstone_block"
+    "mna:stone_rune_red",
+    "minecraft:golden_apple",
+    "minecraft:golden_apple"
   ],
   "output": "dmnr:belt_of_life",
   "power_requirements": [
+    {
+      "affinity": "WATER",
+      "amount": 400
+    },
+    {
+      "affinity": "FIRE",
+      "amount": 400
+    },
     {
       "affinity": "EARTH",
       "amount": 400
     },
     {
+      "affinity": "WIND",
+      "amount": 400
+    },
+    {
       "affinity": "ARCANE",
+      "amount": 400
+    },
+    {
+      "affinity": "ENDER",
       "amount": 400
     }
   ],

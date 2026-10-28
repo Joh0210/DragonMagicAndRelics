@@ -1,15 +1,15 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
-    "minecraft:nether_star",
-    "minecraft:netherite_ingot",
-    "minecraft:elytra",
-    "minecraft:netherite_ingot",
     "mna:mundane_ring",
+    "minecraft:nether_star",
     "mna:greater_mote_ender",
-    "minecraft:netherite_ingot",
+    "mna:greater_mote_ender",
     "mna:witherbone",
-    "minecraft:netherite_ingot"
+    "mna:witherbone",
+    "minecraft:phantom_membrane",
+    "minecraft:phantom_membrane",
+    "minecraft:wither_rose"
   ],
   "output": "dmnr:fallen_angel_ring",
   "patterns": [

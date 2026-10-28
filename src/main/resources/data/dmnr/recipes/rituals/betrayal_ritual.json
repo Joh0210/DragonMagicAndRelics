@@ -95,7 +95,7 @@
     },
     "S":
     {
-      "item": "minecraft:nether_star",
+      "item": "minecraft:crying_obsidian",
       "optional": false,
       "consume": true
     },

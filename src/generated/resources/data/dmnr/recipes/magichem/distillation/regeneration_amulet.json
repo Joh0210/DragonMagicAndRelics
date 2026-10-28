@@ -14,16 +14,20 @@
         "categories": 1,
         "components": [
           {
-            "count": 188,
+            "count": 64,
             "item": "magichem:admixture_healing"
           },
           {
-            "count": 13,
-            "item": "magichem:admixture_instrument"
+            "count": 16,
+            "item": "magichem:admixture_blood"
           },
           {
-            "count": 109,
+            "count": 16,
             "item": "magichem:essentia_precious"
+          },
+          {
+            "count": 5,
+            "item": "magichem:admixture_adornment"
           },
           {
             "count": 6,

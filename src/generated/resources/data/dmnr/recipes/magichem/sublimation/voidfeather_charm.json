@@ -18,31 +18,25 @@
           {
             "components": [
               {
-                "item": "dmnr:voidfeather_charm"
-              },
-              {
-                "item": "magichem:glass_orb"
+                "item": "mna:bed_charm"
               },
               {
                 "item": "minecraft:feather"
-              },
-              {
-                "item": "mna:purified_vinteum_dust"
               }
             ],
             "experience": 8,
             "materia": [
               {
-                "count": 20,
+                "count": 13,
                 "item": "magichem:admixture_travel"
               },
               {
-                "count": 5,
+                "count": 8,
                 "item": "magichem:admixture_alien"
               },
               {
-                "count": 2,
-                "item": "magichem:admixture_instrument"
+                "count": 6,
+                "item": "magichem:admixture_protection"
               }
             ]
           }

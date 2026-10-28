@@ -5,8 +5,7 @@
     "mna:cerublossom",
     "mna:ritual_focus_greater",
     "minecraft:clock",
-    "minecraft:ender_pearl",
-    "minecraft:nether_star"
+    "minecraft:ender_pearl"
   ],
   "output": "dmnr:components/moonrise",
   "patterns": [

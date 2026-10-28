@@ -14,16 +14,20 @@
         "categories": 1,
         "components": [
           {
-            "count": 120,
+            "count": 48,
             "item": "magichem:admixture_alien"
           },
           {
-            "count": 49,
+            "count": 24,
             "item": "magichem:admixture_travel"
           },
           {
-            "count": 19,
-            "item": "magichem:admixture_instrument"
+            "count": 8,
+            "item": "magichem:admixture_sorcery"
+          },
+          {
+            "count": 5,
+            "item": "magichem:admixture_adornment"
           },
           {
             "count": 6,
