@@ -34,11 +34,8 @@ import static de.joh.tnl.api.datagen.SpellPartRecipeBuilder.component;
 import static de.joh.tnl.api.datagen.SpellPartRecipeBuilder.shape;
 
 /**
- * Generates the recipes of Mana and Artifice and MagiChem. They are grouped by the item they craft, so the upgrade
- * stages of an item stay together, whatever crafting station they need. The recipe IDs come from the {@code save}
- * methods of {@link MnaRecipeProvider}.
- * <p>
- * Recipe IDs must never change: the Codex references the recipes by ID.
+ * The recipes are grouped by the item they craft instead of by crafting station, so the upgrade stages of an item
+ * stay together.
  * @author Joh0210
  */
 public class ModRecipeProvider extends MnaRecipeProvider {

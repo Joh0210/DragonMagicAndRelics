@@ -1,6 +1,5 @@
 package de.joh.dmnr.datagen;
 
-import com.mna.api.items.IRelic;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.tnl.api.datagen.MnaItemTagsProvider;
@@ -20,8 +19,6 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Generates the item tags. The Curios slot tags come from {@link ItemInit#getCurioSlots()}, {@code mna:relics} contains
- * every item that implements {@link IRelic}.
  * @author Joh0210
  */
 public class ModItemTagsProvider extends MnaItemTagsProvider {
@@ -30,9 +27,6 @@ public class ModItemTagsProvider extends MnaItemTagsProvider {
         super(output, lookupProvider, blockTags, DragonMagicAndRelics.MOD_ID, existingFileHelper);
     }
 
-    /**
-     * Optionally contains the block item of an integration block, see {@link ModBlockLootProvider}.
-     */
     public static TagKey<Item> selfDropTag(RegistryObject<? extends Block> block) {
         return ItemTags.create(block.getId());
     }
@@ -43,7 +37,7 @@ public class ModItemTagsProvider extends MnaItemTagsProvider {
         addCurioSlotTags(ItemInit.getCurioSlots(), modItems);
         addRelicTag(modItems);
 
-        for (RegistryObject<? extends Block> block : DataGenerators.integrationBlocks()) {
+        for (RegistryObject<? extends Block> block : DataGenerators.placeableIntegrationBlocks()) {
             tag(selfDropTag(block)).addOptional(block.getId());
         }
     }

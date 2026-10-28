@@ -17,8 +17,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import java.util.Objects;
 
 /**
- * Generates the item models. Items without a special model get one by their type: block items use the model of their
- * block, dyeable armor a tinted base and an overlay, all others a flat model with the texture {@code item/<item_id>}.
  * @author Joh0210
  */
 public class ModItemModelProvider extends DefaultItemModelProvider {
@@ -38,11 +36,11 @@ public class ModItemModelProvider extends DefaultItemModelProvider {
     protected void defaultItem(Item item) {
         if (item instanceof DragonMageArmorItem) {
             ResourceLocation id = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item));
-            // Dyeable: layer0 is tinted with the color of the armor, layer1 stays as it is
+            ResourceLocation texture = id.withPrefix(ITEM_FOLDER + "/");
             getBuilder(id.getPath())
                     .parent(GENERATED)
-                    .texture("layer0", id.withPath(path -> ITEM_FOLDER + "/" + path + "_base"))
-                    .texture("layer1", id.withPath(path -> ITEM_FOLDER + "/" + path + "_overlay"));
+                    .texture("layer0", texture.withSuffix("_base"))
+                    .texture("layer1", texture.withSuffix("_overlay"));
         } else {
             super.defaultItem(item);
         }

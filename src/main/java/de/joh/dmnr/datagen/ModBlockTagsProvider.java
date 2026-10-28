@@ -19,7 +19,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Generates the block tags ({@code data/<namespace>/tags/blocks}).
  * @author Joh0210
  */
 public class ModBlockTagsProvider extends BlockTagsProvider {
@@ -30,7 +29,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected void addTags(@NotNull HolderLookup.Provider provider) {
         TagAppender<Block> pickaxe = tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockInit.RIFT_EMITTER.get());
-        for (RegistryObject<? extends Block> block : DataGenerators.integrationBlocks()) {
+        for (RegistryObject<? extends Block> block : DataGenerators.placeableIntegrationBlocks()) {
             pickaxe.addOptional(block.getId());
         }
 

@@ -15,8 +15,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 /**
- * Generates the block loot tables. Every block without {@code noLootTable()} needs one, otherwise the data run fails.
- * <p>
  * Loot tables have no conditions in this Forge version, so the blocks of the integrations drop themselves through
  * their {@link ModItemTagsProvider#selfDropTag self drop tag} instead of their item, which may not exist.
  * @author Joh0210
@@ -30,7 +28,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
     protected void generate() {
         dropSelf(BlockInit.RIFT_EMITTER.get());
 
-        for (RegistryObject<? extends Block> block : DataGenerators.integrationBlocks()) {
+        for (RegistryObject<? extends Block> block : DataGenerators.placeableIntegrationBlocks()) {
             add(block.get(), LootTable.lootTable().withPool(LootPool.lootPool()
                     .setRolls(ConstantValue.exactly(1.0F))
                     .add(TagEntry.tagContents(ModItemTagsProvider.selfDropTag(block)))
@@ -40,6 +38,6 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return () -> DataGenerators.blockEntries().map(RegistryObject::get).iterator();
+        return DataGenerators.blockEntries().map(RegistryObject::get).toList();
     }
 }

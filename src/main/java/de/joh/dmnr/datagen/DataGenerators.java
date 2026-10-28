@@ -28,15 +28,12 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Stream;
 
 /**
- * Registers the data generators ({@code ./gradlew runData}), whose output in {@code src/generated/resources} must not be
- * edited by hand.
  * @author Joh0210
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        // The content of the integrations is part of the generated data
         for (ModCompat compat : ModCompat.values()) {
             if (!compat.isLoaded()) {
                 throw new IllegalStateException(DragonMagicAndRelics.MOD_ID + ": data generation needs all optional mods with code integration, missing: " + compat.name());
@@ -52,8 +49,7 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        // Providers run in this order, and the existing file helper only knows generated files that came before:
-        // block models before the item models using them as parents, item tags before the recipes using them
+        // The providers run in this order, and the ExistingFileHelper only knows the files of the earlier ones
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, existingFileHelper));
         generator.addProvider(event.includeClient(), new ModItemModelProvider(output, existingFileHelper));
 
@@ -65,16 +61,10 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ModRecipeProvider(output, existingFileHelper));
     }
 
-    /**
-     * Every register of this mod, including those of the integrations. A missing one fails the data run.
-     */
     static List<DeferredRegister<Item>> itemRegisters() {
         return List.of(ItemInit.ITEMS, AE2Init.ITEMS, CreateInit.ITEMS);
     }
 
-    /**
-     * @see #itemRegisters()
-     */
     static List<DeferredRegister<Block>> blockRegisters() {
         return List.of(BlockInit.BLOCKS, AE2Init.BLOCKS, CreateInit.BLOCKS);
     }
@@ -88,10 +78,9 @@ public class DataGenerators {
     }
 
     /**
-     * Placeable blocks of the integrations. They only exist with the optional mod, so the generated data references
-     * them optionally.
+     * They only exist with their optional mod, so the generated data must reference them optionally.
      */
-    static List<RegistryObject<? extends Block>> integrationBlocks() {
+    static List<RegistryObject<? extends Block>> placeableIntegrationBlocks() {
         return List.of(AE2Init.ALTAR_INTERFACE, CreateInit.ARCANE_ENGINE, CreateInit.BRIMSTONE_ENGINE);
     }
 }
