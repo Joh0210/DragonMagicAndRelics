@@ -1,0 +1,20 @@
+{
+  "type": "mna:component",
+  "items": [
+    "mna:fluid_jug_infinite_water",
+    "mna:mote_water",
+    "mna:mote_water",
+    "mna:stone_rune_blue",
+    "mna:stone_rune_light_blue",
+    "mna:stone_rune_cyan"
+  ],
+  "output": "dmnr:components/conjurewater",
+  "patterns": [
+    "mna:manaweave_patterns/inverted_triangle",
+    "mna:manaweave_patterns/knot4",
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/knot",
+    "mna:manaweave_patterns/inverted_triangle"
+  ],
+  "tier": 3
+}

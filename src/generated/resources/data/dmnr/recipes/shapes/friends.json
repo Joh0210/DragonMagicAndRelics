@@ -1,0 +1,18 @@
+{
+  "type": "mna:shape",
+  "items": [
+    "mna:player_charm",
+    "minecraft:glistering_melon_slice",
+    "minecraft:golden_carrot",
+    "minecraft:golden_apple",
+    "minecraft:amethyst_shard",
+    "minecraft:tnt"
+  ],
+  "output": "dmnr:shapes/friends",
+  "patterns": [
+    "mna:manaweave_patterns/knot",
+    "mna:manaweave_patterns/square",
+    "mna:manaweave_patterns/triangle"
+  ],
+  "tier": 3
+}

@@ -1,0 +1,19 @@
+{
+  "type": "mna:shape",
+  "items": [
+    "mna:aum",
+    "minecraft:armor_stand",
+    "mna:vinteum_dust",
+    "mna:infused_silk",
+    "minecraft:feather",
+    "minecraft:clay"
+  ],
+  "output": "dmnr:shapes/true_touch",
+  "patterns": [
+    "mna:manaweave_patterns/circle",
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/square",
+    "mna:manaweave_patterns/circle"
+  ],
+  "tier": 2
+}

@@ -7,19 +7,18 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Generates the damage type tags ({@code data/<namespace>/tags/damage_type}).
- * <p>
- * The damage types themselves are maintained by hand ({@code data/dmnr/damage_type}); the generator validates
- * against these files that every referenced damage type exists.
+ * Generates the damage type tags. The damage types themselves are maintained by hand ({@code data/dmnr/damage_type}).
  * @author Joh0210
  */
 public class ModDamageTypeTagsProvider extends TagsProvider<DamageType> {
@@ -29,7 +28,9 @@ public class ModDamageTypeTagsProvider extends TagsProvider<DamageType> {
 
     @Override
     protected void addTags(@NotNull HolderLookup.Provider provider) {
-        tag(DamageTypeTags.BYPASSES_ARMOR).add(ForceDamageComponent.getForceDamage(), ForceDamageComponent.getRevengeDamage(), HellfireMobEffect.getHellfireDamage());
-        tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(ForceDamageComponent.getForceDamage(), ForceDamageComponent.getRevengeDamage(), HellfireMobEffect.getHellfireDamage());
+        List<ResourceKey<DamageType>> unblockable = List.of(ForceDamageComponent.getForceDamage(),
+                ForceDamageComponent.getRevengeDamage(), HellfireMobEffect.getHellfireDamage());
+        unblockable.forEach(tag(DamageTypeTags.BYPASSES_ARMOR)::add);
+        unblockable.forEach(tag(DamageTypeTags.BYPASSES_ENCHANTMENTS)::add);
     }
 }

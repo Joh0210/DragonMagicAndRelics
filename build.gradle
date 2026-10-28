@@ -87,6 +87,11 @@ configurations {
     localRuntime
     localGameRuntime
     runtimeClasspath.extendsFrom localRuntime, localGameRuntime
+    // The MagiChem jar as a plain file, never on a classpath: the data run reads the materia of MagiChem from it
+    magichemData {
+        canBeConsumed = false
+        transitive = false
+    }
 }
 
 obfuscation {
@@ -100,6 +105,11 @@ tasks.named('runData') {
     def classpath = files(classpathProvider.from.toArray())
     classpathProvider.setFrom(classpath.minus(configurations.localGameRuntime))
 }
+
+// MagiChem is not loaded during the data run, so MagiChemRecipeBuilder reads its essentia, admixtures and item IDs
+// from its jar (data/magichem/generator/*.json, assets/magichem/models/item/*.json).
+legacyForge.runs.data.systemProperties.put('dmnr.magichem_jar',
+        configurations.magichemData.elements.map { it.first().asFile.absolutePath })
 
 repositories {
     // Every repository is restricted to the groups it provides, so Gradle never queries it for anything else.
@@ -186,6 +196,7 @@ dependencies {
     // Optional mods, development runs only
     // MagiChem registers its data generators on every data run, which fails ("Duplicate provider: Item Models: magichem").
     modLocalGameRuntime "curse.maven:magichem-982204:${magichem_version}"
+    magichemData "curse.maven:magichem-982204:${magichem_version}"
     modLocalRuntime "curse.maven:jei-238222:${jei_version}"
 }
 

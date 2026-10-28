@@ -1,0 +1,15 @@
+{
+  "type": "mna:component",
+  "items": [
+    "mna:living_flame",
+    "mna:greater_mote_fire",
+    "mna:living_flame"
+  ],
+  "output": "dmnr:components/hellfire",
+  "patterns": [
+    "mna:manaweave_patterns/slash",
+    "mna:manaweave_patterns/knot2",
+    "mna:manaweave_patterns/knot"
+  ],
+  "tier": 5
+}

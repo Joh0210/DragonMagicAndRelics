@@ -1,0 +1,30 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "create"
+        }
+      ],
+      "recipe": {
+        "type": "mna:component",
+        "items": [
+          "create:precision_mechanism",
+          "create:cogwheel",
+          "create:shaft",
+          "mna:mote_air",
+          "mna:purified_vinteum_dust"
+        ],
+        "output": "dmnr:components/spectral_motor",
+        "patterns": [
+          "mna:manaweave_patterns/circle",
+          "mna:manaweave_patterns/infinity",
+          "mna:manaweave_patterns/circle"
+        ],
+        "tier": 3
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 16,
+            "item": "magichem:admixture_exanimate"
+          },
+          {
+            "count": 15,
+            "item": "magichem:admixture_violence"
+          },
+          {
+            "count": 14,
+            "item": "magichem:admixture_blood"
+          },
+          {
+            "count": 11,
+            "item": "magichem:admixture_witchcraft"
+          },
+          {
+            "count": 4,
+            "item": "magichem:admixture_instrument"
+          }
+        ],
+        "object": {
+          "item": "dmnr:hydra_crown"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

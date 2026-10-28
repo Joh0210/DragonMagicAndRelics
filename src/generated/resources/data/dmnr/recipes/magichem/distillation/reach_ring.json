@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 120,
+            "item": "magichem:admixture_alien"
+          },
+          {
+            "count": 49,
+            "item": "magichem:admixture_travel"
+          },
+          {
+            "count": 19,
+            "item": "magichem:admixture_instrument"
+          },
+          {
+            "count": 6,
+            "item": "magichem:essentia_citrinitas"
+          }
+        ],
+        "object": {
+          "item": "dmnr:reach_ring"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

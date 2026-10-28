@@ -1,0 +1,18 @@
+{
+  "type": "mna:component",
+  "items": [
+    "mna:greater_mote_ender",
+    "mna:cerublossom",
+    "mna:ritual_focus_greater",
+    "minecraft:clock",
+    "minecraft:ender_pearl",
+    "minecraft:nether_star"
+  ],
+  "output": "dmnr:components/moonrise",
+  "patterns": [
+    "mna:manaweave_patterns/star",
+    "mna:manaweave_patterns/infinity",
+    "mna:manaweave_patterns/hourglass"
+  ],
+  "tier": 5
+}

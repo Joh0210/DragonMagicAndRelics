@@ -19,19 +19,11 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Objects;
 
 /**
- * Generates the blockstates ({@code assets/dmnr/blockstates}) and the block models
- * ({@code assets/dmnr/models/block/<block_id>.json}).
+ * Generates the blockstates and the block models {@code models/block/<block_id>.json}. Every block needs an explicit
+ * model, otherwise the data run fails; the parts in the subfolders of {@code models/block} are maintained by hand.
  * <p>
- * The model of every block is defined explicitly in {@link #registerStatesAndModels()}. The blockstates are created for
- * every block in the registers of this mod and refer to the model with the ID of the block, so a new block without a
- * model fails the generator.
- * <p>
- * Every block has exactly one variant, because none of them is rendered by its model: the rift emitter by GeckoLib, the
- * engines and the spectral motor by a block entity renderer or Flywheel. For them the model only provides the particle
- * texture, and the properties ({@code axis}, {@code waterlogged}) do not change it.
- * <p>
- * Only the files {@code models/block/<block_id>.json} are generated. The models they refer to in the subfolders of
- * {@code models/block} (element models, OBJ wrappers, partial models that Flywheel loads by path) are maintained by hand.
+ * Every blockstate has a single variant: no block is rendered by its model (GeckoLib, block entity renderers,
+ * Flywheel), so the model only provides the particle texture.
  * @author Joh0210
  */
 public class ModBlockStateProvider extends BlockStateProvider {
@@ -42,8 +34,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         riftEmitterModel();
-        String altarInterface = AE2Init.ALTAR_INTERFACE.getId().getPath();
-        models().cubeAll(altarInterface, modLoc(ModelProvider.BLOCK_FOLDER + "/" + altarInterface));
+        models().cubeAll(AE2Init.ALTAR_INTERFACE.getId().getPath(), blockTexture(AE2Init.ALTAR_INTERFACE.get()));
         engineModel(CreateInit.ARCANE_ENGINE, new ResourceLocation("mna", "block/artifice/decoration/transmuted_silver_block"));
         engineModel(CreateInit.BRIMSTONE_ENGINE, mcLoc("block/gilded_blackstone"));
         models().getBuilder(CreateInit.SPECTRAL_MOTOR.getId().getPath())
@@ -60,7 +51,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     /**
-     * Rendered by GeckoLib, the model only provides the particle texture and the display transforms of the item.
+     * Also provides the display transforms of the GeckoLib item.
      */
     private void riftEmitterModel() {
         models().getBuilder(BlockInit.RIFT_EMITTER.getId().getPath())
@@ -77,9 +68,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     /**
-     * Both engines consist of the hand-made parts {@code block/<engine_id>/rotor} and {@code block/<engine_id>/crystal}.
-     * They are rendered by {@link de.joh.dmnr.compat.create.client.EngineModel}, so the model only provides the
-     * particle texture.
+     * The children are the hand-made parts {@code block/<engine_id>/rotor} and {@code crystal}, which
+     * {@link de.joh.dmnr.compat.create.client.EngineModel} renders separately.
      */
     private void engineModel(RegistryObject<? extends Block> engine, ResourceLocation particle) {
         String id = engine.getId().getPath();

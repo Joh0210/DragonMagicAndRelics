@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 16,
+            "item": "magichem:essentia_earth"
+          },
+          {
+            "count": 16,
+            "item": "magichem:admixture_violence"
+          },
+          {
+            "count": 8,
+            "item": "magichem:admixture_instrument"
+          },
+          {
+            "count": 5,
+            "item": "magichem:essentia_albedo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:revenge_charm_dmg_major"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

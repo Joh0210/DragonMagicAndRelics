@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 64,
+            "item": "magichem:essentia_precious"
+          },
+          {
+            "count": 56,
+            "item": "magichem:admixture_crystal"
+          },
+          {
+            "count": 56,
+            "item": "magichem:admixture_protection"
+          },
+          {
+            "count": 13,
+            "item": "magichem:admixture_instrument"
+          },
+          {
+            "count": 16,
+            "item": "magichem:essentia_nigredo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:defense_bracelet"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

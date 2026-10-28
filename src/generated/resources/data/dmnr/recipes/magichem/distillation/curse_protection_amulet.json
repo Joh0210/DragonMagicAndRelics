@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 128,
+            "item": "magichem:admixture_protection"
+          },
+          {
+            "count": 21,
+            "item": "magichem:admixture_curse"
+          },
+          {
+            "count": 21,
+            "item": "magichem:admixture_luck"
+          },
+          {
+            "count": 7,
+            "item": "magichem:admixture_witchcraft"
+          },
+          {
+            "count": 12,
+            "item": "magichem:essentia_citrinitas"
+          }
+        ],
+        "object": {
+          "item": "dmnr:curse_protection_amulet"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

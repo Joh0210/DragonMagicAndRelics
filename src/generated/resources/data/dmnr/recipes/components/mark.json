@@ -1,0 +1,16 @@
+{
+  "type": "mna:component",
+  "items": [
+    "mna:book_marks",
+    "mna:rune_marking",
+    "mna:rune_ender",
+    "minecraft:compass"
+  ],
+  "output": "dmnr:components/mark",
+  "patterns": [
+    "mna:manaweave_patterns/slash",
+    "mna:manaweave_patterns/knot2",
+    "mna:manaweave_patterns/knot"
+  ],
+  "tier": 3
+}

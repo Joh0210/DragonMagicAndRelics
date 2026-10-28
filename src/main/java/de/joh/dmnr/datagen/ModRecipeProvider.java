@@ -5,9 +5,11 @@ import appeng.core.definitions.AEItems;
 import com.mna.api.affinity.Affinity;
 import com.mna.api.faction.FactionIDs;
 import de.joh.dmnr.common.init.ItemInit;
+import de.joh.dmnr.common.init.SpellInit;
 import de.joh.dmnr.common.util.RLoc;
 import de.joh.dmnr.compat.ae2.AE2Init;
 import de.joh.dmnr.compat.create.CreateInit;
+import de.joh.dmnr.datagen.MagiChemDistillationRecipeBuilder.Category;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -17,36 +19,31 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.crafting.ConditionalRecipe;
-import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
 import static com.mna.items.ItemInit.*;
 import static de.joh.dmnr.datagen.EldrinAltarRecipeBuilder.eldrinAltar;
+import static de.joh.dmnr.datagen.MagiChemDistillationRecipeBuilder.distillation;
+import static de.joh.dmnr.datagen.MagiChemSublimationRecipeBuilder.sublimation;
 import static de.joh.dmnr.datagen.ManaweavingRecipeBuilder.manaweaving;
+import static de.joh.dmnr.datagen.SpellPartRecipeBuilder.component;
+import static de.joh.dmnr.datagen.SpellPartRecipeBuilder.shape;
 
 /**
- * Generates the manaweaving recipes ({@code data/dmnr/recipes/manaweaving}), the Eldrin Altar recipes
- * ({@code data/dmnr/recipes/eldrin_altar}) and the manaweaving recipes of the integrations
- * ({@code data/dmnr/recipes/<mod_id>}), which are wrapped in a {@code forge:conditional} recipe with a
- * {@code forge:mod_loaded} condition.
+ * Generates the recipes of Mana and Artifice and MagiChem. They are grouped by the item they craft, so the upgrade
+ * stages of an item stay together, whatever crafting station they need.
  * <p>
- * The recipes are grouped by the kind of item they craft, so that the upgrade stages of an item are next to each other,
- * no matter at which crafting station they are crafted.
- * <p>
- * The items of Mana and Artifice are statically imported ({@code com.mna.items.ItemInit}), the items of this mod are
- * referenced through {@link ItemInit}.
- * <p>
- * The recipe IDs must not change: the Codex refers to the recipes by their ID.
- * <br>All other recipe types (components, shapes, rituals, progression, MagiChem) are still maintained by hand in
- * {@code src/main/resources}.
+ * Recipe IDs must never change: the Codex references the recipes by ID.
  * @author Joh0210
  */
 public class ModRecipeProvider extends RecipeProvider {
-    // Manaweave patterns of Mana and Artifice. M&A also accepts the short form "mna:<name>", only the full ID is used.
+    private static final String AE2 = "ae2";
+    private static final String CREATE = "create";
+
     private static final ResourceLocation BACKSLASH = pattern("backslash");
     private static final ResourceLocation BOLT = pattern("bolt");
     private static final ResourceLocation CIRCLE = pattern("circle");
@@ -67,7 +64,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
     private static final TagKey<Item> MA_FLOWERS = ItemTags.create(new ResourceLocation("mna", "ma_flowers"));
 
-    // The six core affinities, for Eldrin Altar recipes that need power of every affinity
+    // Not Affinity.CoreSix(): its order would reorder the generated files
     private static final Affinity[] ALL_AFFINITIES = {Affinity.WATER, Affinity.FIRE, Affinity.EARTH, Affinity.WIND,
             Affinity.ARCANE, Affinity.ENDER};
 
@@ -91,8 +88,11 @@ public class ModRecipeProvider extends RecipeProvider {
         charms(writer);
         headgearAndArmor(writer);
         blocks(writer);
+        components(writer);
+        shapes(writer);
         ae2(writer);
         create(writer);
+        magichem(writer);
     }
 
     private void materials(Consumer<FinishedRecipe> writer) {
@@ -107,8 +107,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requiredFaction(FactionIDs.FEY)
                 .items(ItemInit.MUTANDIS.get(), Items.EGG, Items.NETHER_WART, Items.BONE_MEAL)
                 .tag(MA_FLOWERS)
-                .items(PURIFIED_VINTEUM_DUST.get(), PURIFIED_VINTEUM_DUST.get(), PURIFIED_VINTEUM_DUST.get(),
-                        PURIFIED_VINTEUM_DUST.get())
+                .item(PURIFIED_VINTEUM_DUST.get(), 4)
                 .patterns(DIAMOND, SLASH, BACKSLASH));
 
         save(writer, "mana_cake", manaweaving(ItemInit.MANA_CAKE.get(), 3)
@@ -127,8 +126,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 .patterns(TRIANGLE, CIRCLE, TRIANGLE));
 
         save(writer, "brimstone_coal", manaweaving(ItemInit.BRIMSTONE_COAL.get(), 4)
-                .items(BRIMSTONE_CHARM.get(), Items.COAL, Items.COAL, Items.COAL, Items.COAL, Items.COAL, Items.COAL,
-                        Items.COAL, Items.COAL)
+                .items(BRIMSTONE_CHARM.get())
+                .item(Items.COAL, 8)
                 .patterns(DIAMOND, DIAMOND, DIAMOND));
 
         save(writer, "dragon_totem", eldrinAltar(ItemInit.DRAGON_TOTEM.get(), 5)
@@ -172,13 +171,13 @@ public class ModRecipeProvider extends RecipeProvider {
                 .power(700, Affinity.WIND, Affinity.ARCANE));
 
         save(writer, "ring_of_spell_storing", manaweaving(ItemInit.RING_OF_SPELL_STORING.get(), 3)
-                .items(MUNDANE_BRACELET.get(), MOTE_ARCANE.get(), RUNE_ARCANE.get(), CHIMERITE_GEM.get(),
-                        CHIMERITE_GEM.get(), CHIMERITE_GEM.get(), CHIMERITE_GEM.get(), CHIMERITE_GEM.get(),
-                        CHIMERITE_GEM.get())
+                .items(MUNDANE_BRACELET.get(), MOTE_ARCANE.get(), RUNE_ARCANE.get())
+                .item(CHIMERITE_GEM.get(), 6)
                 .patterns(CIRCLE, SQUARE, DIAMOND, SLASH, SQUARE, BACKSLASH));
 
         save(writer, "ring_of_spell_storing_cooldown", manaweaving(ItemInit.RING_OF_SPELL_STORING_COOLDOWN.get(), 3)
-                .items(ItemInit.RING_OF_SPELL_STORING.get(), Items.CLOCK, Items.CLOCK, Items.CLOCK, Items.CLOCK)
+                .items(ItemInit.RING_OF_SPELL_STORING.get())
+                .item(Items.CLOCK, 4)
                 .patterns(DIAMOND, DIAMOND, DIAMOND));
 
         save(writer, "angel_ring", manaweaving(ItemInit.ANGEL_RING.get(), 5)
@@ -371,9 +370,9 @@ public class ModRecipeProvider extends RecipeProvider {
                 .patterns(TRIANGLE, DIAMOND));
 
         save(writer, "rune_chestplate", manaweaving(ItemInit.RUNE_CHESTPLATE.get(), 2)
-                .items(Items.GOLDEN_CHESTPLATE, INFUSED_THREAD.get(), RUNE_ARCANE.get(), Items.AMETHYST_SHARD,
-                        Items.AMETHYST_SHARD, Items.AMETHYST_SHARD, Items.AMETHYST_SHARD, Items.AMETHYST_SHARD,
-                        MOTE_ARCANE.get())
+                .items(Items.GOLDEN_CHESTPLATE, INFUSED_THREAD.get(), RUNE_ARCANE.get())
+                .item(Items.AMETHYST_SHARD, 5)
+                .items(MOTE_ARCANE.get())
                 .patterns(SQUARE, DIAMOND));
 
         save(writer, "rune_legging", manaweaving(ItemInit.RUNE_LEGGING.get(), 2)
@@ -392,55 +391,312 @@ public class ModRecipeProvider extends RecipeProvider {
                 .patterns(SQUARE, DIAMOND, SQUARE));
     }
 
+    private void components(Consumer<FinishedRecipe> writer) {
+        save(writer, component(SpellInit.ALTERNATIVERECALL, 3)
+                .items(VINTEUM_DUST.get(), VINTEUM_DUST.get(), RUNE_MARKING.get(), MOTE_ENDER.get())
+                .patterns(INVERTED_TRIANGLE, SQUARE));
+
+        save(writer, component(SpellInit.CONJURE_LAVA, 5)
+                .items(FLUID_JUG_INFINITE_LAVA.get(), GREATER_MOTE_FIRE.get(), STONE_RUNE_RED.get(),
+                        STONE_RUNE_ORANGE.get(), Items.BLAZE_ROD, Items.BLAZE_ROD)
+                .patterns(TRIANGLE, INVERTED_TRIANGLE, DIAMOND, INVERTED_TRIANGLE));
+
+        save(writer, component(SpellInit.CONJURE_WATER, 3)
+                .items(FLUID_JUG_INFINITE_WATER.get(), MOTE_WATER.get(), MOTE_WATER.get(), STONE_RUNE_BLUE.get(),
+                        STONE_RUNE_LIGHT_BLUE.get(), STONE_RUNE_CYAN.get())
+                .patterns(INVERTED_TRIANGLE, KNOT4, CIRCLE, KNOT, INVERTED_TRIANGLE));
+
+        save(writer, component(SpellInit.FORCE_DAMAGE, 3)
+                .items(STONE_RUNE_WHITE.get(), RUNE_DEFENSE.get(), Items.ANVIL, Items.ENDER_PEARL,
+                        Items.PHANTOM_MEMBRANE)
+                .patterns(TRIANGLE, KNOT, KNOT3, CIRCLE));
+
+        save(writer, component(SpellInit.HELLFIRE, 5)
+                .items(LIVING_FLAME.get(), GREATER_MOTE_FIRE.get(), LIVING_FLAME.get())
+                .patterns(SLASH, KNOT2, KNOT));
+
+        save(writer, component(SpellInit.MARK, 3)
+                .items(BOOK_MARKS.get(), RUNE_MARKING.get(), RUNE_ENDER.get(), Items.COMPASS)
+                .patterns(SLASH, KNOT2, KNOT));
+
+        save(writer, component(SpellInit.MOONRISE, 5)
+                .items(GREATER_MOTE_ENDER.get(), com.mna.blocks.BlockInit.CERUBLOSSOM.get(), RITUAL_FOCUS_GREATER.get(),
+                        Items.CLOCK, Items.ENDER_PEARL, Items.NETHER_STAR)
+                .patterns(STAR, INFINITY, HOURGLASS));
+
+        save(writer, component(SpellInit.SATURATE, 4)
+                .items(ItemInit.MANA_CAKE.get(), Items.CAKE, Items.BREAD, Items.COOKIE, Items.COOKED_SALMON,
+                        Items.COOKED_BEEF, Items.COOKED_CHICKEN, Items.COOKED_RABBIT)
+                .patterns(CIRCLE, SQUARE, CIRCLE));
+
+        save(writer, component(SpellInit.SORCERERS_PRIDE, 5)
+                .items(GREATER_MOTE_ENDER.get(), RITUAL_FOCUS_GREATER.get(), Items.DRAGON_HEAD,
+                        ItemInit.DRAGON_CORE.get(), Items.NETHER_STAR)
+                .patterns(INFINITY, STAR, HOURGLASS));
+
+        save(writer, component(SpellInit.SUNRISE, 5)
+                .items(GREATER_MOTE_ARCANE.get(), com.mna.blocks.BlockInit.DESERT_NOVA.get(), RITUAL_FOCUS_GREATER.get(),
+                        Items.CLOCK, Items.ENDER_PEARL, Items.NETHER_STAR)
+                .patterns(STAR, INFINITY, HOURGLASS));
+    }
+
+    private void shapes(Consumer<FinishedRecipe> writer) {
+        save(writer, shape(SpellInit.ATMARK, 3)
+                .items(BOOK_MARKS.get(), RUNE_MARKING.get(), RUNE_ENDER.get(), MOTE_ENDER.get())
+                .patterns(KNOT, KNOT2, KNOT3, KNOT4));
+
+        save(writer, shape(SpellInit.CURSE, 5)
+                .items(PLAYER_CHARM.get(), RUNIC_SILK.get(), Items.NETHER_STAR, RUNE_ENDER.get(), MOTE_ENDER.get())
+                .patterns(INFINITY, SPLIT_TRIANGLE, HOURGLASS, INVERTED_SPLIT_TRIANGLE, INFINITY));
+
+        save(writer, shape(SpellInit.FRIENDS, 3)
+                .items(PLAYER_CHARM.get(), Items.GLISTERING_MELON_SLICE, Items.GOLDEN_CARROT, Items.GOLDEN_APPLE,
+                        Items.AMETHYST_SHARD, Items.TNT)
+                .patterns(KNOT, SQUARE, TRIANGLE));
+
+        save(writer, shape(SpellInit.TRUE_TOUCH, 2)
+                .items(com.mna.blocks.BlockInit.AUM.get(), Items.ARMOR_STAND, VINTEUM_DUST.get(), INFUSED_SILK.get(),
+                        Items.FEATHER, Items.CLAY)
+                .patterns(CIRCLE, TRIANGLE, SQUARE, CIRCLE));
+    }
+
     private void ae2(Consumer<FinishedRecipe> writer) {
-        saveConditional(writer, "ae2", "altar_me_interface", manaweaving(AE2Init.ALTAR_INTERFACE_ITEM.get(), 3)
+        saveIntegration(writer, AE2, "altar_me_interface", manaweaving(AE2Init.ALTAR_INTERFACE_ITEM.get(), 3)
                 .items(AEBlocks.INTERFACE, RUNE_MARKING.get(), AEItems.ENGINEERING_PROCESSOR, AEItems.FLUIX_CRYSTAL,
                         PURIFIED_VINTEUM_DUST.get(), CHIMERITE_GEM.get())
                 .patterns(SQUARE, HOURGLASS, CIRCLE));
     }
 
+    // Create's registry constants need Registrate, which is not on the compile classpath
     private void create(Consumer<FinishedRecipe> writer) {
-        // The items of Create are referenced by ID: its registry constants need Registrate, which is not on the compile
-        // classpath
-        saveConditional(writer, "create", "arcane_engine", manaweaving(CreateInit.ARCANE_ENGINE_ITEM.get(), 2)
+        saveIntegration(writer, CREATE, "arcane_engine", manaweaving(CreateInit.ARCANE_ENGINE_ITEM.get(), 2)
                 .item(createItem("andesite_casing"))
                 .item(createItem("shaft"))
                 .item(createItem("cogwheel"))
                 .items(VINTEUM_DUST.get(), MANA_CRYSTAL_FRAGMENT.get())
                 .patterns(CIRCLE, CIRCLE));
 
-        saveConditional(writer, "create", "brimstone_engine", manaweaving(CreateInit.BRIMSTONE_ENGINE_ITEM.get(), 4)
+        saveIntegration(writer, CREATE, "brimstone_engine", manaweaving(CreateInit.BRIMSTONE_ENGINE_ITEM.get(), 4)
                 .items(CreateInit.ARCANE_ENGINE_ITEM.get(), BRIMSTONE_CHARM.get())
                 .item(createItem("blaze_burner"))
                 .patterns(TRIANGLE, INFINITY, TRIANGLE));
+
+        save(writer, component(CreateInit.SPECTRAL_MOTOR_COMPONENT, 3)
+                .whenModLoaded(CREATE)
+                .item(createItem("precision_mechanism"))
+                .item(createItem("cogwheel"))
+                .item(createItem("shaft"))
+                .items(MOTE_AIR.get(), PURIFIED_VINTEUM_DUST.get())
+                .patterns(CIRCLE, INFINITY, CIRCLE));
     }
 
     private static ResourceLocation createItem(String path) {
-        return new ResourceLocation("create", path);
+        return new ResourceLocation(CREATE, path);
     }
 
-    /**
-     * Saves a manaweaving recipe as {@code dmnr:manaweaving/<name>}.
-     */
+    private void magichem(Consumer<FinishedRecipe> writer) {
+        save(writer, distillation(ItemInit.MUTANDIS.get())
+                .outputRate(0.3f)
+                .admixture("change", 4).admixture("plant", 2).admixture("odors", 1));
+
+        save(writer, distillation(ItemInit.PURIFIED_MUTANDIS.get())
+                .outputRate(0.4f)
+                .essentia("arcane", 1).admixture("change", 4).admixture("plant", 2).admixture("fey", 1));
+
+        save(writer, distillation(ItemInit.MANA_CAKE.get())
+                .admixture("permanence", 12).admixture("delight", 8).admixture("sorcery", 7).admixture("lies", 6)
+                .essentia("nourishing", 11));
+
+        save(writer, distillation(ItemInit.POTION_OF_INFINITY.get())
+                .admixture("witchcraft", 43).admixture("sorcery", 33).admixture("potential", 13)
+                .essentia("citrinitas", 3));
+
+        save(writer, distillation(ItemInit.BRIMSTONE_CHALK.get())
+                .essentia("fire", 48).admixture("permanence", 25).admixture("sorcery", 11).admixture("instrument", 7)
+                .essentia("citrinitas", 2));
+
+        save(writer, distillation(ItemInit.BRIMSTONE_COAL.get())
+                .essentia("fire", 128).admixture("energy", 25).admixture("permanence", 25).essentia("citrinitas", 2));
+
+        save(writer, distillation(ItemInit.DRAGON_CORE.get())
+                .categories(Category.TROPHY, Category.RARE)
+                .admixture("sorcery", 64).essentia("citrinitas", 16).admixture("legend", 4).essentia("precious", 111)
+                .essentia("rubedo", 64));
+
+        save(writer, distillation(ItemInit.REACH_RING_MINOR.get())
+                .admixture("alien", 42).admixture("travel", 27).admixture("instrument", 9).essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.REACH_RING.get())
+                .admixture("alien", 120).admixture("travel", 49).admixture("instrument", 19).essentia("citrinitas", 6));
+
+        save(writer, distillation(ItemInit.REACH_RING_GREATER.get())
+                .admixture("alien", 120).admixture("travel", 120).admixture("instrument", 50)
+                .essentia("citrinitas", 16).essentia("rubedo", 48));
+
+        save(writer, distillation(ItemInit.ANGEL_RING.get())
+                .essentia("air", 86).admixture("flight", 86).admixture("fey", 38).admixture("instrument", 2)
+                .essentia("rubedo", 12));
+
+        save(writer, distillation(ItemInit.DEVIL_RING.get())
+                .essentia("fire", 243).admixture("demon", 64).admixture("sorcery", 38).admixture("instrument", 2)
+                .essentia("rubedo", 12));
+
+        save(writer, distillation(ItemInit.FALLEN_ANGEL_RING.get())
+                .admixture("potential", 14).admixture("exanimate", 38).admixture("instrument", 2)
+                .essentia("fleshy", 86).essentia("rubedo", 12));
+
+        save(writer, distillation(ItemInit.BATTLE_MAGE_RING.get())
+                .categories(Category.RARE)
+                .admixture("violence", 123).admixture("sorcery", 58).admixture("instrument", 20).admixture("legend", 6)
+                .essentia("citrinitas", 16));
+
+        save(writer, distillation(ItemInit.BRACELET_OF_WATER.get())
+                .essentia("water", 27).admixture("travel", 42).admixture("instrument", 2).essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.BRACELET_OF_WATER_GREATER.get())
+                .essentia("water", 120).admixture("travel", 49).admixture("instrument", 4).essentia("citrinitas", 6));
+
+        save(writer, distillation(ItemInit.DEFENSE_BRACELET_MINOR.get())
+                .admixture("metal", 48).admixture("protection", 40).admixture("instrument", 9));
+
+        save(writer, distillation(ItemInit.DEFENSE_BRACELET.get())
+                .essentia("precious", 64).admixture("crystal", 56).admixture("protection", 56)
+                .admixture("instrument", 13).essentia("nigredo", 16));
+
+        save(writer, distillation(ItemInit.DEFENSE_BRACELET_GREATER.get())
+                .admixture("protection", 72).admixture("metal", 32).admixture("instrument", 21)
+                .essentia("precious", 104).essentia("albedo", 10));
+
+        save(writer, distillation(ItemInit.BRACELET_OF_FRIENDSHIP.get())
+                .admixture("protection", 36).admixture("thought", 7).admixture("history", 6).admixture("instrument", 2)
+                .essentia("precious", 11));
+
+        save(writer, distillation(ItemInit.COLLECTORS_AMULET.get())
+                .admixture("potential", 38).admixture("sorcery", 28).essentia("citrinitas", 7));
+
+        save(writer, distillation(ItemInit.CURSE_PROTECTION_AMULET.get())
+                .admixture("protection", 128).admixture("curse", 21).admixture("luck", 21).admixture("witchcraft", 7)
+                .essentia("citrinitas", 12));
+
+        save(writer, distillation(ItemInit.REGENERATION_AMULET.get())
+                .admixture("healing", 188).admixture("instrument", 13).essentia("precious", 109)
+                .essentia("citrinitas", 6));
+
+        save(writer, distillation(ItemInit.FACTION_AMULET.get())
+                .admixture("protection", 38).admixture("demon", 16).admixture("exanimate", 16).admixture("fey", 16)
+                .admixture("wizard", 16));
+
+        save(writer, distillation(ItemInit.AMULET_OF_HELLFIRE.get())
+                .essentia("fire", 243).admixture("demon", 64).admixture("sorcery", 38).admixture("instrument", 2)
+                .essentia("rubedo", 12));
+
+        save(writer, distillation(ItemInit.BELT_OF_LIFE_MINOR.get())
+                .admixture("blood", 9).admixture("healing", 9).admixture("instrument", 9).admixture("protection", 9)
+                .essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.BELT_OF_LIFE.get())
+                .admixture("blood", 21).admixture("healing", 21).admixture("protection", 21)
+                .admixture("instrument", 13).essentia("precious", 99));
+
+        save(writer, distillation(ItemInit.BELT_OF_LIFE_GREATER.get())
+                .admixture("blood", 64).admixture("healing", 64).admixture("protection", 64)
+                .admixture("instrument", 13).essentia("citrinitas", 6));
+
+        save(writer, distillation(ItemInit.GLASS_CANNON_BELT.get())
+                .admixture("violence", 128).admixture("change", 12).admixture("instrument", 2)
+                .essentia("citrinitas", 11));
+
+        save(writer, distillation(ItemInit.STURDY_BELT.get())
+                .admixture("protection", 128).admixture("change", 12).admixture("instrument", 2)
+                .essentia("citrinitas", 11));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_DMG.get())
+                .essentia("earth", 8).admixture("violence", 8).admixture("instrument", 3).essentia("wrought", 5));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_DMG_MAJOR.get())
+                .essentia("earth", 16).admixture("violence", 16).admixture("instrument", 8).essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_FIRE.get())
+                .essentia("fire", 8).admixture("violence", 8).admixture("instrument", 3).essentia("wrought", 5));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_FIRE_MAJOR.get())
+                .essentia("fire", 16).admixture("violence", 16).admixture("instrument", 8).essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_REFLECT.get())
+                .essentia("arcane", 8).admixture("violence", 8).admixture("instrument", 3).essentia("wrought", 5));
+
+        save(writer, distillation(ItemInit.REVENGE_CHARM_REFLECT_MAJOR.get())
+                .essentia("arcane", 16).admixture("violence", 16).admixture("instrument", 8).essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.VOIDFEATHER_CHARM.get())
+                .admixture("protection", 14).admixture("alien", 12).admixture("travel", 8).admixture("instrument", 3)
+                .essentia("wrought", 4));
+
+        save(writer, sublimation(ItemInit.VOIDFEATHER_CHARM.get(), 2)
+                .stage(8)
+                .items(ItemInit.VOIDFEATHER_CHARM.get())
+                .item(magichemItem("glass_orb"))
+                .items(Items.FEATHER, PURIFIED_VINTEUM_DUST.get())
+                .admixture("travel", 20).admixture("alien", 5).admixture("instrument", 2));
+
+        save(writer, distillation(ItemInit.NIGHT_GOGGLES.get())
+                .admixture("light", 48).admixture("crystal", 14).admixture("color", 9).admixture("instrument", 6)
+                .essentia("albedo", 5));
+
+        save(writer, distillation(ItemInit.DISAPPEARING_TIARA.get())
+                .essentia("air", 36).essentia("arcane", 36).admixture("fey", 20).admixture("instrument", 2)
+                .essentia("nigredo", 6));
+
+        save(writer, distillation(ItemInit.HYDRA_CROWN.get())
+                .admixture("exanimate", 16).admixture("violence", 15).admixture("blood", 14)
+                .admixture("witchcraft", 11).admixture("instrument", 4));
+
+        save(writer, distillation(ItemInit.WEATHER_FAIRY_STAFF.get())
+                .categories(Category.RARE)
+                .admixture("storm", 52).admixture("change", 41).admixture("instrument", 20).admixture("legend", 6)
+                .essentia("citrinitas", 16));
+
+        save(writer, distillation(ItemInit.THE_CLICKERS_COOKIE.get())
+                .categories(Category.RARE)
+                .admixture("delight", 119).admixture("alien", 45).admixture("legend", 6).essentia("nourishing", 184)
+                .essentia("citrinitas", 16));
+
+        save(writer, distillation(ItemInit.RIFT_EMITTER_ITEM.get())
+                .essentia("ender", 13).admixture("travel", 36).admixture("vessel", 28).admixture("alien", 8));
+    }
+
+    // MagiChem is not loaded during the data run
+    private static ResourceLocation magichemItem(String path) {
+        return new ResourceLocation(MagiChemRecipeBuilder.MAGICHEM, path);
+    }
+
     private void save(Consumer<FinishedRecipe> writer, String name, ManaweavingRecipeBuilder recipe) {
         recipe.save(writer, RLoc.create("manaweaving/" + name), existingFileHelper);
     }
 
-    /**
-     * Saves an Eldrin Altar recipe as {@code dmnr:eldrin_altar/<name>}.
-     */
     private void save(Consumer<FinishedRecipe> writer, String name, EldrinAltarRecipeBuilder recipe) {
         recipe.save(writer, RLoc.create("eldrin_altar/" + name), existingFileHelper);
     }
 
-    /**
-     * Saves a recipe of an integration as {@code dmnr:<mod_id>/<name>}. It is only loaded if the mod is installed.
-     */
-    private void saveConditional(Consumer<FinishedRecipe> writer, String modId, String name, ManaweavingRecipeBuilder recipe) {
-        ResourceLocation id = RLoc.create(modId + "/" + name);
-        ConditionalRecipe.builder()
-                .addCondition(new ModLoadedCondition(modId))
-                .addRecipe(recipe.build(id, existingFileHelper))
-                .build(writer, id);
+    private void save(Consumer<FinishedRecipe> writer, SpellPartRecipeBuilder recipe) {
+        recipe.save(writer, existingFileHelper);
+    }
+
+    private void saveIntegration(Consumer<FinishedRecipe> writer, String modId, String name, ManaweavingRecipeBuilder recipe) {
+        recipe.whenModLoaded(modId).save(writer, RLoc.create(modId + "/" + name), existingFileHelper);
+    }
+
+    // The ID is derived from the item, so every item has at most one recipe of each kind
+    private void save(Consumer<FinishedRecipe> writer, MagiChemDistillationRecipeBuilder recipe) {
+        saveMagiChem(writer, "distillation", recipe);
+    }
+
+    private void save(Consumer<FinishedRecipe> writer, MagiChemSublimationRecipeBuilder recipe) {
+        saveMagiChem(writer, "sublimation", recipe);
+    }
+
+    private void saveMagiChem(Consumer<FinishedRecipe> writer, String kind, MagiChemRecipeBuilder<?> recipe) {
+        String itemId = ForgeRegistries.ITEMS.getKey(recipe.getObject()).getPath();
+        recipe.save(writer, RLoc.create(MagiChemRecipeBuilder.MAGICHEM + "/" + kind + "/" + itemId), existingFileHelper);
     }
 }

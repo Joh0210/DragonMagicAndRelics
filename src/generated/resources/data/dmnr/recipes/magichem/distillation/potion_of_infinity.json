@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 43,
+            "item": "magichem:admixture_witchcraft"
+          },
+          {
+            "count": 33,
+            "item": "magichem:admixture_sorcery"
+          },
+          {
+            "count": 13,
+            "item": "magichem:admixture_potential"
+          },
+          {
+            "count": 3,
+            "item": "magichem:essentia_citrinitas"
+          }
+        ],
+        "object": {
+          "item": "dmnr:potion_of_infinity"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

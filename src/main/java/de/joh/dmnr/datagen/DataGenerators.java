@@ -29,24 +29,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
- * Registers the data generators of this mod ({@code ./gradlew runData}). The output is written to
- * {@code src/generated/resources} and must not be edited by hand.
- * <p>
- * Generated: blockstates, block models ({@code models/block/<block_id>.json}), item models, tags, block loot tables
- * and the manaweaving and Eldrin Altar recipes ({@link ModRecipeProvider}). Everything else is still maintained by hand in
- * {@code src/main/resources}, including the models in the subfolders of {@code models/block} and all other recipe
- * types.
- * <p>
- * The providers that handle every item or block of this mod get them from {@link #itemRegisters()} and
- * {@link #blockRegisters()}. A new register (e.g. of a new integration) has to be added there, otherwise the data run
- * fails.
+ * Registers the data generators ({@code ./gradlew runData}), whose output in {@code src/generated/resources} must not be
+ * edited by hand.
  * @author Joh0210
  */
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        // The content of the integrations is part of the generated data, so it has to be registered
+        // The content of the integrations is part of the generated data
         for (ModCompat compat : ModCompat.values()) {
             if (!compat.isLoaded()) {
                 throw new IllegalStateException(DragonMagicAndRelics.MOD_ID + ": data generation needs all optional mods with code integration, missing: " + compat.name());
@@ -60,7 +51,8 @@ public class DataGenerators {
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        // The block models have to be generated before the item models, which use them as parents
+        // Providers run in this order, and the existing file helper only knows generated files that came before:
+        // block models before the item models using them as parents, item tags before the recipes using them
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(output, existingFileHelper));
         generator.addProvider(event.includeClient(), new ModItemModelProvider(output, existingFileHelper));
 
@@ -69,53 +61,39 @@ public class DataGenerators {
         generator.addProvider(event.includeServer(), new ModDamageTypeTagsProvider(output, lookupProvider, existingFileHelper));
         generator.addProvider(event.includeServer(), new LootTableProvider(output, Set.of(),
                 List.of(new LootTableProvider.SubProviderEntry(ModBlockLootProvider::new, LootContextParamSets.BLOCK))));
-        // After the item tags: the recipe builders check that the tags they use exist, and the existing file helper
-        // only knows the generated item tags of this mod once ModItemTagsProvider has run
         generator.addProvider(event.includeServer(), new ModRecipeProvider(output, existingFileHelper));
     }
 
     /**
-     * @return the registers of all items of this mod, including those of the integrations
+     * Every register of this mod, including those of the integrations. A missing one fails the data run.
      */
     static List<DeferredRegister<Item>> itemRegisters() {
         return List.of(ItemInit.ITEMS, AE2Init.ITEMS, CreateInit.ITEMS);
     }
 
     /**
-     * @return the registers of all blocks of this mod, including those of the integrations
+     * @see #itemRegisters()
      */
     static List<DeferredRegister<Block>> blockRegisters() {
         return List.of(BlockInit.BLOCKS, AE2Init.BLOCKS, CreateInit.BLOCKS);
     }
 
-    /**
-     * @return all items of this mod, in the order of {@link #itemRegisters()}
-     */
     static Stream<RegistryObject<Item>> itemEntries() {
         return itemRegisters().stream().flatMap(register -> register.getEntries().stream());
     }
 
-    /**
-     * @return all blocks of this mod, in the order of {@link #blockRegisters()}
-     */
     static Stream<RegistryObject<Block>> blockEntries() {
         return blockRegisters().stream().flatMap(register -> register.getEntries().stream());
     }
 
     /**
-     * The blocks of the integrations that can be placed and mined. They only exist if the optional mod is installed,
-     * so the generated data must reference them optionally.
+     * Placeable blocks of the integrations. They only exist with the optional mod, so the generated data references
+     * them optionally.
      */
     static List<RegistryObject<? extends Block>> integrationBlocks() {
         return List.of(AE2Init.ALTAR_INTERFACE, CreateInit.ARCANE_ENGINE, CreateInit.BRIMSTONE_ENGINE);
     }
 
-    /**
-     * Ensures that the registers list every registered entry of this mod, so that no provider misses one.
-     * @param registersMethod name of the method that lists the registers, for the error message
-     * @param registered IDs of all entries of the game registry
-     * @throws IllegalStateException if an entry of this mod is not in one of the registers
-     */
     private static void validateRegisters(String registersMethod, Set<ResourceLocation> registered, Stream<? extends RegistryObject<?>> listed) {
         Set<ResourceLocation> listedIds = listed.map(RegistryObject::getId).collect(Collectors.toSet());
         List<ResourceLocation> missing = registered.stream()

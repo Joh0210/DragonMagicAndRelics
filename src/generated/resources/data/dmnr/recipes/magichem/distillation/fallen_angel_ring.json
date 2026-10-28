@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 14,
+            "item": "magichem:admixture_potential"
+          },
+          {
+            "count": 38,
+            "item": "magichem:admixture_exanimate"
+          },
+          {
+            "count": 2,
+            "item": "magichem:admixture_instrument"
+          },
+          {
+            "count": 86,
+            "item": "magichem:essentia_fleshy"
+          },
+          {
+            "count": 12,
+            "item": "magichem:essentia_rubedo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:fallen_angel_ring"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

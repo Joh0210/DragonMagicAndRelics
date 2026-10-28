@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 42,
+            "item": "magichem:admixture_alien"
+          },
+          {
+            "count": 27,
+            "item": "magichem:admixture_travel"
+          },
+          {
+            "count": 9,
+            "item": "magichem:admixture_instrument"
+          },
+          {
+            "count": 5,
+            "item": "magichem:essentia_albedo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:reach_ring_minor"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

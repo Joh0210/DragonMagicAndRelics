@@ -1,0 +1,15 @@
+{
+  "type": "mna:component",
+  "items": [
+    "mna:vinteum_dust",
+    "mna:vinteum_dust",
+    "mna:rune_marking",
+    "mna:mote_ender"
+  ],
+  "output": "dmnr:components/alternativerecall",
+  "patterns": [
+    "mna:manaweave_patterns/inverted_triangle",
+    "mna:manaweave_patterns/square"
+  ],
+  "tier": 3
+}

@@ -15,12 +15,10 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 /**
- * Generates the block loot tables ({@code data/dmnr/loot_tables/blocks}).
+ * Generates the block loot tables. Every block without {@code noLootTable()} needs one, otherwise the data run fails.
  * <p>
- * Every block of this mod ({@link DataGenerators#blockRegisters()}) needs a loot table, otherwise the generator fails.
- * Only blocks with {@code noLootTable()} (e.g. the spectral motor) are skipped. The blocks of the integrations drop
- * themselves through their {@link ModItemTagsProvider#selfDropTag(RegistryObject) self drop tag}, because their items
- * do not exist without the optional mod (see {@link de.joh.dmnr.compat.ModCompat}).
+ * Loot tables have no conditions in this Forge version, so the blocks of the integrations drop themselves through
+ * their {@link ModItemTagsProvider#selfDropTag self drop tag} instead of their item, which may not exist.
  * @author Joh0210
  */
 public class ModBlockLootProvider extends BlockLootSubProvider {

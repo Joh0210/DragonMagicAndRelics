@@ -1,0 +1,37 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 48,
+            "item": "magichem:admixture_metal"
+          },
+          {
+            "count": 40,
+            "item": "magichem:admixture_protection"
+          },
+          {
+            "count": 9,
+            "item": "magichem:admixture_instrument"
+          }
+        ],
+        "object": {
+          "item": "dmnr:defense_bracelet_minor"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

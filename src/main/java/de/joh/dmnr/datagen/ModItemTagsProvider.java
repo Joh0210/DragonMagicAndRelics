@@ -20,16 +20,15 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 /**
- * Generates the item tags ({@code data/<namespace>/tags/items}).
- * <p>
- * The tags of the Curios slots and {@code mna:relics} are derived from the items: the slot of a curio is set at its
- * registration ({@link ItemInit#getCurioSlots()}), relics are the items that implement {@link IRelic}.
+ * Generates the item tags. The Curios slot tags come from {@link ItemInit#getCurioSlots()}, {@code mna:relics} contains
+ * every item that implements {@link IRelic}.
  * @author Joh0210
  */
 public class ModItemTagsProvider extends ItemTagsProvider {
@@ -39,8 +38,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     }
 
     /**
-     * The item tag through which the loot table of an integration block drops the block, see {@link ModBlockLootProvider}.
-     * It has the same ID as the block and optionally contains the block item, which has that ID as well.
+     * Optionally contains the block item of an integration block, see {@link ModBlockLootProvider}.
      */
     public static TagKey<Item> selfDropTag(RegistryObject<? extends Block> block) {
         return ItemTags.create(block.getId());
@@ -61,29 +59,21 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     }
 
     /**
-     * Curios only allows an item in a slot whose tag contains it, so a curio without a slot cannot be equipped.
-     * <br>Only {@link ICurioItem}s can be recognized as curios. Curios whose effect is handled by events (e.g. the
-     * Ring of Spell Storing) do not implement it and are not checked.
-     * @throws IllegalStateException if an {@link ICurioItem} of this mod has no slot
+     * A curio without a slot tag cannot be equipped. Curios that do not implement {@link ICurioItem} (effects handled by
+     * events) cannot be recognized.
      */
     private static void validateCurioSlots(Map<RegistryObject<Item>, CurioSlot> curioSlots) {
-        List<Item> withSlot = curioSlots.keySet().stream().map(RegistryObject::get).toList();
-        List<String> problems = new ArrayList<>();
-
-        for (Item item : modItems()) {
-            if (item instanceof ICurioItem && !withSlot.contains(item)) {
-                problems.add(ForgeRegistries.ITEMS.getKey(item) + " is an ICurioItem without a Curios slot, register it with ItemInit.registerCurio");
-            }
-        }
+        Set<Item> withSlot = curioSlots.keySet().stream().map(RegistryObject::get).collect(Collectors.toSet());
+        List<String> problems = modItems().stream()
+                .filter(item -> item instanceof ICurioItem && !withSlot.contains(item))
+                .map(item -> ForgeRegistries.ITEMS.getKey(item) + " is an ICurioItem without a Curios slot, register it with ItemInit.registerCurio")
+                .toList();
 
         if (!problems.isEmpty()) {
             throw new IllegalStateException(DragonMagicAndRelics.MOD_ID + ": curios without a slot:\n" + String.join("\n", problems));
         }
     }
 
-    /**
-     * @return all registered items of this mod, including those of the integrations
-     */
     private static List<Item> modItems() {
         return DataGenerators.itemEntries().map(RegistryObject::get).toList();
     }

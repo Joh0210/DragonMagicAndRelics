@@ -1,0 +1,45 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 243,
+            "item": "magichem:essentia_fire"
+          },
+          {
+            "count": 64,
+            "item": "magichem:admixture_demon"
+          },
+          {
+            "count": 38,
+            "item": "magichem:admixture_sorcery"
+          },
+          {
+            "count": 2,
+            "item": "magichem:admixture_instrument"
+          },
+          {
+            "count": 12,
+            "item": "magichem:essentia_rubedo"
+          }
+        ],
+        "object": {
+          "item": "dmnr:amulet_of_hellfire"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}

@@ -19,10 +19,8 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Objects;
 
 /**
- * Generates the item models ({@code assets/dmnr/models/item}).
- * <p>
- * Items with a special model are listed explicitly, every other item gets a model by its type: block items use the
- * model of their block, all remaining items a flat model with the texture {@code dmnr:item/<item_id>}.
+ * Generates the item models. Items without a special model get one by their type: block items use the model of their
+ * block, all others a flat model with the texture {@code item/<item_id>}.
  * @author Joh0210
  */
 public class ModItemModelProvider extends ItemModelProvider {
@@ -67,9 +65,6 @@ public class ModItemModelProvider extends ItemModelProvider {
                 .texture("layer0", id.withPrefix(ITEM_FOLDER + "/"));
     }
 
-    /**
-     * The 3D model is an OBJ file ({@code models/item/obj/fire_resistance_bracelet.obj}) that is maintained by hand.
-     */
     private void fireResistanceBracelet() {
         getBuilder(ItemInit.FIRE_RESISTANCE_BRACELET.getId().getPath())
                 .parent(new ModelFile.UncheckedModelFile("forge:item/default"))

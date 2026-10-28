@@ -1,0 +1,55 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:sublimation",
+        "object": {
+          "count": 1,
+          "item": "dmnr:voidfeather_charm"
+        },
+        "stages": [
+          {
+            "components": [
+              {
+                "item": "dmnr:voidfeather_charm"
+              },
+              {
+                "item": "magichem:glass_orb"
+              },
+              {
+                "item": "minecraft:feather"
+              },
+              {
+                "item": "mna:purified_vinteum_dust"
+              }
+            ],
+            "experience": 8,
+            "materia": [
+              {
+                "count": 20,
+                "item": "magichem:admixture_travel"
+              },
+              {
+                "count": 5,
+                "item": "magichem:admixture_alien"
+              },
+              {
+                "count": 2,
+                "item": "magichem:admixture_instrument"
+              }
+            ]
+          }
+        ],
+        "tier": 2,
+        "wisdom": 0
+      }
+    }
+  ]
+}

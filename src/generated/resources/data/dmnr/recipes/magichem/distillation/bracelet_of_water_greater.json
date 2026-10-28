@@ -1,0 +1,41 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:mod_loaded",
+          "modid": "magichem"
+        }
+      ],
+      "recipe": {
+        "type": "magichem:distillation_fabrication",
+        "batch_size": 1,
+        "categories": 1,
+        "components": [
+          {
+            "count": 120,
+            "item": "magichem:essentia_water"
+          },
+          {
+            "count": 49,
+            "item": "magichem:admixture_travel"
+          },
+          {
+            "count": 4,
+            "item": "magichem:admixture_instrument"
+          },
+          {
+            "count": 6,
+            "item": "magichem:essentia_citrinitas"
+          }
+        ],
+        "object": {
+          "item": "dmnr:bracelet_of_water_greater"
+        },
+        "output_rate": 1.0,
+        "wisdom": 6
+      }
+    }
+  ]
+}
