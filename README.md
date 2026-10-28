@@ -1,4 +1,4 @@
-# Dragon Magic And Relics
+# Dragon Magic and Relics
 ![CurseForge Download Counter](https://cf.way2muchnoise.eu/full_785039_downloads.svg)
 ![Modrinth Download Counter](https://img.shields.io/modrinth/dt/dragon-magic-and-relics?logo=modrinth&labelColor=2D2D2D&color=5da545)
 ![availability](https://cf.way2muchnoise.eu/versions/785039.svg)
@@ -27,7 +27,7 @@ And thanks to Mithion for helping creating the mod. Also thanks to Ceddi and Nic
 ## Use of AI
 This project contains almost no AI-generated content. However, AI tools are occasionally used during development, e.g. for finding bugs, as an alternative to a search engine, or for creating individual code snippets.
 
-Dragon Magic and Relics is purely a fun project of mine, and I enjoy coding, so I write the code myself. I do reserve the right to automate smaller code sections or repetitive code with the help of AI tools. Even then, this code is always reviewed by me.
+Dragon Magic and Relics is purely a fun project of mine, and I enjoy coding, so I write the code myself. I do reserve the right to generate smaller code sections or repetitive code with the help of AI tools. Even then, this code is always reviewed by me.
 
 Texts, artworks and game mechanics are **never** AI-generated. All content comes from me, my friends, or ideas from the community.
 <br>(Spelling and the phrasing of longer texts in the Codex are occasionally double-checked with AI.)
