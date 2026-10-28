@@ -216,6 +216,7 @@ def generateModMetadata = tasks.register('generateModMetadata', ProcessResources
             mod_description        : mod_description,
             mod_issue_tracker_url  : mod_issue_tracker_url,
             mod_display_url        : mod_display_url,
+            mod_update_json_url    : mod_update_json_url,
             mna_version_range      : mna_version_range,
             tnl_version_range      : tnl_version_range,
             curios_version_range   : curios_version_range,
