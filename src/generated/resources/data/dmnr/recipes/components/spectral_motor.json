@@ -20,7 +20,7 @@
         "output": "dmnr:components/spectral_motor",
         "patterns": [
           "mna:manaweave_patterns/circle",
-          "mna:manaweave_patterns/infinity",
+          "mna:manaweave_patterns/split_triangle",
           "mna:manaweave_patterns/circle"
         ],
         "tier": 3

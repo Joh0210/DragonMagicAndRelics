@@ -21,7 +21,7 @@
         "output": "dmnr:altar_me_interface",
         "patterns": [
           "mna:manaweave_patterns/square",
-          "mna:manaweave_patterns/hourglass",
+          "mna:manaweave_patterns/bolt",
           "mna:manaweave_patterns/circle"
         ],
         "quantity": 1,

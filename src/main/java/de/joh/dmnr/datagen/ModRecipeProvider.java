@@ -433,7 +433,7 @@ public class ModRecipeProvider extends MnaRecipeProvider {
         saveIntegration(writer, AE2, "altar_me_interface", manaweaving(AE2Init.ALTAR_INTERFACE_ITEM.get(), 3)
                 .items(AEBlocks.INTERFACE, RUNE_MARKING.get(), AEItems.ENGINEERING_PROCESSOR, AEItems.FLUIX_CRYSTAL,
                         PURIFIED_VINTEUM_DUST.get(), CHIMERITE_GEM.get())
-                .patterns(SQUARE, HOURGLASS, CIRCLE));
+                .patterns(SQUARE, BOLT, CIRCLE));
     }
 
     // Create's registry constants need Registrate, which is not on the compile classpath
@@ -448,7 +448,7 @@ public class ModRecipeProvider extends MnaRecipeProvider {
         saveIntegration(writer, CREATE, "brimstone_engine", manaweaving(CreateInit.BRIMSTONE_ENGINE_ITEM.get(), 4)
                 .items(CreateInit.ARCANE_ENGINE_ITEM.get(), BRIMSTONE_CHARM.get())
                 .item(createItem("blaze_burner"))
-                .patterns(TRIANGLE, INFINITY, TRIANGLE));
+                .patterns(TRIANGLE, STAR, TRIANGLE));
 
         save(writer, component(CreateInit.SPECTRAL_MOTOR_COMPONENT, 3)
                 .whenModLoaded(CREATE)
@@ -456,7 +456,7 @@ public class ModRecipeProvider extends MnaRecipeProvider {
                 .item(createItem("cogwheel"))
                 .item(createItem("shaft"))
                 .items(MOTE_AIR.get(), PURIFIED_VINTEUM_DUST.get())
-                .patterns(CIRCLE, INFINITY, CIRCLE));
+                .patterns(CIRCLE, SPLIT_TRIANGLE, CIRCLE));
     }
 
     private static ResourceLocation createItem(String path) {
