@@ -3,30 +3,25 @@ package de.joh.dmnr.datagen;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.DragonMageArmorItem;
+import de.joh.tnl.api.datagen.DefaultItemModelProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.minecraftforge.client.model.generators.loaders.ObjModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Objects;
 
 /**
  * Generates the item models. Items without a special model get one by their type: block items use the model of their
- * block, all others a flat model with the texture {@code item/<item_id>}.
+ * block, dyeable armor a tinted base and an overlay, all others a flat model with the texture {@code item/<item_id>}.
  * @author Joh0210
  */
-public class ModItemModelProvider extends ItemModelProvider {
-    private static final ModelFile GENERATED = new ModelFile.UncheckedModelFile("item/generated");
-    private static final ModelFile HANDHELD = new ModelFile.UncheckedModelFile("item/handheld");
-
+public class ModItemModelProvider extends DefaultItemModelProvider {
     public ModItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
         super(output, DragonMagicAndRelics.MOD_ID, existingFileHelper);
     }
@@ -36,33 +31,21 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ItemInit.WEATHER_FAIRY_STAFF);
         fireResistanceBracelet();
 
-        DataGenerators.itemEntries()
-                .filter(item -> !generatedModels.containsKey(item.getId().withPrefix(ITEM_FOLDER + "/")))
-                .forEach(item -> defaultItem(item.get()));
+        defaultModels(DataGenerators.itemEntries());
     }
 
-    private void defaultItem(Item item) {
-        ResourceLocation id = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item));
-
-        if (item instanceof BlockItem blockItem) {
-            ResourceLocation blockId = Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(blockItem.getBlock()));
-            withExistingParent(id.getPath(), blockId.withPrefix(BLOCK_FOLDER + "/"));
-        } else if (item instanceof DragonMageArmorItem) {
+    @Override
+    protected void defaultItem(Item item) {
+        if (item instanceof DragonMageArmorItem) {
+            ResourceLocation id = Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item));
             // Dyeable: layer0 is tinted with the color of the armor, layer1 stays as it is
             getBuilder(id.getPath())
                     .parent(GENERATED)
                     .texture("layer0", id.withPath(path -> ITEM_FOLDER + "/" + path + "_base"))
                     .texture("layer1", id.withPath(path -> ITEM_FOLDER + "/" + path + "_overlay"));
         } else {
-            basicItem(id);
+            super.defaultItem(item);
         }
-    }
-
-    private void handheldItem(RegistryObject<Item> item) {
-        ResourceLocation id = item.getId();
-        getBuilder(id.getPath())
-                .parent(HANDHELD)
-                .texture("layer0", id.withPrefix(ITEM_FOLDER + "/"));
     }
 
     private void fireResistanceBracelet() {

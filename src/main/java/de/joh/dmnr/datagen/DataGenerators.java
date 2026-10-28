@@ -6,11 +6,11 @@ import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.compat.ModCompat;
 import de.joh.dmnr.compat.ae2.AE2Init;
 import de.joh.dmnr.compat.create.CreateInit;
+import de.joh.tnl.api.datagen.DataGenValidation;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -25,7 +25,6 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -43,8 +42,10 @@ public class DataGenerators {
                 throw new IllegalStateException(DragonMagicAndRelics.MOD_ID + ": data generation needs all optional mods with code integration, missing: " + compat.name());
             }
         }
-        validateRegisters("itemRegisters()", ForgeRegistries.ITEMS.getKeys(), itemEntries());
-        validateRegisters("blockRegisters()", ForgeRegistries.BLOCKS.getKeys(), blockEntries());
+        DataGenValidation.validateRegisters(DragonMagicAndRelics.MOD_ID, "DataGenerators.itemRegisters()",
+                ForgeRegistries.ITEMS.getKeys(), itemEntries());
+        DataGenValidation.validateRegisters(DragonMagicAndRelics.MOD_ID, "DataGenerators.blockRegisters()",
+                ForgeRegistries.BLOCKS.getKeys(), blockEntries());
 
         DataGenerator generator = event.getGenerator();
         PackOutput output = generator.getPackOutput();
@@ -92,18 +93,5 @@ public class DataGenerators {
      */
     static List<RegistryObject<? extends Block>> integrationBlocks() {
         return List.of(AE2Init.ALTAR_INTERFACE, CreateInit.ARCANE_ENGINE, CreateInit.BRIMSTONE_ENGINE);
-    }
-
-    private static void validateRegisters(String registersMethod, Set<ResourceLocation> registered, Stream<? extends RegistryObject<?>> listed) {
-        Set<ResourceLocation> listedIds = listed.map(RegistryObject::getId).collect(Collectors.toSet());
-        List<ResourceLocation> missing = registered.stream()
-                .filter(id -> id.getNamespace().equals(DragonMagicAndRelics.MOD_ID) && !listedIds.contains(id))
-                .sorted()
-                .toList();
-
-        if (!missing.isEmpty()) {
-            throw new IllegalStateException(DragonMagicAndRelics.MOD_ID + ": registered, but not in a register of DataGenerators."
-                    + registersMethod + ": " + missing);
-        }
     }
 }

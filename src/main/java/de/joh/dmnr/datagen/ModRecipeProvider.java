@@ -4,15 +4,15 @@ import appeng.core.definitions.AEBlocks;
 import appeng.core.definitions.AEItems;
 import com.mna.api.affinity.Affinity;
 import com.mna.api.faction.FactionIDs;
+import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.init.SpellInit;
-import de.joh.dmnr.common.util.RLoc;
 import de.joh.dmnr.compat.ae2.AE2Init;
 import de.joh.dmnr.compat.create.CreateInit;
-import de.joh.dmnr.datagen.MagiChemDistillationRecipeBuilder.Category;
+import de.joh.tnl.api.datagen.MagiChemDistillationRecipeBuilder.Category;
+import de.joh.tnl.api.datagen.MnaRecipeProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -20,63 +20,35 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 
 import static com.mna.items.ItemInit.*;
-import static de.joh.dmnr.datagen.EldrinAltarRecipeBuilder.eldrinAltar;
-import static de.joh.dmnr.datagen.MagiChemDistillationRecipeBuilder.distillation;
-import static de.joh.dmnr.datagen.MagiChemSublimationRecipeBuilder.sublimation;
-import static de.joh.dmnr.datagen.ManaweavingRecipeBuilder.manaweaving;
-import static de.joh.dmnr.datagen.SpellPartRecipeBuilder.component;
-import static de.joh.dmnr.datagen.SpellPartRecipeBuilder.shape;
+import static de.joh.tnl.api.datagen.EldrinAltarRecipeBuilder.eldrinAltar;
+import static de.joh.tnl.api.datagen.MagiChemDistillationRecipeBuilder.distillation;
+import static de.joh.tnl.api.datagen.MagiChemSublimationRecipeBuilder.sublimation;
+import static de.joh.tnl.api.datagen.ManaweavePatterns.*;
+import static de.joh.tnl.api.datagen.ManaweavingRecipeBuilder.manaweaving;
+import static de.joh.tnl.api.datagen.SpellPartRecipeBuilder.component;
+import static de.joh.tnl.api.datagen.SpellPartRecipeBuilder.shape;
 
 /**
  * Generates the recipes of Mana and Artifice and MagiChem. They are grouped by the item they craft, so the upgrade
- * stages of an item stay together, whatever crafting station they need.
+ * stages of an item stay together, whatever crafting station they need. The recipe IDs come from the {@code save}
+ * methods of {@link MnaRecipeProvider}.
  * <p>
  * Recipe IDs must never change: the Codex references the recipes by ID.
  * @author Joh0210
  */
-public class ModRecipeProvider extends RecipeProvider {
+public class ModRecipeProvider extends MnaRecipeProvider {
     private static final String AE2 = "ae2";
     private static final String CREATE = "create";
 
-    private static final ResourceLocation BACKSLASH = pattern("backslash");
-    private static final ResourceLocation BOLT = pattern("bolt");
-    private static final ResourceLocation CIRCLE = pattern("circle");
-    private static final ResourceLocation DIAMOND = pattern("diamond");
-    private static final ResourceLocation HOURGLASS = pattern("hourglass");
-    private static final ResourceLocation INFINITY = pattern("infinity");
-    private static final ResourceLocation INVERTED_SPLIT_TRIANGLE = pattern("inverted_split_triangle");
-    private static final ResourceLocation INVERTED_TRIANGLE = pattern("inverted_triangle");
-    private static final ResourceLocation KNOT = pattern("knot");
-    private static final ResourceLocation KNOT2 = pattern("knot2");
-    private static final ResourceLocation KNOT3 = pattern("knot3");
-    private static final ResourceLocation KNOT4 = pattern("knot4");
-    private static final ResourceLocation SLASH = pattern("slash");
-    private static final ResourceLocation SPLIT_TRIANGLE = pattern("split_triangle");
-    private static final ResourceLocation SQUARE = pattern("square");
-    private static final ResourceLocation STAR = pattern("star");
-    private static final ResourceLocation TRIANGLE = pattern("triangle");
-
     private static final TagKey<Item> MA_FLOWERS = ItemTags.create(new ResourceLocation("mna", "ma_flowers"));
 
-    // Not Affinity.CoreSix(): its order would reorder the generated files
-    private static final Affinity[] ALL_AFFINITIES = {Affinity.WATER, Affinity.FIRE, Affinity.EARTH, Affinity.WIND,
-            Affinity.ARCANE, Affinity.ENDER};
-
-    private final ExistingFileHelper existingFileHelper;
-
     public ModRecipeProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output);
-        this.existingFileHelper = existingFileHelper;
-    }
-
-    private static ResourceLocation pattern(String name) {
-        return new ResourceLocation("mna", "manaweave_patterns/" + name);
+        super(output, DragonMagicAndRelics.MOD_ID, existingFileHelper);
     }
 
     @Override
@@ -663,40 +635,5 @@ public class ModRecipeProvider extends RecipeProvider {
 
         save(writer, distillation(ItemInit.RIFT_EMITTER_ITEM.get())
                 .essentia("ender", 13).admixture("travel", 36).admixture("vessel", 28).admixture("alien", 8));
-    }
-
-    // MagiChem is not loaded during the data run
-    private static ResourceLocation magichemItem(String path) {
-        return new ResourceLocation(MagiChemRecipeBuilder.MAGICHEM, path);
-    }
-
-    private void save(Consumer<FinishedRecipe> writer, String name, ManaweavingRecipeBuilder recipe) {
-        recipe.save(writer, RLoc.create("manaweaving/" + name), existingFileHelper);
-    }
-
-    private void save(Consumer<FinishedRecipe> writer, String name, EldrinAltarRecipeBuilder recipe) {
-        recipe.save(writer, RLoc.create("eldrin_altar/" + name), existingFileHelper);
-    }
-
-    private void save(Consumer<FinishedRecipe> writer, SpellPartRecipeBuilder recipe) {
-        recipe.save(writer, existingFileHelper);
-    }
-
-    private void saveIntegration(Consumer<FinishedRecipe> writer, String modId, String name, ManaweavingRecipeBuilder recipe) {
-        recipe.whenModLoaded(modId).save(writer, RLoc.create(modId + "/" + name), existingFileHelper);
-    }
-
-    // The ID is derived from the item, so every item has at most one recipe of each kind
-    private void save(Consumer<FinishedRecipe> writer, MagiChemDistillationRecipeBuilder recipe) {
-        saveMagiChem(writer, "distillation", recipe);
-    }
-
-    private void save(Consumer<FinishedRecipe> writer, MagiChemSublimationRecipeBuilder recipe) {
-        saveMagiChem(writer, "sublimation", recipe);
-    }
-
-    private void saveMagiChem(Consumer<FinishedRecipe> writer, String kind, MagiChemRecipeBuilder<?> recipe) {
-        String itemId = ForgeRegistries.ITEMS.getKey(recipe.getObject()).getPath();
-        recipe.save(writer, RLoc.create(MagiChemRecipeBuilder.MAGICHEM + "/" + kind + "/" + itemId), existingFileHelper);
     }
 }

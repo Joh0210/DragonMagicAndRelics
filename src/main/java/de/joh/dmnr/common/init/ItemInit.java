@@ -4,6 +4,8 @@ import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.item.spellstoring.RingOfCooldownSpellStoringItem;
 import de.joh.dmnr.common.item.spellstoring.RingOfNormalSpellStoringItem;
+import de.joh.tnl.api.item.CurioRegistry;
+import de.joh.tnl.api.item.CurioSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
@@ -12,8 +14,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -27,7 +27,7 @@ public class ItemInit {
     /**
      * Must be declared before the items, because it is filled while they are registered.
      */
-    private static final Map<RegistryObject<Item>, CurioSlot> CURIO_SLOTS = new LinkedHashMap<>();
+    private static final CurioRegistry CURIOS = new CurioRegistry(ITEMS);
 
     public static final RegistryObject<Item> DRAGON_TOTEM = ITEMS.register("dragon_totem", DragonTotemItem::new);
     public static final RegistryObject<Item> DRAGON_TOTEM_EMPTY = ITEMS.register("dragon_totem_empty", DragonTotemItem::new);
@@ -111,16 +111,14 @@ public class ItemInit {
      * the slot, and they fail for every ICurioItem that is registered without a slot.
      */
     private static RegistryObject<Item> registerCurio(String name, CurioSlot slot, Supplier<? extends Item> item) {
-        RegistryObject<Item> curio = ITEMS.register(name, item);
-        CURIO_SLOTS.put(curio, slot);
-        return curio;
+        return CURIOS.register(name, slot, item);
     }
 
     /**
      * @return the Curios slot of every item that was registered with {@link #registerCurio}, in registration order
      */
     public static Map<RegistryObject<Item>, CurioSlot> getCurioSlots() {
-        return Collections.unmodifiableMap(CURIO_SLOTS);
+        return CURIOS.getSlots();
     }
 
     public static void register(IEventBus eventBus){

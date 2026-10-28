@@ -106,9 +106,9 @@ tasks.named('runData') {
     classpathProvider.setFrom(classpath.minus(configurations.localGameRuntime))
 }
 
-// MagiChem is not loaded during the data run, so MagiChemRecipeBuilder reads its essentia, admixtures and item IDs
+// MagiChem is not loaded during the data run, so MagiChemRecipeBuilder (TnL) reads its essentia, admixtures and item IDs
 // from its jar (data/magichem/generator/*.json, assets/magichem/models/item/*.json).
-legacyForge.runs.data.systemProperties.put('dmnr.magichem_jar',
+legacyForge.runs.data.systemProperties.put('tnl.magichem_jar',
         configurations.magichemData.elements.map { it.first().asFile.absolutePath })
 
 repositories {
