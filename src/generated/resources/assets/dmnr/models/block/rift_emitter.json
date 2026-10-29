@@ -1,50 +1,19 @@
 {
-  "parent": "minecraft:builtin/entity",
-  "display": {
-    "firstperson_lefthand": {
-      "scale": [
-        0.3,
-        0.3,
-        0.3
-      ]
+  "parent": "minecraft:block/block",
+  "children": {
+    "bottle": {
+      "parent": "dmnr:block/rift_emitter/bottle"
     },
-    "firstperson_righthand": {
-      "scale": [
-        0.3,
-        0.3,
-        0.3
-      ]
-    },
-    "fixed": {
-      "translation": [
-        0,
-        -8,
-        0
-      ]
-    },
-    "gui": {
-      "translation": [
-        0,
-        -8,
-        0
-      ]
-    },
-    "thirdperson_lefthand": {
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ]
-    },
-    "thirdperson_righthand": {
-      "scale": [
-        0.5,
-        0.5,
-        0.5
-      ]
+    "deco": {
+      "parent": "dmnr:block/rift_emitter/deco"
     }
   },
+  "item_render_order": [
+    "deco",
+    "bottle"
+  ],
+  "loader": "forge:composite",
   "textures": {
-    "particle": "minecraft:block/smooth_stone"
+    "particle": "mna:block/artifice/wizard_lab/inscription_table"
   }
 }

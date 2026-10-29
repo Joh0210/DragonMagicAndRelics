@@ -1,7 +1,211 @@
 {
-  "variants": {
-    "": {
-      "model": "dmnr:block/rift_emitter"
+  "multipart": [
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter"
+      },
+      "when": {
+        "facing": "north"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_single"
+      },
+      "when": {
+        "facing": "north",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_right"
+      },
+      "when": {
+        "facing": "north",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_left"
+      },
+      "when": {
+        "facing": "north",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_center"
+      },
+      "when": {
+        "facing": "north",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter",
+        "y": 180
+      },
+      "when": {
+        "facing": "south"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_single",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_right",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_left",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_center",
+        "y": 180
+      },
+      "when": {
+        "facing": "south",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter",
+        "y": 270
+      },
+      "when": {
+        "facing": "west"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_single",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_right",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_left",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_center",
+        "y": 270
+      },
+      "when": {
+        "facing": "west",
+        "left": "true",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter",
+        "y": 90
+      },
+      "when": {
+        "facing": "east"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_single",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "left": "false",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_right",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "left": "false",
+        "right": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_left",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "left": "true",
+        "right": "false"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/rift_emitter/table_center",
+        "y": 90
+      },
+      "when": {
+        "facing": "east",
+        "left": "true",
+        "right": "true"
+      }
     }
-  }
+  ]
 }

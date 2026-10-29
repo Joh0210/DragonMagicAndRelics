@@ -6,6 +6,7 @@ import de.joh.dmnr.common.init.BlockEntitieInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.DragonMageArmorItem;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -17,6 +18,14 @@ public class ClientModHandler {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event){
         BlockEntityRenderers.register(BlockEntitieInit.RIFT_EMITTER_ENTITY.get(), RiftEmitterRenderer::new);
+    }
+
+    /**
+     * Models that are not used by a block or item, but rendered directly.
+     */
+    @SubscribeEvent
+    public static void registerAdditionalModels(ModelEvent.RegisterAdditional event) {
+        event.register(RiftEmitterRenderer.BOTTLE_CONTENT);
     }
 
     @SubscribeEvent

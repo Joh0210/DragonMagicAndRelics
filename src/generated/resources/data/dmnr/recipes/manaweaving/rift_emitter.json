@@ -1,7 +1,9 @@
 {
   "type": "mna:manaweaving-recipe",
   "items": [
+    "mna:basic_table",
     "minecraft:ender_chest",
+    "minecraft:glass_bottle",
     "mna:mote_ender",
     "mna:rune_ender",
     "minecraft:ender_pearl",

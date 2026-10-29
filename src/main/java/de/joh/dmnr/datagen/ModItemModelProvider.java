@@ -28,6 +28,7 @@ public class ModItemModelProvider extends DefaultItemModelProvider {
     protected void registerModels() {
         handheldItem(ItemInit.WEATHER_FAIRY_STAFF);
         fireResistanceBracelet();
+        riftEmitter();
 
         defaultModels(DataGenerators.itemEntries());
     }
@@ -67,5 +68,23 @@ public class ModItemModelProvider extends DefaultItemModelProvider {
                 .transform(ItemDisplayContext.GROUND).scale(0.6F).translation(0, 4, 0).end()
                 .transform(ItemDisplayContext.GUI).scale(2).rotation(30, 30, 15).translation(-3.5F, 13, 0).end()
                 .transform(ItemDisplayContext.FIXED).scale(2).rotation(-90, 180, 0).translation(0, 0, -20).end();
+    }
+
+    /**
+     * Rendered by the RiftEmitterItemRenderer (block model and its animated parts).
+     */
+    private void riftEmitter() {
+        getBuilder(ItemInit.RIFT_EMITTER_ITEM.getId().getPath())
+                .parent(new ModelFile.UncheckedModelFile("builtin/entity"))
+                .texture("particle", new ResourceLocation("mna", "block/artifice/wizard_lab/inscription_table"))
+                .transforms()
+                .transform(ItemDisplayContext.THIRD_PERSON_RIGHT_HAND).scale(0.375F).rotation(75, 45, 0).translation(0, 1.5F, 0).end()
+                .transform(ItemDisplayContext.THIRD_PERSON_LEFT_HAND).scale(0.375F).rotation(75, 45, 0).translation(0, 1.5F, 0).end()
+                .transform(ItemDisplayContext.FIRST_PERSON_RIGHT_HAND).scale(0.4F).rotation(0, 45, 0).end()
+                .transform(ItemDisplayContext.FIRST_PERSON_LEFT_HAND).scale(0.4F).rotation(0, 225, 0).end()
+                .transform(ItemDisplayContext.GROUND).scale(0.25F).translation(0, 3, 0).end()
+                .transform(ItemDisplayContext.GUI).scale(0.55F).rotation(30, 225, 0).translation(0, -1.25F, 0).end()
+                .transform(ItemDisplayContext.FIXED).scale(0.5F).end()
+                .end();
     }
 }

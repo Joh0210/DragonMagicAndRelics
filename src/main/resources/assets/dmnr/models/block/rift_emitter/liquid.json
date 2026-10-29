@@ -1,0 +1,11 @@
+{
+  "loader": "forge:obj",
+  "model": "dmnr:models/block/rift_emitter/liquid.obj",
+  "flip_v": true,
+  "shade_quads": false,
+  "automatic_culling": false,
+  "textures": {
+    "liquid": "dmnr:block/rift_emitter/bottle",
+    "particle": "dmnr:block/rift_emitter/bottle"
+  }
+}

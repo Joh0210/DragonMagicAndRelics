@@ -1,0 +1,9 @@
+{
+  "loader": "forge:obj",
+  "model": "mna:models/block/obj/wizard_lab/desk_left.obj",
+  "flip_v": true,
+  "shade_quads": false,
+  "automatic_culling": false,
+  "emissive_ambient": true,
+  "render_type": "minecraft:cutout"
+}

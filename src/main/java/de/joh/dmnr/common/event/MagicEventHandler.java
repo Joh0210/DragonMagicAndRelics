@@ -20,6 +20,7 @@ public class MagicEventHandler {
     @SubscribeEvent
     public static void onPotionAdded(MobEffectEvent.Added event) {
         DragonTotemItem.eventHandleSorcerersPride(event);
+        DragonTotemItem.eventHandleEnduredCurses(event);
     }
 
     /**

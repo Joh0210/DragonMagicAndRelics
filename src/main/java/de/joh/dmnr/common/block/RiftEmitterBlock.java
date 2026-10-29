@@ -1,61 +1,57 @@
 package de.joh.dmnr.common.block;
 
+import com.mna.api.blocks.WizardLabBlock;
 import com.mna.gui.containers.providers.NamedRift;
 import de.joh.dmnr.common.init.BlockEntitieInit;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.function.Consumer;
+
 /**
  * This block gives access to the Rift inventory.
+ * <br> It is a table of the M&A wizard lab: it faces the player who places it and connects to the neighbouring wizard
+ * lab blocks (Inscription Table, Thesis Desk, Altar of Arcana, ...) on its left and right.
  * @see com.mna.spells.components.ComponentRift
  * @author Joh0210
  */
-public class RiftEmitterBlock extends BaseEntityBlock {
+public class RiftEmitterBlock extends WizardLabBlock implements EntityBlock {
     public RiftEmitterBlock(Properties pProperties) {
         super(pProperties);
     }
 
     /**
-     * Interaction with the block to open the rift
+     * Interaction with the block opens the Rift
      */
     @Override
-    public @NotNull InteractionResult use(@NotNull BlockState blockstate, @NotNull Level world, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-        super.use(blockstate, world, pos, player, hand, hit);
-        if (!player.level().isClientSide) {
-            NetworkHooks.openScreen((ServerPlayer)player, new NamedRift());
-        }
-
-        return InteractionResult.SUCCESS;
+    protected MenuProvider getProvider(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return new NamedRift();
     }
 
-
+    /**
+     * The Rift menu does not need any data of the block.
+     */
+    @Override
+    protected Consumer<FriendlyByteBuf> getContainerBufferWriter(BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        return buffer -> {};
+    }
 
     /**
-     * Instead of the block, a BlockEntity is created that uses the GeckoLib model.
+     * The BlockEntity only exists for the RiftEmitterRenderer (vortex and content of the bottle).
      */
     @Nullable
     @Override
     public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
         return BlockEntitieInit.RIFT_EMITTER_ENTITY.get().create(pPos, pState);
-    }
-
-    /**
-     * Instead of the block, a BlockEntity is created that uses the GeckoLib model.
-     */
-    @Override
-    public @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
-        return RenderShape.ENTITYBLOCK_ANIMATED;
     }
 }

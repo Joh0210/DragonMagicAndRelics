@@ -1,0 +1,14 @@
+{
+  "loader": "forge:obj",
+  "model": "dmnr:models/block/rift_emitter/deco.obj",
+  "flip_v": true,
+  "shade_quads": false,
+  "automatic_culling": false,
+  "emissive_ambient": true,
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "main": "mna:block/artifice/wizard_lab/inscription_table",
+    "cloth": "dmnr:block/rift_emitter/cloth",
+    "particle": "mna:block/artifice/wizard_lab/inscription_table"
+  }
+}

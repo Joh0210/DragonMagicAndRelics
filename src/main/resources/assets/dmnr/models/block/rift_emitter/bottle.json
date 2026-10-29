@@ -1,0 +1,13 @@
+{
+  "loader": "forge:obj",
+  "model": "dmnr:models/block/rift_emitter/bottle.obj",
+  "flip_v": true,
+  "shade_quads": false,
+  "automatic_culling": false,
+  "emissive_ambient": true,
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "glass": "dmnr:block/rift_emitter/bottle",
+    "particle": "dmnr:block/rift_emitter/bottle"
+  }
+}

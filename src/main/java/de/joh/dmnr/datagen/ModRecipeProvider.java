@@ -183,18 +183,6 @@ public class ModRecipeProvider extends MnaRecipeProvider {
                         WITHERBONE.get(), WITHERBONE.get(), Items.PHANTOM_MEMBRANE, Items.PHANTOM_MEMBRANE,
                         Items.WITHER_ROSE)
                 .patterns(STAR, INFINITY, SQUARE, DIAMOND, HOURGLASS, HOURGLASS));
-
-        save(writer, "ring_of_power", manaweaving(ItemInit.RING_OF_POWER.get(), 5)
-                .items(MUNDANE_RING.get(), Items.DRAGON_HEAD, Items.END_CRYSTAL, Items.END_CRYSTAL,
-                        com.mna.blocks.BlockInit.CHIMERITE_BLOCK.get(), GREATER_MOTE_ARCANE.get(),
-                        GREATER_MOTE_FIRE.get(), RUNE_ARCANE.get(), Items.GOLD_BLOCK)
-                .patterns(INFINITY, SPLIT_TRIANGLE, HOURGLASS, INVERTED_SPLIT_TRIANGLE, INFINITY));
-
-        save(writer, "ring_of_ruling", manaweaving(ItemInit.RING_OF_RULING.get(), 5)
-                .items(MUNDANE_RING.get(), Items.DRAGON_BREATH, Items.END_CRYSTAL, Items.END_CRYSTAL,
-                        com.mna.blocks.BlockInit.CHIMERITE_BLOCK.get(), GREATER_MOTE_ARCANE.get(),
-                        GREATER_MOTE_EARTH.get(), RUNE_DEFENSE.get(), Items.GOLD_BLOCK)
-                .patterns(INFINITY, SPLIT_TRIANGLE, HOURGLASS, INVERTED_SPLIT_TRIANGLE, INFINITY));
     }
 
     private void bracelets(Consumer<FinishedRecipe> writer) {
@@ -392,8 +380,10 @@ public class ModRecipeProvider extends MnaRecipeProvider {
     }
 
     private void blocks(Consumer<FinishedRecipe> writer) {
+        // a table of the M&A wizard lab: built on the Basic Table like the other desks, the bottle holds the Rift
         save(writer, "rift_emitter", manaweaving(ItemInit.RIFT_EMITTER_ITEM.get(), 3)
-                .items(Items.ENDER_CHEST, MOTE_ENDER.get(), RUNE_ENDER.get())
+                .items(com.mna.blocks.BlockInit.BASIC_TABLE.get(), Items.ENDER_CHEST, Items.GLASS_BOTTLE,
+                        MOTE_ENDER.get(), RUNE_ENDER.get())
                 .item(Items.ENDER_PEARL, 2)
                 .item(Items.OBSIDIAN, 2)
                 .patterns(SQUARE, DIAMOND, SQUARE));

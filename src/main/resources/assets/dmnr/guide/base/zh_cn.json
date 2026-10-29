@@ -1889,8 +1889,12 @@
     ],
     "related_recipes": [
       {
-        "type": "manaweaving_altar",
-        "location": "dmnr:manaweaving/ring_of_power"
+        "type": "ritual",
+        "location": "dmnr:rituals/dragon_mage_ritual"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/dragon_totem"
       }
     ]
   },
@@ -1930,8 +1934,12 @@
     ],
     "related_recipes": [
       {
-        "type": "manaweaving_altar",
-        "location": "dmnr:manaweaving/ring_of_ruling"
+        "type": "ritual",
+        "location": "dmnr:rituals/dragon_mage_ritual"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/dragon_totem"
       }
     ]
   },

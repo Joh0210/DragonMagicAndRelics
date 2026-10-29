@@ -58,6 +58,12 @@ public class CommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> PROJECTILE_REFLECTION_TICKS_PER_CHARGE;
 
     /**
+     * How many harmful effects are needed to transform the Dragon Totem into the Ring of Power or the Ring of Ruling
+     * @see de.joh.dmnr.common.item.DragonTotemItem
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> DRAGON_TOTEM_RING_HARMFUL_EFFECTS;
+
+    /**
      * Rotation speed of the Arcane Engine in RPM (Create integration).
      * @see de.joh.dmnr.compat.create.block.EngineBlock
      */
@@ -92,6 +98,8 @@ public class CommonConfig {
         SPELL_STORING_COOLDOWN_FACTOR = BUILDER.define("This number indicates the factor by which the cooldown is increased when casting the spell via the Bracelet of Spell Storing - Cooldown:", 10);
         FLY_SPEED_PER_LEVEL = BUILDER.comment("The airspeed is calculated with this value v. (Airspeed = v * upgrade level / 100). The default Creaktiv flight speed is 0.5").defineInRange("Flight Speed per Level:", 2, 0, 10);
         PROJECTILE_REFLECTION_TICKS_PER_CHARGE = BUILDER.defineInRange("How many ticks it takes to regenerate a Charge:", 400, 20, 4000);
+        DRAGON_TOTEM_RING_HARMFUL_EFFECTS = BUILDER.comment("The Dragon Totem turns into the Ring of Power when its holder kills a creature with at least this many harmful effects, and into the Ring of Ruling when its holder has at least this many harmful effects at once.")
+                .defineInRange("Harmful effects needed for the Dragon Totem rings:", 5, 1, 32);
         BUILDER.pop();
 
         BUILDER.push("Create Integration Configs");

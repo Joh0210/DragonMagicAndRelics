@@ -1,0 +1,12 @@
+# Materials of the OBJ parts of the Rift Emitter. The textures are set by the model files that load them.
+newmtl main
+map_Kd #main
+
+newmtl cloth
+map_Kd #cloth
+
+newmtl glass
+map_Kd #glass
+
+newmtl liquid
+map_Kd #liquid
