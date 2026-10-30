@@ -28,15 +28,16 @@ public class ClientModHandler {
         event.register(RiftEmitterRenderer.BOTTLE_CONTENT);
     }
 
+    /**
+     * The item models of the Dragon Mage Armor have the ornaments in layer 0 and the plates in layer 1.
+     */
     @SubscribeEvent
     public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
 
-        event.register((stack, tintIndex) -> {
-                    if (tintIndex == 0) {
-                        return ((DragonMageArmorItem) stack.getItem()).getColor(stack);
-                    }
-                    return 0xFFFFFFFF;
-
+        event.register((stack, tintIndex) -> switch (tintIndex) {
+                    case 0 -> DragonMageArmorItem.getPrimaryColor(stack);
+                    case 1 -> DragonMageArmorItem.getSecondaryColor(stack);
+                    default -> 0xFFFFFFFF;
                 },
                 ItemInit.DRAGON_MAGE_HELMET.get(),
                 ItemInit.DRAGON_MAGE_CHESTPLATE.get(),

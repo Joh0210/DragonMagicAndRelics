@@ -3,6 +3,7 @@ package de.joh.dmnr.common.item;
 import de.joh.dmnr.common.init.EffectInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.util.CommonConfig;
+import de.joh.dmnr.common.util.FactionArmorColors;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.SpawnDragonMageArmorParticleS2CPacket;
 import net.minecraft.sounds.SoundEvents;
@@ -33,7 +34,9 @@ public class DragonTotemItem extends Item {
         super(new Item.Properties().fireResistant().rarity(Rarity.EPIC).stacksTo(1));
     }
     /**
-     * Equips the Dragon Mage Armor when a player without armor kills the Ender Dragon while holding the Dragon Totem
+     * Equips the Dragon Mage Armor when a player without armor kills the Ender Dragon while holding the Dragon Totem.
+     * The armor is dyed in the colors of the faction of the player.
+     * @see FactionArmorColors
      */
     public static void eventHandleDragonDeath(LivingDeathEvent event){
         if(event.getEntity().getType() == EntityType.ENDER_DRAGON && event.getSource().getEntity() instanceof Player player){
@@ -49,16 +52,23 @@ public class DragonTotemItem extends Item {
                 InteractionHand hand = getTotemHand(player);
 
                 if (hand != null) {
-                    player.setItemSlot(EquipmentSlot.HEAD, new ItemStack(ItemInit.DRAGON_MAGE_HELMET.get()));
-                    player.setItemSlot(EquipmentSlot.CHEST, new ItemStack(ItemInit.DRAGON_MAGE_CHESTPLATE.get()));
-                    player.setItemSlot(EquipmentSlot.LEGS, new ItemStack(ItemInit.DRAGON_MAGE_LEGGING.get()));
-                    player.setItemSlot(EquipmentSlot.FEET, new ItemStack(ItemInit.DRAGON_MAGE_BOOTS.get()));
+                    FactionArmorColors.Colors colors = FactionArmorColors.getColors(player);
+                    player.setItemSlot(EquipmentSlot.HEAD, dyedArmor(ItemInit.DRAGON_MAGE_HELMET.get(), colors));
+                    player.setItemSlot(EquipmentSlot.CHEST, dyedArmor(ItemInit.DRAGON_MAGE_CHESTPLATE.get(), colors));
+                    player.setItemSlot(EquipmentSlot.LEGS, dyedArmor(ItemInit.DRAGON_MAGE_LEGGING.get(), colors));
+                    player.setItemSlot(EquipmentSlot.FEET, dyedArmor(ItemInit.DRAGON_MAGE_BOOTS.get(), colors));
 
                     player.getItemInHand(hand).shrink(1);
                     playTransformation(player);
                 }
             }
         }
+    }
+
+    private static ItemStack dyedArmor(Item armor, FactionArmorColors.Colors colors) {
+        ItemStack stack = new ItemStack(armor);
+        DragonMageArmorItem.setColors(stack, colors.primary(), colors.secondary());
+        return stack;
     }
 
     public static void eventHandleCursedKill(LivingDeathEvent event){

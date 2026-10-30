@@ -1,21 +1,30 @@
 package de.joh.dmnr.common.item;
 
+import com.mna.KeybindInit;
+import com.mna.api.capabilities.IPlayerMagic;
+import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.items.armor.ISetItem;
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.client.gui.NamedDragonMageArmorDye;
 import de.joh.tnl.api.event.DragonMagicChangeEvent;
 import de.joh.tnl.capabilities.CurioBoostProvider;
 import de.joh.dmnr.client.item.armor.DragonMageArmorRenderer;
 import de.joh.dmnr.common.event.DamageEventHandler;
 import de.joh.dmnr.common.item.material.ArmorMaterials;
+import de.joh.dmnr.common.util.FactionArmorColors;
 import de.joh.dmnr.common.util.RLoc;
 import de.joh.tnl.networking.ModMessages;
 import de.joh.tnl.networking.packet.ToggleCurioBoostEnabledS2CPacket;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.KeyMapping;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -28,6 +37,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.extensions.IForgeItem;
+import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoItem;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -36,7 +46,9 @@ import software.bernie.geckolib.core.animation.*;
 import software.bernie.geckolib.core.object.PlayState;
 import top.theillusivec4.curios.api.CuriosApi;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.function.Consumer;
 
@@ -45,12 +57,32 @@ import java.util.function.Consumer;
  * This armor defaults to netherite armor, which can be enhanced with ugprades.
  * The list of upgrades and their effects can be found in ArmorUpgradeInit.
  * In addition, it can be enhanced with spells that are cast when the wearer takes damage. (see DamageEventHandler)
+ * <br>The armor has two colors: the primary color tints the ornaments (base texture), the secondary color the plates
+ * (overlay texture). Both are chosen in the dyeing GUI, which opens when the armor is used while holding the M&A GUI
+ * modifier key. Armor obtained through the Totem of the Dragon starts in the colors of the faction of the player.
+ * @see FactionArmorColors
  * @see DamageEventHandler
+ * @see de.joh.dmnr.client.gui.GuiDragonMageArmorDye
  * @author Joh0210
  */
-public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetItem, GeoItem, DyeableLeatherItem {
+public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetItem, GeoItem {
+    /**
+     * Color of the ornaments if the armor has not been dyed.
+     */
+    public static final int DEFAULT_PRIMARY_COLOR = 0xFFB736;
+    /**
+     * Color of the plates if the armor has not been dyed. The overlay texture is the original dark texture stretched to
+     * the full brightness range, so this color reproduces it exactly and light colors can still be reached.
+     */
+    public static final int DEFAULT_SECONDARY_COLOR = 0x212121;
+    private static final String DISPLAY_TAG = "display";
+    /**
+     * Same key as vanilla dyeable armor, so armor that was dyed before the secondary color existed keeps its color.
+     */
+    private static final String PRIMARY_COLOR_TAG = "color";
+    private static final String SECONDARY_COLOR_TAG = "secondary_color";
+
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
-    private final static int DEFAULT_COLOR =0xffb736;
 
     private final String curioType = "curio";
     private final UUID curiosID;
@@ -69,31 +101,94 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
 
     /**
      * The armor is rendered by GeckoLib, but vanilla's armor layer still requests the default
-     * "dragon_mage_layer_N" textures (the item is dyeable, so also the "_overlay" variant), which do not exist.
-     * Point it to the textures that do.
+     * "dragon_mage_layer_N" texture, which does not exist. Point it to a texture that does.
      */
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EquipmentSlot slot, String type) {
-        return RLoc.create("textures/models/armor/dragon_mage_armor_texture_" + ("overlay".equals(type) ? "overlay" : "base") + ".png").toString();
+        return RLoc.create("textures/models/armor/dragon_mage_armor_texture_base.png").toString();
     }
 
-    @Override
-    public int getColor(ItemStack stack) {
-        CompoundTag displayTag = stack.getTagElement("display");
-        return displayTag != null && displayTag.contains("color", 99) ? displayTag.getInt("color") : DEFAULT_COLOR;
+    /**
+     * @return the RGB color of the ornaments of this piece of armor
+     */
+    public static int getPrimaryColor(ItemStack stack) {
+        return getColor(stack, PRIMARY_COLOR_TAG, DEFAULT_PRIMARY_COLOR);
     }
 
-    @Override
-    public void setColor(ItemStack stack, int color) {
-        stack.getOrCreateTagElement("display").putInt("color", color);
+    /**
+     * @return the RGB color of the plates of this piece of armor
+     */
+    public static int getSecondaryColor(ItemStack stack) {
+        return getColor(stack, SECONDARY_COLOR_TAG, DEFAULT_SECONDARY_COLOR);
     }
 
-    @Override
-    public void clearColor(ItemStack stack) {
-        CompoundTag displayTag = stack.getTagElement("display");
-        if (displayTag != null && displayTag.contains("color")) {
-            displayTag.remove("color");
+    /**
+     * Dyes this piece of armor. Default colors are not stored, so undyed armor carries no color tags.
+     * @param primaryColor RGB color of the ornaments
+     * @param secondaryColor RGB color of the plates
+     */
+    public static void setColors(ItemStack stack, int primaryColor, int secondaryColor) {
+        setColor(stack, PRIMARY_COLOR_TAG, primaryColor & 0xFFFFFF, DEFAULT_PRIMARY_COLOR);
+        setColor(stack, SECONDARY_COLOR_TAG, secondaryColor & 0xFFFFFF, DEFAULT_SECONDARY_COLOR);
+    }
+
+    private static int getColor(ItemStack stack, String key, int defaultColor) {
+        CompoundTag displayTag = stack.getTagElement(DISPLAY_TAG);
+        return displayTag != null && displayTag.contains(key, Tag.TAG_ANY_NUMERIC) ? displayTag.getInt(key) & 0xFFFFFF : defaultColor;
+    }
+
+    private static void setColor(ItemStack stack, String key, int color, int defaultColor) {
+        if (color != defaultColor) {
+            stack.getOrCreateTagElement(DISPLAY_TAG).putInt(key, color);
+            return;
         }
+
+        CompoundTag displayTag = stack.getTagElement(DISPLAY_TAG);
+        if (displayTag != null) {
+            displayTag.remove(key);
+            if (displayTag.isEmpty()) {
+                stack.removeTagKey(DISPLAY_TAG);
+            }
+        }
+    }
+
+    /**
+     * Collects the pieces of Dragon Mage Armor the dyeing GUI works on: the piece in the given hand and every piece the
+     * player wears. The held piece takes the place of a worn piece of the same type.
+     * @param hand hand holding the piece the GUI was opened with
+     * @return the pieces by armor type, ordered helmet, chestplate, leggings, boots
+     */
+    public static Map<ArmorItem.Type, ItemStack> getDyeTargets(Player player, InteractionHand hand) {
+        Map<ArmorItem.Type, ItemStack> targets = new EnumMap<>(ArmorItem.Type.class);
+        for (ArmorItem.Type type : ArmorItem.Type.values()) {
+            ItemStack worn = player.getItemBySlot(type.getSlot());
+            if (worn.getItem() instanceof DragonMageArmorItem armor && armor.getType() == type) {
+                targets.put(type, worn);
+            }
+        }
+
+        ItemStack held = player.getItemInHand(hand);
+        if (held.getItem() instanceof DragonMageArmorItem armor) {
+            targets.put(armor.getType(), held);
+        }
+        return targets;
+    }
+
+    /**
+     * Opens the dyeing GUI if the M&A GUI modifier key is held, otherwise equips the armor as usual.
+     */
+    @Override
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand hand) {
+        ItemStack held = player.getItemInHand(hand);
+        boolean modifierPressed = player.getCapability(PlayerMagicProvider.MAGIC).map(IPlayerMagic::isModifierPressed).orElse(false);
+        if (modifierPressed) {
+            if (player instanceof ServerPlayer serverPlayer) {
+                NamedDragonMageArmorDye menuProvider = new NamedDragonMageArmorDye(hand, FactionArmorColors.getColors(serverPlayer));
+                NetworkHooks.openScreen(serverPlayer, menuProvider, menuProvider::writeOpenData);
+            }
+            return InteractionResultHolder.sidedSuccess(held, level.isClientSide());
+        }
+        return super.use(level, player, hand);
     }
 
     public void onEquip(ItemStack itemStack, LivingEntity entity) {
@@ -114,6 +209,8 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         tooltip.add(Component.translatable("dmnr:dragon_armor_bonus").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
         this.addSetTooltip(tooltip);
+        Component modifierKey = ((KeyMapping) KeybindInit.InventoryItemOpen.get()).getTranslatedKeyMessage();
+        tooltip.add(Component.translatable("item.dmnr.dragon_mage_armor.dye", modifierKey).withStyle(ChatFormatting.AQUA));
         tooltip.add(Component.literal("  "));
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
     }

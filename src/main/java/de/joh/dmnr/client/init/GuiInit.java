@@ -24,6 +24,7 @@ public class GuiInit {
         MenuScreens.register(ContainerInit.RING_OF_RULING.get(), GuiRingOfRuling<ContainerRingOfRuling>::new);
         MenuScreens.register(ContainerInit.RING_OF_SPELL_STORING.get(), GuiRingOfSpellStoringItem<ContainerRingOfNormalSpellStoring>::new);
         MenuScreens.register(ContainerInit.RING_OF_SPELL_STORING_COOLDOWN.get(), GuiRingOfSpellStoringItem<ContainerRingOfCooldownSpellStoring>::new);
+        MenuScreens.register(ContainerInit.DRAGON_MAGE_ARMOR_DYE.get(), GuiDragonMageArmorDye::new);
         //HUDOverlayRenderer.instance = new HUDOverlayRenderer();
     }
 }

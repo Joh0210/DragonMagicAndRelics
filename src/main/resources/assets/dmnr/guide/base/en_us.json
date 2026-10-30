@@ -1265,6 +1265,36 @@
             "text": "This sacred armor fills my very soul with the magic of the dragon. It allows me to draw out the maximum potential of my artifacts, awakening hidden abilities within certain relics that can only be channeled while wearing this armor."
           }
         ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The armor even takes on the colors I choose. If I right click with a piece of it while holding the "
+          },
+          {
+            "text": "Container Gui Open Modifier",
+            "color": "blue"
+          },
+          {
+            "text": " key, I can dye its golden "
+          },
+          {
+            "text": "accents",
+            "color": "gold"
+          },
+          {
+            "text": " and its dark "
+          },
+          {
+            "text": "plates",
+            "color": "dark_gray"
+          },
+          {
+            "text": " separately.\n\nThe pieces I wear are dyed together with the one in my hand, unless I leave some of them out. Nothing changes until I apply the colors.\n\nWhen the armor is bestowed upon me, it bears the colors of my faction, and I can always return to them."
+          }
+        ]
       }
     ],
     "related_recipes": [

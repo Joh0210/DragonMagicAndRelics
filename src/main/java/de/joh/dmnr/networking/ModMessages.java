@@ -46,6 +46,12 @@ public class ModMessages {
                 .consumerMainThread(ToggleFlightC2SPacket::handle)
                 .add();
 
+        net.messageBuilder(DyeDragonMageArmorC2SPacket.class, id(), NetworkDirection.PLAY_TO_SERVER)
+                .decoder(DyeDragonMageArmorC2SPacket::new)
+                .encoder((DyeDragonMageArmorC2SPacket::toBytes))
+                .consumerMainThread(DyeDragonMageArmorC2SPacket::handle)
+                .add();
+
         net.messageBuilder(SpawnRngParticleS2CPacket.class, id(), NetworkDirection.PLAY_TO_CLIENT)
                 .decoder(SpawnRngParticleS2CPacket::new)
                 .encoder(SpawnRngParticleS2CPacket::toBytes)

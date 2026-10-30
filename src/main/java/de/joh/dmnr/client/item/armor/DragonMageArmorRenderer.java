@@ -7,7 +7,8 @@ import net.minecraft.world.item.ItemStack;
 
 /**
  * GeckoLib renderer for DragonMageArmor.
- * <br> This code is generic.
+ * <br> The base texture is tinted with the primary color, the overlay layer with the secondary color.
+ * @see DragonMageArmorOverlayLayer
  * @author Joh0210
  */
 public class DragonMageArmorRenderer extends GeoArmorRenderer<DragonMageArmorItem> {
@@ -21,9 +22,8 @@ public class DragonMageArmorRenderer extends GeoArmorRenderer<DragonMageArmorIte
     @Override
     public Color getRenderColor(DragonMageArmorItem animatable, float partialTick, int packedLight) {
         ItemStack stack = this.currentStack;
-        if (stack != null && stack.getItem() instanceof DragonMageArmorItem dyeable) {
-            int colorInt = dyeable.getColor(stack);
-            return Color.ofOpaque(colorInt);
+        if (stack != null && stack.getItem() instanceof DragonMageArmorItem) {
+            return Color.ofOpaque(DragonMageArmorItem.getPrimaryColor(stack));
         }
         return Color.WHITE; // Fallback
     }

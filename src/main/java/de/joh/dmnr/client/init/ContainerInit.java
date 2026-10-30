@@ -36,6 +36,9 @@ public class ContainerInit {
     static final String RING_OF_SPELL_STORING_COOLDOWN_ID = "ring_of_spell_storing_cooldown";
     public static final RegistryObject<MenuType<ContainerRingOfCooldownSpellStoring>> RING_OF_SPELL_STORING_COOLDOWN;
 
+    static final String DRAGON_MAGE_ARMOR_DYE_ID = "dragon_mage_armor_dye";
+    public static final RegistryObject<MenuType<ContainerDragonMageArmorDye>> DRAGON_MAGE_ARMOR_DYE;
+
     public ContainerInit() {
     }
 
@@ -60,6 +63,9 @@ public class ContainerInit {
 
         RING_OF_SPELL_STORING_COOLDOWN = CONTAINERS.register(RING_OF_SPELL_STORING_COOLDOWN_ID,
                 () -> IForgeMenuType.create(ContainerRingOfCooldownSpellStoring::new));
+
+        DRAGON_MAGE_ARMOR_DYE = CONTAINERS.register(DRAGON_MAGE_ARMOR_DYE_ID,
+                () -> IForgeMenuType.create(ContainerDragonMageArmorDye::new));
     }
 
     public static void register(IEventBus eventBus){

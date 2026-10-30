@@ -4,12 +4,14 @@ import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ItemInit;
+import de.joh.dmnr.common.util.FactionArmorColors;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleWaterBraceletS2CPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
@@ -88,5 +90,14 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
         KeyOfHomestead.onPlayerLeftClick(event);
+    }
+
+    /**
+     * Loads the faction colors of the Dragon Mage Armor from the data packs.
+     * @see FactionArmorColors
+     */
+    @SubscribeEvent
+    public static void onAddReloadListener(AddReloadListenerEvent event) {
+        event.addListener(FactionArmorColors.INSTANCE);
     }
 }
