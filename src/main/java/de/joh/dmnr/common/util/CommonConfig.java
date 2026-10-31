@@ -64,6 +64,12 @@ public class CommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> DRAGON_TOTEM_RING_HARMFUL_EFFECTS;
 
     /**
+     * Percentage by which the Bracelet of Defense reduces all incoming damage while it has Dragon Magic.
+     * @see de.joh.dmnr.common.item.DefenseBraceletItem
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> DEFENSE_BRACELET_DM_DAMAGE_REDUCTION;
+
+    /**
      * Rotation speed of the Arcane Engine in RPM (Create integration).
      * @see de.joh.dmnr.compat.create.block.EngineBlock
      */
@@ -100,6 +106,8 @@ public class CommonConfig {
         PROJECTILE_REFLECTION_TICKS_PER_CHARGE = BUILDER.defineInRange("How many ticks it takes to regenerate a Charge:", 400, 20, 4000);
         DRAGON_TOTEM_RING_HARMFUL_EFFECTS = BUILDER.comment("The Dragon Totem turns into the Ring of Power when its holder kills a creature with at least this many harmful effects, and into the Ring of Ruling when its holder has at least this many harmful effects at once.")
                 .defineInRange("Harmful effects needed for the Dragon Totem rings:", 5, 1, 32);
+        DEFENSE_BRACELET_DM_DAMAGE_REDUCTION = BUILDER.comment("Percentage by which the Bracelet of Defense reduces all incoming damage while it has Dragon Magic. Several bracelets do not stack. The tooltip and the Codex show the default value.")
+                .defineInRange("Bracelet of Defense Dragon Magic damage reduction (%):", 25, 0, 100);
         BUILDER.pop();
 
         BUILDER.push("Create Integration Configs");

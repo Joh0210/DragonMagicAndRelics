@@ -1,5 +1,6 @@
 package de.joh.dmnr.common.item;
 
+import de.joh.dmnr.common.util.CommonConfig;
 import de.joh.tnl.api.item.BaseDragonMagicItem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import net.minecraft.ChatFormatting;
@@ -14,24 +15,26 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class DefenseBraceletItem extends BaseDragonMagicItem implements ICurioItem {
+/**
+ * Curio that grants bonus armor and armor toughness.
+ * <br> Dragon Magic: reduces all incoming damage by the percentage set in {@link CommonConfig#DEFENSE_BRACELET_DM_DAMAGE_REDUCTION}.
+ * @author Joh0210
+ */
+public class DefenseBraceletItem extends BaseDragonMagicItem implements ICurioItem, IDamageAdjustmentItem {
     private final AttributeModifier armorMod;
     private final AttributeModifier toughnessMod;
-    private final AttributeModifier armorModDM;
-    private final AttributeModifier toughnessModDM;
 
     public DefenseBraceletItem(int armor, int toughness) {
         super(new Item.Properties().stacksTo(1));
         armorMod = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_defense_bracelet", armor, AttributeModifier.Operation.ADDITION);
         toughnessMod = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_defense_bracelet", toughness, AttributeModifier.Operation.ADDITION);
-        armorModDM = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_defense_bracelet_dm", 0.25, AttributeModifier.Operation.MULTIPLY_BASE);
-        toughnessModDM = new AttributeModifier(DragonMagicAndRelics.MOD_ID + "_defense_bracelet_dm", 0.5, AttributeModifier.Operation.MULTIPLY_BASE);
     }
 
     @Override
@@ -63,29 +66,24 @@ public class DefenseBraceletItem extends BaseDragonMagicItem implements ICurioIt
     }
 
     @Override
-    public void onDMEquip(ItemStack itemStack, Player entity) {
-        AttributeInstance armorAttribute = entity.getAttribute(Attributes.ARMOR);
-        if(armorAttribute != null && !armorAttribute.hasModifier(armorModDM)) {
-            armorAttribute.addTransientModifier(armorModDM);
-        }
-
-        AttributeInstance toughnessAttribute = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        if(toughnessAttribute != null && !toughnessAttribute.hasModifier(toughnessModDM)) {
-            toughnessAttribute.addTransientModifier(toughnessModDM);
-        }
+    public boolean canAdjustDefending(LivingHurtEvent event, Player defender, ItemStack damageAdjustmentItem) {
+        // Only the first equipped Bracelet of Defense applies the reduction, so several bracelets do not stack
+        return CommonConfig.DEFENSE_BRACELET_DM_DAMAGE_REDUCTION.get() > 0 && hasDragonMagic(defender);
     }
 
     @Override
-    public void onDMDiscard(ItemStack itemStack, Player entity) {
-        AttributeInstance armorAttribute = entity.getAttribute(Attributes.ARMOR);
-        if(armorAttribute != null) {
-            armorAttribute.removeModifier(armorModDM);
-        }
+    public float adjustDefending(LivingHurtEvent event, Player defender, ItemStack damageAdjustmentItem, float amount) {
+        return amount * (1 - CommonConfig.DEFENSE_BRACELET_DM_DAMAGE_REDUCTION.get() / 100f);
+    }
 
-        AttributeInstance toughnessAttribute = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
-        if(toughnessAttribute != null) {
-            toughnessAttribute.removeModifier(toughnessModDM);
-        }
+    @Override
+    public boolean canAdjustAttacking(LivingHurtEvent event, Player attacker, ItemStack damageAdjustmentItem) {
+        return false;
+    }
+
+    @Override
+    public float adjustAttacking(LivingHurtEvent event, Player attacker, ItemStack damageAdjustmentItem, float amount) {
+        return amount;
     }
 
     @Override

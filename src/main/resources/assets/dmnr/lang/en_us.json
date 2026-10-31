@@ -151,7 +151,7 @@
   "item.dmnr.defense_bracelet_minor": "Bracelet of Defense (Minor)",
   "item.dmnr.defense_bracelet": "Bracelet of Defense",
   "item.dmnr.defense_bracelet.description": "Grants bonus armor and armor toughness.",
-  "item.dmnr.defense_bracelet.dragonmagic": "Increases armor by 25% and and toughness by 50%",
+  "item.dmnr.defense_bracelet.dragonmagic": "Reduces all incoming damage by 25%",
   "item.dmnr.defense_bracelet_greater": "Bracelet of Defense (Greater)",
   "item.dmnr.hydra_crown": "Hydra Crown",
   "item.dmnr.hydra_crown.dragonmagic": "Hydra effects trigger earlier and are even stronger on low HP",
