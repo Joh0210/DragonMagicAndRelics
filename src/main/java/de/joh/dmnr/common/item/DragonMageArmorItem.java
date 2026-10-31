@@ -60,7 +60,8 @@ import java.util.function.Consumer;
  * <br>The armor has two colors: the primary color tints the ornaments (base texture), the secondary color the plates
  * (overlay texture). Both are chosen in the dyeing GUI, which opens when the armor is used while holding the M&A GUI
  * modifier key. Armor obtained through the Totem of the Dragon starts in the colors of the faction of the player.
- * <br>In the same GUI the chestplate can get wings ({@link WingDesign}), which have two colors of their own.
+ * <br>In the same GUI the chestplate can get wings ({@link WingDesign}), which have two colors of their own. Like the
+ * vanilla Elytra, the wings can show the cape of the wearer instead.
  * @see FactionArmorColors
  * @see DamageEventHandler
  * @see de.joh.dmnr.client.gui.GuiDragonMageArmorDye
@@ -85,6 +86,7 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     private static final String WING_DESIGN_TAG = "wing_design";
     private static final String WING_PRIMARY_COLOR_TAG = "wing_color";
     private static final String WING_SECONDARY_COLOR_TAG = "wing_secondary_color";
+    private static final String WING_CAPE_TAG = "wing_cape";
 
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
@@ -160,20 +162,36 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     }
 
     /**
-     * Gives a chestplate wings, other pieces of armor are not changed. Without wings no wing tags are stored.
+     * @return whether a wearer with a visible cape shows it on the wings of this piece of armor instead of the design
+     * @see IWingItem#usesCape(ItemStack)
+     */
+    public static boolean isWingCapeEnabled(ItemStack stack) {
+        CompoundTag displayTag = stack.getTagElement(DISPLAY_TAG);
+        return displayTag != null && displayTag.getBoolean(WING_CAPE_TAG);
+    }
+
+    /**
+     * Gives a chestplate wings, other pieces of armor are not changed. Without wings (no design and no cape) no wing
+     * tags are stored.
      * @param primaryColor RGB color of the membrane, leaves or tips
      * @param secondaryColor RGB color of the bones, branches or the part near the back
+     * @param useCape whether a wearer with a visible cape shows it on the wings instead of the design
      */
-    public static void setWings(ItemStack stack, WingDesign design, int primaryColor, int secondaryColor) {
+    public static void setWings(ItemStack stack, WingDesign design, int primaryColor, int secondaryColor, boolean useCape) {
         if (!(stack.getItem() instanceof DragonMageArmorItem armor) || armor.getType() != Type.CHESTPLATE) {
             return;
         }
 
-        if (design != WingDesign.NONE) {
+        if (design != WingDesign.NONE || useCape) {
             CompoundTag displayTag = stack.getOrCreateTagElement(DISPLAY_TAG);
             displayTag.putString(WING_DESIGN_TAG, design.getName());
             displayTag.putInt(WING_PRIMARY_COLOR_TAG, primaryColor & 0xFFFFFF);
             displayTag.putInt(WING_SECONDARY_COLOR_TAG, secondaryColor & 0xFFFFFF);
+            if (useCape) {
+                displayTag.putBoolean(WING_CAPE_TAG, true);
+            } else {
+                displayTag.remove(WING_CAPE_TAG);
+            }
             return;
         }
 
@@ -182,10 +200,16 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
             displayTag.remove(WING_DESIGN_TAG);
             displayTag.remove(WING_PRIMARY_COLOR_TAG);
             displayTag.remove(WING_SECONDARY_COLOR_TAG);
+            displayTag.remove(WING_CAPE_TAG);
             if (displayTag.isEmpty()) {
                 stack.removeTagKey(DISPLAY_TAG);
             }
         }
+    }
+
+    @Override
+    public boolean usesCape(ItemStack stack) {
+        return this.getType() == Type.CHESTPLATE && isWingCapeEnabled(stack);
     }
 
     /**
@@ -373,6 +397,8 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
      * overlay texture (bones or branches) tinted with the secondary one, both gray.
      * <br> Elytra wings use the texture of the vanilla Elytra (or of the active resource pack) as a gradient: the
      * darkest pixels near the back get the secondary color, the brightest at the tips the primary color.
+     * <br> If the wings show the cape of the wearer, the cape fills the membrane or leaves of dragon and wild wings,
+     * and replaces elytra wings completely.
      */
     public enum WingDesign {
         NONE("none"),
@@ -408,7 +434,7 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
             return switch (this) {
                 case NONE -> List.of();
                 case ELYTRA -> List.of(WingLayer.gradient(VANILLA_ELYTRA, primaryColor, secondaryColor));
-                default -> List.of(new WingLayer(baseTexture, primaryColor), new WingLayer(overlayTexture, secondaryColor));
+                default -> List.of(new WingLayer(baseTexture, primaryColor).withCapeFill(), new WingLayer(overlayTexture, secondaryColor));
             };
         }
 

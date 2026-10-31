@@ -26,17 +26,28 @@ public interface IWingItem {
     List<WingLayer> getWingLayers(ItemStack stack);
 
     /**
+     * Like the vanilla Elytra, the wings can show the cape of the wearer. Layers marked with
+     * {@link WingLayer#capeFill()} are filled with the cape while the other layers stay, wings without such a layer
+     * show the whole cape instead. If the wearer has no visible cape, the layers are shown as they are.
+     * @return true if a wearer with a visible cape shows it on the wings
+     */
+    default boolean usesCape(ItemStack stack) {
+        return false;
+    }
+
+    /**
      * Searches the entity for the wings to render: wings of the chestplate come first, then those of the curios.
      * <br> Curios follow the rules of the Curios render layer:
      * <br> - an item in a cosmetic slot replaces the item of its slot
      * <br> - an item in a slot whose rendering was toggled off in the Curios screen is ignored
      * <br> Curios syncs the items, cosmetic slots and render toggles to every tracking player, so this also works for other players on the client.
+     * @param hasCape whether the entity has a visible cape, see {@link #usesCape(ItemStack)}; only known on the client
      * @return the item that provides the wings, or {@link ItemStack#EMPTY} if the entity has no visible wings
      */
     @NotNull
-    static ItemStack getVisibleWingItem(LivingEntity entity) {
+    static ItemStack getVisibleWingItem(LivingEntity entity, boolean hasCape) {
         ItemStack chest = entity.getItemBySlot(EquipmentSlot.CHEST);
-        if (hasWings(chest)) {
+        if (hasWings(chest, hasCape)) {
             return chest;
         }
 
@@ -49,7 +60,7 @@ public interface IWingItem {
                         stack = stacksHandler.getStacks().getStackInSlot(i);
                     }
 
-                    if (hasWings(stack)) {
+                    if (hasWings(stack, hasCape)) {
                         return stack;
                     }
                 }
@@ -58,8 +69,9 @@ public interface IWingItem {
         }).orElse(ItemStack.EMPTY);
     }
 
-    private static boolean hasWings(ItemStack stack) {
-        return stack.getItem() instanceof IWingItem wingItem && !wingItem.getWingLayers(stack).isEmpty();
+    private static boolean hasWings(ItemStack stack, boolean hasCape) {
+        return stack.getItem() instanceof IWingItem wingItem
+                && (hasCape && wingItem.usesCape(stack) || !wingItem.getWingLayers(stack).isEmpty());
     }
 
     /**
@@ -68,9 +80,12 @@ public interface IWingItem {
      * @param color RGB color the texture is multiplied with; for a gradient the color of its brightest pixels
      * @param darkColor null for a tinted layer; for a gradient the RGB color of the darkest pixels of the texture,
      *                  every other pixel gets a color in between by its brightness
-     * @see de.joh.dmnr.client.item.WingGradientTextures
+     * @param capeFill whether this gray layer is multiplied with the cape of the wearer instead of its color, if the
+     *                 wings show the cape (see {@link #usesCape(ItemStack)}); the cape keeps the shape and shading of
+     *                 the layer
+     * @see de.joh.dmnr.client.item.BakedWingTextures
      */
-    record WingLayer(ResourceLocation texture, int color, @Nullable Integer darkColor) {
+    record WingLayer(ResourceLocation texture, int color, @Nullable Integer darkColor, boolean capeFill) {
         /**
          * A layer that keeps the colors of its texture.
          */
@@ -82,7 +97,7 @@ public interface IWingItem {
          * A layer whose texture is multiplied with the color, meant for gray textures.
          */
         public WingLayer(ResourceLocation texture, int color) {
-            this(texture, color, null);
+            this(texture, color, null, false);
         }
 
         /**
@@ -90,7 +105,14 @@ public interface IWingItem {
          * pixels, meant for textures that are shaded but not gray, like the vanilla Elytra.
          */
         public static WingLayer gradient(ResourceLocation texture, int lightColor, int darkColor) {
-            return new WingLayer(texture, lightColor, darkColor);
+            return new WingLayer(texture, lightColor, darkColor, false);
+        }
+
+        /**
+         * @return this layer, filled with the cape of the wearer if the wings show the cape
+         */
+        public WingLayer withCapeFill() {
+            return new WingLayer(texture, color, darkColor, true);
         }
 
         public boolean isGradient() {

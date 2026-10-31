@@ -4,7 +4,9 @@ import com.mna.gui.GuiTextures;
 import com.mna.gui.base.GuiJEIDisable;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.joh.dmnr.client.gui.widgets.DyeColorPicker;
+import de.joh.dmnr.client.item.WingRenderLayer;
 import de.joh.dmnr.common.item.DragonMageArmorItem;
+import de.joh.dmnr.common.item.IWingItem;
 import de.joh.dmnr.common.util.FactionArmorColors;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.DyeDragonMageArmorC2SPacket;
@@ -15,6 +17,7 @@ import net.minecraft.client.gui.components.CycleButton;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
@@ -26,6 +29,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Quaternionf;
@@ -41,7 +45,8 @@ import java.util.function.Supplier;
  * Dyeing GUI of the Dragon Mage Armor, in the style of the M&A GUIs: a vellum with a preview of the player wearing the
  * dyed armor, a toggle for each piece of armor, and a color picker with a hex input for each of the two colors.
  * <br>Two tabs switch the color pickers between the colors of the armor and those of the wings of the chestplate. The
- * wings tab also shows the choice of the wing design, it is only available if the chestplate is held or worn.
+ * wings tab also shows the choice of the wing design and a switch to show the cape on the wings instead, it is only
+ * available if the chestplate is held or worn.
  * <br>The colors are only applied when the player confirms them, closing the GUI in any other way discards them.
  * The reset buttons return to the colors of the faction of the player ({@link FactionArmorColors}).
  * @see ContainerDragonMageArmorDye
@@ -73,7 +78,12 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
     private static final int PIECES_Y = 136;
     private static final int PIECE_SIZE = 18;
 
+    // Design button and cape switch share a row, centered under the pieces of armor
+    private static final int WING_DESIGN_X = 8;
     private static final int WING_DESIGN_Y = 160;
+    private static final int WING_DESIGN_WIDTH = 72;
+    private static final int CAPE_TOGGLE_X = WING_DESIGN_X + WING_DESIGN_WIDTH + 2;
+    private static final int CAPE_TOGGLE_Y = WING_DESIGN_Y + 1;
 
     private static final int COLUMN_X = 110;
     private static final int TABS_Y = 19;
@@ -106,6 +116,7 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
     private final ColorControl wingPrimary;
     private final ColorControl wingSecondary;
     private DragonMageArmorItem.WingDesign wingDesign;
+    private boolean wingCape;
     private Tab tab = Tab.ARMOR;
     private CycleButton<DragonMageArmorItem.WingDesign> wingDesignButton;
     private Button applyButton;
@@ -132,6 +143,7 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
 
         ItemStack chestplate = targets.getOrDefault(ArmorItem.Type.CHESTPLATE, ItemStack.EMPTY);
         this.wingDesign = DragonMageArmorItem.getWingDesign(chestplate);
+        this.wingCape = DragonMageArmorItem.isWingCapeEnabled(chestplate);
         this.wingPrimary = new ColorControl(() -> Component.translatable("gui.dmnr.dragon_mage_armor_dye.wings." + wingDesign.getName() + ".primary"), PRIMARY_Y,
                 defaults.primary(), chestplate.isEmpty() ? defaults.primary() : DragonMageArmorItem.getWingPrimaryColor(chestplate));
         this.wingSecondary = new ColorControl(() -> Component.translatable("gui.dmnr.dragon_mage_armor_dye.wings." + wingDesign.getName() + ".secondary"), SECONDARY_Y,
@@ -151,7 +163,7 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
                 .withInitialValue(wingDesign)
                 .displayOnlyValue()
                 .withTooltip(design -> Tooltip.create(Component.translatable("gui.dmnr.dragon_mage_armor_dye.wings.tooltip")))
-                .create(leftPos + PIECES_X, topPos + WING_DESIGN_Y, PIECE_SIZE * 4, 20,
+                .create(leftPos + WING_DESIGN_X, topPos + WING_DESIGN_Y, WING_DESIGN_WIDTH, 20,
                         Component.translatable("gui.dmnr.dragon_mage_armor_dye.wings"), (button, design) -> wingDesign = design));
 
         addRenderableWidget(Button.builder(Component.translatable("gui.dmnr.dragon_mage_armor_dye.reset"), b -> {
@@ -176,7 +188,7 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
 
     private void apply() {
         ModMessages.sendToServer(new DyeDragonMageArmorC2SPacket(primary.color, secondary.color,
-                wingDesign, wingPrimary.color, wingSecondary.color, selected));
+                wingDesign, wingPrimary.color, wingSecondary.color, wingCape, selected));
         onClose();
     }
 
@@ -205,7 +217,7 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
     private ItemStack dyedCopy(ItemStack stack) {
         ItemStack copy = stack.copy();
         DragonMageArmorItem.setColors(copy, primary.color, secondary.color);
-        DragonMageArmorItem.setWings(copy, wingDesign, wingPrimary.color, wingSecondary.color);
+        DragonMageArmorItem.setWings(copy, wingDesign, wingPrimary.color, wingSecondary.color, wingCape);
         return copy;
     }
 
@@ -227,8 +239,37 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
         renderPreview(pGuiGraphics);
         renderPieces(pGuiGraphics);
         renderTabs(pGuiGraphics);
+        if (tab == Tab.WINGS) {
+            renderCapeToggle(pGuiGraphics);
+        }
         for (ColorControl control : getColorControls()) {
             control.renderSwatch(pGuiGraphics);
+        }
+    }
+
+    /**
+     * Draws the cape switch like the toggles of the pieces of armor, with the outside of the cape of the player as
+     * icon, or an Elytra if the player has no cape.
+     */
+    private void renderCapeToggle(GuiGraphics pGuiGraphics) {
+        int x = leftPos + CAPE_TOGGLE_X;
+        int y = topPos + CAPE_TOGGLE_Y;
+        pGuiGraphics.fill(x, y, x + PIECE_SIZE, y + PIECE_SIZE, wingCape ? FRAME_COLOR : FRAME_COLOR_UNSELECTED);
+        pGuiGraphics.fill(x + 1, y + 1, x + PIECE_SIZE - 1, y + PIECE_SIZE - 1, wingCape ? SLOT_COLOR : SLOT_COLOR_UNSELECTED);
+
+        Player player = this.minecraft.player;
+        if (player instanceof AbstractClientPlayer clientPlayer && clientPlayer.isCapeLoaded() && clientPlayer.getCloakTextureLocation() != null) {
+            // The outside of the cape is 10x16 pixels at (1, 1) of the 64x32 cape texture
+            pGuiGraphics.blit(clientPlayer.getCloakTextureLocation(), x + 4, y + 1, 10, 16, 1, 1, 10, 16, 64, 32);
+        } else {
+            pGuiGraphics.renderItem(new ItemStack(Items.ELYTRA), x + 1, y + 1);
+        }
+
+        if (!wingCape) {
+            pGuiGraphics.pose().pushPose();
+            pGuiGraphics.pose().translate(0, 0, 200);
+            pGuiGraphics.fill(x + 1, y + 1, x + PIECE_SIZE - 1, y + PIECE_SIZE - 1, FADE_COLOR);
+            pGuiGraphics.pose().popPose();
         }
     }
 
@@ -344,6 +385,8 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
             pGuiGraphics.renderComponentTooltip(this.font, getPieceTooltip(piece), mouseX, mouseY);
         } else if (hoveredTab != null && !isTabAvailable(hoveredTab)) {
             pGuiGraphics.renderTooltip(this.font, Component.translatable("gui.dmnr.dragon_mage_armor_dye.tab.wings.missing"), mouseX, mouseY);
+        } else if (isInCapeToggle(mouseX, mouseY)) {
+            pGuiGraphics.renderComponentTooltip(this.font, getCapeToggleTooltip(), mouseX, mouseY);
         } else if (!rotatingPreview && isInPreview(mouseX, mouseY)) {
             pGuiGraphics.renderTooltip(this.font, Component.translatable("gui.dmnr.dragon_mage_armor_dye.rotate"), mouseX, mouseY);
         }
@@ -378,6 +421,31 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
             }
         }
         return null;
+    }
+
+    private List<Component> getCapeToggleTooltip() {
+        List<Component> tooltip = new ArrayList<>();
+        tooltip.add(Component.translatable("gui.dmnr.dragon_mage_armor_dye.wings.cape"));
+        tooltip.add(Component.translatable(wingCape ? "gui.dmnr.dragon_mage_armor_dye.wings.cape.on" : "gui.dmnr.dragon_mage_armor_dye.wings.cape.off")
+                .withStyle(ChatFormatting.GRAY));
+        // Designs with a layer for the cape keep their shape and frame, the others are replaced by the cape
+        boolean capeFill = wingDesign.getLayers(0, 0).stream().anyMatch(IWingItem.WingLayer::capeFill);
+        tooltip.add(Component.translatable(capeFill ? "gui.dmnr.dragon_mage_armor_dye.wings.cape.fill" : "gui.dmnr.dragon_mage_armor_dye.wings.cape.replace")
+                .withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable("gui.dmnr.dragon_mage_armor_dye.wings.cape.fallback").withStyle(ChatFormatting.GRAY));
+        if (WingRenderLayer.getCapeTexture(this.minecraft.player) == null) {
+            tooltip.add(Component.translatable("gui.dmnr.dragon_mage_armor_dye.wings.cape.missing").withStyle(ChatFormatting.GOLD));
+        }
+        return tooltip;
+    }
+
+    /**
+     * The cape switch is only shown in the wings tab.
+     */
+    private boolean isInCapeToggle(double mouseX, double mouseY) {
+        int x = leftPos + CAPE_TOGGLE_X;
+        int y = topPos + CAPE_TOGGLE_Y;
+        return tab == Tab.WINGS && mouseX >= x && mouseX < x + PIECE_SIZE && mouseY >= y && mouseY < y + PIECE_SIZE;
     }
 
     private int tabX(Tab t) {
@@ -415,6 +483,13 @@ public class GuiDragonMageArmorDye extends GuiJEIDisable<ContainerDragonMageArmo
                     applyButton.active = !selected.isEmpty();
                     this.minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 }
+                return true;
+            }
+
+            if (isInCapeToggle(mouseX, mouseY)) {
+                setFocused(null);
+                wingCape = !wingCape;
+                this.minecraft.getSoundManager().play(SimpleSoundInstance.forUI(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                 return true;
             }
 

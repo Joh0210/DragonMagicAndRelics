@@ -26,6 +26,7 @@ public class DyeDragonMageArmorC2SPacket {
     private final DragonMageArmorItem.WingDesign wingDesign;
     private final int wingPrimaryColor;
     private final int wingSecondaryColor;
+    private final boolean wingCape;
     private final EnumSet<ArmorItem.Type> pieces;
 
     /**
@@ -34,15 +35,17 @@ public class DyeDragonMageArmorC2SPacket {
      * @param wingDesign wings of the chestplate
      * @param wingPrimaryColor primary RGB color of the wings (membrane, leaves or tips)
      * @param wingSecondaryColor secondary RGB color of the wings (bones, branches or the part near the back)
+     * @param wingCape whether a wearer with a visible cape shows it on the wings instead of the design
      * @param pieces the armor types to dye, other pieces keep their colors (and the chestplate its wings)
      */
     public DyeDragonMageArmorC2SPacket(int primaryColor, int secondaryColor, DragonMageArmorItem.WingDesign wingDesign,
-                                       int wingPrimaryColor, int wingSecondaryColor, Set<ArmorItem.Type> pieces){
+                                       int wingPrimaryColor, int wingSecondaryColor, boolean wingCape, Set<ArmorItem.Type> pieces){
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
         this.wingDesign = wingDesign;
         this.wingPrimaryColor = wingPrimaryColor;
         this.wingSecondaryColor = wingSecondaryColor;
+        this.wingCape = wingCape;
         this.pieces = pieces.isEmpty() ? EnumSet.noneOf(ArmorItem.Type.class) : EnumSet.copyOf(pieces);
     }
 
@@ -52,6 +55,7 @@ public class DyeDragonMageArmorC2SPacket {
         this.wingDesign = buf.readEnum(DragonMageArmorItem.WingDesign.class);
         this.wingPrimaryColor = buf.readInt();
         this.wingSecondaryColor = buf.readInt();
+        this.wingCape = buf.readBoolean();
         this.pieces = buf.readEnumSet(ArmorItem.Type.class);
     }
 
@@ -61,6 +65,7 @@ public class DyeDragonMageArmorC2SPacket {
         buf.writeEnum(wingDesign);
         buf.writeInt(wingPrimaryColor);
         buf.writeInt(wingSecondaryColor);
+        buf.writeBoolean(wingCape);
         buf.writeEnumSet(pieces, ArmorItem.Type.class);
     }
 
@@ -76,7 +81,7 @@ public class DyeDragonMageArmorC2SPacket {
                 DragonMageArmorItem.getDyeTargets(player, menu.getHand()).forEach((type, stack) -> {
                     if(pieces.contains(type)){
                         DragonMageArmorItem.setColors(stack, primaryColor, secondaryColor);
-                        DragonMageArmorItem.setWings(stack, wingDesign, wingPrimaryColor, wingSecondaryColor);
+                        DragonMageArmorItem.setWings(stack, wingDesign, wingPrimaryColor, wingSecondaryColor, wingCape);
                     }
                 });
             }

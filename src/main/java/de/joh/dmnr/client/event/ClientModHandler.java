@@ -2,7 +2,7 @@ package de.joh.dmnr.client.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.client.block.entity.RiftEmitterRenderer;
-import de.joh.dmnr.client.item.WingGradientTextures;
+import de.joh.dmnr.client.item.BakedWingTextures;
 import de.joh.dmnr.client.item.WingRenderLayer;
 import de.joh.dmnr.common.init.BlockEntitieInit;
 import de.joh.dmnr.common.init.ItemInit;
@@ -47,12 +47,12 @@ public class ClientModHandler {
     }
 
     /**
-     * The baked gradient textures of wings depend on the resource packs.
-     * @see WingGradientTextures
+     * The baked textures of wings depend on the resource packs.
+     * @see BakedWingTextures
      */
     @SubscribeEvent
     public static void registerReloadListeners(RegisterClientReloadListenersEvent event) {
-        event.registerReloadListener(WingGradientTextures.INSTANCE);
+        event.registerReloadListener(BakedWingTextures.INSTANCE);
     }
 
     /**

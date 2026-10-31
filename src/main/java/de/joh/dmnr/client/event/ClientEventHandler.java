@@ -7,6 +7,7 @@ import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleFlightC2SPacket;
 import de.joh.dmnr.common.init.KeybindInit;
 import de.joh.dmnr.networking.packet.UseRingOfSpellStoringC2SPacket;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -40,7 +41,8 @@ public class ClientEventHandler {
          */
         @SubscribeEvent
         public static void renderCape(RenderCapeEvent event) {
-            if (!IWingItem.getVisibleWingItem(event.getEntity()).isEmpty()) {
+            Player player = event.getEntity();
+            if (!IWingItem.getVisibleWingItem(player, WingRenderLayer.getCapeTexture(player) != null).isEmpty()) {
                 event.setCanceled(true);
             }
         }
