@@ -6,6 +6,9 @@ import de.joh.dmnr.common.util.CommonConfig;
 import de.joh.dmnr.common.util.FactionArmorColors;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.SpawnDragonMageArmorParticleS2CPacket;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,19 +23,51 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
+
 /**
- * Item that drops from the Ender Dragon and is required for crafting
+ * Totem of the Dragon (and its empty form, which is infused at the Eldrin Altar).
+ * The filled Totem transforms into a legendary item when its holder completes one of its trials.
  * @author Joh0210
  */
 public class DragonTotemItem extends Item {
     public DragonTotemItem() {
         super(new Item.Properties().fireResistant().rarity(Rarity.EPIC).stacksTo(1));
     }
+
+    /**
+     * The filled Totem lists its trials while Shift is held, so they can be found without the Codex.
+     */
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void appendHoverText(@NotNull ItemStack stack, @Nullable Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
+        if (this == ItemInit.DRAGON_TOTEM_EMPTY.get()) {
+            tooltip.add(Component.translatable("item.dmnr.dragon_totem_empty.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+        } else {
+            tooltip.add(Component.translatable("item.dmnr.dragon_totem.description").withStyle(ChatFormatting.ITALIC).withStyle(ChatFormatting.GRAY));
+            if (Screen.hasShiftDown()) {
+                int harmfulEffects = CommonConfig.DRAGON_TOTEM_RING_HARMFUL_EFFECTS.get();
+                tooltip.add(Component.translatable("item.dmnr.dragon_totem.trial.armor").withStyle(ChatFormatting.GOLD));
+                tooltip.add(Component.translatable("item.dmnr.dragon_totem.trial.amulet").withStyle(ChatFormatting.GOLD));
+                tooltip.add(Component.translatable("item.dmnr.dragon_totem.trial.ring_of_power", harmfulEffects).withStyle(ChatFormatting.GOLD));
+                tooltip.add(Component.translatable("item.dmnr.dragon_totem.trial.ring_of_ruling", harmfulEffects).withStyle(ChatFormatting.GOLD));
+            } else {
+                tooltip.add(Component.translatable("item.dmnr.dragon_totem.trials").withStyle(ChatFormatting.DARK_GRAY));
+            }
+            tooltip.add(Component.translatable("item.dmnr.dragon_totem.warning").withStyle(ChatFormatting.DARK_RED));
+        }
+        super.appendHoverText(stack, world, tooltip, flag);
+    }
+
     /**
      * Equips the Dragon Mage Armor when a player without armor kills the Ender Dragon while holding the Dragon Totem.
      * The armor is dyed in the colors of the faction of the player.

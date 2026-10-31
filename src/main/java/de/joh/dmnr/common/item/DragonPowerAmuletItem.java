@@ -53,7 +53,7 @@ public class DragonPowerAmuletItem extends BaseDragonMagicItem implements ICurio
 
     @Override
     public String dragonMagicID() {
-        return "item.dmnr.dragon_power_amulet.dragonmagic";
+        return "item.dmnr.amulet_of_dragon_power.dragonmagic";
     }
 
     @OnlyIn(Dist.CLIENT)

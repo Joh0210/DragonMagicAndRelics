@@ -143,7 +143,7 @@
         "value": "",
         "json": [
           {
-            "text": "Ah, yes, the Brimstone Chalk—because apparently ordinary chalk was too fragile for my vigorous scribblings. After snapping one too many sticks mid-incantation, I decided to forge this one with a touch of brimstone. Now it survives both my temper and your clumsy hands.",
+            "text": "Ordinary chalk was simply too fragile for my scribbling. After snapping one too many sticks mid-incantation, I mixed some brimstone into this one. Now it survives both my temper and your clumsy hands.",
             "color": "",
             "italic": true
           }
@@ -217,7 +217,7 @@
         "value": "",
         "json": [
           {
-            "text": "I fashioned this crown after studying a certain many-headed menace—though mine doesn’t bite, it does share its talent for thriving on the brink of doom. Wear it, and suddenly being half-dead feels… oddly empowering.",
+            "text": "I made this crown after studying a certain many-headed beast. Mine doesn't bite, but it shares the hydra's talent for thriving on the brink of death. Wear it, and being half-dead suddenly feels oddly empowering.",
             "color": "",
             "italic": true
           }
@@ -1150,6 +1150,74 @@
       }
     ]
   },
+  "Dragon Magic": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Dragon Magic"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Many of my relics hold a second, hidden power: "
+          },
+          {
+            "text": "Dragon Magic",
+            "color": "blue"
+          },
+          {
+            "text": ". As long as it sleeps, its line in the description of the relic is written in a script I cannot read."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "To awaken it, I must wear the full "
+          },
+          {
+            "text": "Dragon Mage Armor",
+            "color": "gold"
+          },
+          {
+            "text": ". While I wear all four pieces, the Dragon Magic of every relic I use is active and its description becomes readable."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The armor cannot be forged by any ordinary means. It is the reward of one of the trials of the "
+          },
+          {
+            "text": "Totem of the Dragon",
+            "color": "dark_purple"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "ritual",
+        "location": "dmnr:rituals/dragon_mage_ritual"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/dragon_totem"
+      }
+    ]
+  },
   "Totem of the Dragon": {
     "index": "1",
     "category": "artifice",
@@ -1170,14 +1238,14 @@
             "color": "blue"
           },
           {
-            "text": ", I can unite the world's relics with the ancient magic of dragons to forge an "
+            "text": ", I can unite one of the world's relics with the ancient magic of dragons to forge an "
           },
           {
-            "text": "Empty Dragon Totem",
+            "text": "Empty Totem of the Dragon",
             "color": "dark_purple"
           },
           {
-            "text": ". However, to endure the sheer power of this ritual, my magical skills must be honed—I must have reached at least "
+            "text": ". The ritual only answers to experienced mages: I must have reached at least "
           },
           {
             "text": "Level 75",
@@ -1193,7 +1261,7 @@
         "value": "",
         "json": [
           {
-            "text": "This Totem is a relic of peerless power, holding the potential to become anything I could ever dream of—and beyond! By undertaking great trials, the totem will transform into new, legendary forms."
+            "text": "The Totem holds enormous power, but it has no fixed form yet. If I complete one of its trials while holding it in either hand, it transforms:"
           }
         ]
       },
@@ -1202,7 +1270,41 @@
         "value": "",
         "json": [
           {
-            "text": "But I must be cautious: its unstable form harbors great danger. Should I perish while carrying it, the totem's elemental magic will violently discharge.",
+            "text": "Dragon Mage Armor",
+            "color": "gold"
+          },
+          {
+            "text": ": slay the Ender Dragon without wearing any armor\n"
+          },
+          {
+            "text": "Amulet of the Dragon",
+            "color": "gold"
+          },
+          {
+            "text": ": reach Sorcerers Pride V or higher\n"
+          },
+          {
+            "text": "Ring of Power",
+            "color": "gold"
+          },
+          {
+            "text": ": slay a creature that suffers from at least five harmful effects\n"
+          },
+          {
+            "text": "Ring of Ruling",
+            "color": "gold"
+          },
+          {
+            "text": ": suffer from at least five harmful effects at once\n\nThe number of harmful effects may differ in some worlds; the Totem's tooltip always shows the exact one."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "But I must be careful. If I die while carrying it, its magic discharges and the Totem is left empty.",
             "color": "dark_red"
           }
         ]
@@ -1219,20 +1321,34 @@
       }
     ]
   },
-  "Quest: Dragon Mage Armor": {
+  "Dragon Mage Armor": {
     "index": "1",
     "category": "artifice",
     "sections": [
       {
         "type": "title",
-        "value": "Quest: Dragon Mage Armor"
+        "value": "Dragon Mage Armor"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "The path to true draconic might requires absolute vulnerability. If I manage to slay the "
+            "text": "The path to true draconic might requires absolute vulnerability.",
+            "italic": true
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Trial of the Totem: ",
+            "color": "dark_purple"
+          },
+          {
+            "text": "If I slay the "
           },
           {
             "text": "Ender Dragon",
@@ -1246,7 +1362,7 @@
             "color": "dark_red"
           },
           {
-            "text": ", all while holding the Totem in my offhand, I will be rewarded with the true "
+            "text": ", all while holding the Totem of the Dragon in either hand, I will be rewarded with the true "
           },
           {
             "text": "Dragon Mage Armor",
@@ -1262,7 +1378,20 @@
         "value": "",
         "json": [
           {
-            "text": "This sacred armor fills my very soul with the magic of the dragon. It allows me to draw out the maximum potential of my artifacts, awakening hidden abilities within certain relics that can only be channeled while wearing this armor."
+            "text": "This armor carries the magic of the dragon. It protects me better than netherite and never breaks. Each piece also grants me an additional curio slot."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Dragon Magic: ",
+            "color": "blue"
+          },
+          {
+            "text": "While I wear all four pieces, the Dragon Magic of my relics awakens."
           }
         ]
       },
@@ -1308,27 +1437,41 @@
       }
     ]
   },
-  "Quest: Amulet of the Dragon": {
+  "Amulet of the Dragon": {
     "index": "1",
     "category": "artifice",
     "sections": [
       {
         "type": "title",
-        "value": "Quest: Amulet of the Dragon"
+        "value": "Amulet of the Dragon"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "If I seek absolute magical supremacy, the totem offers another path. If I manage to achieve the "
+            "text": "My spells can never be strong enough.",
+            "italic": true
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Trial of the Totem: ",
+            "color": "dark_purple"
           },
           {
-            "text": "Sorcerer's Pride",
+            "text": "If I reach the "
+          },
+          {
+            "text": "Sorcerers Pride",
             "color": "light_purple"
           },
           {
-            "text": " effect at level 5 or higher while holding the Totem in my offhand, it will transform into the "
+            "text": " effect at level 5 or higher while holding the Totem of the Dragon in either hand, it will transform into the "
           },
           {
             "text": "Amulet of the Dragon",
@@ -1344,11 +1487,24 @@
         "value": "",
         "json": [
           {
-            "text": "Wearing this amulet blesses me with permanent Sorcerer's Pride II. My spells will be permanently empowered:\n"
+            "text": "Wearing this amulet blesses me with permanent Sorcerers Pride II. My spells will be permanently empowered:\n"
           },
           {
             "text": "- MAGNITUDE +1\n- DAMAGE +6\n- DURATION: +60%",
             "color": "blue"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Dragon Magic: ",
+            "color": "blue"
+          },
+          {
+            "text": "The amulet grants Sorcerers Pride III instead: MAGNITUDE +2, DAMAGE +9, DURATION +90%."
           }
         ]
       }
@@ -1361,30 +1517,48 @@
       {
         "type": "eldrin_altar",
         "location": "dmnr:eldrin_altar/dragon_totem"
+      },
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/sorcerers_pride"
       }
     ]
   },
-  "Quest: Ring of Power": {
+  "Ring of Power": {
     "index": "1",
     "category": "artifice",
     "sections": [
       {
         "type": "title",
-        "value": "Quest: Ring of Power"
+        "value": "Ring of Power"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "Only one who bends their foes to their will is worthy of ruling them. If I slay a creature that suffers from at least "
+            "text": "Whoever dares to strike me shall feel my wrath in return!",
+            "italic": true
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Trial of the Totem: ",
+            "color": "dark_purple"
+          },
+          {
+            "text": "If I slay a creature that suffers from at least "
           },
           {
             "text": "five harmful effects",
             "color": "dark_red"
           },
           {
-            "text": " at once, all while holding the Totem in my offhand, it will transform into the "
+            "text": " at once (by default; the Totem's tooltip shows the exact number), all while holding the Totem of the Dragon in either hand, it will transform into the "
           },
           {
             "text": "Ring of Power",
@@ -1400,7 +1574,34 @@
         "value": "",
         "json": [
           {
-            "text": "Whoever dares to strike me while I wear this ring will feel my wrath in return: it casts a stored spell on every attacker."
+            "text": "The "
+          },
+          {
+            "text": "Ring of Power",
+            "color": "blue"
+          },
+          {
+            "text": " holds a single spell. Whenever I take damage from a creature, the stored spell is cast on the "
+          },
+          {
+            "text": "attacker",
+            "color": "dark_purple"
+          },
+          {
+            "text": ". The spell costs its usual mana; if I don't have enough, nothing happens.\n\nTo insert the spell, hold the GUI key (default: Left Ctrl) and right-click the ring."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Dragon Magic: ",
+            "color": "blue"
+          },
+          {
+            "text": "The mana cost of the stored spell is halved."
           }
         ]
       }
@@ -1416,27 +1617,41 @@
       }
     ]
   },
-  "Quest: Ring of Ruling": {
+  "Ring of Ruling": {
     "index": "1",
     "category": "artifice",
     "sections": [
       {
         "type": "title",
-        "value": "Quest: Ring of Ruling"
+        "value": "Ring of Ruling"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "To surpass all others, I must first endure what would break them. If I suffer from at least "
+            "text": "A wound is merely a reminder to tend to myself.",
+            "italic": true
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Trial of the Totem: ",
+            "color": "dark_purple"
+          },
+          {
+            "text": "If I suffer from at least "
           },
           {
             "text": "five harmful effects",
             "color": "dark_red"
           },
           {
-            "text": " at once, all while holding the Totem in my offhand, it will transform into the "
+            "text": " at once (by default; the Totem's tooltip shows the exact number), all while holding the Totem of the Dragon in either hand, it will transform into the "
           },
           {
             "text": "Ring of Ruling",
@@ -1452,7 +1667,34 @@
         "value": "",
         "json": [
           {
-            "text": "Wounds become a mere reminder to tend to myself while I wear this ring: it casts a stored spell on me whenever I take damage."
+            "text": "The "
+          },
+          {
+            "text": "Ring of Ruling",
+            "color": "blue"
+          },
+          {
+            "text": " holds a single spell. Whenever I take damage, the stored spell is cast on "
+          },
+          {
+            "text": "myself",
+            "color": "dark_purple"
+          },
+          {
+            "text": ", perfect for healing or protective magic. The spell costs its usual mana; if I don't have enough, nothing happens.\n\nTo insert the spell, hold the GUI key (default: Left Ctrl) and right-click the ring."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Dragon Magic: ",
+            "color": "blue"
+          },
+          {
+            "text": "The mana cost of the stored spell is halved."
           }
         ]
       }
@@ -1519,168 +1761,6 @@
       {
         "type": "spell_part",
         "location":"dmnr:shapes/curse"
-      }
-    ]
-  },
-  "Amulet of Dragon Power": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Amulet of the Dragon"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "This Effect Boosts the Spells of the user.\nBoosts per Level:\n- MAGNITUDE +0.5\n- DAMAGE +3\n- DURATION: +30%.",
-            "color": ""
-          }
-        ]
-      }
-    ]
-  },
-  "Ring of Power": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Ring of Power"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Whoever dares to strike me shall feel my wrath in return!",
-            "color": "",
-            "italic": true
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The ",
-            "color": ""
-          },
-          {
-            "text": "Ring of Power",
-            "color": "blue"
-          },
-          {
-            "text": " holds a single spell. Whenever I take damage from a creature, the stored spell is cast on the ",
-            "color": ""
-          },
-          {
-            "text": "attacker",
-            "color": "dark_purple"
-          },
-          {
-            "text": ". The spell costs its usual mana; if I don't have enough, nothing happens.\n\nTo insert the spell, hold the GUI key (default: Left Ctrl) and right-click the ring.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Dragon Magic: ",
-            "color": "blue"
-          },
-          {
-            "text": "The mana cost of the stored spell is halved.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "ritual",
-        "location": "dmnr:rituals/dragon_mage_ritual"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dmnr:eldrin_altar/dragon_totem"
-      }
-    ]
-  },
-  "Ring of Ruling": {
-    "index": "1",
-    "category": "artifice",
-    "sections": [
-      {
-        "type": "title",
-        "value": "Ring of Ruling"
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "A wound is merely a reminder to tend to myself.",
-            "color": "",
-            "italic": true
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "The ",
-            "color": ""
-          },
-          {
-            "text": "Ring of Ruling",
-            "color": "blue"
-          },
-          {
-            "text": " holds a single spell. Whenever I take damage, the stored spell is cast on ",
-            "color": ""
-          },
-          {
-            "text": "myself",
-            "color": "dark_purple"
-          },
-          {
-            "text": ", perfect for healing or protective magic. The spell costs its usual mana; if I don't have enough, nothing happens.\n\nTo insert the spell, hold the GUI key (default: Left Ctrl) and right-click the ring.",
-            "color": ""
-          }
-        ]
-      },
-      {
-        "type": "text",
-        "value": "",
-        "json": [
-          {
-            "text": "Dragon Magic: ",
-            "color": "blue"
-          },
-          {
-            "text": "The mana cost of the stored spell is halved.",
-            "color": ""
-          }
-        ]
-      }
-    ],
-    "related_recipes": [
-      {
-        "type": "ritual",
-        "location": "dmnr:rituals/dragon_mage_ritual"
-      },
-      {
-        "type": "eldrin_altar",
-        "location": "dmnr:eldrin_altar/dragon_totem"
       }
     ]
   },
@@ -2227,20 +2307,28 @@
     ]
   },
 
-  "Ritual of the Dragon Mage Armor": {
+  "Ritual of the Dragon": {
     "index": 0,
     "category": "rituals",
     "sections": [
       {
         "type": "title",
-        "value": "Ritual of the Dragon Mage Armor"
+        "value": "Ritual of the Dragon"
       },
       {
         "type": "text",
         "value": "",
         "json": [
           {
-            "text": "With this ritual I can upgrade my faction armor to Dragon Mage Armor.",
+            "text": "With this ritual I can unite one of the world's relics with the ancient magic of dragons. The relic is consumed and forged into an ",
+            "color": ""
+          },
+          {
+            "text": "Empty Totem of the Dragon",
+            "color": "dark_purple"
+          },
+          {
+            "text": ".",
             "color": ""
           }
         ]
@@ -2250,7 +2338,7 @@
         "value": "",
         "json": [
           {
-            "text": "I must wear my full faction armor to perform this ritual. This is then fused with the power of the dragons and becomes the Dragon Mage armor. Enchantments are carried over.",
+            "text": "The empty Totem is only a vessel. I still have to infuse it with raw magic at the Eldrin Altar before it can undergo the trials of the dragon.",
             "color": ""
           }
         ]
@@ -2270,6 +2358,10 @@
       {
         "type": "ritual",
         "location":"dmnr:rituals/dragon_mage_ritual"
+      },
+      {
+        "type": "eldrin_altar",
+        "location": "dmnr:eldrin_altar/dragon_totem"
       }
     ]
   },

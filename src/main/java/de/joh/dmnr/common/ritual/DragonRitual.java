@@ -5,7 +5,7 @@ import com.mna.api.sound.SFX;
 import com.mna.capabilities.playerdata.magic.PlayerMagicProvider;
 import com.mna.rituals.effects.RitualEffectCreateEssence;
 import de.joh.dmnr.common.init.ItemInit;
-import de.joh.dmnr.common.item.DragonMageArmorItem;
+import de.joh.dmnr.common.item.DragonTotemItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -15,10 +15,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
 /**
- * This ritual upgrades faction armor to Dragon Mage Armor.
- * Depending on the faction armor, different initial upgrades will be installed.
- * The armor, conditions, and initial upgrades can be customized by handlers.
- * @see DragonMageArmorItem
+ * Ritual of the Dragon: forges a relic into the Empty Totem of the Dragon. Only players of level 75 or higher can
+ * start it.
+ * @see DragonTotemItem
  * @author Joh0210
  */
 public class DragonRitual extends RitualEffectCreateEssence {
