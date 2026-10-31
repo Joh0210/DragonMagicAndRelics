@@ -20,7 +20,7 @@ The Codex has all the necessary information about the added elements. (But the c
 - 3 Rituals
 
 ## Credits
-The amazing [armor model](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/src/main/resources/assets/dmnr/geo/dragon_mage_armor.geo.json) and [texture](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/src/main/resources/assets/dmnr/textures/models/armor/infernal_dragon_mage_armor_texture.png) of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/jsementj/).
+The amazing [armor model](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/src/main/resources/assets/dmnr/geo/dragon_mage_armor.geo.json) and texture ([base](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/src/main/resources/assets/dmnr/textures/models/armor/dragon_mage_armor_texture_base.png), [overlay](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/src/main/resources/assets/dmnr/textures/models/armor/dragon_mage_armor_texture_overlay.png)) of the Dragon Mage Armor were created by [jsementj](https://www.reddit.com/user/jsementj/).
 And thanks to Mithion for helping creating the mod. Also thanks to Ceddi and Nico for helping with testing and balancing.
 <br>The full credits can be viewed [here](https://github.com/Joh0210/DragonMagicAndRelics/blob/master/CREDITS.md).
 

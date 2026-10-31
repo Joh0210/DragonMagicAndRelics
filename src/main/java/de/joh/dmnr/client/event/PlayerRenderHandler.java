@@ -3,15 +3,12 @@ package de.joh.dmnr.client.event;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.capabilities.client.ClientPlayerDragonMagic;
-import de.joh.dmnr.client.item.armor.WingRenderLayer;
-import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.FogType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderBlockScreenEffectEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.ViewportEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -22,16 +19,6 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = DragonMagicAndRelics.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerRenderHandler {
     private static final float FOG_AMOUNT = 0.0F;
-    private static boolean addedDragonWingLayer = false;
-
-    @SubscribeEvent
-    @OnlyIn(Dist.CLIENT)
-    public static void onPlayerRenderPre(RenderPlayerEvent.Pre event) {
-        if (!addedDragonWingLayer) {
-            event.getRenderer().addLayer(new WingRenderLayer<>(event.getRenderer(), Minecraft.getInstance().getEntityModels()));
-            addedDragonWingLayer = true;
-        }
-    }
 
     @SubscribeEvent
     @OnlyIn(Dist.CLIENT)

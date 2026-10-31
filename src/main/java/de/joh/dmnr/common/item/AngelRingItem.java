@@ -9,7 +9,6 @@ import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -32,16 +31,19 @@ import java.util.List;
 
 /**
  * This item allows a player to fly in creative mode or use the Elytra Fly.
+ * <br> The wearer gets visible wings.
  * @author Joh0210
  */
-public class AngelRingItem extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific {
+public class AngelRingItem extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific, IWingItem {
+    private static final List<WingLayer> WINGS = List.of(new WingLayer(RLoc.create("textures/models/angel_ring_wing.png")));
 
     public AngelRingItem(Properties itemProperties) {
         super(itemProperties);
     }
 
-    public static ResourceLocation getWingTextureLocation(){
-        return RLoc.create("textures/models/angel_ring_wing.png");
+    @Override
+    public @NotNull List<WingLayer> getWingLayers(ItemStack stack) {
+        return WINGS;
     }
 
     @Override

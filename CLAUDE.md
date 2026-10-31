@@ -81,7 +81,8 @@ src/main/java/de/joh/dmnr/
 ├── api/                           API usable by other mods (e.g. ConjureFluidComponent, ModTags, MarkSave, filters)
 ├── capabilities/                  Player data capability PlayerDragonMagic (marks per dimension) + client mirror
 ├── client/
-│   ├── block/entity, item/        Renderers: Rift Emitter (block entity + item renderer), Dragon Mage Armor (GeckoLib, incl. wing layer)
+│   ├── block/entity, item/        Renderers: Rift Emitter (block entity + item renderer), Dragon Mage Armor (GeckoLib),
+│   │                              WingRenderLayer (wings of every IWingItem: angel rings, Dragon Mage chestplate)
 │   ├── event/                     Client events (Forge and mod bus), player rendering
 │   ├── gui/                       Containers/screens/MenuProviders (Ring of Spell Storing, Ring of Power, Bracelet of Friendship, …)
 │   └── init/                      ContainerInit (MenuTypes), GuiInit (screen registration)

@@ -7,7 +7,6 @@ import com.mna.factions.Factions;
 import de.joh.dmnr.common.util.RLoc;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -22,16 +21,19 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 /**
+ * The wearer gets visible wings.
  * @author Joh0210
  */
-public class FallenAngelRingItem extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific {
+public class FallenAngelRingItem extends TieredItem implements IForgeItem, ICurioItem, IFactionSpecific, IWingItem {
+    private static final List<WingLayer> WINGS = List.of(new WingLayer(RLoc.create("textures/models/fallen_angel_ring_wing.png")));
 
     public FallenAngelRingItem(Properties itemProperties) {
         super(itemProperties);
     }
 
-    public static ResourceLocation getWingTextureLocation(){
-        return RLoc.create("textures/models/fallen_angel_ring_wing.png");
+    @Override
+    public @NotNull List<WingLayer> getWingLayers(ItemStack stack) {
+        return WINGS;
     }
 
     @Override

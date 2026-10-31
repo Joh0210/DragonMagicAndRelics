@@ -2,10 +2,15 @@ package de.joh.dmnr.client.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.client.block.entity.RiftEmitterRenderer;
+import de.joh.dmnr.client.item.WingRenderLayer;
 import de.joh.dmnr.common.init.BlockEntitieInit;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.item.DragonMageArmorItem;
+import net.minecraft.client.renderer.entity.ArmorStandRenderer;
+import net.minecraft.client.renderer.entity.player.PlayerRenderer;
+import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,6 +23,25 @@ public class ClientModHandler {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event){
         BlockEntityRenderers.register(BlockEntitieInit.RIFT_EMITTER_ENTITY.get(), RiftEmitterRenderer::new);
+    }
+
+    /**
+     * Adds the wings to every player renderer (default and slim skin) and to the armor stand renderer, which can wear
+     * the Dragon Mage chestplate.
+     * <br> This event is fired again whenever the renderers are rebuilt (e.g. on a resource reload), so the layer is never lost.
+     * @see WingRenderLayer
+     */
+    @SubscribeEvent
+    public static void addLayers(EntityRenderersEvent.AddLayers event) {
+        for (String skin : event.getSkins()) {
+            if (event.getSkin(skin) instanceof PlayerRenderer renderer) {
+                renderer.addLayer(new WingRenderLayer<>(renderer, event.getEntityModels()));
+            }
+        }
+
+        if (event.getRenderer(EntityType.ARMOR_STAND) instanceof ArmorStandRenderer renderer) {
+            renderer.addLayer(new WingRenderLayer<>(renderer, event.getEntityModels()));
+        }
     }
 
     /**

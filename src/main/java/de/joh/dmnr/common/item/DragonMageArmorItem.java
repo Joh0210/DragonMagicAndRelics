@@ -60,12 +60,13 @@ import java.util.function.Consumer;
  * <br>The armor has two colors: the primary color tints the ornaments (base texture), the secondary color the plates
  * (overlay texture). Both are chosen in the dyeing GUI, which opens when the armor is used while holding the M&A GUI
  * modifier key. Armor obtained through the Totem of the Dragon starts in the colors of the faction of the player.
+ * <br>In the same GUI the chestplate can get wings ({@link WingDesign}), which have two colors of their own.
  * @see FactionArmorColors
  * @see DamageEventHandler
  * @see de.joh.dmnr.client.gui.GuiDragonMageArmorDye
  * @author Joh0210
  */
-public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetItem, GeoItem {
+public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetItem, GeoItem, IWingItem {
     /**
      * Color of the ornaments if the armor has not been dyed.
      */
@@ -81,6 +82,9 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
      */
     private static final String PRIMARY_COLOR_TAG = "color";
     private static final String SECONDARY_COLOR_TAG = "secondary_color";
+    private static final String WING_DESIGN_TAG = "wing_design";
+    private static final String WING_PRIMARY_COLOR_TAG = "wing_color";
+    private static final String WING_SECONDARY_COLOR_TAG = "wing_secondary_color";
 
     private final AnimatableInstanceCache cache = new SingletonAnimatableInstanceCache(this);
 
@@ -130,6 +134,72 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     public static void setColors(ItemStack stack, int primaryColor, int secondaryColor) {
         setColor(stack, PRIMARY_COLOR_TAG, primaryColor & 0xFFFFFF, DEFAULT_PRIMARY_COLOR);
         setColor(stack, SECONDARY_COLOR_TAG, secondaryColor & 0xFFFFFF, DEFAULT_SECONDARY_COLOR);
+    }
+
+    /**
+     * @return the wings of this piece of armor, only the chestplate can have wings
+     */
+    public static WingDesign getWingDesign(ItemStack stack) {
+        CompoundTag displayTag = stack.getTagElement(DISPLAY_TAG);
+        return displayTag != null ? WingDesign.byName(displayTag.getString(WING_DESIGN_TAG)) : WingDesign.NONE;
+    }
+
+    /**
+     * @return the RGB color of the membrane or leaves of the wings, the color of the ornaments if none is stored
+     */
+    public static int getWingPrimaryColor(ItemStack stack) {
+        return getColor(stack, WING_PRIMARY_COLOR_TAG, getPrimaryColor(stack));
+    }
+
+    /**
+     * @return the RGB color of the bones or branches of the wings, the color of the plates if none is stored
+     */
+    public static int getWingSecondaryColor(ItemStack stack) {
+        return getColor(stack, WING_SECONDARY_COLOR_TAG, getSecondaryColor(stack));
+    }
+
+    /**
+     * Gives a chestplate wings, other pieces of armor are not changed. Without wings no wing tags are stored.
+     * @param primaryColor RGB color of the membrane or leaves
+     * @param secondaryColor RGB color of the bones or branches
+     */
+    public static void setWings(ItemStack stack, WingDesign design, int primaryColor, int secondaryColor) {
+        if (!(stack.getItem() instanceof DragonMageArmorItem armor) || armor.getType() != Type.CHESTPLATE) {
+            return;
+        }
+
+        if (design != WingDesign.NONE) {
+            CompoundTag displayTag = stack.getOrCreateTagElement(DISPLAY_TAG);
+            displayTag.putString(WING_DESIGN_TAG, design.getName());
+            displayTag.putInt(WING_PRIMARY_COLOR_TAG, primaryColor & 0xFFFFFF);
+            displayTag.putInt(WING_SECONDARY_COLOR_TAG, secondaryColor & 0xFFFFFF);
+            return;
+        }
+
+        CompoundTag displayTag = stack.getTagElement(DISPLAY_TAG);
+        if (displayTag != null) {
+            displayTag.remove(WING_DESIGN_TAG);
+            displayTag.remove(WING_PRIMARY_COLOR_TAG);
+            displayTag.remove(WING_SECONDARY_COLOR_TAG);
+            if (displayTag.isEmpty()) {
+                stack.removeTagKey(DISPLAY_TAG);
+            }
+        }
+    }
+
+    /**
+     * The wings of the chestplate: the base texture tinted with the primary wing color, the overlay texture with the
+     * secondary one.
+     */
+    @Override
+    public @NotNull List<WingLayer> getWingLayers(ItemStack stack) {
+        WingDesign design = getWingDesign(stack);
+        if (this.getType() != Type.CHESTPLATE || design == WingDesign.NONE) {
+            return List.of();
+        }
+        return List.of(
+                new WingLayer(design.getBaseTexture(), getWingPrimaryColor(stack)),
+                new WingLayer(design.getOverlayTexture(), getWingSecondaryColor(stack)));
     }
 
     private static int getColor(ItemStack stack, String key, int defaultColor) {
@@ -297,5 +367,52 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     @OnlyIn(Dist.CLIENT)
     public boolean isFoil(@NotNull ItemStack itemStack){
         return false;
+    }
+
+    /**
+     * Wings the chestplate can have. Each design has a base texture (membrane or leaves) and an overlay texture (bones
+     * or branches), both gray so they can be tinted.
+     */
+    public enum WingDesign {
+        NONE("none"),
+        DRAGON("dragon"),
+        WILD("wild");
+
+        private final String name;
+        private final ResourceLocation baseTexture;
+        private final ResourceLocation overlayTexture;
+
+        WingDesign(String name) {
+            this.name = name;
+            this.baseTexture = RLoc.create("textures/models/armor/dragon_mage_wings_" + name + "_base.png");
+            this.overlayTexture = RLoc.create("textures/models/armor/dragon_mage_wings_" + name + "_overlay.png");
+        }
+
+        /**
+         * @return the name stored on the chestplate and used in translation keys
+         */
+        public String getName() {
+            return name;
+        }
+
+        public ResourceLocation getBaseTexture() {
+            return baseTexture;
+        }
+
+        public ResourceLocation getOverlayTexture() {
+            return overlayTexture;
+        }
+
+        /**
+         * @return the design with this name, {@link #NONE} if there is none
+         */
+        public static WingDesign byName(String name) {
+            for (WingDesign design : values()) {
+                if (design.name.equals(name)) {
+                    return design;
+                }
+            }
+            return NONE;
+        }
     }
 }
