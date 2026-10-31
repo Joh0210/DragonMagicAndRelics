@@ -2,12 +2,15 @@ package de.joh.dmnr.common.event;
 
 import com.mna.api.events.ComponentApplyingEvent;
 import com.mna.api.events.MasteryGainedEvent;
+import com.mna.api.events.RitualCompleteEvent;
 import com.mna.api.events.RoteProgressGainedEvent;
 import com.mna.api.events.SpellCastEvent;
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.api.spell.ChronomancyProgress;
 import de.joh.dmnr.common.effects.beneficial.SorcerersPrideMobEffect;
 import de.joh.dmnr.common.item.*;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -40,6 +43,25 @@ public class MagicEventHandler {
     public static void onComponentApplying(ComponentApplyingEvent event){
         BraceletOfFriendshipItem.eventHandleProtectFriends(event);
         AmuletOfHellfire.eventHandleHellfire(event);
+    }
+
+    /**
+     * Counts the spell parts that grant rote progress for Accelerate Time.
+     * Lowest priority, so components canceled by other handlers don't count.
+     * @see ChronomancyProgress
+     */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onComponentApplyingUncanceled(ComponentApplyingEvent event){
+        ChronomancyProgress.eventHandleComponentApplying(event);
+    }
+
+    /**
+     * Counts the rituals that grant rote progress for Accelerate Time.
+     * @see ChronomancyProgress
+     */
+    @SubscribeEvent
+    public static void onRitualComplete(RitualCompleteEvent event){
+        ChronomancyProgress.eventHandleRitualComplete(event);
     }
 
     @SubscribeEvent

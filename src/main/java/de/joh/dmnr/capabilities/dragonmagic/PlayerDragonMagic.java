@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * This class contains the permanent data that is stored on a player for the magic components of this mod.
  * Each function here is called on a player-specific basis, since every player owns an instance of this class.
- * Currently includes: Player specific save for the Rune of Marking
+ * Currently includes: Player specific save for the Rune of Marking, cooldown of the Accelerate Time rote progress
  * @see MarkComponent
  * @see AlternativeRecallComponent
  * @see AtMarkShape
@@ -30,6 +30,11 @@ public class PlayerDragonMagic {
      * List of dimensions with corresponding mark, for ComponentMark, ComponentAlternativeRecall, ...
      */
     private HashMap<ResourceKey<Level>, MarkSave> markMap = new HashMap<>();
+
+    /**
+     * Game time at which bending time last granted rote progress for Accelerate Time, see ChronomancyProgress
+     */
+    private long lastChronomancyProgress = Long.MIN_VALUE;
 
     /**
      * Save this position as a mark, in this dimension, for the player who executes it.
@@ -62,10 +67,19 @@ public class PlayerDragonMagic {
 
     public void copyFrom(PlayerDragonMagic source, Player player) {
         this.markMap = source.getMarkMap();
+        this.lastChronomancyProgress = source.getLastChronomancyProgress();
     }
 
     public HashMap<ResourceKey<Level>, MarkSave> getMarkMap() {
         return markMap;
+    }
+
+    public long getLastChronomancyProgress() {
+        return lastChronomancyProgress;
+    }
+
+    public void setLastChronomancyProgress(long gameTime) {
+        this.lastChronomancyProgress = gameTime;
     }
 
     public void saveNBT(CompoundTag compound) {
@@ -78,6 +92,8 @@ public class PlayerDragonMagic {
             nbt.put("mark_map_mark_save_" + i, entry.getValue().saveNBT());
             i++;
         }
+
+        nbt.putLong("last_chronomancy_progress", lastChronomancyProgress);
 
         compound.put("dragon_magic_data", nbt);
     }
@@ -93,6 +109,10 @@ public class PlayerDragonMagic {
                             new MarkSave(nbt.getCompound("mark_map_mark_save_" + i))
                     );
                 }
+            }
+
+            if(nbt.contains("last_chronomancy_progress")){
+                lastChronomancyProgress = nbt.getLong("last_chronomancy_progress");
             }
         }
     }

@@ -88,6 +88,7 @@ public class ModTags {
         public static ResourceLocation TALL_FLOWERS = new ResourceLocation("minecraft","tall_flowers");
         public static ResourceLocation MUTANDIS_PLANTS = RLoc.create("mutandis_plants");
         public static ResourceLocation MNA_FLOWERS = RLoc.create("mna_flowers");
+        public static ResourceLocation ACCELERATE_TIME_BLACKLIST = RLoc.create("accelerate_time_blacklist");
 
         public Blocks() {
         }

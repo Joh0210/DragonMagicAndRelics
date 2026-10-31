@@ -1,12 +1,18 @@
 package de.joh.dmnr.common.util;
 
+import de.joh.dmnr.api.spell.ChronomancyProgress;
 import de.joh.dmnr.api.spell.component.ConjureFluidComponent;
+import de.joh.dmnr.common.spell.component.AccelerateTimeComponent;
 import de.joh.dmnr.common.spell.component.MarkComponent;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.ForgeConfigSpec;
 import de.joh.dmnr.common.item.spellstoring.RingOfCooldownSpellStoringItem;
+
+import java.util.ArrayList;
+import java.util.List;
 /**
  * This file creates the entire Common Configs of this mod.
  * @author Joh0210
@@ -93,6 +99,54 @@ public class CommonConfig {
      */
     public static final ForgeConfigSpec.ConfigValue<Integer> BRIMSTONE_ENGINE_STRESS;
 
+    /**
+     * If false, Accelerate Time can't be inscribed, isn't part of the silver spell loot and inscribed spells fail.
+     * @see AccelerateTimeComponent
+     */
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ACCELERATE_TIME_ENABLED;
+
+    /**
+     * Maximum speed factor of Accelerate Time. Every Magnitude level doubles the speed.
+     * @see AccelerateTimeComponent
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> ACCELERATE_TIME_MAX_FACTOR;
+
+    /**
+     * Can Accelerate Time accelerate random ticks (crops, saplings, ...) when Precision is used?
+     * @see AccelerateTimeComponent
+     */
+    public static final ForgeConfigSpec.ConfigValue<Boolean> ACCELERATE_TIME_RANDOM_TICKS;
+
+    /**
+     * Seconds of Chrono Exhaustion the caster suffers after casting Accelerate Time.
+     * @see AccelerateTimeComponent
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> ACCELERATE_TIME_EXHAUSTION;
+
+    /**
+     * Minimum M&A tier from which bending time grants rote progress for Accelerate Time.
+     * @see ChronomancyProgress
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> CHRONOMANCY_REQUIRED_TIER;
+
+    /**
+     * Rote progress for Accelerate Time granted by a source with the weight 1.0.
+     * @see ChronomancyProgress
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> CHRONOMANCY_PROGRESS;
+
+    /**
+     * Seconds that have to pass before bending time grants rote progress for Accelerate Time again.
+     * @see ChronomancyProgress
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> CHRONOMANCY_COOLDOWN;
+
+    /**
+     * Additional or changed sources of rote progress for Accelerate Time ("id=weight").
+     * @see ChronomancyProgress
+     */
+    public static final ForgeConfigSpec.ConfigValue<List<? extends String>> CHRONOMANCY_SOURCES;
+
     static {
         BUILDER.push("General Configs");
 
@@ -121,6 +175,25 @@ public class CommonConfig {
                 .defineInRange("Brimstone Engine Stress Capacity (SU):", 8192, 0, 1_000_000);
         BUILDER.pop();
 
+        BUILDER.push("Accelerate Time Configs");
+        ACCELERATE_TIME_ENABLED = BUILDER.comment("If false: Accelerate Time can no longer be inscribed, is no longer part of the silver spells dropped as Arcane Thesis, and spells that already contain it fail. The attribute ranges and costs can be changed in the spell part configs of Mana and Artifice.")
+                .define("Is Accelerate Time enabled?", true);
+        ACCELERATE_TIME_MAX_FACTOR = BUILDER.comment("Every Magnitude level doubles the speed of the block's time (1 = 2x, 2 = 4x, 3 = 8x, 4 = 16x). Higher factors are capped to this value. The Magnitude range itself can be changed in the spell part configs of Mana and Artifice.")
+                .defineInRange("Accelerate Time maximum speed factor:", 16, 2, 256);
+        ACCELERATE_TIME_RANDOM_TICKS = BUILDER.comment("If true: With Precision, Accelerate Time also accelerates random ticks (crops, saplings, ...) by the same factor.")
+                .define("Can Accelerate Time accelerate random ticks?", true);
+        ACCELERATE_TIME_EXHAUSTION = BUILDER.comment("Seconds of Chrono Exhaustion the caster suffers after casting Accelerate Time. While exhausted, neither Accelerate Time nor Chrono Anchor can be cast. 0 disables it.")
+                .defineInRange("Accelerate Time Chrono Exhaustion (seconds):", 60, 0, 3600);
+        CHRONOMANCY_REQUIRED_TIER = BUILDER.comment("Accelerate Time is a silver spell that becomes rote by bending time (Sunrise, Nightfall, Chrono Anchor, Ritual of Aurora, ...). This is the minimum tier from which bending time grants rote progress.")
+                .defineInRange("Accelerate Time progress required tier:", 5, 1, 5);
+        CHRONOMANCY_PROGRESS = BUILDER.comment("Rote progress granted by a source with the weight 1.0. Accelerate Time needs 200 rote progress.")
+                .defineInRange("Accelerate Time progress per source:", 20, 0, 10_000);
+        CHRONOMANCY_COOLDOWN = BUILDER.comment("Seconds that have to pass before bending time grants rote progress again. Measured in game ticks, so changing the time of day does not shorten it. 0 disables it.")
+                .defineInRange("Accelerate Time progress cooldown (seconds):", 1200, 0, 86_400);
+        CHRONOMANCY_SOURCES = BUILDER.comment("Additional or changed sources of rote progress, as \"id=weight\". The id is a spell part (counted when it is applied to a target, even if its effect fails), a ritual (counted when it is completed) or a source registered by a mod. A weight of 0 disables a source. Built-in: dmnr:components/sunrise=1.0, dmnr:components/moonrise=1.0, mna:components/chrono_anchor=1.0, fnc:components/postponement=1.0, dmnr:weather_fairy_staff=1.0, mna:rituals/aurora=0.5, mna:rituals/eventide=0.5")
+                .defineListAllowEmpty(List.of("Accelerate Time progress sources:"), ArrayList::new, CommonConfig::isValidSource);
+        BUILDER.pop();
+
         SPEC = BUILDER.build();
     }
 
@@ -131,5 +204,25 @@ public class CommonConfig {
         float configMultiplier = FLY_SPEED_PER_LEVEL.get() * 1.5f / 100f;
 
         return (speed * configMultiplier);
+    }
+
+    /**
+     * Checks an entry of {@link #CHRONOMANCY_SOURCES}: "namespace:path=weight" with a non-negative weight.
+     */
+    private static boolean isValidSource(Object entry) {
+        if (!(entry instanceof String source)) {
+            return false;
+        }
+
+        String[] parts = source.split("=");
+        if (parts.length != 2 || ResourceLocation.tryParse(parts[0].trim()) == null) {
+            return false;
+        }
+
+        try {
+            return Float.parseFloat(parts[1].trim()) >= 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

@@ -5,8 +5,10 @@ import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ItemInit;
 import de.joh.dmnr.common.util.FactionArmorColors;
+import de.joh.dmnr.common.util.TimeAccelerationData;
 import de.joh.dmnr.networking.ModMessages;
 import de.joh.dmnr.networking.packet.ToggleWaterBraceletS2CPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
@@ -31,6 +33,17 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onLivingJump(LivingEvent.LivingJumpEvent event) {
         OcelotCurioItem.ocelotJump(event);
+    }
+
+    /**
+     * Ticks the blocks accelerated by Accelerate Time.
+     * @see TimeAccelerationData
+     */
+    @SubscribeEvent
+    public static void onLevelTick(TickEvent.LevelTickEvent event) {
+        if (event.phase == TickEvent.Phase.END && event.level instanceof ServerLevel level) {
+            TimeAccelerationData.tick(level);
+        }
     }
 
     /**

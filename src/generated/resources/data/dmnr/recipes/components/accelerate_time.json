@@ -1,0 +1,18 @@
+{
+  "type": "mna:component",
+  "items": [
+    "mna:greater_mote_arcane",
+    "mna:ritual_focus_greater",
+    "mna:transmuted_silver",
+    "minecraft:echo_shard",
+    "minecraft:clock",
+    "minecraft:clock"
+  ],
+  "output": "dmnr:components/accelerate_time",
+  "patterns": [
+    "mna:manaweave_patterns/hourglass",
+    "mna:manaweave_patterns/infinity",
+    "mna:manaweave_patterns/hourglass"
+  ],
+  "tier": 5
+}

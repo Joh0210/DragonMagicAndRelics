@@ -27,6 +27,7 @@ public class SpellInit {
     public static Shape CURSE;
     public static Shape FRIENDS;
 
+    public static SpellEffect ACCELERATE_TIME;
     public static SpellEffect ALTERNATIVERECALL;
     public static SpellEffect FORCE_DAMAGE;
     public static SpellEffect SUNRISE;
@@ -62,6 +63,7 @@ public class SpellInit {
             helper.register(RLoc.create("components/forcedamage"), SpellInit.FORCE_DAMAGE);
             helper.register(RLoc.create("components/alternativerecall"), SpellInit.ALTERNATIVERECALL);
             helper.register(RLoc.create("components/hellfire"), SpellInit.HELLFIRE);
+            helper.register(RLoc.create("components/accelerate_time"), SpellInit.ACCELERATE_TIME);
         });
     }
 
@@ -83,5 +85,6 @@ public class SpellInit {
         SpellInit.FORCE_DAMAGE = new ForceDamageComponent(RLoc.create("textures/spell/component/forcedamage.png"));
         SpellInit.ALTERNATIVERECALL = new AlternativeRecallComponent(RLoc.create("textures/spell/component/alternativerecall.png"));
         SpellInit.HELLFIRE = new HellfireComponent(RLoc.create("textures/spell/component/hellfire.png"));
+        SpellInit.ACCELERATE_TIME = new AccelerateTimeComponent(RLoc.create("textures/spell/component/accelerate_time.png"));
     }
 }

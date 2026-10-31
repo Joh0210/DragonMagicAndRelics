@@ -3,6 +3,7 @@ package de.joh.dmnr.common.item;
 import com.mna.api.items.IRelic;
 import com.mna.entities.EntityInit;
 import com.mna.entities.rituals.TimeChangeBall;
+import de.joh.dmnr.api.spell.ChronomancyProgress;
 import de.joh.tnl.api.item.IDragonMagicItem;
 import de.joh.tnl.api.item.ScrollableItem;
 import net.minecraft.ChatFormatting;
@@ -23,6 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -31,6 +33,7 @@ import java.util.function.Consumer;
 /**
  * Allows the user to Change the Weather
  * <br>Is a Relict
+ * <br>Changing the time (Dragon Magic) grants rote progress for Accelerate Time, see {@link ChronomancyProgress}
  * @author Joh0210
  */
 public class WeatherFairyStaffItem extends SwordItem implements ScrollableItem, IRelic, IDragonMagicItem {
@@ -92,6 +95,7 @@ public class WeatherFairyStaffItem extends SwordItem implements ScrollableItem, 
                 TimeChangeBall auroraBall = EntityInit.STARBALL_ENTITY.get().spawn((ServerLevel) world, (CompoundTag) null, null, blockPos, MobSpawnType.TRIGGERED, true, false);
                 if (auroraBall instanceof TimeChangeBall) {
                     auroraBall.setTimeChangeType(iterator == 3 ? TimeChangeBall.TIME_CHANGE_DAY : TimeChangeBall.TIME_CHANGE_NIGHT);
+                    ChronomancyProgress.grant(user, ForgeRegistries.ITEMS.getKey(this));
                 }
             }
         }

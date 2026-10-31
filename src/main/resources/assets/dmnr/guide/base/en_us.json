@@ -2260,6 +2260,64 @@
       }
     ]
   },
+  "Component: Accelerate Time": {
+    "index": "2",
+    "category": "sorcery",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Accelerate Time"
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "This spell accelerates the time of the targeted block: furnaces, machines and other blocks that work over time run faster.\n- MAGNITUDE: each point doubles the speed (1 = 2x, 2 = 4x, 3 = 8x, 4 = 16x)\n- DURATION: how long the time is accelerated\n- PRECISION: crops, saplings and other growing blocks are accelerated as well, but this is very expensive",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Bending time is exhausting: after the cast I suffer from Chrono Exhaustion for a minute. As long as it lasts, I can neither cast this spell again nor use Chrono Anchor.",
+            "color": ""
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Accelerate Time is a silver spell",
+            "color": "gray"
+          },
+          {
+            "text": ": I can only cast it once I know it by rote. Only those who bend time itself learn to accelerate it.\n\nOnce I have reached the fifth tier, every time I bend time deepens my understanding: with Sunrise, Nightfall, Chrono Anchor or the Staff of the Weather Fairy, and to a lesser extent with the Rituals of Aurora and Eventide."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Time needs a while to settle, so I gain new insight at most every 20 minutes. The powerful leaders of the factions might also leave an Arcane Thesis about this spell."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "spell_part",
+        "location": "dmnr:components/accelerate_time"
+      }
+    ]
+  },
   "Component: Mark": {
     "index": "2",
     "category": "sorcery",

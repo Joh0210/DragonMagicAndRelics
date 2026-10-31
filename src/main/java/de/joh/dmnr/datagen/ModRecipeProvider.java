@@ -390,6 +390,12 @@ public class ModRecipeProvider extends MnaRecipeProvider {
     }
 
     private void components(Consumer<FinishedRecipe> writer) {
+        // silver spell: becomes rote by bending time (ChronomancyProgress)
+        save(writer, component(SpellInit.ACCELERATE_TIME, 5)
+                .items(GREATER_MOTE_ARCANE.get(), RITUAL_FOCUS_GREATER.get(), TRANSMUTED_SILVER.get(), Items.ECHO_SHARD)
+                .item(Items.CLOCK, 2)
+                .patterns(HOURGLASS, INFINITY, HOURGLASS));
+
         save(writer, component(SpellInit.ALTERNATIVERECALL, 3)
                 .items(VINTEUM_DUST.get(), VINTEUM_DUST.get(), RUNE_MARKING.get(), MOTE_ENDER.get())
                 .patterns(INVERTED_TRIANGLE, SQUARE));

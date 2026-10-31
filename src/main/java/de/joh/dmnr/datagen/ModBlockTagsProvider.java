@@ -48,6 +48,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 .add(Blocks.CACTUS, Blocks.SUGAR_CANE, Blocks.BAMBOO, Blocks.VINE, Blocks.GLOW_LICHEN, Blocks.LILY_PAD,
                         Blocks.BIG_DRIPLEAF, Blocks.BROWN_MUSHROOM, Blocks.RED_MUSHROOM);
 
+        // empty, for modpacks: blocks whose time Accelerate Time can't accelerate
+        tag(BlockTags.create(ModTags.Blocks.ACCELERATE_TIME_BLACKLIST));
+
         tag(BlockTags.create(new ResourceLocation("create", "non_movable")))
                 .addOptional(CreateInit.SPECTRAL_MOTOR.getId())
                 .addOptional(CreateInit.ARCANE_ENGINE.getId())
