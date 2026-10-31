@@ -106,12 +106,6 @@ public class CommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Boolean> ACCELERATE_TIME_ENABLED;
 
     /**
-     * Maximum speed factor of Accelerate Time. Every Magnitude level doubles the speed.
-     * @see AccelerateTimeComponent
-     */
-    public static final ForgeConfigSpec.ConfigValue<Integer> ACCELERATE_TIME_MAX_FACTOR;
-
-    /**
      * Can Accelerate Time accelerate random ticks (crops, saplings, ...) when Precision is used?
      * @see AccelerateTimeComponent
      */
@@ -176,10 +170,8 @@ public class CommonConfig {
         BUILDER.pop();
 
         BUILDER.push("Accelerate Time Configs");
-        ACCELERATE_TIME_ENABLED = BUILDER.comment("If false: Accelerate Time can no longer be inscribed, is no longer part of the silver spells dropped as Arcane Thesis, and spells that already contain it fail. The attribute ranges and costs can be changed in the spell part configs of Mana and Artifice.")
+        ACCELERATE_TIME_ENABLED = BUILDER.comment("If false: Accelerate Time can no longer be inscribed, is no longer part of the silver spells dropped as Arcane Thesis, and spells that already contain it fail. The attribute ranges and costs can be changed in the spell part configs of Mana and Artifice, e.g. the maximum Magnitude: every level doubles the speed of the block's time (1 = 2x, 2 = 4x, 3 = 8x, 4 = 16x).")
                 .define("Is Accelerate Time enabled?", true);
-        ACCELERATE_TIME_MAX_FACTOR = BUILDER.comment("Every Magnitude level doubles the speed of the block's time (1 = 2x, 2 = 4x, 3 = 8x, 4 = 16x). Higher factors are capped to this value. The Magnitude range itself can be changed in the spell part configs of Mana and Artifice.")
-                .defineInRange("Accelerate Time maximum speed factor:", 16, 2, 256);
         ACCELERATE_TIME_RANDOM_TICKS = BUILDER.comment("If true: With Precision, Accelerate Time also accelerates random ticks (crops, saplings, ...) by the same factor.")
                 .define("Can Accelerate Time accelerate random ticks?", true);
         ACCELERATE_TIME_EXHAUSTION = BUILDER.comment("Seconds of Chrono Exhaustion the caster suffers after casting Accelerate Time. While exhausted, neither Accelerate Time nor Chrono Anchor can be cast. 0 disables it.")

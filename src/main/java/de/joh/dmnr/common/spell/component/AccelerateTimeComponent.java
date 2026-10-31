@@ -32,7 +32,7 @@ import net.minecraft.world.level.block.Block;
 /**
  * This spell accelerates the time of the targeted block: its block entity (furnace, machine, ...) is ticked additionally,
  * with Precision also its random ticks (crops, saplings, ...).
- * <br> - MAGNITUDE: every level doubles the speed (up to {@link CommonConfig#ACCELERATE_TIME_MAX_FACTOR})
+ * <br> - MAGNITUDE: every level doubles the speed (the maximum is set in the spell part config of M&A)
  * <br> - DURATION: duration of the acceleration
  * <br> - PRECISION: also accelerates the random ticks, very expensive
  * <br> Afterwards the caster suffers from Chrono Exhaustion, which prevents casting it (and Chrono Anchor) again directly.
@@ -73,10 +73,9 @@ public class AccelerateTimeComponent extends SpellEffect {
             return ComponentApplicationResult.FAIL;
         }
 
-        // every Magnitude level doubles the speed: 2x, 4x, 8x, 16x
+        // every Magnitude level doubles the speed: 2x, 4x, 8x, 16x (limited to 30 levels against an overflow)
         int magnitude = Math.round(modificationData.getValue(Attribute.MAGNITUDE));
-        int factor = Math.min(1 << Math.min(magnitude, 30), CommonConfig.ACCELERATE_TIME_MAX_FACTOR.get());
-        int extraTicks = factor - 1;
+        int extraTicks = (1 << Math.min(magnitude, 30)) - 1;
         int durationTicks = Math.round(modificationData.getValue(Attribute.DURATION) * 20);
         TimeAccelerationData.accelerate(level, pos, extraTicks, durationTicks, randomTicks);
 

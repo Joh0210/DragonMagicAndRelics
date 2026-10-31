@@ -1,9 +1,11 @@
 package de.joh.dmnr.common.util;
 
+import com.mna.api.affinity.Affinity;
+import com.mna.api.particles.MAParticleType;
+import com.mna.api.particles.ParticleInit;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.spell.component.AccelerateTimeComponent;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -70,9 +72,39 @@ public class TimeAccelerationData extends SavedData {
             } else if (level.shouldTickBlocksAt(pos)) {
                 tickBlock(level, pos, entry.getValue());
                 if (gameTime % 10 == 0) {
-                    level.sendParticles(ParticleTypes.REVERSE_PORTAL, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 3, 0.4, 0.4, 0.4, 0.02);
+                    spawnParticles(level, pos, entry.getValue());
                 }
             }
+        }
+    }
+
+    /**
+     * Arcane trails and sparkles that orbit the block like clock hands, plus rising arcane sparkles.
+     * The number and speed of the orbits grow with the factor: slow and few at 2x, fast and many at 16x.
+     */
+    private static void spawnParticles(ServerLevel level, BlockPos pos, Acceleration acceleration) {
+        int power = Math.max(1, Math.min(31 - Integer.numberOfLeadingZeros(acceleration.extraTicks() + 1), 6));
+        double centerX = pos.getX() + 0.5;
+        double centerZ = pos.getZ() + 0.5;
+
+        // count 0: the client uses the offsets as the velocity of the particle;
+        // for orbiting particles of M&A: angular speed per tick, upward speed per tick, radius.
+        // The trails are flat horizontal ribbons, almost invisible when looking at the block from the front,
+        // so the orbiting sparkles (which always face the camera) carry the effect from that side.
+        MAParticleType trail = new MAParticleType(ParticleInit.TRAIL_ORBIT.get()).setColor(Affinity.ARCANE);
+        MAParticleType orbitSparkle = new MAParticleType(ParticleInit.BLUE_SPARKLE_ORBIT.get()).setColor(Affinity.ARCANE);
+        for (int i = 0; i < power; i++) {
+            level.sendParticles(trail, centerX, pos.getY() + 0.1 + level.random.nextDouble() * 0.8, centerZ, 0, 0.08 * power, 0.01, 0.6, 1.0);
+            for (int j = 0; j < 2; j++) {
+                level.sendParticles(orbitSparkle, centerX, pos.getY() + 0.1 + level.random.nextDouble() * 0.8, centerZ, 0, 0.08 * power, 0.01, 0.6, 1.0);
+            }
+        }
+
+        MAParticleType sparkle = new MAParticleType(ParticleInit.ARCANE.get()).setColor(Affinity.ARCANE);
+        for (int i = 0; i < 2; i++) {
+            double x = pos.getX() + level.random.nextDouble();
+            double z = pos.getZ() + level.random.nextDouble();
+            level.sendParticles(sparkle, x, pos.getY() + 0.8, z, 0, 0.0, 0.03, 0.0, 1.0);
         }
     }
 
