@@ -2,6 +2,7 @@ package de.joh.dmnr.client.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.client.block.entity.RiftEmitterRenderer;
+import de.joh.dmnr.client.item.WingGradientTextures;
 import de.joh.dmnr.client.item.WingRenderLayer;
 import de.joh.dmnr.common.init.BlockEntitieInit;
 import de.joh.dmnr.common.init.ItemInit;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
+import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -42,6 +44,15 @@ public class ClientModHandler {
         if (event.getRenderer(EntityType.ARMOR_STAND) instanceof ArmorStandRenderer renderer) {
             renderer.addLayer(new WingRenderLayer<>(renderer, event.getEntityModels()));
         }
+    }
+
+    /**
+     * The baked gradient textures of wings depend on the resource packs.
+     * @see WingGradientTextures
+     */
+    @SubscribeEvent
+    public static void registerReloadListeners(RegisterClientReloadListenersEvent event) {
+        event.registerReloadListener(WingGradientTextures.INSTANCE);
     }
 
     /**

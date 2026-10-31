@@ -6,6 +6,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
@@ -62,16 +63,38 @@ public interface IWingItem {
     }
 
     /**
-     * One texture of the wings, tinted with a color.
+     * One texture of the wings, either tinted with a color or recolored as a gradient between two colors.
      * @param texture texture with the layout of the vanilla Elytra texture
-     * @param color RGB color the texture is multiplied with
+     * @param color RGB color the texture is multiplied with; for a gradient the color of its brightest pixels
+     * @param darkColor null for a tinted layer; for a gradient the RGB color of the darkest pixels of the texture,
+     *                  every other pixel gets a color in between by its brightness
+     * @see de.joh.dmnr.client.item.WingGradientTextures
      */
-    record WingLayer(ResourceLocation texture, int color) {
+    record WingLayer(ResourceLocation texture, int color, @Nullable Integer darkColor) {
         /**
          * A layer that keeps the colors of its texture.
          */
         public WingLayer(ResourceLocation texture) {
             this(texture, 0xFFFFFF);
+        }
+
+        /**
+         * A layer whose texture is multiplied with the color, meant for gray textures.
+         */
+        public WingLayer(ResourceLocation texture, int color) {
+            this(texture, color, null);
+        }
+
+        /**
+         * A layer whose texture is recolored from the dark color at its darkest to the light color at its brightest
+         * pixels, meant for textures that are shaded but not gray, like the vanilla Elytra.
+         */
+        public static WingLayer gradient(ResourceLocation texture, int lightColor, int darkColor) {
+            return new WingLayer(texture, lightColor, darkColor);
+        }
+
+        public boolean isGradient() {
+            return darkColor != null;
         }
     }
 }

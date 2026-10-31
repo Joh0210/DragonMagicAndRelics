@@ -32,8 +32,8 @@ public class DyeDragonMageArmorC2SPacket {
      * @param primaryColor RGB color of the ornaments
      * @param secondaryColor RGB color of the plates
      * @param wingDesign wings of the chestplate
-     * @param wingPrimaryColor RGB color of the membrane or leaves of the wings
-     * @param wingSecondaryColor RGB color of the bones or branches of the wings
+     * @param wingPrimaryColor primary RGB color of the wings (membrane, leaves or tips)
+     * @param wingSecondaryColor secondary RGB color of the wings (bones, branches or the part near the back)
      * @param pieces the armor types to dye, other pieces keep their colors (and the chestplate its wings)
      */
     public DyeDragonMageArmorC2SPacket(int primaryColor, int secondaryColor, DragonMageArmorItem.WingDesign wingDesign,

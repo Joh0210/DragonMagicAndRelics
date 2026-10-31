@@ -145,14 +145,15 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     }
 
     /**
-     * @return the RGB color of the membrane or leaves of the wings, the color of the ornaments if none is stored
+     * @return the primary RGB color of the wings (membrane, leaves or tips), the color of the ornaments if none is stored
      */
     public static int getWingPrimaryColor(ItemStack stack) {
         return getColor(stack, WING_PRIMARY_COLOR_TAG, getPrimaryColor(stack));
     }
 
     /**
-     * @return the RGB color of the bones or branches of the wings, the color of the plates if none is stored
+     * @return the secondary RGB color of the wings (bones, branches or the part near the back), the color of the plates
+     * if none is stored
      */
     public static int getWingSecondaryColor(ItemStack stack) {
         return getColor(stack, WING_SECONDARY_COLOR_TAG, getSecondaryColor(stack));
@@ -160,8 +161,8 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
 
     /**
      * Gives a chestplate wings, other pieces of armor are not changed. Without wings no wing tags are stored.
-     * @param primaryColor RGB color of the membrane or leaves
-     * @param secondaryColor RGB color of the bones or branches
+     * @param primaryColor RGB color of the membrane, leaves or tips
+     * @param secondaryColor RGB color of the bones, branches or the part near the back
      */
     public static void setWings(ItemStack stack, WingDesign design, int primaryColor, int secondaryColor) {
         if (!(stack.getItem() instanceof DragonMageArmorItem armor) || armor.getType() != Type.CHESTPLATE) {
@@ -188,18 +189,15 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     }
 
     /**
-     * The wings of the chestplate: the base texture tinted with the primary wing color, the overlay texture with the
-     * secondary one.
+     * The wings of the chestplate in its wing colors.
+     * @see WingDesign#getLayers(int, int)
      */
     @Override
     public @NotNull List<WingLayer> getWingLayers(ItemStack stack) {
-        WingDesign design = getWingDesign(stack);
-        if (this.getType() != Type.CHESTPLATE || design == WingDesign.NONE) {
+        if (this.getType() != Type.CHESTPLATE) {
             return List.of();
         }
-        return List.of(
-                new WingLayer(design.getBaseTexture(), getWingPrimaryColor(stack)),
-                new WingLayer(design.getOverlayTexture(), getWingSecondaryColor(stack)));
+        return getWingDesign(stack).getLayers(getWingPrimaryColor(stack), getWingSecondaryColor(stack));
     }
 
     private static int getColor(ItemStack stack, String key, int defaultColor) {
@@ -370,13 +368,19 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
     }
 
     /**
-     * Wings the chestplate can have. Each design has a base texture (membrane or leaves) and an overlay texture (bones
-     * or branches), both gray so they can be tinted.
+     * Wings the chestplate can have.
+     * <br> Dragon and wild wings have a base texture (membrane or leaves) tinted with the primary wing color and an
+     * overlay texture (bones or branches) tinted with the secondary one, both gray.
+     * <br> Elytra wings use the texture of the vanilla Elytra (or of the active resource pack) as a gradient: the
+     * darkest pixels near the back get the secondary color, the brightest at the tips the primary color.
      */
     public enum WingDesign {
         NONE("none"),
         DRAGON("dragon"),
-        WILD("wild");
+        WILD("wild"),
+        ELYTRA("elytra");
+
+        private static final ResourceLocation VANILLA_ELYTRA = new ResourceLocation("textures/entity/elytra.png");
 
         private final String name;
         private final ResourceLocation baseTexture;
@@ -395,12 +399,17 @@ public class DragonMageArmorItem extends ArmorItem implements IForgeItem, ISetIt
             return name;
         }
 
-        public ResourceLocation getBaseTexture() {
-            return baseTexture;
-        }
-
-        public ResourceLocation getOverlayTexture() {
-            return overlayTexture;
+        /**
+         * @param primaryColor RGB color of the membrane, leaves or tips
+         * @param secondaryColor RGB color of the bones, branches or the part near the back
+         * @return the layers of these wings, empty for {@link #NONE}
+         */
+        public List<WingLayer> getLayers(int primaryColor, int secondaryColor) {
+            return switch (this) {
+                case NONE -> List.of();
+                case ELYTRA -> List.of(WingLayer.gradient(VANILLA_ELYTRA, primaryColor, secondaryColor));
+                default -> List.of(new WingLayer(baseTexture, primaryColor), new WingLayer(overlayTexture, secondaryColor));
+            };
         }
 
         /**
