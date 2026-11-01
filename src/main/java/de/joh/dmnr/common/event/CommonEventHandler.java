@@ -1,8 +1,10 @@
 package de.joh.dmnr.common.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.common.dragonmagic.AntidoteBraceletDragonMagic;
 import de.joh.dmnr.common.dragonmagic.ArcaneCrownDragonMagic;
 import de.joh.dmnr.common.dragonmagic.EldritchOrbDragonMagic;
+import de.joh.dmnr.common.dragonmagic.EnderguardAmuletDragonMagic;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ItemInit;
@@ -18,10 +20,12 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.event.entity.living.EnderManAngerEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -94,10 +98,12 @@ public class CommonEventHandler {
 
     /**
      * - Arcane Crown (Dragon Magic)
+     * <br> - Antidote Bracelet (Dragon Magic)
      */
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event){
         ArcaneCrownDragonMagic.eventHandleManaBoost(event);
+        AntidoteBraceletDragonMagic.eventHandlePoisonConversion(event);
     }
 
     @SubscribeEvent
@@ -122,6 +128,23 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onAttackEntity(AttackEntityEvent event) {
         EldritchOrbDragonMagic.eventHandleAttack(event);
+    }
+
+    /**
+     * Runs before Mana and Artifice, which consumes the charge of its items in the same event.
+     * <br> - Enderguard Amulet (Dragon Magic)
+     */
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void onExplosionStartBeforeMna(ExplosionEvent.Start event) {
+        EnderguardAmuletDragonMagic.eventHandleRefill(event);
+    }
+
+    /**
+     * - Enderguard Amulet (Dragon Magic)
+     */
+    @SubscribeEvent
+    public static void onEnderManAnger(EnderManAngerEvent event) {
+        EnderguardAmuletDragonMagic.eventHandleEnderManAnger(event);
     }
 
     /**

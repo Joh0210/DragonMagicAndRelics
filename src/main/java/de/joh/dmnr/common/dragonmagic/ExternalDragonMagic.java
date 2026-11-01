@@ -1,8 +1,12 @@
 package de.joh.dmnr.common.dragonmagic;
 
+import com.mna.api.items.ChargeableItem;
 import de.joh.tnl.api.item.DragonMagicRegistry;
 import de.joh.tnl.api.item.IDragonMagicItem;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import top.theillusivec4.curios.api.CuriosApi;
 
 /**
  * Dragon Magic of an item of another mod (e.g. Mana and Artifice), registered in {@link DragonMagicRegistry}.
@@ -30,5 +34,17 @@ public abstract class ExternalDragonMagic implements IDragonMagicItem {
     @Override
     public String dragonMagicID() {
         return dragonMagicID;
+    }
+
+    /**
+     * Fills the charge of a chargeable item of Mana and Artifice completely, if the player wears it as a curio.
+     */
+    protected static void refillEquippedCurio(ChargeableItem item, Player player) {
+        CuriosApi.getCuriosInventory(player).ifPresent(curios -> curios.findFirstCurio(item).ifPresent(slot -> {
+            ItemStack stack = slot.stack();
+            // refundMana does nothing for an item that has never been charged and has no tag yet
+            stack.getOrCreateTag();
+            item.refundMana(stack, item.getMaxMana() - item.getMana(stack), player);
+        }));
     }
 }

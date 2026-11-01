@@ -123,6 +123,27 @@ public class CommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> PRISMATIC_AMULET_DM_EXTRA_PAIRS;
 
     /**
+     * Percentage of the remaining duration of Poison that the Antidote Bracelet of Mana and Artifice turns into
+     * Regeneration while it has Dragon Magic.
+     * @see de.joh.dmnr.common.dragonmagic.AntidoteBraceletDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> ANTIDOTE_BRACELET_DM_REGENERATION_DURATION;
+
+    /**
+     * Level of the Wither the Witherguard Amulet of Mana and Artifice inflicts on creatures that hurt its wearer while it
+     * has Dragon Magic.
+     * @see de.joh.dmnr.common.dragonmagic.WitherguardAmuletDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> WITHERGUARD_AMULET_DM_WITHER_LEVEL;
+
+    /**
+     * Seconds of Wither the Witherguard Amulet of Mana and Artifice inflicts on creatures that hurt its wearer while it
+     * has Dragon Magic.
+     * @see de.joh.dmnr.common.dragonmagic.WitherguardAmuletDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> WITHERGUARD_AMULET_DM_WITHER_DURATION;
+
+    /**
      * Rotation speed of the Arcane Engine in RPM (Create integration).
      * @see de.joh.dmnr.compat.create.block.EngineBlock
      */
@@ -253,6 +274,12 @@ public class CommonConfig {
                 .defineInRange("Eldritch Orb Dragon Magic damage multiplier:", 3, 1, 20);
         PRISMATIC_AMULET_DM_EXTRA_PAIRS = BUILDER.comment("Number of additional projectiles on each side of the fan of the Prismatic Amulet of Mana and Artifice while it has Dragon Magic. 1 results in five projectiles instead of three, 2 in seven. Every projectile carries the whole spell. The tooltip and the Codex show the default value.")
                 .defineInRange("Prismatic Amulet Dragon Magic additional projectiles per side:", 1, 0, 3);
+        ANTIDOTE_BRACELET_DM_REGENERATION_DURATION = BUILDER.comment("Percentage of the remaining duration of Poison that the Antidote Bracelet of Mana and Artifice turns into Regeneration of the same level while it has Dragon Magic, instead of only removing the Poison. The conversion uses no charge, but the bracelet must have charge left. 0 only removes the Poison. The tooltip and the Codex show the default value.")
+                .defineInRange("Antidote Bracelet Dragon Magic Regeneration duration (%):", 50, 0, 100);
+        WITHERGUARD_AMULET_DM_WITHER_LEVEL = BUILDER.comment("Level of the Wither the Witherguard Amulet of Mana and Artifice inflicts on every creature that hurts its wearer while it has Dragon Magic and charge left. The tooltip and the Codex show the default value.")
+                .defineInRange("Witherguard Amulet Dragon Magic Wither level:", 2, 1, 5);
+        WITHERGUARD_AMULET_DM_WITHER_DURATION = BUILDER.comment("Seconds of Wither the Witherguard Amulet of Mana and Artifice inflicts on every creature that hurts its wearer while it has Dragon Magic and charge left. 0 disables this effect. The tooltip and the Codex show the default value.")
+                .defineInRange("Witherguard Amulet Dragon Magic Wither duration (seconds):", 5, 0, 60);
         BUILDER.pop();
 
         BUILDER.push("Create Integration Configs");

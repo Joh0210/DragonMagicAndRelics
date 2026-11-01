@@ -190,6 +190,9 @@
   "item.mna.battlemage_amulet.dragonmagic": "Doubles the spell and melee damage bonus of the amulet",
   "item.mna.eldritch_orb.dragonmagic": "Triples the damage of its arcane bolts",
   "item.mna.projectile_amulet.dragonmagic": "The Projectile shape fires five projectiles instead of three",
+  "item.mna.enderguard_amulet.dragonmagic": "Never runs out of charge and Endermen ignore your gaze",
+  "item.mna.antidote_bracelet.dragonmagic": "Turns poison into Regeneration for half its duration",
+  "item.mna.witherguard_amulet.dragonmagic": "Attackers suffer Wither II for 5 seconds",
 
 
   "dmnr:tier_3/craft_bracelet_of_friendship.title": "gamerule doFriendlyFire false",

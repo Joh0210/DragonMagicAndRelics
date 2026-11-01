@@ -3,11 +3,8 @@ package de.joh.dmnr.common.dragonmagic;
 import com.mna.api.events.ComponentApplyingEvent;
 import com.mna.api.spells.collections.Components;
 import com.mna.items.ItemInit;
-import com.mna.items.artifice.SpellModifierRing;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import top.theillusivec4.curios.api.CuriosApi;
 
 /**
  * Dragon Magic of the Ring of Silk of Mana and Artifice, which gives Break spells Silk Touch as long as it has charge,
@@ -26,15 +23,7 @@ public class RingOfSilkDragonMagic extends ExternalDragonMagic {
                 && event.getSource().getCaster() instanceof Player player
                 && !player.level().isClientSide()
                 && ExternalDragonMagicInit.RING_OF_SILK.hasDragonMagic(player)) {
-            SpellModifierRing ring = ItemInit.SILK_TOUCH_RING.get();
-            CuriosApi.getCuriosInventory(player).ifPresent(curios -> curios.findFirstCurio(ring)
-                    .ifPresent(slot -> refill(ring, slot.stack(), player)));
+            refillEquippedCurio(ItemInit.SILK_TOUCH_RING.get(), player);
         }
-    }
-
-    private static void refill(SpellModifierRing ring, ItemStack stack, Player player) {
-        // refundMana does nothing for a ring that has never been charged and has no tag yet
-        stack.getOrCreateTag();
-        ring.refundMana(stack, ring.getMaxMana() - ring.getMana(stack), player);
     }
 }

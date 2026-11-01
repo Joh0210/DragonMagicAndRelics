@@ -5,6 +5,7 @@ import de.joh.dmnr.common.dragonmagic.EldritchOrbDragonMagic;
 import de.joh.dmnr.common.dragonmagic.FortifyingAmuletDragonMagic;
 import de.joh.dmnr.common.dragonmagic.RingOfBrittleBoneDragonMagic;
 import de.joh.dmnr.common.dragonmagic.WardingAmuletDragonMagic;
+import de.joh.dmnr.common.dragonmagic.WitherguardAmuletDragonMagic;
 import de.joh.dmnr.common.effects.harmful.HellfireMobEffect;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.DragonMagicAndRelics;
@@ -35,6 +36,7 @@ public class DamageEventHandler {
      * <br> - Glass Cannon Belt
      * <br> - Sturdy Belt
      * <br> - Amulet of the Battlemage (Dragon Magic)
+     * <br> - Witherguard Amulet (Dragon Magic)
      */
     @SubscribeEvent
     public static void onLivingHurt(LivingHurtEvent event) {
@@ -43,6 +45,7 @@ public class DamageEventHandler {
         RevengeCharmItem.handleRevengeCharm(event);
         FactionAmuletItem.eventHandleDeclarationOfWar(event);
         BattlemageAmuletDragonMagic.eventHandleMeleeDamage(event);
+        WitherguardAmuletDragonMagic.eventHandleWitherAttacker(event);
 
         if (OcelotCurioItem.eventHandleKineticProtection(event)){
             return;

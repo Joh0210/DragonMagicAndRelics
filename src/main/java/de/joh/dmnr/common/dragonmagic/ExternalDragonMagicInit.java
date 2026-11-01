@@ -19,6 +19,9 @@ public class ExternalDragonMagicInit {
     public static final BattlemageAmuletDragonMagic BATTLEMAGE_AMULET = register(new BattlemageAmuletDragonMagic());
     public static final EldritchOrbDragonMagic ELDRITCH_ORB = register(new EldritchOrbDragonMagic());
     public static final PrismaticAmuletDragonMagic PRISMATIC_AMULET = register(new PrismaticAmuletDragonMagic());
+    public static final EnderguardAmuletDragonMagic ENDERGUARD_AMULET = register(new EnderguardAmuletDragonMagic());
+    public static final AntidoteBraceletDragonMagic ANTIDOTE_BRACELET = register(new AntidoteBraceletDragonMagic());
+    public static final WitherguardAmuletDragonMagic WITHERGUARD_AMULET = register(new WitherguardAmuletDragonMagic());
 
     private static <T extends ExternalDragonMagic> T register(T dragonMagic) {
         DragonMagicRegistry.register(dragonMagic.getItemId(), dragonMagic);

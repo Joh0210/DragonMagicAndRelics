@@ -1378,6 +1378,45 @@
             "text": ": The Projectile shape fires five projectiles instead of three."
           }
         ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Enderguard Amulet",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": Never runs out of charge, and Endermen no longer mind when I look at them."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Antidote Bracelet",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": Turns poison into Regeneration of the same level for half its remaining duration, without using up charge."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Witherguard Amulet",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": As long as it has charge, whoever hurts me suffers Wither II for 5 seconds."
+          }
+        ]
       }
     ],
     "related_recipes": [
