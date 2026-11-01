@@ -27,6 +27,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
     @Override
     protected void generate() {
         dropSelf(BlockInit.RIFT_EMITTER.get());
+        dropSelf(BlockInit.TRANSPOSER.get());
 
         for (RegistryObject<? extends Block> block : DataGenerators.placeableIntegrationBlocks()) {
             add(block.get(), LootTable.lootTable().withPool(LootPool.lootPool()

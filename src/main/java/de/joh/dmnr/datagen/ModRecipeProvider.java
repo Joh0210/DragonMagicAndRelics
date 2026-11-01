@@ -387,6 +387,15 @@ public class ModRecipeProvider extends MnaRecipeProvider {
                 .item(Items.ENDER_PEARL, 2)
                 .item(Items.OBSIDIAN, 2)
                 .patterns(SQUARE, DIAMOND, SQUARE));
+
+        // the arcane sandstone body with the exchange materials of the Transmute component (quicksilver, chimerite)
+        // and ender for the distance; teleportation is the theme of the Council
+        save(writer, "transposer", manaweaving(ItemInit.TRANSPOSER_ITEM.get(), 3)
+                .requiredFaction(FactionIDs.COUNCIL)
+                .item(com.mna.blocks.BlockInit.ARCANE_SANDSTONE.get(), 2)
+                .items(TRANSMUTED_SILVER.get(), CHIMERITE_GEM.get(), MOTE_ENDER.get(), RUNE_ENDER.get(),
+                        MOTE_ARCANE.get())
+                .patterns(TRIANGLE, BOLT, INVERTED_TRIANGLE));
     }
 
     private void components(Consumer<FinishedRecipe> writer) {
@@ -718,6 +727,11 @@ public class ModRecipeProvider extends MnaRecipeProvider {
 
         save(writer, distillation(ItemInit.RIFT_EMITTER_ITEM.get())
                 .admixture("vessel", 32).admixture("alien", 24).admixture("travel", 16).admixture("permanence", 8)
+                .essentia("albedo", 5));
+
+        // no sublimation route and no fabrication (default wisdom): both would bypass the Council lock
+        save(writer, distillation(ItemInit.TRANSPOSER_ITEM.get())
+                .admixture("travel", 32).admixture("alien", 20).admixture("stone", 12).admixture("wizard", 12)
                 .essentia("albedo", 5));
 
         // the Dragon Mage chain consumes a relic, so the item that carries it on yields its legend

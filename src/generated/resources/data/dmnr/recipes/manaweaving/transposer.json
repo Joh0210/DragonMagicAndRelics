@@ -1,0 +1,21 @@
+{
+  "type": "mna:manaweaving-recipe",
+  "items": [
+    "mna:decoration/arcane_sandstone",
+    "mna:decoration/arcane_sandstone",
+    "mna:transmuted_silver",
+    "mna:chimerite_gem",
+    "mna:mote_ender",
+    "mna:rune_ender",
+    "mna:mote_arcane"
+  ],
+  "output": "dmnr:transposer",
+  "patterns": [
+    "mna:manaweave_patterns/triangle",
+    "mna:manaweave_patterns/bolt",
+    "mna:manaweave_patterns/inverted_triangle"
+  ],
+  "quantity": 1,
+  "requiredFaction": "mna:council",
+  "tier": 3
+}

@@ -304,6 +304,66 @@
       }
     ]
   },
+  "Transposer": {
+    "index": "1",
+    "category": "artifice",
+    "sections": [
+      {
+        "type": "title",
+        "value": "Transposer"
+      },
+      {
+        "type": "text",
+        "json": [
+          {
+            "text": "On a redstone signal, the Transposer swaps the blocks and creatures above it with those above a second Transposer in the same dimension.\n\nOnly the activated one needs a "
+          },
+          {
+            "text": "Rune of Marking",
+            "color": "blue"
+          },
+          {
+            "text": " bound to the other. Without a "
+          },
+          {
+            "text": "Mystic Focus",
+            "color": "blue"
+          },
+          {
+            "text": ", only the block right above it is swapped; a focus enlarges the area to a cube of "
+          },
+          {
+            "text": "3, 5 or 7 blocks",
+            "color": "dark_purple"
+          },
+          {
+            "text": " (Minor, Lesser, Greater)."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "json": [
+          {
+            "text": "Before it can swap again, the signal has to turn off. Unbreakable blocks stay in place, and if either area is protected, nothing is swapped at all.\n\nThis can only be crafted by those allied with the "
+          },
+          {
+            "text": "Council of Wizards",
+            "color": "blue"
+          },
+          {
+            "text": "."
+          }
+        ]
+      }
+    ],
+    "related_recipes": [
+      {
+        "type": "manaweaving_altar",
+        "location": "dmnr:manaweaving/transposer"
+      }
+    ]
+  },
   "Bracelet of Spell Storing": {
     "index": "1",
     "category": "artifice",

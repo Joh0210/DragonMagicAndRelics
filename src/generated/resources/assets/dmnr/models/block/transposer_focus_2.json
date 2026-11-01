@@ -1,0 +1,60 @@
+{
+  "elements": [
+    {
+      "faces": {
+        "east": {
+          "cullface": "east",
+          "forge_data": {
+            "ambient_occlusion": false,
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#side"
+        },
+        "north": {
+          "cullface": "north",
+          "forge_data": {
+            "ambient_occlusion": false,
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#side"
+        },
+        "south": {
+          "cullface": "south",
+          "forge_data": {
+            "ambient_occlusion": false,
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#side"
+        },
+        "west": {
+          "cullface": "west",
+          "forge_data": {
+            "ambient_occlusion": false,
+            "block_light": 15,
+            "sky_light": 15
+          },
+          "texture": "#side"
+        }
+      },
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "shade": false,
+      "to": [
+        16,
+        16,
+        16
+      ]
+    }
+  ],
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "particle": "dmnr:block/transposer/side_focus_2",
+    "side": "dmnr:block/transposer/side_focus_2"
+  }
+}

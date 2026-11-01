@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "bottom": "dmnr:block/transposer/bottom",
+    "side": "dmnr:block/transposer/side",
+    "top": "dmnr:block/transposer/top"
+  }
+}

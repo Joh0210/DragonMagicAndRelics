@@ -90,12 +90,13 @@ src/main/java/de/joh/dmnr/
 │   ├── init/                      Registrations: ItemInit, BlockInit, BlockEntitieInit, EffectInit, CreativeModeTabInit,
 │   │                              KeybindInit, SpellInit (M&A shapes/components), RitualInit (M&A rituals)
 │   ├── item/                      All items, mainly curios (ICurioItem); spellstoring/ and material/ (ArmorMaterials)
-│   ├── block/                     Blocks + block entities (Rift Emitter)
+│   ├── block/                     Blocks + block entities (Rift Emitter, Transposer)
 │   ├── effects/                   MobEffects, grouped into beneficial/harmful/neutral
 │   ├── spell/component, shape/    Custom M&A spell components and shapes
 │   ├── ritual/                    Custom M&A ritual effects
 │   ├── event/                     Forge bus handlers: CommonEventHandler, DamageEventHandler, MagicEventHandler
-│   └── util/                      CommonConfig (dmnr-common.toml), RLoc (ResourceLocation helper)
+│   ├── gametest/                  GameTests of the core content (those of the integrations live in compat/<mod>/gametest)
+│   └── util/                      CommonConfig (dmnr-common.toml), RLoc (ResourceLocation helper), TranspositionHelper
 ├── datagen/                       Data generators (GatherDataEvent): blockstates, block models, item models, tags, block loot tables
 └── networking/                    ModMessages (SimpleChannel) and packet/ (S2C/C2S packets)
 src/main/templates/                META-INF/mods.toml, pack.mcmeta (expanded from gradle.properties)

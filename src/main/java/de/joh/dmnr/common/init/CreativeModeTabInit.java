@@ -94,6 +94,7 @@ public class CreativeModeTabInit {
                         pOutput.accept(ItemInit.PURIFIED_MUTANDIS.get());
                         pOutput.accept(ItemInit.MANA_CAKE.get());
                         pOutput.accept(ItemInit.RIFT_EMITTER_ITEM.get());
+                        pOutput.accept(ItemInit.TRANSPOSER_ITEM.get());
                         pOutput.accept(ItemInit.BRIMSTONE_CHALK.get());
                         pOutput.accept(ItemInit.BRIMSTONE_COAL.get());
                     })

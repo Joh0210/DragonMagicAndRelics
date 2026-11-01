@@ -1,5 +1,6 @@
 {
   "values": [
-    "dmnr:rift_emitter"
+    "dmnr:rift_emitter",
+    "dmnr:transposer"
   ]
 }

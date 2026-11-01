@@ -141,6 +141,42 @@ public class CommonConfig {
      */
     public static final ForgeConfigSpec.ConfigValue<List<? extends String>> CHRONOMANCY_SOURCES;
 
+    /**
+     * Radius of the area a Transposer without a Mystic Focus swaps, -1 if it needs a focus.
+     * @see de.joh.dmnr.common.block.entity.TransposerBlockEntity
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> TRANSPOSER_RADIUS_NO_FOCUS;
+
+    /**
+     * Radius of the area a Transposer with a Minor Mystic Focus swaps.
+     * @see de.joh.dmnr.common.block.entity.TransposerBlockEntity
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> TRANSPOSER_RADIUS_MINOR;
+
+    /**
+     * Radius of the area a Transposer with a Lesser Mystic Focus swaps.
+     * @see de.joh.dmnr.common.block.entity.TransposerBlockEntity
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> TRANSPOSER_RADIUS_LESSER;
+
+    /**
+     * Radius of the area a Transposer with a Greater Mystic Focus swaps.
+     * @see de.joh.dmnr.common.block.entity.TransposerBlockEntity
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> TRANSPOSER_RADIUS_GREATER;
+
+    /**
+     * Does the Transposer also swap the entities in its area?
+     * @see TranspositionHelper
+     */
+    public static final ForgeConfigSpec.ConfigValue<Boolean> TRANSPOSER_MOVE_ENTITIES;
+
+    /**
+     * Does a Transposer only swap with Transposers placed by the same player?
+     * @see de.joh.dmnr.common.block.entity.TransposerBlockEntity
+     */
+    public static final ForgeConfigSpec.ConfigValue<Boolean> TRANSPOSER_REQUIRE_SAME_OWNER;
+
     static {
         BUILDER.push("General Configs");
 
@@ -184,6 +220,21 @@ public class CommonConfig {
                 .defineInRange("Accelerate Time progress cooldown (seconds):", 1200, 0, 86_400);
         CHRONOMANCY_SOURCES = BUILDER.comment("Additional or changed sources of rote progress, as \"id=weight\". The id is a spell part (counted when it is applied to a target, even if its effect fails), a ritual (counted when it is completed) or a source registered by a mod. A weight of 0 disables a source. Built-in: dmnr:components/sunrise=1.0, dmnr:components/moonrise=1.0, mna:components/chrono_anchor=1.0, fnc:components/postponement=1.0, dmnr:weather_fairy_staff=1.0, mna:rituals/aurora=0.5, mna:rituals/eventide=0.5")
                 .defineListAllowEmpty(List.of("Accelerate Time progress sources:"), ArrayList::new, CommonConfig::isValidSource);
+        BUILDER.pop();
+
+        BUILDER.push("Transposer Configs");
+        TRANSPOSER_RADIUS_NO_FOCUS = BUILDER.comment("Radius of the area a Transposer without a Mystic Focus swaps. The area is a cube right above the Transposer, 2 * radius + 1 blocks wide, long and high (0 = 1x1x1, 1 = 3x3x3). -1: The Transposer needs a Mystic Focus.")
+                .defineInRange("Transposer radius without a Mystic Focus:", 0, -1, 8);
+        TRANSPOSER_RADIUS_MINOR = BUILDER.comment("Radius of the area a Transposer with a Minor Mystic Focus swaps.")
+                .defineInRange("Transposer radius with a Minor Mystic Focus:", 1, 0, 8);
+        TRANSPOSER_RADIUS_LESSER = BUILDER.comment("Radius of the area a Transposer with a Lesser Mystic Focus swaps.")
+                .defineInRange("Transposer radius with a Lesser Mystic Focus:", 2, 0, 8);
+        TRANSPOSER_RADIUS_GREATER = BUILDER.comment("Radius of the area a Transposer with a Greater Mystic Focus swaps.")
+                .defineInRange("Transposer radius with a Greater Mystic Focus:", 3, 0, 8);
+        TRANSPOSER_MOVE_ENTITIES = BUILDER.comment("If true: The Transposer also swaps the players, creatures and other entities in its area. Entities of the entity type tag dmnr:transposer_blacklist (by default the bosses) stay, like the blocks of the block tag dmnr:transposer_blacklist.")
+                .define("Does the Transposer swap entities?", true);
+        TRANSPOSER_REQUIRE_SAME_OWNER = BUILDER.comment("If true: A Transposer only swaps with Transposers that were placed by the same player. Transposers that were not placed by a player (e.g. by a command) can't swap then. Independent of this option, nothing is swapped if the owner of either Transposer may not break blocks in either area (claims of protection mods, wards of Mana and Artifice, ...).")
+                .define("Does the Transposer need the same owner?", false);
         BUILDER.pop();
 
         SPEC = BUILDER.build();

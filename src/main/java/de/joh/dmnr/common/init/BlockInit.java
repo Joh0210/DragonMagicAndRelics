@@ -2,6 +2,7 @@ package de.joh.dmnr.common.init;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.block.RiftEmitterBlock;
+import de.joh.dmnr.common.block.TransposerBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -26,6 +27,9 @@ public class BlockInit {
 
     public static final RegistryObject<Block> RIFT_EMITTER = registerBlockWithoutBlockItem("rift_emitter",
             () -> new RiftEmitterBlock(BlockBehaviour.Properties.copy(Blocks.STONE).strength(12.5F, 600.0F).requiresCorrectToolForDrops().noOcclusion()));
+    public static final RegistryObject<Block> TRANSPOSER = registerBlockWithoutBlockItem("transposer",
+            () -> new TransposerBlock(BlockBehaviour.Properties.copy(Blocks.STONE).strength(12.5F, 600.0F).requiresCorrectToolForDrops()
+                    .lightLevel(state -> state.getValue(TransposerBlock.LINKED) ? 7 : 0)));
 
 
     /**

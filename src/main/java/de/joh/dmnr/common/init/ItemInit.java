@@ -7,6 +7,7 @@ import de.joh.dmnr.common.item.spellstoring.RingOfNormalSpellStoringItem;
 import de.joh.tnl.api.item.CurioRegistry;
 import de.joh.tnl.api.item.CurioSlot;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -98,6 +99,7 @@ public class ItemInit {
     public static final RegistryObject<Item> PURIFIED_MUTANDIS = ITEMS.register("purified_mutandis", () -> new MutandisItem(true, (new Item.Properties())));
     public static final RegistryObject<Item> MANA_CAKE = ITEMS.register("mana_cake", ManaCakeItem::new);
     public static final RegistryObject<Item> RIFT_EMITTER_ITEM = ITEMS.register("rift_emitter", () -> new RiftEmitterItem(BlockInit.RIFT_EMITTER.get(), new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> TRANSPOSER_ITEM = ITEMS.register("transposer", () -> new BlockItem(BlockInit.TRANSPOSER.get(), new Item.Properties()));
     public static final RegistryObject<Item> BRIMSTONE_CHALK = ITEMS.register("brimstone_chalk", BrimstoneChalkItem::new);
     public static final RegistryObject<Item> BRIMSTONE_COAL = ITEMS.register("brimstone_coal", BrimstoneCoalItem::new);
     public static final RegistryObject<Item> BATTLE_MAGE_RING = registerCurio("battle_mage_ring", CurioSlot.RING, BattleMageRingItem::new);

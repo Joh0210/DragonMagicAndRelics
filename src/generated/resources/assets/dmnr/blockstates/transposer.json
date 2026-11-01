@@ -1,0 +1,41 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "dmnr:block/transposer"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/transposer_glow"
+      },
+      "when": {
+        "linked": "true"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/transposer_focus_1"
+      },
+      "when": {
+        "focus": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/transposer_focus_2"
+      },
+      "when": {
+        "focus": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "dmnr:block/transposer_focus_3"
+      },
+      "when": {
+        "focus": "3"
+      }
+    }
+  ]
+}

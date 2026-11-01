@@ -89,8 +89,16 @@ public class ModTags {
         public static ResourceLocation MUTANDIS_PLANTS = RLoc.create("mutandis_plants");
         public static ResourceLocation MNA_FLOWERS = RLoc.create("mna_flowers");
         public static ResourceLocation ACCELERATE_TIME_BLACKLIST = RLoc.create("accelerate_time_blacklist");
+        public static ResourceLocation TRANSPOSER_BLACKLIST = RLoc.create("transposer_blacklist");
 
         public Blocks() {
+        }
+    }
+
+    public static class EntityTypes {
+        public static ResourceLocation TRANSPOSER_BLACKLIST = RLoc.create("transposer_blacklist");
+
+        public EntityTypes() {
         }
     }
 

@@ -28,12 +28,12 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(@NotNull HolderLookup.Provider provider) {
-        TagAppender<Block> pickaxe = tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockInit.RIFT_EMITTER.get());
+        TagAppender<Block> pickaxe = tag(BlockTags.MINEABLE_WITH_PICKAXE).add(BlockInit.RIFT_EMITTER.get(), BlockInit.TRANSPOSER.get());
         for (RegistryObject<? extends Block> block : DataGenerators.placeableIntegrationBlocks()) {
             pickaxe.addOptional(block.getId());
         }
 
-        tag(BlockTags.NEEDS_IRON_TOOL).add(BlockInit.RIFT_EMITTER.get());
+        tag(BlockTags.NEEDS_IRON_TOOL).add(BlockInit.RIFT_EMITTER.get(), BlockInit.TRANSPOSER.get());
 
         tag(BlockTags.create(ModTags.Blocks.MNA_FLOWERS)).add(
                 com.mna.blocks.BlockInit.AUM.get(),
@@ -50,6 +50,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
         // empty, for modpacks: blocks whose time Accelerate Time can't accelerate
         tag(BlockTags.create(ModTags.Blocks.ACCELERATE_TIME_BLACKLIST));
+
+        // blocks the Transposer never moves (in addition to unbreakable blocks), e.g. the Transposers themselves
+        tag(BlockTags.create(ModTags.Blocks.TRANSPOSER_BLACKLIST)).add(BlockInit.TRANSPOSER.get());
 
         tag(BlockTags.create(new ResourceLocation("create", "non_movable")))
                 .addOptional(CreateInit.SPECTRAL_MOTOR.getId())

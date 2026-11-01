@@ -2,6 +2,7 @@ package de.joh.dmnr.common.init;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.common.block.entity.RiftEmitterBlockEntity;
+import de.joh.dmnr.common.block.entity.TransposerBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,6 +24,10 @@ public class BlockEntitieInit {
                     BlockEntityType.Builder.of(RiftEmitterBlockEntity::new,
                             BlockInit.RIFT_EMITTER.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<TransposerBlockEntity>> TRANSPOSER_ENTITY =
+            BLOCK_ENTITIES.register("transposer_entity", () ->
+                    BlockEntityType.Builder.of(TransposerBlockEntity::new,
+                            BlockInit.TRANSPOSER.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

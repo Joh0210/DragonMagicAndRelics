@@ -2,6 +2,7 @@ package de.joh.dmnr.client.init;
 
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.client.gui.*;
+import de.joh.dmnr.common.init.BlockInit;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.extensions.IForgeMenuType;
@@ -39,6 +40,8 @@ public class ContainerInit {
     static final String DRAGON_MAGE_ARMOR_DYE_ID = "dragon_mage_armor_dye";
     public static final RegistryObject<MenuType<ContainerDragonMageArmorDye>> DRAGON_MAGE_ARMOR_DYE;
 
+    public static final RegistryObject<MenuType<ContainerTransposer>> TRANSPOSER;
+
     public ContainerInit() {
     }
 
@@ -66,6 +69,9 @@ public class ContainerInit {
 
         DRAGON_MAGE_ARMOR_DYE = CONTAINERS.register(DRAGON_MAGE_ARMOR_DYE_ID,
                 () -> IForgeMenuType.create(ContainerDragonMageArmorDye::new));
+
+        TRANSPOSER = CONTAINERS.register(of(BlockInit.TRANSPOSER),
+                () -> IForgeMenuType.create(ContainerTransposer::new));
     }
 
     public static void register(IEventBus eventBus){

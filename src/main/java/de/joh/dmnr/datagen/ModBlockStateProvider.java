@@ -2,6 +2,7 @@ package de.joh.dmnr.datagen;
 
 import com.mna.api.blocks.WizardLabBlock;
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.common.block.TransposerBlock;
 import de.joh.dmnr.common.init.BlockInit;
 import de.joh.dmnr.compat.ae2.AE2Init;
 import de.joh.dmnr.compat.create.CreateInit;
@@ -10,16 +11,20 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraftforge.client.model.generators.BlockModelBuilder;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelBuilder;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Every block gets a single variant with the model of the same name, except the Rift Emitter: it is a table of the
- * M&A wizard lab and changes its model with the neighbouring tables.
+ * M&A wizard lab and changes its model with the neighbouring tables, and the Transposer: glowing overlays show its
+ * content.
  * <br> Most blocks are not rendered by their model (block entity renderers, Flywheel), so the model only provides
  * the particle texture.
  * @author Joh0210
@@ -32,6 +37,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         riftEmitter();
+        transposer();
         cubeAll(AE2Init.ALTAR_INTERFACE.get());
         engineModel(CreateInit.ARCANE_ENGINE, new ResourceLocation("mna", "block/artifice/decoration/transmuted_silver_block"));
         engineModel(CreateInit.BRIMSTONE_ENGINE, mcLoc("block/gilded_blackstone"));
@@ -75,6 +81,51 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 }
             }
         }
+    }
+
+    /**
+     * The base cube shows the unlit seal and channel; the glowing parts are full bright overlays on top of it:
+     * the seal and the channel while a bound rune is inserted, the points of the Ritual Focus (one per tier).
+     * The model of the same name, and so the item, is the base cube.
+     */
+    private void transposer() {
+        String name = BlockInit.TRANSPOSER.getId().getPath();
+        String folder = "block/" + name + "/";
+        ModelFile base = models().cubeBottomTop(name, modLoc(folder + "side"), modLoc(folder + "bottom"), modLoc(folder + "top"))
+                .renderType("cutout");
+        ModelFile glow = glowOverlay(name + "_glow", modLoc(folder + "side_glow"), modLoc(folder + "top_glow"));
+
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(BlockInit.TRANSPOSER.get());
+        builder.part().modelFile(base).addModel().end();
+        builder.part().modelFile(glow).addModel().condition(TransposerBlock.LINKED, true).end();
+        for (int focus = 1; focus <= 3; focus++) {
+            ModelFile points = glowOverlay(name + "_focus_" + focus, modLoc(folder + "side_focus_" + focus), null);
+            builder.part().modelFile(points).addModel().condition(TransposerBlock.FOCUS, focus).end();
+        }
+    }
+
+    /**
+     * Full bright cube on the sides (and the top, if given) without shading. It is a cutout like the base cube and
+     * comes after it in the multipart blockstate, so it is drawn over it, like the overlay of the grass block.
+     */
+    private ModelFile glowOverlay(String name, ResourceLocation side, @Nullable ResourceLocation top) {
+        BlockModelBuilder model = models().getBuilder(name).renderType("cutout")
+                .texture("side", side)
+                .texture("particle", side);
+        ModelBuilder<BlockModelBuilder>.ElementBuilder element = model.element().from(0, 0, 0).to(16, 16, 16).shade(false);
+        for (Direction direction : Direction.Plane.HORIZONTAL) {
+            glowFace(element, direction, "#side");
+        }
+        if (top != null) {
+            model.texture("top", top);
+            glowFace(element, Direction.UP, "#top");
+        }
+        return model;
+    }
+
+    // The model builder only writes the light of the faces (forge_data), not the one of the element
+    private static void glowFace(ModelBuilder<BlockModelBuilder>.ElementBuilder element, Direction direction, String texture) {
+        element.face(direction).texture(texture).cullface(direction).emissivity(15, 15).ao(false).end();
     }
 
     // EngineModel (Create integration) renders the hand-made children separately
