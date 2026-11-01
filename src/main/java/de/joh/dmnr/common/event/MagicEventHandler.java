@@ -7,6 +7,8 @@ import com.mna.api.events.RoteProgressGainedEvent;
 import com.mna.api.events.SpellCastEvent;
 import de.joh.dmnr.DragonMagicAndRelics;
 import de.joh.dmnr.api.spell.ChronomancyProgress;
+import de.joh.dmnr.common.dragonmagic.PrismaticAmuletDragonMagic;
+import de.joh.dmnr.common.dragonmagic.RingOfSilkDragonMagic;
 import de.joh.dmnr.common.effects.beneficial.SorcerersPrideMobEffect;
 import de.joh.dmnr.common.item.*;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
@@ -38,11 +40,13 @@ public class MagicEventHandler {
      * Prevents friends from getting hurt
      * @see BraceletOfFriendshipItem
      * @see AmuletOfHellfire
+     * @see RingOfSilkDragonMagic
      */
     @SubscribeEvent
     public static void onComponentApplying(ComponentApplyingEvent event){
         BraceletOfFriendshipItem.eventHandleProtectFriends(event);
         AmuletOfHellfire.eventHandleHellfire(event);
+        RingOfSilkDragonMagic.eventHandleRefill(event);
     }
 
     /**
@@ -68,6 +72,15 @@ public class MagicEventHandler {
     public static void onSpellCast(SpellCastEvent event){
         DevilRingItem.eventHandleTurnIntoHellfire(event);
         SorcerersPrideMobEffect.spellBoost(event);
+    }
+
+    /**
+     * Lowest priority, so spells canceled by other handlers don't get extra projectiles.
+     * @see PrismaticAmuletDragonMagic
+     */
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void onSpellCastUncanceled(SpellCastEvent event){
+        PrismaticAmuletDragonMagic.eventHandleExtraProjectiles(event);
     }
 
     @SubscribeEvent

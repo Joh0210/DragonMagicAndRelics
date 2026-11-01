@@ -182,6 +182,15 @@
   "item.dmnr.revenge_charm_dmg.dragonmagic": "Disproportionate damage increase",
   "item.dmnr.revenge_charm_dmg_major": "Revenge Charm: Damage (Major)",
 
+  "item.mna.warding_amulet.dragonmagic": "Increases the magic damage reduction to 40%",
+  "item.mna.crit_immune.dragonmagic": "Reduces the cooldown of the protection from death to 1 minute",
+  "item.mna.arcane_crown.dragonmagic": "Doubles the maximum mana granted by the crown",
+  "item.mna.silk_touch_ring.dragonmagic": "Never runs out of charge",
+  "item.mna.bone_ring.dragonmagic": "Doubles the souls gained while the ring is active",
+  "item.mna.battlemage_amulet.dragonmagic": "Doubles the spell and melee damage bonus of the amulet",
+  "item.mna.eldritch_orb.dragonmagic": "Triples the damage of its arcane bolts",
+  "item.mna.projectile_amulet.dragonmagic": "The Projectile shape fires five projectiles instead of three",
+
 
   "dmnr:tier_3/craft_bracelet_of_friendship.title": "gamerule doFriendlyFire false",
   "dmnr:tier_3/craft_bracelet_of_friendship.description": "Craft an Bracelet of Friendship",

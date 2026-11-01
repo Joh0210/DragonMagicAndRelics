@@ -3,6 +3,7 @@ package de.joh.dmnr;
 import com.mna.api.guidebook.RegisterGuidebooksEvent;
 import com.mojang.logging.LogUtils;
 import de.joh.dmnr.client.init.ContainerInit;
+import de.joh.dmnr.common.dragonmagic.ExternalDragonMagicInit;
 import de.joh.dmnr.common.init.*;
 import de.joh.dmnr.common.util.CommonConfig;
 import de.joh.dmnr.common.util.RLoc;
@@ -42,6 +43,7 @@ public class DragonMagicAndRelics {
         BlockInit.register(eventBus);
         EffectInit.register(eventBus);
         BlockEntitieInit.register(eventBus);
+        ExternalDragonMagicInit.register(eventBus);
 
         // Only on Client?
         ContainerInit.register(eventBus);

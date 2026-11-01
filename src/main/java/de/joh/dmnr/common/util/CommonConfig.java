@@ -76,6 +76,53 @@ public class CommonConfig {
     public static final ForgeConfigSpec.ConfigValue<Integer> DEFENSE_BRACELET_DM_DAMAGE_REDUCTION;
 
     /**
+     * Percentage by which the Warding Amulet of Mana and Artifice reduces magic damage while it has Dragon Magic, in
+     * addition to its own reduction.
+     * @see de.joh.dmnr.common.dragonmagic.WardingAmuletDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> WARDING_AMULET_DM_DAMAGE_REDUCTION;
+
+    /**
+     * Seconds the Fortifying Amulet of Mana and Artifice is on cooldown after it saved its wearer, while it has Dragon
+     * Magic.
+     * @see de.joh.dmnr.common.dragonmagic.FortifyingAmuletDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> FORTIFYING_AMULET_DM_COOLDOWN;
+
+    /**
+     * Level of the Mana Boost the Arcane Crown of Mana and Artifice keeps on its wearer while it has Dragon Magic.
+     * @see de.joh.dmnr.common.dragonmagic.ArcaneCrownDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> ARCANE_CROWN_DM_MANA_BOOST_LEVEL;
+
+    /**
+     * Percentage of the souls gained while the Ring of Brittle Bone of Mana and Artifice is active that its wearer gains
+     * once more while it has Dragon Magic.
+     * @see de.joh.dmnr.common.dragonmagic.RingOfBrittleBoneDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> BRITTLE_BONE_RING_DM_SOUL_BONUS;
+
+    /**
+     * Percentage of the spell and melee damage bonus of the Amulet of the Battlemage of Mana and Artifice that it grants
+     * once more while it has Dragon Magic.
+     * @see de.joh.dmnr.common.dragonmagic.BattlemageAmuletDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> BATTLEMAGE_AMULET_DM_BONUS;
+
+    /**
+     * Factor by which the bolts of the Eldritch Orb of Mana and Artifice deal more damage while it has Dragon Magic.
+     * @see de.joh.dmnr.common.dragonmagic.EldritchOrbDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> ELDRITCH_ORB_DM_DAMAGE_MULTIPLIER;
+
+    /**
+     * Number of additional projectiles on each side of the fan of the Prismatic Amulet of Mana and Artifice while it has
+     * Dragon Magic.
+     * @see de.joh.dmnr.common.dragonmagic.PrismaticAmuletDragonMagic
+     */
+    public static final ForgeConfigSpec.ConfigValue<Integer> PRISMATIC_AMULET_DM_EXTRA_PAIRS;
+
+    /**
      * Rotation speed of the Arcane Engine in RPM (Create integration).
      * @see de.joh.dmnr.compat.create.block.EngineBlock
      */
@@ -192,6 +239,20 @@ public class CommonConfig {
                 .defineInRange("Harmful effects needed for the Dragon Totem rings:", 5, 1, 32);
         DEFENSE_BRACELET_DM_DAMAGE_REDUCTION = BUILDER.comment("Percentage by which the Bracelet of Defense reduces all incoming damage while it has Dragon Magic. Several bracelets do not stack. The tooltip and the Codex show the default value.")
                 .defineInRange("Bracelet of Defense Dragon Magic damage reduction (%):", 25, 0, 100);
+        WARDING_AMULET_DM_DAMAGE_REDUCTION = BUILDER.comment("Percentage by which the Warding Amulet of Mana and Artifice reduces magic damage while it has Dragon Magic, in addition to its own 20%. Both reductions multiply: 25% result in 40% in total. The tooltip and the Codex show the default value.")
+                .defineInRange("Warding Amulet Dragon Magic damage reduction (%):", 25, 0, 100);
+        FORTIFYING_AMULET_DM_COOLDOWN = BUILDER.comment("Seconds the Fortifying Amulet of Mana and Artifice is on cooldown after it saved its wearer from death, while it has Dragon Magic (600 without). Every rescue still needs the full charge of the amulet. The tooltip and the Codex show the default value.")
+                .defineInRange("Fortifying Amulet Dragon Magic cooldown (seconds):", 60, 0, 600);
+        ARCANE_CROWN_DM_MANA_BOOST_LEVEL = BUILDER.comment("Level of the Mana Boost the Arcane Crown of Mana and Artifice keeps on its wearer while it has Dragon Magic (II without). Every level grants 50 maximum mana, so the default IV grants 200 instead of 100. The tooltip and the Codex show the default value.")
+                .defineInRange("Arcane Crown Dragon Magic Mana Boost level:", 4, 2, 10);
+        BRITTLE_BONE_RING_DM_SOUL_BONUS = BUILDER.comment("Percentage of the souls gained while the Ring of Brittle Bone of Mana and Artifice is active that its wearer gains once more while it has Dragon Magic. Applies to the souls from own kills and from the life drain of the Witherbone Armor. 100% doubles them. The tooltip and the Codex show the default value.")
+                .defineInRange("Ring of Brittle Bone Dragon Magic soul bonus (%):", 100, 0, 1000);
+        BATTLEMAGE_AMULET_DM_BONUS = BUILDER.comment("Percentage of the bonuses of the Amulet of the Battlemage of Mana and Artifice (30% spell damage with a sword in the other hand, up to 5 melee damage with a spell in the other hand) that it grants once more while it has Dragon Magic. 100% doubles them. The tooltip and the Codex show the default value.")
+                .defineInRange("Amulet of the Battlemage Dragon Magic bonus (%):", 100, 0, 1000);
+        ELDRITCH_ORB_DM_DAMAGE_MULTIPLIER = BUILDER.comment("Factor by which the bolts of the Eldritch Orb of Mana and Artifice deal more damage while it has Dragon Magic (1 damage without). The tooltip and the Codex show the default value.")
+                .defineInRange("Eldritch Orb Dragon Magic damage multiplier:", 3, 1, 20);
+        PRISMATIC_AMULET_DM_EXTRA_PAIRS = BUILDER.comment("Number of additional projectiles on each side of the fan of the Prismatic Amulet of Mana and Artifice while it has Dragon Magic. 1 results in five projectiles instead of three, 2 in seven. Every projectile carries the whole spell. The tooltip and the Codex show the default value.")
+                .defineInRange("Prismatic Amulet Dragon Magic additional projectiles per side:", 1, 0, 3);
         BUILDER.pop();
 
         BUILDER.push("Create Integration Configs");

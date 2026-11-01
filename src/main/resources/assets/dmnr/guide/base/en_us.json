@@ -1265,6 +1265,119 @@
             "text": "."
           }
         ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "The magic of the dragons is not bound to my own relics. Some artifacts of the wizards of Mana and Artifice awaken as well:"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Warding Amulet",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": Reduces magic damage by 40% instead of 20%."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Fortifying Amulet",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": Its protection from death is ready again after 1 minute instead of 10, as long as it is fully charged."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Arcane Crown",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": Grants 200 maximum mana instead of 100."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Ring of Silk",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": Never runs out of charge."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Ring of Brittle Bone",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": Doubles the souls I draw from my kills and through the Witherbone Armor."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Amulet of the Battlemage",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": My spells deal 60% more damage instead of 30% while I hold a sword in the other hand, and its melee bonus is doubled as well."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Eldritch Orb",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": Its arcane bolts deal three times as much damage."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "value": "",
+        "json": [
+          {
+            "text": "Prismatic Amulet",
+            "color": "dark_purple"
+          },
+          {
+            "text": ": The Projectile shape fires five projectiles instead of three."
+          }
+        ]
       }
     ],
     "related_recipes": [

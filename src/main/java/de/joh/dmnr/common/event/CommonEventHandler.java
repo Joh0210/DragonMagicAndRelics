@@ -1,6 +1,8 @@
 package de.joh.dmnr.common.event;
 
 import de.joh.dmnr.DragonMagicAndRelics;
+import de.joh.dmnr.common.dragonmagic.ArcaneCrownDragonMagic;
+import de.joh.dmnr.common.dragonmagic.EldritchOrbDragonMagic;
 import de.joh.dmnr.common.item.*;
 import de.joh.dmnr.common.effects.beneficial.ElytraMobEffect;
 import de.joh.dmnr.common.init.ItemInit;
@@ -18,6 +20,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingEquipmentChangeEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -89,6 +92,14 @@ public class CommonEventHandler {
         ElytraMobEffect.eventHandleElytraFly(event);
     }
 
+    /**
+     * - Arcane Crown (Dragon Magic)
+     */
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event){
+        ArcaneCrownDragonMagic.eventHandleManaBoost(event);
+    }
+
     @SubscribeEvent
     public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
         if(!event.getLevel().isClientSide()) {
@@ -103,6 +114,14 @@ public class CommonEventHandler {
     @SubscribeEvent
     public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
         KeyOfHomestead.onPlayerLeftClick(event);
+    }
+
+    /**
+     * - Eldritch Orb (Dragon Magic)
+     */
+    @SubscribeEvent
+    public static void onAttackEntity(AttackEntityEvent event) {
+        EldritchOrbDragonMagic.eventHandleAttack(event);
     }
 
     /**

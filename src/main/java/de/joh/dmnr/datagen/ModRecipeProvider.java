@@ -239,8 +239,9 @@ public class ModRecipeProvider extends MnaRecipeProvider {
                 .patterns(BOLT, INVERTED_TRIANGLE, DIAMOND));
 
         save(writer, "curse_protection_amulet", manaweaving(ItemInit.CURSE_PROTECTION_AMULET.get(), 5)
-                .items(WITHERGUARD_AMULET.get(), Items.DRAGON_BREATH, Items.MILK_BUCKET, Items.MILK_BUCKET,
-                        GREATER_MOTE_ARCANE.get(), GREATER_MOTE_WATER.get(), RUNE_DEFENSE.get(), Items.GOLDEN_APPLE)
+                .items(WITHERGUARD_AMULET.get(), ANTIDOTE_BRACELET.get(), Items.DRAGON_BREATH, Items.MILK_BUCKET,
+                        Items.MILK_BUCKET, GREATER_MOTE_ARCANE.get(), GREATER_MOTE_WATER.get(), RUNE_DEFENSE.get(),
+                        Items.GOLDEN_APPLE)
                 .patterns(INVERTED_SPLIT_TRIANGLE, SPLIT_TRIANGLE, INFINITY, HOURGLASS, INFINITY));
 
         save(writer, "regeneration_amulet", eldrinAltar(ItemInit.REGENERATION_AMULET.get(), 4)
